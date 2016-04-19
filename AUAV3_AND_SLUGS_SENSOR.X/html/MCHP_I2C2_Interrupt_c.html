@@ -1,0 +1,715 @@
+<HTML>
+<HEAD>
+<TITLE>RTW Report - MCHP_I2C2_Interrupt.c </TITLE>
+<STYLE> .LN { font-style: italic; color: #888888 } </STYLE>
+<STYLE> .CT { font-style: italic; color: #117755 } </STYLE>
+<STYLE> .PP { font-style: bold;   color: #992211 } </STYLE>
+<STYLE> .KW { font-style: bold;   color: #112266 } </STYLE>
+<STYLE> .DT { font-style: bold;   color: #112266 } </STYLE>
+<SCRIPT language="JavaScript" type="text/javascript">
+<!--
+function rtwHilite(aBlock,aParentSID) {
+ aParentSID = "";
+ try {
+    window.location.href="matlab: if ~isempty(which('private/rtwbindmodel')), rtwprivate rtwbindmodel 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.mdl' 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.X' '', end; rtwprivate code2model "+aBlock+" "+aParentSID+";"
+ } catch (e) { 
+ }
+} // end rtwHilite
+//-->
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);} ">
+<P>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
+<H4>File: <A HREF="file:///C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\AUAV3_AND_SLUGS_SENSOR.X\MCHP_I2C2_Interrupt.c" TARGET="rtwreport_document_frame">C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\AUAV3_AND_SLUGS_SENSOR.X\MCHP_I2C2_Interrupt.c</A></H4>
+<PRE id="RTWcode">
+<SPAN><A CLASS="LN" NAME="1">    1   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;AUAV3_AND_SLUGS_SENSOR.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="2">    2   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;AUAV3_AND_SLUGS_SENSOR_private.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="3">    3   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="4">    4   </A><SPAN CLASS="CT">/* Implement I2C 2 Interrupts */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="5">    5   </A><SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#fcn___attribute__" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var___attribute__');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">__attribute__</FONT></A>((__interrupt__,__auto_psv__)) _MI2C2Interrupt(<SPAN CLASS="DT">void</SPAN>) <SPAN CLASS="CT">/* MI2C2 ISR */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="6">    6   </A><B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="7">    7   </A>  <A HREF="rtwtypes_h.html#type_boolean_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_boolean_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">boolean_T</FONT></A> Continue;
+</SPAN><SPAN><A CLASS="LN" NAME="8">    8   </A>  _MI2C2IF = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="9">    9   </A>  asm(<FONT COLOR="#1122ff">&quot;INC _mcuFlagRecursion&quot;</FONT>);        <SPAN CLASS="CT">/* ensure atomic	mcuFlagRecursion++; */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="10">   10   </A>  T3CONbits.TON = 1;
+</SPAN><SPAN><A CLASS="LN" NAME="11">   11   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="12">   12   </A>  <SPAN CLASS="CT">/* Declaration of Variables */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="13">   13   </A>  <SPAN CLASS="KW">do</SPAN> <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="14">   14   </A>    Continue = 0;                      <SPAN CLASS="CT">/* By default, execute one sequence only */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="15">   15   </A>    <SPAN CLASS="KW">switch</SPAN> (<A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>)
+</SPAN><SPAN><A CLASS="LN" NAME="16">   16   </A>    <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="17">   17   </A>     <SPAN CLASS="KW">case</SPAN> 0:                           <SPAN CLASS="CT">/* Idle */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="18">   18   </A>      <SPAN CLASS="CT">/* Check if the next sequence is already in the queue. If so, start it */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="19">   19   </A>      Continue = (<A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.head != <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.tail);<SPAN CLASS="CT">/* One next sequence queued, start it now */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="20">   20   </A>      <SPAN CLASS="KW">if</SPAN> (Continue) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="21">   21   </A>        <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A> = <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.buffer[<A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.tail];
+</SPAN><SPAN><A CLASS="LN" NAME="22">   22   </A>        <SPAN CLASS="KW">if</SPAN> (<A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.tail &gt;= 5) <SPAN CLASS="CT">/* There are 5 I2C2 blocks, max idx for queue is 5 */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="23">   23   </A>          <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.tail = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="24">   24   </A>        <SPAN CLASS="KW">else</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="25">   25   </A>          <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.tail++;
+</SPAN><SPAN><A CLASS="LN" NAME="26">   26   </A>      <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="27">   27   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="28">   28   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="29">   29   </A>     <SPAN CLASS="KW">case</SPAN> 1:                           <SPAN CLASS="CT">/* Problem: try Reset of I2C BUS : Repeated Start sequence and Stop */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="30">   30   </A>      TRISAbits.TRISA3 = 1;            <SPAN CLASS="CT">/* Set I2C Port as Port Input (better for Fj chips)*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="31">   31   </A>      TRISAbits.TRISA2 = 1;
+</SPAN><SPAN><A CLASS="LN" NAME="32">   32   </A>      I2C2CONbits.I2CEN = 1;           <SPAN CLASS="CT">/* Re-Enable I2C*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A>      I2C2STAT &amp;= 65526;               <SPAN CLASS="CT">/* Reset I2C State */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="34">   34   </A>      I2C2CONbits.RSEN = 1;            <SPAN CLASS="CT">/* I2C: Restart */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="35">   35   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="36">   36   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="37">   37   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="38">   38   </A>     <SPAN CLASS="KW">case</SPAN> 2:                           <SPAN CLASS="CT">/* Problem: try Reset of I2C BUS : Stop sequence*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="39">   39   </A>      I2C2STAT &amp;= 65526;               <SPAN CLASS="CT">/* Reset I2C Receive Overflow and I2C Collision during Write or Master operation  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="40">   40   </A>      I2C2CONbits.PEN = 1;             <SPAN CLASS="CT">/* I2C: STOP */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="41">   41   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="42">   42   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="43">   43   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="44">   44   </A>     <SPAN CLASS="KW">case</SPAN> 3:
+</SPAN><SPAN><A CLASS="LN" NAME="45">   45   </A>      I2C2STAT &amp;= 65526;               <SPAN CLASS="CT">/* Reset I2C Receive Overflow and I2C Collision during Write or Master operation  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="46">   46   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A> = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="47">   47   </A>      Continue = (<A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.head != <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.tail);<SPAN CLASS="CT">/* Any pending sequence ? */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="48">   48   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="49">   49   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="50">   50   </A>     <SPAN CLASS="KW">case</SPAN> 4:                           <SPAN CLASS="CT">/* Start a new I2C Sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="51">   51   </A>      I2C2CONbits.SEN = 1;             <SPAN CLASS="CT">/* I2C: START  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="52">   52   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="53">   53   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="54">   54   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="55">   55   </A>     <SPAN CLASS="KW">case</SPAN> 5:
+</SPAN><SPAN><A CLASS="LN" NAME="56">   56   </A>      I2C2TRN = 0xEE;                  <SPAN CLASS="CT">/* Send I2C Address : A7 A6 A5 A4 A3 A2 A1 A0 RW */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="57">   57   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="58">   58   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="59">   59   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="60">   60   </A>     <SPAN CLASS="KW">case</SPAN> 6:
+</SPAN><SPAN><A CLASS="LN" NAME="61">   61   </A>      I2C2TRN = 0xF6;                  <SPAN CLASS="CT">/* I2C : Write data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="62">   62   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="63">   63   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="64">   64   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="65">   65   </A>     <SPAN CLASS="KW">case</SPAN> 7:
+</SPAN><SPAN><A CLASS="LN" NAME="66">   66   </A>      I2C2CONbits.RSEN = 1;            <SPAN CLASS="CT">/* I2C: REPEATED START */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="67">   67   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="68">   68   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="69">   69   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="70">   70   </A>     <SPAN CLASS="KW">case</SPAN> 8:
+</SPAN><SPAN><A CLASS="LN" NAME="71">   71   </A>      I2C2TRN = 0xEF;                  <SPAN CLASS="CT">/* I2C : Address Repeat */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="72">   72   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="73">   73   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="74">   74   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="75">   75   </A>     <SPAN CLASS="KW">case</SPAN> 9:
+</SPAN><SPAN><A CLASS="LN" NAME="76">   76   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="77">   77   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="78">   78   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="79">   79   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="80">   80   </A>     <SPAN CLASS="KW">case</SPAN> 10:
+</SPAN><SPAN><A CLASS="LN" NAME="81">   81   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C22_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C22_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C22_Buff8</FONT></A>[0] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="82">   82   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="83">   83   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="84">   84   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="85">   85   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="86">   86   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="87">   87   </A>     <SPAN CLASS="KW">case</SPAN> 11:
+</SPAN><SPAN><A CLASS="LN" NAME="88">   88   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="89">   89   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="90">   90   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="91">   91   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="92">   92   </A>     <SPAN CLASS="KW">case</SPAN> 12:
+</SPAN><SPAN><A CLASS="LN" NAME="93">   93   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C22_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C22_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C22_Buff8</FONT></A>[1] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="94">   94   </A>      I2C2CONbits.ACKDT = 1;           <SPAN CLASS="CT">/* set to NACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="95">   95   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="96">   96   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="97">   97   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="98">   98   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="99">   99   </A>     <SPAN CLASS="KW">case</SPAN> 13:
+</SPAN><SPAN><A CLASS="LN" NAME="100">  100   </A>      I2C2CONbits.PEN = 1;             <SPAN CLASS="CT">/* I2C: STOP */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="101">  101   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="102">  102   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="103">  103   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="104">  104   </A>     <SPAN CLASS="KW">case</SPAN> 14:
+</SPAN><SPAN><A CLASS="LN" NAME="105">  105   </A>      I2C2CONbits.SEN = 1;             <SPAN CLASS="CT">/* I2C: START  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="106">  106   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="107">  107   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="108">  108   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="109">  109   </A>     <SPAN CLASS="KW">case</SPAN> 15:
+</SPAN><SPAN><A CLASS="LN" NAME="110">  110   </A>      I2C2TRN = 0xEE;                  <SPAN CLASS="CT">/* Send I2C Address : A7 A6 A5 A4 A3 A2 A1 A0 RW */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="111">  111   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="112">  112   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="113">  113   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="114">  114   </A>     <SPAN CLASS="KW">case</SPAN> 16:
+</SPAN><SPAN><A CLASS="LN" NAME="115">  115   </A>      I2C2TRN = 0xF4;                  <SPAN CLASS="CT">/* I2C : Write data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="116">  116   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="117">  117   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="118">  118   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="119">  119   </A>     <SPAN CLASS="KW">case</SPAN> 17:
+</SPAN><SPAN><A CLASS="LN" NAME="120">  120   </A>      I2C2TRN = 0x34;                  <SPAN CLASS="CT">/* I2C : Write data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="121">  121   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="122">  122   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="123">  123   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="124">  124   </A>     <SPAN CLASS="KW">case</SPAN> 18:
+</SPAN><SPAN><A CLASS="LN" NAME="125">  125   </A>      I2C2CONbits.PEN = 1;             <SPAN CLASS="CT">/* I2C: STOP */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="126">  126   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="127">  127   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="128">  128   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="129">  129   </A>     <SPAN CLASS="KW">case</SPAN> 19:
+</SPAN><SPAN><A CLASS="LN" NAME="130">  130   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C22_Request" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C22_Request');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C22_Request</FONT></A> = 0;          <SPAN CLASS="CT">/* This I2C sequence could be Re-Enabled */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="131">  131   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A> = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="132">  132   </A>      Continue = (<A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.head != <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.tail);<SPAN CLASS="CT">/* One next sequence queued, start it now */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="133">  133   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="134">  134   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="135">  135   </A>     <SPAN CLASS="KW">case</SPAN> 20:                          <SPAN CLASS="CT">/* Start a new I2C Sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="136">  136   </A>      I2C2CONbits.SEN = 1;             <SPAN CLASS="CT">/* I2C: START  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="137">  137   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="138">  138   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="139">  139   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="140">  140   </A>     <SPAN CLASS="KW">case</SPAN> 21:
+</SPAN><SPAN><A CLASS="LN" NAME="141">  141   </A>      I2C2TRN = 0xEE;                  <SPAN CLASS="CT">/* Send I2C Address : A7 A6 A5 A4 A3 A2 A1 A0 RW */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="142">  142   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="143">  143   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="144">  144   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="145">  145   </A>     <SPAN CLASS="KW">case</SPAN> 22:
+</SPAN><SPAN><A CLASS="LN" NAME="146">  146   </A>      I2C2TRN = 0xF6;                  <SPAN CLASS="CT">/* I2C : Write data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="147">  147   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="148">  148   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="149">  149   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="150">  150   </A>     <SPAN CLASS="KW">case</SPAN> 23:
+</SPAN><SPAN><A CLASS="LN" NAME="151">  151   </A>      I2C2CONbits.RSEN = 1;            <SPAN CLASS="CT">/* I2C: REPEATED START */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="152">  152   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="153">  153   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="154">  154   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="155">  155   </A>     <SPAN CLASS="KW">case</SPAN> 24:
+</SPAN><SPAN><A CLASS="LN" NAME="156">  156   </A>      I2C2TRN = 0xEF;                  <SPAN CLASS="CT">/* I2C : Address Repeat */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="157">  157   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="158">  158   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="159">  159   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="160">  160   </A>     <SPAN CLASS="KW">case</SPAN> 25:
+</SPAN><SPAN><A CLASS="LN" NAME="161">  161   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="162">  162   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="163">  163   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="164">  164   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="165">  165   </A>     <SPAN CLASS="KW">case</SPAN> 26:
+</SPAN><SPAN><A CLASS="LN" NAME="166">  166   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C23_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C23_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C23_Buff8</FONT></A>[0] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="167">  167   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="168">  168   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="169">  169   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="170">  170   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="171">  171   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="172">  172   </A>     <SPAN CLASS="KW">case</SPAN> 27:
+</SPAN><SPAN><A CLASS="LN" NAME="173">  173   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="174">  174   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="175">  175   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="176">  176   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="177">  177   </A>     <SPAN CLASS="KW">case</SPAN> 28:
+</SPAN><SPAN><A CLASS="LN" NAME="178">  178   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C23_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C23_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C23_Buff8</FONT></A>[1] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="179">  179   </A>      I2C2CONbits.ACKDT = 1;           <SPAN CLASS="CT">/* set to NACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="180">  180   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="181">  181   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="182">  182   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="183">  183   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="184">  184   </A>     <SPAN CLASS="KW">case</SPAN> 29:
+</SPAN><SPAN><A CLASS="LN" NAME="185">  185   </A>      I2C2CONbits.PEN = 1;             <SPAN CLASS="CT">/* I2C: STOP */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="186">  186   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="187">  187   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="188">  188   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="189">  189   </A>     <SPAN CLASS="KW">case</SPAN> 30:
+</SPAN><SPAN><A CLASS="LN" NAME="190">  190   </A>      I2C2CONbits.SEN = 1;             <SPAN CLASS="CT">/* I2C: START  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="191">  191   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="192">  192   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="193">  193   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="194">  194   </A>     <SPAN CLASS="KW">case</SPAN> 31:
+</SPAN><SPAN><A CLASS="LN" NAME="195">  195   </A>      I2C2TRN = 0xEE;                  <SPAN CLASS="CT">/* Send I2C Address : A7 A6 A5 A4 A3 A2 A1 A0 RW */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="196">  196   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="197">  197   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="198">  198   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="199">  199   </A>     <SPAN CLASS="KW">case</SPAN> 32:
+</SPAN><SPAN><A CLASS="LN" NAME="200">  200   </A>      I2C2TRN = 0xF4;                  <SPAN CLASS="CT">/* I2C : Write data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="201">  201   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="202">  202   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="203">  203   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="204">  204   </A>     <SPAN CLASS="KW">case</SPAN> 33:
+</SPAN><SPAN><A CLASS="LN" NAME="205">  205   </A>      I2C2TRN = 0x2E;                  <SPAN CLASS="CT">/* I2C : Write data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="206">  206   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="207">  207   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="208">  208   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="209">  209   </A>     <SPAN CLASS="KW">case</SPAN> 34:
+</SPAN><SPAN><A CLASS="LN" NAME="210">  210   </A>      I2C2CONbits.PEN = 1;             <SPAN CLASS="CT">/* I2C: STOP */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="211">  211   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="212">  212   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="213">  213   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="214">  214   </A>     <SPAN CLASS="KW">case</SPAN> 35:
+</SPAN><SPAN><A CLASS="LN" NAME="215">  215   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C23_Request" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C23_Request');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C23_Request</FONT></A> = 0;          <SPAN CLASS="CT">/* This I2C sequence could be Re-Enabled */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="216">  216   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A> = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="217">  217   </A>      Continue = (<A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.head != <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.tail);<SPAN CLASS="CT">/* One next sequence queued, start it now */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="218">  218   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="219">  219   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="220">  220   </A>     <SPAN CLASS="KW">case</SPAN> 36:                          <SPAN CLASS="CT">/* Start a new I2C Sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="221">  221   </A>      I2C2CONbits.SEN = 1;             <SPAN CLASS="CT">/* I2C: START  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="222">  222   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="223">  223   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="224">  224   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="225">  225   </A>     <SPAN CLASS="KW">case</SPAN> 37:
+</SPAN><SPAN><A CLASS="LN" NAME="226">  226   </A>      I2C2TRN = 0xEE;                  <SPAN CLASS="CT">/* Send I2C Address : A7 A6 A5 A4 A3 A2 A1 A0 RW */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="227">  227   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="228">  228   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="229">  229   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="230">  230   </A>     <SPAN CLASS="KW">case</SPAN> 38:
+</SPAN><SPAN><A CLASS="LN" NAME="231">  231   </A>      I2C2TRN = 0xAA;                  <SPAN CLASS="CT">/* I2C : Write data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="232">  232   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="233">  233   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="234">  234   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="235">  235   </A>     <SPAN CLASS="KW">case</SPAN> 39:
+</SPAN><SPAN><A CLASS="LN" NAME="236">  236   </A>      I2C2CONbits.RSEN = 1;            <SPAN CLASS="CT">/* I2C: REPEATED START */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="237">  237   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="238">  238   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="239">  239   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="240">  240   </A>     <SPAN CLASS="KW">case</SPAN> 40:
+</SPAN><SPAN><A CLASS="LN" NAME="241">  241   </A>      I2C2TRN = 0xEF;                  <SPAN CLASS="CT">/* I2C : Address Repeat */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="242">  242   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="243">  243   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="244">  244   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="245">  245   </A>     <SPAN CLASS="KW">case</SPAN> 41:
+</SPAN><SPAN><A CLASS="LN" NAME="246">  246   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="247">  247   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="248">  248   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="249">  249   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="250">  250   </A>     <SPAN CLASS="KW">case</SPAN> 42:
+</SPAN><SPAN><A CLASS="LN" NAME="251">  251   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[0] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="252">  252   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="253">  253   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="254">  254   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="255">  255   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="256">  256   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="257">  257   </A>     <SPAN CLASS="KW">case</SPAN> 43:
+</SPAN><SPAN><A CLASS="LN" NAME="258">  258   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="259">  259   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="260">  260   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="261">  261   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="262">  262   </A>     <SPAN CLASS="KW">case</SPAN> 44:
+</SPAN><SPAN><A CLASS="LN" NAME="263">  263   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[1] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="264">  264   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="265">  265   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="266">  266   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="267">  267   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="268">  268   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="269">  269   </A>     <SPAN CLASS="KW">case</SPAN> 45:
+</SPAN><SPAN><A CLASS="LN" NAME="270">  270   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="271">  271   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="272">  272   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="273">  273   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="274">  274   </A>     <SPAN CLASS="KW">case</SPAN> 46:
+</SPAN><SPAN><A CLASS="LN" NAME="275">  275   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[2] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="276">  276   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="277">  277   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="278">  278   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="279">  279   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="280">  280   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="281">  281   </A>     <SPAN CLASS="KW">case</SPAN> 47:
+</SPAN><SPAN><A CLASS="LN" NAME="282">  282   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="283">  283   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="284">  284   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="285">  285   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="286">  286   </A>     <SPAN CLASS="KW">case</SPAN> 48:
+</SPAN><SPAN><A CLASS="LN" NAME="287">  287   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[3] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="288">  288   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="289">  289   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="290">  290   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="291">  291   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="292">  292   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="293">  293   </A>     <SPAN CLASS="KW">case</SPAN> 49:
+</SPAN><SPAN><A CLASS="LN" NAME="294">  294   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="295">  295   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="296">  296   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="297">  297   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="298">  298   </A>     <SPAN CLASS="KW">case</SPAN> 50:
+</SPAN><SPAN><A CLASS="LN" NAME="299">  299   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[4] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="300">  300   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="301">  301   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="302">  302   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="303">  303   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="304">  304   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="305">  305   </A>     <SPAN CLASS="KW">case</SPAN> 51:
+</SPAN><SPAN><A CLASS="LN" NAME="306">  306   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="307">  307   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="308">  308   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="309">  309   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="310">  310   </A>     <SPAN CLASS="KW">case</SPAN> 52:
+</SPAN><SPAN><A CLASS="LN" NAME="311">  311   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[5] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="312">  312   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="313">  313   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="314">  314   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="315">  315   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="316">  316   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="317">  317   </A>     <SPAN CLASS="KW">case</SPAN> 53:
+</SPAN><SPAN><A CLASS="LN" NAME="318">  318   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="319">  319   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="320">  320   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="321">  321   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="322">  322   </A>     <SPAN CLASS="KW">case</SPAN> 54:
+</SPAN><SPAN><A CLASS="LN" NAME="323">  323   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[6] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="324">  324   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="325">  325   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="326">  326   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="327">  327   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="328">  328   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="329">  329   </A>     <SPAN CLASS="KW">case</SPAN> 55:
+</SPAN><SPAN><A CLASS="LN" NAME="330">  330   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="331">  331   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="332">  332   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="333">  333   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="334">  334   </A>     <SPAN CLASS="KW">case</SPAN> 56:
+</SPAN><SPAN><A CLASS="LN" NAME="335">  335   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[7] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="336">  336   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="337">  337   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="338">  338   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="339">  339   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="340">  340   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="341">  341   </A>     <SPAN CLASS="KW">case</SPAN> 57:
+</SPAN><SPAN><A CLASS="LN" NAME="342">  342   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="343">  343   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="344">  344   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="345">  345   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="346">  346   </A>     <SPAN CLASS="KW">case</SPAN> 58:
+</SPAN><SPAN><A CLASS="LN" NAME="347">  347   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[8] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="348">  348   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="349">  349   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="350">  350   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="351">  351   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="352">  352   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="353">  353   </A>     <SPAN CLASS="KW">case</SPAN> 59:
+</SPAN><SPAN><A CLASS="LN" NAME="354">  354   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="355">  355   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="356">  356   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="357">  357   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="358">  358   </A>     <SPAN CLASS="KW">case</SPAN> 60:
+</SPAN><SPAN><A CLASS="LN" NAME="359">  359   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[9] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="360">  360   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="361">  361   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="362">  362   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="363">  363   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="364">  364   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="365">  365   </A>     <SPAN CLASS="KW">case</SPAN> 61:
+</SPAN><SPAN><A CLASS="LN" NAME="366">  366   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="367">  367   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="368">  368   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="369">  369   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="370">  370   </A>     <SPAN CLASS="KW">case</SPAN> 62:
+</SPAN><SPAN><A CLASS="LN" NAME="371">  371   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[10] = I2C2RCV;       <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="372">  372   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="373">  373   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="374">  374   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="375">  375   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="376">  376   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="377">  377   </A>     <SPAN CLASS="KW">case</SPAN> 63:
+</SPAN><SPAN><A CLASS="LN" NAME="378">  378   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="379">  379   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="380">  380   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="381">  381   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="382">  382   </A>     <SPAN CLASS="KW">case</SPAN> 64:
+</SPAN><SPAN><A CLASS="LN" NAME="383">  383   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[11] = I2C2RCV;       <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="384">  384   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="385">  385   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="386">  386   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="387">  387   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="388">  388   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="389">  389   </A>     <SPAN CLASS="KW">case</SPAN> 65:
+</SPAN><SPAN><A CLASS="LN" NAME="390">  390   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="391">  391   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="392">  392   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="393">  393   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="394">  394   </A>     <SPAN CLASS="KW">case</SPAN> 66:
+</SPAN><SPAN><A CLASS="LN" NAME="395">  395   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[12] = I2C2RCV;       <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="396">  396   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="397">  397   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="398">  398   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="399">  399   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="400">  400   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="401">  401   </A>     <SPAN CLASS="KW">case</SPAN> 67:
+</SPAN><SPAN><A CLASS="LN" NAME="402">  402   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="403">  403   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="404">  404   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="405">  405   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="406">  406   </A>     <SPAN CLASS="KW">case</SPAN> 68:
+</SPAN><SPAN><A CLASS="LN" NAME="407">  407   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[13] = I2C2RCV;       <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="408">  408   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="409">  409   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="410">  410   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="411">  411   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="412">  412   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="413">  413   </A>     <SPAN CLASS="KW">case</SPAN> 69:
+</SPAN><SPAN><A CLASS="LN" NAME="414">  414   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="415">  415   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="416">  416   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="417">  417   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="418">  418   </A>     <SPAN CLASS="KW">case</SPAN> 70:
+</SPAN><SPAN><A CLASS="LN" NAME="419">  419   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[14] = I2C2RCV;       <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="420">  420   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="421">  421   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="422">  422   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="423">  423   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="424">  424   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="425">  425   </A>     <SPAN CLASS="KW">case</SPAN> 71:
+</SPAN><SPAN><A CLASS="LN" NAME="426">  426   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="427">  427   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="428">  428   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="429">  429   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="430">  430   </A>     <SPAN CLASS="KW">case</SPAN> 72:
+</SPAN><SPAN><A CLASS="LN" NAME="431">  431   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[15] = I2C2RCV;       <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="432">  432   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="433">  433   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="434">  434   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="435">  435   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="436">  436   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="437">  437   </A>     <SPAN CLASS="KW">case</SPAN> 73:
+</SPAN><SPAN><A CLASS="LN" NAME="438">  438   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="439">  439   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="440">  440   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="441">  441   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="442">  442   </A>     <SPAN CLASS="KW">case</SPAN> 74:
+</SPAN><SPAN><A CLASS="LN" NAME="443">  443   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[16] = I2C2RCV;       <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="444">  444   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="445">  445   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="446">  446   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="447">  447   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="448">  448   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="449">  449   </A>     <SPAN CLASS="KW">case</SPAN> 75:
+</SPAN><SPAN><A CLASS="LN" NAME="450">  450   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="451">  451   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="452">  452   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="453">  453   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="454">  454   </A>     <SPAN CLASS="KW">case</SPAN> 76:
+</SPAN><SPAN><A CLASS="LN" NAME="455">  455   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[17] = I2C2RCV;       <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="456">  456   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="457">  457   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="458">  458   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="459">  459   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="460">  460   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="461">  461   </A>     <SPAN CLASS="KW">case</SPAN> 77:
+</SPAN><SPAN><A CLASS="LN" NAME="462">  462   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="463">  463   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="464">  464   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="465">  465   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="466">  466   </A>     <SPAN CLASS="KW">case</SPAN> 78:
+</SPAN><SPAN><A CLASS="LN" NAME="467">  467   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[18] = I2C2RCV;       <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="468">  468   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="469">  469   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="470">  470   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="471">  471   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="472">  472   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="473">  473   </A>     <SPAN CLASS="KW">case</SPAN> 79:
+</SPAN><SPAN><A CLASS="LN" NAME="474">  474   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="475">  475   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="476">  476   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="477">  477   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="478">  478   </A>     <SPAN CLASS="KW">case</SPAN> 80:
+</SPAN><SPAN><A CLASS="LN" NAME="479">  479   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[19] = I2C2RCV;       <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="480">  480   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="481">  481   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="482">  482   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="483">  483   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="484">  484   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="485">  485   </A>     <SPAN CLASS="KW">case</SPAN> 81:
+</SPAN><SPAN><A CLASS="LN" NAME="486">  486   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="487">  487   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="488">  488   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="489">  489   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="490">  490   </A>     <SPAN CLASS="KW">case</SPAN> 82:
+</SPAN><SPAN><A CLASS="LN" NAME="491">  491   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[20] = I2C2RCV;       <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="492">  492   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="493">  493   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="494">  494   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="495">  495   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="496">  496   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="497">  497   </A>     <SPAN CLASS="KW">case</SPAN> 83:
+</SPAN><SPAN><A CLASS="LN" NAME="498">  498   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="499">  499   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="500">  500   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="501">  501   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="502">  502   </A>     <SPAN CLASS="KW">case</SPAN> 84:
+</SPAN><SPAN><A CLASS="LN" NAME="503">  503   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[21] = I2C2RCV;       <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="504">  504   </A>      I2C2CONbits.ACKDT = 1;           <SPAN CLASS="CT">/* set to NACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="505">  505   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="506">  506   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="507">  507   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="508">  508   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="509">  509   </A>     <SPAN CLASS="KW">case</SPAN> 85:
+</SPAN><SPAN><A CLASS="LN" NAME="510">  510   </A>      I2C2CONbits.PEN = 1;             <SPAN CLASS="CT">/* I2C: STOP */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="511">  511   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="512">  512   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="513">  513   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="514">  514   </A>     <SPAN CLASS="KW">case</SPAN> 86:
+</SPAN><SPAN><A CLASS="LN" NAME="515">  515   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C21_Request" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C21_Request');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C21_Request</FONT></A> = 0;          <SPAN CLASS="CT">/* This I2C sequence could be Re-Enabled */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="516">  516   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A> = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="517">  517   </A>      Continue = (<A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.head != <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.tail);<SPAN CLASS="CT">/* One next sequence queued, start it now */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="518">  518   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="519">  519   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="520">  520   </A>     <SPAN CLASS="KW">case</SPAN> 87:                          <SPAN CLASS="CT">/* Start a new I2C Sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="521">  521   </A>      I2C2CONbits.SEN = 1;             <SPAN CLASS="CT">/* I2C: START  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="522">  522   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="523">  523   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="524">  524   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="525">  525   </A>     <SPAN CLASS="KW">case</SPAN> 88:
+</SPAN><SPAN><A CLASS="LN" NAME="526">  526   </A>      I2C2TRN = 0x3C;                  <SPAN CLASS="CT">/* Send I2C Address : A7 A6 A5 A4 A3 A2 A1 A0 RW */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="527">  527   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="528">  528   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="529">  529   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="530">  530   </A>     <SPAN CLASS="KW">case</SPAN> 89:
+</SPAN><SPAN><A CLASS="LN" NAME="531">  531   </A>      I2C2TRN = 0x03;                  <SPAN CLASS="CT">/* I2C : Write data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="532">  532   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="533">  533   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="534">  534   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="535">  535   </A>     <SPAN CLASS="KW">case</SPAN> 90:
+</SPAN><SPAN><A CLASS="LN" NAME="536">  536   </A>      I2C2CONbits.PEN = 1;             <SPAN CLASS="CT">/* I2C: STOP */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="537">  537   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="538">  538   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="539">  539   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="540">  540   </A>     <SPAN CLASS="KW">case</SPAN> 91:
+</SPAN><SPAN><A CLASS="LN" NAME="541">  541   </A>      I2C2CONbits.SEN = 1;             <SPAN CLASS="CT">/* I2C: START  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="542">  542   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="543">  543   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="544">  544   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="545">  545   </A>     <SPAN CLASS="KW">case</SPAN> 92:
+</SPAN><SPAN><A CLASS="LN" NAME="546">  546   </A>      I2C2TRN = 0x3D;                  <SPAN CLASS="CT">/* Send I2C Address : A7 A6 A5 A4 A3 A2 A1 A0 RW */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="547">  547   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="548">  548   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="549">  549   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="550">  550   </A>     <SPAN CLASS="KW">case</SPAN> 93:
+</SPAN><SPAN><A CLASS="LN" NAME="551">  551   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="552">  552   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="553">  553   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="554">  554   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="555">  555   </A>     <SPAN CLASS="KW">case</SPAN> 94:
+</SPAN><SPAN><A CLASS="LN" NAME="556">  556   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C24_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C24_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C24_Buff8</FONT></A>[0] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="557">  557   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="558">  558   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="559">  559   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="560">  560   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="561">  561   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="562">  562   </A>     <SPAN CLASS="KW">case</SPAN> 95:
+</SPAN><SPAN><A CLASS="LN" NAME="563">  563   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="564">  564   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="565">  565   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="566">  566   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="567">  567   </A>     <SPAN CLASS="KW">case</SPAN> 96:
+</SPAN><SPAN><A CLASS="LN" NAME="568">  568   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C24_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C24_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C24_Buff8</FONT></A>[1] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="569">  569   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="570">  570   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="571">  571   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="572">  572   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="573">  573   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="574">  574   </A>     <SPAN CLASS="KW">case</SPAN> 97:
+</SPAN><SPAN><A CLASS="LN" NAME="575">  575   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="576">  576   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="577">  577   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="578">  578   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="579">  579   </A>     <SPAN CLASS="KW">case</SPAN> 98:
+</SPAN><SPAN><A CLASS="LN" NAME="580">  580   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C24_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C24_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C24_Buff8</FONT></A>[2] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="581">  581   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="582">  582   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="583">  583   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="584">  584   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="585">  585   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="586">  586   </A>     <SPAN CLASS="KW">case</SPAN> 99:
+</SPAN><SPAN><A CLASS="LN" NAME="587">  587   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="588">  588   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="589">  589   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="590">  590   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="591">  591   </A>     <SPAN CLASS="KW">case</SPAN> 100:
+</SPAN><SPAN><A CLASS="LN" NAME="592">  592   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C24_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C24_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C24_Buff8</FONT></A>[3] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="593">  593   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="594">  594   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="595">  595   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="596">  596   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="597">  597   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="598">  598   </A>     <SPAN CLASS="KW">case</SPAN> 101:
+</SPAN><SPAN><A CLASS="LN" NAME="599">  599   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="600">  600   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="601">  601   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="602">  602   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="603">  603   </A>     <SPAN CLASS="KW">case</SPAN> 102:
+</SPAN><SPAN><A CLASS="LN" NAME="604">  604   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C24_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C24_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C24_Buff8</FONT></A>[4] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="605">  605   </A>      I2C2CONbits.ACKDT = 0;           <SPAN CLASS="CT">/* set to ACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="606">  606   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="607">  607   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="608">  608   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="609">  609   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="610">  610   </A>     <SPAN CLASS="KW">case</SPAN> 103:
+</SPAN><SPAN><A CLASS="LN" NAME="611">  611   </A>      I2C2CONbits.RCEN = 1;            <SPAN CLASS="CT">/* I2C: Receive  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="612">  612   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="613">  613   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="614">  614   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="615">  615   </A>     <SPAN CLASS="KW">case</SPAN> 104:
+</SPAN><SPAN><A CLASS="LN" NAME="616">  616   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C24_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C24_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C24_Buff8</FONT></A>[5] = I2C2RCV;        <SPAN CLASS="CT">/* I2C : Read data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="617">  617   </A>      I2C2CONbits.ACKDT = 1;           <SPAN CLASS="CT">/* set to NACK */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="618">  618   </A>      I2C2CONbits.ACKEN = 1;           <SPAN CLASS="CT">/* Start Acknowledge sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="619">  619   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="620">  620   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="621">  621   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="622">  622   </A>     <SPAN CLASS="KW">case</SPAN> 105:
+</SPAN><SPAN><A CLASS="LN" NAME="623">  623   </A>      I2C2CONbits.PEN = 1;             <SPAN CLASS="CT">/* I2C: STOP */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="624">  624   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="625">  625   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="626">  626   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="627">  627   </A>     <SPAN CLASS="KW">case</SPAN> 106:
+</SPAN><SPAN><A CLASS="LN" NAME="628">  628   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C24_Request" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C24_Request');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C24_Request</FONT></A> = 0;          <SPAN CLASS="CT">/* This I2C sequence could be Re-Enabled */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="629">  629   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A> = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="630">  630   </A>      Continue = (<A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.head != <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.tail);<SPAN CLASS="CT">/* One next sequence queued, start it now */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="631">  631   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="632">  632   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="633">  633   </A>     <SPAN CLASS="KW">case</SPAN> 107:                         <SPAN CLASS="CT">/* Start a new I2C Sequence */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="634">  634   </A>      I2C2CONbits.SEN = 1;             <SPAN CLASS="CT">/* I2C: START  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="635">  635   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="636">  636   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="637">  637   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="638">  638   </A>     <SPAN CLASS="KW">case</SPAN> 108:
+</SPAN><SPAN><A CLASS="LN" NAME="639">  639   </A>      I2C2TRN = 0x3C;                  <SPAN CLASS="CT">/* Send I2C Address : A7 A6 A5 A4 A3 A2 A1 A0 RW */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="640">  640   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="641">  641   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="642">  642   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="643">  643   </A>     <SPAN CLASS="KW">case</SPAN> 109:
+</SPAN><SPAN><A CLASS="LN" NAME="644">  644   </A>      I2C2TRN = 0x00;                  <SPAN CLASS="CT">/* I2C : Write data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="645">  645   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="646">  646   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="647">  647   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="648">  648   </A>     <SPAN CLASS="KW">case</SPAN> 110:
+</SPAN><SPAN><A CLASS="LN" NAME="649">  649   </A>      I2C2TRN = 0x78;                  <SPAN CLASS="CT">/* I2C : Write data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="650">  650   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="651">  651   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="652">  652   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="653">  653   </A>     <SPAN CLASS="KW">case</SPAN> 111:
+</SPAN><SPAN><A CLASS="LN" NAME="654">  654   </A>      I2C2TRN = 0x00;                  <SPAN CLASS="CT">/* I2C : Write data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="655">  655   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="656">  656   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="657">  657   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="658">  658   </A>     <SPAN CLASS="KW">case</SPAN> 112:
+</SPAN><SPAN><A CLASS="LN" NAME="659">  659   </A>      I2C2TRN = 0x00;                  <SPAN CLASS="CT">/* I2C : Write data */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="660">  660   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="661">  661   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="662">  662   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="663">  663   </A>     <SPAN CLASS="KW">case</SPAN> 113:
+</SPAN><SPAN><A CLASS="LN" NAME="664">  664   </A>      I2C2CONbits.PEN = 1;             <SPAN CLASS="CT">/* I2C: STOP */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="665">  665   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>++;
+</SPAN><SPAN><A CLASS="LN" NAME="666">  666   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="667">  667   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="668">  668   </A>     <SPAN CLASS="KW">case</SPAN> 114:
+</SPAN><SPAN><A CLASS="LN" NAME="669">  669   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C25_Request" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C25_Request');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C25_Request</FONT></A> = 0;          <SPAN CLASS="CT">/* This I2C sequence could be Re-Enabled */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="670">  670   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A> = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="671">  671   </A>      Continue = (<A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.head != <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>.tail);<SPAN CLASS="CT">/* One next sequence queued, start it now */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="672">  672   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="673">  673   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="674">  674   </A>     <SPAN CLASS="KW">default</SPAN>:                          <SPAN CLASS="CT">/* Sequence finished */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="675">  675   </A>      <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A> = 0;             <SPAN CLASS="CT">/* Should never happend */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="676">  676   </A>      <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="677">  677   </A>    <B>}</B>                                  <SPAN CLASS="CT">/* End of switch case sequence*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="678">  678   </A>  <B>}</B> <SPAN CLASS="KW">while</SPAN> (Continue == 1);             <SPAN CLASS="CT">/* end do-While */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="679">  679   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="680">  680   </A>  asm(<FONT COLOR="#1122ff">&quot;DEC _mcuFlagRecursion&quot;</FONT>);        <SPAN CLASS="CT">/* ensure --mcuFlagRecursion is atomic */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="681">  681   </A>  <SPAN CLASS="KW">if</SPAN> (mcuFlagRecursion == 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="682">  682   </A>    T3CONbits.TON = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="683">  683   </A>  <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="684">  684   </A><B>}</B>                                      <SPAN CLASS="CT">/* Enf of interrupt */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="685">  685   </A>
+</SPAN></PRE>
+</TD></TR></TABLE>
+</P>
+</BODY>
+</HTML>

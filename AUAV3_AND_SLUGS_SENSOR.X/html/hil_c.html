@@ -1,0 +1,148 @@
+<HTML>
+<HEAD>
+<TITLE>RTW Report - hil.c </TITLE>
+<STYLE> .LN { font-style: italic; color: #888888 } </STYLE>
+<STYLE> .CT { font-style: italic; color: #117755 } </STYLE>
+<STYLE> .PP { font-style: bold;   color: #992211 } </STYLE>
+<STYLE> .KW { font-style: bold;   color: #112266 } </STYLE>
+<STYLE> .DT { font-style: bold;   color: #112266 } </STYLE>
+<SCRIPT language="JavaScript" type="text/javascript">
+<!--
+function rtwHilite(aBlock,aParentSID) {
+ aParentSID = "";
+ try {
+    window.location.href="matlab: if ~isempty(which('private/rtwbindmodel')), rtwprivate rtwbindmodel 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.mdl' 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.X' '', end; rtwprivate code2model "+aBlock+" "+aParentSID+";"
+ } catch (e) { 
+ }
+} // end rtwHilite
+//-->
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);} ">
+<P>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
+<H4>File: <A HREF="file:///C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\hil.c" TARGET="rtwreport_document_frame">C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\hil.c</A></H4>
+<PRE id="RTWcode">
+<SPAN><A CLASS="LN" NAME="1">    1   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;hil.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="2">    2   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="3">    3   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_hilRead">hilRead</A>(<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>* hilChunk) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="4">    4   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="5">    5   </A>    <SPAN CLASS="CT">// fix the data length so if the interrupt adds data</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="6">    6   </A>    <SPAN CLASS="CT">// during execution of this block, it will be read</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="7">    7   </A>    <SPAN CLASS="CT">// until the next hilRead</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="8">    8   </A>   <SPAN CLASS="CT">/*  unsigned char tmpLen = getLength(uartBufferIn), i = 0;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="9">    9   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="10">   10   </A><SPAN CLASS="CT">    // if the buffer has more data than the max size, set it to max,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="11">   11   </A><SPAN CLASS="CT">    // otherwise set it to the length</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="12">   12   </A><SPAN CLASS="CT">    hilChunk[0] = (tmpLen &gt; MAXSEND - 1) ? MAXSEND - 1 : tmpLen;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="13">   13   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="14">   14   </A><SPAN CLASS="CT">    // read the data </SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="15">   15   </A><SPAN CLASS="CT">    for (i = 1; i &lt;= hilChunk[0]; i += 1) {</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="16">   16   </A><SPAN CLASS="CT">        hilChunk[i] = readFront(uartBufferIn);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="17">   17   </A><SPAN CLASS="CT">    } */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="18">   18   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="19">   19   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="20">   20   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_hil_getRawRead">hil_getRawRead</A>(<SPAN CLASS="DT">short</SPAN> * rawData) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="21">   21   </A>    rawData[0] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.xgyro;
+</SPAN><SPAN><A CLASS="LN" NAME="22">   22   </A>    rawData[1] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.ygyro;
+</SPAN><SPAN><A CLASS="LN" NAME="23">   23   </A>    rawData[2] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.zgyro;
+</SPAN><SPAN><A CLASS="LN" NAME="24">   24   </A>    rawData[3] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.xacc;
+</SPAN><SPAN><A CLASS="LN" NAME="25">   25   </A>    rawData[4] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.yacc;
+</SPAN><SPAN><A CLASS="LN" NAME="26">   26   </A>    rawData[5] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.zacc;
+</SPAN><SPAN><A CLASS="LN" NAME="27">   27   </A>    rawData[6] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.xmag;
+</SPAN><SPAN><A CLASS="LN" NAME="28">   28   </A>    rawData[7] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.ymag;
+</SPAN><SPAN><A CLASS="LN" NAME="29">   29   </A>    rawData[8] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.zmag;
+</SPAN><SPAN><A CLASS="LN" NAME="30">   30   </A>    rawData[9] = <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlRawPressureData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawPressureData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawPressureData</FONT></A>.press_abs;
+</SPAN><SPAN><A CLASS="LN" NAME="31">   31   </A>    rawData[10] = <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlRawPressureData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawPressureData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawPressureData</FONT></A>.press_diff1;
+</SPAN><SPAN><A CLASS="LN" NAME="32">   32   </A>    rawData[11] = <A HREF="mavlinkSensorMcu_c.html#var_mlCpuLoadData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlCpuLoadData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlCpuLoadData</FONT></A>.batVolt;
+</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A>    rawData[12] = <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlRawPressureData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawPressureData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawPressureData</FONT></A>.temperature;
+</SPAN><SPAN><A CLASS="LN" NAME="34">   34   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="35">   35   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="36">   36   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_hil_getVned">hil_getVned</A>(<SPAN CLASS="DT">float</SPAN>* vned) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="37">   37   </A>    vned[0] = <A HREF="mavlinkSensorMcu_c.html#var_mlLocalPositionData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlLocalPositionData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlLocalPositionData</FONT></A>.vx;
+</SPAN><SPAN><A CLASS="LN" NAME="38">   38   </A>    vned[1] = <A HREF="mavlinkSensorMcu_c.html#var_mlLocalPositionData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlLocalPositionData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlLocalPositionData</FONT></A>.vy;
+</SPAN><SPAN><A CLASS="LN" NAME="39">   39   </A>    vned[2] = <A HREF="mavlinkSensorMcu_c.html#var_mlLocalPositionData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlLocalPositionData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlLocalPositionData</FONT></A>.vz;
+</SPAN><SPAN><A CLASS="LN" NAME="40">   40   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="41">   41   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="42">   42   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_hil_getEuler">hil_getEuler</A>(<SPAN CLASS="DT">float</SPAN>* euler) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="43">   43   </A>    euler[0] = <A HREF="mavlinkSensorMcu_c.html#var_mlAttitudeData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAttitudeData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAttitudeData</FONT></A>.roll;
+</SPAN><SPAN><A CLASS="LN" NAME="44">   44   </A>    euler[1] = <A HREF="mavlinkSensorMcu_c.html#var_mlAttitudeData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAttitudeData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAttitudeData</FONT></A>.pitch;
+</SPAN><SPAN><A CLASS="LN" NAME="45">   45   </A>    euler[2] = <A HREF="mavlinkSensorMcu_c.html#var_mlAttitudeData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAttitudeData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAttitudeData</FONT></A>.yaw;
+</SPAN><SPAN><A CLASS="LN" NAME="46">   46   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="47">   47   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="48">   48   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_hil_getRates">hil_getRates</A>(<SPAN CLASS="DT">float</SPAN>* pqr) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="49">   49   </A>    pqr[0] = <A HREF="mavlinkSensorMcu_c.html#var_mlAttitudeData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAttitudeData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAttitudeData</FONT></A>.rollspeed;
+</SPAN><SPAN><A CLASS="LN" NAME="50">   50   </A>    pqr[1] = <A HREF="mavlinkSensorMcu_c.html#var_mlAttitudeData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAttitudeData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAttitudeData</FONT></A>.pitchspeed;
+</SPAN><SPAN><A CLASS="LN" NAME="51">   51   </A>    pqr[2] = <A HREF="mavlinkSensorMcu_c.html#var_mlAttitudeData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAttitudeData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAttitudeData</FONT></A>.yawspeed;
+</SPAN><SPAN><A CLASS="LN" NAME="52">   52   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="53">   53   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="54">   54   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_hil_getXYZ">hil_getXYZ</A>(<SPAN CLASS="DT">float</SPAN>* xyz) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="55">   55   </A>    xyz[0] = <A HREF="mavlinkSensorMcu_c.html#var_mlLocalPositionData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlLocalPositionData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlLocalPositionData</FONT></A>.x;
+</SPAN><SPAN><A CLASS="LN" NAME="56">   56   </A>    xyz[1] = <A HREF="mavlinkSensorMcu_c.html#var_mlLocalPositionData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlLocalPositionData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlLocalPositionData</FONT></A>.y;
+</SPAN><SPAN><A CLASS="LN" NAME="57">   57   </A>    xyz[2] = <A HREF="mavlinkSensorMcu_c.html#var_mlLocalPositionData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlLocalPositionData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlLocalPositionData</FONT></A>.z;
+</SPAN><SPAN><A CLASS="LN" NAME="58">   58   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="59">   59   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="60">   60   </A><SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> <A NAME="fcn_hil_getTs">hil_getTs</A>(<SPAN CLASS="DT">void</SPAN>) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="61">   61   </A>    <SPAN CLASS="KW">return</SPAN> <A HREF="mavlinkSensorMcu_c.html#var_mlAttitudeData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAttitudeData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAttitudeData</FONT></A>.time_boot_ms;
+</SPAN><SPAN><A CLASS="LN" NAME="62">   62   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="63">   63   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="64">   64   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_protDecodeHil">protDecodeHil</A>(uint8_t* dataIn) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="65">   65   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="66">   66   </A>    uint8_t i<SPAN CLASS="CT">/*, indx, writeSuccess*/</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="67">   67   </A>    <SPAN CLASS="CT">//uint16_t indexOffset;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="68">   68   </A>    <SPAN CLASS="CT">//tFloatToChar tempFloat;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="69">   69   </A>    <SPAN CLASS="CT">//uint32_t temp;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="70">   70   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="71">   71   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="72">   72   </A>    mavlink_message_t msg;
+</SPAN><SPAN><A CLASS="LN" NAME="73">   73   </A>    mavlink_status_t status;
+</SPAN><SPAN><A CLASS="LN" NAME="74">   74   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="75">   75   </A>    <SPAN CLASS="KW">for</SPAN> (i = 1; i &lt;= dataIn[0]; i++) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="76">   76   </A>        <SPAN CLASS="CT">// Try to get a new message</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="77">   77   </A>        <SPAN CLASS="KW">if</SPAN> (mavlink_parse_char(0, dataIn[i], &amp;msg, &amp;status)) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="78">   78   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="79">   79   </A>            <SPAN CLASS="CT">// Handle message</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="80">   80   </A>            <SPAN CLASS="KW">switch</SPAN> (msg.msgid) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="81">   81   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_GPS_RAW_INT:
+</SPAN><SPAN><A CLASS="LN" NAME="82">   82   </A>                    mavlink_msg_gps_raw_int_decode(&amp;msg, &amp;<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="83">   83   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="84">   84   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="85">   85   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_CPU_LOAD:
+</SPAN><SPAN><A CLASS="LN" NAME="86">   86   </A>                    mavlink_msg_cpu_load_decode(&amp;msg, &amp;<A HREF="mavlinkSensorMcu_c.html#var_mlCpuLoadData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlCpuLoadData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlCpuLoadData</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="87">   87   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="88">   88   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="89">   89   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_LOCAL_POSITION_NED:
+</SPAN><SPAN><A CLASS="LN" NAME="90">   90   </A>                    mavlink_msg_local_position_ned_decode(&amp;msg, &amp;<A HREF="mavlinkSensorMcu_c.html#var_mlLocalPositionData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlLocalPositionData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlLocalPositionData</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="91">   91   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="92">   92   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="93">   93   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_SCALED_PRESSURE:
+</SPAN><SPAN><A CLASS="LN" NAME="94">   94   </A>                    mavlink_msg_scaled_pressure_decode(&amp;msg, &amp;<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlAirData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAirData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAirData</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="95">   95   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="96">   96   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="97">   97   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_ATTITUDE:
+</SPAN><SPAN><A CLASS="LN" NAME="98">   98   </A>                    mavlink_msg_attitude_decode(&amp;msg, &amp;<A HREF="mavlinkSensorMcu_c.html#var_mlAttitudeData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAttitudeData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAttitudeData</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="99">   99   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="100">  100   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="101">  101   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_RAW_IMU:
+</SPAN><SPAN><A CLASS="LN" NAME="102">  102   </A>                    mavlink_msg_raw_imu_decode(&amp;msg, &amp;<A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="103">  103   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="104">  104   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="105">  105   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_RAW_PRESSURE:
+</SPAN><SPAN><A CLASS="LN" NAME="106">  106   </A>                    mavlink_msg_raw_pressure_decode(&amp;msg, &amp;<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlRawPressureData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawPressureData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawPressureData</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="107">  107   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="108">  108   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="109">  109   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_GPS_DATE_TIME:
+</SPAN><SPAN><A CLASS="LN" NAME="110">  110   </A>                    mavlink_msg_gps_date_time_decode(&amp;msg, &amp;<A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="111">  111   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="112">  112   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="113">  113   </A>            <B>}</B> <SPAN CLASS="CT">// switch	</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="114">  114   </A>        <B>}</B> <SPAN CLASS="CT">// if</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="115">  115   </A>    <B>}</B><SPAN CLASS="CT">// for  </SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="116">  116   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="117">  117   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="118">  118   </A>
+</SPAN></PRE>
+</TD></TR></TABLE>
+</P>
+</BODY>
+</HTML>

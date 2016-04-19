@@ -15,12 +15,15 @@
 //#include "mavlinkSensorMcu.h"
 //#include "apDefinitions.h"
 
+
 #include <p33exxxx.h>
 //#include <uart.h>
 
 extern CBRef uartBuffer;
 extern struct CircBuffer com4Buffer;
 void uartBufferInit (void);
+void getGPSRawData(unsigned char* gpsBuffer);
+unsigned char isGPSNovatel (void);
 
 
 #ifdef __cplusplus

@@ -1,0 +1,803 @@
+<HTML>
+<HEAD>
+<TITLE>RTW Report - MavlinkComm.c </TITLE>
+<STYLE> .LN { font-style: italic; color: #888888 } </STYLE>
+<STYLE> .CT { font-style: italic; color: #117755 } </STYLE>
+<STYLE> .PP { font-style: bold;   color: #992211 } </STYLE>
+<STYLE> .KW { font-style: bold;   color: #112266 } </STYLE>
+<STYLE> .DT { font-style: bold;   color: #112266 } </STYLE>
+<SCRIPT language="JavaScript" type="text/javascript">
+<!--
+function rtwHilite(aBlock,aParentSID) {
+ aParentSID = "";
+ try {
+    window.location.href="matlab: if ~isempty(which('private/rtwbindmodel')), rtwprivate rtwbindmodel 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.mdl' 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.X' '', end; rtwprivate code2model "+aBlock+" "+aParentSID+";"
+ } catch (e) { 
+ }
+} // end rtwHilite
+//-->
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);} ">
+<P>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
+<H4>File: <A HREF="file:///C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\MavlinkComm.c" TARGET="rtwreport_document_frame">C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\MavlinkComm.c</A></H4>
+<PRE id="RTWcode">
+<SPAN><A CLASS="LN" NAME="1">    1   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;mavlink.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="2">    2   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;MavlinkComm.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="3">    3   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;circBuffer.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="4">    4   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;inttypes.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="5">    5   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;gpsPort.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="6">    6   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&lt;stdio.h&gt;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="7">    7   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;AUAV3_AND_SLUGS_SENSOR.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="8">    8   </A>uint8_t UartOutBuff[<A NAME="var_MAVLINK_MAX_PACKET_LEN">MAVLINK_MAX_PACKET_LEN</A>];
+</SPAN><SPAN><A CLASS="LN" NAME="9">    9   </A><SPAN CLASS="KW">struct</SPAN> CircBuffer <A NAME="var_comMavlinkBuffer">comMavlinkBuffer</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="10">   10   </A>CBRef <A NAME="var_uartMavlinkInBuffer">uartMavlinkInBuffer</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="11">   11   </A><A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A> DatafromGSmavlink[<A NAME="var_MAXINLEN">MAXINLEN</A>+2];
+</SPAN><SPAN><A CLASS="LN" NAME="12">   12   </A>mavlink_pending_requests_t <A NAME="var_mlPending">mlPending</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="13">   13   </A>mavlink_heartbeat_t <A NAME="var_mlHeartbeat">mlHeartbeat</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="14">   14   </A>mavlink_mission_count_t <A NAME="var_mlWpCount">mlWpCount</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="15">   15   </A>mavlink_mission_request_t <A NAME="var_mlWpRequest">mlWpRequest</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="16">   16   </A>mavlink_mission_item_values_t <A NAME="var_mlWpValues">mlWpValues</A>; <SPAN CLASS="CT">//defined in MavlinkComm.h</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="17">   17   </A>mavlink_mission_item_t <A NAME="var_mlSingleWp">mlSingleWp</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="18">   18   </A>mavlink_set_gps_global_origin_t <A NAME="var_mlGSLocation">mlGSLocation</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="19">   19   </A>mavlink_mission_ack_t <A NAME="var_mlWpAck">mlWpAck</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="20">   20   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="21">   21   </A><SPAN CLASS="KW">struct</SPAN> pi_struct <A NAME="var_mlParamInterface">mlParamInterface</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="22">   22   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="23">   23   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_uartMavlinkBufferInit">uartMavlinkBufferInit</A> (<SPAN CLASS="DT">void</SPAN>)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="24">   24   </A>  _U1RXIP = 1;                         <SPAN CLASS="CT">/* Rx Interrupt priority set to 1 */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="25">   25   </A>  _U1RXIF = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="26">   26   </A>  _U1RXIE = 1;                         <SPAN CLASS="CT">/* Enable Interrupt */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="27">   27   </A>  <SPAN CLASS="CT">/* Configure Remappables Pins */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="28">   28   </A>   RPINR18 = 0x62;
+</SPAN><SPAN><A CLASS="LN" NAME="29">   29   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="30">   30   </A>  <A HREF="MavlinkComm_c.html#var_uartMavlinkInBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartMavlinkInBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartMavlinkInBuffer</FONT></A> = (<SPAN CLASS="KW">struct</SPAN> CircBuffer*) &amp;comMavlinkBuffer;
+</SPAN><SPAN><A CLASS="LN" NAME="31">   31   </A>  <A HREF="circBuffer_c.html#fcn_newCircBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_newCircBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">newCircBuffer</FONT></A>(<A HREF="MavlinkComm_c.html#var_uartMavlinkInBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartMavlinkInBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartMavlinkInBuffer</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="32">   32   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="34">   34   </A><SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#fcn___attribute__" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var___attribute__');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">__attribute__</FONT></A>((__interrupt__,__auto_psv__)) _U1RXInterrupt(<SPAN CLASS="DT">void</SPAN>)
+</SPAN><SPAN><A CLASS="LN" NAME="35">   35   </A><B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="36">   36   </A>  <SPAN CLASS="CT">//</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="37">   37   </A>        _U1RXIF = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="38">   38   </A>    <SPAN CLASS="CT">// Read the buffer while it has data</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="39">   39   </A>    <SPAN CLASS="CT">// and add it to the circular buffer</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="40">   40   </A>    <SPAN CLASS="KW">while</SPAN> (U1STAbits.URXDA == 1) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="41">   41   </A>        <A HREF="circBuffer_c.html#fcn_writeBack" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_writeBack');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">writeBack</FONT></A>(<A HREF="MavlinkComm_c.html#var_uartMavlinkInBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartMavlinkInBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartMavlinkInBuffer</FONT></A>, (<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>) U1RXREG);
+</SPAN><SPAN><A CLASS="LN" NAME="42">   42   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="43">   43   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="44">   44   </A>    <SPAN CLASS="CT">// If there was an overun error clear it and continue</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="45">   45   </A>    <SPAN CLASS="KW">if</SPAN> (U1STAbits.OERR == 1) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="46">   46   </A>        _U1RXIF = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="47">   47   </A>        U1STAbits.OERR = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="48">   48   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="49">   49   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="50">   50   </A>    <SPAN CLASS="CT">// clear the interrupt</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="51">   51   </A>    IFS0bits.U1RXIF = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="52">   52   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="53">   53   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="54">   54   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="55">   55   </A>uint8_t <A NAME="fcn_isFinite">isFinite</A>(<SPAN CLASS="DT">float</SPAN> s) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="56">   56   </A>  <SPAN CLASS="CT">// By IEEE 754 rule, 2*Inf equals Inf</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="57">   57   </A>  <SPAN CLASS="KW">return</SPAN> ((s == s) &amp;&amp; ((s == 0) || (s != 2*s)));
+</SPAN><SPAN><A CLASS="LN" NAME="58">   58   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="59">   59   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="60">   60   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_InitParameterInterface">InitParameterInterface</A>(<SPAN CLASS="DT">void</SPAN>)
+</SPAN><SPAN><A CLASS="LN" NAME="61">   61   </A><B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="62">   62   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_AIRSPEED_P], <FONT COLOR="#1122ff">&quot;PID_AIRSPD_P&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="63">   63   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_AIRSPEED_I], <FONT COLOR="#1122ff">&quot;PID_AIRSPD_I&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="64">   64   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_AIRSPEED_D], <FONT COLOR="#1122ff">&quot;PID_AIRSPD_D&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="65">   65   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="66">   66   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_PITCH_FO_P], <FONT COLOR="#1122ff">&quot;PID_PIT_FO_P&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="67">   67   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_PITCH_FO_I], <FONT COLOR="#1122ff">&quot;PID_PIT_FO_I&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="68">   68   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_PITCH_FO_D], <FONT COLOR="#1122ff">&quot;PID_PIT_FO_D&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="69">   69   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="70">   70   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_ROLL_CON_P], <FONT COLOR="#1122ff">&quot;PID_ROLL_CO_P&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="71">   71   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_ROLL_CON_I], <FONT COLOR="#1122ff">&quot;PID_ROLL_CO_I&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="72">   72   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_ROLL_CON_D], <FONT COLOR="#1122ff">&quot;PID_ROLL_CO_D&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="73">   73   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="74">   74   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_HE_TO_PI_P], <FONT COLOR="#1122ff">&quot;PID_HE2PITC_P&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="75">   75   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_HE_TO_PI_I], <FONT COLOR="#1122ff">&quot;PID_HE2PITC_I&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="76">   76   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="77">   77   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_HEI_ERR_FF], <FONT COLOR="#1122ff">&quot;PID_HERR_FF&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="78">   78   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="79">   79   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_YAW_DAMP_P], <FONT COLOR="#1122ff">&quot;PID_YAW_DA_P&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="80">   80   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_YAW_DAMP_I], <FONT COLOR="#1122ff">&quot;PID_YAW_DA_I&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="81">   81   </A>    strcpy(<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[PAR_PID_YAW_DAMP_D], <FONT COLOR="#1122ff">&quot;PID_YAW_DA_D&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="82">   82   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="83">   83   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="84">   84   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="85">   85   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_protDecodeMavlink">protDecodeMavlink</A>(<SPAN CLASS="DT">void</SPAN>) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="86">   86   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="87">   87   </A>    uint8_t indx, writeSuccess, commChannel = 1;
+</SPAN><SPAN><A CLASS="LN" NAME="88">   88   </A>    mavlink_param_set_t set;
+</SPAN><SPAN><A CLASS="LN" NAME="89">   89   </A>    mavlink_message_t msg;
+</SPAN><SPAN><A CLASS="LN" NAME="90">   90   </A>    mavlink_status_t status;
+</SPAN><SPAN><A CLASS="LN" NAME="91">   91   </A>    uint8_t* dataIn;
+</SPAN><SPAN><A CLASS="LN" NAME="92">   92   </A>    <SPAN CLASS="CT">// fix the data length so if the interrupt adds data</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="93">   93   </A>    <SPAN CLASS="CT">// during execution of this block, it will be read</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="94">   94   </A>    <SPAN CLASS="CT">// until the next gsRead</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="95">   95   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> tmpLen = <A HREF="circBuffer_c.html#fcn_getLength" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_getLength');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">getLength</FONT></A>(<A HREF="MavlinkComm_c.html#var_uartMavlinkInBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartMavlinkInBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartMavlinkInBuffer</FONT></A>), i = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="96">   96   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="97">   97   </A>    <SPAN CLASS="CT">// if the buffer has more data than the max size, set it to max,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="98">   98   </A>    <SPAN CLASS="CT">// otherwise set it to the length</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="99">   99   </A>    <SPAN CLASS="CT">//DatafromGSmavlink[0] = (tmpLen &gt; MAXINLEN) ? MAXINLEN : tmpLen;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="100">  100   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="101">  101   </A>    <SPAN CLASS="CT">// read the data</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="102">  102   </A>    <SPAN CLASS="CT">//for (i = 1; i &lt;= DatafromGSmavlink[0]; i += 1) {</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="103">  103   </A>      <SPAN CLASS="CT">//mavlink_parse_char(commChannel, readFront(uartBufferInMavlink), &msg, &status);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="104">  104   </A>      <SPAN CLASS="CT">//DatafromGSmavlink[i] = readFront(uartMavlinkInBuffer);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="105">  105   </A>    <SPAN CLASS="CT">//}</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="106">  106   </A>    <SPAN CLASS="CT">//dataIn = DatafromGSmavlink;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="107">  107   </A>    <SPAN CLASS="CT">// increment the age of heartbeat</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="108">  108   </A>    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.heartbeatAge++;
+</SPAN><SPAN><A CLASS="LN" NAME="109">  109   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="110">  110   </A>    <SPAN CLASS="KW">for</SPAN> (i = 0; i &lt;= tmpLen; i++) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="111">  111   </A>        <SPAN CLASS="CT">// Try to get a new message</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="112">  112   </A>       <SPAN CLASS="KW">if</SPAN> (mavlink_parse_char(commChannel, <A HREF="circBuffer_c.html#fcn_readFront" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_readFront');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">readFront</FONT></A>(<A HREF="MavlinkComm_c.html#var_uartMavlinkInBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartMavlinkInBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartMavlinkInBuffer</FONT></A>), &amp;msg, &amp;status)) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="113">  113   </A>                    <SPAN CLASS="CT">// Handle message</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="114">  114   </A>            <SPAN CLASS="KW">switch</SPAN> (msg.msgid) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="115">  115   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_HEARTBEAT:
+</SPAN><SPAN><A CLASS="LN" NAME="116">  116   </A>                    mavlink_msg_heartbeat_decode(&amp;msg, &amp;<A HREF="MavlinkComm_c.html#var_mlHeartbeat" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlHeartbeat');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlHeartbeat</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="117">  117   </A>                    <SPAN CLASS="CT">// Reset the heartbeat</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="118">  118   </A>                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.heartbeatAge = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="119">  119   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="120">  120   </A><SPAN CLASS="CT">//AM DBG</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="121">  121   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_MISSION_COUNT:
+</SPAN><SPAN><A CLASS="LN" NAME="122">  122   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="123">  123   </A>                    <SPAN CLASS="KW">if</SPAN> (!<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTransaction &amp;&amp; (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState == WP_PROT_IDLE)) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="124">  124   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="125">  125   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="126">  126   </A>                        mavlink_msg_mission_count_decode(&amp;msg, &amp;<A HREF="MavlinkComm_c.html#var_mlWpCount" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpCount');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpCount</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="127">  127   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="128">  128   </A>                        <SPAN CLASS="CT">// Start the transaction</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="129">  129   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTransaction = 1;
+</SPAN><SPAN><A CLASS="LN" NAME="130">  130   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="131">  131   </A>                        <SPAN CLASS="CT">// change the state</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="132">  132   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState = WP_PROT_GETTING_WP_IDLE;
+</SPAN><SPAN><A CLASS="LN" NAME="133">  133   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="134">  134   </A>                        <SPAN CLASS="CT">// reset the rest of the state machine</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="135">  135   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTotalWps = <A HREF="MavlinkComm_c.html#var_mlWpCount" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpCount');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpCount</FONT></A>.count;
+</SPAN><SPAN><A CLASS="LN" NAME="136">  136   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="137">  137   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTimeOut = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="138">  138   </A>                    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="139">  139   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="140">  140   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="141">  141   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="142">  142   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_MISSION_REQUEST_LIST:
+</SPAN><SPAN><A CLASS="LN" NAME="143">  143   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="144">  144   </A>                    <SPAN CLASS="CT">// if there is no transaction going on</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="145">  145   </A>                    <SPAN CLASS="KW">if</SPAN> (!<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTransaction &amp;&amp; (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState == WP_PROT_IDLE)) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="146">  146   </A>                        <SPAN CLASS="CT">// Start the transaction</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="147">  147   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTransaction = 1;
+</SPAN><SPAN><A CLASS="LN" NAME="148">  148   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="149">  149   </A>                        <SPAN CLASS="CT">// change the state</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="150">  150   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState = WP_PROT_LIST_REQUESTED;
+</SPAN><SPAN><A CLASS="LN" NAME="151">  151   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="152">  152   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="153">  153   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="154">  154   </A>                        <SPAN CLASS="CT">// reset the rest of the state machine</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="155">  155   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="156">  156   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTimeOut = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="157">  157   </A>                    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="158">  158   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="159">  159   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="160">  160   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_MISSION_REQUEST:
+</SPAN><SPAN><A CLASS="LN" NAME="161">  161   </A>                    mavlink_msg_mission_request_decode(&amp;msg, &amp;<A HREF="MavlinkComm_c.html#var_mlWpRequest" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpRequest');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpRequest</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="162">  162   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="163">  163   </A>                    <SPAN CLASS="KW">if</SPAN> (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTransaction &amp;&amp; (<A HREF="MavlinkComm_c.html#var_mlWpRequest" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpRequest');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpRequest</FONT></A>.seq &lt; <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.wpCount)) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="164">  164   </A>                        <SPAN CLASS="CT">// change the state</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="165">  165   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState = WP_PROT_TX_WP;
+</SPAN><SPAN><A CLASS="LN" NAME="166">  166   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="167">  167   </A>                        <SPAN CLASS="CT">// reset the rest of the state machine</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="168">  168   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction = <A HREF="MavlinkComm_c.html#var_mlWpRequest" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpRequest');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpRequest</FONT></A>.seq;
+</SPAN><SPAN><A CLASS="LN" NAME="169">  169   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTimeOut = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="170">  170   </A>                    <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="171">  171   </A>                        <SPAN CLASS="CT">// TODO: put here a report for a single WP, i.e. not inside a transaction</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="172">  172   </A>                    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="173">  173   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="174">  174   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="175">  175   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_MISSION_ACK:
+</SPAN><SPAN><A CLASS="LN" NAME="176">  176   </A>                    mavlink_msg_mission_ack_decode(&amp;msg, &amp;<A HREF="MavlinkComm_c.html#var_mlWpAck" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpAck');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpAck</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="177">  177   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="178">  178   </A>                    <SPAN CLASS="KW">if</SPAN> (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTransaction) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="179">  179   </A>                        <SPAN CLASS="CT">// End the transaction</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="180">  180   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTransaction = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="181">  181   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="182">  182   </A>                        <SPAN CLASS="CT">// change the state</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="183">  183   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState = WP_PROT_IDLE;
+</SPAN><SPAN><A CLASS="LN" NAME="184">  184   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="185">  185   </A>                        <SPAN CLASS="CT">// reset the rest of the state machine</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="186">  186   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="187">  187   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTimeOut = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="188">  188   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="189">  189   </A>                        <SPAN CLASS="CT">// send current waypoint index</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="190">  190   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpSendCurrent = TRUE;
+</SPAN><SPAN><A CLASS="LN" NAME="191">  191   </A>                    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="192">  192   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="193">  193   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="194">  194   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="195">  195   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_MISSION_ITEM:
+</SPAN><SPAN><A CLASS="LN" NAME="196">  196   </A>                    writeSuccess = SUCCESS;
+</SPAN><SPAN><A CLASS="LN" NAME="197">  197   </A>                    mavlink_msg_mission_item_decode(&amp;msg, &amp;<A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="198">  198   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="199">  199   </A>                    <SPAN CLASS="KW">if</SPAN> (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTransaction &amp;&amp; (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState == WP_PROT_RX_WP)) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="200">  200   </A>                        <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState = WP_PROT_GETTING_WP_IDLE;
+</SPAN><SPAN><A CLASS="LN" NAME="201">  201   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="202">  202   </A>                    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="203">  203   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="204">  204   </A>                    indx = (uint8_t) <A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>.seq;
+</SPAN><SPAN><A CLASS="LN" NAME="205">  205   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="206">  206   </A>                    <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.lat[indx] = <A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>.x;
+</SPAN><SPAN><A CLASS="LN" NAME="207">  207   </A>                    <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.lon[indx] = <A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>.y;
+</SPAN><SPAN><A CLASS="LN" NAME="208">  208   </A>                    <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.alt[indx] = <A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>.z;
+</SPAN><SPAN><A CLASS="LN" NAME="209">  209   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="210">  210   </A>                    <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.type[indx] = <A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>.command;
+</SPAN><SPAN><A CLASS="LN" NAME="211">  211   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="212">  212   </A>                    <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.orbit[indx] = (uint16_t) <A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>.param3;
+</SPAN><SPAN><A CLASS="LN" NAME="213">  213   </A><SPAN CLASS="CT">/*</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="214">  214   </A><SPAN CLASS="CT">                    // Record the data in EEPROM</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="215">  215   </A><SPAN CLASS="CT">                    writeSuccess = storeWaypointInEeprom(&mlSingleWp);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="216">  216   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="217">  217   </A><SPAN CLASS="CT">                    // Set the flag of Aknowledge for the AKN Message</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="218">  218   </A><SPAN CLASS="CT">                    // if the write was not successful</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="219">  219   </A><SPAN CLASS="CT">                    if (writeSuccess != SUCCESS) {</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="220">  220   </A><SPAN CLASS="CT">                        mlPending.wpAck++;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="221">  221   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="222">  222   </A><SPAN CLASS="CT">                        mlWpAck.target_component = MAV_COMP_ID_MISSIONPLANNER;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="223">  223   </A><SPAN CLASS="CT">                        mlWpAck.type = MAV_MISSION_ERROR;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="224">  224   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="225">  225   </A><SPAN CLASS="CT">                    }</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="226">  226   </A><SPAN CLASS="CT">*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="227">  227   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="228">  228   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="229">  229   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_MISSION_CLEAR_ALL:
+</SPAN><SPAN><A CLASS="LN" NAME="230">  230   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="231">  231   </A>                    writeSuccess = SUCCESS;
+</SPAN><SPAN><A CLASS="LN" NAME="232">  232   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="233">  233   </A>                    <SPAN CLASS="CT">// clear the WP values in memory;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="234">  234   </A>                    memset(&amp;<A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_mission_item_values_t));
+</SPAN><SPAN><A CLASS="LN" NAME="235">  235   </A><SPAN CLASS="CT">/*</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="236">  236   </A><SPAN CLASS="CT">                    writeSuccess = clearWaypointsFrom(0);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="237">  237   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="238">  238   </A><SPAN CLASS="CT">                    // Set the flag of Aknowledge fail</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="239">  239   </A><SPAN CLASS="CT">                    // if the write was unsuccessful</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="240">  240   </A><SPAN CLASS="CT">                    if (writeSuccess != SUCCESS) {</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="241">  241   </A><SPAN CLASS="CT">                        mlPending.statustext++;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="242">  242   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="243">  243   </A><SPAN CLASS="CT">                        mlStatustext.severity = MAV_SEVERITY_ERROR;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="244">  244   </A><SPAN CLASS="CT">                        strncpy(mlStatustext.text, "Failed to clear waypoints from EEPROM.", 49);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="245">  245   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="246">  246   </A><SPAN CLASS="CT">                    }</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="247">  247   </A><SPAN CLASS="CT">  */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="248">  248   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="249">  249   </A>                    <SPAN CLASS="CT">// Update the waypoint count</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="250">  250   </A>                    <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.wpCount = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="251">  251   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="252">  252   </A>                    <SPAN CLASS="CT">// Set the state machine ready to send the WP akn</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="253">  253   </A>                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="254">  254   </A>                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTotalWps = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="255">  255   </A>                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTransaction = 1;
+</SPAN><SPAN><A CLASS="LN" NAME="256">  256   </A>                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState = WP_PROT_GETTING_WP_IDLE;
+</SPAN><SPAN><A CLASS="LN" NAME="257">  257   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="258">  258   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="259">  259   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="260">  260   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_SET_GPS_GLOBAL_ORIGIN:
+</SPAN><SPAN><A CLASS="LN" NAME="261">  261   </A>                    writeSuccess = SUCCESS;
+</SPAN><SPAN><A CLASS="LN" NAME="262">  262   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="263">  263   </A>                    memset(&amp;<A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_mission_item_t));
+</SPAN><SPAN><A CLASS="LN" NAME="264">  264   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="265">  265   </A>                    mavlink_msg_set_gps_global_origin_decode(&amp;msg, &amp;<A HREF="MavlinkComm_c.html#var_mlGSLocation" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGSLocation');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGSLocation</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="266">  266   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="267">  267   </A>                    <A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>.x = (<SPAN CLASS="DT">float</SPAN>) (<A HREF="MavlinkComm_c.html#var_mlGSLocation" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGSLocation');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGSLocation</FONT></A>.latitude);
+</SPAN><SPAN><A CLASS="LN" NAME="268">  268   </A>                    <A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>.y = (<SPAN CLASS="DT">float</SPAN>) (<A HREF="MavlinkComm_c.html#var_mlGSLocation" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGSLocation');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGSLocation</FONT></A>.longitude);
+</SPAN><SPAN><A CLASS="LN" NAME="269">  269   </A>                    <A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>.z = (<SPAN CLASS="DT">float</SPAN>) (<A HREF="MavlinkComm_c.html#var_mlGSLocation" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGSLocation');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGSLocation</FONT></A>.altitude);
+</SPAN><SPAN><A CLASS="LN" NAME="270">  270   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="271">  271   </A>                    indx = (uint8_t) MAX_NUM_WPS - 1;
+</SPAN><SPAN><A CLASS="LN" NAME="272">  272   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="273">  273   </A>                    <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.lat[indx] = <A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>.x;
+</SPAN><SPAN><A CLASS="LN" NAME="274">  274   </A>                    <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.lon[indx] = <A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>.y;
+</SPAN><SPAN><A CLASS="LN" NAME="275">  275   </A>                    <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.alt[indx] = <A HREF="MavlinkComm_c.html#var_mlSingleWp" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSingleWp');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSingleWp</FONT></A>.z;
+</SPAN><SPAN><A CLASS="LN" NAME="276">  276   </A>                    <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.type[indx] = MAV_CMD_NAV_LAND;
+</SPAN><SPAN><A CLASS="LN" NAME="277">  277   </A>                    <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.orbit[indx] = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="278">  278   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="279">  279   </A>                    <SPAN CLASS="CT">// Record the data in EEPROM</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="280">  280   </A>                    <SPAN CLASS="CT">/*</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="281">  281   </A><SPAN CLASS="CT">                    writeSuccess = storeWaypointInEeprom(&mlSingleWp);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="282">  282   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="283">  283   </A><SPAN CLASS="CT">                    if (writeSuccess != SUCCESS) {</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="284">  284   </A><SPAN CLASS="CT">                        mlPending.statustext++;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="285">  285   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="286">  286   </A><SPAN CLASS="CT">                        mlStatustext.severity = MAV_SEVERITY_ERROR;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="287">  287   </A><SPAN CLASS="CT">                        strncpy(mlStatustext.text, "Failed to write origin to EEPROM.", 49);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="288">  288   </A><SPAN CLASS="CT">                    }</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="289">  289   </A><SPAN CLASS="CT">                    else {</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="290">  290   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="291">  291   </A><SPAN CLASS="CT">                        mlPending.statustext++;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="292">  292   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="293">  293   </A><SPAN CLASS="CT">                        mlStatustext.severity = MAV_SEVERITY_INFO;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="294">  294   </A><SPAN CLASS="CT">                        strncpy(mlStatustext.text, "Control DSC GPS origin set.", 49);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="295">  295   </A><SPAN CLASS="CT">                    }</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="296">  296   </A><SPAN CLASS="CT">                     */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="297">  297   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="298">  298   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="299">  299   </A><SPAN CLASS="CT">//AM DBG</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="300">  300   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_PARAM_REQUEST_LIST:
+</SPAN><SPAN><A CLASS="LN" NAME="301">  301   </A>                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piTransaction = 1;
+</SPAN><SPAN><A CLASS="LN" NAME="302">  302   </A>                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piProtState = PI_SEND_ALL_PARAM;
+</SPAN><SPAN><A CLASS="LN" NAME="303">  303   </A>                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piCurrentParamInTransaction = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="304">  304   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="305">  305   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="306">  306   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_PARAM_REQUEST_READ:
+</SPAN><SPAN><A CLASS="LN" NAME="307">  307   </A>                    <SPAN CLASS="CT">// If it was in the middle of a list transmission or there is already a param enqueued</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="308">  308   </A>                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piTransaction = 1;
+</SPAN><SPAN><A CLASS="LN" NAME="309">  309   </A>                    <SPAN CLASS="KW">switch</SPAN> (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piProtState) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="310">  310   </A>                        <SPAN CLASS="KW">case</SPAN> PI_IDLE:
+</SPAN><SPAN><A CLASS="LN" NAME="311">  311   </A>                            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piBackToList = 0; <SPAN CLASS="CT">// no need to go back</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="312">  312   </A>                            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQIdx = -1; <SPAN CLASS="CT">// no Index</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="313">  313   </A>                            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piCurrentParamInTransaction = mavlink_msg_param_request_read_get_param_index(&amp;msg); <SPAN CLASS="CT">// assign directly</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="314">  314   </A>                            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piProtState = PI_SEND_ONE_PARAM;
+</SPAN><SPAN><A CLASS="LN" NAME="315">  315   </A>                            <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="316">  316   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="317">  317   </A>                        <SPAN CLASS="KW">case</SPAN> PI_SEND_ALL_PARAM:
+</SPAN><SPAN><A CLASS="LN" NAME="318">  318   </A>                            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piBackToList = 1; <SPAN CLASS="CT">// mark to go back</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="319">  319   </A>                            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQIdx++; <SPAN CLASS="CT">// done like this because when empty index = -1</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="320">  320   </A>                            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQueue[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQIdx] = mavlink_msg_param_request_read_get_param_index(&amp;msg); <SPAN CLASS="CT">// put in in queue</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="321">  321   </A>                            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piProtState = PI_SEND_ONE_PARAM;
+</SPAN><SPAN><A CLASS="LN" NAME="322">  322   </A>                            <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="323">  323   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="324">  324   </A>                        <SPAN CLASS="KW">case</SPAN> PI_SEND_ONE_PARAM:
+</SPAN><SPAN><A CLASS="LN" NAME="325">  325   </A>                            <SPAN CLASS="KW">if</SPAN> (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piBackToList) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="326">  326   </A>                                <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQIdx++; <SPAN CLASS="CT">// done like this because when empty index = -1</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="327">  327   </A>                                <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQueue[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQIdx] = mavlink_msg_param_request_read_get_param_index(&amp;msg); <SPAN CLASS="CT">// put in in queue</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="328">  328   </A>                            <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="329">  329   </A>                            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piProtState = PI_SEND_ONE_PARAM;
+</SPAN><SPAN><A CLASS="LN" NAME="330">  330   </A>                            <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="331">  331   </A>                    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="332">  332   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="333">  333   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="334">  334   </A>                <SPAN CLASS="KW">case</SPAN> MAVLINK_MSG_ID_PARAM_SET:
+</SPAN><SPAN><A CLASS="LN" NAME="335">  335   </A>                    mavlink_msg_param_set_decode(&amp;msg, &amp;set);
+</SPAN><SPAN><A CLASS="LN" NAME="336">  336   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="337">  337   </A>                    <SPAN CLASS="KW">if</SPAN> ((uint8_t) set.target_system == (uint8_t) SYSTEMID &amp;&amp;
+</SPAN><SPAN><A CLASS="LN" NAME="338">  338   </A>                        (uint8_t) set.target_component == (uint8_t) COMPID) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="339">  339   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="340">  340   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="341">  341   </A>                        <SPAN CLASS="DT">char</SPAN>* key = (<SPAN CLASS="DT">char</SPAN>*) set.param_id;
+</SPAN><SPAN><A CLASS="LN" NAME="342">  342   </A>                        uint8_t i, j;
+</SPAN><SPAN><A CLASS="LN" NAME="343">  343   </A>                        uint8_t match;
+</SPAN><SPAN><A CLASS="LN" NAME="344">  344   </A>                        <SPAN CLASS="KW">for</SPAN> (i = 0; i &lt; PAR_PARAM_COUNT; i++) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="345">  345   </A>                            match = 1;
+</SPAN><SPAN><A CLASS="LN" NAME="346">  346   </A>                            <SPAN CLASS="KW">for</SPAN> (j = 0; j &lt; PARAM_NAME_LENGTH; j++) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="347">  347   </A>                                <SPAN CLASS="CT">// Compare</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="348">  348   </A>                                <SPAN CLASS="KW">if</SPAN> (((<SPAN CLASS="DT">char</SPAN>) (<A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[i][j]))
+</SPAN><SPAN><A CLASS="LN" NAME="349">  349   </A>                                    != (<SPAN CLASS="DT">char</SPAN>) (key[j])) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="350">  350   </A>                                    match = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="351">  351   </A>                                <B>}</B> <SPAN CLASS="CT">// if</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="352">  352   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="353">  353   </A>                                <SPAN CLASS="CT">// End matching if null termination is reached</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="354">  354   </A>                                <SPAN CLASS="KW">if</SPAN> (((<SPAN CLASS="DT">char</SPAN>) <A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[i][j]) == <FONT COLOR="#1122ff">'\0'</FONT>) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="355">  355   </A>                                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="356">  356   </A>                                <B>}</B> <SPAN CLASS="CT">// if</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="357">  357   </A>                            <B>}</B><SPAN CLASS="CT">// for j</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="358">  358   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="359">  359   </A>                            <SPAN CLASS="CT">// Check if matched</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="360">  360   </A>                            <SPAN CLASS="KW">if</SPAN> (match) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="361">  361   </A>                                <SPAN CLASS="CT">//sw_debug = 1;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="362">  362   </A>                                <SPAN CLASS="CT">// Only write and emit changes if there is actually a difference</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="363">  363   </A>                                <SPAN CLASS="CT">// AND only write if new value is NOT "not-a-number"</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="364">  364   </A>                                <SPAN CLASS="CT">// AND is NOT infinity</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="365">  365   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="366">  366   </A>                                <SPAN CLASS="KW">if</SPAN> (<A HREF="MavlinkComm_c.html#fcn_isFinite" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_isFinite');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">isFinite</FONT></A>(set.param_value)) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="367">  367   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="368">  368   </A>                                    <A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param[i] = set.param_value;
+</SPAN><SPAN><A CLASS="LN" NAME="369">  369   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="370">  370   </A>                                    <SPAN CLASS="CT">// Report back new value</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="371">  371   </A>                                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piBackToList = 0; <SPAN CLASS="CT">// no need to go back</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="372">  372   </A>                                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQIdx = -1; <SPAN CLASS="CT">// no Index</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="373">  373   </A>                                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piCurrentParamInTransaction = i; <SPAN CLASS="CT">// assign directly</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="374">  374   </A>                                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piProtState = PI_SEND_ONE_PARAM;
+</SPAN><SPAN><A CLASS="LN" NAME="375">  375   </A>                                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piTransaction = 1;
+</SPAN><SPAN><A CLASS="LN" NAME="376">  376   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="377">  377   </A>                                <B>}</B> <SPAN CLASS="CT">// if different and not nan and not inf</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="378">  378   </A>                            <B>}</B> <SPAN CLASS="CT">// if match</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="379">  379   </A>                        <B>}</B><SPAN CLASS="CT">// for i</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="380">  380   </A>                    <B>}</B> <SPAN CLASS="CT">// if addressed to this</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="381">  381   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="382">  382   </A>              <SPAN CLASS="KW">default</SPAN>:
+</SPAN><SPAN><A CLASS="LN" NAME="383">  383   </A>                <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="384">  384   </A>            <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="385">  385   </A>       <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="386">  386   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="387">  387   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="388">  388   </A>uint16_t <A NAME="fcn_MissionInterfaceResponse">MissionInterfaceResponse</A>(uint8_t system_id, uint8_t component_id)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="389">  389   </A>  mavlink_message_t msg;
+</SPAN><SPAN><A CLASS="LN" NAME="390">  390   </A>  uint16_t bytes2Send = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="391">  391   </A>  uint8_t CopyMsgToBuff = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="392">  392   </A><SPAN CLASS="CT">//  char vr_message[50];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="393">  393   </A><SPAN CLASS="CT">//  if (mlPending.wpProtState == WP_PROT_TX_WP) { //SLUGS Nav DBG info</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="394">  394   </A><SPAN CLASS="CT">//    memset(vr_message, 0, sizeof (vr_message));</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="395">  395   </A><SPAN CLASS="CT">//    sprintf(vr_message, "%d: y =%2.2f x =%2.2f z =%2.2f o =%d  t =%d", mlPending.wpCurrentWpInTransaction, (double)mlWpValues.lat[mlPending.wpCurrentWpInTransaction],</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="396">  396   </A><SPAN CLASS="CT">//        (double)mlWpValues.lon[mlPending.wpCurrentWpInTransaction],</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="397">  397   </A><SPAN CLASS="CT">//        (double)mlWpValues.alt[mlPending.wpCurrentWpInTransaction],</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="398">  398   </A><SPAN CLASS="CT">//        mlWpValues.orbit[mlPending.wpCurrentWpInTransaction],</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="399">  399   </A><SPAN CLASS="CT">//        mlWpValues.type[mlPending.wpCurrentWpInTransaction]);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="400">  400   </A><SPAN CLASS="CT">//    bytes2Send += sendQGCDebugMessage(vr_message, 0, UartOutBuff, bytes2Send + 1);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="401">  401   </A><SPAN CLASS="CT">//  }</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="402">  402   </A><SPAN CLASS="CT">//  if (mlPending.wpProtState == WP_PROT_GETTING_WP_IDLE) { //SLUGS Nav DBG info</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="403">  403   </A><SPAN CLASS="CT">//      memset(vr_message, 0, sizeof (vr_message));</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="404">  404   </A><SPAN CLASS="CT">//      sprintf(vr_message, "com = %d, tb =%2.2f ta = %2.2f", sw_intTemp, (double)fl_temp1, (double)fl_temp2);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="405">  405   </A><SPAN CLASS="CT">//      bytes2Send += sendQGCDebugMessage(vr_message, 0, UartOutBuff, bytes2Send + 1);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="406">  406   </A><SPAN CLASS="CT">//</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="407">  407   </A><SPAN CLASS="CT">//  }</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="408">  408   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="409">  409   </A>  <SPAN CLASS="CT">// Current mission item (1 off indexing issue in qgc vs et)</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="410">  410   </A><SPAN CLASS="CT">//  if (mlPending.wpSendCurrent) { --DBG TODO AM implement with nav implamntation</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="411">  411   </A><SPAN CLASS="CT">//      memset(&msg, 0, sizeof (mavlink_message_t));</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="412">  412   </A><SPAN CLASS="CT">//      mavlink_msg_mission_current_pack(system_id,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="413">  413   </A><SPAN CLASS="CT">//          component_id,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="414">  414   </A><SPAN CLASS="CT">//          &msg, ((uint16_t)mlNavigation.toWP) - 1);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="415">  415   </A><SPAN CLASS="CT">//      bytes2Send += mavlink_msg_to_send_buffer((UartOutBuff + 1 + bytes2Send), &msg);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="416">  416   </A><SPAN CLASS="CT">//      mlPending.wpSendCurrent = FALSE;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="417">  417   </A><SPAN CLASS="CT">//  }</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="418">  418   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="419">  419   </A>  <SPAN CLASS="CT">// clear the msg</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="420">  420   </A>  memset(&amp;msg, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_message_t));
+</SPAN><SPAN><A CLASS="LN" NAME="421">  421   </A>  <SPAN CLASS="CT">//if (mlPending.wpTransaction){ //DBG</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="422">  422   </A>    CopyMsgToBuff = 1; <SPAN CLASS="CT">//Set send msg flag - if nothing to send the switch statement will reset this</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="423">  423   </A>    <SPAN CLASS="KW">switch</SPAN> (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState) <B>{</B> 
+</SPAN><SPAN><A CLASS="LN" NAME="424">  424   </A>        <SPAN CLASS="KW">case</SPAN> WP_PROT_LIST_REQUESTED:
+</SPAN><SPAN><A CLASS="LN" NAME="425">  425   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="426">  426   </A>            <SPAN CLASS="CT">//mlPending.statustext++;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="427">  427   </A>            <SPAN CLASS="CT">//mlStatustext.severity = MAV_SEVERITY_INFO;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="428">  428   </A>            <SPAN CLASS="CT">//strncpy(mlStatustext.text, "Got mission list request. Sending count...", 49);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="429">  429   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="430">  430   </A>            mavlink_msg_mission_count_pack(system_id,
+</SPAN><SPAN><A CLASS="LN" NAME="431">  431   </A>                MAV_COMP_ID_MISSIONPLANNER,
+</SPAN><SPAN><A CLASS="LN" NAME="432">  432   </A>                &amp;msg,
+</SPAN><SPAN><A CLASS="LN" NAME="433">  433   </A>                GS_SYSTEMID,
+</SPAN><SPAN><A CLASS="LN" NAME="434">  434   </A>                GS_COMPID,
+</SPAN><SPAN><A CLASS="LN" NAME="435">  435   </A>                <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.wpCount);
+</SPAN><SPAN><A CLASS="LN" NAME="436">  436   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="437">  437   </A>            <SPAN CLASS="CT">// Change the state machine state</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="438">  438   </A>            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState = WP_PROT_NUM_SENT;
+</SPAN><SPAN><A CLASS="LN" NAME="439">  439   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="440">  440   </A>            <SPAN CLASS="CT">// Reset the timeout</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="441">  441   </A>            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTimeOut = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="442">  442   </A>            bytes2Send += mavlink_msg_to_send_buffer(UartOutBuff, &amp;msg);
+</SPAN><SPAN><A CLASS="LN" NAME="443">  443   </A>            <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="444">  444   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="445">  445   </A>        <SPAN CLASS="KW">case</SPAN> WP_PROT_GETTING_WP_IDLE:
+</SPAN><SPAN><A CLASS="LN" NAME="446">  446   </A>            <SPAN CLASS="KW">if</SPAN> (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction &lt; <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTotalWps) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="447">  447   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="448">  448   </A>                mavlink_msg_mission_request_pack(system_id,
+</SPAN><SPAN><A CLASS="LN" NAME="449">  449   </A>                    MAV_COMP_ID_MISSIONPLANNER,
+</SPAN><SPAN><A CLASS="LN" NAME="450">  450   </A>                    &amp;msg,
+</SPAN><SPAN><A CLASS="LN" NAME="451">  451   </A>                    GS_SYSTEMID,
+</SPAN><SPAN><A CLASS="LN" NAME="452">  452   </A>                    GS_COMPID,
+</SPAN><SPAN><A CLASS="LN" NAME="453">  453   </A>                    <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction++);
+</SPAN><SPAN><A CLASS="LN" NAME="454">  454   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="455">  455   </A>                <SPAN CLASS="CT">// Change the state machine state</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="456">  456   </A>                <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState = WP_PROT_RX_WP;
+</SPAN><SPAN><A CLASS="LN" NAME="457">  457   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="458">  458   </A>            <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="459">  459   </A>                mavlink_msg_mission_ack_pack(system_id,
+</SPAN><SPAN><A CLASS="LN" NAME="460">  460   </A>                    MAV_COMP_ID_MISSIONPLANNER,
+</SPAN><SPAN><A CLASS="LN" NAME="461">  461   </A>                    &amp;msg,
+</SPAN><SPAN><A CLASS="LN" NAME="462">  462   </A>                    GS_SYSTEMID,
+</SPAN><SPAN><A CLASS="LN" NAME="463">  463   </A>                    GS_COMPID,
+</SPAN><SPAN><A CLASS="LN" NAME="464">  464   </A>                    MAV_MISSION_ACCEPTED); <SPAN CLASS="CT">// 0 is success</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="465">  465   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="466">  466   </A>                <SPAN CLASS="CT">// Update the waypoint count</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="467">  467   </A>                <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.wpCount = <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTotalWps;
+</SPAN><SPAN><A CLASS="LN" NAME="468">  468   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="469">  469   </A>                <SPAN CLASS="CT">// End the transaction</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="470">  470   </A>                <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTransaction = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="471">  471   </A>                <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState = WP_PROT_IDLE;
+</SPAN><SPAN><A CLASS="LN" NAME="472">  472   </A>                <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="473">  473   </A>                <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTotalWps = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="474">  474   </A>                <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpSendCurrent = TRUE; <SPAN CLASS="CT">// send current waypoint index</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="475">  475   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="476">  476   </A>                <SPAN CLASS="CT">// put zeros in the rest of the waypoints;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="477">  477   </A>                <SPAN CLASS="CT">//clearWaypointsFrom(mlWpValues.wpCount); //this clears the EEPROM WP storage</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="478">  478   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="479">  479   </A>            <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="480">  480   </A>            bytes2Send += mavlink_msg_to_send_buffer(UartOutBuff, &amp;msg);
+</SPAN><SPAN><A CLASS="LN" NAME="481">  481   </A>            <SPAN CLASS="CT">// Reset the timeout            </SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="482">  482   </A>            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTimeOut = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="483">  483   </A>            <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="484">  484   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="485">  485   </A>        <SPAN CLASS="KW">case</SPAN> WP_PROT_TX_WP:
+</SPAN><SPAN><A CLASS="LN" NAME="486">  486   </A>            <SPAN CLASS="CT">//mlPending.statustext++;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="487">  487   </A>            <SPAN CLASS="CT">//mlStatustext.severity = MAV_SEVERITY_INFO;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="488">  488   </A>            <SPAN CLASS="CT">//strncpy(mlStatustext.text, "Sending waypoint.", 25);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="489">  489   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="490">  490   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="491">  491   </A>            <SPAN CLASS="CT">// Send WP</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="492">  492   </A>            mavlink_msg_mission_item_pack(system_id,
+</SPAN><SPAN><A CLASS="LN" NAME="493">  493   </A>                MAV_COMP_ID_MISSIONPLANNER,
+</SPAN><SPAN><A CLASS="LN" NAME="494">  494   </A>                &amp;msg,
+</SPAN><SPAN><A CLASS="LN" NAME="495">  495   </A>                GS_SYSTEMID,
+</SPAN><SPAN><A CLASS="LN" NAME="496">  496   </A>                GS_COMPID,
+</SPAN><SPAN><A CLASS="LN" NAME="497">  497   </A>                <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction,
+</SPAN><SPAN><A CLASS="LN" NAME="498">  498   </A>                MAV_FRAME_GLOBAL,
+</SPAN><SPAN><A CLASS="LN" NAME="499">  499   </A>                <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.type[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction],
+</SPAN><SPAN><A CLASS="LN" NAME="500">  500   </A>                0, <SPAN CLASS="CT">// not current</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="501">  501   </A>                1, <SPAN CLASS="CT">// autocontinue</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="502">  502   </A>                0.0, <SPAN CLASS="CT">// Param 1 not used</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="503">  503   </A>                0.0, <SPAN CLASS="CT">// Param 2 not used</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="504">  504   </A>                (<SPAN CLASS="DT">float</SPAN>) <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.orbit[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction],
+</SPAN><SPAN><A CLASS="LN" NAME="505">  505   </A>                0.0, <SPAN CLASS="CT">// Param 4 not used</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="506">  506   </A>                <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.lat[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction],
+</SPAN><SPAN><A CLASS="LN" NAME="507">  507   </A>                <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.lon[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction],
+</SPAN><SPAN><A CLASS="LN" NAME="508">  508   </A>                <A HREF="MavlinkComm_c.html#var_mlWpValues" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlWpValues');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlWpValues</FONT></A>.alt[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction]); <SPAN CLASS="CT">// always autocontinue</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="509">  509   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="510">  510   </A>            <SPAN CLASS="CT">// Switch the state waiting for the next request</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="511">  511   </A>            <SPAN CLASS="CT">// Change the state machine state</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="512">  512   </A>            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState = WP_PROT_SENDING_WP_IDLE;
+</SPAN><SPAN><A CLASS="LN" NAME="513">  513   </A>            bytes2Send += mavlink_msg_to_send_buffer(UartOutBuff, &amp;msg);
+</SPAN><SPAN><A CLASS="LN" NAME="514">  514   </A>            <SPAN CLASS="CT">// Reset the timeout</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="515">  515   </A>            <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTimeOut = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="516">  516   </A>            <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="517">  517   </A>      <SPAN CLASS="KW">default</SPAN>:
+</SPAN><SPAN><A CLASS="LN" NAME="518">  518   </A>         CopyMsgToBuff = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="519">  519   </A>         <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="520">  520   </A>    <B>}</B> <SPAN CLASS="CT">// switch wpProtState</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="521">  521   </A><SPAN CLASS="CT">//    if (CopyMsgToBuff) // Copy the message to the send buffer</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="522">  522   </A><SPAN CLASS="CT">//      bytes2Send += mavlink_msg_to_send_buffer((UartOutBuff + 1 + bytes2Send), &msg);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="523">  523   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="524">  524   </A>  <SPAN CLASS="CT">//}//if DBG</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="525">  525   </A>  <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTimeOut++;
+</SPAN><SPAN><A CLASS="LN" NAME="526">  526   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="527">  527   </A>  <SPAN CLASS="CT">// if Timed out reset the state machine and send an error</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="528">  528   </A>  <SPAN CLASS="KW">if</SPAN> (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTimeOut &gt; PROTOCOL_TIMEOUT_TICKS) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="529">  529   </A>      memset(&amp;msg, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_message_t));
+</SPAN><SPAN><A CLASS="LN" NAME="530">  530   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="531">  531   </A>      mavlink_msg_mission_ack_pack(system_id,
+</SPAN><SPAN><A CLASS="LN" NAME="532">  532   </A>          MAV_COMP_ID_MISSIONPLANNER,
+</SPAN><SPAN><A CLASS="LN" NAME="533">  533   </A>          &amp;msg,
+</SPAN><SPAN><A CLASS="LN" NAME="534">  534   </A>          GS_SYSTEMID,
+</SPAN><SPAN><A CLASS="LN" NAME="535">  535   </A>          GS_COMPID,
+</SPAN><SPAN><A CLASS="LN" NAME="536">  536   </A>          1); <SPAN CLASS="CT">// 1 is failure</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="537">  537   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="538">  538   </A>      <SPAN CLASS="CT">// Copy the message to the send buffer</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="539">  539   </A>      bytes2Send += mavlink_msg_to_send_buffer((UartOutBuff + 1 + bytes2Send), &amp;msg);
+</SPAN><SPAN><A CLASS="LN" NAME="540">  540   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="541">  541   </A>      <SPAN CLASS="CT">// reset the state machine</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="542">  542   </A>      <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTransaction = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="543">  543   </A>      <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpProtState = WP_PROT_IDLE;
+</SPAN><SPAN><A CLASS="LN" NAME="544">  544   </A>      <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpCurrentWpInTransaction = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="545">  545   </A>      <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTimeOut = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="546">  546   </A>      <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.wpTotalWps = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="547">  547   </A>  <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="548">  548   </A>  <SPAN CLASS="KW">return</SPAN>(bytes2Send);
+</SPAN><SPAN><A CLASS="LN" NAME="549">  549   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="550">  550   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="551">  551   </A>uint16_t <A NAME="fcn_ParameterInterfaceResponse">ParameterInterfaceResponse</A>(uint8_t system_id, uint8_t component_id)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="552">  552   </A>  mavlink_message_t msg;
+</SPAN><SPAN><A CLASS="LN" NAME="553">  553   </A>  uint16_t bytes2Send = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="554">  554   </A>  <SPAN CLASS="KW">if</SPAN> (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piTransaction)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="555">  555   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="556">  556   </A>    <SPAN CLASS="KW">switch</SPAN> (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piProtState) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="557">  557   </A>      <SPAN CLASS="KW">case</SPAN> PI_SEND_ALL_PARAM:
+</SPAN><SPAN><A CLASS="LN" NAME="558">  558   </A>          <SPAN CLASS="KW">if</SPAN> (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piCurrentParamInTransaction &lt; PAR_PARAM_COUNT) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="559">  559   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="560">  560   </A>              mavlink_msg_param_value_pack(system_id,
+</SPAN><SPAN><A CLASS="LN" NAME="561">  561   </A>                  component_id,
+</SPAN><SPAN><A CLASS="LN" NAME="562">  562   </A>                  &amp;msg,
+</SPAN><SPAN><A CLASS="LN" NAME="563">  563   </A>                  <A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piCurrentParamInTransaction],
+</SPAN><SPAN><A CLASS="LN" NAME="564">  564   </A>                  <A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piCurrentParamInTransaction],
+</SPAN><SPAN><A CLASS="LN" NAME="565">  565   </A>                  MAV_PARAM_TYPE_REAL32, <SPAN CLASS="CT">// TODO: make sure this is correct later on</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="566">  566   </A>                  PAR_PARAM_COUNT,
+</SPAN><SPAN><A CLASS="LN" NAME="567">  567   </A>                  <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piCurrentParamInTransaction);
+</SPAN><SPAN><A CLASS="LN" NAME="568">  568   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="569">  569   </A>              <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piCurrentParamInTransaction++;
+</SPAN><SPAN><A CLASS="LN" NAME="570">  570   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="571">  571   </A>              <SPAN CLASS="CT">// Copy the message to the send buffer</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="572">  572   </A>              bytes2Send += mavlink_msg_to_send_buffer(UartOutBuff, &amp;msg);
+</SPAN><SPAN><A CLASS="LN" NAME="573">  573   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="574">  574   </A>          <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="575">  575   </A>              <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piProtState = PI_IDLE;
+</SPAN><SPAN><A CLASS="LN" NAME="576">  576   </A>              <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piCurrentParamInTransaction = PAR_PARAM_COUNT;
+</SPAN><SPAN><A CLASS="LN" NAME="577">  577   </A>              <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piTransaction = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="578">  578   </A>              <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piBackToList = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="579">  579   </A>              <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQIdx = -1;
+</SPAN><SPAN><A CLASS="LN" NAME="580">  580   </A>          <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="581">  581   </A>          <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="582">  582   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="583">  583   </A>      <SPAN CLASS="KW">case</SPAN> PI_SEND_ONE_PARAM:
+</SPAN><SPAN><A CLASS="LN" NAME="584">  584   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="585">  585   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="586">  586   </A>          <SPAN CLASS="KW">if</SPAN> (!<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piBackToList) <B>{</B> <SPAN CLASS="CT">// if this is just a single pm read, i.e. not a retransmission</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="587">  587   </A>              mavlink_msg_param_value_pack(system_id,
+</SPAN><SPAN><A CLASS="LN" NAME="588">  588   </A>                  component_id,
+</SPAN><SPAN><A CLASS="LN" NAME="589">  589   </A>                  &amp;msg,
+</SPAN><SPAN><A CLASS="LN" NAME="590">  590   </A>                  <A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piCurrentParamInTransaction],
+</SPAN><SPAN><A CLASS="LN" NAME="591">  591   </A>                  <A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piCurrentParamInTransaction],
+</SPAN><SPAN><A CLASS="LN" NAME="592">  592   </A>                  MAV_PARAM_TYPE_REAL32,
+</SPAN><SPAN><A CLASS="LN" NAME="593">  593   </A>                  PAR_PARAM_COUNT,
+</SPAN><SPAN><A CLASS="LN" NAME="594">  594   </A>                  <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piCurrentParamInTransaction);
+</SPAN><SPAN><A CLASS="LN" NAME="595">  595   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="596">  596   </A>              <SPAN CLASS="CT">// Copy the message to the send buffer</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="597">  597   </A>              bytes2Send += mavlink_msg_to_send_buffer(UartOutBuff, &amp;msg);
+</SPAN><SPAN><A CLASS="LN" NAME="598">  598   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="599">  599   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="600">  600   </A>              <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piCurrentParamInTransaction = PAR_PARAM_COUNT;
+</SPAN><SPAN><A CLASS="LN" NAME="601">  601   </A>              <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piProtState = PI_IDLE;
+</SPAN><SPAN><A CLASS="LN" NAME="602">  602   </A>              <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piTransaction = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="603">  603   </A>          <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B> <SPAN CLASS="CT">// you will need to go back to send all</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="604">  604   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="605">  605   </A>              <SPAN CLASS="KW">if</SPAN> (<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQIdx &lt; 0) <B>{</B> <SPAN CLASS="CT">// if you've sent all the requests, then go back to list</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="606">  606   </A>                  <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piProtState = PI_SEND_ALL_PARAM;
+</SPAN><SPAN><A CLASS="LN" NAME="607">  607   </A>                  <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piBackToList = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="608">  608   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="609">  609   </A>              <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B> <SPAN CLASS="CT">// send the requests</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="610">  610   </A>                  mavlink_msg_param_value_pack(system_id,
+</SPAN><SPAN><A CLASS="LN" NAME="611">  611   </A>                      component_id,
+</SPAN><SPAN><A CLASS="LN" NAME="612">  612   </A>                      &amp;msg,
+</SPAN><SPAN><A CLASS="LN" NAME="613">  613   </A>                      <A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param_name[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQueue[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQIdx]],
+</SPAN><SPAN><A CLASS="LN" NAME="614">  614   </A>                      <A HREF="MavlinkComm_c.html#var_mlParamInterface" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlParamInterface');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlParamInterface</FONT></A>.param[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQueue[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQIdx]],
+</SPAN><SPAN><A CLASS="LN" NAME="615">  615   </A>                      MAV_PARAM_TYPE_REAL32,
+</SPAN><SPAN><A CLASS="LN" NAME="616">  616   </A>                      PAR_PARAM_COUNT,
+</SPAN><SPAN><A CLASS="LN" NAME="617">  617   </A>                      <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQueue[<A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQIdx]);
+</SPAN><SPAN><A CLASS="LN" NAME="618">  618   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="619">  619   </A>                  <SPAN CLASS="CT">// Copy the message to the send buffer</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="620">  620   </A>                  bytes2Send += mavlink_msg_to_send_buffer(UartOutBuff, &amp;msg);
+</SPAN><SPAN><A CLASS="LN" NAME="621">  621   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="622">  622   </A>                  <SPAN CLASS="CT">// decrement the queue index</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="623">  623   </A>                  <A HREF="MavlinkComm_c.html#var_mlPending" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPending');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPending</FONT></A>.piQIdx--;
+</SPAN><SPAN><A CLASS="LN" NAME="624">  624   </A>              <B>}</B> <SPAN CLASS="CT">// QIdx &lt; 0</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="625">  625   </A>          <B>}</B><SPAN CLASS="CT">// !backToList</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="626">  626   </A>    <B>}</B><SPAN CLASS="CT">//switch</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="627">  627   </A>  <B>}</B><SPAN CLASS="CT">//if (mlPending.piTransaction)</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="628">  628   </A>  <SPAN CLASS="KW">return</SPAN>(bytes2Send);
+</SPAN><SPAN><A CLASS="LN" NAME="629">  629   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="630">  630   </A>uint16_t <A NAME="fcn_PackHeartBeat">PackHeartBeat</A>(uint8_t system_id, uint8_t component_id)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="631">  631   </A>  mavlink_system_t mavlink_system;
+</SPAN><SPAN><A CLASS="LN" NAME="632">  632   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="633">  633   </A>  mavlink_system.sysid = system_id;                   <SPAN CLASS="CT">///&lt; ID 20 for this airplane</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="634">  634   </A>  mavlink_system.compid = component_id;<SPAN CLASS="CT">//MAV_COMP_ID_IMU;     ///&lt; The component sending the message is the IMU, it could be also a Linux process</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="635">  635   </A>  mavlink_system.type = MAV_TYPE_FIXED_WING;   <SPAN CLASS="CT">///&lt; This system is an airplane / fixed wing</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="636">  636   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="637">  637   </A>  <SPAN CLASS="CT">// Define the system type, in this case an airplane</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="638">  638   </A>  uint8_t system_type = MAV_TYPE_FIXED_WING;
+</SPAN><SPAN><A CLASS="LN" NAME="639">  639   </A>  uint8_t autopilot_type = MAV_AUTOPILOT_GENERIC;
+</SPAN><SPAN><A CLASS="LN" NAME="640">  640   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="641">  641   </A>  uint8_t system_mode = MAV_MODE_PREFLIGHT; <SPAN CLASS="CT">///&lt; Booting up</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="642">  642   </A>  uint32_t custom_mode = 0;                 <SPAN CLASS="CT">///&lt; Custom mode, can be defined by user/adopter</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="643">  643   </A>  uint8_t system_state = MAV_STATE_STANDBY; <SPAN CLASS="CT">///&lt; System ready for flight</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="644">  644   </A>  mavlink_message_t msg;
+</SPAN><SPAN><A CLASS="LN" NAME="645">  645   </A>  uint16_t bytes2Send = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="646">  646   </A>  <SPAN CLASS="CT">//////////////////////////////////////////////////////////////////////////</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="647">  647   </A>  memset(&amp;msg, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_message_t));
+</SPAN><SPAN><A CLASS="LN" NAME="648">  648   </A>  <SPAN CLASS="CT">// Pack the Heartbeat message</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="649">  649   </A>  mavlink_msg_heartbeat_pack(mavlink_system.sysid, mavlink_system.compid, &amp;msg, system_type, autopilot_type, system_mode, custom_mode, system_state);
+</SPAN><SPAN><A CLASS="LN" NAME="650">  650   </A>  <SPAN CLASS="CT">/*</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="651">  651   </A><SPAN CLASS="CT">  mavlink_msg_heartbeat_pack(system_id,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="652">  652   </A><SPAN CLASS="CT">                  component_id,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="653">  653   </A><SPAN CLASS="CT">                  &msg,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="654">  654   </A><SPAN CLASS="CT">                  MAV_TYPE_FIXED_WING,//MAV_TYPE_GENERIC,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="655">  655   </A><SPAN CLASS="CT">                  MAV_AUTOPILOT_SLUGS,//MAV_AUTOPILOT_GENERIC,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="656">  656   </A><SPAN CLASS="CT">                  MAV_MODE_PREFLIGHT,//mlHeartbeatLocal.base_mode,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="657">  657   </A><SPAN CLASS="CT">                  MAV_MODE_PREFLIGHT,//mlHeartbeatLocal.custom_mode,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="658">  658   </A><SPAN CLASS="CT">                  MAV_STATE_UNINIT//mlHeartbeatLocal.system_status</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="659">  659   </A><SPAN CLASS="CT">                  );</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="660">  660   </A><SPAN CLASS="CT">*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="661">  661   </A>  <SPAN CLASS="CT">// Copy the message to the send buffer</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="662">  662   </A>  bytes2Send += mavlink_msg_to_send_buffer(UartOutBuff, &amp;msg);
+</SPAN><SPAN><A CLASS="LN" NAME="663">  663   </A>  <SPAN CLASS="KW">return</SPAN>(bytes2Send);
+</SPAN><SPAN><A CLASS="LN" NAME="664">  664   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="665">  665   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="666">  666   </A>uint16_t <A NAME="fcn_PackTextMsg">PackTextMsg</A>(uint8_t system_id, uint8_t component_id)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="667">  667   </A>  mavlink_message_t msg;
+</SPAN><SPAN><A CLASS="LN" NAME="668">  668   </A>  mavlink_system_t mavlink_system;
+</SPAN><SPAN><A CLASS="LN" NAME="669">  669   </A>  mavlink_system.sysid = system_id;                   <SPAN CLASS="CT">///&lt; ID 20 for this airplane</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="670">  670   </A>  mavlink_system.compid = component_id;<SPAN CLASS="CT">//MAV_COMP_ID_IMU;     ///&lt; The component sending the message is the IMU, it could be also a Linux process</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="671">  671   </A>  <SPAN CLASS="DT">char</SPAN> vr_message[50];
+</SPAN><SPAN><A CLASS="LN" NAME="672">  672   </A>  memset(vr_message, 0, <SPAN CLASS="KW">sizeof</SPAN> (vr_message));
+</SPAN><SPAN><A CLASS="LN" NAME="673">  673   </A>  sprintf(vr_message, <FONT COLOR="#1122ff">&quot;Hello World&quot;</FONT>);
+</SPAN><SPAN><A CLASS="LN" NAME="674">  674   </A>  mavlink_msg_statustext_pack(mavlink_system.sysid,
+</SPAN><SPAN><A CLASS="LN" NAME="675">  675   </A>  mavlink_system.compid,
+</SPAN><SPAN><A CLASS="LN" NAME="676">  676   </A>  &amp;msg,
+</SPAN><SPAN><A CLASS="LN" NAME="677">  677   </A>  0,
+</SPAN><SPAN><A CLASS="LN" NAME="678">  678   </A>  vr_message);
+</SPAN><SPAN><A CLASS="LN" NAME="679">  679   </A>  <SPAN CLASS="KW">return</SPAN>(mavlink_msg_to_send_buffer(UartOutBuff, &amp;msg));
+</SPAN><SPAN><A CLASS="LN" NAME="680">  680   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="681">  681   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="682">  682   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="683">  683   </A>uint16_t <A NAME="fcn_PackRawIMU">PackRawIMU</A>(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t mlRawIMUData ,uint32_t time_usec)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="684">  684   </A>  mavlink_system_t mavlink_system;
+</SPAN><SPAN><A CLASS="LN" NAME="685">  685   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="686">  686   </A>  mavlink_system.sysid = system_id;                   <SPAN CLASS="CT">///&lt; ID 20 for this airplane</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="687">  687   </A>  mavlink_system.compid = component_id;<SPAN CLASS="CT">//MAV_COMP_ID_IMU;     ///&lt; The component sending the message is the IMU, it could be also a Linux process</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="688">  688   </A>  <SPAN CLASS="CT">//////////////////////////////////////////////////////////////////////////</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="689">  689   </A>  mavlink_message_t msg;
+</SPAN><SPAN><A CLASS="LN" NAME="690">  690   </A>  memset(&amp;msg, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_message_t));
+</SPAN><SPAN><A CLASS="LN" NAME="691">  691   </A>  mavlink_msg_raw_imu_pack(mavlink_system.sysid, mavlink_system.compid, &amp;msg , time_usec , mlRawIMUData.xacc , mlRawIMUData.yacc , mlRawIMUData.zacc , mlRawIMUData.xgyro , mlRawIMUData.ygyro , mlRawIMUData.zgyro , mlRawIMUData.xmag , mlRawIMUData.ymag , mlRawIMUData.zmag );
+</SPAN><SPAN><A CLASS="LN" NAME="692">  692   </A>  <SPAN CLASS="KW">return</SPAN>( mavlink_msg_to_send_buffer(UartOutBuff, &amp;msg));
+</SPAN><SPAN><A CLASS="LN" NAME="693">  693   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="694">  694   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="695">  695   </A>uint16_t <A NAME="fcn_PackGpsRawInt">PackGpsRawInt</A>(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="696">  696   </A>  mavlink_system_t mavlink_system;
+</SPAN><SPAN><A CLASS="LN" NAME="697">  697   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="698">  698   </A>  mavlink_system.sysid = system_id;                   <SPAN CLASS="CT">///&lt; ID 20 for this airplane</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="699">  699   </A>  mavlink_system.compid = component_id;<SPAN CLASS="CT">//MAV_COMP_ID_IMU;     ///&lt; The component sending the message is the IMU, it could be also a Linux process</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="700">  700   </A>  <SPAN CLASS="CT">//////////////////////////////////////////////////////////////////////////</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="701">  701   </A>  mavlink_message_t msg;
+</SPAN><SPAN><A CLASS="LN" NAME="702">  702   </A>  memset(&amp;msg, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_message_t));
+</SPAN><SPAN><A CLASS="LN" NAME="703">  703   </A>  mavlink_msg_gps_raw_int_pack(mavlink_system.sysid, mavlink_system.compid, &amp;msg , time_usec ,mlRawGpsDataInt.fix_type, mlRawGpsDataInt.lat,
+</SPAN><SPAN><A CLASS="LN" NAME="704">  704   </A>          mlRawGpsDataInt.lon, mlRawGpsDataInt.alt, mlRawGpsDataInt.eph, mlRawGpsDataInt.epv, mlRawGpsDataInt.vel,
+</SPAN><SPAN><A CLASS="LN" NAME="705">  705   </A>          mlRawGpsDataInt.cog, mlRawGpsDataInt.satellites_visible);
+</SPAN><SPAN><A CLASS="LN" NAME="706">  706   </A>  <SPAN CLASS="KW">return</SPAN>( mavlink_msg_to_send_buffer(UartOutBuff, &amp;msg));
+</SPAN><SPAN><A CLASS="LN" NAME="707">  707   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="708">  708   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="709">  709   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="710">  710   </A>uint16_t <A NAME="fcn_PackScaledPressure">PackScaledPressure</A>(uint8_t system_id, uint8_t component_id, mavlink_scaled_pressure_t <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlAirData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAirData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAirData</FONT></A> ,uint32_t time_usec)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="711">  711   </A>  mavlink_system_t mavlink_system;
+</SPAN><SPAN><A CLASS="LN" NAME="712">  712   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="713">  713   </A>  mavlink_system.sysid = system_id;                   <SPAN CLASS="CT">///&lt; ID 20 for this airplane</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="714">  714   </A>  mavlink_system.compid = component_id;<SPAN CLASS="CT">//MAV_COMP_ID_IMU;     ///&lt; The component sending the message is the IMU, it could be also a Linux process</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="715">  715   </A>  <SPAN CLASS="CT">//////////////////////////////////////////////////////////////////////////</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="716">  716   </A>  mavlink_message_t msg;
+</SPAN><SPAN><A CLASS="LN" NAME="717">  717   </A>  memset(&amp;msg, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_message_t));
+</SPAN><SPAN><A CLASS="LN" NAME="718">  718   </A>  mavlink_msg_scaled_pressure_pack(system_id, component_id, &amp;msg,
+</SPAN><SPAN><A CLASS="LN" NAME="719">  719   </A>						       time_usec/1000, <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlAirData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAirData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAirData</FONT></A>.press_abs, <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlAirData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAirData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAirData</FONT></A>.press_diff, <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlAirData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAirData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAirData</FONT></A>.temperature);
+</SPAN><SPAN><A CLASS="LN" NAME="720">  720   </A>  <SPAN CLASS="KW">return</SPAN>( mavlink_msg_to_send_buffer(UartOutBuff, &amp;msg));
+</SPAN><SPAN><A CLASS="LN" NAME="721">  721   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="722">  722   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="723">  723   </A>uint16_t <A NAME="fcn_PackSysStatus">PackSysStatus</A>(uint8_t system_id, uint8_t component_id, mavlink_sys_status_t <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="724">  724   </A>  mavlink_system_t mavlink_system;
+</SPAN><SPAN><A CLASS="LN" NAME="725">  725   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="726">  726   </A>  mavlink_system.sysid = system_id;                   <SPAN CLASS="CT">///&lt; ID 20 for this airplane</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="727">  727   </A>  mavlink_system.compid = component_id;<SPAN CLASS="CT">//MAV_COMP_ID_IMU;     ///&lt; The component sending the message is the IMU, it could be also a Linux process</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="728">  728   </A>  <SPAN CLASS="CT">//////////////////////////////////////////////////////////////////////////</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="729">  729   </A>  mavlink_message_t msg;
+</SPAN><SPAN><A CLASS="LN" NAME="730">  730   </A>  memset(&amp;msg, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_message_t));
+</SPAN><SPAN><A CLASS="LN" NAME="731">  731   </A>  mavlink_msg_sys_status_pack(system_id, component_id, &amp;msg,
+</SPAN><SPAN><A CLASS="LN" NAME="732">  732   </A>						       <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>.onboard_control_sensors_present,<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>.onboard_control_sensors_enabled, <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>.onboard_control_sensors_health,
+</SPAN><SPAN><A CLASS="LN" NAME="733">  733   </A>                   <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>.load, <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>.voltage_battery, <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>.current_battery,
+</SPAN><SPAN><A CLASS="LN" NAME="734">  734   </A>                   <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>.battery_remaining, <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>.drop_rate_comm, <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>.errors_comm,
+</SPAN><SPAN><A CLASS="LN" NAME="735">  735   </A>                   <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>.errors_count1, <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>.errors_count2, <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>.errors_count3, <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>.errors_count4);
+</SPAN><SPAN><A CLASS="LN" NAME="736">  736   </A>  <SPAN CLASS="KW">return</SPAN>( mavlink_msg_to_send_buffer(UartOutBuff, &amp;msg));
+</SPAN><SPAN><A CLASS="LN" NAME="737">  737   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="738">  738   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="739">  739   </A><SPAN CLASS="DT">char</SPAN> <A NAME="fcn_sendQGCDebugMessage">sendQGCDebugMessage</A>(<SPAN CLASS="DT">const</SPAN> <SPAN CLASS="DT">char</SPAN> * dbgMessage, <SPAN CLASS="DT">char</SPAN> severity, <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>* bytesToAdd, <SPAN CLASS="DT">char</SPAN> positionStart) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="740">  740   </A>    mavlink_message_t msg;
+</SPAN><SPAN><A CLASS="LN" NAME="741">  741   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> bytes2Send = 0; <SPAN CLASS="CT">// size in bytes of the mavlink packed message (return value)</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="742">  742   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="743">  743   </A>    mavlink_msg_statustext_pack(101,
+</SPAN><SPAN><A CLASS="LN" NAME="744">  744   </A>        1,
+</SPAN><SPAN><A CLASS="LN" NAME="745">  745   </A>        &amp;msg,
+</SPAN><SPAN><A CLASS="LN" NAME="746">  746   </A>        severity,
+</SPAN><SPAN><A CLASS="LN" NAME="747">  747   </A>        dbgMessage);
+</SPAN><SPAN><A CLASS="LN" NAME="748">  748   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="749">  749   </A>    bytes2Send = mavlink_msg_to_send_buffer(UartOutBuff, &amp;msg);
+</SPAN><SPAN><A CLASS="LN" NAME="750">  750   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="751">  751   </A>    <SPAN CLASS="KW">return</SPAN> bytes2Send;
+</SPAN><SPAN><A CLASS="LN" NAME="752">  752   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="753">  753   </A>  
+</SPAN><SPAN><A CLASS="LN" NAME="754">  754   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="755">  755   </A><SPAN CLASS="CT">//uint8_t GetCharAtBuffIdx(int32_t idx){</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="756">  756   </A><SPAN CLASS="CT">//    return(UartOutBuff[idx]);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="757">  757   </A><SPAN CLASS="CT">//}</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="758">  758   </A><SPAN CLASS="CT">/* Declare UART1 Tx Circular Buffer Structure */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="759">  759   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_MCHP_UART1_TxStr" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_UART1_TxStr');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_UART1_TxStr</FONT></A> <A HREF="MCHP_UART1_Interrupt_c.html#fcn_MCHP_UART1_Tx" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_UART1_Tx');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_UART1_Tx</FONT></A>;
+</SPAN><SPAN><A CLASS="LN" NAME="760">  760   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="761">  761   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_TxN_Data_OverU1">TxN_Data_OverU1</A>(uint16_t N)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="762">  762   </A>  <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> i;
+</SPAN><SPAN><A CLASS="LN" NAME="763">  763   </A>  <SPAN CLASS="KW">for</SPAN> (i = 0U; i &lt; N; i++) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="764">  764   </A>    <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> Tmp;
+</SPAN><SPAN><A CLASS="LN" NAME="765">  765   </A>    Tmp = ~(<A HREF="MCHP_UART1_Interrupt_c.html#fcn_MCHP_UART1_Tx" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_UART1_Tx');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_UART1_Tx</FONT></A>.tail - <A HREF="MCHP_UART1_Interrupt_c.html#fcn_MCHP_UART1_Tx" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_UART1_Tx');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_UART1_Tx</FONT></A>.head);
+</SPAN><SPAN><A CLASS="LN" NAME="766">  766   </A>    Tmp = Tmp &amp; (Tx_BUFF_SIZE_Uart1 - 1);<SPAN CLASS="CT">/* Modulo Buffer Size */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="767">  767   </A>    <SPAN CLASS="KW">if</SPAN> (Tmp != 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="768">  768   </A>      <A HREF="MCHP_UART1_Interrupt_c.html#fcn_MCHP_UART1_Tx" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_UART1_Tx');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_UART1_Tx</FONT></A>.buffer[<A HREF="MCHP_UART1_Interrupt_c.html#fcn_MCHP_UART1_Tx" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_UART1_Tx');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_UART1_Tx</FONT></A>.tail] = UartOutBuff[i];
+</SPAN><SPAN><A CLASS="LN" NAME="769">  769   </A>      <A HREF="MCHP_UART1_Interrupt_c.html#fcn_MCHP_UART1_Tx" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_UART1_Tx');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_UART1_Tx</FONT></A>.tail = (<A HREF="MCHP_UART1_Interrupt_c.html#fcn_MCHP_UART1_Tx" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_UART1_Tx');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_UART1_Tx</FONT></A>.tail + 1) &amp; (Tx_BUFF_SIZE_Uart1 - 1);
+</SPAN><SPAN><A CLASS="LN" NAME="770">  770   </A>      Tmp--;
+</SPAN><SPAN><A CLASS="LN" NAME="771">  771   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="772">  772   </A>  <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="773">  773   </A>  _U1TXIF = U1STAbits.TRMT;
+</SPAN><SPAN><A CLASS="LN" NAME="774">  774   </A><B>}</B></PRE>
+</TD></TR></TABLE>
+</P>
+</BODY>
+</HTML>

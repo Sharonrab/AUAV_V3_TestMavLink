@@ -1,0 +1,519 @@
+<HTML>
+<HEAD>
+<TITLE>RTW Report - gpsUblox.c </TITLE>
+<STYLE> .LN { font-style: italic; color: #888888 } </STYLE>
+<STYLE> .CT { font-style: italic; color: #117755 } </STYLE>
+<STYLE> .PP { font-style: bold;   color: #992211 } </STYLE>
+<STYLE> .KW { font-style: bold;   color: #112266 } </STYLE>
+<STYLE> .DT { font-style: bold;   color: #112266 } </STYLE>
+<SCRIPT language="JavaScript" type="text/javascript">
+<!--
+function rtwHilite(aBlock,aParentSID) {
+ aParentSID = "";
+ try {
+    window.location.href="matlab: if ~isempty(which('private/rtwbindmodel')), rtwprivate rtwbindmodel 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.mdl' 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.X' '', end; rtwprivate code2model "+aBlock+" "+aParentSID+";"
+ } catch (e) { 
+ }
+} // end rtwHilite
+//-->
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);} ">
+<P>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
+<H4>File: <A HREF="file:///C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\gpsUblox.c" TARGET="rtwreport_document_frame">C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\gpsUblox.c</A></H4>
+<PRE id="RTWcode">
+<SPAN><A CLASS="LN" NAME="1">    1   </A><SPAN CLASS="CT">/*</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="2">    2   </A><SPAN CLASS="CT">The MIT License</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="3">    3   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="4">    4   </A><SPAN CLASS="CT">Copyright (c) 2009 UCSC Autonomous Systems Lab</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="5">    5   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="6">    6   </A><SPAN CLASS="CT">Permission is hereby granted, free of charge, to any person obtaining a copy</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="7">    7   </A><SPAN CLASS="CT">of this software and associated documentation files (the "Software"), to deal</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="8">    8   </A><SPAN CLASS="CT">in the Software without restriction, including without limitation the rights</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="9">    9   </A><SPAN CLASS="CT">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="10">   10   </A><SPAN CLASS="CT">copies of the Software, and to permit persons to whom the Software is</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="11">   11   </A><SPAN CLASS="CT">furnished to do so, subject to the following conditions:</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="12">   12   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="13">   13   </A><SPAN CLASS="CT">The above copyright notice and this permission notice shall be included in</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="14">   14   </A><SPAN CLASS="CT">all copies or substantial portions of the Software.</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="15">   15   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="16">   16   </A><SPAN CLASS="CT">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="17">   17   </A><SPAN CLASS="CT">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="18">   18   </A><SPAN CLASS="CT">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="19">   19   </A><SPAN CLASS="CT">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="20">   20   </A><SPAN CLASS="CT">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="21">   21   </A><SPAN CLASS="CT">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="22">   22   </A><SPAN CLASS="CT">THE SOFTWARE.</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="23">   23   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="24">   24   </A><SPAN CLASS="CT"> */</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="25">   25   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="26">   26   </A><SPAN CLASS="CT">// ==============================================================</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="27">   27   </A><SPAN CLASS="CT">// gps.c</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="28">   28   </A><SPAN CLASS="CT">// This is code implements a fully interrupt driven UART reader to</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="29">   29   </A><SPAN CLASS="CT">// be used in the UCSC Autopilot project. It makes use of the </SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="30">   30   </A><SPAN CLASS="CT">// circular buffer data structure circBuffer.c. It has been </SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="31">   31   </A><SPAN CLASS="CT">// written to be implemented in Simulink. It configures UART 1</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="32">   32   </A><SPAN CLASS="CT">// at a predefined baud rate, then initializes a circular buffer,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A><SPAN CLASS="CT">// configures the interrupt and starts the service. </SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="34">   34   </A><SPAN CLASS="CT">// The main function gpsRead returns an array where byte 0 indicates</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="35">   35   </A><SPAN CLASS="CT">// how many new bytes were read, and byte m indicates how many remain</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="36">   36   </A><SPAN CLASS="CT">// in the buffer.</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="37">   37   </A><SPAN CLASS="CT">// </SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="38">   38   </A><SPAN CLASS="CT">// Code by: Mariano I. Lizarraga</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="39">   39   </A><SPAN CLASS="CT">// First Revision: Aug 21 2008 @ 21:15</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="40">   40   </A><SPAN CLASS="CT">// ==============================================================</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="41">   41   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;AUAV3_AND_SLUGS_SENSOR.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="42">   42   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;gpsUblox.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="43">   43   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;circBuffer.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="44">   44   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="45">   45   </A><SPAN CLASS="CT">// this function converts one hex ascii character to decimal</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="46">   46   </A><SPAN CLASS="CT">// used for the checksum comparison</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="47">   47   </A><SPAN CLASS="CT">// Kindly contributed by: Bryant Mairs</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="48">   48   </A><SPAN CLASS="DT">extern</SPAN> CBRef <A HREF="gpsPort_c.html#var_uartBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartBuffer</FONT></A>;
+</SPAN><SPAN><A CLASS="LN" NAME="49">   49   </A><SPAN CLASS="DT">extern</SPAN> mavlink_gps_raw_int_t <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>;
+</SPAN><SPAN><A CLASS="LN" NAME="50">   50   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="51">   51   </A><SPAN CLASS="DT">char</SPAN> <A NAME="fcn_hex2char">hex2char</A>(<SPAN CLASS="DT">char</SPAN> halfhex) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="52">   52   </A>    <SPAN CLASS="DT">char</SPAN> rv;
+</SPAN><SPAN><A CLASS="LN" NAME="53">   53   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="54">   54   </A>    <SPAN CLASS="CT">// Test for numeric characters</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="55">   55   </A>    <SPAN CLASS="KW">if</SPAN> ((rv = halfhex - <FONT COLOR="#1122ff">'0'</FONT>) &lt;= 9 &amp;&amp; rv &gt;= 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="56">   56   </A>        <SPAN CLASS="KW">return</SPAN> rv;
+</SPAN><SPAN><A CLASS="LN" NAME="57">   57   </A>    <B>}</B>        <SPAN CLASS="CT">// Otherwise check for upper-case A-F</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="58">   58   </A>    <SPAN CLASS="KW">else</SPAN> <SPAN CLASS="KW">if</SPAN> ((rv = halfhex - <FONT COLOR="#1122ff">'A'</FONT>) &lt;= 5 &amp;&amp; rv &gt;= 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="59">   59   </A>        <SPAN CLASS="KW">return</SPAN> rv + 10;
+</SPAN><SPAN><A CLASS="LN" NAME="60">   60   </A>    <B>}</B>        <SPAN CLASS="CT">// Finally check for lower-case a-f</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="61">   61   </A>    <SPAN CLASS="KW">else</SPAN> <SPAN CLASS="KW">if</SPAN> ((rv = halfhex - <FONT COLOR="#1122ff">'a'</FONT>) &lt;= 5 &amp;&amp; rv &gt;= 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="62">   62   </A>        <SPAN CLASS="KW">return</SPAN> rv + 10;
+</SPAN><SPAN><A CLASS="LN" NAME="63">   63   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="64">   64   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="65">   65   </A>    <SPAN CLASS="CT">// Otherwise return -1 as an error</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="66">   66   </A>    <SPAN CLASS="KW">return</SPAN> -1;
+</SPAN><SPAN><A CLASS="LN" NAME="67">   67   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="68">   68   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="69">   69   </A><SPAN CLASS="DT">float</SPAN> <A NAME="fcn_degMinToDeg">degMinToDeg</A>(<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> degrees, <SPAN CLASS="DT">float</SPAN> minutes) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="70">   70   </A>    <SPAN CLASS="KW">return</SPAN> ((<SPAN CLASS="DT">float</SPAN>) degrees + minutes / 60.0);
+</SPAN><SPAN><A CLASS="LN" NAME="71">   71   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="72">   72   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="73">   73   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="74">   74   </A><SPAN CLASS="CT">// this function reads the serial stream as it comes in</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="75">   75   </A><SPAN CLASS="CT">// then assembles full messages, verifies the checksum and</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="76">   76   </A><SPAN CLASS="CT">// if valid sends it out to the parser</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="77">   77   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="78">   78   </A><SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> <A NAME="fcn_gpsUbloxSeparate">gpsUbloxSeparate</A>(<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>* outStream) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="79">   79   </A>    <SPAN CLASS="CT">// Static variables CAREFUL</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="80">   80   </A>    <SPAN CLASS="DT">static</SPAN> <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> outBuf [MSIZE] = <B>{</B>0<B>}</B>;
+</SPAN><SPAN><A CLASS="LN" NAME="81">   81   </A>    <SPAN CLASS="DT">static</SPAN> <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> previousComplete = 1;
+</SPAN><SPAN><A CLASS="LN" NAME="82">   82   </A>    <SPAN CLASS="DT">static</SPAN> <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> indexLast = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="83">   83   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="84">   84   </A>    <SPAN CLASS="CT">// local variables</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="85">   85   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> i = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="86">   86   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> tmpChksum = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="87">   87   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> chsmStr_0, chsmStr_1;
+</SPAN><SPAN><A CLASS="LN" NAME="88">   88   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> isValid = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="89">   89   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> chksumHeader = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="90">   90   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> tmpIndex = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="91">   91   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> tmpLen = <A HREF="circBuffer_c.html#fcn_getLength" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_getLength');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">getLength</FONT></A>(<A HREF="gpsPort_c.html#var_uartBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartBuffer</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="92">   92   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="93">   93   </A>    <SPAN CLASS="CT">// If the previous message was complete, then</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="94">   94   </A>    <SPAN CLASS="CT">// go over the buffer and advance until you find a dollar sign</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="95">   95   </A>    <SPAN CLASS="KW">if</SPAN> (previousComplete) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="96">   96   </A>        <SPAN CLASS="KW">while</SPAN> (tmpLen &gt; 0 &amp;&amp; <A HREF="circBuffer_c.html#fcn_peak" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_peak');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">peak</FONT></A>(<A HREF="gpsPort_c.html#var_uartBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartBuffer</FONT></A>) != <FONT COLOR="#1122ff">'$'</FONT>) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="97">   97   </A>            <A HREF="circBuffer_c.html#fcn_readFront" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_readFront');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">readFront</FONT></A>(<A HREF="gpsPort_c.html#var_uartBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartBuffer</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="98">   98   </A>            tmpLen--;
+</SPAN><SPAN><A CLASS="LN" NAME="99">   99   </A>        <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="100">  100   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="101">  101   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="102">  102   </A>    <SPAN CLASS="CT">// read until you find a CR or run out of bytes to read</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="103">  103   </A>    <SPAN CLASS="KW">while</SPAN> (tmpLen &gt; 0 &amp;&amp; <A HREF="circBuffer_c.html#fcn_peak" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_peak');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">peak</FONT></A>(<A HREF="gpsPort_c.html#var_uartBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartBuffer</FONT></A>) != 13) <B>{</B> <SPAN CLASS="CT">//CR = 13</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="104">  104   </A>        outBuf[indexLast] = <A HREF="circBuffer_c.html#fcn_readFront" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_readFront');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">readFront</FONT></A>(<A HREF="gpsPort_c.html#var_uartBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartBuffer</FONT></A>);
+</SPAN><SPAN><A CLASS="LN" NAME="105">  105   </A>        indexLast++;
+</SPAN><SPAN><A CLASS="LN" NAME="106">  106   </A>        tmpLen--;
+</SPAN><SPAN><A CLASS="LN" NAME="107">  107   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="108">  108   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="109">  109   </A>    <SPAN CLASS="CT">// if we found a carriage return, then the message is complete</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="110">  110   </A>    <SPAN CLASS="KW">if</SPAN> (<A HREF="circBuffer_c.html#fcn_peak" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_peak');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">peak</FONT></A>(<A HREF="gpsPort_c.html#var_uartBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartBuffer</FONT></A>) == 13) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="111">  111   </A>        <SPAN CLASS="CT">// validate the checksum</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="112">  112   </A>        chsmStr_0 = <A HREF="gpsUblox_c.html#fcn_hex2char" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_hex2char');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">hex2char</FONT></A>(outBuf[indexLast - 2]);
+</SPAN><SPAN><A CLASS="LN" NAME="113">  113   </A>        chsmStr_1 = <A HREF="gpsUblox_c.html#fcn_hex2char" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_hex2char');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">hex2char</FONT></A>(outBuf[indexLast - 1]);
+</SPAN><SPAN><A CLASS="LN" NAME="114">  114   </A>        <SPAN CLASS="CT">// convert the hex checksum to decimal</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="115">  115   </A>        tmpChksum = (<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>) (chsmStr_0 * 16 + chsmStr_1);
+</SPAN><SPAN><A CLASS="LN" NAME="116">  116   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="117">  117   </A>        <SPAN CLASS="CT">// verify the validity</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="118">  118   </A>        isValid = (tmpChksum == <A HREF="gpsUblox_c.html#fcn_getChecksum" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_getChecksum');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">getChecksum</FONT></A>(outBuf, indexLast));
+</SPAN><SPAN><A CLASS="LN" NAME="119">  119   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="120">  120   </A>        <SPAN CLASS="CT">// turn on the flag of complete stream</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="121">  121   </A>        previousComplete = 1;
+</SPAN><SPAN><A CLASS="LN" NAME="122">  122   </A>        <SPAN CLASS="CT">// set the outStream valid flag</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="123">  123   </A>        outStream[MSIZE - 1] = isValid;
+</SPAN><SPAN><A CLASS="LN" NAME="124">  124   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="125">  125   </A>        <SPAN CLASS="CT">// save the index value for copying purposes</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="126">  126   </A>        tmpIndex = indexLast;
+</SPAN><SPAN><A CLASS="LN" NAME="127">  127   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="128">  128   </A>        <SPAN CLASS="CT">// reset the array index</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="129">  129   </A>        indexLast = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="130">  130   </A>    <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B> <SPAN CLASS="CT">// if we did not find a CR, i.e. we ran out of bytes</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="131">  131   </A>        <SPAN CLASS="CT">// turn off the previousComplete flag</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="132">  132   </A>        previousComplete = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="133">  133   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="134">  134   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="135">  135   </A>    <SPAN CLASS="CT">// If we found a complete sentence and it is valid</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="136">  136   </A>    <SPAN CLASS="KW">if</SPAN> (previousComplete &amp;&amp; isValid) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="137">  137   </A>        <SPAN CLASS="CT">// copy the data to the outstream</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="138">  138   </A>        <SPAN CLASS="KW">for</SPAN> (i = 1; i &lt;= tmpIndex; ++i) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="139">  139   </A>            outStream[i] = outBuf[i - 1];
+</SPAN><SPAN><A CLASS="LN" NAME="140">  140   </A>        <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="141">  141   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="142">  142   </A>        <SPAN CLASS="CT">// finally compute the type of message</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="143">  143   </A>        chksumHeader = <A HREF="gpsUblox_c.html#fcn_getChecksum" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_getChecksum');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">getChecksum</FONT></A>(outBuf, 6);
+</SPAN><SPAN><A CLASS="LN" NAME="144">  144   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="145">  145   </A>        <SPAN CLASS="CT">// based on the obtained header checksum set the type</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="146">  146   </A>        <SPAN CLASS="KW">switch</SPAN> (chksumHeader) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="147">  147   </A>            <SPAN CLASS="KW">case</SPAN> GGACS:
+</SPAN><SPAN><A CLASS="LN" NAME="148">  148   </A>                outStream[0] = GGAID;
+</SPAN><SPAN><A CLASS="LN" NAME="149">  149   </A>                <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="150">  150   </A>            <SPAN CLASS="KW">case</SPAN> RMCCS:
+</SPAN><SPAN><A CLASS="LN" NAME="151">  151   </A>                outStream[0] = RMCID;
+</SPAN><SPAN><A CLASS="LN" NAME="152">  152   </A>                <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="153">  153   </A>            <SPAN CLASS="KW">default</SPAN>:
+</SPAN><SPAN><A CLASS="LN" NAME="154">  154   </A>                outStream[0] = UNKID;
+</SPAN><SPAN><A CLASS="LN" NAME="155">  155   </A>                <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="156">  156   </A>        <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="157">  157   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="158">  158   </A>    <SPAN CLASS="KW">return</SPAN> tmpLen;
+</SPAN><SPAN><A CLASS="LN" NAME="159">  159   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="160">  160   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="161">  161   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_gpsUbloxParse">gpsUbloxParse</A>(<SPAN CLASS="DT">void</SPAN>) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="162">  162   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="163">  163   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> inStream[MSIZE];
+</SPAN><SPAN><A CLASS="LN" NAME="164">  164   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> bufferLen = 11;
+</SPAN><SPAN><A CLASS="LN" NAME="165">  165   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="166">  166   </A>    memset(inStream, 0, MSIZE);
+</SPAN><SPAN><A CLASS="LN" NAME="167">  167   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="168">  168   </A>    <SPAN CLASS="KW">while</SPAN> (bufferLen &gt; 10) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="169">  169   </A>        bufferLen = <A HREF="gpsUblox_c.html#fcn_gpsUbloxSeparate" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_gpsUbloxSeparate');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">gpsUbloxSeparate</FONT></A>(inStream);
+</SPAN><SPAN><A CLASS="LN" NAME="170">  170   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="171">  171   </A>        <SPAN CLASS="CT">// if the sentence is valid</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="172">  172   </A>        <SPAN CLASS="KW">if</SPAN> (inStream[MSIZE - 1] == 1) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="173">  173   </A>            <SPAN CLASS="CT">// parse the data according to the header</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="174">  174   </A>            <SPAN CLASS="KW">switch</SPAN> (inStream[0]) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="175">  175   </A>                <SPAN CLASS="KW">case</SPAN> RMCID:
+</SPAN><SPAN><A CLASS="LN" NAME="176">  176   </A>                    <A HREF="gpsUblox_c.html#fcn_parseRMC" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_parseRMC');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">parseRMC</FONT></A>(inStream);
+</SPAN><SPAN><A CLASS="LN" NAME="177">  177   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="178">  178   </A>                <SPAN CLASS="KW">case</SPAN> GGAID:
+</SPAN><SPAN><A CLASS="LN" NAME="179">  179   </A>                    <A HREF="gpsUblox_c.html#fcn_parseGGA" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_parseGGA');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">parseGGA</FONT></A>(inStream);
+</SPAN><SPAN><A CLASS="LN" NAME="180">  180   </A>                    <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="181">  181   </A>            <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="182">  182   </A>        <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="183">  183   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="184">  184   </A>        memset(inStream, 0, MSIZE);
+</SPAN><SPAN><A CLASS="LN" NAME="185">  185   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="186">  186   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="187">  187   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="188">  188   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="189">  189   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_getGpsUbloxMainData">getGpsUbloxMainData</A>(<SPAN CLASS="DT">float</SPAN>* data) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="190">  190   </A>    <A HREF="gpsUblox_c.html#fcn_gpsUbloxParse" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_gpsUbloxParse');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">gpsUbloxParse</FONT></A>();
+</SPAN><SPAN><A CLASS="LN" NAME="191">  191   </A>    data[0] = INT32_1E7_TO_FLOAT(<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lat);
+</SPAN><SPAN><A CLASS="LN" NAME="192">  192   </A>    data[1] = INT32_1E7_TO_FLOAT(<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lon);
+</SPAN><SPAN><A CLASS="LN" NAME="193">  193   </A>    data[2] = INT32_1E3_TO_FLOAT(<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.alt);
+</SPAN><SPAN><A CLASS="LN" NAME="194">  194   </A>    data[3] = UINT16_1E2_TO_FLOAT(<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.cog);
+</SPAN><SPAN><A CLASS="LN" NAME="195">  195   </A>    data[4] = UINT16_1E2_TO_FLOAT(<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.vel);
+</SPAN><SPAN><A CLASS="LN" NAME="196">  196   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="197">  197   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="198">  198   </A><SPAN CLASS="DT">char</SPAN> <A NAME="fcn_gpSmbl">gpSmbl</A>(<SPAN CLASS="DT">char</SPAN> symbl) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="199">  199   </A>    <SPAN CLASS="KW">switch</SPAN> (symbl) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="200">  200   </A>        <SPAN CLASS="KW">case</SPAN> <FONT COLOR="#1122ff">'N'</FONT>: <SPAN CLASS="KW">return</SPAN> 1; <SPAN CLASS="CT">/*North*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="201">  201   </A>        <SPAN CLASS="KW">case</SPAN> <FONT COLOR="#1122ff">'E'</FONT>: <SPAN CLASS="KW">return</SPAN> 1; <SPAN CLASS="CT">/*East*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="202">  202   </A>        <SPAN CLASS="KW">case</SPAN> <FONT COLOR="#1122ff">'S'</FONT>: <SPAN CLASS="KW">return</SPAN> -1; <SPAN CLASS="CT">/*South*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="203">  203   </A>        <SPAN CLASS="KW">case</SPAN> <FONT COLOR="#1122ff">'W'</FONT>: <SPAN CLASS="KW">return</SPAN> -1; <SPAN CLASS="CT">/*West*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="204">  204   </A>        <SPAN CLASS="KW">case</SPAN> <FONT COLOR="#1122ff">'A'</FONT>: <SPAN CLASS="KW">return</SPAN> 3; <SPAN CLASS="CT">/*Valid or Autonomous*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="205">  205   </A>        <SPAN CLASS="KW">case</SPAN> <FONT COLOR="#1122ff">'D'</FONT>: <SPAN CLASS="KW">return</SPAN> 1; <SPAN CLASS="CT">/*Differential*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="206">  206   </A>        <SPAN CLASS="KW">case</SPAN> <FONT COLOR="#1122ff">'V'</FONT>: <SPAN CLASS="KW">return</SPAN> 0; <SPAN CLASS="CT">/*Non-Valid*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="207">  207   </A>        <SPAN CLASS="KW">case</SPAN> <FONT COLOR="#1122ff">'M'</FONT>: <SPAN CLASS="KW">return</SPAN> 100; <SPAN CLASS="CT">/*Meters*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="208">  208   </A>        <SPAN CLASS="KW">default</SPAN>: <SPAN CLASS="KW">return</SPAN> 0; <SPAN CLASS="CT">/*Non-Valid*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="209">  209   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="210">  210   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="211">  211   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="212">  212   </A><SPAN CLASS="CT">// a return value of 1 means the string is done. No more tokens</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="213">  213   </A><SPAN CLASS="CT">// This function is stateful, call it once with the String and then with NULL</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="214">  214   </A><SPAN CLASS="CT">// similar to strtok but this will support succesive tokens like</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="215">  215   </A><SPAN CLASS="CT">// "find,,,the,,commas"</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="216">  216   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="217">  217   </A><SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> <A NAME="fcn_myTokenizer">myTokenizer</A>(<SPAN CLASS="DT">char</SPAN>* stringToTokenize, <SPAN CLASS="DT">char</SPAN> token, <SPAN CLASS="DT">char</SPAN> * returnToken) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="218">  218   </A>    <SPAN CLASS="DT">static</SPAN> <SPAN CLASS="DT">char</SPAN> * pch;
+</SPAN><SPAN><A CLASS="LN" NAME="219">  219   </A>    <SPAN CLASS="DT">static</SPAN> <SPAN CLASS="DT">char</SPAN> * prevPch;
+</SPAN><SPAN><A CLASS="LN" NAME="220">  220   </A>    <SPAN CLASS="DT">static</SPAN> <SPAN CLASS="DT">char</SPAN> * lastByte;
+</SPAN><SPAN><A CLASS="LN" NAME="221">  221   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="222">  222   </A>    <SPAN CLASS="CT">// Make sure the return token is "empty"</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="223">  223   </A>    memset(returnToken, 0, TOKEN_SIZE);
+</SPAN><SPAN><A CLASS="LN" NAME="224">  224   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="225">  225   </A>    <SPAN CLASS="CT">// get the pointer to next token if it exists </SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="226">  226   </A>    <SPAN CLASS="CT">// and the stringToTokenize is null</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="227">  227   </A>    <SPAN CLASS="CT">// Bahavior similar to strtok</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="228">  228   </A>    <SPAN CLASS="KW">if</SPAN> (stringToTokenize == NULL) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="229">  229   </A>        pch = strchr(prevPch, token);
+</SPAN><SPAN><A CLASS="LN" NAME="230">  230   </A>    <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="231">  231   </A>        pch = strchr(stringToTokenize, token);
+</SPAN><SPAN><A CLASS="LN" NAME="232">  232   </A>        prevPch = stringToTokenize;
+</SPAN><SPAN><A CLASS="LN" NAME="233">  233   </A>        lastByte = stringToTokenize + strlen(stringToTokenize);
+</SPAN><SPAN><A CLASS="LN" NAME="234">  234   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="235">  235   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="236">  236   </A>    <SPAN CLASS="KW">if</SPAN> (pch != NULL) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="237">  237   </A>        memcpy(returnToken, prevPch, pch - prevPch);
+</SPAN><SPAN><A CLASS="LN" NAME="238">  238   </A>        prevPch = pch + 1;
+</SPAN><SPAN><A CLASS="LN" NAME="239">  239   </A>    <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="240">  240   </A>        memcpy(returnToken, prevPch, lastByte - prevPch);
+</SPAN><SPAN><A CLASS="LN" NAME="241">  241   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="242">  242   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="243">  243   </A>    <SPAN CLASS="KW">return</SPAN> pch == NULL;
+</SPAN><SPAN><A CLASS="LN" NAME="244">  244   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="245">  245   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="246">  246   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_parseRMC">parseRMC</A>(<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>* stream) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="247">  247   </A>    <SPAN CLASS="CT">// declare the local vars</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="248">  248   </A>    <SPAN CLASS="DT">char</SPAN> token[TOKEN_SIZE];
+</SPAN><SPAN><A CLASS="LN" NAME="249">  249   </A>    <SPAN CLASS="DT">char</SPAN> tmp [3] = <B>{</B>0, 0, <FONT COLOR="#1122ff">'\0'</FONT><B>}</B>, tmp3[4] = <B>{</B>0, 0, 0, <FONT COLOR="#1122ff">'\0'</FONT><B>}</B>;
+</SPAN><SPAN><A CLASS="LN" NAME="250">  250   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> chTmp = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="251">  251   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="252">  252   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="253">  253   </A>    <SPAN CLASS="CT">// initialize tokenizer, let go first token which holds the msg type</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="254">  254   </A>    <SPAN CLASS="CT">// token = strtok(stream, ",");</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="255">  255   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>((<SPAN CLASS="DT">char</SPAN> *)stream, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="256">  256   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="257">  257   </A>    <SPAN CLASS="CT">// 1.- hhmmss.ssss</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="258">  258   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="259">  259   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) &gt; 5) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="260">  260   </A><SPAN CLASS="CT">//        tmp[0] = token[0];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="261">  261   </A><SPAN CLASS="CT">//        tmp[1] = token[1];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="262">  262   </A><SPAN CLASS="CT">//        mlGpsDateTime.hour = (unsigned char) atoi(tmp);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="263">  263   </A><SPAN CLASS="CT">//        tmp[0] = token[2];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="264">  264   </A><SPAN CLASS="CT">//        tmp[1] = token[3];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="265">  265   </A><SPAN CLASS="CT">//        mlGpsDateTime.min = (unsigned char) atoi(tmp);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="266">  266   </A><SPAN CLASS="CT">//        tmp[0] = token[4];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="267">  267   </A><SPAN CLASS="CT">//        tmp[1] = token[5];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="268">  268   </A><SPAN CLASS="CT">//        mlGpsDateTime.sec = (unsigned char) atoi(tmp);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="269">  269   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="270">  270   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="271">  271   </A>    <SPAN CLASS="CT">// 2.- Status of position Fix</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="272">  272   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="273">  273   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) == 1) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="274">  274   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.fix_type = <A HREF="gpsUblox_c.html#fcn_gpSmbl" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_gpSmbl');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">gpSmbl</FONT></A>((<SPAN CLASS="DT">char</SPAN>) token[0]);
+</SPAN><SPAN><A CLASS="LN" NAME="275">  275   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="276">  276   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="277">  277   </A>    <SPAN CLASS="CT">// 3.- Latitude</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="278">  278   </A>    <SPAN CLASS="CT">// ddmm.mmmmmm</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="279">  279   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="280">  280   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) &gt; 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="281">  281   </A>        <SPAN CLASS="CT">// get the first two values</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="282">  282   </A>        tmp[0] = token[0];
+</SPAN><SPAN><A CLASS="LN" NAME="283">  283   </A>        tmp[1] = token[1];
+</SPAN><SPAN><A CLASS="LN" NAME="284">  284   </A>        <SPAN CLASS="CT">// get the degrees</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="285">  285   </A>        chTmp = (<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>) atoi(tmp);
+</SPAN><SPAN><A CLASS="LN" NAME="286">  286   </A>        <SPAN CLASS="CT">// make the degrees zero for minutes conversion</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="287">  287   </A>        token[0] = <FONT COLOR="#1122ff">'0'</FONT>;
+</SPAN><SPAN><A CLASS="LN" NAME="288">  288   </A>        token[1] = <FONT COLOR="#1122ff">'0'</FONT>;
+</SPAN><SPAN><A CLASS="LN" NAME="289">  289   </A>        <SPAN CLASS="CT">// get the float</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="290">  290   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lat = FLOAT_TO_INT32_1E7(<A HREF="gpsUblox_c.html#fcn_degMinToDeg" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_degMinToDeg');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">degMinToDeg</FONT></A>(chTmp, atof(token)));
+</SPAN><SPAN><A CLASS="LN" NAME="291">  291   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="292">  292   </A>        <SPAN CLASS="CT">// 4.- Latitude Sector</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="293">  293   </A>        <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="294">  294   </A>        <SPAN CLASS="KW">if</SPAN> (strlen(token) == 1) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="295">  295   </A>            <SPAN CLASS="CT">// set the sign of the float value</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="296">  296   </A>            <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lat *= <A HREF="gpsUblox_c.html#fcn_gpSmbl" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_gpSmbl');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">gpSmbl</FONT></A>((<SPAN CLASS="DT">char</SPAN>) token[0]);
+</SPAN><SPAN><A CLASS="LN" NAME="297">  297   </A>        <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="298">  298   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="299">  299   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="300">  300   </A>    <SPAN CLASS="CT">// 5.- Longitude</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="301">  301   </A>    <SPAN CLASS="CT">// dddmm.mmmmmm</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="302">  302   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="303">  303   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) &gt; 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="304">  304   </A>        <SPAN CLASS="CT">// get the first two values</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="305">  305   </A>        tmp3[0] = token[0];
+</SPAN><SPAN><A CLASS="LN" NAME="306">  306   </A>        tmp3[1] = token[1];
+</SPAN><SPAN><A CLASS="LN" NAME="307">  307   </A>        tmp3[2] = token[2];
+</SPAN><SPAN><A CLASS="LN" NAME="308">  308   </A>        <SPAN CLASS="CT">// get the degrees</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="309">  309   </A>        chTmp = (<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>) atoi(tmp3);
+</SPAN><SPAN><A CLASS="LN" NAME="310">  310   </A>        <SPAN CLASS="CT">// make the degrees zero for minutes conversion</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="311">  311   </A>        token[0] = <FONT COLOR="#1122ff">'0'</FONT>;
+</SPAN><SPAN><A CLASS="LN" NAME="312">  312   </A>        token[1] = <FONT COLOR="#1122ff">'0'</FONT>;
+</SPAN><SPAN><A CLASS="LN" NAME="313">  313   </A>        token [2] = <FONT COLOR="#1122ff">'0'</FONT>;
+</SPAN><SPAN><A CLASS="LN" NAME="314">  314   </A>        <SPAN CLASS="CT">// get the float</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="315">  315   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lon = FLOAT_TO_INT32_1E7(<A HREF="gpsUblox_c.html#fcn_degMinToDeg" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_degMinToDeg');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">degMinToDeg</FONT></A>(chTmp, atof(token)));
+</SPAN><SPAN><A CLASS="LN" NAME="316">  316   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="317">  317   </A>        <SPAN CLASS="CT">// 6.- Longitude Sector</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="318">  318   </A>        <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="319">  319   </A>        <SPAN CLASS="KW">if</SPAN> (strlen(token) == 1) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="320">  320   </A>            <SPAN CLASS="CT">// set the sign of the float value</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="321">  321   </A>            <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lon *= <A HREF="gpsUblox_c.html#fcn_gpSmbl" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_gpSmbl');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">gpSmbl</FONT></A>((<SPAN CLASS="DT">char</SPAN>) token[0]);
+</SPAN><SPAN><A CLASS="LN" NAME="322">  322   </A>        <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="323">  323   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="324">  324   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="325">  325   </A>    <SPAN CLASS="CT">// 7.- SOG in knots but gets stored in m/s CAUTION</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="326">  326   </A>    <SPAN CLASS="CT">// xx.xx</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="327">  327   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="328">  328   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) &gt; 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="329">  329   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.vel = FLOAT_TO_UINT16_1E2((<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">short</SPAN>) (atof(token) * KTS2MPS));
+</SPAN><SPAN><A CLASS="LN" NAME="330">  330   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="331">  331   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="332">  332   </A>    <SPAN CLASS="CT">// 8.- COG in degrees</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="333">  333   </A>    <SPAN CLASS="CT">// xxx.xxx</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="334">  334   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="335">  335   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) &gt; 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="336">  336   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.cog = FLOAT_TO_UINT16_1E2((<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">short</SPAN>) atof(token));
+</SPAN><SPAN><A CLASS="LN" NAME="337">  337   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="338">  338   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="339">  339   </A>    <SPAN CLASS="CT">// 9.- UTC Date</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="340">  340   </A>    <SPAN CLASS="CT">// ddmmyy</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="341">  341   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="342">  342   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) &gt; 5) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="343">  343   </A>        <SPAN CLASS="CT">// get day</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="344">  344   </A><SPAN CLASS="CT">//        tmp[0] = token[0];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="345">  345   </A><SPAN CLASS="CT">//        tmp[1] = token[1];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="346">  346   </A><SPAN CLASS="CT">//        mlGpsDateTime.day = (unsigned char) atoi(tmp);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="347">  347   </A><SPAN CLASS="CT">//        // get month</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="348">  348   </A><SPAN CLASS="CT">//        tmp[0] = token[2];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="349">  349   </A><SPAN CLASS="CT">//        tmp[1] = token[3];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="350">  350   </A><SPAN CLASS="CT">//        mlGpsDateTime.month = (unsigned char) atoi(tmp);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="351">  351   </A><SPAN CLASS="CT">//        // get year</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="352">  352   </A><SPAN CLASS="CT">//        tmp[0] = token[4];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="353">  353   </A><SPAN CLASS="CT">//        tmp[1] = token[5];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="354">  354   </A><SPAN CLASS="CT">//        mlGpsDateTime.year = (unsigned char) atoi(tmp);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="355">  355   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="356">  356   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="357">  357   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="358">  358   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_parseGGA">parseGGA</A>(<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>* stream) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="359">  359   </A>    <SPAN CLASS="CT">// declare the local vars</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="360">  360   </A>    <SPAN CLASS="DT">char</SPAN> token[TOKEN_SIZE];
+</SPAN><SPAN><A CLASS="LN" NAME="361">  361   </A>    <SPAN CLASS="DT">char</SPAN> tmp [3] = <B>{</B>0, 0, <FONT COLOR="#1122ff">'\0'</FONT><B>}</B>, tmp3[4] = <B>{</B>0, 0, 0, <FONT COLOR="#1122ff">'\0'</FONT><B>}</B>;
+</SPAN><SPAN><A CLASS="LN" NAME="362">  362   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> chTmp = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="363">  363   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="364">  364   </A>    <SPAN CLASS="CT">// initialize tokenizer, let go first token which holds the msg type</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="365">  365   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>((<SPAN CLASS="DT">char</SPAN> *)stream, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="366">  366   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="367">  367   </A>    <SPAN CLASS="CT">// 1.- hhmmss.ssss</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="368">  368   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="369">  369   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) &gt; 5) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="370">  370   </A><SPAN CLASS="CT">//        tmp[0] = token[0];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="371">  371   </A><SPAN CLASS="CT">//        tmp[1] = token[1];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="372">  372   </A><SPAN CLASS="CT">//        mlGpsDateTime.hour = (unsigned char) atoi(tmp);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="373">  373   </A><SPAN CLASS="CT">//        tmp[0] = token[2];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="374">  374   </A><SPAN CLASS="CT">//        tmp[1] = token[3];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="375">  375   </A><SPAN CLASS="CT">//        mlGpsDateTime.min = (unsigned char) atoi(tmp);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="376">  376   </A><SPAN CLASS="CT">//        tmp[0] = token[4];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="377">  377   </A><SPAN CLASS="CT">//        tmp[1] = token[5];</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="378">  378   </A><SPAN CLASS="CT">//        mlGpsDateTime.sec = (unsigned char) atoi(tmp);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="379">  379   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="380">  380   </A>    <SPAN CLASS="CT">// 2.- Latitude</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="381">  381   </A>    <SPAN CLASS="CT">// ddmm.mmmmmm</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="382">  382   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="383">  383   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) &gt; 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="384">  384   </A>        <SPAN CLASS="CT">// get the first two values</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="385">  385   </A>        tmp[0] = token[0];
+</SPAN><SPAN><A CLASS="LN" NAME="386">  386   </A>        tmp[1] = token[1];
+</SPAN><SPAN><A CLASS="LN" NAME="387">  387   </A>        <SPAN CLASS="CT">// get the degrees</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="388">  388   </A>        chTmp = (<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>) atoi(tmp);
+</SPAN><SPAN><A CLASS="LN" NAME="389">  389   </A>        <SPAN CLASS="CT">// make the degrees zero for minutes conversion</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="390">  390   </A>        token[0] = <FONT COLOR="#1122ff">'0'</FONT>;
+</SPAN><SPAN><A CLASS="LN" NAME="391">  391   </A>        token[1] = <FONT COLOR="#1122ff">'0'</FONT>;
+</SPAN><SPAN><A CLASS="LN" NAME="392">  392   </A>        <SPAN CLASS="CT">// get the float</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="393">  393   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lat = FLOAT_TO_INT32_1E7(<A HREF="gpsUblox_c.html#fcn_degMinToDeg" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_degMinToDeg');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">degMinToDeg</FONT></A>(chTmp, atof(token)));
+</SPAN><SPAN><A CLASS="LN" NAME="394">  394   </A>        <SPAN CLASS="CT">// 3.- Latitude Sector</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="395">  395   </A>        <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="396">  396   </A>        <SPAN CLASS="KW">if</SPAN> (strlen(token) == 1) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="397">  397   </A>            <SPAN CLASS="CT">// set the sign of the float value</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="398">  398   </A>            <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lat *= <A HREF="gpsUblox_c.html#fcn_gpSmbl" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_gpSmbl');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">gpSmbl</FONT></A>((<SPAN CLASS="DT">char</SPAN>) token[0]);
+</SPAN><SPAN><A CLASS="LN" NAME="399">  399   </A>        <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="400">  400   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="401">  401   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="402">  402   </A>    <SPAN CLASS="CT">// 4.- Longitude</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="403">  403   </A>    <SPAN CLASS="CT">// ddmm.mmmmmm</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="404">  404   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="405">  405   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) &gt; 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="406">  406   </A>        <SPAN CLASS="CT">// get the first two values</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="407">  407   </A>        tmp3[0] = token[0];
+</SPAN><SPAN><A CLASS="LN" NAME="408">  408   </A>        tmp3[1] = token[1];
+</SPAN><SPAN><A CLASS="LN" NAME="409">  409   </A>        tmp3[2] = token[2];
+</SPAN><SPAN><A CLASS="LN" NAME="410">  410   </A>        <SPAN CLASS="CT">// get the degrees</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="411">  411   </A>        chTmp = (<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>) atoi(tmp3);
+</SPAN><SPAN><A CLASS="LN" NAME="412">  412   </A>        <SPAN CLASS="CT">// make the degrees zero for minutes conversion</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="413">  413   </A>        token[0] = <FONT COLOR="#1122ff">'0'</FONT>;
+</SPAN><SPAN><A CLASS="LN" NAME="414">  414   </A>        token[1] = <FONT COLOR="#1122ff">'0'</FONT>;
+</SPAN><SPAN><A CLASS="LN" NAME="415">  415   </A>        token [2] = <FONT COLOR="#1122ff">'0'</FONT>;
+</SPAN><SPAN><A CLASS="LN" NAME="416">  416   </A>        <SPAN CLASS="CT">// get the float</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="417">  417   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lon = FLOAT_TO_INT32_1E7(<A HREF="gpsUblox_c.html#fcn_degMinToDeg" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_degMinToDeg');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">degMinToDeg</FONT></A>(chTmp, atof(token)));
+</SPAN><SPAN><A CLASS="LN" NAME="418">  418   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="419">  419   </A>        <SPAN CLASS="CT">// 5.- Longitude Sector</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="420">  420   </A>        <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="421">  421   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="422">  422   </A>        <SPAN CLASS="KW">if</SPAN> (strlen(token) &gt; 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="423">  423   </A>            <SPAN CLASS="CT">// set the sign of the float value</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="424">  424   </A>            <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lon *= <A HREF="gpsUblox_c.html#fcn_gpSmbl" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_gpSmbl');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">gpSmbl</FONT></A>((<SPAN CLASS="DT">char</SPAN>) token[0]);
+</SPAN><SPAN><A CLASS="LN" NAME="425">  425   </A>        <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="426">  426   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="427">  427   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="428">  428   </A>    <SPAN CLASS="CT">// 6.- Quality Indicator</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="429">  429   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="430">  430   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) == 1) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="431">  431   </A>        chTmp = (<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>) atoi(token);
+</SPAN><SPAN><A CLASS="LN" NAME="432">  432   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.fix_type =  (chTmp&gt;1 &amp;&amp; chTmp &lt; 6)? GPS_FIX_3D : GPS_FIX_NONE ;
+</SPAN><SPAN><A CLASS="LN" NAME="433">  433   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="434">  434   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="435">  435   </A>    <SPAN CLASS="CT">// 7.- Sats used in solution</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="436">  436   </A>    <SPAN CLASS="CT">// xx</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="437">  437   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="438">  438   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) &gt; 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="439">  439   </A>        <SPAN CLASS="CT">//mlGpsDateTime.visSat = (unsigned char) atoi(token);</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="440">  440   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.satellites_visible = (<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>) atoi(token);
+</SPAN><SPAN><A CLASS="LN" NAME="441">  441   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="442">  442   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="443">  443   </A>    <SPAN CLASS="CT">// 8.- HDOP given from 0 to 99.99 but stored from 0 - 990 </SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="444">  444   </A>    <SPAN CLASS="CT">//in integers, i.e HDOP = HDOP_stored/100 CAUTION</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="445">  445   </A>    <SPAN CLASS="CT">// xx.xx</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="446">  446   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="447">  447   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) &gt; 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="448">  448   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.eph = FLOAT_TO_UINT16_1E2((<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">short</SPAN>) (atof(token) * 10.0));
+</SPAN><SPAN><A CLASS="LN" NAME="449">  449   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="450">  450   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="451">  451   </A>    <SPAN CLASS="CT">// 9.- Altitude above mean sea level given in meters</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="452">  452   </A>    <SPAN CLASS="CT">// xxx.xxx</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="453">  453   </A>    <A HREF="gpsUblox_c.html#fcn_myTokenizer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myTokenizer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myTokenizer</FONT></A>(NULL, <FONT COLOR="#1122ff">','</FONT>, token);
+</SPAN><SPAN><A CLASS="LN" NAME="454">  454   </A>    <SPAN CLASS="KW">if</SPAN> (strlen(token) &gt; 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="455">  455   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.alt = FLOAT_TO_INT32_1E3(atof(token));
+</SPAN><SPAN><A CLASS="LN" NAME="456">  456   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="457">  457   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="458">  458   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="459">  459   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="460">  460   </A><SPAN CLASS="CT">// GPS checksum code based on </SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="461">  461   </A><SPAN CLASS="CT">// http://www.codeproject.com/KB/mobile/WritingGPSApplications2.aspx</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="462">  462   </A><SPAN CLASS="CT">// original code in C# written by Jon Person, author of "GPS.NET" (www.gpsdotnet.com)</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="463">  463   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="464">  464   </A><SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> <A NAME="fcn_getChecksum">getChecksum</A>(<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>* sentence, <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> size) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="465">  465   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="466">  466   </A>    <SPAN CLASS="CT">// Loop through all chars to get a checksum</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="467">  467   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> checkSum = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="468">  468   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> i;
+</SPAN><SPAN><A CLASS="LN" NAME="469">  469   </A>    <SPAN CLASS="KW">for</SPAN> (i = 0; i &lt; size; i++) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="470">  470   </A>        <SPAN CLASS="KW">if</SPAN> (sentence[i] == DOLLAR) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="471">  471   </A>            <SPAN CLASS="CT">// Ignore the dollar sign</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="472">  472   </A>        <B>}</B> <SPAN CLASS="KW">else</SPAN> <SPAN CLASS="KW">if</SPAN> (sentence[i] == STAR) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="473">  473   </A>            <SPAN CLASS="CT">// Stop processing before the asterisk</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="474">  474   </A>            <SPAN CLASS="KW">break</SPAN>;
+</SPAN><SPAN><A CLASS="LN" NAME="475">  475   </A>        <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="476">  476   </A>            <SPAN CLASS="CT">// Is this the first value for the checksum?</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="477">  477   </A>            <SPAN CLASS="KW">if</SPAN> (i == 0) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="478">  478   </A>                <SPAN CLASS="CT">// Yes. Set the checksum to the value</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="479">  479   </A>                checkSum = sentence[i];
+</SPAN><SPAN><A CLASS="LN" NAME="480">  480   </A>            <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="481">  481   </A>                <SPAN CLASS="CT">// No. XOR the checksum with this character's value</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="482">  482   </A>                checkSum ^= sentence[i];
+</SPAN><SPAN><A CLASS="LN" NAME="483">  483   </A>            <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="484">  484   </A>        <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="485">  485   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="486">  486   </A>    <SPAN CLASS="CT">// Return the checksum </SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="487">  487   </A>    <SPAN CLASS="KW">return</SPAN> checkSum;
+</SPAN><SPAN><A CLASS="LN" NAME="488">  488   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="489">  489   </A>
+</SPAN></PRE>
+</TD></TR></TABLE>
+</P>
+</BODY>
+</HTML>
