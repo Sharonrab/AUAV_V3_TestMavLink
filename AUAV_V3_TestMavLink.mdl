@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.131"
+    ComputedModelVersion    "1.132"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -32,9 +32,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "sharon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 27 17:01:10 2016"
-  RTWModifiedTimeStamp	  383676937
-  ModelVersionFormat	  "1.%<AutoIncrement:131>"
+  LastModifiedDate	  "Wed Apr 27 17:56:46 2016"
+  RTWModifiedTimeStamp	  383680219
+  ModelVersionFormat	  "1.%<AutoIncrement:132>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  on
@@ -1202,7 +1202,7 @@ Model {
   }
   System {
     Name		    "AUAV_V3_TestMavLink"
-    Location		    [211, 83, 1338, 682]
+    Location		    [-1311, 183, -184, 782]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
