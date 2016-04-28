@@ -19,11 +19,11 @@
  *
  * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.
  *
- * Model version                        : 1.188
+ * Model version                        : 1.208
  * Real-Time Workshop file version      : 8.1 (R2011b) 08-Jul-2011
- * Real-Time Workshop file generated on : Tue Apr 19 10:47:35 2016
+ * Real-Time Workshop file generated on : Wed Apr 27 00:58:09 2016
  * TLC version                          : 8.1 (Jul  9 2011)
- * C source code generated on           : Tue Apr 19 10:47:36 2016
+ * C source code generated on           : Wed Apr 27 00:58:11 2016
  */
 
 #ifndef RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_private_h_
@@ -117,6 +117,48 @@ extern volatile uint16_T MCHP_ic2up;
 extern volatile uint16_T MCHP_ic3up;
 extern volatile uint16_T MCHP_ic4up;
 extern volatile uint16_T MCHP_ic5up;
+
+/* C Function Call declare function as extern */
+extern real32_T mySqrt(real32_T u1);
+
+/* C Function Call declare function as extern */
+extern void getGSLocation(real32_T* y1);
+
+/* C Function Call declare function as extern */
+extern void getGpsMainData(real32_T* data);
+
+/* C Function Call declare function as extern */
+extern void getGPSRawData(uint8_T* y1);
+
+/* C Function Call declare function as extern */
+extern void gpsParse(uint8_T* dataStream);
+
+/* C Function Call declare function as extern */
+extern void getGpsUbloxMainData(real32_T* y1);
+
+/* C Function Call declare function as extern */
+extern uint8_t isFixValid(void);
+
+/* C Function Call declare function as extern */
+extern real32_T myCos(real32_T u1);
+
+/* C Function Call declare function as extern */
+extern real32_T mySin(real32_T u1);
+
+/* C Function Call declare function as extern */
+extern void getGSLocation(real32_T* y1);
+
+/* C Function Call declare function as extern */
+extern void hilRead(uint8_T* y1);
+
+/* C Function Call declare function as extern */
+extern void protDecodeHil(uint8_T* u1);
+
+/* C Function Call declare function as extern */
+extern void hil_getRawRead(uint8_T* y1);
+
+/* C Function Call declare function as extern */
+extern real32_T mySqrt(real32_T u1);
 extern volatile uint16_T MCHP_ic1up;
 extern volatile uint16_T MCHP_ic2up;
 extern volatile uint16_T MCHP_ic3up;
@@ -195,17 +237,38 @@ extern void uMultiWordShr(const uint32_T u1[], int16_T n1, uint16_T n2, uint32_T
   y[], int16_T n);
 extern void uMultiWordMul(const uint32_T u1[], int16_T n1, const uint32_T u2[],
   int16_T n2, uint32_T y[], int16_T n);
+extern void AUAV3_AND_SLUGS__myMuxFun1(real_T rtu_u1, real_T rtu_u2, real_T
+  rtu_u3, rtB_myMuxFun1_AUAV3_AND_SLUGS_T *localB);
+extern void AUAV3_AND_SLUGS_negprotect(real32_T rtu_val,
+  rtB_negprotect_AUAV3_AND_SLUG_T *localB);
+extern void AUA_EmbeddedMATLABFunction(const real32_T rtu_x[3],
+  rtB_EmbeddedMATLABFunction_AU_T *localB);
+extern void EmbeddedMATLABFunct_a_Init(rtDW_EmbeddedMATLABFunction1__T *localDW);
+extern void AU_EmbeddedMATLABFunction1(real32_T rtu_u, uint8_T rtu_NewGPS,
+  rtB_EmbeddedMATLABFunction1_A_T *localB, rtDW_EmbeddedMATLABFunction1__T
+  *localDW);
+extern void AUAV3_AND_SLUG_myMuxFun1_p(real32_T rtu_u1, real32_T rtu_u2,
+  real32_T rtu_u3, rtB_myMuxFun1_AUAV3_AND_SLU_c_T *localB);
 extern void AUA_EnabledSubsystem_Start(rtB_EnabledSubsystem_AUAV3_AN_T *localB);
 extern void AUAV3_AND_EnabledSubsystem(boolean_T rtu_0, real32_T rtu_1,
   rtB_EnabledSubsystem_AUAV3_AN_T *localB);
 extern void EnablesDisablestheCom_Init(rtDW_EnablesDisablestheComput_T *localDW);
 extern void EnablesDisablestheComputat(rtB_EnablesDisablestheComputa_T *localB,
   rtDW_EnablesDisablestheComput_T *localDW);
-extern void EmbeddedMATLABFunctio_Init(rtDW_EmbeddedMATLABFunction_A_T *localDW);
-extern void AUA_EmbeddedMATLABFunction(real_T rtu_u, real_T rtu_T, real_T rtu_f,
-  rtB_EmbeddedMATLABFunction_AU_T *localB, rtDW_EmbeddedMATLABFunction_A_T
+extern void AUAV3_A_ZeroOutHeight_Init(rtDW_ZeroOutHeight_AUAV3_AND__T *localDW);
+extern void AUAV3__ZeroOutHeight_Start(rtDW_ZeroOutHeight_AUAV3_AND__T *localDW);
+extern void AUAV3_ZeroOutHeight_Update(real_T rtu_0, real32_T rtu_ComputedHeight,
+  rtDW_ZeroOutHeight_AUAV3_AND__T *localDW);
+extern void AUAV3_AND_SL_ZeroOutHeight(real_T rtu_0, real32_T rtu_BaseHeight,
+  rtB_ZeroOutHeight_AUAV3_AND_S_T *localB, rtDW_ZeroOutHeight_AUAV3_AND__T
   *localDW);
-extern void A_EmbeddedMATLABFunction_k(const real_T rtu_u[5],
+extern void EmbeddedMATLABFunct_m_Init(rtDW_EmbeddedMATLABFunction_i_T *localDW);
+extern void A_EmbeddedMATLABFunction_k(real_T rtu_u, real_T rtu_T, real_T rtu_f,
+  rtB_EmbeddedMATLABFunction_n_T *localB, rtDW_EmbeddedMATLABFunction_i_T
+  *localDW);
+extern void AUAV3_AND_SLUGS_S_myMuxFun(real_T rtu_u1, real_T rtu_u2, real_T
+  rtu_u3, rtB_myMuxFun_AUAV3_AND_SLUGS__T *localB);
+extern void EmbeddedMATLABFunction_kd(const real_T rtu_u[5],
   rtB_EmbeddedMATLABFunction_d_T *localB);
 extern void AUAV3_AND_SLUGS_SENSOR_step0(void);
 extern void AUAV3_AND_SLUGS_SENSOR_step1(void);

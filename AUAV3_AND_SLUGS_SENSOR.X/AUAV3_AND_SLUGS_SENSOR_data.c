@@ -19,11 +19,11 @@
  *
  * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.
  *
- * Model version                        : 1.188
+ * Model version                        : 1.208
  * Real-Time Workshop file version      : 8.1 (R2011b) 08-Jul-2011
- * Real-Time Workshop file generated on : Tue Apr 19 10:47:35 2016
+ * Real-Time Workshop file generated on : Wed Apr 27 00:58:09 2016
  * TLC version                          : 8.1 (Jul  9 2011)
- * C source code generated on           : Tue Apr 19 10:47:36 2016
+ * C source code generated on           : Wed Apr 27 00:58:11 2016
  */
 
 #include "AUAV3_AND_SLUGS_SENSOR.h"
@@ -33,12 +33,17 @@
 const ConstParam_AUAV3_AND_SLUGS_SE_T AUAV3_AND_SLUGS_SENSOR_ConstP = {
   /* Pooled Parameter (Expression: [1 1 1 1 1])
    * Referenced by:
-   *   '<S51>/Constant'
-   *   '<S51>/Constant1'
-   *   '<S51>/Constant2'
-   *   '<S51>/Constant3'
+   *   '<S155>/Constant'
+   *   '<S155>/Constant1'
+   *   '<S155>/Constant2'
+   *   '<S155>/Constant3'
    */
-  { 1.0, 1.0, 1.0, 1.0, 1.0 }
+  { 1.0, 1.0, 1.0, 1.0, 1.0 },
+
+  /* Computed Parameter: UEN2NEU_Gain
+   * Referenced by: '<S27>/UEN 2 NEU'
+   */
+  { 0.0F, 0.0F, 1.0F, 0.0F, 1.0F, 0.0F, 1.0F, 0.0F, 0.0F }
 };
 
 /* File trailer for Real-Time Workshop generated code.

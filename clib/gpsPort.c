@@ -15,7 +15,7 @@
 // Last Revision: Feb 25 2012 @ 12:38
 // ==============================================================
 #include <string.h>
-#include "rtwtypes.h"
+#include ".\rtwtypes.h"
 #include "gpsPort.h"
 #define  USE_NOVATEL_GPS 0
 

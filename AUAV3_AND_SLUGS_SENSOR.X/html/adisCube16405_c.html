@@ -55,7 +55,7 @@ function rtwHilite(aBlock,aParentSID) {
 </SPAN><SPAN><A CLASS="LN" NAME="30">   30   </A><SPAN CLASS="DT">static</SPAN> tCubeBuffer <A NAME="var_cubeBuffer">cubeBuffer</A>;
 </SPAN><SPAN><A CLASS="LN" NAME="31">   31   </A>
 </SPAN><SPAN><A CLASS="LN" NAME="32">   32   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_cubeInit">cubeInit</A> (<SPAN CLASS="DT">void</SPAN>)<B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A>	<SPAN CLASS="DT">long</SPAN> <SPAN CLASS="DT">long</SPAN> i = 0;
+</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A><SPAN CLASS="CT">//	long long i = 0;</SPAN>
 </SPAN><SPAN><A CLASS="LN" NAME="34">   34   </A>	
 </SPAN><SPAN><A CLASS="LN" NAME="35">   35   </A>	<SPAN CLASS="CT">/* printToUart2("Starting %s\n\r","Cube Init 1st print AM");</SPAN>
 </SPAN><SPAN><A CLASS="LN" NAME="36">   36   </A><SPAN CLASS="CT"></SPAN>
@@ -232,7 +232,7 @@ function rtwHilite(aBlock,aParentSID) {
 </SPAN><SPAN><A CLASS="LN" NAME="207">  207   </A><SPAN CLASS="CT">// SPI Primitives</SPAN>
 </SPAN><SPAN><A CLASS="LN" NAME="208">  208   </A><SPAN CLASS="CT">// ==============</SPAN>
 </SPAN><SPAN><A CLASS="LN" NAME="209">  209   </A><SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">short</SPAN> <A NAME="fcn_write2Cube">write2Cube</A> (<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">short</SPAN> data2Send) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="210">  210   </A>	<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">short</SPAN> temp = 3, i;
+</SPAN><SPAN><A CLASS="LN" NAME="210">  210   </A>	<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">short</SPAN> temp = 3;
 </SPAN><SPAN><A CLASS="LN" NAME="211">  211   </A>	
 </SPAN><SPAN><A CLASS="LN" NAME="212">  212   </A>	<SPAN CLASS="CT">// Drive SS Low</SPAN>
 </SPAN><SPAN><A CLASS="LN" NAME="213">  213   </A>	<SPAN CLASS="CT">/* selectCube();</SPAN>

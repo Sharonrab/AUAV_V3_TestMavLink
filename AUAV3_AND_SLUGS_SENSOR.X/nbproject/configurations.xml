@@ -33,16 +33,11 @@
                    projectFiles="true">
 				   <itemPath>MavlinkComm.o</itemPath>
 <itemPath>adisCube16405.o</itemPath>
-<itemPath>.././adisCube16405.o</itemPath>
-<itemPath>../adisCube16405.o</itemPath>
+<itemPath>apUtils.o</itemPath>
 <itemPath>circBuffer.o</itemPath>
 <itemPath>gpsPort.o</itemPath>
-<itemPath>.././gpsPort.o</itemPath>
-<itemPath>../gpsPort.o</itemPath>
 <itemPath>gpsUblox.o</itemPath>
 <itemPath>hil.o</itemPath>
-<itemPath>.././hil.o</itemPath>
-<itemPath>../hil.o</itemPath>
 <itemPath>mavlinkSensorMcu.o</itemPath>
 <itemPath>novatel.o</itemPath>
 <itemPath>updateSensorMcuState.o</itemPath>
@@ -92,13 +87,13 @@
         </linkerTool>
       </compileType>
       <C30>
-        <property key="extra-include-directories" value=";AUAV3_AND_SLUGS_SENSOR.X;.;/AUAV3_AND_SLUGS_SENSOR.X;-I/mavlink/include/slugs;/clib;C:/PROGRA~2/MICROC~1/xc16/v1.26/include;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/h;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/generic/h;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/PERIPH~2;C:/Program Files/MATLAB/R2011b/rtw/c/ert;C:/Program Files/MATLAB/R2011b/extern/include;C:/Program Files/MATLAB/R2011b/simulink/include;C:/Program Files/MATLAB/R2011b/rtw/c/src;C:/Program Files/MATLAB/R2011b/rtw/c/src/ext_mode/common"/>
+        <property key="extra-include-directories" value=";AUAV3_AND_SLUGS_SENSOR.X;.;/AUAV3_AND_SLUGS_SENSOR.X;-I/mavlink/include/slugs;/../clib;/clib;C:/Program Files/MATLAB/R2011b/toolbox/dsp/include;C:/PROGRA~2/MICROC~1/xc16/v1.26/include;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/h;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/generic/h;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/PERIPH~2;C:/Program Files/MATLAB/R2011b/rtw/c/ert;C:/Program Files/MATLAB/R2011b/extern/include;C:/Program Files/MATLAB/R2011b/simulink/include;C:/Program Files/MATLAB/R2011b/rtw/c/src;C:/Program Files/MATLAB/R2011b/rtw/c/src/ext_mode/common"/>
 		<appendMe value="-O3 -mlarge-data -mlarge-scalar -fschedule-insns -fschedule-insns2"/>		
       </C30>
       <C30-AS>
       </C30-AS>
       <C30-LD>
-		<property key="extra-lib-directories" value=";AUAV3_AND_SLUGS_SENSOR.X;.;/AUAV3_AND_SLUGS_SENSOR.X;-I/mavlink/include/slugs;/clib;C:/PROGRA~2/MICROC~1/xc16/v1.26/include;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/h;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/generic/h;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/PERIPH~2;C:/Program Files/MATLAB/R2011b/rtw/c/ert;C:/Program Files/MATLAB/R2011b/extern/include;C:/Program Files/MATLAB/R2011b/simulink/include;C:/Program Files/MATLAB/R2011b/rtw/c/src;C:/Program Files/MATLAB/R2011b/rtw/c/src/ext_mode/common"/>
+		<property key="extra-lib-directories" value=";AUAV3_AND_SLUGS_SENSOR.X;.;/AUAV3_AND_SLUGS_SENSOR.X;-I/mavlink/include/slugs;/../clib;/clib;C:/Program Files/MATLAB/R2011b/toolbox/dsp/include;C:/PROGRA~2/MICROC~1/xc16/v1.26/include;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/h;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/generic/h;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/PERIPH~2;C:/Program Files/MATLAB/R2011b/rtw/c/ert;C:/Program Files/MATLAB/R2011b/extern/include;C:/Program Files/MATLAB/R2011b/simulink/include;C:/Program Files/MATLAB/R2011b/rtw/c/src;C:/Program Files/MATLAB/R2011b/rtw/c/src/ext_mode/common"/>
       </C30-LD>
       <C30Global>
       </C30Global>

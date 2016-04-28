@@ -1,7 +1,5 @@
-#include "mavlink.h"
 #include "MavlinkComm.h"
 #include "circBuffer.h"
-#include "inttypes.h"
 #include "gpsPort.h"
 #include <stdio.h>
 #include "AUAV3_AND_SLUGS_SENSOR.h"
@@ -52,10 +50,10 @@ void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void)
 
 }
 
-uint8_t isFinite(float s) {
-  // By IEEE 754 rule, 2*Inf equals Inf
-  return ((s == s) && ((s == 0) || (s != 2*s)));
-}
+ uint8_t isFinite(float s) {
+//  By IEEE 754 rule, 2*Inf equals Inf
+   return ((s == s) && ((s == 0) || (s != 2*s)));
+ }
 
 void InitParameterInterface(void)
 {
@@ -88,7 +86,7 @@ void protDecodeMavlink(void) {
     mavlink_param_set_t set;
     mavlink_message_t msg;
     mavlink_status_t status;
-    uint8_t* dataIn;
+   // uint8_t* dataIn;
     // fix the data length so if the interrupt adds data
     // during execution of this block, it will be read
     // until the next gsRead

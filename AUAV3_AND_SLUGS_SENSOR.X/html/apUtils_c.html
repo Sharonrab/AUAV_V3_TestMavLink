@@ -1,0 +1,204 @@
+<HTML>
+<HEAD>
+<TITLE>RTW Report - apUtils.c </TITLE>
+<STYLE> .LN { font-style: italic; color: #888888 } </STYLE>
+<STYLE> .CT { font-style: italic; color: #117755 } </STYLE>
+<STYLE> .PP { font-style: bold;   color: #992211 } </STYLE>
+<STYLE> .KW { font-style: bold;   color: #112266 } </STYLE>
+<STYLE> .DT { font-style: bold;   color: #112266 } </STYLE>
+<SCRIPT language="JavaScript" type="text/javascript">
+<!--
+function rtwHilite(aBlock,aParentSID) {
+ aParentSID = "";
+ try {
+    window.location.href="matlab: if ~isempty(which('private/rtwbindmodel')), rtwprivate rtwbindmodel 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.mdl' 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.X' '', end; rtwprivate code2model "+aBlock+" "+aParentSID+";"
+ } catch (e) { 
+ }
+} // end rtwHilite
+//-->
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);} ">
+<P>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
+<H4>File: <A HREF="file:///C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\apUtils.c" TARGET="rtwreport_document_frame">C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\apUtils.c</A></H4>
+<PRE id="RTWcode">
+<SPAN><A CLASS="LN" NAME="1">    1   </A><SPAN CLASS="CT">/*</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="2">    2   </A><SPAN CLASS="CT">The MIT License</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="3">    3   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="4">    4   </A><SPAN CLASS="CT">Copyright (c) 2009 UCSC Autonomous Systems Lab</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="5">    5   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="6">    6   </A><SPAN CLASS="CT">Permission is hereby granted, free of charge, to any person obtaining a copy</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="7">    7   </A><SPAN CLASS="CT">of this software and associated documentation files (the "Software"), to deal</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="8">    8   </A><SPAN CLASS="CT">in the Software without restriction, including without limitation the rights</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="9">    9   </A><SPAN CLASS="CT">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="10">   10   </A><SPAN CLASS="CT">copies of the Software, and to permit persons to whom the Software is</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="11">   11   </A><SPAN CLASS="CT">furnished to do so, subject to the following conditions:</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="12">   12   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="13">   13   </A><SPAN CLASS="CT">The above copyright notice and this permission notice shall be included in</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="14">   14   </A><SPAN CLASS="CT">all copies or substantial portions of the Software.</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="15">   15   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="16">   16   </A><SPAN CLASS="CT">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="17">   17   </A><SPAN CLASS="CT">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="18">   18   </A><SPAN CLASS="CT">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="19">   19   </A><SPAN CLASS="CT">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="20">   20   </A><SPAN CLASS="CT">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="21">   21   </A><SPAN CLASS="CT">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="22">   22   </A><SPAN CLASS="CT">THE SOFTWARE.</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="23">   23   </A><SPAN CLASS="CT"></SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="24">   24   </A><SPAN CLASS="CT">*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="25">   25   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="26">   26   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;apUtils.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="27">   27   </A><SPAN CLASS="CT">//#define Nop()    {__asm__ volatile ("nop");}</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="28">   28   </A><SPAN CLASS="CT">/*</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="29">   29   </A><SPAN CLASS="CT">// =====================================</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="30">   30   </A><SPAN CLASS="CT">//			Trig and Math Functions</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="31">   31   </A><SPAN CLASS="CT">// =====================================</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="32">   32   </A><SPAN CLASS="CT">*/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="34">   34   </A><SPAN CLASS="DT">float</SPAN> <A NAME="fcn_myAtan2">myAtan2</A>(<SPAN CLASS="DT">float</SPAN> num, <SPAN CLASS="DT">float</SPAN> denom)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="35">   35   </A>     #ifdef _IN_PC_
+</SPAN><SPAN><A CLASS="LN" NAME="36">   36   </A>        <SPAN CLASS="KW">return</SPAN> atan2(num,denom);
+</SPAN><SPAN><A CLASS="LN" NAME="37">   37   </A>     #<SPAN CLASS="KW">else</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="38">   38   </A>		<SPAN CLASS="KW">return</SPAN> atan2f(num,denom);
+</SPAN><SPAN><A CLASS="LN" NAME="39">   39   </A>     #<A HREF="MCHP_I2C2_Interrupt_c.html#fcn_endif" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_endif');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">endif</FONT></A>
+</SPAN><SPAN><A CLASS="LN" NAME="40">   40   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="41">   41   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="42">   42   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="43">   43   </A><SPAN CLASS="DT">float</SPAN> <A NAME="fcn_myPow">myPow</A>(<SPAN CLASS="DT">float</SPAN> x, <SPAN CLASS="DT">float</SPAN> toTheN)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="44">   44   </A>     #ifdef _IN_PC_
+</SPAN><SPAN><A CLASS="LN" NAME="45">   45   </A>        <SPAN CLASS="KW">return</SPAN> pow(x,toTheN);
+</SPAN><SPAN><A CLASS="LN" NAME="46">   46   </A>     #<SPAN CLASS="KW">else</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="47">   47   </A>		<SPAN CLASS="KW">return</SPAN> powf(x,toTheN);
+</SPAN><SPAN><A CLASS="LN" NAME="48">   48   </A>     #<A HREF="MCHP_I2C2_Interrupt_c.html#fcn_endif" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_endif');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">endif</FONT></A>
+</SPAN><SPAN><A CLASS="LN" NAME="49">   49   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="50">   50   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="51">   51   </A><SPAN CLASS="DT">float</SPAN> <A NAME="fcn_mySqrt">mySqrt</A>(<SPAN CLASS="DT">float</SPAN> x)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="52">   52   </A>     #ifdef _IN_PC_
+</SPAN><SPAN><A CLASS="LN" NAME="53">   53   </A>        <SPAN CLASS="KW">return</SPAN> sqrt(x);
+</SPAN><SPAN><A CLASS="LN" NAME="54">   54   </A>     #<SPAN CLASS="KW">else</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="55">   55   </A>		<SPAN CLASS="KW">return</SPAN> sqrtf(x);
+</SPAN><SPAN><A CLASS="LN" NAME="56">   56   </A>     #<A HREF="MCHP_I2C2_Interrupt_c.html#fcn_endif" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_endif');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">endif</FONT></A>
+</SPAN><SPAN><A CLASS="LN" NAME="57">   57   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="58">   58   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="59">   59   </A><SPAN CLASS="DT">float</SPAN> <A NAME="fcn_myAbs">myAbs</A>(<SPAN CLASS="DT">float</SPAN> x)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="60">   60   </A>     #ifdef _IN_PC_
+</SPAN><SPAN><A CLASS="LN" NAME="61">   61   </A>        <SPAN CLASS="KW">return</SPAN> fabs(x);
+</SPAN><SPAN><A CLASS="LN" NAME="62">   62   </A>     #<SPAN CLASS="KW">else</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="63">   63   </A>		<SPAN CLASS="KW">return</SPAN> fabsf(x);
+</SPAN><SPAN><A CLASS="LN" NAME="64">   64   </A>     #<A HREF="MCHP_I2C2_Interrupt_c.html#fcn_endif" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_endif');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">endif</FONT></A>
+</SPAN><SPAN><A CLASS="LN" NAME="65">   65   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="66">   66   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="67">   67   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="68">   68   </A><SPAN CLASS="DT">float</SPAN> <A NAME="fcn_myAtan">myAtan</A>(<SPAN CLASS="DT">float</SPAN> x)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="69">   69   </A>     #ifdef _IN_PC_
+</SPAN><SPAN><A CLASS="LN" NAME="70">   70   </A>        <SPAN CLASS="KW">return</SPAN> atan(x);
+</SPAN><SPAN><A CLASS="LN" NAME="71">   71   </A>     #<SPAN CLASS="KW">else</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="72">   72   </A>		<SPAN CLASS="KW">return</SPAN> atanf(x);
+</SPAN><SPAN><A CLASS="LN" NAME="73">   73   </A>     #<A HREF="MCHP_I2C2_Interrupt_c.html#fcn_endif" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_endif');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">endif</FONT></A>
+</SPAN><SPAN><A CLASS="LN" NAME="74">   74   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="75">   75   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="76">   76   </A><SPAN CLASS="DT">float</SPAN> <A NAME="fcn_myAsin">myAsin</A>(<SPAN CLASS="DT">float</SPAN> x)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="77">   77   </A>     #ifdef _IN_PC_
+</SPAN><SPAN><A CLASS="LN" NAME="78">   78   </A>        <SPAN CLASS="KW">return</SPAN> asin(x);
+</SPAN><SPAN><A CLASS="LN" NAME="79">   79   </A>     #<SPAN CLASS="KW">else</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="80">   80   </A>		<SPAN CLASS="KW">return</SPAN> asinf(x);
+</SPAN><SPAN><A CLASS="LN" NAME="81">   81   </A>     #<A HREF="MCHP_I2C2_Interrupt_c.html#fcn_endif" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_endif');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">endif</FONT></A>
+</SPAN><SPAN><A CLASS="LN" NAME="82">   82   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="83">   83   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="84">   84   </A><SPAN CLASS="DT">float</SPAN> <A NAME="fcn_mySin">mySin</A>(<SPAN CLASS="DT">float</SPAN> x)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="85">   85   </A>     #ifdef _IN_PC_
+</SPAN><SPAN><A CLASS="LN" NAME="86">   86   </A>        <SPAN CLASS="KW">return</SPAN> sin(x);
+</SPAN><SPAN><A CLASS="LN" NAME="87">   87   </A>     #<SPAN CLASS="KW">else</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="88">   88   </A>		<SPAN CLASS="KW">return</SPAN> sinf(x);
+</SPAN><SPAN><A CLASS="LN" NAME="89">   89   </A>     #<A HREF="MCHP_I2C2_Interrupt_c.html#fcn_endif" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_endif');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">endif</FONT></A>
+</SPAN><SPAN><A CLASS="LN" NAME="90">   90   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="91">   91   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="92">   92   </A><SPAN CLASS="DT">float</SPAN> <A NAME="fcn_myCos">myCos</A>(<SPAN CLASS="DT">float</SPAN> x)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="93">   93   </A>     #ifdef _IN_PC_
+</SPAN><SPAN><A CLASS="LN" NAME="94">   94   </A>        <SPAN CLASS="KW">return</SPAN> cos(x);
+</SPAN><SPAN><A CLASS="LN" NAME="95">   95   </A>     #<SPAN CLASS="KW">else</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="96">   96   </A>		<SPAN CLASS="KW">return</SPAN> cosf(x);
+</SPAN><SPAN><A CLASS="LN" NAME="97">   97   </A>     #<A HREF="MCHP_I2C2_Interrupt_c.html#fcn_endif" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_endif');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">endif</FONT></A>
+</SPAN><SPAN><A CLASS="LN" NAME="98">   98   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="99">   99   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="100">  100   </A><SPAN CLASS="DT">float</SPAN> <A NAME="fcn_myTan">myTan</A>(<SPAN CLASS="DT">float</SPAN> x)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="101">  101   </A>     #ifdef _IN_PC_
+</SPAN><SPAN><A CLASS="LN" NAME="102">  102   </A>        <SPAN CLASS="KW">return</SPAN> tan(x);
+</SPAN><SPAN><A CLASS="LN" NAME="103">  103   </A>     #<SPAN CLASS="KW">else</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="104">  104   </A>		<SPAN CLASS="KW">return</SPAN> tanf(x);
+</SPAN><SPAN><A CLASS="LN" NAME="105">  105   </A>     #<A HREF="MCHP_I2C2_Interrupt_c.html#fcn_endif" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_endif');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">endif</FONT></A>
+</SPAN><SPAN><A CLASS="LN" NAME="106">  106   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="107">  107   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="108">  108   </A><SPAN CLASS="DT">float</SPAN> <A NAME="fcn_myAcos">myAcos</A>(<SPAN CLASS="DT">float</SPAN> x)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="109">  109   </A>     #ifdef _IN_PC_
+</SPAN><SPAN><A CLASS="LN" NAME="110">  110   </A>        <SPAN CLASS="KW">return</SPAN> acos(x);
+</SPAN><SPAN><A CLASS="LN" NAME="111">  111   </A>     #<SPAN CLASS="KW">else</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="112">  112   </A>		<SPAN CLASS="KW">return</SPAN> acosf(x);
+</SPAN><SPAN><A CLASS="LN" NAME="113">  113   </A>     #<A HREF="MCHP_I2C2_Interrupt_c.html#fcn_endif" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_endif');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">endif</FONT></A>
+</SPAN><SPAN><A CLASS="LN" NAME="114">  114   </A>	
+</SPAN><SPAN><A CLASS="LN" NAME="115">  115   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="116">  116   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="117">  117   </A><SPAN CLASS="DT">float</SPAN> <A NAME="fcn_myExp">myExp</A>(<SPAN CLASS="DT">float</SPAN> x)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="118">  118   </A>     #ifdef _IN_PC_
+</SPAN><SPAN><A CLASS="LN" NAME="119">  119   </A>        <SPAN CLASS="KW">return</SPAN> exp(x);
+</SPAN><SPAN><A CLASS="LN" NAME="120">  120   </A>     #<SPAN CLASS="KW">else</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="121">  121   </A>		<SPAN CLASS="KW">return</SPAN> expf(x);
+</SPAN><SPAN><A CLASS="LN" NAME="122">  122   </A>     #<A HREF="MCHP_I2C2_Interrupt_c.html#fcn_endif" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_endif');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">endif</FONT></A>
+</SPAN><SPAN><A CLASS="LN" NAME="123">  123   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="124">  124   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="125">  125   </A><SPAN CLASS="CT">//uint8_t isFinite(float s) {</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="126">  126   </A><SPAN CLASS="CT">//  // By IEEE 754 rule, 2*Inf equals Inf</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="127">  127   </A><SPAN CLASS="CT">//  return ((s == s) && ((s == 0) || (s != 2*s)));</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="128">  128   </A><SPAN CLASS="CT">//}</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="129">  129   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="130">  130   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_hugeDelay">hugeDelay</A>(<SPAN CLASS="DT">void</SPAN>) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="131">  131   </A>    <SPAN CLASS="DT">int</SPAN> i, j;
+</SPAN><SPAN><A CLASS="LN" NAME="132">  132   </A>    <SPAN CLASS="KW">for</SPAN> (i = 0; i &lt; 750; i += 1) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="133">  133   </A>        <SPAN CLASS="KW">for</SPAN> (j = 0; j &lt; 32700; j += 1) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="134">  134   </A>            Nop();
+</SPAN><SPAN><A CLASS="LN" NAME="135">  135   </A>        <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="136">  136   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="137">  137   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="138">  138   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="139">  139   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_smallDelay">smallDelay</A>(<SPAN CLASS="DT">void</SPAN>) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="140">  140   </A>    <SPAN CLASS="DT">int</SPAN> i;
+</SPAN><SPAN><A CLASS="LN" NAME="141">  141   </A>    <SPAN CLASS="KW">for</SPAN> (i = 0; i &lt; 5000; i += 1) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="142">  142   </A>        Nop();
+</SPAN><SPAN><A CLASS="LN" NAME="143">  143   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="144">  144   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="145">  145   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="146">  146   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="147">  147   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_tinyDelay">tinyDelay</A>(<SPAN CLASS="DT">void</SPAN>) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="148">  148   </A>    <SPAN CLASS="DT">int</SPAN> i;
+</SPAN><SPAN><A CLASS="LN" NAME="149">  149   </A>    <SPAN CLASS="KW">for</SPAN> (i = 0; i &lt; 50; i += 1) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="150">  150   </A>        Nop();
+</SPAN><SPAN><A CLASS="LN" NAME="151">  151   </A>    <B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="152">  152   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="153">  153   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="154">  154   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="155">  155   </A>BOOL <A NAME="fcn_hasMode">hasMode</A>(uint8_t field, uint8_t flag) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="156">  156   </A>    <SPAN CLASS="KW">return</SPAN> (field &amp; flag) &gt; 0;
+</SPAN><SPAN><A CLASS="LN" NAME="157">  157   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="158">  158   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="159">  159   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">ifndef</SPAN> __cplusplus
+</SPAN><SPAN><A CLASS="LN" NAME="160">  160   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="161">  161   </A><SPAN CLASS="CT">// ================================</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="162">  162   </A><SPAN CLASS="CT">//    Debug Functions</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="163">  163   </A><SPAN CLASS="CT">// ================================</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="164">  164   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_printToUart2">printToUart2</A> (<SPAN CLASS="DT">const</SPAN> <SPAN CLASS="DT">char</SPAN> *fmt, ...)<B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="165">  165   </A>	va_list ap;
+</SPAN><SPAN><A CLASS="LN" NAME="166">  166   </A>	<SPAN CLASS="DT">char</SPAN> buf [300];
+</SPAN><SPAN><A CLASS="LN" NAME="167">  167   </A>	
+</SPAN><SPAN><A CLASS="LN" NAME="168">  168   </A>	va_start(ap, fmt);
+</SPAN><SPAN><A CLASS="LN" NAME="169">  169   </A>	vsprintf(buf, fmt, ap);
+</SPAN><SPAN><A CLASS="LN" NAME="170">  170   </A>	va_end (ap);
+</SPAN><SPAN><A CLASS="LN" NAME="171">  171   </A>	putsUART2((<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN>*)buf);
+</SPAN><SPAN><A CLASS="LN" NAME="172">  172   </A>         <SPAN CLASS="KW">while</SPAN> (BusyUART2());
+</SPAN><SPAN><A CLASS="LN" NAME="173">  173   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="174">  174   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="175">  175   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN></PRE>
+</TD></TR></TABLE>
+</P>
+</BODY>
+</HTML>

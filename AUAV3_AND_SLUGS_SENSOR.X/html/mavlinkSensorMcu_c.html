@@ -24,86 +24,87 @@ function rtwHilite(aBlock,aParentSID) {
 <H4>File: <A HREF="file:///C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\mavlinkSensorMcu.c" TARGET="rtwreport_document_frame">C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\mavlinkSensorMcu.c</A></H4>
 <PRE id="RTWcode">
 <SPAN><A CLASS="LN" NAME="1">    1   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="2">    2   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;mavlinkSensorMcu.h&quot;</FONT>
-</SPAN><SPAN><A CLASS="LN" NAME="3">    3   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;apDefinitions.h&quot;</FONT>
-</SPAN><SPAN><A CLASS="LN" NAME="4">    4   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="2">    2   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&lt;.\rtwtypes.h&gt;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="3">    3   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;mavlinkSensorMcu.h&quot;</FONT>
+</SPAN><SPAN><A CLASS="LN" NAME="4">    4   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;apDefinitions.h&quot;</FONT>
 </SPAN><SPAN><A CLASS="LN" NAME="5">    5   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="6">    6   </A><SPAN CLASS="CT">// Declare the global structures that will hold the state of the Sensor MCU</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="7">    7   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="8">    8   </A>BOOL <A NAME="var_sendCommandAcknowledgement">sendCommandAcknowledgement</A>; <SPAN CLASS="CT">// used for IPC of command acks to control MCU</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="9">    9   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="6">    6   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="7">    7   </A><SPAN CLASS="CT">// Declare the global structures that will hold the state of the Sensor MCU</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="8">    8   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="9">    9   </A>BOOL <A NAME="var_sendCommandAcknowledgement">sendCommandAcknowledgement</A>; <SPAN CLASS="CT">// used for IPC of command acks to control MCU</SPAN>
 </SPAN><SPAN><A CLASS="LN" NAME="10">   10   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="11">   11   </A>mavlink_raw_imu_t <A NAME="var_mlRawImuData">mlRawImuData</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="12">   12   </A><SPAN CLASS="CT">//mavlink_gps_raw_int_t mlGpsData;</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="13">   13   </A>mavlink_cpu_load_t <A NAME="var_mlCpuLoadData">mlCpuLoadData</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="14">   14   </A><SPAN CLASS="CT">//mavlink_scaled_pressure_t mlAirData;</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="15">   15   </A>mavlink_sensor_bias_t <A NAME="var_mlSensorBiasData">mlSensorBiasData</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="16">   16   </A>mavlink_diagnostic_t <A NAME="var_mlDiagnosticData">mlDiagnosticData</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="17">   17   </A><SPAN CLASS="CT">//mavlink_raw_pressure_t mlRawPressureData;</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="18">   18   </A>mavlink_attitude_t <A NAME="var_mlAttitudeData">mlAttitudeData</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="19">   19   </A>mavlink_local_position_ned_t <A NAME="var_mlLocalPositionData">mlLocalPositionData</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="20">   20   </A>mavlink_rc_channels_raw_t <A NAME="var_mlPilotConsoleData">mlPilotConsoleData</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="21">   21   </A>mavlink_scaled_imu_t <A NAME="var_mlFilteredData">mlFilteredData</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="22">   22   </A>mavlink_boot_t <A NAME="var_mlBoot">mlBoot</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="23">   23   </A>mavlink_gps_date_time_t <A NAME="var_mlGpsDateTime">mlGpsDateTime</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="24">   24   </A>mavlink_coordinate_float_t <A NAME="var_mlGSLocationFloat">mlGSLocationFloat</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="25">   25   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">if</SPAN> USE_NMEA
-</SPAN><SPAN><A CLASS="LN" NAME="26">   26   </A>mavlink_status_gps_t <A NAME="var_mlGpsStatus">mlGpsStatus</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="27">   27   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="28">   28   </A>mavlink_novatel_diag_t <A NAME="var_mlNovatelStatus">mlNovatelStatus</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="29">   29   </A>mavlink_sensor_diag_t <A NAME="var_mlSensorDiag">mlSensorDiag</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="30">   30   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="11">   11   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="12">   12   </A>mavlink_raw_imu_t <A NAME="var_mlRawImuData">mlRawImuData</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="13">   13   </A><SPAN CLASS="CT">//mavlink_gps_raw_int_t mlGpsData;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="14">   14   </A>mavlink_cpu_load_t <A NAME="var_mlCpuLoadData">mlCpuLoadData</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="15">   15   </A><SPAN CLASS="CT">//mavlink_scaled_pressure_t mlAirData;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="16">   16   </A>mavlink_sensor_bias_t <A NAME="var_mlSensorBiasData">mlSensorBiasData</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="17">   17   </A>mavlink_diagnostic_t <A NAME="var_mlDiagnosticData">mlDiagnosticData</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="18">   18   </A><SPAN CLASS="CT">//mavlink_raw_pressure_t mlRawPressureData;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="19">   19   </A>mavlink_attitude_t <A NAME="var_mlAttitudeData">mlAttitudeData</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="20">   20   </A>mavlink_local_position_ned_t <A NAME="var_mlLocalPositionData">mlLocalPositionData</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="21">   21   </A>mavlink_rc_channels_raw_t <A NAME="var_mlPilotConsoleData">mlPilotConsoleData</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="22">   22   </A>mavlink_scaled_imu_t <A NAME="var_mlFilteredData">mlFilteredData</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="23">   23   </A>mavlink_boot_t <A NAME="var_mlBoot">mlBoot</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="24">   24   </A>mavlink_gps_date_time_t <A NAME="var_mlGpsDateTime">mlGpsDateTime</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="25">   25   </A>mavlink_coordinate_float_t <A NAME="var_mlGSLocationFloat">mlGSLocationFloat</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="26">   26   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">if</SPAN> USE_NMEA
+</SPAN><SPAN><A CLASS="LN" NAME="27">   27   </A>mavlink_status_gps_t <A NAME="var_mlGpsStatus">mlGpsStatus</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="28">   28   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="29">   29   </A>mavlink_novatel_diag_t <A NAME="var_mlNovatelStatus">mlNovatelStatus</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="30">   30   </A>mavlink_sensor_diag_t <A NAME="var_mlSensorDiag">mlSensorDiag</A>;
 </SPAN><SPAN><A CLASS="LN" NAME="31">   31   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="32">   32   </A><SPAN CLASS="CT">// via SPI</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A><SPAN CLASS="CT">//mavlink_set_gps_global_origin_t mlGSLocation;</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="34">   34   </A>mavlink_command_ack_t <A NAME="var_mlCommandAck">mlCommandAck</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="35">   35   </A>mavlink_servo_output_raw_t <A NAME="var_mlPwmCommands">mlPwmCommands</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="36">   36   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="37">   37   </A><SPAN CLASS="CT">// Debug</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="38">   38   </A>mavlink_statustext_t <A NAME="var_mlStatustext">mlStatustext</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="39">   39   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="40">   40   </A><SPAN CLASS="CT">/**********************************************************************</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="41">   41   </A><SPAN CLASS="CT"> * Function: mavlinkInit</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="42">   42   </A><SPAN CLASS="CT"> * @return none</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="43">   43   </A><SPAN CLASS="CT"> * @remark Initializes the sensor MCU's mavlink message structures.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="44">   44   </A><SPAN CLASS="CT"> ***********************************************************************/</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="45">   45   </A><SPAN CLASS="DT">void</SPAN> <A HREF="novatel_c.html#var_mavlinkInit" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mavlinkInit');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mavlinkInit</FONT></A>(<SPAN CLASS="DT">void</SPAN>) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="46">   46   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="47">   47   </A>    <SPAN CLASS="CT">// clear all the variables</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="48">   48   </A>    memset(&amp;<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_gps_raw_int_t));
-</SPAN><SPAN><A CLASS="LN" NAME="49">   49   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlCpuLoadData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlCpuLoadData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlCpuLoadData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_cpu_load_t));
-</SPAN><SPAN><A CLASS="LN" NAME="50">   50   </A>    memset(&amp;<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlAirData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAirData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAirData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_scaled_pressure_t));
-</SPAN><SPAN><A CLASS="LN" NAME="51">   51   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlSensorBiasData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSensorBiasData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSensorBiasData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_sensor_bias_t));
-</SPAN><SPAN><A CLASS="LN" NAME="52">   52   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlDiagnosticData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlDiagnosticData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlDiagnosticData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_diagnostic_t));
-</SPAN><SPAN><A CLASS="LN" NAME="53">   53   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlPilotConsoleData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPilotConsoleData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPilotConsoleData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_rc_channels_raw_t));
-</SPAN><SPAN><A CLASS="LN" NAME="54">   54   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_raw_imu_t));
-</SPAN><SPAN><A CLASS="LN" NAME="55">   55   </A>    memset(&amp;<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlRawPressureData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawPressureData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawPressureData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_raw_pressure_t));
-</SPAN><SPAN><A CLASS="LN" NAME="56">   56   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlAttitudeData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAttitudeData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAttitudeData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_attitude_t));
-</SPAN><SPAN><A CLASS="LN" NAME="57">   57   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlLocalPositionData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlLocalPositionData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlLocalPositionData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_local_position_ned_t));
-</SPAN><SPAN><A CLASS="LN" NAME="58">   58   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlFilteredData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlFilteredData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlFilteredData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_scaled_imu_t));
-</SPAN><SPAN><A CLASS="LN" NAME="59">   59   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlBoot" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlBoot');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlBoot</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_boot_t));
-</SPAN><SPAN><A CLASS="LN" NAME="60">   60   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_gps_date_time_t));
-</SPAN><SPAN><A CLASS="LN" NAME="61">   61   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlGSLocationFloat" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGSLocationFloat');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGSLocationFloat</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_coordinate_float_t));
-</SPAN><SPAN><A CLASS="LN" NAME="62">   62   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">if</SPAN> USE_NMEA
-</SPAN><SPAN><A CLASS="LN" NAME="63">   63   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlGpsStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsStatus</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN>(mavlink_status_gps_t));
-</SPAN><SPAN><A CLASS="LN" NAME="64">   64   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">else</SPAN> 
-</SPAN><SPAN><A CLASS="LN" NAME="65">   65   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlNovatelStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlNovatelStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlNovatelStatus</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN>(mavlink_novatel_diag_t));
-</SPAN><SPAN><A CLASS="LN" NAME="66">   66   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="67">   67   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlSensorDiag" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSensorDiag');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSensorDiag</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN>(mavlink_sensor_diag_t));
-</SPAN><SPAN><A CLASS="LN" NAME="68">   68   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="69">   69   </A>    <SPAN CLASS="CT">//spi	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="70">   70   </A>    memset(&amp;<A HREF="MavlinkComm_c.html#var_mlGSLocation" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGSLocation');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGSLocation</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_set_gps_global_origin_t));
-</SPAN><SPAN><A CLASS="LN" NAME="71">   71   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlCommandAck" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlCommandAck');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlCommandAck</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_command_ack_t));
-</SPAN><SPAN><A CLASS="LN" NAME="72">   72   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlPwmCommands" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPwmCommands');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPwmCommands</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_servo_output_raw_t));
-</SPAN><SPAN><A CLASS="LN" NAME="73">   73   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="74">   74   </A>    <SPAN CLASS="CT">// Debug</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="75">   75   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlStatustext" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlStatustext');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlStatustext</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN>(mavlink_statustext_t));
-</SPAN><SPAN><A CLASS="LN" NAME="76">   76   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="77">   77   </A>    <SPAN CLASS="CT">// Flags</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="78">   78   </A>    <A HREF="mavlinkSensorMcu_c.html#var_sendCommandAcknowledgement" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_sendCommandAcknowledgement');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">sendCommandAcknowledgement</FONT></A> = FALSE;
-</SPAN><SPAN><A CLASS="LN" NAME="79">   79   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="80">   80   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="81">   81   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="32">   32   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A><SPAN CLASS="CT">// via SPI</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="34">   34   </A><SPAN CLASS="CT">//mavlink_set_gps_global_origin_t mlGSLocation;</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="35">   35   </A>mavlink_command_ack_t <A NAME="var_mlCommandAck">mlCommandAck</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="36">   36   </A>mavlink_servo_output_raw_t <A NAME="var_mlPwmCommands">mlPwmCommands</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="37">   37   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="38">   38   </A><SPAN CLASS="CT">// Debug</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="39">   39   </A>mavlink_statustext_t <A NAME="var_mlStatustext">mlStatustext</A>;
+</SPAN><SPAN><A CLASS="LN" NAME="40">   40   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="41">   41   </A><SPAN CLASS="CT">/**********************************************************************</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="42">   42   </A><SPAN CLASS="CT"> * Function: mavlinkInit</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="43">   43   </A><SPAN CLASS="CT"> * @return none</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="44">   44   </A><SPAN CLASS="CT"> * @remark Initializes the sensor MCU's mavlink message structures.</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="45">   45   </A><SPAN CLASS="CT"> ***********************************************************************/</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="46">   46   </A><SPAN CLASS="DT">void</SPAN> <A HREF="novatel_c.html#var_mavlinkInit" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mavlinkInit');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mavlinkInit</FONT></A>(<SPAN CLASS="DT">void</SPAN>) <B>{</B>
+</SPAN><SPAN><A CLASS="LN" NAME="47">   47   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="48">   48   </A>    <SPAN CLASS="CT">// clear all the variables</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="49">   49   </A>    memset(&amp;<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_gps_raw_int_t));
+</SPAN><SPAN><A CLASS="LN" NAME="50">   50   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlCpuLoadData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlCpuLoadData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlCpuLoadData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_cpu_load_t));
+</SPAN><SPAN><A CLASS="LN" NAME="51">   51   </A>    memset(&amp;<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlAirData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAirData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAirData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_scaled_pressure_t));
+</SPAN><SPAN><A CLASS="LN" NAME="52">   52   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlSensorBiasData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSensorBiasData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSensorBiasData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_sensor_bias_t));
+</SPAN><SPAN><A CLASS="LN" NAME="53">   53   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlDiagnosticData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlDiagnosticData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlDiagnosticData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_diagnostic_t));
+</SPAN><SPAN><A CLASS="LN" NAME="54">   54   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlPilotConsoleData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPilotConsoleData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPilotConsoleData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_rc_channels_raw_t));
+</SPAN><SPAN><A CLASS="LN" NAME="55">   55   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_raw_imu_t));
+</SPAN><SPAN><A CLASS="LN" NAME="56">   56   </A>    memset(&amp;<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlRawPressureData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawPressureData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawPressureData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_raw_pressure_t));
+</SPAN><SPAN><A CLASS="LN" NAME="57">   57   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlAttitudeData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAttitudeData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAttitudeData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_attitude_t));
+</SPAN><SPAN><A CLASS="LN" NAME="58">   58   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlLocalPositionData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlLocalPositionData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlLocalPositionData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_local_position_ned_t));
+</SPAN><SPAN><A CLASS="LN" NAME="59">   59   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlFilteredData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlFilteredData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlFilteredData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_scaled_imu_t));
+</SPAN><SPAN><A CLASS="LN" NAME="60">   60   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlBoot" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlBoot');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlBoot</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_boot_t));
+</SPAN><SPAN><A CLASS="LN" NAME="61">   61   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_gps_date_time_t));
+</SPAN><SPAN><A CLASS="LN" NAME="62">   62   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlGSLocationFloat" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGSLocationFloat');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGSLocationFloat</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_coordinate_float_t));
+</SPAN><SPAN><A CLASS="LN" NAME="63">   63   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">if</SPAN> USE_NMEA
+</SPAN><SPAN><A CLASS="LN" NAME="64">   64   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlGpsStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsStatus</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN>(mavlink_status_gps_t));
+</SPAN><SPAN><A CLASS="LN" NAME="65">   65   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">else</SPAN> 
+</SPAN><SPAN><A CLASS="LN" NAME="66">   66   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlNovatelStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlNovatelStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlNovatelStatus</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN>(mavlink_novatel_diag_t));
+</SPAN><SPAN><A CLASS="LN" NAME="67">   67   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="68">   68   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlSensorDiag" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSensorDiag');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSensorDiag</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN>(mavlink_sensor_diag_t));
+</SPAN><SPAN><A CLASS="LN" NAME="69">   69   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="70">   70   </A>    <SPAN CLASS="CT">//spi	</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="71">   71   </A>    memset(&amp;<A HREF="MavlinkComm_c.html#var_mlGSLocation" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGSLocation');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGSLocation</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_set_gps_global_origin_t));
+</SPAN><SPAN><A CLASS="LN" NAME="72">   72   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlCommandAck" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlCommandAck');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlCommandAck</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_command_ack_t));
+</SPAN><SPAN><A CLASS="LN" NAME="73">   73   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlPwmCommands" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlPwmCommands');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlPwmCommands</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_servo_output_raw_t));
+</SPAN><SPAN><A CLASS="LN" NAME="74">   74   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="75">   75   </A>    <SPAN CLASS="CT">// Debug</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="76">   76   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlStatustext" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlStatustext');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlStatustext</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN>(mavlink_statustext_t));
+</SPAN><SPAN><A CLASS="LN" NAME="77">   77   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="78">   78   </A>    <SPAN CLASS="CT">// Flags</SPAN>
+</SPAN><SPAN><A CLASS="LN" NAME="79">   79   </A>    <A HREF="mavlinkSensorMcu_c.html#var_sendCommandAcknowledgement" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_sendCommandAcknowledgement');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">sendCommandAcknowledgement</FONT></A> = FALSE;
+</SPAN><SPAN><A CLASS="LN" NAME="80">   80   </A>
+</SPAN><SPAN><A CLASS="LN" NAME="81">   81   </A><B>}</B>
+</SPAN><SPAN><A CLASS="LN" NAME="82">   82   </A>
 </SPAN></PRE>
 </TD></TR></TABLE>
 </P>

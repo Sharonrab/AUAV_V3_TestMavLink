@@ -1,4 +1,5 @@
 
+#include <.\rtwtypes.h>
 #include "mavlinkSensorMcu.h"
 #include "apDefinitions.h"
 

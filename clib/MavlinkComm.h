@@ -1,9 +1,20 @@
 #ifndef  _MAVLINK_COMM_H_
 #define  _MAVLINK_COMM_H_
 #include "circBuffer.h"
+#include <rtwtypes.h>
+#include "inttypes.h"
+#include "mavlink.h"
+
+//#ifdef UNIT_TEST
+//#include "UnitTest.h"
+//#else
+//#include "AUAV3_AND_SLUGS_SENSOR.h"
+//#endif
 
 extern CBRef uartMavlinkInBuffer;
 extern struct CircBuffer comMavlinkBuffer;
+
+
 void uartMavlinkBufferInit (void);
 
 #define SUCCESS ((char)0)
@@ -59,7 +70,31 @@ void uartMavlinkBufferInit (void);
     PAR_PID_YAW_DAMP_I = 13,
     PAR_PID_YAW_DAMP_D = 14,
 
+    PAR_PID_PITC_DT_FF = 15,
 
+        PAR_CONFIG_ROLL_R = 16,
+        PAR_CONFIG_PITCH_R = 17,
+        PAR_CONFIG_YAW_R = 18,
+
+        PAR_NAV_L2_BASE = 19,
+        PAR_NAV_PRETURN_K = 20,
+        PAR_NAV_SSCOMP_ON = 21,
+
+        PAR_L1_OMEGA = 22,
+        PAR_L1_M = 23,
+        PAR_L1_GAMMA = 24,
+        PAR_L1_ON_OFF = 25,
+
+        PAR_NAV_ISR_FAC = 26,
+        PAR_PID_RMIX_ON = 27,
+        PAR_PID_RMIX_P = 28,
+
+        PAR_CAM_X = 29,
+        PAR_CAM_Z = 30,
+
+        /*
+        PAR_RATE_TELEMETRY = 31, // attitude sent at this rate, others 1/10th
+        */
     PAR_PARAM_COUNT // Always at the end, do not assign value
   };
   

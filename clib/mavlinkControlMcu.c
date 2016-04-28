@@ -1,6 +1,7 @@
+#include "MavlinkComm.h"
 #include "mavlinkControlMcu.h"
 
-mavlink_raw_imu_t mlRawImuData;
+//mavlink_raw_imu_t mlRawImuData;
 mavlink_gps_raw_int_t mlGpsData;
 mavlink_cpu_load_t mlCpuLoadData;
 mavlink_scaled_pressure_t mlAirData;

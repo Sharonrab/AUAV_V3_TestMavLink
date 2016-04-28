@@ -1,5 +1,5 @@
 #
-# File: AUAV3_AND_SLUGS_SENSOR.mk
+# File: MCHP_dsPIC.tmf
 #
 #--------------------------------------------------------------
 #   Embedded Coder for Microchip dsPIC30/dsPIC33/PIC24 family. |
@@ -26,7 +26,7 @@ MAKEFILE_FILESEP = /
 # Real-Time Workshop build procedure.
 #   
 MODEL                   = AUAV3_AND_SLUGS_SENSOR
-MODULES                 = AUAV3_AND_SLUGS_SENSOR_data.c AUAV3_AND_SLUGS_SENSOR_main.c MCHP_I2C2_Interrupt.c MCHP_I2C2_Interrupt_data.c MCHP_IC_Interrupt.c MCHP_SPI1_Interrupt.c MCHP_SPI1_Interrupt_data.c MCHP_UART1_Interrupt.c MCHP_UART4_Interrupt.c MavlinkComm.c adisCube16405.c circBuffer.c gpsPort.c gpsUblox.c hil.c mavlinkSensorMcu.c novatel.c rtGetInf.c rtGetNaN.c rt_nonfinite.c updateSensorMcuState.c 
+MODULES                 = AUAV3_AND_SLUGS_SENSOR_data.c AUAV3_AND_SLUGS_SENSOR_main.c MCHP_I2C2_Interrupt.c MCHP_I2C2_Interrupt_data.c MCHP_IC_Interrupt.c MCHP_SPI1_Interrupt.c MCHP_SPI1_Interrupt_data.c MCHP_UART1_Interrupt.c MCHP_UART4_Interrupt.c MavlinkComm.c adisCube16405.c apUtils.c circBuffer.c gpsPort.c gpsUblox.c hil.c mavlinkSensorMcu.c novatel.c rtGetInf.c rtGetNaN.c rt_nonfinite.c updateSensorMcuState.c 
 MAKEFILE                = AUAV3_AND_SLUGS_SENSOR.mk
 MATLAB_ROOT             = C:/Program Files/MATLAB/R2011b
 ALT_MATLAB_ROOT         = C:/PROGRA~1/MATLAB/R2011b
@@ -37,7 +37,7 @@ S_FUNCTIONS_LIB         =
 NUMST                   = 11
 NCSTATES                = 0
 COMPUTER                = PCWIN64
-BUILDARGS               =  GENERATE_REPORT=1 GENERATE_ASAP2=0 HOST_PLATFORM="PC" MCHP_AUTO_FLASH=0 MCHP_MULTITHREAD_COMPILATION=0
+BUILDARGS               =  GENERATE_REPORT=1 GENERATE_ASAP2=0 HOST_PLATFORM="PC" MCHP_AUTO_FLASH=0 MCHP_MULTITHREAD_COMPILATION=1
 MULTITASKING            = 1
 INTEGER_CODE            = 0
 MAT_FILE                = 0
@@ -192,19 +192,21 @@ MATLAB_INCLUDES = \
 # Additional includes 
 #
 ADD_INCLUDES = \
-	-I$(START_DIR)/AUAV3_AND_SLUGS_SENSOR.X \
-	-I$(START_DIR) \
-	-I$(START_DIR)/mavlink/include/slugs \
-	-I$(START_DIR)/clib \
+-I$(START_DIR)/AUAV3_AND_SLUGS_SENSOR.X \
+-I$(START_DIR) \
+-I$(START_DIR)/mavlink/include/slugs \
+-I$(START_DIR)/../clib \
+-I$(START_DIR)/clib \
+-I$(MATLAB_ROOT)/toolbox/dsp/include \
 
 
 
 SHARED_INCLUDES =
 ifneq ($(SHARED_SRC_DIR),)
-SHARED_INCLUDES = -I$(SHARED_SRC_DIR) 
+SHARED_INCLUDES = $(SHARED_SRC_DIR) 
 endif
 
-INCLUDES = -I. -I$(RELATIVE_PATH_TO_ANCHOR) $(MATLAB_INCLUDES) $(ADD_INCLUDES) \
+INCLUDES = $(RELATIVE_PATH_TO_ANCHOR) $(MATLAB_INCLUDES) $(ADD_INCLUDES) \
            $(PIC_INCLUDES) $(MODELREF_INC_PATH) \
            $(SHARED_INCLUDES)
 

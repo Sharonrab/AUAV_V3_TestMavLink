@@ -30,7 +30,7 @@ THE SOFTWARE.
 static tCubeBuffer cubeBuffer;
 
 void cubeInit (void){
-	long long i = 0;
+//	long long i = 0;
 	
 	/* printToUart2("Starting %s\n\r","Cube Init 1st print AM");
 
@@ -207,7 +207,7 @@ int16_t averageData(int16_t* theData, uint8_t count){
 // SPI Primitives
 // ==============
 unsigned short write2Cube (unsigned short data2Send) {
-	unsigned short temp = 3, i;
+	unsigned short temp = 3;
 	
 	// Drive SS Low
 	/* selectCube();
