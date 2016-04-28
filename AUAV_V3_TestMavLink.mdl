@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.126"
+    ComputedModelVersion    "1.143"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -14,8 +14,10 @@ Model {
   "hip.com/SimulinkBlocks]\nAuthor:Avi Manor Based on Lubin Kerhuels work and code from SLUGS\n\nTest Mavlink on AUAV V"
   "3 board from Asrovtech. [http://arsovtech.com/?p=1414]\n"
   SavedCharacterEncoding  "windows-1252"
-  PreLoadFcn		  "T = 0.0025;\nMavlinkBus;\n\n% Baro Altitude Computation\n% =========================\nbasePressure = "
-  "98192.64;\nbaseTemp = 288.215;\nlapseRate = -0.00198122;\nbaseHeight = 0;"
+  PreLoadFcn		  "T = 0.0025;\nGyroScale = 500*2*pi/32768;  %Gyro scale is 500deg/sec -> rad/sec\nAcclScale = 4 * 9.806"
+  "65/ 32768; %Accel scale is 4g -> m/sec^2\nMagScale = 0.88/2048; %Mag Scale is 0.88G -->  Gauss\n\nMavlinkBus;\n\n% B"
+  "aro Altitude Computation\n% =========================\nbasePressure = 98192.64;\nbaseTemp = 288.215;\nlapseRate = -0"
+  ".00198122;\nbaseHeight = 0;"
   SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -30,11 +32,11 @@ Model {
   Creator		  "M91449"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "sharon"
+  LastModifiedBy	  "UglyRed"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Feb 22 16:36:34 2016"
-  RTWModifiedTimeStamp	  378059720
-  ModelVersionFormat	  "1.%<AutoIncrement:126>"
+  LastModifiedDate	  "Thu Apr 28 07:22:54 2016"
+  RTWModifiedTimeStamp	  383727530
+  ModelVersionFormat	  "1.%<AutoIncrement:143>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  on
@@ -727,26 +729,26 @@ Model {
 	      CustomProperty {
 		DataType		"string"
 		Name			"GCCPATH"
-		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\bin"
+		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.25\\bin"
 	      }
 	      CustomProperty {
 		DataType		"string"
 		Name			"LINKER_SCRIPT"
-		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\support\\dsPIC33E\\gld\\P35C90~1.GLD"
+		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.25\\support\\dsPIC33E\\gld\\P35C90~1.GLD"
 	      }
 	      CustomProperty {
 		DataType		"string"
 		Name			"PIC_LIB"
-		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\lib\\dsPIC33E\\libp33EP512MU810-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1"
-		".24\\lib\\libpic30-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\lib\\libm-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\l"
-		"ib\\libc-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\lib\\libq-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\lib\\libq-d"
+		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.25\\lib\\dsPIC33E\\libp33EP512MU810-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1"
+		".25\\lib\\libpic30-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.25\\lib\\libm-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.25\\l"
+		"ib\\libc-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.25\\lib\\libq-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.25\\lib\\libq-d"
 		"sp-elf.a"
 	      }
 	      CustomProperty {
 		DataType		"string"
 		Name			"PIC_INCLUDES"
-		Value			"-IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\include -IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\support\\dsPIC33E\\h "
-		"-IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\support\\generic\\h -IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\support\\PERIPH~2"
+		Value			"-IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.25\\include -IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.25\\support\\dsPIC33E\\h "
+		"-IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.25\\support\\generic\\h -IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.25\\support\\PERIPH~2"
 	      }
 	      CustomProperty {
 		DataType		"string"
@@ -836,17 +838,17 @@ Model {
 		"12  810]';s.ChipIdL1='EP';s.ChipIdL2='MU';s.ChipIdL3='';s.arch3='33E';s.ChipId='33EP512MU810';s.ChipRAM='53248';s.Ch"
 		"ipRAM_XBegin='4096';s.ChipRAM_dma='[53248  57344]';s.FuseConfigTxt='_FGS( GSSK_OFF ) ;_FOSCSEL( FNOSC_PRI ) ;_FOSC( "
 		"POSCMD_XT & OSCIOFNC_ON & FCKSM_CSECME ) ;_FWDT( FWDTEN_OFF ) ;_FPOR( BOREN_OFF & ALTI2C2_ON ) ;_FICD( ICS_PGD3 & JT"
-		"AGEN_OFF ) ;_FAS( APLK_OFF ) ;';s.TimeStep_Timer='1';s.TimeStep_SyncADC='-1';s.ADPCFG='1027604540';s.ANSEL='[65471  "
-		"65475  65535  65535  65474  65535  65535  65535  65535  65535  65535]';s.TRIS='[65471  65475     -1  65535  65482  6"
-		"5527  32766     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1"
-		"     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1    "
-		" -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1 "
-		"    -1     -1]';s.RPOR='[-1    -1    -1    -1  4352     5    29    -1   256    -1    -1    -1  4096    -1    -1  153"
-		"6]';s.RPINR='[-1     -1     -1     -1     -1     -1     -1  18496   8011   7701     -1     -1     -1     -1     -1  "
-		"   -1     -1     -1     -1     -1     83     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -"
-		"1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1]';s.CLKDIV='5';s"
-		".PLLFBD='243';s.SWITCH_OSC='16385';s.PLLRNG='-1';s.MASTER_BusyFlag='6';s.POWERSAVE='0';s.MIPS='70000000';s.AN_type2="
-		"'1';s.ADC_PingPong='1';s.NConversionTotal='2';s.NSampleTotal='2';"
+		"AGEN_OFF ) ;_FAS( APLK_OFF ) ;';s.TimeStep_Timer='1';s.TimeStep_SyncADC='-1';s.ADPCFG='490733628';s.ANSEL='[65471  6"
+		"5475  65535  65535  65506  65535  65535  65535  65535  65535  65535]';s.TRIS='[65471  65475     -1  65535  65514    "
+		" -1  32766     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1 "
+		"    -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     "
+		"-1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1  "
+		"   -1     -1]';s.RPOR='[29    -1    -1    -1  4352     5    -1    -1    -1    -1    -1    -1  4096    -1    -1  1536"
+		"]';s.RPINR='[-1     -1     -1     -1     -1     -1     -1  18496   8011   7701     -1     -1     -1     -1     -1   "
+		"  -1     -1     -1     -1     -1     83     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1"
+		"     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1]';s.CLKDIV='5';s."
+		"PLLFBD='243';s.SWITCH_OSC='16385';s.PLLRNG='-1';s.MASTER_BusyFlag='6';s.POWERSAVE='0';s.MIPS='70000000';s.AN_type2='"
+		"1';s.ADC_PingPong='1';s.NConversionTotal='2';s.NSampleTotal='2';"
 	      }
 	      CustomProperty {
 		DataType		"slbool"
@@ -1020,6 +1022,11 @@ Model {
       Interpolate	      on
     }
     Block {
+      BlockType		      From
+      IconDisplay	      "Tag"
+      TagVisibility	      "local"
+    }
+    Block {
       BlockType		      Gain
       Gain		      "1"
       Multiplication	      "Element-wise(K.*u)"
@@ -1033,6 +1040,10 @@ Model {
       RndMeth		      "Floor"
       SaturateOnIntegerOverflow	on
       SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Goto
+      IconDisplay	      "Tag"
     }
     Block {
       BlockType		      Ground
@@ -1078,6 +1089,14 @@ Model {
       IntermediateResultsDataTypeStr "Inherit: Inherit via internal rule"
       AlgorithmType	      "Newton-Raphson"
       Iterations	      "3"
+    }
+    Block {
+      BlockType		      Mux
+      Inputs		      "4"
+      DisplayOption	      "none"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      NonVirtualBus	      off
     }
     Block {
       BlockType		      Outport
@@ -1202,7 +1221,7 @@ Model {
   }
   System {
     Name		    "AUAV_V3_TestMavLink"
-    Location		    [334, 94, 1276, 611]
+    Location		    [167, 104, 1109, 621]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1216,7 +1235,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "459"
+    SIDHighWatermark	    "522"
     Block {
       BlockType		      Reference
       Name		      " gpsUbloxParse"
@@ -1232,14 +1251,28 @@ Model {
       AddHeaderDeclaration    on
       Function1Type	      "when block is updated (default)"
       FctReturnBlockOut	      on
-      DataCollected	      "s.chksm=reshape({ '1712811-Jan-2015 00:49:34','1687227-Jan-2015 00:07:03'},1,2);s.File1=res"
-      "hape({ '  void  decodeGPS(GPS* gps,unsigned char id,const char* buff, unsigned int buffPtr,unsigned int nbrField"
-      "s)','  GPS  UART_GPS_Decode(void)'},1,2);s.File2=reshape({ '  char  hex2char(char halfhex)','  float  degMinToDe"
-      "g(unsigned char degrees, float minutes)',' unsigned int  getLength(void)',' unsigned char  peak(void)',' unsigne"
-      "d char  readFront(void)',' unsigned char  gpsUbloxSeparate(unsigned char* outStream)','  void  gpsUbloxParse(voi"
-      "d)','  void  getGpsUbloxMainData(float* data)','  char  gpSmbl(char symbl)',' unsigned char  myTokenizer(char* s"
-      "tringToTokenize, char token, char * returnToken)','  void  parseRMC(unsigned char* stream)','  void  parseGGA(un"
-      "signed char* stream)',' unsigned char  getChecksum(unsigned char* sentence, unsigned char size)'},1,13);"
+      DataCollected	      "s.chksm=reshape({ '638526-Apr-2016 06:16:17','200726-Apr-2016 12:57:12','1582126-Apr-2016 1"
+      "2:57:12','3281626-Apr-2016 12:57:12'},1,4);s.File1=reshape({ '  void  newCircBuffer(CBRef cB)','  void  freeCirc"
+      "Buffer(CBRef* cB)','  void  freeCircBuffer(CBRef* cB)',' unsigned int  getLength(CBRef cB)','  int  readHead(CBR"
+      "ef cB)','  int  readTail(CBRef cB)',' unsigned char  peak(CBRef cB)',' unsigned char  readFront(CBRef cB)',' uns"
+      "igned char  writeBack(CBRef cB, unsigned char data)','  void  makeEmpty(CBRef cB)','  void  printCircBuf(CBRef c"
+      "B)'},1,11);s.File2=reshape({ '  void  uartBufferInit(void)','  void  __attribute__((__interrupt__, no_auto_psv))"
+      " _U4RXInterrupt(void)'},1,2);s.File3=reshape({ '  char  hex2char(char halfhex)','  float  degMinToDeg(unsigned c"
+      "har degrees, float minutes)',' unsigned char  gpsUbloxSeparate(unsigned char* outStream)','  void  gpsUbloxParse"
+      "(void)','  void  getGpsUbloxMainData(float* data)','  char  gpSmbl(char symbl)',' unsigned char  myTokenizer(cha"
+      "r* stringToTokenize, char token, char * returnToken)','  void  parseRMC(unsigned char* stream)','  void  parseGG"
+      "A(unsigned char* stream)',' unsigned char  getChecksum(unsigned char* sentence, unsigned char size)'},1,10);s.Fi"
+      "le4=reshape({ '  void  uartMavlinkBufferInit(void)','  void __attribute__((__interrupt__,__auto_psv__)) _U1RXInt"
+      "errupt(void)','  uint8_t  isFinite(float s)','  void  InitParameterInterface(void)','  void  protDecodeMavlink(v"
+      "oid)','  uint16_t  MissionInterfaceResponse(uint8_t system_id, uint8_t component_id)','  uint16_t  ParameterInte"
+      "rfaceResponse(uint8_t system_id, uint8_t component_id)','  uint16_t  PackHeartBeat(uint8_t system_id, uint8_t co"
+      "mponent_id)','  uint16_t  PackTextMsg(uint8_t system_id, uint8_t component_id)','  uint16_t  PackRawIMU(uint8_t "
+      "system_id, uint8_t component_id, mavlink_raw_imu_t mlRawIMUData ,uint32_t time_usec)','  uint16_t  PackGpsRawInt"
+      "(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec)','  uint16_"
+      "t  PackScaledPressure(uint8_t system_id, uint8_t component_id, mavlink_scaled_pressure_t mlAirData ,uint32_t tim"
+      "e_usec)','  uint16_t  PackSysStatus(uint8_t system_id, uint8_t component_id, mavlink_sys_status_t mlSysStatus)',"
+      "'  char  sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionSta"
+      "rt)','  void  TxN_Data_OverU1(uint16_t N)'},1,15);"
       ORDERING		      "None"
       SampleTime	      "0.2"
       MCHP_MASTERLINK	      "AUAV_V3_TestMavLink/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -1303,7 +1336,7 @@ Model {
       I2CRef		      "2"
       I2C_IntPriority	      "6"
       I2Csequence_txt	      "Initial-Configuration$     ---     $Start$Write Address:{[0x1E]}    % HMC5883L Address$Wr"
-      "ite Data (x1)  Write:{[0x00 0x78 0x00 0x00]}      % Configure$Stop"
+      "ite Data (x1)  Write:{[0x00 0x78 0x00 0x00]}      % Configure cont. read avg over 8 @ 75Hz scale 0.88G$Stop"
       I2Csequence_num	      "[BFF0000000000000 40E0600000000000 41186A0000000000 4118666E3C87173F]$[4070000000000000]$"
       "[3FF0000000000000 40E0200000000000 40F86A0000000000 40F866E066594CA2]$[4040000000000000 0000000000000000 0000000"
       "000000000 403E000000000000]$[4050000000000000 3FF0000000000000 0000000000000000 0000000000000000 405E00000000000"
@@ -1342,7 +1375,8 @@ Model {
       "  Write:{[0x1904]}      % Sample rate = 200Hz  Fsample= 1Khz/(N+1) = 200Hz$Set Port E4 / Pin[100] to 1    % /CS$"
       "Delay of 0.01(s)$Set Port E4 / Pin[100] to 0    % /CS$Write only (x1)  Write:{[0x1A03]}      % LPF - Gyro 42Hz 4"
       ".8mS delay - Accel 44Hz 4.9mS delay$Set Port E4 / Pin[100] to 1    % /CS$Delay of 0.01(s)$Set Port E4 / Pin[100]"
-      " to 0$Write only (x1)  Write:{[0x1B08]}      % Gyro scale 500º/s$Set Port E4 / Pin[100] to 1"
+      " to 0$Write only (x1)  Write:{[0x1B08]}      % Gyro scale 500º/s$Set Port E4 / Pin[100] to 1$Delay of 0.01(s)$Se"
+      "t Port E4 / Pin[100] to 0$Write only (x1)  Write:{[0x1C08]}      % Accel Scale 4g$Set Port E4 / Pin[100] to 1"
       SPIsequence_num	      "[BFF0000000000000 4091D00000000000 0000000000000000 40E0000000000000 4116409C00000000 411"
       "6409D55555555]$[4070000000000000]$[4010000000000000 4051000000000000 3FF0000000000000]$[4020000000000000 3F847AE"
       "147AE147B]$[4010000000000000 4051000000000000 0000000000000000]$[3FF0000000000000 3FF0000000000000 0000000000000"
@@ -1356,7 +1390,9 @@ Model {
       "00000000000000]$[3FF0000000000000 3FF0000000000000 0000000000000000 40BA030000000000]$[4010000000000000 40510000"
       "00000000 3FF0000000000000]$[4020000000000000 3F847AE147AE147B]$[4010000000000000 4051000000000000 00000000000000"
       "00]$[3FF0000000000000 3FF0000000000000 0000000000000000 40BB080000000000]$[4010000000000000 4051000000000000 3FF"
-      "0000000000000]"
+      "0000000000000]$[4020000000000000 3F847AE147AE147B]$[4010000000000000 4051000000000000 0000000000000000]$[3FF0000"
+      "000000000 3FF0000000000000 0000000000000000 40BC080000000000]$[4010000000000000 4051000000000000 3FF000000000000"
+      "0]"
       PIN_SDI_TXT	      "E3 / P83 / Pin[99]"
       PIN_SDO_TXT	      "E2 / P82 / Pin[98]"
       PIN_SCK_TXT	      "G15 / P127 / Pin[1]"
@@ -1373,7 +1409,8 @@ Model {
       "2:1:E4;{SPI 1 Digital output}{SPI1-DOU}12:1:E4;{SPI 1 Digital output}{SPI1-DOU}12:1:E4;{SPI 1 Digital output}{SP"
       "I1-DOU}12:1:E4;{SPI 1 Digital output}{SPI1-DOU}12:1:E4;{SPI 1 Digital output}{SPI1-DOU}12:1:E4;{SPI 1 Digital ou"
       "tput}{SPI1-DOU}12:1:E4;{SPI 1 Digital output}{SPI1-DOU}12:1:E4;{SPI 1 Digital output}{SPI1-DOU}12:1:E4;{SPI 1 Di"
-      "gital output}{SPI1-DOU}12:1:E4;{SPI 1 Digital output}{SPI1-DOU}12:1:E4;"
+      "gital output}{SPI1-DOU}12:1:E4;{SPI 1 Digital output}{SPI1-DOU}12:1:E4;{SPI 1 Digital output}{SPI1-DOU}12:1:E4;{"
+      "SPI 1 Digital output}{SPI1-DOU}12:1:E4;"
       ORDERING		      "0"
     }
     Block {
@@ -1388,7 +1425,7 @@ Model {
       SourceType	      ""
       LATEST_CMPLR	      on
       COMP_LIST		      "Dynamic Options"
-      COMP_LIST_TXT	      "xc16 - v1.24"
+      COMP_LIST_TXT	      "xc16 - v1.25"
       USE_64BIT_DOUBLE	      off
       MCHP_MULTITHREAD_COMPILATION off
       MCHP_MASTERLINK	      "AUAV_V3_TestMavLink/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -1674,7 +1711,7 @@ Model {
       Name		      "MCU Load"
       SID		      "425"
       Ports		      [0, 1]
-      Position		      [765, 642, 890, 718]
+      Position		      [885, 627, 1010, 703]
       LibraryVersion	      "3.37"
       SourceBlock	      "MCHP_Blockset/Profiling/MCU Load"
       SourceType	      "MCU Load (Profile execution time)"
@@ -1725,7 +1762,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"MavlinkTX"
-	Location		[202, 82, 1331, 715]
+	Location		[202, 83, 1331, 716]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1742,7 +1779,7 @@ Model {
 	  BlockType		  Constant
 	  Name			  "COMP_ID"
 	  SID			  "79"
-	  Position		  [125, 60, 155, 90]
+	  Position		  [125, 65, 155, 95]
 	  ZOrder		  -4
 	  OutDataTypeStr	  "uint8"
 	}
@@ -1751,7 +1788,7 @@ Model {
 	  Name			  "Get Raw IMU"
 	  SID			  "89"
 	  Ports			  [0, 1]
-	  Position		  [185, 97, 270, 123]
+	  Position		  [185, 102, 270, 128]
 	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlRawIMU"
@@ -1794,7 +1831,7 @@ Model {
 	  Name			  "Get time"
 	  SID			  "81"
 	  Ports			  [0, 1]
-	  Position		  [25, 132, 175, 158]
+	  Position		  [25, 137, 175, 163]
 	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
@@ -1803,9 +1840,9 @@ Model {
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get time1"
-	  SID			  "126"
+	  SID			  "500"
 	  Ports			  [0, 1]
-	  Position		  [35, 387, 185, 413]
+	  Position		  [20, 387, 170, 413]
 	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
@@ -1814,9 +1851,9 @@ Model {
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get time2"
-	  SID			  "392"
+	  SID			  "501"
 	  Ports			  [0, 1]
-	  Position		  [35, 512, 185, 538]
+	  Position		  [20, 512, 170, 538]
 	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
@@ -1961,7 +1998,7 @@ Model {
 	  Name			  "PackScaledPressure"
 	  SID			  "390"
 	  Ports			  [4, 1]
-	  Position		  [320, 442, 480, 543]
+	  Position		  [320, 437, 480, 538]
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
@@ -2006,7 +2043,7 @@ Model {
 	  Name			  "PackSysStatus"
 	  SID			  "395"
 	  Ports			  [3, 1]
-	  Position		  [320, 573, 480, 667]
+	  Position		  [320, 568, 480, 662]
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
@@ -2137,7 +2174,7 @@ Model {
 	  BlockType		  Constant
 	  Name			  "SYS_ID"
 	  SID			  "78"
-	  Position		  [60, 25, 90, 55]
+	  Position		  [60, 30, 90, 60]
 	  ZOrder		  -4
 	  Value			  "101"
 	  OutDataTypeStr	  "uint8"
@@ -2147,7 +2184,7 @@ Model {
 	  Name			  "TX_N_Data"
 	  SID			  "115"
 	  Ports			  [1]
-	  Position		  [525, 27, 685, 163]
+	  Position		  [525, 32, 685, 168]
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
@@ -2341,19 +2378,8 @@ Model {
 	Line {
 	  SrcBlock		  "Get mlSysStatus"
 	  SrcPort		  1
-	  Points		  [45, 0]
-	}
-	Line {
-	  SrcBlock		  "PackSysStatus"
-	  SrcPort		  1
-	  Points		  [0, -10]
-	  DstBlock		  "TX_N_Data4"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Get time2"
-	  SrcPort		  1
-	  Points		  [125, 0]
+	  DstBlock		  "PackSysStatus"
+	  DstPort		  3
 	}
 	Line {
 	  SrcBlock		  "Get mlAirData"
@@ -2364,15 +2390,8 @@ Model {
 	Line {
 	  SrcBlock		  "PackScaledPressure"
 	  SrcPort		  1
-	  Points		  [0, -5]
 	  DstBlock		  "TX_N_Data3"
 	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Get time1"
-	  SrcPort		  1
-	  DstBlock		  "PackGpsRawInt"
-	  DstPort		  4
 	}
 	Line {
 	  SrcBlock		  "Get RawGpsInt"
@@ -2395,14 +2414,14 @@ Model {
 	Line {
 	  SrcBlock		  "PackRawIMU"
 	  SrcPort		  1
-	  Points		  [0, -5]
 	  DstBlock		  "TX_N_Data"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Get time"
 	  SrcPort		  1
-	  Points		  [135, 0]
+	  DstBlock		  "PackRawIMU"
+	  DstPort		  4
 	}
 	Line {
 	  SrcBlock		  "Get Raw IMU"
@@ -2413,13 +2432,13 @@ Model {
 	Line {
 	  SrcBlock		  "COMP_ID"
 	  SrcPort		  1
-	  Points		  [45, 0]
+	  Points		  [45, 0; 0, 0]
 	  Branch {
 	    DstBlock		    "PackRawIMU"
 	    DstPort		    2
 	  }
 	  Branch {
-	    Points		    [0, 190]
+	    Points		    [0, 185]
 	    Branch {
 	      DstBlock		      "PackHeartBeat"
 	      DstPort		      2
@@ -2437,14 +2456,9 @@ Model {
 		  DstPort		  2
 		}
 		Branch {
-		  Points		  [0, 135]
+		  Points		  [0, 145]
 		  Branch {
-		    Points		    [0, 5]
-		    DstBlock		    "PackSysStatus"
-		    DstPort		    2
-		  }
-		  Branch {
-		    Points		    [0, 150]
+		    Points		    [0, 140]
 		    Branch {
 		    Points		    [0, 5]
 		    DstBlock		    "ParamInterfaceResponse"
@@ -2456,6 +2470,11 @@ Model {
 		    DstPort		    2
 		    }
 		  }
+		  Branch {
+		    Points		    [100, 0]
+		    DstBlock		    "PackSysStatus"
+		    DstPort		    2
+		  }
 		}
 	      }
 	    }
@@ -2464,13 +2483,13 @@ Model {
 	Line {
 	  SrcBlock		  "SYS_ID"
 	  SrcPort		  1
-	  Points		  [170, 0]
+	  Points		  [170, 0; 0, 0]
 	  Branch {
 	    DstBlock		    "PackRawIMU"
 	    DstPort		    1
 	  }
 	  Branch {
-	    Points		    [0, 175]
+	    Points		    [0, 170]
 	    Branch {
 	      DstBlock		      "PackHeartBeat"
 	      DstPort		      1
@@ -2522,6 +2541,26 @@ Model {
 	  SrcPort		  1
 	  DstBlock		  "TX_N_Data6"
 	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "PackSysStatus"
+	  SrcPort		  1
+	  DstBlock		  "TX_N_Data4"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Get time1"
+	  SrcPort		  1
+	  Points		  [10, 0; 0, 5; 120, 0]
+	  DstBlock		  "PackGpsRawInt"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "Get time2"
+	  SrcPort		  1
+	  Points		  [15, 0; 0, 5; 115, 0]
+	  DstBlock		  "PackScaledPressure"
+	  DstPort		  4
 	}
       }
     }
@@ -2741,7 +2780,7 @@ Model {
       "-1];MCHP.UART.port_ATx = [-1 -1];MCHP.UART.port_RTS = [32767  32767  32767  32767     -1     -1];MCHP.UART.port_"
       "CTS = [32767  32767  32767  32767     -1     -1];MCHP.UART.reg_UxMODE = [48127  48127  48127  48127     -1     -"
       "1];MCHP.UART.reg_UxSTA = [61439  61439  61439  61439     -1     -1];"
-      MCHP_CRC		      "-1119943"
+      MCHP_CRC		      "-1120058"
       BTMODE		      "Device is in Single Boot (legacy) mode"
       RES1		      "Not used"
       PLLSS		      "PLL is fed by the Primary oscillator"
@@ -2838,7 +2877,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Read Barometer BMP180"
-	Location		[202, 82, 1678, 997]
+	Location		[167, 104, 1296, 760]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -4063,8 +4102,8 @@ Model {
 	  }
 	  System {
 	    Name		    "Baro Altimeter"
-	    Location		    [255, 103, 1497, 760]
-	    Open		    on
+	    Location		    [334, 94, 1293, 628]
+	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -5105,9 +5144,42 @@ Model {
 	}
 	Block {
 	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion1"
+	  SID			  "464"
+	  Position		  [890, 458, 930, 472]
+	  ZOrder		  -5
+	  ShowName		  off
+	  OutDataTypeStr	  "single"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion10"
 	  SID			  "403"
 	  Position		  [930, 323, 970, 337]
+	  ZOrder		  -5
+	  ShowName		  off
+	  OutDataTypeStr	  "single"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion2"
+	  SID			  "465"
+	  Position		  [890, 523, 930, 537]
+	  ZOrder		  -5
+	  ShowName		  off
+	  OutDataTypeStr	  "single"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion3"
+	  SID			  "502"
+	  Position		  [930, 348, 970, 362]
 	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
@@ -5133,17 +5205,6 @@ Model {
 	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
-	  RndMeth		  "Floor"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  DataTypeConversion
-	  Name			  "Data Type Conversion9"
-	  SID			  "402"
-	  Position		  [935, 348, 975, 362]
-	  ZOrder		  -5
-	  ShowName		  off
-	  OutDataTypeStr	  "single"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
@@ -5181,6 +5242,15 @@ Model {
 	  DisplayOption		  "bar"
 	}
 	Block {
+	  BlockType		  From
+	  Name			  "From13"
+	  SID			  "467"
+	  Position		  [780, 521, 835, 539]
+	  BackgroundColor	  "cyan"
+	  ShowName		  off
+	  GotoTag		  "Temp"
+	}
+	Block {
 	  BlockType		  Gain
 	  Name			  "Gain21"
 	  SID			  "404"
@@ -5190,6 +5260,16 @@ Model {
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeStr	  "int16"
 	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto8"
+	  SID			  "466"
+	  Position		  [775, 146, 825, 164]
+	  BackgroundColor	  "magenta"
+	  ShowName		  off
+	  GotoTag		  "Temp"
+	  TagVisibility		  "local"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -8315,6 +8395,17 @@ Model {
 	}
 	Block {
 	  BlockType		  DataStoreWrite
+	  Name			  "Update HighResIMU Alt Temp"
+	  SID			  "463"
+	  Ports			  [2]
+	  Position		  [955, 453, 1045, 502]
+	  ZOrder		  -6
+	  BackgroundColor	  "orange"
+	  DataStoreName		  "mlHighresImu"
+	  DataStoreElements	  "mlHighresImu.pressure_alt#mlHighresImu.temperature"
+	}
+	Block {
+	  BlockType		  DataStoreWrite
 	  Name			  "Update RawPressure"
 	  SID			  "386"
 	  Ports			  [2]
@@ -8329,11 +8420,11 @@ Model {
 	  Name			  "Update ScaledPressure"
 	  SID			  "387"
 	  Ports			  [2]
-	  Position		  [1000, 318, 1090, 367]
+	  Position		  [1005, 318, 1095, 367]
 	  ZOrder		  -6
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlAirData"
-	  DataStoreElements	  "mlAirData.temperature#mlAirData.press_abs"
+	  DataStoreElements	  "mlAirData.press_abs#mlAirData.temperature"
 	}
 	Line {
 	  SrcBlock		  "BUS I2C\nInitialize BMP180\nRead T°, Convert P @ 100Hz"
@@ -8414,8 +8505,16 @@ Model {
 	  Labels		  [0, 0]
 	  SrcBlock		  "BMP 180\nTemperature Compensation\nSee datasheet"
 	  SrcPort		  2
-	  DstBlock		  "Baro Altimeter"
-	  DstPort		  1
+	  Points		  [35, 0]
+	  Branch {
+	    DstBlock		    "Baro Altimeter"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, -110]
+	    DstBlock		    "Data Type Conversion3"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "Constant"
@@ -8526,20 +8625,19 @@ Model {
 	}
 	Line {
 	  Name			  "Temp (deg) * 10"
-	  Labels		  [1, 1]
 	  SrcBlock		  "BMP 180\nTemperature Compensation\nSee datasheet"
 	  SrcPort		  1
-	  DstBlock		  "Gain21"
-	  DstPort		  1
-	}
-	Line {
-	  Name			  "U3 CH3"
-	  Labels		  [0, 0]
-	  SrcBlock		  "Baro Altimeter"
-	  SrcPort		  1
-	  Points		  [35, 0; 0, -110]
-	  DstBlock		  "Data Type Conversion9"
-	  DstPort		  1
+	  Points		  [55, 0]
+	  Branch {
+	    Labels		    [1, 1]
+	    DstBlock		    "Gain21"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, -50]
+	    DstBlock		    "Goto8"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "Data Type Conversion10"
@@ -8555,10 +8653,37 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Data Type Conversion9"
+	  SrcBlock		  "Data Type Conversion3"
 	  SrcPort		  1
 	  DstBlock		  "Update ScaledPressure"
 	  DstPort		  2
+	}
+	Line {
+	  Name			  "U3 CH3"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Baro Altimeter"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion1"
+	  SrcPort		  1
+	  DstBlock		  "Update HighResIMU Alt Temp"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion2"
+	  SrcPort		  1
+	  Points		  [0, -40]
+	  DstBlock		  "Update HighResIMU Alt Temp"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "From13"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion2"
+	  DstPort		  1
 	}
       }
     }
@@ -8577,7 +8702,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Read MPU600 and HMC5883"
-	Location		[334, 94, 1293, 628]
+	Location		[202, 75, 1364, 707]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -8669,13 +8794,111 @@ Model {
 	  }
 	}
 	Block {
+	  BlockType		  Gain
+	  Name			  "D/S - > rad/sec"
+	  SID			  "470"
+	  Position		  [635, 447, 665, 473]
+	  ShowName		  off
+	  Gain			  "GyroScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "int16"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D/S - > rad/sec1"
+	  SID			  "471"
+	  Position		  [635, 417, 665, 443]
+	  ShowName		  off
+	  Gain			  "GyroScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "int16"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D/S - > rad/sec2"
+	  SID			  "472"
+	  Position		  [635, 387, 665, 413]
+	  ShowName		  off
+	  Gain			  "GyroScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "int16"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D/S - > rad/sec3"
+	  SID			  "473"
+	  Position		  [635, 357, 665, 383]
+	  ShowName		  off
+	  Gain			  "AcclScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "int16"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D/S - > rad/sec4"
+	  SID			  "474"
+	  Position		  [635, 327, 665, 353]
+	  ShowName		  off
+	  Gain			  "AcclScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "int16"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D/S - > rad/sec5"
+	  SID			  "475"
+	  Position		  [635, 297, 665, 323]
+	  ShowName		  off
+	  Gain			  "AcclScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "int16"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D/S - > rad/sec6"
+	  SID			  "476"
+	  Position		  [635, 537, 665, 563]
+	  ShowName		  off
+	  Gain			  "MagScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "int16"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D/S - > rad/sec7"
+	  SID			  "477"
+	  Position		  [635, 507, 665, 533]
+	  ShowName		  off
+	  Gain			  "MagScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "int16"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "D/S - > rad/sec8"
+	  SID			  "478"
+	  Position		  [635, 477, 665, 503]
+	  ShowName		  off
+	  Gain			  "MagScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "int16"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion"
 	  SID			  "92"
-	  Position		  [390, 113, 435, 127]
+	  Position		  [830, 58, 875, 72]
 	  ZOrder		  -5
 	  ShowName		  off
-	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
@@ -8683,10 +8906,89 @@ Model {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion1"
 	  SID			  "93"
-	  Position		  [390, 133, 435, 147]
+	  Position		  [830, 83, 875, 97]
 	  ZOrder		  -5
 	  ShowName		  off
-	  OutDataTypeStr	  "int16"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion10"
+	  SID			  "510"
+	  Position		  [550, 363, 595, 377]
+	  ZOrder		  -5
+	  ShowName		  off
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion11"
+	  SID			  "511"
+	  Position		  [550, 393, 595, 407]
+	  ZOrder		  -5
+	  ShowName		  off
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion12"
+	  SID			  "512"
+	  Position		  [550, 423, 595, 437]
+	  ZOrder		  -5
+	  ShowName		  off
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion13"
+	  SID			  "513"
+	  Position		  [550, 453, 595, 467]
+	  ZOrder		  -5
+	  ShowName		  off
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion14"
+	  SID			  "522"
+	  Position		  [505, 543, 550, 557]
+	  ZOrder		  -5
+	  ShowName		  off
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion15"
+	  SID			  "515"
+	  Position		  [830, 208, 875, 222]
+	  ZOrder		  -5
+	  ShowName		  off
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion16"
+	  SID			  "516"
+	  Position		  [830, 233, 875, 247]
+	  ZOrder		  -5
+	  ShowName		  off
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion17"
+	  SID			  "517"
+	  Position		  [830, 258, 875, 272]
+	  ZOrder		  -5
+	  ShowName		  off
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
@@ -8694,10 +8996,9 @@ Model {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion2"
 	  SID			  "94"
-	  Position		  [390, 153, 435, 167]
+	  Position		  [830, 108, 875, 122]
 	  ZOrder		  -5
 	  ShowName		  off
-	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
@@ -8705,10 +9006,9 @@ Model {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion3"
 	  SID			  "95"
-	  Position		  [390, 173, 435, 187]
+	  Position		  [830, 133, 875, 147]
 	  ZOrder		  -5
 	  ShowName		  off
-	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
@@ -8716,10 +9016,9 @@ Model {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion4"
 	  SID			  "96"
-	  Position		  [390, 193, 435, 207]
+	  Position		  [830, 158, 875, 172]
 	  ZOrder		  -5
 	  ShowName		  off
-	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
@@ -8727,10 +9026,49 @@ Model {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion5"
 	  SID			  "97"
-	  Position		  [390, 213, 435, 227]
+	  Position		  [830, 183, 875, 197]
 	  ZOrder		  -5
 	  ShowName		  off
-	  OutDataTypeStr	  "int16"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion6"
+	  SID			  "508"
+	  Position		  [550, 303, 595, 317]
+	  ZOrder		  -5
+	  ShowName		  off
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion7"
+	  SID			  "520"
+	  Position		  [505, 483, 550, 497]
+	  ZOrder		  -5
+	  ShowName		  off
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion8"
+	  SID			  "521"
+	  Position		  [505, 513, 550, 527]
+	  ZOrder		  -5
+	  ShowName		  off
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion9"
+	  SID			  "509"
+	  Position		  [550, 333, 595, 347]
+	  ZOrder		  -5
+	  ShowName		  off
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
@@ -8979,7 +9317,7 @@ Model {
 	  }
 	  System {
 	    Name		    "Subsystem8"
-	    Location		    [104, 82, 1400, 1021]
+	    Location		    [104, 83, 1250, 739]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -9271,6 +9609,18 @@ Model {
 	}
 	Block {
 	  BlockType		  DataStoreWrite
+	  Name			  "Update HighResIMU data"
+	  SID			  "468"
+	  Ports			  [9]
+	  Position		  [695, 292, 795, 568]
+	  ZOrder		  -6
+	  BackgroundColor	  "orange"
+	  DataStoreName		  "mlHighresImu"
+	  DataStoreElements	  "mlHighresImu.xacc#mlHighresImu.yacc#mlHighresImu.zacc#mlHighresImu.xgyro#mlHighresImu.ygyro#ml"
+	  "HighresImu.zgyro#mlHighresImu.xmag#mlHighresImu.ymag#mlHighresImu.zmag"
+	}
+	Block {
+	  BlockType		  DataStoreWrite
 	  Name			  "Update MPU_T"
 	  SID			  "133"
 	  Ports			  [1]
@@ -9286,7 +9636,7 @@ Model {
 	  Name			  "Update Raw IMU DATA"
 	  SID			  "74"
 	  Ports			  [9]
-	  Position		  [455, 102, 520, 298]
+	  Position		  [920, 46, 1000, 284]
 	  ZOrder		  -6
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlRawIMU"
@@ -9312,54 +9662,101 @@ Model {
 	  Labels		  [0, 1]
 	  SrcBlock		  "Demux1"
 	  SrcPort		  3
-	  Points		  [55, 0; 0, 75]
-	  DstBlock		  "Data Type Conversion2"
-	  DstPort		  1
+	  Points		  [55, 0; 0, 30; 145, 0]
+	  Branch {
+	    DstBlock		    "Data Type Conversion2"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 255]
+	    DstBlock		    "Data Type Conversion10"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  Name			  "U1 CH1"
 	  Labels		  [0, 1]
 	  SrcBlock		  "Demux1"
 	  SrcPort		  1
-	  Points		  [75, 0; 0, 85]
-	  DstBlock		  "Data Type Conversion"
-	  DstPort		  1
+	  Points		  [85, 0; 0, 30; 55, 0]
+	  Branch {
+	    Points		    [0, 0]
+	    DstBlock		    "Data Type Conversion"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [100, 0; 0, 245]
+	    DstBlock		    "Data Type Conversion6"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  Name			  "U1 CH2"
 	  Labels		  [0, 1]
 	  SrcBlock		  "Demux1"
 	  SrcPort		  2
-	  Points		  [65, 0; 0, 80]
-	  DstBlock		  "Data Type Conversion1"
-	  DstPort		  1
+	  Points		  [65, 0; 0, 25; 65, 0]
+	  Branch {
+	    Points		    [0, 0; 405, 0]
+	    DstBlock		    "Data Type Conversion1"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [90, 0; 0, 255]
+	    DstBlock		    "Data Type Conversion9"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  Name			  "U1 CH5"
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  1
-	  Points		  [45, 0; 0, 45]
-	  DstBlock		  "Data Type Conversion3"
-	  DstPort		  1
+	  Points		  [185, 0]
+	  Branch {
+	    Points		    [350, 0]
+	    DstBlock		    "Data Type Conversion3"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 265]
+	    DstBlock		    "Data Type Conversion11"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  Name			  "U1 CH6"
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  2
-	  Points		  [35, 0; 0, 40]
-	  DstBlock		  "Data Type Conversion4"
-	  DstPort		  1
+	  Points		  [160, 0]
+	  Branch {
+	    Points		    [375, 0]
+	    DstBlock		    "Data Type Conversion4"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 270]
+	    DstBlock		    "Data Type Conversion12"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  Name			  "U1 CH7"
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  3
-	  Points		  [25, 0; 0, 35]
-	  DstBlock		  "Data Type Conversion5"
-	  DstPort		  1
+	  Points		  [140, 0]
+	  Branch {
+	    Points		    [395, 0]
+	    DstBlock		    "Data Type Conversion5"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 275]
+	    DstBlock		    "Data Type Conversion13"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "BUS I2C\nRead HMC5883\nMagn\n(50 Hz)"
@@ -9402,32 +9799,6 @@ Model {
 	  SrcPort		  5
 	  DstBlock		  "Subsystem10"
 	  DstPort		  1
-	}
-	Line {
-	  Name			  "U1 CH9"
-	  Labels		  [0, 0]
-	  SrcBlock		  "Subsystem9"
-	  SrcPort		  1
-	  Points		  [50, 0; 0, -30]
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  8
-	}
-	Line {
-	  Name			  "U1 CH8"
-	  Labels		  [0, 0]
-	  SrcBlock		  "Subsystem8"
-	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  7
-	}
-	Line {
-	  Name			  "U1 CH10"
-	  Labels		  [0, 0]
-	  SrcBlock		  "Subsystem10"
-	  SrcPort		  1
-	  Points		  [65, 0; 0, -60]
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  9
 	}
 	Line {
 	  SrcBlock		  "Data Type Conversion"
@@ -9473,17 +9844,201 @@ Model {
 	  DstBlock		  "Update MPU_T"
 	  DstPort		  1
 	}
+	Line {
+	  SrcBlock		  "D/S - > rad/sec2"
+	  SrcPort		  1
+	  DstBlock		  "Update HighResIMU data"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "D/S - > rad/sec1"
+	  SrcPort		  1
+	  DstBlock		  "Update HighResIMU data"
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "D/S - > rad/sec"
+	  SrcPort		  1
+	  DstBlock		  "Update HighResIMU data"
+	  DstPort		  6
+	}
+	Line {
+	  SrcBlock		  "D/S - > rad/sec5"
+	  SrcPort		  1
+	  DstBlock		  "Update HighResIMU data"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "D/S - > rad/sec4"
+	  SrcPort		  1
+	  DstBlock		  "Update HighResIMU data"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "D/S - > rad/sec3"
+	  SrcPort		  1
+	  DstBlock		  "Update HighResIMU data"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "D/S - > rad/sec8"
+	  SrcPort		  1
+	  DstBlock		  "Update HighResIMU data"
+	  DstPort		  7
+	}
+	Line {
+	  SrcBlock		  "D/S - > rad/sec7"
+	  SrcPort		  1
+	  DstBlock		  "Update HighResIMU data"
+	  DstPort		  8
+	}
+	Line {
+	  SrcBlock		  "D/S - > rad/sec6"
+	  SrcPort		  1
+	  DstBlock		  "Update HighResIMU data"
+	  DstPort		  9
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion14"
+	  SrcPort		  1
+	  DstBlock		  "D/S - > rad/sec6"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "U1 CH10"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Subsystem10"
+	  SrcPort		  1
+	  Points		  [70, 0]
+	  Branch {
+	    Points		    [0, -75]
+	    DstBlock		    "Data Type Conversion17"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 210]
+	    DstBlock		    "Data Type Conversion14"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion8"
+	  SrcPort		  1
+	  DstBlock		  "D/S - > rad/sec7"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "U1 CH8"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Subsystem8"
+	  SrcPort		  1
+	  Points		  [0, -25; 105, 0]
+	  Branch {
+	    DstBlock		    "Data Type Conversion15"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 275]
+	    DstBlock		    "Data Type Conversion7"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion6"
+	  SrcPort		  1
+	  DstBlock		  "D/S - > rad/sec5"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "U1 CH9"
+	  Labels		  [0, 0]
+	  SrcBlock		  "Subsystem9"
+	  SrcPort		  1
+	  Points		  [40, 0; 0, -50; 45, 0]
+	  Branch {
+	    DstBlock		    "Data Type Conversion16"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 280]
+	    DstBlock		    "Data Type Conversion8"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion9"
+	  SrcPort		  1
+	  DstBlock		  "D/S - > rad/sec4"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion10"
+	  SrcPort		  1
+	  DstBlock		  "D/S - > rad/sec3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion11"
+	  SrcPort		  1
+	  DstBlock		  "D/S - > rad/sec2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion12"
+	  SrcPort		  1
+	  DstBlock		  "D/S - > rad/sec1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion13"
+	  SrcPort		  1
+	  DstBlock		  "D/S - > rad/sec"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion7"
+	  SrcPort		  1
+	  DstBlock		  "D/S - > rad/sec8"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion15"
+	  SrcPort		  1
+	  DstBlock		  "Update Raw IMU DATA"
+	  DstPort		  7
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion16"
+	  SrcPort		  1
+	  DstBlock		  "Update Raw IMU DATA"
+	  DstPort		  8
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion17"
+	  SrcPort		  1
+	  DstBlock		  "Update Raw IMU DATA"
+	  DstPort		  9
+	}
 	Annotation {
 	  Position		  [110, 287]
+	}
+	Annotation {
+	  Name			  "gyro scale is set to 500deg/sec --> to rad/sec\naccel scale is 4g --> m/sec^2\nMagScale 0.88G --> Magneti"
+	  "c field (Gauss)"
+	  Position		  [683, 54]
+	}
+	Annotation {
+	  Position		  [855, 59]
 	}
       }
     }
     Block {
       BlockType		      SubSystem
-      Name		      "Servo In Out"
-      SID		      "452"
-      Ports		      [0, 4]
-      Position		      [240, 786, 525, 969]
+      Name		      "Sensor Data"
+      SID		      "484"
+      Ports		      [0, 5]
+      Position		      [140, 707, 250, 923]
+      BackgroundColor	      "darkGreen"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -9492,8 +10047,278 @@ Model {
       RequestExecContextInheritance off
       MaskHideContents	      off
       System {
-	Name			"Servo In Out"
-	Location		[-18, 367, 1332, 720]
+	Name			"Sensor Data"
+	Location		[747, 216, 1082, 700]
+	Open			off
+	ModelBrowserVisibility	on
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Gain
+	  Name			  "D/S - > rad/sec5"
+	  SID			  "479"
+	  Position		  [225, 357, 255, 383]
+	  ShowName		  off
+	  Gain			  "0.0000001"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "int16"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataStoreRead
+	  Name			  "Get GPS data"
+	  SID			  "461"
+	  Ports			  [0, 5]
+	  Position		  [25, 305, 130, 425]
+	  ZOrder		  -5
+	  BackgroundColor	  "orange"
+	  NamePlacement		  "alternate"
+	  DataStoreName		  "mlGpsData"
+	  DataStoreElements	  "mlGpsData.lat#mlGpsData.lon#mlGpsData.alt#mlGpsData.vel#mlGpsData.cog"
+	}
+	Block {
+	  BlockType		  DataStoreRead
+	  Name			  "Get HighResIMU data"
+	  SID			  "460"
+	  Ports			  [0, 10]
+	  Position		  [25, 31, 130, 274]
+	  ZOrder		  -5
+	  BackgroundColor	  "orange"
+	  DataStoreName		  "mlHighresImu"
+	  DataStoreElements	  "mlHighresImu.xacc#mlHighresImu.yacc#mlHighresImu.zacc#mlHighresImu.xgyro#mlHighresImu.ygyro#ml"
+	  "HighresImu.zgyro#mlHighresImu.xmag#mlHighresImu.ymag#mlHighresImu.zmag#mlHighresImu.pressure_alt"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux"
+	  SID			  "480"
+	  Ports			  [5, 1]
+	  Position		  [180, 307, 190, 423]
+	  ZOrder		  -16
+	  ShowName		  off
+	  Inputs		  "5"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux1"
+	  SID			  "481"
+	  Ports			  [3, 1]
+	  Position		  [165, 29, 175, 101]
+	  ZOrder		  -16
+	  ShowName		  off
+	  Inputs		  "3"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux2"
+	  SID			  "482"
+	  Ports			  [3, 1]
+	  Position		  [180, 104, 190, 176]
+	  ZOrder		  -16
+	  ShowName		  off
+	  Inputs		  "3"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux3"
+	  SID			  "483"
+	  Ports			  [3, 1]
+	  Position		  [200, 179, 210, 251]
+	  ZOrder		  -16
+	  ShowName		  off
+	  Inputs		  "3"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Accel (m/s^2)"
+	  SID			  "485"
+	  Position		  [280, 58, 310, 72]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Omega (rad/s)"
+	  SID			  "486"
+	  Position		  [280, 133, 310, 147]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Mag (G)"
+	  SID			  "487"
+	  Position		  [280, 208, 310, 222]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Baro Alt (m)"
+	  SID			  "488"
+	  Position		  [280, 258, 310, 272]
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "GPS"
+	  SID			  "489"
+	  Position		  [280, 363, 310, 377]
+	  Port			  "5"
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Get GPS data"
+	  SrcPort		  1
+	  DstBlock		  "Mux"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Get GPS data"
+	  SrcPort		  2
+	  DstBlock		  "Mux"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Get GPS data"
+	  SrcPort		  3
+	  DstBlock		  "Mux"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Mux"
+	  SrcPort		  1
+	  DstBlock		  "D/S - > rad/sec5"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Get HighResIMU data"
+	  SrcPort		  1
+	  DstBlock		  "Mux1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Get HighResIMU data"
+	  SrcPort		  2
+	  DstBlock		  "Mux1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Get HighResIMU data"
+	  SrcPort		  3
+	  DstBlock		  "Mux1"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Get HighResIMU data"
+	  SrcPort		  4
+	  DstBlock		  "Mux2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Get HighResIMU data"
+	  SrcPort		  5
+	  DstBlock		  "Mux2"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Get HighResIMU data"
+	  SrcPort		  6
+	  DstBlock		  "Mux2"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Get HighResIMU data"
+	  SrcPort		  7
+	  DstBlock		  "Mux3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Get HighResIMU data"
+	  SrcPort		  8
+	  DstBlock		  "Mux3"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Get HighResIMU data"
+	  SrcPort		  9
+	  DstBlock		  "Mux3"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Mux1"
+	  SrcPort		  1
+	  DstBlock		  "Accel (m/s^2)"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Mux2"
+	  SrcPort		  1
+	  DstBlock		  "Omega (rad/s)"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Mux3"
+	  SrcPort		  1
+	  DstBlock		  "Mag (G)"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Get HighResIMU data"
+	  SrcPort		  10
+	  DstBlock		  "Baro Alt (m)"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "D/S - > rad/sec5"
+	  SrcPort		  1
+	  DstBlock		  "GPS"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Get GPS data"
+	  SrcPort		  4
+	  Points		  [15, 0; 0, 25]
+	  DstBlock		  "Mux"
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "Get GPS data"
+	  SrcPort		  5
+	  Points		  [0, -10; 30, 0]
+	  DstBlock		  "Mux"
+	  DstPort		  4
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Servo In Out\nDELTA wing mix"
+      SID		      "452"
+      Ports		      [0, 4]
+      Position		      [430, 712, 525, 868]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"Servo In Out\nDELTA wing mix"
+	Location		[296, 163, 1047, 586]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -10017,6 +10842,78 @@ Model {
       }
     }
     Block {
+      BlockType		      Terminator
+      Name		      "Terminator"
+      SID		      "490"
+      Position		      [285, 715, 305, 735]
+      ZOrder		      -20
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator1"
+      SID		      "492"
+      Position		      [285, 760, 305, 780]
+      ZOrder		      -20
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator2"
+      SID		      "493"
+      Position		      [285, 805, 305, 825]
+      ZOrder		      -20
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator3"
+      SID		      "494"
+      Position		      [285, 850, 305, 870]
+      ZOrder		      -20
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator4"
+      SID		      "495"
+      Position		      [285, 895, 305, 915]
+      ZOrder		      -20
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator5"
+      SID		      "496"
+      Position		      [560, 720, 580, 740]
+      ZOrder		      -20
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator6"
+      SID		      "497"
+      Position		      [560, 760, 580, 780]
+      ZOrder		      -20
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator7"
+      SID		      "498"
+      Position		      [560, 800, 580, 820]
+      ZOrder		      -20
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator8"
+      SID		      "499"
+      Position		      [560, 840, 580, 860]
+      ZOrder		      -20
+      ShowName		      off
+    }
+    Block {
       BlockType		      DataStoreMemory
       Name		      "TimeSinceBoot_usec"
       SID		      "80"
@@ -10052,22 +10949,22 @@ Model {
       SourceType	      "Configuration for UART peripheral"
       UART_REF		      "1"
       BAUD_Choice	      "Dynamic Options"
-      BAUD_Choice_TXT	      "   57600         [-0.06%]"
+      BAUD_Choice_TXT	      "     110         [-0.00%]"
       BAUD_Choice_IR	      "Dynamic Options"
       BAUD_Choice_IR_TXT      "[]"
       BAUD_Custom	      "115200"
       IRDA		      off
       ALT_IO		      on
       PIN_RX		      "Dynamic Options"
-      PIN_RX_TXT	      "F2 / P98 / Pin[52]"
+      PIN_RX_TXT	      "A0 / P16 / Pin[17]"
       PIN_TX		      "Dynamic Options"
-      PIN_TX_TXT	      "F3 / P99 / Pin[51]"
+      PIN_TX_TXT	      "D0 / P64 / Pin[72]"
       FlowControl	      "None"
       PIN_CTS		      "Dynamic Options"
       PIN_CTS_TXT	      "A0 / P16 / Pin[17]"
       PIN_RTS		      "Dynamic Options"
       PIN_RTS_TXT	      "D0 / P64 / Pin[72]"
-      MCHP_PORT		      "{UART1  Tx}{U1TX}3:1:P99;"
+      MCHP_PORT		      "{UART1  Tx}{U1TX}3:1:P64;"
       MCHP_MASTERLINK	      "AUAV_V3_TestMavLink/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
       MCHP_COM_ExtPil	      off
       TX_IMPLEMENTATION	      "Circular Buffer"
@@ -10099,22 +10996,22 @@ Model {
       SourceType	      "Configuration for UART peripheral"
       UART_REF		      "4"
       BAUD_Choice	      "Dynamic Options"
-      BAUD_Choice_TXT	      "   38400         [-0.06%]"
+      BAUD_Choice_TXT	      "     110         [-0.00%]"
       BAUD_Choice_IR	      "Dynamic Options"
       BAUD_Choice_IR_TXT      "[]"
       BAUD_Custom	      "115200"
       IRDA		      off
       ALT_IO		      on
       PIN_RX		      "Dynamic Options"
-      PIN_RX_TXT	      "E6 / P86 / Pin[4]"
+      PIN_RX_TXT	      "A0 / P16 / Pin[17]"
       PIN_TX		      "Dynamic Options"
-      PIN_TX_TXT	      "E5 / P85 / Pin[3]"
+      PIN_TX_TXT	      "D0 / P64 / Pin[72]"
       FlowControl	      "None"
       PIN_CTS		      "Dynamic Options"
       PIN_CTS_TXT	      "A0 / P16 / Pin[17]"
       PIN_RTS		      "Dynamic Options"
       PIN_RTS_TXT	      "D0 / P64 / Pin[72]"
-      MCHP_PORT		      "{UART4  Tx}{U4TX}3:1:P85;"
+      MCHP_PORT		      "{UART4  Tx}{U4TX}3:1:P64;"
       MCHP_MASTERLINK	      "AUAV_V3_TestMavLink/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
       MCHP_COM_ExtPil	      off
       TX_IMPLEMENTATION	      "Circular Buffer"
@@ -10140,7 +11037,7 @@ Model {
       Name		      "Update SysStatus Load"
       SID		      "426"
       Ports		      [1]
-      Position		      [920, 655, 1010, 705]
+      Position		      [1040, 640, 1130, 690]
       ZOrder		      -6
       BackgroundColor	      "orange"
       DataStoreName	      "mlSysStatus"
@@ -10184,6 +11081,20 @@ Model {
       WriteAfterReadMsg	      "warning"
       RTWStateStorageClass    "ExportedGlobal"
       OutDataTypeStr	      "Bus: mavlink_gps_raw_int_t"
+    }
+    Block {
+      BlockType		      DataStoreMemory
+      Name		      "mlHighresImu"
+      SID		      "462"
+      Position		      [35, 629, 145, 654]
+      ZOrder		      -4
+      BackgroundColor	      "lightBlue"
+      DataStoreName	      "mlHighresImu"
+      ReadBeforeWriteMsg      "warning"
+      WriteAfterWriteMsg      "warning"
+      WriteAfterReadMsg	      "warning"
+      RTWStateStorageClass    "ExportedGlobal"
+      OutDataTypeStr	      "Bus: mavlink_highres_imu_t"
     }
     Block {
       BlockType		      DataStoreMemory
@@ -10250,6 +11161,60 @@ Model {
       SrcBlock		      "MCU Load"
       SrcPort		      1
       DstBlock		      "Update SysStatus Load"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sensor Data"
+      SrcPort		      1
+      DstBlock		      "Terminator"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sensor Data"
+      SrcPort		      2
+      DstBlock		      "Terminator1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sensor Data"
+      SrcPort		      3
+      DstBlock		      "Terminator2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sensor Data"
+      SrcPort		      4
+      DstBlock		      "Terminator3"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sensor Data"
+      SrcPort		      5
+      DstBlock		      "Terminator4"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Servo In Out\nDELTA wing mix"
+      SrcPort		      1
+      DstBlock		      "Terminator5"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Servo In Out\nDELTA wing mix"
+      SrcPort		      2
+      DstBlock		      "Terminator6"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Servo In Out\nDELTA wing mix"
+      SrcPort		      3
+      DstBlock		      "Terminator7"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Servo In Out\nDELTA wing mix"
+      SrcPort		      4
+      DstBlock		      "Terminator8"
       DstPort		      1
     }
   }
