@@ -106,11 +106,11 @@ typedef char BOOL;
     // ==============
 
     // GPS Fix Types
-//    enum GPS_FIX {
-//        GPS_FIX_NONE = 0,
-//        GPS_FIX_2D = 2,
-//        GPS_FIX_3D = 3
-//    };
+    enum GPS_FIX {
+        GPS_FIX_NONE = 0,
+        GPS_FIX_2D = 2,
+        GPS_FIX_3D = 3
+    };
 
     // PID EEPROM Error Messages
 

@@ -37,11 +37,8 @@ THE SOFTWARE.
 // ==============================================================
 #ifndef _CIRCBUFFER_H_
 #define _CIRCBUFFER_H_
-#define __IN_DSPIC__ 1
-//#include "apDefinitions.h"
-    // Circular Buffer Size
-    // ===================
-#define BSIZE			512
+
+#include "apDefinitions.h"
 
 #ifdef __cplusplus
        extern "C"{
