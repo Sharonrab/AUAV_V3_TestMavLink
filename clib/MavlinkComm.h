@@ -4,6 +4,8 @@
 #include <rtwtypes.h>
 #include "inttypes.h"
 #include "mavlink.h"
+#include "apDefinitions.h"
+
 
 //#ifdef UNIT_TEST
 //#include "UnitTest.h"

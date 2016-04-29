@@ -14,7 +14,7 @@
 #                                                              |
 #--------------------------------------------------------------
 #------------------------ Macros read by make_rtw ------------------------------
-MAKECMD 			 = "C:/Program Files/MATLAB/R2011b/bin/win64/gmake"
+MAKECMD 			 = "C:/Program Files/MATLAB/MATLAB Production Server/R2015a/bin/win64/gmake"
 HOST             = ANY
 BUILD            = yes
 BUILD_SUCCESS    = *** Created
@@ -28,16 +28,16 @@ MAKEFILE_FILESEP = /
 MODEL                   = AUAV3_AND_SLUGS_SENSOR
 MODULES                 = AUAV3_AND_SLUGS_SENSOR_data.c AUAV3_AND_SLUGS_SENSOR_main.c MCHP_I2C2_Interrupt.c MCHP_I2C2_Interrupt_data.c MCHP_IC_Interrupt.c MCHP_SPI1_Interrupt.c MCHP_SPI1_Interrupt_data.c MCHP_UART1_Interrupt.c MCHP_UART4_Interrupt.c MavlinkComm.c adisCube16405.c apUtils.c circBuffer.c gpsPort.c gpsUblox.c hil.c mavlinkSensorMcu.c novatel.c rtGetInf.c rtGetNaN.c rt_nonfinite.c updateSensorMcuState.c 
 MAKEFILE                = AUAV3_AND_SLUGS_SENSOR.mk
-MATLAB_ROOT             = C:/Program Files/MATLAB/R2011b
-ALT_MATLAB_ROOT         = C:/PROGRA~1/MATLAB/R2011b
+MATLAB_ROOT             = C:/Program Files/MATLAB/MATLAB Production Server/R2015a
+ALT_MATLAB_ROOT         = C:/PROGRA~1/MATLAB/MATLAB~1/R2015a
 MASTER_ANCHOR_DIR       = 
 START_DIR               = C:/Users/sharon/Documents/GitHub/AUAV_V3_TestMavLink
 S_FUNCTIONS             = 
 S_FUNCTIONS_LIB         = 
-NUMST                   = 11
+NUMST                   = 12
 NCSTATES                = 0
 COMPUTER                = PCWIN64
-BUILDARGS               =  GENERATE_REPORT=1 GENERATE_ASAP2=0 HOST_PLATFORM="PC" MCHP_AUTO_FLASH=0 MCHP_MULTITHREAD_COMPILATION=1
+BUILDARGS               =  GENERATE_ASAP2=0 HOST_PLATFORM="PC" MCHP_AUTO_FLASH=0 MCHP_MULTITHREAD_COMPILATION=1 ISPROTECTINGMODEL=NOTPROTECTING
 MULTITASKING            = 1
 INTEGER_CODE            = 0
 MAT_FILE                = 0
@@ -51,7 +51,7 @@ EXTMODE_TRANSPORT       = 0
 EXTMODE_STATIC          = 0
 EXTMODE_STATIC_SIZE     = 1000000
 MULTI_INSTANCE_CODE     = 0
-TGT_FCN_LIB             = C89/C90 (ANSI)
+TGT_FCN_LIB             = None
 MODELREFS               = 
 SHARED_SRC              = 
 SHARED_SRC_DIR          = 
@@ -85,7 +85,7 @@ endif
 #-----------------------------  tool specification settings -----------------
 
 AssemblyListing = 0
-ProduceHexOutput = 0
+ProduceHexOutput = 1
 
 GCC1    = xc16-gcc.exe
 AR1     = xc16-ar
@@ -178,7 +178,7 @@ endif
 
 
 # Keep following line, help the Matlab programming tool to find the programmer. 												
-# Additional info : PICREF{33EP512MU810} PROGRAMMER{PICkit3 S.No : BUR102554963}
+# Additional info : PICREF{33EP512MU810} PROGRAMMER{PICkit3 S.No : BUR131081029}
 												
 #------------------------------ Include Path -----------------------------------
 #
@@ -197,7 +197,6 @@ ADD_INCLUDES = \
 -I$(START_DIR)/mavlink/include/slugs \
 -I$(START_DIR)/../clib \
 -I$(START_DIR)/clib \
--I$(MATLAB_ROOT)/toolbox/dsp/include \
 
 
 
@@ -447,6 +446,10 @@ mem_mgr.o : $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/mem_mgr.c
 	@echo Compiling: $<
 	$(CC) -c $(CFLAGS) $< $(CCOUTPUTFLAG) $@
 
+%$(OBJ_EXT) : $(MATLAB_ROOT)/simulink/src/%.c
+	@echo Compiling: $<
+	$(CC) -c $(CFLAGS) $< $(CCOUTPUTFLAG) $@
+
 
 
 %$(OBJ_EXT) : $(START_DIR)/clib/%.cpp
@@ -457,6 +460,10 @@ mem_mgr.o : $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/mem_mgr.c
 	@echo Compiling: $<
 	$(CC) -c $(CPPFLAGS) $< $(CCOUTPUTFLAG) $@
 
+%$(OBJ_EXT) : $(MATLAB_ROOT)/simulink/src/%.cpp
+	@echo Compiling: $<
+	$(CC) -c $(CPPFLAGS) $< $(CCOUTPUTFLAG) $@
+
 
 
 %$(OBJ_EXT) : $(START_DIR)/clib/%.s
@@ -464,6 +471,10 @@ mem_mgr.o : $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/mem_mgr.c
 	$(CC) -c -mcpu=$(PIC_REF) $< -Wa,-g $(CCOUTPUTFLAG) $@
 
 %$(OBJ_EXT) : $(MATLAB_ROOT)/rtw/c/src/%.s
+	@echo Compiling: $<
+	$(CC) -c -mcpu=$(PIC_REF) $< -Wa,-g $(CCOUTPUTFLAG) $@
+
+%$(OBJ_EXT) : $(MATLAB_ROOT)/simulink/src/%.s
 	@echo Compiling: $<
 	$(CC) -c -mcpu=$(PIC_REF) $< -Wa,-g $(CCOUTPUTFLAG) $@
 

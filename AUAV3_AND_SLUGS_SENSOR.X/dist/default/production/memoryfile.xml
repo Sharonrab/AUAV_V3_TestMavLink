@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <executable name="dist/default/production/AUAV3_AND_SLUGS_SENSOR.X.production.elf">
+    <memory name="data">
+      <units>bytes</units>
+      <length>53248</length>
+      <used>7736</used>
+      <free>45512</free>
+    </memory>
+    <memory name="program">
+      <units>bytes</units>
+      <length>524544</length>
+      <used>55284</used>
+      <free>469260</free>
+    </memory>
+  </executable>
+</project>

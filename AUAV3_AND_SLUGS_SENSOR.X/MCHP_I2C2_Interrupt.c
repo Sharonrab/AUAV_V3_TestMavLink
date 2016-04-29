@@ -7,7 +7,7 @@ void __attribute__((__interrupt__,__auto_psv__)) _MI2C2Interrupt(void) /* MI2C2 
   boolean_T Continue;
   _MI2C2IF = 0;
   asm("INC _mcuFlagRecursion");        /* ensure atomic	mcuFlagRecursion++; */
-  T3CONbits.TON = 1;
+  T2CONbits.TON = 1;
 
   /* Declaration of Variables */
   do {
@@ -679,6 +679,6 @@ void __attribute__((__interrupt__,__auto_psv__)) _MI2C2Interrupt(void) /* MI2C2 
 
   asm("DEC _mcuFlagRecursion");        /* ensure --mcuFlagRecursion is atomic */
   if (mcuFlagRecursion == 0) {
-    T3CONbits.TON = 0;
+    T2CONbits.TON = 0;
   }
 }                                      /* Enf of interrupt */

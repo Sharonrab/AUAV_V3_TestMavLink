@@ -1,342 +1,640 @@
-<HTML>
-<HEAD>
-<TITLE>RTW Report - novatel.c </TITLE>
-<STYLE> .LN { font-style: italic; color: #888888 } </STYLE>
-<STYLE> .CT { font-style: italic; color: #117755 } </STYLE>
-<STYLE> .PP { font-style: bold;   color: #992211 } </STYLE>
-<STYLE> .KW { font-style: bold;   color: #112266 } </STYLE>
-<STYLE> .DT { font-style: bold;   color: #112266 } </STYLE>
-<SCRIPT language="JavaScript" type="text/javascript">
-<!--
-function rtwHilite(aBlock,aParentSID) {
- aParentSID = "";
- try {
-    window.location.href="matlab: if ~isempty(which('private/rtwbindmodel')), rtwprivate rtwbindmodel 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.mdl' 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.X' '', end; rtwprivate code2model "+aBlock+" "+aParentSID+";"
- } catch (e) { 
- }
-} // end rtwHilite
-//-->
-</SCRIPT>
-</HEAD>
-<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);} ">
-<P>
-<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
-<H4>File: <A HREF="file:///C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\novatel.c" TARGET="rtwreport_document_frame">C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\novatel.c</A></H4>
-<PRE id="RTWcode">
-<SPAN><A CLASS="LN" NAME="1">    1   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;novatel.h&quot;</FONT>
-</SPAN><SPAN><A CLASS="LN" NAME="2">    2   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;mavlinkControlMcu.h&quot;</FONT>
-</SPAN><SPAN><A CLASS="LN" NAME="3">    3   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="4">    4   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">if</SPAN> _TESTING_
-</SPAN><SPAN><A CLASS="LN" NAME="5">    5   </A>mavlink_gps_raw_t <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="6">    6   </A>mavlink_gps_date_time_t <A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="7">    7   </A>mavlink_status_gps_t <A HREF="mavlinkSensorMcu_c.html#var_mlGpsStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsStatus</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="8">    8   </A>mavlink_novatel_diag_t <A HREF="mavlinkSensorMcu_c.html#var_mlNovatelStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlNovatelStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlNovatelStatus</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="9">    9   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="10">   10   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="11">   11   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_gpsInit">gpsInit</A>(<SPAN CLASS="DT">void</SPAN>) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="12">   12   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="13">   13   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">if</SPAN> _TESTING_
-</SPAN><SPAN><A CLASS="LN" NAME="14">   14   </A>    memset(&amp;<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_gps_raw_t));
-</SPAN><SPAN><A CLASS="LN" NAME="15">   15   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_gps_date_time_t));
-</SPAN><SPAN><A CLASS="LN" NAME="16">   16   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlGpsStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsStatus</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_status_gps_t));
-</SPAN><SPAN><A CLASS="LN" NAME="17">   17   </A>    memset(&amp;<A HREF="mavlinkSensorMcu_c.html#var_mlNovatelStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlNovatelStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlNovatelStatus</FONT></A>, 0, <SPAN CLASS="KW">sizeof</SPAN> (mavlink_novatel_diag_t));
-</SPAN><SPAN><A CLASS="LN" NAME="18">   18   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="19">   19   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">else</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="20">   20   </A>    
-</SPAN><SPAN><A CLASS="LN" NAME="21">   21   </A>    <A HREF="gpsPort_c.html#fcn_uartBufferInit" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartBufferInit');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartBufferInit</FONT></A>();
-</SPAN><SPAN><A CLASS="LN" NAME="22">   22   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="23">   23   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="24">   24   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="25">   25   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_gpsParse">gpsParse</A>(uint8_t* dataStream) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="26">   26   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="27">   27   </A>    DECODER_STATUS <SPAN CLASS="DT">static</SPAN> currentStatus = DECO_START;
-</SPAN><SPAN><A CLASS="LN" NAME="28">   28   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="29">   29   </A>    uint16_t <SPAN CLASS="DT">static</SPAN> payloadLen = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="30">   30   </A>    uint16_t <SPAN CLASS="DT">static</SPAN> bytesRead = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="31">   31   </A>    uint8_t <SPAN CLASS="DT">static</SPAN> completeMessage [MSIZE];
-</SPAN><SPAN><A CLASS="LN" NAME="32">   32   </A>    uint16_t <SPAN CLASS="DT">static</SPAN> totalBytes = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A>    uint32_t <SPAN CLASS="DT">static</SPAN> currentChecksum = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="34">   34   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="35">   35   </A>    uint8_t ii = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="36">   36   </A>    uint8_t bytesReceived = dataStream[0];
-</SPAN><SPAN><A CLASS="LN" NAME="37">   37   </A>    tUnsignedShortToChar shTemp;
-</SPAN><SPAN><A CLASS="LN" NAME="38">   38   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="39">   39   </A>    <SPAN CLASS="KW">while</SPAN> (bytesReceived) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="40">   40   </A>        <SPAN CLASS="KW">switch</SPAN> (currentStatus) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="41">   41   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="42">   42   </A>            <SPAN CLASS="KW">case</SPAN> DECO_START:
-</SPAN><SPAN><A CLASS="LN" NAME="43">   43   </A>                payloadLen = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="44">   44   </A>                bytesRead = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="45">   45   </A>                totalBytes = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="46">   46   </A>                currentChecksum = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="47">   47   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="48">   48   </A>                <SPAN CLASS="KW">while</SPAN> (dataStream[ii] != HEAD1) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="49">   49   </A>                    ii++;
-</SPAN><SPAN><A CLASS="LN" NAME="50">   50   </A>                    bytesReceived--;
-</SPAN><SPAN><A CLASS="LN" NAME="51">   51   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="52">   52   </A>                    <SPAN CLASS="KW">if</SPAN> (bytesReceived == 0) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="53">   53   </A>                        <SPAN CLASS="KW">return</SPAN>;
-</SPAN><SPAN><A CLASS="LN" NAME="54">   54   </A>                    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="55">   55   </A>                <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="56">   56   </A>                completeMessage[bytesRead++] = HEAD1;
-</SPAN><SPAN><A CLASS="LN" NAME="57">   57   </A>                ii++;
-</SPAN><SPAN><A CLASS="LN" NAME="58">   58   </A>                bytesReceived--;
-</SPAN><SPAN><A CLASS="LN" NAME="59">   59   </A>                currentStatus = DECO_RECEIVING_HEADER2;
-</SPAN><SPAN><A CLASS="LN" NAME="60">   60   </A>                <SPAN CLASS="KW">break</SPAN>;
-</SPAN><SPAN><A CLASS="LN" NAME="61">   61   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="62">   62   </A>            <SPAN CLASS="KW">case</SPAN> DECO_RECEIVING_HEADER2:
-</SPAN><SPAN><A CLASS="LN" NAME="63">   63   </A>                <SPAN CLASS="KW">if</SPAN> (dataStream[ii] != HEAD2) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="64">   64   </A>                    currentStatus = DECO_START;
-</SPAN><SPAN><A CLASS="LN" NAME="65">   65   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="66">   66   </A>                <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="67">   67   </A>                    ii++;
-</SPAN><SPAN><A CLASS="LN" NAME="68">   68   </A>                    bytesReceived--;
-</SPAN><SPAN><A CLASS="LN" NAME="69">   69   </A>                    completeMessage[bytesRead++] = HEAD2;
-</SPAN><SPAN><A CLASS="LN" NAME="70">   70   </A>                    currentStatus = DECO_RECEIVING_HEADER3;
-</SPAN><SPAN><A CLASS="LN" NAME="71">   71   </A>                <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="72">   72   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="73">   73   </A>                <SPAN CLASS="KW">break</SPAN>;
-</SPAN><SPAN><A CLASS="LN" NAME="74">   74   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="75">   75   </A>            <SPAN CLASS="KW">case</SPAN> DECO_RECEIVING_HEADER3:
-</SPAN><SPAN><A CLASS="LN" NAME="76">   76   </A>                <SPAN CLASS="KW">if</SPAN> (dataStream[ii] != HEAD3) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="77">   77   </A>                    currentStatus = DECO_START;
-</SPAN><SPAN><A CLASS="LN" NAME="78">   78   </A>                    bytesRead = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="79">   79   </A>                <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="80">   80   </A>                    ii++;
-</SPAN><SPAN><A CLASS="LN" NAME="81">   81   </A>                    bytesReceived--;
-</SPAN><SPAN><A CLASS="LN" NAME="82">   82   </A>                    completeMessage[bytesRead++] = HEAD3;
-</SPAN><SPAN><A CLASS="LN" NAME="83">   83   </A>                    currentStatus = DECO_RECEIVING_HEADER;
-</SPAN><SPAN><A CLASS="LN" NAME="84">   84   </A>                <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="85">   85   </A>                <SPAN CLASS="KW">break</SPAN>;
-</SPAN><SPAN><A CLASS="LN" NAME="86">   86   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="87">   87   </A>            <SPAN CLASS="KW">case</SPAN> DECO_RECEIVING_HEADER:
-</SPAN><SPAN><A CLASS="LN" NAME="88">   88   </A>                <SPAN CLASS="KW">while</SPAN> ((bytesReceived &gt; 0) &amp;&amp; (bytesRead &lt; HEAD_LEN)) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="89">   89   </A>                    completeMessage[bytesRead++] = dataStream[ii++];
-</SPAN><SPAN><A CLASS="LN" NAME="90">   90   </A>                    bytesReceived--;
-</SPAN><SPAN><A CLASS="LN" NAME="91">   91   </A>                <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="92">   92   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="93">   93   </A>                <SPAN CLASS="KW">if</SPAN> (bytesRead == HEAD_LEN) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="94">   94   </A>                    currentStatus = DECO_RECEIVING_PAYLOAD;
-</SPAN><SPAN><A CLASS="LN" NAME="95">   95   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="96">   96   </A>                    payloadLen = <A HREF="novatel_c.html#fcn_charsToUint16" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToUint16');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToUint16</FONT></A>(&amp;(completeMessage[8]));
-</SPAN><SPAN><A CLASS="LN" NAME="97">   97   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="98">   98   </A>                    totalBytes = payloadLen + HEAD_LEN + 4; <SPAN CLASS="CT">// this includes the 4 CRC bytes</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="99">   99   </A>                <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="100">  100   </A>                <SPAN CLASS="KW">break</SPAN>;
-</SPAN><SPAN><A CLASS="LN" NAME="101">  101   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="102">  102   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="103">  103   </A>            <SPAN CLASS="KW">case</SPAN> DECO_RECEIVING_PAYLOAD:
-</SPAN><SPAN><A CLASS="LN" NAME="104">  104   </A>                <SPAN CLASS="KW">while</SPAN> ((bytesReceived &gt; 0) &amp;&amp; (bytesRead &lt; totalBytes)) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="105">  105   </A>                    completeMessage[bytesRead++] = dataStream[ii++];
-</SPAN><SPAN><A CLASS="LN" NAME="106">  106   </A>                    bytesReceived--;
-</SPAN><SPAN><A CLASS="LN" NAME="107">  107   </A>                <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="108">  108   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="109">  109   </A>                <SPAN CLASS="KW">if</SPAN> (bytesRead == totalBytes) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="110">  110   </A>                    currentStatus = DECO_COMPUTING_CRC;
-</SPAN><SPAN><A CLASS="LN" NAME="111">  111   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="112">  112   </A>                    currentChecksum = <A HREF="novatel_c.html#fcn_charsToUint32" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToUint32');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToUint32</FONT></A>(&amp;(completeMessage[bytesRead - 4]));
-</SPAN><SPAN><A CLASS="LN" NAME="113">  113   </A>                <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="114">  114   </A>                <SPAN CLASS="KW">break</SPAN>;
-</SPAN><SPAN><A CLASS="LN" NAME="115">  115   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="116">  116   </A>            <SPAN CLASS="KW">case</SPAN> DECO_COMPUTING_CRC:
-</SPAN><SPAN><A CLASS="LN" NAME="117">  117   </A>                <SPAN CLASS="KW">if</SPAN> (<A HREF="novatel_c.html#fcn_CalculateBlockCRC32" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_CalculateBlockCRC32');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">CalculateBlockCRC32</FONT></A>(bytesRead - 4, completeMessage) == currentChecksum) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="118">  118   </A>                    currentStatus = DECO_DECODING;
-</SPAN><SPAN><A CLASS="LN" NAME="119">  119   </A>                <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="120">  120   </A>                    <A HREF="mavlinkSensorMcu_c.html#var_mlNovatelStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlNovatelStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlNovatelStatus</FONT></A>.csFails++;
-</SPAN><SPAN><A CLASS="LN" NAME="121">  121   </A>                    currentStatus = DECO_START;
-</SPAN><SPAN><A CLASS="LN" NAME="122">  122   </A>                <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="123">  123   </A>                <SPAN CLASS="KW">break</SPAN>;
-</SPAN><SPAN><A CLASS="LN" NAME="124">  124   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="125">  125   </A>            <SPAN CLASS="KW">case</SPAN> DECO_DECODING:
-</SPAN><SPAN><A CLASS="LN" NAME="126">  126   </A>                shTemp.chData[0] = completeMessage[4];
-</SPAN><SPAN><A CLASS="LN" NAME="127">  127   </A>                shTemp.chData[1] = completeMessage[5];
-</SPAN><SPAN><A CLASS="LN" NAME="128">  128   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="129">  129   </A>                <A HREF="novatel_c.html#fcn_updateStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_updateStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">updateStatus</FONT></A>(completeMessage);
-</SPAN><SPAN><A CLASS="LN" NAME="130">  130   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="131">  131   </A>                <SPAN CLASS="KW">switch</SPAN> (shTemp.usData) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="132">  132   </A>                    <SPAN CLASS="KW">case</SPAN> BEST_POS_ID:
-</SPAN><SPAN><A CLASS="LN" NAME="133">  133   </A>                        <A HREF="novatel_c.html#fcn_updatePositionData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_updatePositionData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">updatePositionData</FONT></A>(completeMessage);
-</SPAN><SPAN><A CLASS="LN" NAME="134">  134   </A>                        <SPAN CLASS="KW">break</SPAN>;
-</SPAN><SPAN><A CLASS="LN" NAME="135">  135   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="136">  136   </A>                    <SPAN CLASS="KW">case</SPAN> BEST_VEL_ID:
-</SPAN><SPAN><A CLASS="LN" NAME="137">  137   </A>                        <A HREF="novatel_c.html#fcn_updateVelocityData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_updateVelocityData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">updateVelocityData</FONT></A>(completeMessage);
-</SPAN><SPAN><A CLASS="LN" NAME="138">  138   </A>                        <SPAN CLASS="KW">break</SPAN>;
-</SPAN><SPAN><A CLASS="LN" NAME="139">  139   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="140">  140   </A>                    <SPAN CLASS="KW">case</SPAN> TIME_ID:
-</SPAN><SPAN><A CLASS="LN" NAME="141">  141   </A>                        <A HREF="novatel_c.html#fcn_updateTimeData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_updateTimeData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">updateTimeData</FONT></A>(completeMessage);
-</SPAN><SPAN><A CLASS="LN" NAME="142">  142   </A>                        <SPAN CLASS="KW">break</SPAN>;
-</SPAN><SPAN><A CLASS="LN" NAME="143">  143   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="144">  144   </A>                    <SPAN CLASS="KW">default</SPAN>:
-</SPAN><SPAN><A CLASS="LN" NAME="145">  145   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="146">  146   </A>                        <SPAN CLASS="KW">break</SPAN>;
-</SPAN><SPAN><A CLASS="LN" NAME="147">  147   </A>                <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="148">  148   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="149">  149   </A>                currentStatus = DECO_START;
-</SPAN><SPAN><A CLASS="LN" NAME="150">  150   </A>                <SPAN CLASS="KW">break</SPAN>;
-</SPAN><SPAN><A CLASS="LN" NAME="151">  151   </A>        <B>}</B> <SPAN CLASS="CT">// switch</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="152">  152   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="153">  153   </A>    <B>}</B><SPAN CLASS="CT">// while bytes received</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="154">  154   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="155">  155   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="156">  156   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="157">  157   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_updateStatus">updateStatus</A>(uint8_t* completeMessage) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="158">  158   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>.percentUsed = completeMessage[12];
-</SPAN><SPAN><A CLASS="LN" NAME="159">  159   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlNovatelStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlNovatelStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlNovatelStatus</FONT></A>.timeStatus = completeMessage[13];
-</SPAN><SPAN><A CLASS="LN" NAME="160">  160   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlNovatelStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlNovatelStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlNovatelStatus</FONT></A>.receiverStatus = (uint32_t) completeMessage[20];
-</SPAN><SPAN><A CLASS="LN" NAME="161">  161   </A><B>}</B>;
-</SPAN><SPAN><A CLASS="LN" NAME="162">  162   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="163">  163   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_updatePositionData">updatePositionData</A>(uint8_t* completeMessage) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="164">  164   </A>    t64IntToChar temp;
-</SPAN><SPAN><A CLASS="LN" NAME="165">  165   </A>    temp.liData = <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.time_usec;
-</SPAN><SPAN><A CLASS="LN" NAME="166">  166   </A>    temp.shData[0]++;
-</SPAN><SPAN><A CLASS="LN" NAME="167">  167   </A>    <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.time_usec = temp.liData;
-</SPAN><SPAN><A CLASS="LN" NAME="168">  168   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="169">  169   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlNovatelStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlNovatelStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlNovatelStatus</FONT></A>.solStatus = (uint8_t) <A HREF="novatel_c.html#fcn_charsToUint32" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToUint32');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToUint32</FONT></A>(&amp;(completeMessage[28]));
-</SPAN><SPAN><A CLASS="LN" NAME="170">  170   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlNovatelStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlNovatelStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlNovatelStatus</FONT></A>.posType = (uint8_t) <A HREF="novatel_c.html#fcn_charsToUint32" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToUint32');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToUint32</FONT></A>(&amp;(completeMessage[32]));
-</SPAN><SPAN><A CLASS="LN" NAME="171">  171   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="172">  172   </A>    <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.fix_type = ((<A HREF="mavlinkSensorMcu_c.html#var_mlNovatelStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlNovatelStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlNovatelStatus</FONT></A>.posType&gt;15) &amp;&amp; (<A HREF="mavlinkSensorMcu_c.html#var_mlNovatelStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlNovatelStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlNovatelStatus</FONT></A>.solStatus == 0))?
-</SPAN><SPAN><A CLASS="LN" NAME="173">  173   </A>        GPS_FIX_3D : GPS_FIX_NONE;
-</SPAN><SPAN><A CLASS="LN" NAME="174">  174   </A>    
-</SPAN><SPAN><A CLASS="LN" NAME="175">  175   </A>    <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lat = FLOAT_TO_INT32_1E7((<SPAN CLASS="DT">float</SPAN>) <A HREF="novatel_c.html#fcn_charsToDouble" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToDouble');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToDouble</FONT></A>(&amp;(completeMessage[36])));
-</SPAN><SPAN><A CLASS="LN" NAME="176">  176   </A>    <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lon = FLOAT_TO_INT32_1E7((<SPAN CLASS="DT">float</SPAN>) <A HREF="novatel_c.html#fcn_charsToDouble" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToDouble');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToDouble</FONT></A>(&amp;(completeMessage[44])));
-</SPAN><SPAN><A CLASS="LN" NAME="177">  177   </A>    <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.alt = FLOAT_TO_INT32_1E3((<SPAN CLASS="DT">float</SPAN>) <A HREF="novatel_c.html#fcn_charsToDouble" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToDouble');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToDouble</FONT></A>(&amp;(completeMessage[52])));
-</SPAN><SPAN><A CLASS="LN" NAME="178">  178   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="179">  179   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlNovatelStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlNovatelStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlNovatelStatus</FONT></A>.posSolAge = <A HREF="novatel_c.html#fcn_charsToFloat" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToFloat');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToFloat</FONT></A>(&amp;(completeMessage[88]));
-</SPAN><SPAN><A CLASS="LN" NAME="180">  180   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="181">  181   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>.visSat = completeMessage[92];
-</SPAN><SPAN><A CLASS="LN" NAME="182">  182   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>.useSat = completeMessage[93];
-</SPAN><SPAN><A CLASS="LN" NAME="183">  183   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>.GppGl = completeMessage[94];
-</SPAN><SPAN><A CLASS="LN" NAME="184">  184   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="185">  185   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>.sigUsedMask = completeMessage[99];
-</SPAN><SPAN><A CLASS="LN" NAME="186">  186   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="187">  187   </A><B>}</B>;
-</SPAN><SPAN><A CLASS="LN" NAME="188">  188   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="189">  189   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_updateVelocityData">updateVelocityData</A>(uint8_t* completeMessage) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="190">  190   </A>    t64IntToChar temp;
-</SPAN><SPAN><A CLASS="LN" NAME="191">  191   </A>    temp.liData = <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.time_usec;
-</SPAN><SPAN><A CLASS="LN" NAME="192">  192   </A>    temp.shData[1]++;
-</SPAN><SPAN><A CLASS="LN" NAME="193">  193   </A>    <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.time_usec = temp.liData;
-</SPAN><SPAN><A CLASS="LN" NAME="194">  194   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="195">  195   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlNovatelStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlNovatelStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlNovatelStatus</FONT></A>.velType = (uint8_t) <A HREF="novatel_c.html#fcn_charsToUint32" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToUint32');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToUint32</FONT></A>(&amp;(completeMessage[32]));
-</SPAN><SPAN><A CLASS="LN" NAME="196">  196   </A>    <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.vel = FLOAT_TO_UINT16_1E2((<SPAN CLASS="DT">float</SPAN>) <A HREF="novatel_c.html#fcn_charsToDouble" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToDouble');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToDouble</FONT></A>(&amp;(completeMessage[44])));
-</SPAN><SPAN><A CLASS="LN" NAME="197">  197   </A>    <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.cog = FLOAT_TO_UINT16_1E2((<SPAN CLASS="DT">float</SPAN>) <A HREF="novatel_c.html#fcn_charsToDouble" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToDouble');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToDouble</FONT></A>(&amp;(completeMessage[52])));
-</SPAN><SPAN><A CLASS="LN" NAME="198">  198   </A><B>}</B>;
-</SPAN><SPAN><A CLASS="LN" NAME="199">  199   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="200">  200   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_updateTimeData">updateTimeData</A>(uint8_t* completeMessage) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="201">  201   </A>     t64IntToChar temp;
-</SPAN><SPAN><A CLASS="LN" NAME="202">  202   </A>    temp.liData = <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.time_usec;
-</SPAN><SPAN><A CLASS="LN" NAME="203">  203   </A>    temp.shData[2]++;
-</SPAN><SPAN><A CLASS="LN" NAME="204">  204   </A>    <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.time_usec = temp.liData;
-</SPAN><SPAN><A CLASS="LN" NAME="205">  205   </A>    
-</SPAN><SPAN><A CLASS="LN" NAME="206">  206   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>.clockStat = (uint8_t) <A HREF="novatel_c.html#fcn_charsToUint32" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToUint32');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToUint32</FONT></A>(&amp;(completeMessage[28]));
-</SPAN><SPAN><A CLASS="LN" NAME="207">  207   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>.year = (uint8_t) (<A HREF="novatel_c.html#fcn_charsToUint32" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToUint32');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToUint32</FONT></A>(&amp;(completeMessage[56])) - 2000);
-</SPAN><SPAN><A CLASS="LN" NAME="208">  208   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>.month = completeMessage[60];
-</SPAN><SPAN><A CLASS="LN" NAME="209">  209   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>.day = completeMessage[61];
-</SPAN><SPAN><A CLASS="LN" NAME="210">  210   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>.hour = completeMessage[62];
-</SPAN><SPAN><A CLASS="LN" NAME="211">  211   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>.min = completeMessage[63];
-</SPAN><SPAN><A CLASS="LN" NAME="212">  212   </A>    <A HREF="mavlinkSensorMcu_c.html#var_mlGpsDateTime" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsDateTime');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsDateTime</FONT></A>.sec = (uint8_t) (<A HREF="novatel_c.html#fcn_charsToUint32" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToUint32');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToUint32</FONT></A>(&amp;(completeMessage[64])) / 1000);
-</SPAN><SPAN><A CLASS="LN" NAME="213">  213   </A><B>}</B>;
-</SPAN><SPAN><A CLASS="LN" NAME="214">  214   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="215">  215   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_getGpsMainData">getGpsMainData</A>(<SPAN CLASS="DT">float</SPAN>* data) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="216">  216   </A>    data[0] = INT32_1E7_TO_FLOAT(<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lat);
-</SPAN><SPAN><A CLASS="LN" NAME="217">  217   </A>    data[1] = INT32_1E7_TO_FLOAT(<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.lon);
-</SPAN><SPAN><A CLASS="LN" NAME="218">  218   </A>    data[2] = INT32_1E3_TO_FLOAT(<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.alt);
-</SPAN><SPAN><A CLASS="LN" NAME="219">  219   </A>    data[3] = UINT16_1E2_TO_FLOAT(<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.cog);
-</SPAN><SPAN><A CLASS="LN" NAME="220">  220   </A>    data[4] = UINT16_1E2_TO_FLOAT(<A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlGpsData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlGpsData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlGpsData</FONT></A>.vel);
-</SPAN><SPAN><A CLASS="LN" NAME="221">  221   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="222">  222   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="223">  223   </A><SPAN CLASS="CT">// Functions provided by NOVATEL</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="224">  224   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="225">  225   </A><SPAN CLASS="CT">/* --------------------------------------------------------------------------</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="226">  226   </A><SPAN CLASS="CT">Calculate a CRC value to be used by CRC calculation functions.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="227">  227   </A><SPAN CLASS="CT"> -------------------------------------------------------------------------- */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="228">  228   </A>uint32_t <A NAME="fcn_CRC32Value">CRC32Value</A>(int32_t i) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="229">  229   </A>    int32_t j;
-</SPAN><SPAN><A CLASS="LN" NAME="230">  230   </A>    uint32_t ulCRC;
-</SPAN><SPAN><A CLASS="LN" NAME="231">  231   </A>    ulCRC = i;
-</SPAN><SPAN><A CLASS="LN" NAME="232">  232   </A>    <SPAN CLASS="KW">for</SPAN> (j = 8; j &gt; 0; j--) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="233">  233   </A>        <SPAN CLASS="KW">if</SPAN> (ulCRC &amp; 1) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="234">  234   </A>            ulCRC = (ulCRC &gt;&gt; 1) ^ CRC32_POLYNOMIAL;
-</SPAN><SPAN><A CLASS="LN" NAME="235">  235   </A>        <B>}</B> <SPAN CLASS="KW">else</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="236">  236   </A>            ulCRC &gt;&gt;= 1;
-</SPAN><SPAN><A CLASS="LN" NAME="237">  237   </A>        <B>}</B> <SPAN CLASS="CT">// if</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="238">  238   </A>    <B>}</B> <SPAN CLASS="CT">// for</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="239">  239   </A>    <SPAN CLASS="KW">return</SPAN> ulCRC;
-</SPAN><SPAN><A CLASS="LN" NAME="240">  240   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="241">  241   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="242">  242   </A><SPAN CLASS="CT">/* --------------------------------------------------------------------------</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="243">  243   </A><SPAN CLASS="CT">Calculates the CRC-32 of a block of data all at once</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="244">  244   </A><SPAN CLASS="CT">-------------------------------------------------------------------------- */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="245">  245   </A>uint32_t <A NAME="fcn_CalculateBlockCRC32">CalculateBlockCRC32</A>(
-</SPAN><SPAN><A CLASS="LN" NAME="246">  246   </A>    uint32_t ulCount, <SPAN CLASS="CT">/* Number of bytes in the data block */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="247">  247   </A>    uint8_t *ucBuffer) <B>{</B> <SPAN CLASS="CT">/* Data block */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="248">  248   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="249">  249   </A>    uint32_t ulTemp1;
-</SPAN><SPAN><A CLASS="LN" NAME="250">  250   </A>    uint32_t ulTemp2;
-</SPAN><SPAN><A CLASS="LN" NAME="251">  251   </A>    uint32_t ulCRC = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="252">  252   </A>    <SPAN CLASS="KW">while</SPAN> (ulCount-- != 0) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="253">  253   </A>        ulTemp1 = (ulCRC &gt;&gt; 8) &amp; 0x00FFFFFFL;
-</SPAN><SPAN><A CLASS="LN" NAME="254">  254   </A>        ulTemp2 = <A HREF="novatel_c.html#fcn_CRC32Value" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_CRC32Value');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">CRC32Value</FONT></A>(((int32_t) ulCRC ^ *ucBuffer++) &amp; 0xff);
-</SPAN><SPAN><A CLASS="LN" NAME="255">  255   </A>        ulCRC = ulTemp1 ^ ulTemp2;
-</SPAN><SPAN><A CLASS="LN" NAME="256">  256   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="257">  257   </A>    <SPAN CLASS="KW">return</SPAN> ( ulCRC);
-</SPAN><SPAN><A CLASS="LN" NAME="258">  258   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="259">  259   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="260">  260   </A>uint16_t <A NAME="fcn_charsToUint16">charsToUint16</A>(uint8_t* data) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="261">  261   </A>    tUnsignedShortToChar shTemp;
-</SPAN><SPAN><A CLASS="LN" NAME="262">  262   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="263">  263   </A>    shTemp.chData[0] = data[0];
-</SPAN><SPAN><A CLASS="LN" NAME="264">  264   </A>    shTemp.chData[1] = data[1];
-</SPAN><SPAN><A CLASS="LN" NAME="265">  265   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="266">  266   </A>    <SPAN CLASS="KW">return</SPAN> shTemp.usData;
-</SPAN><SPAN><A CLASS="LN" NAME="267">  267   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="268">  268   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="269">  269   </A>uint32_t <A NAME="fcn_charsToUint32">charsToUint32</A>(uint8_t* data) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="270">  270   </A>    tUnsignedIntToChar inTemp;
-</SPAN><SPAN><A CLASS="LN" NAME="271">  271   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="272">  272   </A>    inTemp.chData[0] = data[0];
-</SPAN><SPAN><A CLASS="LN" NAME="273">  273   </A>    inTemp.chData[1] = data[1];
-</SPAN><SPAN><A CLASS="LN" NAME="274">  274   </A>    inTemp.chData[2] = data[2];
-</SPAN><SPAN><A CLASS="LN" NAME="275">  275   </A>    inTemp.chData[3] = data[3];
-</SPAN><SPAN><A CLASS="LN" NAME="276">  276   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="277">  277   </A>    <SPAN CLASS="KW">return</SPAN> inTemp.uiData;
-</SPAN><SPAN><A CLASS="LN" NAME="278">  278   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="279">  279   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="280">  280   </A><SPAN CLASS="DT">float</SPAN> <A NAME="fcn_charsToFloat">charsToFloat</A>(uint8_t* data) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="281">  281   </A>    tFloatToChar flTemp;
-</SPAN><SPAN><A CLASS="LN" NAME="282">  282   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="283">  283   </A>    flTemp.chData[0] = data[0];
-</SPAN><SPAN><A CLASS="LN" NAME="284">  284   </A>    flTemp.chData[1] = data[1];
-</SPAN><SPAN><A CLASS="LN" NAME="285">  285   </A>    flTemp.chData[2] = data[2];
-</SPAN><SPAN><A CLASS="LN" NAME="286">  286   </A>    flTemp.chData[3] = data[3];
-</SPAN><SPAN><A CLASS="LN" NAME="287">  287   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="288">  288   </A>    <SPAN CLASS="KW">return</SPAN> flTemp.flData;
-</SPAN><SPAN><A CLASS="LN" NAME="289">  289   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="290">  290   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="291">  291   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">if</SPAN> _TESTING_
-</SPAN><SPAN><A CLASS="LN" NAME="292">  292   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="293">  293   </A><SPAN CLASS="DT">double</SPAN> <A NAME="fcn_charsToDouble">charsToDouble</A>(uint8_t* data) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="294">  294   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">else</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="295">  295   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="296">  296   </A><SPAN CLASS="DT">long</SPAN> <SPAN CLASS="DT">double</SPAN> <A HREF="novatel_c.html#fcn_charsToDouble" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_charsToDouble');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">charsToDouble</FONT></A>(uint8_t* data) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="297">  297   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="298">  298   </A>    tDoubleToChar doTemp;
-</SPAN><SPAN><A CLASS="LN" NAME="299">  299   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="300">  300   </A>    doTemp.chData[0] = data[0];
-</SPAN><SPAN><A CLASS="LN" NAME="301">  301   </A>    doTemp.chData[1] = data[1];
-</SPAN><SPAN><A CLASS="LN" NAME="302">  302   </A>    doTemp.chData[2] = data[2];
-</SPAN><SPAN><A CLASS="LN" NAME="303">  303   </A>    doTemp.chData[3] = data[3];
-</SPAN><SPAN><A CLASS="LN" NAME="304">  304   </A>    doTemp.chData[4] = data[4];
-</SPAN><SPAN><A CLASS="LN" NAME="305">  305   </A>    doTemp.chData[5] = data[5];
-</SPAN><SPAN><A CLASS="LN" NAME="306">  306   </A>    doTemp.chData[6] = data[6];
-</SPAN><SPAN><A CLASS="LN" NAME="307">  307   </A>    doTemp.chData[7] = data[7];
-</SPAN><SPAN><A CLASS="LN" NAME="308">  308   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="309">  309   </A>    <SPAN CLASS="KW">return</SPAN> doTemp.doData;
-</SPAN><SPAN><A CLASS="LN" NAME="310">  310   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="311">  311   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="312">  312   </A>
-</SPAN></PRE>
-</TD></TR></TABLE>
-</P>
-</BODY>
-</HTML>
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td>1</td><td><span class="pp">#include "novatel.h"</span></td></tr>
+<tr name="2" id="2">
+<td>2</td><td><span class="pp">#include "mavlinkControlMcu.h"</span></td></tr>
+<tr name="3" id="3">
+<td>3</td><td></td></tr>
+<tr name="4" id="4">
+<td>4</td><td><span class="pp">#if</span> <a id="4c5" class="tk">_TESTING_</a></td></tr>
+<tr name="5" id="5">
+<td>5</td><td><a id="5c1" class="tk">mavlink_gps_raw_t</a> <a id="5c19" class="tk">mlGpsData</a>;</td></tr>
+<tr name="6" id="6">
+<td>6</td><td><a id="6c1" class="tk">mavlink_gps_date_time_t</a> <a id="6c25" class="tk">mlGpsDateTime</a>;</td></tr>
+<tr name="7" id="7">
+<td>7</td><td><a id="7c1" class="tk">mavlink_status_gps_t</a> <a id="7c22" class="tk">mlGpsStatus</a>;</td></tr>
+<tr name="8" id="8">
+<td>8</td><td><a id="8c1" class="tk">mavlink_novatel_diag_t</a> <a id="8c24" class="tk">mlNovatelStatus</a>;</td></tr>
+<tr name="9" id="9">
+<td>9</td><td><span class="pp">#endif</span></td></tr>
+<tr name="10" id="10">
+<td>10</td><td></td></tr>
+<tr name="11" id="11">
+<td>11</td><td><span class="kw">void</span> <a id="11c6" class="tk">gpsInit</a>(<span class="kw">void</span>) <span class="br">{</span></td></tr>
+<tr name="12" id="12">
+<td>12</td><td></td></tr>
+<tr name="13" id="13">
+<td>13</td><td><span class="pp">#if</span> <a id="13c5" class="tk">_TESTING_</a></td></tr>
+<tr name="14" id="14">
+<td>14</td><td>    <a id="14c5" class="tk">memset</a>(&amp;<a id="14c13" class="tk">mlGpsData</a>, 0, <span class="kw">sizeof</span> (<a id="14c35" class="tk">mavlink_gps_raw_t</a>));</td></tr>
+<tr name="15" id="15">
+<td>15</td><td>    <a id="15c5" class="tk">memset</a>(&amp;<a id="15c13" class="tk">mlGpsDateTime</a>, 0, <span class="kw">sizeof</span> (<a id="15c39" class="tk">mavlink_gps_date_time_t</a>));</td></tr>
+<tr name="16" id="16">
+<td>16</td><td>    <a id="16c5" class="tk">memset</a>(&amp;<a id="16c13" class="tk">mlGpsStatus</a>, 0, <span class="kw">sizeof</span> (<a id="16c37" class="tk">mavlink_status_gps_t</a>));</td></tr>
+<tr name="17" id="17">
+<td>17</td><td>    <a id="17c5" class="tk">memset</a>(&amp;<a id="17c13" class="tk">mlNovatelStatus</a>, 0, <span class="kw">sizeof</span> (<a id="17c41" class="tk">mavlink_novatel_diag_t</a>));</td></tr>
+<tr name="18" id="18">
+<td>18</td><td></td></tr>
+<tr name="19" id="19">
+<td>19</td><td><span class="pp">#else</span></td></tr>
+<tr name="20" id="20">
+<td>20</td><td>    </td></tr>
+<tr name="21" id="21">
+<td>21</td><td>    <a id="21c5" class="tk">uartBufferInit</a>();</td></tr>
+<tr name="22" id="22">
+<td>22</td><td><span class="pp">#endif</span></td></tr>
+<tr name="23" id="23">
+<td>23</td><td><span class="br">}</span></td></tr>
+<tr name="24" id="24">
+<td>24</td><td></td></tr>
+<tr name="25" id="25">
+<td>25</td><td><span class="kw">void</span> <a id="25c6" class="tk">gpsParse</a>(<a id="25c15" class="tk">uint8_t</a>* <a id="25c24" class="tk">dataStream</a>) <span class="br">{</span></td></tr>
+<tr name="26" id="26">
+<td>26</td><td></td></tr>
+<tr name="27" id="27">
+<td>27</td><td>    <a id="27c5" class="tk">DECODER_STATUS</a> <span class="kw">static</span> <a id="27c27" class="tk">currentStatus</a> = <a id="27c43" class="tk">DECO_START</a>;</td></tr>
+<tr name="28" id="28">
+<td>28</td><td></td></tr>
+<tr name="29" id="29">
+<td>29</td><td>    <a id="29c5" class="tk">uint16_t</a> <span class="kw">static</span> <a id="29c21" class="tk">payloadLen</a> = 0;</td></tr>
+<tr name="30" id="30">
+<td>30</td><td>    <a id="30c5" class="tk">uint16_t</a> <span class="kw">static</span> <a id="30c21" class="tk">bytesRead</a> = 0;</td></tr>
+<tr name="31" id="31">
+<td>31</td><td>    <a id="31c5" class="tk">uint8_t</a> <span class="kw">static</span> <a id="31c20" class="tk">completeMessage</a> [<a id="31c37" class="tk">MSIZE</a>];</td></tr>
+<tr name="32" id="32">
+<td>32</td><td>    <a id="32c5" class="tk">uint16_t</a> <span class="kw">static</span> <a id="32c21" class="tk">totalBytes</a> = 0;</td></tr>
+<tr name="33" id="33">
+<td>33</td><td>    <a id="33c5" class="tk">uint32_t</a> <span class="kw">static</span> <a id="33c21" class="tk">currentChecksum</a> = 0;</td></tr>
+<tr name="34" id="34">
+<td>34</td><td></td></tr>
+<tr name="35" id="35">
+<td>35</td><td>    <a id="35c5" class="tk">uint8_t</a> <a id="35c13" class="tk">ii</a> = 1;</td></tr>
+<tr name="36" id="36">
+<td>36</td><td>    <a id="36c5" class="tk">uint8_t</a> <a id="36c13" class="tk">bytesReceived</a> = <a id="36c29" class="tk">dataStream</a>[0];</td></tr>
+<tr name="37" id="37">
+<td>37</td><td>    <a id="37c5" class="tk">tUnsignedShortToChar</a> <a id="37c26" class="tk">shTemp</a>;</td></tr>
+<tr name="38" id="38">
+<td>38</td><td></td></tr>
+<tr name="39" id="39">
+<td>39</td><td>    <span class="kw">while</span> (<a id="39c12" class="tk">bytesReceived</a>) <span class="br">{</span></td></tr>
+<tr name="40" id="40">
+<td>40</td><td>        <span class="kw">switch</span> (<a id="40c17" class="tk">currentStatus</a>) <span class="br">{</span></td></tr>
+<tr name="41" id="41">
+<td>41</td><td></td></tr>
+<tr name="42" id="42">
+<td>42</td><td>            <span class="kw">case</span> <a id="42c18" class="tk">DECO_START</a>:</td></tr>
+<tr name="43" id="43">
+<td>43</td><td>                <a id="43c17" class="tk">payloadLen</a> = 0;</td></tr>
+<tr name="44" id="44">
+<td>44</td><td>                <a id="44c17" class="tk">bytesRead</a> = 0;</td></tr>
+<tr name="45" id="45">
+<td>45</td><td>                <a id="45c17" class="tk">totalBytes</a> = 0;</td></tr>
+<tr name="46" id="46">
+<td>46</td><td>                <a id="46c17" class="tk">currentChecksum</a> = 0;</td></tr>
+<tr name="47" id="47">
+<td>47</td><td></td></tr>
+<tr name="48" id="48">
+<td>48</td><td>                <span class="kw">while</span> (<a id="48c24" class="tk">dataStream</a>[<a id="48c35" class="tk">ii</a>] != <a id="48c42" class="tk">HEAD1</a>) <span class="br">{</span></td></tr>
+<tr name="49" id="49">
+<td>49</td><td>                    <a id="49c21" class="tk">ii</a>++;</td></tr>
+<tr name="50" id="50">
+<td>50</td><td>                    <a id="50c21" class="tk">bytesReceived</a>--;</td></tr>
+<tr name="51" id="51">
+<td>51</td><td></td></tr>
+<tr name="52" id="52">
+<td>52</td><td>                    <span class="kw">if</span> (<a id="52c25" class="tk">bytesReceived</a> == 0) <span class="br">{</span></td></tr>
+<tr name="53" id="53">
+<td>53</td><td>                        <span class="kw">return</span>;</td></tr>
+<tr name="54" id="54">
+<td>54</td><td>                    <span class="br">}</span></td></tr>
+<tr name="55" id="55">
+<td>55</td><td>                <span class="br">}</span></td></tr>
+<tr name="56" id="56">
+<td>56</td><td>                <a id="56c17" class="tk">completeMessage</a>[<a id="56c33" class="tk">bytesRead</a>++] = <a id="56c48" class="tk">HEAD1</a>;</td></tr>
+<tr name="57" id="57">
+<td>57</td><td>                <a id="57c17" class="tk">ii</a>++;</td></tr>
+<tr name="58" id="58">
+<td>58</td><td>                <a id="58c17" class="tk">bytesReceived</a>--;</td></tr>
+<tr name="59" id="59">
+<td>59</td><td>                <a id="59c17" class="tk">currentStatus</a> = <a id="59c33" class="tk">DECO_RECEIVING_HEADER2</a>;</td></tr>
+<tr name="60" id="60">
+<td>60</td><td>                <span class="kw">break</span>;</td></tr>
+<tr name="61" id="61">
+<td>61</td><td></td></tr>
+<tr name="62" id="62">
+<td>62</td><td>            <span class="kw">case</span> <a id="62c18" class="tk">DECO_RECEIVING_HEADER2</a>:</td></tr>
+<tr name="63" id="63">
+<td>63</td><td>                <span class="kw">if</span> (<a id="63c21" class="tk">dataStream</a>[<a id="63c32" class="tk">ii</a>] != <a id="63c39" class="tk">HEAD2</a>) <span class="br">{</span></td></tr>
+<tr name="64" id="64">
+<td>64</td><td>                    <a id="64c21" class="tk">currentStatus</a> = <a id="64c37" class="tk">DECO_START</a>;</td></tr>
+<tr name="65" id="65">
+<td>65</td><td></td></tr>
+<tr name="66" id="66">
+<td>66</td><td>                <span class="br">}</span> <span class="kw">else</span> <span class="br">{</span></td></tr>
+<tr name="67" id="67">
+<td>67</td><td>                    <a id="67c21" class="tk">ii</a>++;</td></tr>
+<tr name="68" id="68">
+<td>68</td><td>                    <a id="68c21" class="tk">bytesReceived</a>--;</td></tr>
+<tr name="69" id="69">
+<td>69</td><td>                    <a id="69c21" class="tk">completeMessage</a>[<a id="69c37" class="tk">bytesRead</a>++] = <a id="69c52" class="tk">HEAD2</a>;</td></tr>
+<tr name="70" id="70">
+<td>70</td><td>                    <a id="70c21" class="tk">currentStatus</a> = <a id="70c37" class="tk">DECO_RECEIVING_HEADER3</a>;</td></tr>
+<tr name="71" id="71">
+<td>71</td><td>                <span class="br">}</span></td></tr>
+<tr name="72" id="72">
+<td>72</td><td></td></tr>
+<tr name="73" id="73">
+<td>73</td><td>                <span class="kw">break</span>;</td></tr>
+<tr name="74" id="74">
+<td>74</td><td></td></tr>
+<tr name="75" id="75">
+<td>75</td><td>            <span class="kw">case</span> <a id="75c18" class="tk">DECO_RECEIVING_HEADER3</a>:</td></tr>
+<tr name="76" id="76">
+<td>76</td><td>                <span class="kw">if</span> (<a id="76c21" class="tk">dataStream</a>[<a id="76c32" class="tk">ii</a>] != <a id="76c39" class="tk">HEAD3</a>) <span class="br">{</span></td></tr>
+<tr name="77" id="77">
+<td>77</td><td>                    <a id="77c21" class="tk">currentStatus</a> = <a id="77c37" class="tk">DECO_START</a>;</td></tr>
+<tr name="78" id="78">
+<td>78</td><td>                    <a id="78c21" class="tk">bytesRead</a> = 0;</td></tr>
+<tr name="79" id="79">
+<td>79</td><td>                <span class="br">}</span> <span class="kw">else</span> <span class="br">{</span></td></tr>
+<tr name="80" id="80">
+<td>80</td><td>                    <a id="80c21" class="tk">ii</a>++;</td></tr>
+<tr name="81" id="81">
+<td>81</td><td>                    <a id="81c21" class="tk">bytesReceived</a>--;</td></tr>
+<tr name="82" id="82">
+<td>82</td><td>                    <a id="82c21" class="tk">completeMessage</a>[<a id="82c37" class="tk">bytesRead</a>++] = <a id="82c52" class="tk">HEAD3</a>;</td></tr>
+<tr name="83" id="83">
+<td>83</td><td>                    <a id="83c21" class="tk">currentStatus</a> = <a id="83c37" class="tk">DECO_RECEIVING_HEADER</a>;</td></tr>
+<tr name="84" id="84">
+<td>84</td><td>                <span class="br">}</span></td></tr>
+<tr name="85" id="85">
+<td>85</td><td>                <span class="kw">break</span>;</td></tr>
+<tr name="86" id="86">
+<td>86</td><td></td></tr>
+<tr name="87" id="87">
+<td>87</td><td>            <span class="kw">case</span> <a id="87c18" class="tk">DECO_RECEIVING_HEADER</a>:</td></tr>
+<tr name="88" id="88">
+<td>88</td><td>                <span class="kw">while</span> ((<a id="88c25" class="tk">bytesReceived</a> &gt; 0) &amp;&amp; (<a id="88c48" class="tk">bytesRead</a> &lt; <a id="88c60" class="tk">HEAD_LEN</a>)) <span class="br">{</span></td></tr>
+<tr name="89" id="89">
+<td>89</td><td>                    <a id="89c21" class="tk">completeMessage</a>[<a id="89c37" class="tk">bytesRead</a>++] = <a id="89c52" class="tk">dataStream</a>[<a id="89c63" class="tk">ii</a>++];</td></tr>
+<tr name="90" id="90">
+<td>90</td><td>                    <a id="90c21" class="tk">bytesReceived</a>--;</td></tr>
+<tr name="91" id="91">
+<td>91</td><td>                <span class="br">}</span></td></tr>
+<tr name="92" id="92">
+<td>92</td><td></td></tr>
+<tr name="93" id="93">
+<td>93</td><td>                <span class="kw">if</span> (<a id="93c21" class="tk">bytesRead</a> == <a id="93c34" class="tk">HEAD_LEN</a>) <span class="br">{</span></td></tr>
+<tr name="94" id="94">
+<td>94</td><td>                    <a id="94c21" class="tk">currentStatus</a> = <a id="94c37" class="tk">DECO_RECEIVING_PAYLOAD</a>;</td></tr>
+<tr name="95" id="95">
+<td>95</td><td></td></tr>
+<tr name="96" id="96">
+<td>96</td><td>                    <a id="96c21" class="tk">payloadLen</a> = <a id="96c34" class="tk">charsToUint16</a>(&amp;(<a id="96c50" class="tk">completeMessage</a>[8]));</td></tr>
+<tr name="97" id="97">
+<td>97</td><td></td></tr>
+<tr name="98" id="98">
+<td>98</td><td>                    <a id="98c21" class="tk">totalBytes</a> = <a id="98c34" class="tk">payloadLen</a> + <a id="98c47" class="tk">HEAD_LEN</a> + 4; <span class="ct">// this includes the 4 CRC bytes</span></td></tr>
+<tr name="99" id="99">
+<td>99</td><td>                <span class="br">}</span></td></tr>
+<tr name="100" id="100">
+<td>100</td><td>                <span class="kw">break</span>;</td></tr>
+<tr name="101" id="101">
+<td>101</td><td></td></tr>
+<tr name="102" id="102">
+<td>102</td><td></td></tr>
+<tr name="103" id="103">
+<td>103</td><td>            <span class="kw">case</span> <a id="103c18" class="tk">DECO_RECEIVING_PAYLOAD</a>:</td></tr>
+<tr name="104" id="104">
+<td>104</td><td>                <span class="kw">while</span> ((<a id="104c25" class="tk">bytesReceived</a> &gt; 0) &amp;&amp; (<a id="104c48" class="tk">bytesRead</a> &lt; <a id="104c60" class="tk">totalBytes</a>)) <span class="br">{</span></td></tr>
+<tr name="105" id="105">
+<td>105</td><td>                    <a id="105c21" class="tk">completeMessage</a>[<a id="105c37" class="tk">bytesRead</a>++] = <a id="105c52" class="tk">dataStream</a>[<a id="105c63" class="tk">ii</a>++];</td></tr>
+<tr name="106" id="106">
+<td>106</td><td>                    <a id="106c21" class="tk">bytesReceived</a>--;</td></tr>
+<tr name="107" id="107">
+<td>107</td><td>                <span class="br">}</span></td></tr>
+<tr name="108" id="108">
+<td>108</td><td></td></tr>
+<tr name="109" id="109">
+<td>109</td><td>                <span class="kw">if</span> (<a id="109c21" class="tk">bytesRead</a> == <a id="109c34" class="tk">totalBytes</a>) <span class="br">{</span></td></tr>
+<tr name="110" id="110">
+<td>110</td><td>                    <a id="110c21" class="tk">currentStatus</a> = <a id="110c37" class="tk">DECO_COMPUTING_CRC</a>;</td></tr>
+<tr name="111" id="111">
+<td>111</td><td></td></tr>
+<tr name="112" id="112">
+<td>112</td><td>                    <a id="112c21" class="tk">currentChecksum</a> = <a id="112c39" class="tk">charsToUint32</a>(&amp;(<a id="112c55" class="tk">completeMessage</a>[<a id="112c71" class="tk">bytesRead</a> - 4]));</td></tr>
+<tr name="113" id="113">
+<td>113</td><td>                <span class="br">}</span></td></tr>
+<tr name="114" id="114">
+<td>114</td><td>                <span class="kw">break</span>;</td></tr>
+<tr name="115" id="115">
+<td>115</td><td></td></tr>
+<tr name="116" id="116">
+<td>116</td><td>            <span class="kw">case</span> <a id="116c18" class="tk">DECO_COMPUTING_CRC</a>:</td></tr>
+<tr name="117" id="117">
+<td>117</td><td>                <span class="kw">if</span> (<a id="117c21" class="tk">CalculateBlockCRC32</a>(<a id="117c41" class="tk">bytesRead</a> - 4, <a id="117c56" class="tk">completeMessage</a>) == <a id="117c76" class="tk">currentChecksum</a>) <span class="br">{</span></td></tr>
+<tr name="118" id="118">
+<td>118</td><td>                    <a id="118c21" class="tk">currentStatus</a> = <a id="118c37" class="tk">DECO_DECODING</a>;</td></tr>
+<tr name="119" id="119">
+<td>119</td><td>                <span class="br">}</span> <span class="kw">else</span> <span class="br">{</span></td></tr>
+<tr name="120" id="120">
+<td>120</td><td>                    <a id="120c21" class="tk">mlNovatelStatus</a>.<a id="120c37" class="tk">csFails</a>++;</td></tr>
+<tr name="121" id="121">
+<td>121</td><td>                    <a id="121c21" class="tk">currentStatus</a> = <a id="121c37" class="tk">DECO_START</a>;</td></tr>
+<tr name="122" id="122">
+<td>122</td><td>                <span class="br">}</span></td></tr>
+<tr name="123" id="123">
+<td>123</td><td>                <span class="kw">break</span>;</td></tr>
+<tr name="124" id="124">
+<td>124</td><td></td></tr>
+<tr name="125" id="125">
+<td>125</td><td>            <span class="kw">case</span> <a id="125c18" class="tk">DECO_DECODING</a>:</td></tr>
+<tr name="126" id="126">
+<td>126</td><td>                <a id="126c17" class="tk">shTemp</a>.<a id="126c24" class="tk">chData</a>[0] = <a id="126c36" class="tk">completeMessage</a>[4];</td></tr>
+<tr name="127" id="127">
+<td>127</td><td>                <a id="127c17" class="tk">shTemp</a>.<a id="127c24" class="tk">chData</a>[1] = <a id="127c36" class="tk">completeMessage</a>[5];</td></tr>
+<tr name="128" id="128">
+<td>128</td><td></td></tr>
+<tr name="129" id="129">
+<td>129</td><td>                <a id="129c17" class="tk">updateStatus</a>(<a id="129c30" class="tk">completeMessage</a>);</td></tr>
+<tr name="130" id="130">
+<td>130</td><td></td></tr>
+<tr name="131" id="131">
+<td>131</td><td>                <span class="kw">switch</span> (<a id="131c25" class="tk">shTemp</a>.<a id="131c32" class="tk">usData</a>) <span class="br">{</span></td></tr>
+<tr name="132" id="132">
+<td>132</td><td>                    <span class="kw">case</span> <a id="132c26" class="tk">BEST_POS_ID</a>:</td></tr>
+<tr name="133" id="133">
+<td>133</td><td>                        <a id="133c25" class="tk">updatePositionData</a>(<a id="133c44" class="tk">completeMessage</a>);</td></tr>
+<tr name="134" id="134">
+<td>134</td><td>                        <span class="kw">break</span>;</td></tr>
+<tr name="135" id="135">
+<td>135</td><td></td></tr>
+<tr name="136" id="136">
+<td>136</td><td>                    <span class="kw">case</span> <a id="136c26" class="tk">BEST_VEL_ID</a>:</td></tr>
+<tr name="137" id="137">
+<td>137</td><td>                        <a id="137c25" class="tk">updateVelocityData</a>(<a id="137c44" class="tk">completeMessage</a>);</td></tr>
+<tr name="138" id="138">
+<td>138</td><td>                        <span class="kw">break</span>;</td></tr>
+<tr name="139" id="139">
+<td>139</td><td></td></tr>
+<tr name="140" id="140">
+<td>140</td><td>                    <span class="kw">case</span> <a id="140c26" class="tk">TIME_ID</a>:</td></tr>
+<tr name="141" id="141">
+<td>141</td><td>                        <a id="141c25" class="tk">updateTimeData</a>(<a id="141c40" class="tk">completeMessage</a>);</td></tr>
+<tr name="142" id="142">
+<td>142</td><td>                        <span class="kw">break</span>;</td></tr>
+<tr name="143" id="143">
+<td>143</td><td></td></tr>
+<tr name="144" id="144">
+<td>144</td><td>                    <span class="kw">default</span>:</td></tr>
+<tr name="145" id="145">
+<td>145</td><td></td></tr>
+<tr name="146" id="146">
+<td>146</td><td>                        <span class="kw">break</span>;</td></tr>
+<tr name="147" id="147">
+<td>147</td><td>                <span class="br">}</span></td></tr>
+<tr name="148" id="148">
+<td>148</td><td></td></tr>
+<tr name="149" id="149">
+<td>149</td><td>                <a id="149c17" class="tk">currentStatus</a> = <a id="149c33" class="tk">DECO_START</a>;</td></tr>
+<tr name="150" id="150">
+<td>150</td><td>                <span class="kw">break</span>;</td></tr>
+<tr name="151" id="151">
+<td>151</td><td>        <span class="br">}</span> <span class="ct">// switch</span></td></tr>
+<tr name="152" id="152">
+<td>152</td><td></td></tr>
+<tr name="153" id="153">
+<td>153</td><td>    <span class="br">}</span><span class="ct">// while bytes received</span></td></tr>
+<tr name="154" id="154">
+<td>154</td><td></td></tr>
+<tr name="155" id="155">
+<td>155</td><td><span class="br">}</span></td></tr>
+<tr name="156" id="156">
+<td>156</td><td></td></tr>
+<tr name="157" id="157">
+<td>157</td><td><span class="kw">void</span> <a id="157c6" class="tk">updateStatus</a>(<a id="157c19" class="tk">uint8_t</a>* <a id="157c28" class="tk">completeMessage</a>) <span class="br">{</span></td></tr>
+<tr name="158" id="158">
+<td>158</td><td>    <a id="158c5" class="tk">mlGpsDateTime</a>.<a id="158c19" class="tk">percentUsed</a> = <a id="158c33" class="tk">completeMessage</a>[12];</td></tr>
+<tr name="159" id="159">
+<td>159</td><td>    <a id="159c5" class="tk">mlNovatelStatus</a>.<a id="159c21" class="tk">timeStatus</a> = <a id="159c34" class="tk">completeMessage</a>[13];</td></tr>
+<tr name="160" id="160">
+<td>160</td><td>    <a id="160c5" class="tk">mlNovatelStatus</a>.<a id="160c21" class="tk">receiverStatus</a> = (<a id="160c39" class="tk">uint32_t</a>) <a id="160c49" class="tk">completeMessage</a>[20];</td></tr>
+<tr name="161" id="161">
+<td>161</td><td><span class="br">}</span>;</td></tr>
+<tr name="162" id="162">
+<td>162</td><td></td></tr>
+<tr name="163" id="163">
+<td>163</td><td><span class="kw">void</span> <a id="163c6" class="tk">updatePositionData</a>(<a id="163c25" class="tk">uint8_t</a>* <a id="163c34" class="tk">completeMessage</a>) <span class="br">{</span></td></tr>
+<tr name="164" id="164">
+<td>164</td><td>    <a id="164c5" class="tk">t64IntToChar</a> <a id="164c18" class="tk">temp</a>;</td></tr>
+<tr name="165" id="165">
+<td>165</td><td>    <a id="165c5" class="tk">temp</a>.<a id="165c10" class="tk">liData</a> = <a id="165c19" class="tk">mlGpsData</a>.<a id="165c29" class="tk">time_usec</a>;</td></tr>
+<tr name="166" id="166">
+<td>166</td><td>    <a id="166c5" class="tk">temp</a>.<a id="166c10" class="tk">shData</a>[0]++;</td></tr>
+<tr name="167" id="167">
+<td>167</td><td>    <a id="167c5" class="tk">mlGpsData</a>.<a id="167c15" class="tk">time_usec</a> = <a id="167c27" class="tk">temp</a>.<a id="167c32" class="tk">liData</a>;</td></tr>
+<tr name="168" id="168">
+<td>168</td><td></td></tr>
+<tr name="169" id="169">
+<td>169</td><td>    <a id="169c5" class="tk">mlNovatelStatus</a>.<a id="169c21" class="tk">solStatus</a> = (<a id="169c34" class="tk">uint8_t</a>) <a id="169c43" class="tk">charsToUint32</a>(&amp;(<a id="169c59" class="tk">completeMessage</a>[28]));</td></tr>
+<tr name="170" id="170">
+<td>170</td><td>    <a id="170c5" class="tk">mlNovatelStatus</a>.<a id="170c21" class="tk">posType</a> = (<a id="170c32" class="tk">uint8_t</a>) <a id="170c41" class="tk">charsToUint32</a>(&amp;(<a id="170c57" class="tk">completeMessage</a>[32]));</td></tr>
+<tr name="171" id="171">
+<td>171</td><td></td></tr>
+<tr name="172" id="172">
+<td>172</td><td>    <a id="172c5" class="tk">mlGpsData</a>.<a id="172c15" class="tk">fix_type</a> = ((<a id="172c28" class="tk">mlNovatelStatus</a>.<a id="172c44" class="tk">posType</a>&gt;15) &amp;&amp; (<a id="172c60" class="tk">mlNovatelStatus</a>.<a id="172c76" class="tk">solStatus</a> == 0))?</td></tr>
+<tr name="173" id="173">
+<td>173</td><td>        <a id="173c9" class="tk">GPS_FIX_3D</a> : <a id="173c22" class="tk">GPS_FIX_NONE</a>;</td></tr>
+<tr name="174" id="174">
+<td>174</td><td>    </td></tr>
+<tr name="175" id="175">
+<td>175</td><td>    <a id="175c5" class="tk">mlGpsData</a>.<a id="175c15" class="tk">lat</a> = <a id="175c21" class="tk">FLOAT_TO_INT32_1E7</a>((<span class="kw">float</span>) <a id="175c48" class="tk">charsToDouble</a>(&amp;(<a id="175c64" class="tk">completeMessage</a>[36])));</td></tr>
+<tr name="176" id="176">
+<td>176</td><td>    <a id="176c5" class="tk">mlGpsData</a>.<a id="176c15" class="tk">lon</a> = <a id="176c21" class="tk">FLOAT_TO_INT32_1E7</a>((<span class="kw">float</span>) <a id="176c48" class="tk">charsToDouble</a>(&amp;(<a id="176c64" class="tk">completeMessage</a>[44])));</td></tr>
+<tr name="177" id="177">
+<td>177</td><td>    <a id="177c5" class="tk">mlGpsData</a>.<a id="177c15" class="tk">alt</a> = <a id="177c21" class="tk">FLOAT_TO_INT32_1E3</a>((<span class="kw">float</span>) <a id="177c48" class="tk">charsToDouble</a>(&amp;(<a id="177c64" class="tk">completeMessage</a>[52])));</td></tr>
+<tr name="178" id="178">
+<td>178</td><td></td></tr>
+<tr name="179" id="179">
+<td>179</td><td>    <a id="179c5" class="tk">mlNovatelStatus</a>.<a id="179c21" class="tk">posSolAge</a> = <a id="179c33" class="tk">charsToFloat</a>(&amp;(<a id="179c48" class="tk">completeMessage</a>[88]));</td></tr>
+<tr name="180" id="180">
+<td>180</td><td></td></tr>
+<tr name="181" id="181">
+<td>181</td><td>    <a id="181c5" class="tk">mlGpsDateTime</a>.<a id="181c19" class="tk">visSat</a> = <a id="181c28" class="tk">completeMessage</a>[92];</td></tr>
+<tr name="182" id="182">
+<td>182</td><td>    <a id="182c5" class="tk">mlGpsDateTime</a>.<a id="182c19" class="tk">useSat</a> = <a id="182c28" class="tk">completeMessage</a>[93];</td></tr>
+<tr name="183" id="183">
+<td>183</td><td>    <a id="183c5" class="tk">mlGpsDateTime</a>.<a id="183c19" class="tk">GppGl</a> = <a id="183c27" class="tk">completeMessage</a>[94];</td></tr>
+<tr name="184" id="184">
+<td>184</td><td></td></tr>
+<tr name="185" id="185">
+<td>185</td><td>    <a id="185c5" class="tk">mlGpsDateTime</a>.<a id="185c19" class="tk">sigUsedMask</a> = <a id="185c33" class="tk">completeMessage</a>[99];</td></tr>
+<tr name="186" id="186">
+<td>186</td><td></td></tr>
+<tr name="187" id="187">
+<td>187</td><td><span class="br">}</span>;</td></tr>
+<tr name="188" id="188">
+<td>188</td><td></td></tr>
+<tr name="189" id="189">
+<td>189</td><td><span class="kw">void</span> <a id="189c6" class="tk">updateVelocityData</a>(<a id="189c25" class="tk">uint8_t</a>* <a id="189c34" class="tk">completeMessage</a>) <span class="br">{</span></td></tr>
+<tr name="190" id="190">
+<td>190</td><td>    <a id="190c5" class="tk">t64IntToChar</a> <a id="190c18" class="tk">temp</a>;</td></tr>
+<tr name="191" id="191">
+<td>191</td><td>    <a id="191c5" class="tk">temp</a>.<a id="191c10" class="tk">liData</a> = <a id="191c19" class="tk">mlGpsData</a>.<a id="191c29" class="tk">time_usec</a>;</td></tr>
+<tr name="192" id="192">
+<td>192</td><td>    <a id="192c5" class="tk">temp</a>.<a id="192c10" class="tk">shData</a>[1]++;</td></tr>
+<tr name="193" id="193">
+<td>193</td><td>    <a id="193c5" class="tk">mlGpsData</a>.<a id="193c15" class="tk">time_usec</a> = <a id="193c27" class="tk">temp</a>.<a id="193c32" class="tk">liData</a>;</td></tr>
+<tr name="194" id="194">
+<td>194</td><td></td></tr>
+<tr name="195" id="195">
+<td>195</td><td>    <a id="195c5" class="tk">mlNovatelStatus</a>.<a id="195c21" class="tk">velType</a> = (<a id="195c32" class="tk">uint8_t</a>) <a id="195c41" class="tk">charsToUint32</a>(&amp;(<a id="195c57" class="tk">completeMessage</a>[32]));</td></tr>
+<tr name="196" id="196">
+<td>196</td><td>    <a id="196c5" class="tk">mlGpsData</a>.<a id="196c15" class="tk">vel</a> = <a id="196c21" class="tk">FLOAT_TO_UINT16_1E2</a>((<span class="kw">float</span>) <a id="196c49" class="tk">charsToDouble</a>(&amp;(<a id="196c65" class="tk">completeMessage</a>[44])));</td></tr>
+<tr name="197" id="197">
+<td>197</td><td>    <a id="197c5" class="tk">mlGpsData</a>.<a id="197c15" class="tk">cog</a> = <a id="197c21" class="tk">FLOAT_TO_UINT16_1E2</a>((<span class="kw">float</span>) <a id="197c49" class="tk">charsToDouble</a>(&amp;(<a id="197c65" class="tk">completeMessage</a>[52])));</td></tr>
+<tr name="198" id="198">
+<td>198</td><td><span class="br">}</span>;</td></tr>
+<tr name="199" id="199">
+<td>199</td><td></td></tr>
+<tr name="200" id="200">
+<td>200</td><td><span class="kw">void</span> <a id="200c6" class="tk">updateTimeData</a>(<a id="200c21" class="tk">uint8_t</a>* <a id="200c30" class="tk">completeMessage</a>) <span class="br">{</span></td></tr>
+<tr name="201" id="201">
+<td>201</td><td>     <a id="201c6" class="tk">t64IntToChar</a> <a id="201c19" class="tk">temp</a>;</td></tr>
+<tr name="202" id="202">
+<td>202</td><td>    <a id="202c5" class="tk">temp</a>.<a id="202c10" class="tk">liData</a> = <a id="202c19" class="tk">mlGpsData</a>.<a id="202c29" class="tk">time_usec</a>;</td></tr>
+<tr name="203" id="203">
+<td>203</td><td>    <a id="203c5" class="tk">temp</a>.<a id="203c10" class="tk">shData</a>[2]++;</td></tr>
+<tr name="204" id="204">
+<td>204</td><td>    <a id="204c5" class="tk">mlGpsData</a>.<a id="204c15" class="tk">time_usec</a> = <a id="204c27" class="tk">temp</a>.<a id="204c32" class="tk">liData</a>;</td></tr>
+<tr name="205" id="205">
+<td>205</td><td>    </td></tr>
+<tr name="206" id="206">
+<td>206</td><td>    <a id="206c5" class="tk">mlGpsDateTime</a>.<a id="206c19" class="tk">clockStat</a> = (<a id="206c32" class="tk">uint8_t</a>) <a id="206c41" class="tk">charsToUint32</a>(&amp;(<a id="206c57" class="tk">completeMessage</a>[28]));</td></tr>
+<tr name="207" id="207">
+<td>207</td><td>    <a id="207c5" class="tk">mlGpsDateTime</a>.<a id="207c19" class="tk">year</a> = (<a id="207c27" class="tk">uint8_t</a>) (<a id="207c37" class="tk">charsToUint32</a>(&amp;(<a id="207c53" class="tk">completeMessage</a>[56])) - 2000);</td></tr>
+<tr name="208" id="208">
+<td>208</td><td>    <a id="208c5" class="tk">mlGpsDateTime</a>.<a id="208c19" class="tk">month</a> = <a id="208c27" class="tk">completeMessage</a>[60];</td></tr>
+<tr name="209" id="209">
+<td>209</td><td>    <a id="209c5" class="tk">mlGpsDateTime</a>.<a id="209c19" class="tk">day</a> = <a id="209c25" class="tk">completeMessage</a>[61];</td></tr>
+<tr name="210" id="210">
+<td>210</td><td>    <a id="210c5" class="tk">mlGpsDateTime</a>.<a id="210c19" class="tk">hour</a> = <a id="210c26" class="tk">completeMessage</a>[62];</td></tr>
+<tr name="211" id="211">
+<td>211</td><td>    <a id="211c5" class="tk">mlGpsDateTime</a>.<a id="211c19" class="tk">min</a> = <a id="211c25" class="tk">completeMessage</a>[63];</td></tr>
+<tr name="212" id="212">
+<td>212</td><td>    <a id="212c5" class="tk">mlGpsDateTime</a>.<a id="212c19" class="tk">sec</a> = (<a id="212c26" class="tk">uint8_t</a>) (<a id="212c36" class="tk">charsToUint32</a>(&amp;(<a id="212c52" class="tk">completeMessage</a>[64])) / 1000);</td></tr>
+<tr name="213" id="213">
+<td>213</td><td><span class="br">}</span>;</td></tr>
+<tr name="214" id="214">
+<td>214</td><td></td></tr>
+<tr name="215" id="215">
+<td>215</td><td><span class="kw">void</span> <a id="215c6" class="tk">getGpsMainData</a>(<span class="kw">float</span>* <a id="215c28" class="tk">data</a>) <span class="br">{</span></td></tr>
+<tr name="216" id="216">
+<td>216</td><td>    <a id="216c5" class="tk">data</a>[0] = <a id="216c15" class="tk">INT32_1E7_TO_FLOAT</a>(<a id="216c34" class="tk">mlGpsData</a>.<a id="216c44" class="tk">lat</a>);</td></tr>
+<tr name="217" id="217">
+<td>217</td><td>    <a id="217c5" class="tk">data</a>[1] = <a id="217c15" class="tk">INT32_1E7_TO_FLOAT</a>(<a id="217c34" class="tk">mlGpsData</a>.<a id="217c44" class="tk">lon</a>);</td></tr>
+<tr name="218" id="218">
+<td>218</td><td>    <a id="218c5" class="tk">data</a>[2] = <a id="218c15" class="tk">INT32_1E3_TO_FLOAT</a>(<a id="218c34" class="tk">mlGpsData</a>.<a id="218c44" class="tk">alt</a>);</td></tr>
+<tr name="219" id="219">
+<td>219</td><td>    <a id="219c5" class="tk">data</a>[3] = <a id="219c15" class="tk">UINT16_1E2_TO_FLOAT</a>(<a id="219c35" class="tk">mlGpsData</a>.<a id="219c45" class="tk">cog</a>);</td></tr>
+<tr name="220" id="220">
+<td>220</td><td>    <a id="220c5" class="tk">data</a>[4] = <a id="220c15" class="tk">UINT16_1E2_TO_FLOAT</a>(<a id="220c35" class="tk">mlGpsData</a>.<a id="220c45" class="tk">vel</a>);</td></tr>
+<tr name="221" id="221">
+<td>221</td><td><span class="br">}</span></td></tr>
+<tr name="222" id="222">
+<td>222</td><td></td></tr>
+<tr name="223" id="223">
+<td>223</td><td><span class="ct">// Functions provided by NOVATEL</span></td></tr>
+<tr name="224" id="224">
+<td>224</td><td></td></tr>
+<tr name="225" id="225">
+<td>225</td><td><span class="ct">/* --------------------------------------------------------------------------</span></td></tr>
+<tr name="226" id="226">
+<td>226</td><td><span class="ct">Calculate a CRC value to be used by CRC calculation functions.</span></td></tr>
+<tr name="227" id="227">
+<td>227</td><td><span class="ct"> -------------------------------------------------------------------------- */</span></td></tr>
+<tr name="228" id="228">
+<td>228</td><td><a id="228c1" class="tk">uint32_t</a> <a id="228c10" class="tk">CRC32Value</a>(<a id="228c21" class="tk">int32_t</a> <a id="228c29" class="tk">i</a>) <span class="br">{</span></td></tr>
+<tr name="229" id="229">
+<td>229</td><td>    <a id="229c5" class="tk">int32_t</a> <a id="229c13" class="tk">j</a>;</td></tr>
+<tr name="230" id="230">
+<td>230</td><td>    <a id="230c5" class="tk">uint32_t</a> <a id="230c14" class="tk">ulCRC</a>;</td></tr>
+<tr name="231" id="231">
+<td>231</td><td>    <a id="231c5" class="tk">ulCRC</a> = <a id="231c13" class="tk">i</a>;</td></tr>
+<tr name="232" id="232">
+<td>232</td><td>    <span class="kw">for</span> (<a id="232c10" class="tk">j</a> = 8; <a id="232c17" class="tk">j</a> &gt; 0; <a id="232c24" class="tk">j</a>--) <span class="br">{</span></td></tr>
+<tr name="233" id="233">
+<td>233</td><td>        <span class="kw">if</span> (<a id="233c13" class="tk">ulCRC</a> &amp; 1) <span class="br">{</span></td></tr>
+<tr name="234" id="234">
+<td>234</td><td>            <a id="234c13" class="tk">ulCRC</a> = (<a id="234c22" class="tk">ulCRC</a> &gt;&gt; 1) ^ <a id="234c36" class="tk">CRC32_POLYNOMIAL</a>;</td></tr>
+<tr name="235" id="235">
+<td>235</td><td>        <span class="br">}</span> <span class="kw">else</span> <span class="br">{</span></td></tr>
+<tr name="236" id="236">
+<td>236</td><td>            <a id="236c13" class="tk">ulCRC</a> &gt;&gt;= 1;</td></tr>
+<tr name="237" id="237">
+<td>237</td><td>        <span class="br">}</span> <span class="ct">// if</span></td></tr>
+<tr name="238" id="238">
+<td>238</td><td>    <span class="br">}</span> <span class="ct">// for</span></td></tr>
+<tr name="239" id="239">
+<td>239</td><td>    <span class="kw">return</span> <a id="239c12" class="tk">ulCRC</a>;</td></tr>
+<tr name="240" id="240">
+<td>240</td><td><span class="br">}</span></td></tr>
+<tr name="241" id="241">
+<td>241</td><td></td></tr>
+<tr name="242" id="242">
+<td>242</td><td><span class="ct">/* --------------------------------------------------------------------------</span></td></tr>
+<tr name="243" id="243">
+<td>243</td><td><span class="ct">Calculates the CRC-32 of a block of data all at once</span></td></tr>
+<tr name="244" id="244">
+<td>244</td><td><span class="ct">-------------------------------------------------------------------------- */</span></td></tr>
+<tr name="245" id="245">
+<td>245</td><td><a id="245c1" class="tk">uint32_t</a> <a id="245c10" class="tk">CalculateBlockCRC32</a>(</td></tr>
+<tr name="246" id="246">
+<td>246</td><td>    <a id="246c5" class="tk">uint32_t</a> <a id="246c14" class="tk">ulCount</a>, <span class="ct">/* Number of bytes in the data block */</span></td></tr>
+<tr name="247" id="247">
+<td>247</td><td>    <a id="247c5" class="tk">uint8_t</a> *<a id="247c14" class="tk">ucBuffer</a>) <span class="br">{</span> <span class="ct">/* Data block */</span></td></tr>
+<tr name="248" id="248">
+<td>248</td><td></td></tr>
+<tr name="249" id="249">
+<td>249</td><td>    <a id="249c5" class="tk">uint32_t</a> <a id="249c14" class="tk">ulTemp1</a>;</td></tr>
+<tr name="250" id="250">
+<td>250</td><td>    <a id="250c5" class="tk">uint32_t</a> <a id="250c14" class="tk">ulTemp2</a>;</td></tr>
+<tr name="251" id="251">
+<td>251</td><td>    <a id="251c5" class="tk">uint32_t</a> <a id="251c14" class="tk">ulCRC</a> = 0;</td></tr>
+<tr name="252" id="252">
+<td>252</td><td>    <span class="kw">while</span> (<a id="252c12" class="tk">ulCount</a>-- != 0) <span class="br">{</span></td></tr>
+<tr name="253" id="253">
+<td>253</td><td>        <a id="253c9" class="tk">ulTemp1</a> = (<a id="253c20" class="tk">ulCRC</a> &gt;&gt; 8) &amp; 0x00FFFFFFL;</td></tr>
+<tr name="254" id="254">
+<td>254</td><td>        <a id="254c9" class="tk">ulTemp2</a> = <a id="254c19" class="tk">CRC32Value</a>(((<a id="254c32" class="tk">int32_t</a>) <a id="254c41" class="tk">ulCRC</a> ^ *<a id="254c50" class="tk">ucBuffer</a>++) &amp; 0xff);</td></tr>
+<tr name="255" id="255">
+<td>255</td><td>        <a id="255c9" class="tk">ulCRC</a> = <a id="255c17" class="tk">ulTemp1</a> ^ <a id="255c27" class="tk">ulTemp2</a>;</td></tr>
+<tr name="256" id="256">
+<td>256</td><td>    <span class="br">}</span></td></tr>
+<tr name="257" id="257">
+<td>257</td><td>    <span class="kw">return</span> ( <a id="257c14" class="tk">ulCRC</a>);</td></tr>
+<tr name="258" id="258">
+<td>258</td><td><span class="br">}</span></td></tr>
+<tr name="259" id="259">
+<td>259</td><td></td></tr>
+<tr name="260" id="260">
+<td>260</td><td><a id="260c1" class="tk">uint16_t</a> <a id="260c10" class="tk">charsToUint16</a>(<a id="260c24" class="tk">uint8_t</a>* <a id="260c33" class="tk">data</a>) <span class="br">{</span></td></tr>
+<tr name="261" id="261">
+<td>261</td><td>    <a id="261c5" class="tk">tUnsignedShortToChar</a> <a id="261c26" class="tk">shTemp</a>;</td></tr>
+<tr name="262" id="262">
+<td>262</td><td></td></tr>
+<tr name="263" id="263">
+<td>263</td><td>    <a id="263c5" class="tk">shTemp</a>.<a id="263c12" class="tk">chData</a>[0] = <a id="263c24" class="tk">data</a>[0];</td></tr>
+<tr name="264" id="264">
+<td>264</td><td>    <a id="264c5" class="tk">shTemp</a>.<a id="264c12" class="tk">chData</a>[1] = <a id="264c24" class="tk">data</a>[1];</td></tr>
+<tr name="265" id="265">
+<td>265</td><td></td></tr>
+<tr name="266" id="266">
+<td>266</td><td>    <span class="kw">return</span> <a id="266c12" class="tk">shTemp</a>.<a id="266c19" class="tk">usData</a>;</td></tr>
+<tr name="267" id="267">
+<td>267</td><td><span class="br">}</span></td></tr>
+<tr name="268" id="268">
+<td>268</td><td></td></tr>
+<tr name="269" id="269">
+<td>269</td><td><a id="269c1" class="tk">uint32_t</a> <a id="269c10" class="tk">charsToUint32</a>(<a id="269c24" class="tk">uint8_t</a>* <a id="269c33" class="tk">data</a>) <span class="br">{</span></td></tr>
+<tr name="270" id="270">
+<td>270</td><td>    <a id="270c5" class="tk">tUnsignedIntToChar</a> <a id="270c24" class="tk">inTemp</a>;</td></tr>
+<tr name="271" id="271">
+<td>271</td><td></td></tr>
+<tr name="272" id="272">
+<td>272</td><td>    <a id="272c5" class="tk">inTemp</a>.<a id="272c12" class="tk">chData</a>[0] = <a id="272c24" class="tk">data</a>[0];</td></tr>
+<tr name="273" id="273">
+<td>273</td><td>    <a id="273c5" class="tk">inTemp</a>.<a id="273c12" class="tk">chData</a>[1] = <a id="273c24" class="tk">data</a>[1];</td></tr>
+<tr name="274" id="274">
+<td>274</td><td>    <a id="274c5" class="tk">inTemp</a>.<a id="274c12" class="tk">chData</a>[2] = <a id="274c24" class="tk">data</a>[2];</td></tr>
+<tr name="275" id="275">
+<td>275</td><td>    <a id="275c5" class="tk">inTemp</a>.<a id="275c12" class="tk">chData</a>[3] = <a id="275c24" class="tk">data</a>[3];</td></tr>
+<tr name="276" id="276">
+<td>276</td><td></td></tr>
+<tr name="277" id="277">
+<td>277</td><td>    <span class="kw">return</span> <a id="277c12" class="tk">inTemp</a>.<a id="277c19" class="tk">uiData</a>;</td></tr>
+<tr name="278" id="278">
+<td>278</td><td><span class="br">}</span></td></tr>
+<tr name="279" id="279">
+<td>279</td><td></td></tr>
+<tr name="280" id="280">
+<td>280</td><td><span class="kw">float</span> <a id="280c7" class="tk">charsToFloat</a>(<a id="280c20" class="tk">uint8_t</a>* <a id="280c29" class="tk">data</a>) <span class="br">{</span></td></tr>
+<tr name="281" id="281">
+<td>281</td><td>    <a id="281c5" class="tk">tFloatToChar</a> <a id="281c18" class="tk">flTemp</a>;</td></tr>
+<tr name="282" id="282">
+<td>282</td><td></td></tr>
+<tr name="283" id="283">
+<td>283</td><td>    <a id="283c5" class="tk">flTemp</a>.<a id="283c12" class="tk">chData</a>[0] = <a id="283c24" class="tk">data</a>[0];</td></tr>
+<tr name="284" id="284">
+<td>284</td><td>    <a id="284c5" class="tk">flTemp</a>.<a id="284c12" class="tk">chData</a>[1] = <a id="284c24" class="tk">data</a>[1];</td></tr>
+<tr name="285" id="285">
+<td>285</td><td>    <a id="285c5" class="tk">flTemp</a>.<a id="285c12" class="tk">chData</a>[2] = <a id="285c24" class="tk">data</a>[2];</td></tr>
+<tr name="286" id="286">
+<td>286</td><td>    <a id="286c5" class="tk">flTemp</a>.<a id="286c12" class="tk">chData</a>[3] = <a id="286c24" class="tk">data</a>[3];</td></tr>
+<tr name="287" id="287">
+<td>287</td><td></td></tr>
+<tr name="288" id="288">
+<td>288</td><td>    <span class="kw">return</span> <a id="288c12" class="tk">flTemp</a>.<a id="288c19" class="tk">flData</a>;</td></tr>
+<tr name="289" id="289">
+<td>289</td><td><span class="br">}</span></td></tr>
+<tr name="290" id="290">
+<td>290</td><td></td></tr>
+<tr name="291" id="291">
+<td>291</td><td><span class="pp">#if</span> <a id="291c5" class="tk">_TESTING_</a></td></tr>
+<tr name="292" id="292">
+<td>292</td><td></td></tr>
+<tr name="293" id="293">
+<td>293</td><td><span class="kw">double</span> <a id="293c8" class="tk">charsToDouble</a>(<a id="293c22" class="tk">uint8_t</a>* <a id="293c31" class="tk">data</a>) <span class="br">{</span></td></tr>
+<tr name="294" id="294">
+<td>294</td><td><span class="pp">#else</span></td></tr>
+<tr name="295" id="295">
+<td>295</td><td></td></tr>
+<tr name="296" id="296">
+<td>296</td><td><span class="kw">long</span> <span class="kw">double</span> <a id="296c13" class="tk">charsToDouble</a>(<a id="296c27" class="tk">uint8_t</a>* <a id="296c36" class="tk">data</a>) <span class="br">{</span></td></tr>
+<tr name="297" id="297">
+<td>297</td><td><span class="pp">#endif</span></td></tr>
+<tr name="298" id="298">
+<td>298</td><td>    <a id="298c5" class="tk">tDoubleToChar</a> <a id="298c19" class="tk">doTemp</a>;</td></tr>
+<tr name="299" id="299">
+<td>299</td><td></td></tr>
+<tr name="300" id="300">
+<td>300</td><td>    <a id="300c5" class="tk">doTemp</a>.<a id="300c12" class="tk">chData</a>[0] = <a id="300c24" class="tk">data</a>[0];</td></tr>
+<tr name="301" id="301">
+<td>301</td><td>    <a id="301c5" class="tk">doTemp</a>.<a id="301c12" class="tk">chData</a>[1] = <a id="301c24" class="tk">data</a>[1];</td></tr>
+<tr name="302" id="302">
+<td>302</td><td>    <a id="302c5" class="tk">doTemp</a>.<a id="302c12" class="tk">chData</a>[2] = <a id="302c24" class="tk">data</a>[2];</td></tr>
+<tr name="303" id="303">
+<td>303</td><td>    <a id="303c5" class="tk">doTemp</a>.<a id="303c12" class="tk">chData</a>[3] = <a id="303c24" class="tk">data</a>[3];</td></tr>
+<tr name="304" id="304">
+<td>304</td><td>    <a id="304c5" class="tk">doTemp</a>.<a id="304c12" class="tk">chData</a>[4] = <a id="304c24" class="tk">data</a>[4];</td></tr>
+<tr name="305" id="305">
+<td>305</td><td>    <a id="305c5" class="tk">doTemp</a>.<a id="305c12" class="tk">chData</a>[5] = <a id="305c24" class="tk">data</a>[5];</td></tr>
+<tr name="306" id="306">
+<td>306</td><td>    <a id="306c5" class="tk">doTemp</a>.<a id="306c12" class="tk">chData</a>[6] = <a id="306c24" class="tk">data</a>[6];</td></tr>
+<tr name="307" id="307">
+<td>307</td><td>    <a id="307c5" class="tk">doTemp</a>.<a id="307c12" class="tk">chData</a>[7] = <a id="307c24" class="tk">data</a>[7];</td></tr>
+<tr name="308" id="308">
+<td>308</td><td></td></tr>
+<tr name="309" id="309">
+<td>309</td><td>    <span class="kw">return</span> <a id="309c12" class="tk">doTemp</a>.<a id="309c19" class="tk">doData</a>;</td></tr>
+<tr name="310" id="310">
+<td>310</td><td></td></tr>
+<tr name="311" id="311">
+<td>311</td><td><span class="br">}</span></td></tr>
+<tr name="312" id="312">
+<td>312</td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

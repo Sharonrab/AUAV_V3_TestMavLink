@@ -1,607 +1,1242 @@
-<HTML>
-<HEAD>
-<TITLE>RTW Report - AUAV3_AND_SLUGS_SENSOR_main.c </TITLE>
-<STYLE> .LN { font-style: italic; color: #888888 } </STYLE>
-<STYLE> .CT { font-style: italic; color: #117755 } </STYLE>
-<STYLE> .PP { font-style: bold;   color: #992211 } </STYLE>
-<STYLE> .KW { font-style: bold;   color: #112266 } </STYLE>
-<STYLE> .DT { font-style: bold;   color: #112266 } </STYLE>
-<SCRIPT language="JavaScript" type="text/javascript">
-<!--
-function rtwHilite(aBlock,aParentSID) {
- aParentSID = "";
- try {
-    window.location.href="matlab: if ~isempty(which('private/rtwbindmodel')), rtwprivate rtwbindmodel 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.mdl' 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.X' '', end; rtwprivate code2model "+aBlock+" "+aParentSID+";"
- } catch (e) { 
- }
-} // end rtwHilite
-//-->
-</SCRIPT>
-</HEAD>
-<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);} ">
-<P>
-<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
-<H4>File: <A HREF="file:///C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\AUAV3_AND_SLUGS_SENSOR.X\AUAV3_AND_SLUGS_SENSOR_main.c" TARGET="rtwreport_document_frame">C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\AUAV3_AND_SLUGS_SENSOR.X\AUAV3_AND_SLUGS_SENSOR_main.c</A></H4>
-<PRE id="RTWcode">
-<SPAN><A CLASS="LN" NAME="1">    1   </A><SPAN CLASS="CT">/*--------------------------------------------------------------</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="2">    2   </A><SPAN CLASS="CT"> *   MPLAB Blockset v3.35 for Microchip dsPIC chip family.     *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="3">    3   </A><SPAN CLASS="CT"> *   Generate .c and .h files from Simulink model              *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="4">    4   </A><SPAN CLASS="CT"> *   and compile to .elf, .hex and .cof file that can be       *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="5">    5   </A><SPAN CLASS="CT"> *   flashed into the microcontroller                          *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="6">    6   </A><SPAN CLASS="CT"> *                                                             *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="7">    7   </A><SPAN CLASS="CT"> *      The Microchip name PIC, dsPIC, and MPLAB are           *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="8">    8   </A><SPAN CLASS="CT"> *      registered trademarks of Microchip Technology Inc.     *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="9">    9   </A><SPAN CLASS="CT"> *      MATLAB, Simulink, and Real-Time Workshop are           *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="10">   10   </A><SPAN CLASS="CT"> *      registered trademarks of The MathWorks, Inc.           *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="11">   11   </A><SPAN CLASS="CT"> *                                                             *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="12">   12   </A><SPAN CLASS="CT"> *  Blockset authors: L.Kerhuel, U.Kumar                       *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="13">   13   </A><SPAN CLASS="CT"> *  Product Page:  http://www.microchip.com/SimulinkBlocks     *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="14">   14   </A><SPAN CLASS="CT"> *          Forum: http://www.microchip.com/forums/f192.aspx   *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="15">   15   </A><SPAN CLASS="CT"> *          Wiki:  http://microchip.wikidot.com/simulink:start *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="16">   16   </A><SPAN CLASS="CT"> *--------------------------------------------------------------</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="17">   17   </A><SPAN CLASS="CT"> *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="18">   18   </A><SPAN CLASS="CT"> * File: AUAV3_AND_SLUGS_SENSOR_main.c</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="19">   19   </A><SPAN CLASS="CT"> *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="20">   20   </A><SPAN CLASS="CT"> * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="21">   21   </A><SPAN CLASS="CT"> *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="22">   22   </A><SPAN CLASS="CT"> * Model version                        : 1.208</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="23">   23   </A><SPAN CLASS="CT"> * Real-Time Workshop file version      : 8.1 (R2011b) 08-Jul-2011</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="24">   24   </A><SPAN CLASS="CT"> * Real-Time Workshop file generated on : Wed Apr 27 00:58:09 2016</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="25">   25   </A><SPAN CLASS="CT"> * TLC version                          : 8.1 (Jul  9 2011)</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="26">   26   </A><SPAN CLASS="CT"> * C source code generated on           : Wed Apr 27 00:58:11 2016</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="27">   27   </A><SPAN CLASS="CT"> */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="28">   28   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="29">   29   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">define</SPAN> MCHP_isMainFile
-</SPAN><SPAN><A CLASS="LN" NAME="30">   30   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;AUAV3_AND_SLUGS_SENSOR.h&quot;</FONT>
-</SPAN><SPAN><A CLASS="LN" NAME="31">   31   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="32">   32   </A><SPAN CLASS="CT">/* Microchip Global Variables */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A><SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> MCHP_MCULoadResult[1] <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#fcn___attribute__" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var___attribute__');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">__attribute__</FONT></A> ((near));
-</SPAN><SPAN><A CLASS="LN" NAME="34">   34   </A><SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> MCHP_MCULoadPreviousTimerValue[1] <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#fcn___attribute__" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var___attribute__');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">__attribute__</FONT></A> ((near));
-</SPAN><SPAN><A CLASS="LN" NAME="35">   35   </A><SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> mcuFlagRecursion <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#fcn___attribute__" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var___attribute__');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">__attribute__</FONT></A> ((near)) = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="36">   36   </A><SPAN CLASS="KW">union</SPAN><B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="37">   37   </A>  <SPAN CLASS="KW">struct</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="38">   38   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task0 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="39">   39   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task1 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="40">   40   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task2 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="41">   41   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task3 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="42">   42   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task4 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="43">   43   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task5 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="44">   44   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task6 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="45">   45   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task7 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="46">   46   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task8 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="47">   47   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task9 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="48">   48   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task10 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="49">   49   </A>  <B>}</B> b;
-</SPAN><SPAN><A CLASS="LN" NAME="50">   50   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="51">   51   </A>  <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> val;
-</SPAN><SPAN><A CLASS="LN" NAME="52">   52   </A><B>}</B> <SPAN CLASS="DT">volatile</SPAN> <A NAME="var_MCHP_MCU_Overload">MCHP_MCU_Overload</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="53">   53   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="54">   54   </A><SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> BusyFlagRecursion <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#fcn___attribute__" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var___attribute__');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">__attribute__</FONT></A> ((near)) = 0;<SPAN CLASS="CT">/* Set Fuses Options */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="55">   55   </A>_FGS( GSSK_OFF ) ;
-</SPAN><SPAN><A CLASS="LN" NAME="56">   56   </A>_FOSCSEL( FNOSC_PRI ) ;
-</SPAN><SPAN><A CLASS="LN" NAME="57">   57   </A>_FOSC( POSCMD_XT &amp; OSCIOFNC_ON &amp; FCKSM_CSECME ) ;
-</SPAN><SPAN><A CLASS="LN" NAME="58">   58   </A>_FWDT( FWDTEN_OFF ) ;
-</SPAN><SPAN><A CLASS="LN" NAME="59">   59   </A>_FPOR( BOREN_OFF &amp; ALTI2C2_ON ) ;
-</SPAN><SPAN><A CLASS="LN" NAME="60">   60   </A>_FICD( ICS_PGD3 &amp; JTAGEN_OFF ) ;
-</SPAN><SPAN><A CLASS="LN" NAME="61">   61   </A>_FAS( APLK_OFF ) ;
-</SPAN><SPAN><A CLASS="LN" NAME="62">   62   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="63">   63   </A><SPAN CLASS="CT">/* Scheduler */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="64">   64   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn___attribute__">__attribute__</A>((__interrupt__,__auto_psv__)) _T2Interrupt(<SPAN CLASS="DT">void</SPAN>)
-</SPAN><SPAN><A CLASS="LN" NAME="65">   65   </A><B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="66">   66   </A>  asm(<FONT COLOR="#1122ff">&quot;INC _mcuFlagRecursion&quot;</FONT>);        <SPAN CLASS="CT">/* ensure atomic	mcuFlagRecursion++; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="67">   67   </A>  T3CONbits.TON = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="68">   68   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="69">   69   </A>  <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="70">   70   </A>    <SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> BusyFlagRecursion <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#fcn___attribute__" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var___attribute__');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">__attribute__</FONT></A> ((near));
-</SPAN><SPAN><A CLASS="LN" NAME="71">   71   </A>    <SPAN CLASS="KW">struct</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="72">   72   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags0 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="73">   73   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags1 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="74">   74   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags2 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="75">   75   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags3 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="76">   76   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags4 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="77">   77   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags5 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="78">   78   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags6 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="79">   79   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags7 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="80">   80   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags8 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="81">   81   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags9 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="82">   82   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags10 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="83">   83   </A>    <B>}</B> <SPAN CLASS="DT">static</SPAN> <SPAN CLASS="DT">volatile</SPAN> Overrun;
-</SPAN><SPAN><A CLASS="LN" NAME="84">   84   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="85">   85   </A>    <SPAN CLASS="KW">struct</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="86">   86   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags0 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="87">   87   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags1 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="88">   88   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags2 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="89">   89   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags3 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="90">   90   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags4 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="91">   91   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags5 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="92">   92   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags6 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="93">   93   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags7 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="94">   94   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags8 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="95">   95   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags9 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="96">   96   </A>      <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> Flags10 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="97">   97   </A>    <B>}</B> <SPAN CLASS="DT">static</SPAN> <SPAN CLASS="DT">volatile</SPAN> event;
-</SPAN><SPAN><A CLASS="LN" NAME="98">   98   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="99">   99   </A>    <SPAN CLASS="DT">static</SPAN> <A HREF="rtwtypes_h.html#type_int_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int_T</FONT></A> taskCounter[11] = <B>{</B> 0, 0, 0, 0, 0, 18, 16, 14, 12, 0, 0 <B>}</B>;
-</SPAN><SPAN><A CLASS="LN" NAME="100">  100   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="101">  101   </A>    _T2IF = 0;                         <SPAN CLASS="CT">/* Re-enable interrupt */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="102">  102   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="103">  103   </A>    <SPAN CLASS="CT">/* Set busy flag */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="104">  104   </A>    asm(<FONT COLOR="#1122ff">&quot;INC _BusyFlagRecursion&quot;</FONT>);     <SPAN CLASS="CT">/* ensure atomic operation for BusyFlagRecursion++; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="105">  105   </A>    LATAbits.LATA6 = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="106">  106   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="107">  107   </A>    <SPAN CLASS="CT">/* Check subrate overrun, set rates that need to run this time step*/</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="108">  108   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[1] == 0) <B>{</B>         <SPAN CLASS="CT">/* task dropped on overload */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="109">  109   </A>      event.Flags1 = 1U;
-</SPAN><SPAN><A CLASS="LN" NAME="110">  110   </A>      <SPAN CLASS="KW">if</SPAN> (Overrun.Flags1) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="111">  111   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#var_MCHP_MCU_Overload" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_MCU_Overload');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_MCU_Overload</FONT></A>.b.task1 = 1U;<SPAN CLASS="CT">/* Set overload bit for tid 1 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="112">  112   </A>      <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="113">  113   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="114">  114   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="115">  115   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[2] == 0) <B>{</B>         <SPAN CLASS="CT">/* task dropped on overload */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="116">  116   </A>      event.Flags2 = 1U;
-</SPAN><SPAN><A CLASS="LN" NAME="117">  117   </A>      <SPAN CLASS="KW">if</SPAN> (Overrun.Flags2) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="118">  118   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#var_MCHP_MCU_Overload" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_MCU_Overload');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_MCU_Overload</FONT></A>.b.task2 = 1U;<SPAN CLASS="CT">/* Set overload bit for tid 2 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="119">  119   </A>      <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="120">  120   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="121">  121   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="122">  122   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[3] == 0) <B>{</B>         <SPAN CLASS="CT">/* task dropped on overload */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="123">  123   </A>      event.Flags3 = 1U;
-</SPAN><SPAN><A CLASS="LN" NAME="124">  124   </A>      <SPAN CLASS="KW">if</SPAN> (Overrun.Flags3) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="125">  125   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#var_MCHP_MCU_Overload" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_MCU_Overload');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_MCU_Overload</FONT></A>.b.task3 = 1U;<SPAN CLASS="CT">/* Set overload bit for tid 3 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="126">  126   </A>      <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="127">  127   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="128">  128   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="129">  129   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[4] == 0) <B>{</B>         <SPAN CLASS="CT">/* task dropped on overload */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="130">  130   </A>      event.Flags4 = 1U;
-</SPAN><SPAN><A CLASS="LN" NAME="131">  131   </A>      <SPAN CLASS="KW">if</SPAN> (Overrun.Flags4) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="132">  132   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#var_MCHP_MCU_Overload" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_MCU_Overload');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_MCU_Overload</FONT></A>.b.task4 = 1U;<SPAN CLASS="CT">/* Set overload bit for tid 4 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="133">  133   </A>      <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="134">  134   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="135">  135   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="136">  136   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[5] == 0) <B>{</B>         <SPAN CLASS="CT">/* task dropped on overload */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="137">  137   </A>      event.Flags5 = 1U;
-</SPAN><SPAN><A CLASS="LN" NAME="138">  138   </A>      <SPAN CLASS="KW">if</SPAN> (Overrun.Flags5) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="139">  139   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#var_MCHP_MCU_Overload" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_MCU_Overload');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_MCU_Overload</FONT></A>.b.task5 = 1U;<SPAN CLASS="CT">/* Set overload bit for tid 5 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="140">  140   </A>      <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="141">  141   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="142">  142   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="143">  143   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[6] == 0) <B>{</B>         <SPAN CLASS="CT">/* task dropped on overload */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="144">  144   </A>      event.Flags6 = 1U;
-</SPAN><SPAN><A CLASS="LN" NAME="145">  145   </A>      <SPAN CLASS="KW">if</SPAN> (Overrun.Flags6) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="146">  146   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#var_MCHP_MCU_Overload" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_MCU_Overload');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_MCU_Overload</FONT></A>.b.task6 = 1U;<SPAN CLASS="CT">/* Set overload bit for tid 6 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="147">  147   </A>      <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="148">  148   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="149">  149   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="150">  150   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[7] == 0) <B>{</B>         <SPAN CLASS="CT">/* task dropped on overload */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="151">  151   </A>      event.Flags7 = 1U;
-</SPAN><SPAN><A CLASS="LN" NAME="152">  152   </A>      <SPAN CLASS="KW">if</SPAN> (Overrun.Flags7) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="153">  153   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#var_MCHP_MCU_Overload" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_MCU_Overload');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_MCU_Overload</FONT></A>.b.task7 = 1U;<SPAN CLASS="CT">/* Set overload bit for tid 7 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="154">  154   </A>      <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="155">  155   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="156">  156   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="157">  157   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[8] == 0) <B>{</B>         <SPAN CLASS="CT">/* task dropped on overload */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="158">  158   </A>      event.Flags8 = 1U;
-</SPAN><SPAN><A CLASS="LN" NAME="159">  159   </A>      <SPAN CLASS="KW">if</SPAN> (Overrun.Flags8) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="160">  160   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#var_MCHP_MCU_Overload" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_MCU_Overload');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_MCU_Overload</FONT></A>.b.task8 = 1U;<SPAN CLASS="CT">/* Set overload bit for tid 8 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="161">  161   </A>      <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="162">  162   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="163">  163   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="164">  164   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[9] == 0) <B>{</B>         <SPAN CLASS="CT">/* task dropped on overload */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="165">  165   </A>      event.Flags9 = 1U;
-</SPAN><SPAN><A CLASS="LN" NAME="166">  166   </A>      <SPAN CLASS="KW">if</SPAN> (Overrun.Flags9) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="167">  167   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#var_MCHP_MCU_Overload" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_MCU_Overload');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_MCU_Overload</FONT></A>.b.task9 = 1U;<SPAN CLASS="CT">/* Set overload bit for tid 9 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="168">  168   </A>      <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="169">  169   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="170">  170   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="171">  171   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[10] == 0) <B>{</B>        <SPAN CLASS="CT">/* task dropped on overload */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="172">  172   </A>      event.Flags10 = 1U;
-</SPAN><SPAN><A CLASS="LN" NAME="173">  173   </A>      <SPAN CLASS="KW">if</SPAN> (Overrun.Flags10) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="174">  174   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#var_MCHP_MCU_Overload" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_MCU_Overload');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_MCU_Overload</FONT></A>.b.task10 = 1U;<SPAN CLASS="CT">/* Set overload bit for tid 10 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="175">  175   </A>      <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="176">  176   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="177">  177   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="178">  178   </A>    <SPAN CLASS="CT">/* Update task internal counters */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="179">  179   </A>    taskCounter[1]++;
-</SPAN><SPAN><A CLASS="LN" NAME="180">  180   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[1] == 2) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="181">  181   </A>      taskCounter[1]= 0;
-</SPAN><SPAN><A CLASS="LN" NAME="182">  182   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="183">  183   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="184">  184   </A>    taskCounter[2]++;
-</SPAN><SPAN><A CLASS="LN" NAME="185">  185   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[2] == 5) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="186">  186   </A>      taskCounter[2]= 0;
-</SPAN><SPAN><A CLASS="LN" NAME="187">  187   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="188">  188   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="189">  189   </A>    taskCounter[3]++;
-</SPAN><SPAN><A CLASS="LN" NAME="190">  190   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[3] == 10) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="191">  191   </A>      taskCounter[3]= 0;
-</SPAN><SPAN><A CLASS="LN" NAME="192">  192   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="193">  193   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="194">  194   </A>    taskCounter[4]++;
-</SPAN><SPAN><A CLASS="LN" NAME="195">  195   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[4] == 20) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="196">  196   </A>      taskCounter[4]= 0;
-</SPAN><SPAN><A CLASS="LN" NAME="197">  197   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="198">  198   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="199">  199   </A>    taskCounter[5]++;
-</SPAN><SPAN><A CLASS="LN" NAME="200">  200   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[5] == 20) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="201">  201   </A>      taskCounter[5]= 0;
-</SPAN><SPAN><A CLASS="LN" NAME="202">  202   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="203">  203   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="204">  204   </A>    taskCounter[6]++;
-</SPAN><SPAN><A CLASS="LN" NAME="205">  205   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[6] == 20) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="206">  206   </A>      taskCounter[6]= 0;
-</SPAN><SPAN><A CLASS="LN" NAME="207">  207   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="208">  208   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="209">  209   </A>    taskCounter[7]++;
-</SPAN><SPAN><A CLASS="LN" NAME="210">  210   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[7] == 20) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="211">  211   </A>      taskCounter[7]= 0;
-</SPAN><SPAN><A CLASS="LN" NAME="212">  212   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="213">  213   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="214">  214   </A>    taskCounter[8]++;
-</SPAN><SPAN><A CLASS="LN" NAME="215">  215   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[8] == 20) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="216">  216   </A>      taskCounter[8]= 0;
-</SPAN><SPAN><A CLASS="LN" NAME="217">  217   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="218">  218   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="219">  219   </A>    taskCounter[9]++;
-</SPAN><SPAN><A CLASS="LN" NAME="220">  220   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[9] == 25) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="221">  221   </A>      taskCounter[9]= 0;
-</SPAN><SPAN><A CLASS="LN" NAME="222">  222   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="223">  223   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="224">  224   </A>    taskCounter[10]++;
-</SPAN><SPAN><A CLASS="LN" NAME="225">  225   </A>    <SPAN CLASS="KW">if</SPAN> (taskCounter[10] == 50) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="226">  226   </A>      taskCounter[10]= 0;
-</SPAN><SPAN><A CLASS="LN" NAME="227">  227   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="228">  228   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="229">  229   </A>    <SPAN CLASS="CT">/* Step the model for base rate */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="230">  230   </A>    <SPAN CLASS="CT">/* Start profiling task 0 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="231">  231   </A>    <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="232">  232   </A>      <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> Tmp_TMR;
-</SPAN><SPAN><A CLASS="LN" NAME="233">  233   </A>      Tmp_TMR = TMR3;
-</SPAN><SPAN><A CLASS="LN" NAME="234">  234   </A>      MCHP_MCULoadResult[0] = Tmp_TMR - MCHP_MCULoadPreviousTimerValue[0];
-</SPAN><SPAN><A CLASS="LN" NAME="235">  235   </A>      MCHP_MCULoadPreviousTimerValue[0] = Tmp_TMR;
-</SPAN><SPAN><A CLASS="LN" NAME="236">  236   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="237">  237   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="238">  238   </A>    <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step</FONT></A>(0);
-</SPAN><SPAN><A CLASS="LN" NAME="239">  239   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="240">  240   </A>    <SPAN CLASS="CT">/* Get model outputs here */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="241">  241   </A>    _T2IF = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="242">  242   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="243">  243   </A>    <SPAN CLASS="CT">/* Stop profiling task 0 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="244">  244   </A>    <SPAN CLASS="KW">if</SPAN> (_T2IF) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="245">  245   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _BusyFlagRecursion&quot;</FONT>);   <SPAN CLASS="CT">/* ensure atomic operation for BusyFlagRecursion--; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="246">  246   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _mcuFlagRecursion&quot;</FONT>);    <SPAN CLASS="CT">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="247">  247   </A>      <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#var_MCHP_MCU_Overload" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_MCU_Overload');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_MCU_Overload</FONT></A>.b.task0 = 1U;  <SPAN CLASS="CT">/* Set overload bit for tid 0 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="248">  248   </A>      <SPAN CLASS="KW">return</SPAN>;                          <SPAN CLASS="CT">/* Will re-enter into the interrupt */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="249">  249   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="250">  250   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="251">  251   </A>    <SPAN CLASS="CT">/* Re-Enable Interrupt */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="252">  252   </A>    _IPL0 = 1;                         <SPAN CLASS="CT">/* Set IPL to 1 (interrupt priority is 2) */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="253">  253   </A>    _IPL1 = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="254">  254   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="255">  255   </A>    <SPAN CLASS="CT">/* Step the model for any subrate */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="256">  256   </A>    <SPAN CLASS="CT">/* Handle Task 1 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="257">  257   </A>    <SPAN CLASS="KW">if</SPAN> (Overrun.Flags1) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="258">  258   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _BusyFlagRecursion&quot;</FONT>);   <SPAN CLASS="CT">/* ensure atomic operation for BusyFlagRecursion--; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="259">  259   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _mcuFlagRecursion&quot;</FONT>);    <SPAN CLASS="CT">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="260">  260   </A>      <SPAN CLASS="KW">return</SPAN>;                          <SPAN CLASS="CT">/* Priority to higher rate steps interrupted */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="261">  261   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="262">  262   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="263">  263   </A>    <SPAN CLASS="KW">if</SPAN> (event.Flags1) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="264">  264   </A>      Overrun.Flags1 = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="265">  265   </A>      <SPAN CLASS="KW">do</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="266">  266   </A>        <SPAN CLASS="CT">/* Start profiling task 1 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="267">  267   </A>        event.Flags1 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="268">  268   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step</FONT></A>(1);
-</SPAN><SPAN><A CLASS="LN" NAME="269">  269   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="270">  270   </A>        <SPAN CLASS="CT">/* Get model outputs here */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="271">  271   </A>        ;                              <SPAN CLASS="CT">/* Execute task tid 1 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="272">  272   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="273">  273   </A>        <SPAN CLASS="CT">/* Stop profiling task 1 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="274">  274   </A>      <B>}</B> <SPAN CLASS="KW">while</SPAN> (event.Flags1);
-</SPAN><SPAN><A CLASS="LN" NAME="275">  275   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="276">  276   </A>      Overrun.Flags1 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="277">  277   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="278">  278   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="279">  279   </A>    <SPAN CLASS="CT">/* Handle Task 2 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="280">  280   </A>    <SPAN CLASS="KW">if</SPAN> (Overrun.Flags2) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="281">  281   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _BusyFlagRecursion&quot;</FONT>);   <SPAN CLASS="CT">/* ensure atomic operation for BusyFlagRecursion--; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="282">  282   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _mcuFlagRecursion&quot;</FONT>);    <SPAN CLASS="CT">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="283">  283   </A>      <SPAN CLASS="KW">return</SPAN>;                          <SPAN CLASS="CT">/* Priority to higher rate steps interrupted */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="284">  284   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="285">  285   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="286">  286   </A>    <SPAN CLASS="KW">if</SPAN> (event.Flags2) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="287">  287   </A>      Overrun.Flags2 = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="288">  288   </A>      <SPAN CLASS="KW">do</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="289">  289   </A>        <SPAN CLASS="CT">/* Start profiling task 2 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="290">  290   </A>        event.Flags2 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="291">  291   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step</FONT></A>(2);
-</SPAN><SPAN><A CLASS="LN" NAME="292">  292   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="293">  293   </A>        <SPAN CLASS="CT">/* Get model outputs here */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="294">  294   </A>        ;                              <SPAN CLASS="CT">/* Execute task tid 2 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="295">  295   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="296">  296   </A>        <SPAN CLASS="CT">/* Stop profiling task 2 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="297">  297   </A>      <B>}</B> <SPAN CLASS="KW">while</SPAN> (event.Flags2);
-</SPAN><SPAN><A CLASS="LN" NAME="298">  298   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="299">  299   </A>      Overrun.Flags2 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="300">  300   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="301">  301   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="302">  302   </A>    <SPAN CLASS="CT">/* Handle Task 3 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="303">  303   </A>    <SPAN CLASS="KW">if</SPAN> (Overrun.Flags3) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="304">  304   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _BusyFlagRecursion&quot;</FONT>);   <SPAN CLASS="CT">/* ensure atomic operation for BusyFlagRecursion--; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="305">  305   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _mcuFlagRecursion&quot;</FONT>);    <SPAN CLASS="CT">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="306">  306   </A>      <SPAN CLASS="KW">return</SPAN>;                          <SPAN CLASS="CT">/* Priority to higher rate steps interrupted */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="307">  307   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="308">  308   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="309">  309   </A>    <SPAN CLASS="KW">if</SPAN> (event.Flags3) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="310">  310   </A>      Overrun.Flags3 = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="311">  311   </A>      <SPAN CLASS="KW">do</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="312">  312   </A>        <SPAN CLASS="CT">/* Start profiling task 3 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="313">  313   </A>        event.Flags3 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="314">  314   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step</FONT></A>(3);
-</SPAN><SPAN><A CLASS="LN" NAME="315">  315   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="316">  316   </A>        <SPAN CLASS="CT">/* Get model outputs here */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="317">  317   </A>        ;                              <SPAN CLASS="CT">/* Execute task tid 3 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="318">  318   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="319">  319   </A>        <SPAN CLASS="CT">/* Stop profiling task 3 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="320">  320   </A>      <B>}</B> <SPAN CLASS="KW">while</SPAN> (event.Flags3);
-</SPAN><SPAN><A CLASS="LN" NAME="321">  321   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="322">  322   </A>      Overrun.Flags3 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="323">  323   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="324">  324   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="325">  325   </A>    <SPAN CLASS="CT">/* Handle Task 4 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="326">  326   </A>    <SPAN CLASS="KW">if</SPAN> (Overrun.Flags4) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="327">  327   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _BusyFlagRecursion&quot;</FONT>);   <SPAN CLASS="CT">/* ensure atomic operation for BusyFlagRecursion--; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="328">  328   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _mcuFlagRecursion&quot;</FONT>);    <SPAN CLASS="CT">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="329">  329   </A>      <SPAN CLASS="KW">return</SPAN>;                          <SPAN CLASS="CT">/* Priority to higher rate steps interrupted */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="330">  330   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="331">  331   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="332">  332   </A>    <SPAN CLASS="KW">if</SPAN> (event.Flags4) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="333">  333   </A>      Overrun.Flags4 = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="334">  334   </A>      <SPAN CLASS="KW">do</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="335">  335   </A>        <SPAN CLASS="CT">/* Start profiling task 4 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="336">  336   </A>        event.Flags4 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="337">  337   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step</FONT></A>(4);
-</SPAN><SPAN><A CLASS="LN" NAME="338">  338   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="339">  339   </A>        <SPAN CLASS="CT">/* Get model outputs here */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="340">  340   </A>        ;                              <SPAN CLASS="CT">/* Execute task tid 4 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="341">  341   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="342">  342   </A>        <SPAN CLASS="CT">/* Stop profiling task 4 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="343">  343   </A>      <B>}</B> <SPAN CLASS="KW">while</SPAN> (event.Flags4);
-</SPAN><SPAN><A CLASS="LN" NAME="344">  344   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="345">  345   </A>      Overrun.Flags4 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="346">  346   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="347">  347   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="348">  348   </A>    <SPAN CLASS="CT">/* Handle Task 5 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="349">  349   </A>    <SPAN CLASS="KW">if</SPAN> (Overrun.Flags5) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="350">  350   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _BusyFlagRecursion&quot;</FONT>);   <SPAN CLASS="CT">/* ensure atomic operation for BusyFlagRecursion--; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="351">  351   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _mcuFlagRecursion&quot;</FONT>);    <SPAN CLASS="CT">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="352">  352   </A>      <SPAN CLASS="KW">return</SPAN>;                          <SPAN CLASS="CT">/* Priority to higher rate steps interrupted */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="353">  353   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="354">  354   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="355">  355   </A>    <SPAN CLASS="KW">if</SPAN> (event.Flags5) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="356">  356   </A>      Overrun.Flags5 = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="357">  357   </A>      <SPAN CLASS="KW">do</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="358">  358   </A>        <SPAN CLASS="CT">/* Start profiling task 5 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="359">  359   </A>        event.Flags5 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="360">  360   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step</FONT></A>(5);
-</SPAN><SPAN><A CLASS="LN" NAME="361">  361   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="362">  362   </A>        <SPAN CLASS="CT">/* Get model outputs here */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="363">  363   </A>        ;                              <SPAN CLASS="CT">/* Execute task tid 5 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="364">  364   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="365">  365   </A>        <SPAN CLASS="CT">/* Stop profiling task 5 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="366">  366   </A>      <B>}</B> <SPAN CLASS="KW">while</SPAN> (event.Flags5);
-</SPAN><SPAN><A CLASS="LN" NAME="367">  367   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="368">  368   </A>      Overrun.Flags5 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="369">  369   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="370">  370   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="371">  371   </A>    <SPAN CLASS="CT">/* Handle Task 6 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="372">  372   </A>    <SPAN CLASS="KW">if</SPAN> (Overrun.Flags6) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="373">  373   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _BusyFlagRecursion&quot;</FONT>);   <SPAN CLASS="CT">/* ensure atomic operation for BusyFlagRecursion--; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="374">  374   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _mcuFlagRecursion&quot;</FONT>);    <SPAN CLASS="CT">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="375">  375   </A>      <SPAN CLASS="KW">return</SPAN>;                          <SPAN CLASS="CT">/* Priority to higher rate steps interrupted */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="376">  376   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="377">  377   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="378">  378   </A>    <SPAN CLASS="KW">if</SPAN> (event.Flags6) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="379">  379   </A>      Overrun.Flags6 = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="380">  380   </A>      <SPAN CLASS="KW">do</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="381">  381   </A>        <SPAN CLASS="CT">/* Start profiling task 6 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="382">  382   </A>        event.Flags6 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="383">  383   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step</FONT></A>(6);
-</SPAN><SPAN><A CLASS="LN" NAME="384">  384   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="385">  385   </A>        <SPAN CLASS="CT">/* Get model outputs here */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="386">  386   </A>        ;                              <SPAN CLASS="CT">/* Execute task tid 6 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="387">  387   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="388">  388   </A>        <SPAN CLASS="CT">/* Stop profiling task 6 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="389">  389   </A>      <B>}</B> <SPAN CLASS="KW">while</SPAN> (event.Flags6);
-</SPAN><SPAN><A CLASS="LN" NAME="390">  390   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="391">  391   </A>      Overrun.Flags6 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="392">  392   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="393">  393   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="394">  394   </A>    <SPAN CLASS="CT">/* Handle Task 7 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="395">  395   </A>    <SPAN CLASS="KW">if</SPAN> (Overrun.Flags7) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="396">  396   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _BusyFlagRecursion&quot;</FONT>);   <SPAN CLASS="CT">/* ensure atomic operation for BusyFlagRecursion--; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="397">  397   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _mcuFlagRecursion&quot;</FONT>);    <SPAN CLASS="CT">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="398">  398   </A>      <SPAN CLASS="KW">return</SPAN>;                          <SPAN CLASS="CT">/* Priority to higher rate steps interrupted */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="399">  399   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="400">  400   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="401">  401   </A>    <SPAN CLASS="KW">if</SPAN> (event.Flags7) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="402">  402   </A>      Overrun.Flags7 = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="403">  403   </A>      <SPAN CLASS="KW">do</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="404">  404   </A>        <SPAN CLASS="CT">/* Start profiling task 7 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="405">  405   </A>        event.Flags7 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="406">  406   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step</FONT></A>(7);
-</SPAN><SPAN><A CLASS="LN" NAME="407">  407   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="408">  408   </A>        <SPAN CLASS="CT">/* Get model outputs here */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="409">  409   </A>        ;                              <SPAN CLASS="CT">/* Execute task tid 7 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="410">  410   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="411">  411   </A>        <SPAN CLASS="CT">/* Stop profiling task 7 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="412">  412   </A>      <B>}</B> <SPAN CLASS="KW">while</SPAN> (event.Flags7);
-</SPAN><SPAN><A CLASS="LN" NAME="413">  413   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="414">  414   </A>      Overrun.Flags7 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="415">  415   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="416">  416   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="417">  417   </A>    <SPAN CLASS="CT">/* Handle Task 8 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="418">  418   </A>    <SPAN CLASS="KW">if</SPAN> (Overrun.Flags8) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="419">  419   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _BusyFlagRecursion&quot;</FONT>);   <SPAN CLASS="CT">/* ensure atomic operation for BusyFlagRecursion--; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="420">  420   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _mcuFlagRecursion&quot;</FONT>);    <SPAN CLASS="CT">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="421">  421   </A>      <SPAN CLASS="KW">return</SPAN>;                          <SPAN CLASS="CT">/* Priority to higher rate steps interrupted */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="422">  422   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="423">  423   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="424">  424   </A>    <SPAN CLASS="KW">if</SPAN> (event.Flags8) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="425">  425   </A>      Overrun.Flags8 = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="426">  426   </A>      <SPAN CLASS="KW">do</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="427">  427   </A>        <SPAN CLASS="CT">/* Start profiling task 8 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="428">  428   </A>        event.Flags8 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="429">  429   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step</FONT></A>(8);
-</SPAN><SPAN><A CLASS="LN" NAME="430">  430   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="431">  431   </A>        <SPAN CLASS="CT">/* Get model outputs here */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="432">  432   </A>        ;                              <SPAN CLASS="CT">/* Execute task tid 8 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="433">  433   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="434">  434   </A>        <SPAN CLASS="CT">/* Stop profiling task 8 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="435">  435   </A>      <B>}</B> <SPAN CLASS="KW">while</SPAN> (event.Flags8);
-</SPAN><SPAN><A CLASS="LN" NAME="436">  436   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="437">  437   </A>      Overrun.Flags8 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="438">  438   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="439">  439   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="440">  440   </A>    <SPAN CLASS="CT">/* Handle Task 9 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="441">  441   </A>    <SPAN CLASS="KW">if</SPAN> (Overrun.Flags9) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="442">  442   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _BusyFlagRecursion&quot;</FONT>);   <SPAN CLASS="CT">/* ensure atomic operation for BusyFlagRecursion--; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="443">  443   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _mcuFlagRecursion&quot;</FONT>);    <SPAN CLASS="CT">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="444">  444   </A>      <SPAN CLASS="KW">return</SPAN>;                          <SPAN CLASS="CT">/* Priority to higher rate steps interrupted */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="445">  445   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="446">  446   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="447">  447   </A>    <SPAN CLASS="KW">if</SPAN> (event.Flags9) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="448">  448   </A>      Overrun.Flags9 = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="449">  449   </A>      <SPAN CLASS="KW">do</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="450">  450   </A>        <SPAN CLASS="CT">/* Start profiling task 9 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="451">  451   </A>        event.Flags9 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="452">  452   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step</FONT></A>(9);
-</SPAN><SPAN><A CLASS="LN" NAME="453">  453   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="454">  454   </A>        <SPAN CLASS="CT">/* Get model outputs here */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="455">  455   </A>        ;                              <SPAN CLASS="CT">/* Execute task tid 9 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="456">  456   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="457">  457   </A>        <SPAN CLASS="CT">/* Stop profiling task 9 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="458">  458   </A>      <B>}</B> <SPAN CLASS="KW">while</SPAN> (event.Flags9);
-</SPAN><SPAN><A CLASS="LN" NAME="459">  459   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="460">  460   </A>      Overrun.Flags9 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="461">  461   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="462">  462   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="463">  463   </A>    <SPAN CLASS="CT">/* Handle Task 10 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="464">  464   </A>    <SPAN CLASS="KW">if</SPAN> (Overrun.Flags10) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="465">  465   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _BusyFlagRecursion&quot;</FONT>);   <SPAN CLASS="CT">/* ensure atomic operation for BusyFlagRecursion--; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="466">  466   </A>      asm(<FONT COLOR="#1122ff">&quot;DEC _mcuFlagRecursion&quot;</FONT>);    <SPAN CLASS="CT">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="467">  467   </A>      <SPAN CLASS="KW">return</SPAN>;                          <SPAN CLASS="CT">/* Priority to higher rate steps interrupted */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="468">  468   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="469">  469   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="470">  470   </A>    <SPAN CLASS="KW">if</SPAN> (event.Flags10) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="471">  471   </A>      Overrun.Flags10 = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="472">  472   </A>      <SPAN CLASS="KW">do</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="473">  473   </A>        <SPAN CLASS="CT">/* Start profiling task 10 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="474">  474   </A>        event.Flags10 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="475">  475   </A>        <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step</FONT></A>(10);
-</SPAN><SPAN><A CLASS="LN" NAME="476">  476   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="477">  477   </A>        <SPAN CLASS="CT">/* Get model outputs here */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="478">  478   </A>        ;                              <SPAN CLASS="CT">/* Execute task tid 10 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="479">  479   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="480">  480   </A>        <SPAN CLASS="CT">/* Stop profiling task 10 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="481">  481   </A>      <B>}</B> <SPAN CLASS="KW">while</SPAN> (event.Flags10);
-</SPAN><SPAN><A CLASS="LN" NAME="482">  482   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="483">  483   </A>      Overrun.Flags10 = 0U;
-</SPAN><SPAN><A CLASS="LN" NAME="484">  484   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="485">  485   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="486">  486   </A>    _IPL1 = 1;
-</SPAN><SPAN><A CLASS="LN" NAME="487">  487   </A>    _IPL0 = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="488">  488   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="489">  489   </A>    <SPAN CLASS="CT">/* Release busy flag */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="490">  490   </A>    asm(<FONT COLOR="#1122ff">&quot;DEC _BusyFlagRecursion&quot;</FONT>);     <SPAN CLASS="CT">/* ensure atomic operation for BusyFlagRecursion--; */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="491">  491   </A>    <SPAN CLASS="KW">if</SPAN> (BusyFlagRecursion == 0)
-</SPAN><SPAN><A CLASS="LN" NAME="492">  492   </A>      LATAbits.LATA6 = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="493">  493   </A>  <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="494">  494   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="495">  495   </A>  asm(<FONT COLOR="#1122ff">&quot;DEC _mcuFlagRecursion&quot;</FONT>);        <SPAN CLASS="CT">/* ensure --mcuFlagRecursion is atomic */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="496">  496   </A>  <SPAN CLASS="KW">if</SPAN> (mcuFlagRecursion == 0) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="497">  497   </A>    T3CONbits.TON = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="498">  498   </A>  <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="499">  499   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="500">  500   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="501">  501   </A><SPAN CLASS="DT">int</SPAN> <A NAME="fcn_main">main</A>()
-</SPAN><SPAN><A CLASS="LN" NAME="502">  502   </A><B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="503">  503   </A>  <SPAN CLASS="CT">/* Initialize model */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="504">  504   </A>  <SPAN CLASS="CT">/* Start Clock Switching */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="505">  505   </A>  <SPAN CLASS="KW">if</SPAN> ((OSCCONbits.COSC &amp; 1) &amp;&amp; !(OSCCONbits.COSC &amp; 4))<SPAN CLASS="CT">/* check not already in PLL mode (0?1) */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="506">  506   </A>  <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="507">  507   </A>    __builtin_write_OSCCONH(0);        <SPAN CLASS="CT">/* Clock Switch to non PLL mode */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="508">  508   </A>    __builtin_write_OSCCONL(0x01);     <SPAN CLASS="CT">/* Start clock switching */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="509">  509   </A>    asm(<FONT COLOR="#1122ff">&quot;nop&quot;</FONT>);
-</SPAN><SPAN><A CLASS="LN" NAME="510">  510   </A>    asm(<FONT COLOR="#1122ff">&quot;nop&quot;</FONT>);
-</SPAN><SPAN><A CLASS="LN" NAME="511">  511   </A>    <SPAN CLASS="KW">while</SPAN> (OSCCONbits.COSC != 0) ;
-</SPAN><SPAN><A CLASS="LN" NAME="512">  512   </A>  <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="513">  513   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="514">  514   </A>  PLLFBD = 0xF3;                       <SPAN CLASS="CT">/* configure Oscillator PLL : PLLDIV */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="515">  515   </A>  CLKDIV = 0x05;                       <SPAN CLASS="CT">/* configure Oscillator PLL : FRCDIV ; PLLPOST ; PLLPRE */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="516">  516   </A>  __builtin_write_OSCCONH(3);          <SPAN CLASS="CT">/* Clock Switch to desired configuration */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="517">  517   </A>  __builtin_write_OSCCONL(0x01);       <SPAN CLASS="CT">/* Start clock switching */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="518">  518   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="519">  519   </A>  <SPAN CLASS="CT">/* Configure Pins as Analog or Digital */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="520">  520   </A>  ANSELA = 0xFFBF;
-</SPAN><SPAN><A CLASS="LN" NAME="521">  521   </A>  ANSELB = 0xFFC3;
-</SPAN><SPAN><A CLASS="LN" NAME="522">  522   </A>  ANSELE = 0xFFE2;
-</SPAN><SPAN><A CLASS="LN" NAME="523">  523   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="524">  524   </A>  <SPAN CLASS="CT">/* Configure Remappables Pins */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="525">  525   </A>  RPINR7 = 0x4840;
-</SPAN><SPAN><A CLASS="LN" NAME="526">  526   </A>  RPINR8 = 0x1F4B;
-</SPAN><SPAN><A CLASS="LN" NAME="527">  527   </A>  RPINR9 = 0x1E15;
-</SPAN><SPAN><A CLASS="LN" NAME="528">  528   </A>  RPINR20 = 0x53;
-</SPAN><SPAN><A CLASS="LN" NAME="529">  529   </A>  RPOR0 = 0x1D;
-</SPAN><SPAN><A CLASS="LN" NAME="530">  530   </A>  RPOR4 = 0x1100;
-</SPAN><SPAN><A CLASS="LN" NAME="531">  531   </A>  RPOR5 = 0x05;
-</SPAN><SPAN><A CLASS="LN" NAME="532">  532   </A>  RPOR12 = 0x1000;
-</SPAN><SPAN><A CLASS="LN" NAME="533">  533   </A>  RPOR15 = 0x0600;
-</SPAN><SPAN><A CLASS="LN" NAME="534">  534   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="535">  535   </A>  <SPAN CLASS="CT">/* Configure Digitals I/O directions */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="536">  536   </A>  TRISA = 0xFFBF;
-</SPAN><SPAN><A CLASS="LN" NAME="537">  537   </A>  TRISB = 0xFFC3;
-</SPAN><SPAN><A CLASS="LN" NAME="538">  538   </A>  TRISE = 0xFFEA;
-</SPAN><SPAN><A CLASS="LN" NAME="539">  539   </A>  TRISG = 0x7FFE;
-</SPAN><SPAN><A CLASS="LN" NAME="540">  540   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="541">  541   </A>  <SPAN CLASS="CT">/* Finish clock switching procedure */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="542">  542   </A>  <SPAN CLASS="KW">while</SPAN> (OSCCONbits.COSC != 3) ;       <SPAN CLASS="CT">/* Wait for Oscillator Stabilisation */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="543">  543   </A>  <SPAN CLASS="KW">while</SPAN> (OSCCONbits.LOCK != 1) ;       <SPAN CLASS="CT">/* Wait for PLL Stabilisation */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="544">  544   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="545">  545   </A>  <SPAN CLASS="CT">/* Initialize model */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="546">  546   </A>  <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_initialize" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_initialize');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_initialize</FONT></A>(1);
-</SPAN><SPAN><A CLASS="LN" NAME="547">  547   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="548">  548   </A>  <SPAN CLASS="CT">/* Configure Timers */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="549">  549   </A>  <SPAN CLASS="CT">/* Configure Timers */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="550">  550   </A>  <SPAN CLASS="CT">/* Configuration for TIMER 1 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="551">  551   </A>  PR1 = 0xFFFF;                        <SPAN CLASS="CT">/* Period */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="552">  552   </A>  T1CON = 0x8010;
-</SPAN><SPAN><A CLASS="LN" NAME="553">  553   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="554">  554   </A>  <SPAN CLASS="CT">/* Configuration for TIMER 2 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="555">  555   </A>  _T2IP = 2;
-</SPAN><SPAN><A CLASS="LN" NAME="556">  556   </A>  _T2IF = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="557">  557   </A>  _T2IE = 1;                           <SPAN CLASS="CT">/* Enable Timer interrupt. */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="558">  558   </A>  PR2 = 0x2AB8;                        <SPAN CLASS="CT">/* Period */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="559">  559   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="560">  560   </A>  <SPAN CLASS="CT">/* Timer 2 will be enabled after the configuration function. */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="561">  561   </A>  <SPAN CLASS="CT">/* Configuration for TIMER 3 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="562">  562   </A>  PR3 = 0xFFFF;                        <SPAN CLASS="CT">/* Period */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="563">  563   </A>  T3CON = 0x20;
-</SPAN><SPAN><A CLASS="LN" NAME="564">  564   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="565">  565   </A>  <SPAN CLASS="CT">/* Enable Time-step */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="566">  566   </A>  TMR2 = 0x2AB7;
-</SPAN><SPAN><A CLASS="LN" NAME="567">  567   </A>  T2CON = 0x8020;                      <SPAN CLASS="CT">/* Timer 2 is the source trigger for the model Time-step */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="568">  568   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="569">  569   </A>  <SPAN CLASS="CT">/* Main Loop */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="570">  570   </A>  <SPAN CLASS="KW">for</SPAN> (;;) ;
-</SPAN><SPAN><A CLASS="LN" NAME="571">  571   </A><B>}</B>                                      <SPAN CLASS="CT">/* end of main() */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="572">  572   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="573">  573   </A><SPAN CLASS="CT">/* File trailer for Real-Time Workshop generated code.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="574">  574   </A><SPAN CLASS="CT"> *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="575">  575   </A><SPAN CLASS="CT"> * [EOF]</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="576">  576   </A><SPAN CLASS="CT"> */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="577">  577   </A>
-</SPAN></PRE>
-</TD></TR></TABLE>
-</P>
-</BODY>
-</HTML>
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td>1</td><td><span class="ct">/*--------------------------------------------------------------</span></td></tr>
+<tr name="2" id="2">
+<td>2</td><td><span class="ct"> *   MPLAB Blockset v3.35 for Microchip dsPIC chip family.     *</span></td></tr>
+<tr name="3" id="3">
+<td>3</td><td><span class="ct"> *   Generate .c and .h files from Simulink model              *</span></td></tr>
+<tr name="4" id="4">
+<td>4</td><td><span class="ct"> *   and compile to .elf, .hex and .cof file that can be       *</span></td></tr>
+<tr name="5" id="5">
+<td>5</td><td><span class="ct"> *   flashed into the microcontroller                          *</span></td></tr>
+<tr name="6" id="6">
+<td>6</td><td><span class="ct"> *                                                             *</span></td></tr>
+<tr name="7" id="7">
+<td>7</td><td><span class="ct"> *      The Microchip name PIC, dsPIC, and MPLAB are           *</span></td></tr>
+<tr name="8" id="8">
+<td>8</td><td><span class="ct"> *      registered trademarks of Microchip Technology Inc.     *</span></td></tr>
+<tr name="9" id="9">
+<td>9</td><td><span class="ct"> *      MATLAB, Simulink, and Real-Time Workshop are           *</span></td></tr>
+<tr name="10" id="10">
+<td>10</td><td><span class="ct"> *      registered trademarks of The MathWorks, Inc.           *</span></td></tr>
+<tr name="11" id="11">
+<td>11</td><td><span class="ct"> *                                                             *</span></td></tr>
+<tr name="12" id="12">
+<td>12</td><td><span class="ct"> *  Blockset authors: L.Kerhuel, U.Kumar                       *</span></td></tr>
+<tr name="13" id="13">
+<td>13</td><td><span class="ct"> *  Product Page:  http://www.microchip.com/SimulinkBlocks     *</span></td></tr>
+<tr name="14" id="14">
+<td>14</td><td><span class="ct"> *          Forum: http://www.microchip.com/forums/f192.aspx   *</span></td></tr>
+<tr name="15" id="15">
+<td>15</td><td><span class="ct"> *          Wiki:  http://microchip.wikidot.com/simulink:start *</span></td></tr>
+<tr name="16" id="16">
+<td>16</td><td><span class="ct"> *--------------------------------------------------------------</span></td></tr>
+<tr name="17" id="17">
+<td>17</td><td><span class="ct"> *</span></td></tr>
+<tr name="18" id="18">
+<td>18</td><td><span class="ct"> * File: AUAV3_AND_SLUGS_SENSOR_main.c</span></td></tr>
+<tr name="19" id="19">
+<td>19</td><td><span class="ct"> *</span></td></tr>
+<tr name="20" id="20">
+<td>20</td><td><span class="ct"> * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.</span></td></tr>
+<tr name="21" id="21">
+<td>21</td><td><span class="ct"> *</span></td></tr>
+<tr name="22" id="22">
+<td>22</td><td><span class="ct"> * Model version                        : 1.219</span></td></tr>
+<tr name="23" id="23">
+<td>23</td><td><span class="ct"> * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015</span></td></tr>
+<tr name="24" id="24">
+<td>24</td><td><span class="ct"> * Real-Time Workshop file generated on : Fri Apr 29 16:39:44 2016</span></td></tr>
+<tr name="25" id="25">
+<td>25</td><td><span class="ct"> * TLC version                          : 8.8 (Jan 20 2015)</span></td></tr>
+<tr name="26" id="26">
+<td>26</td><td><span class="ct"> * C source code generated on           : Fri Apr 29 16:39:46 2016</span></td></tr>
+<tr name="27" id="27">
+<td>27</td><td><span class="ct"> */</span></td></tr>
+<tr name="28" id="28">
+<td>28</td><td></td></tr>
+<tr name="29" id="29">
+<td>29</td><td><span class="pp">#define</span> <a id="29c9" class="tk">MCHP_isMainFile</a></td></tr>
+<tr name="30" id="30">
+<td>30</td><td><span class="pp">#include "AUAV3_AND_SLUGS_SENSOR.h"</span></td></tr>
+<tr name="31" id="31">
+<td>31</td><td></td></tr>
+<tr name="32" id="32">
+<td>32</td><td><span class="ct">/* Microchip Global Variables */</span></td></tr>
+<tr name="33" id="33">
+<td>33</td><td><span class="kw">volatile</span> <a id="33c10" class="tk">uint16_T</a> <a id="33c19" class="tk">MCHP_MCULoadResult</a>[1] <a id="33c41" class="tk">__attribute__</a> ((<a id="33c57" class="tk">near</a>));</td></tr>
+<tr name="34" id="34">
+<td>34</td><td><span class="kw">volatile</span> <a id="34c10" class="tk">uint16_T</a> <a id="34c19" class="tk">MCHP_MCULoadPreviousTimerValue</a>[1] <a id="34c53" class="tk">__attribute__</a> ((<a id="34c69" class="tk">near</a>));</td></tr>
+<tr name="35" id="35">
+<td>35</td><td><span class="kw">volatile</span> <a id="35c10" class="tk">uint16_T</a> <a id="35c19" class="tk">mcuFlagRecursion</a> <a id="35c36" class="tk">__attribute__</a> ((<a id="35c52" class="tk">near</a>)) = 0;</td></tr>
+<tr name="36" id="36">
+<td>36</td><td><span class="kw">union</span><span class="br">{</span></td></tr>
+<tr name="37" id="37">
+<td>37</td><td>  <span class="kw">struct</span> <span class="br">{</span></td></tr>
+<tr name="38" id="38">
+<td>38</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="38c18" class="tk">task0</a> : 1;</td></tr>
+<tr name="39" id="39">
+<td>39</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="39c18" class="tk">task1</a> : 1;</td></tr>
+<tr name="40" id="40">
+<td>40</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="40c18" class="tk">task2</a> : 1;</td></tr>
+<tr name="41" id="41">
+<td>41</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="41c18" class="tk">task3</a> : 1;</td></tr>
+<tr name="42" id="42">
+<td>42</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="42c18" class="tk">task4</a> : 1;</td></tr>
+<tr name="43" id="43">
+<td>43</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="43c18" class="tk">task5</a> : 1;</td></tr>
+<tr name="44" id="44">
+<td>44</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="44c18" class="tk">task6</a> : 1;</td></tr>
+<tr name="45" id="45">
+<td>45</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="45c18" class="tk">task7</a> : 1;</td></tr>
+<tr name="46" id="46">
+<td>46</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="46c18" class="tk">task8</a> : 1;</td></tr>
+<tr name="47" id="47">
+<td>47</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="47c18" class="tk">task9</a> : 1;</td></tr>
+<tr name="48" id="48">
+<td>48</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="48c18" class="tk">task10</a> : 1;</td></tr>
+<tr name="49" id="49">
+<td>49</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="49c18" class="tk">task11</a> : 1;</td></tr>
+<tr name="50" id="50">
+<td>50</td><td>  <span class="br">}</span> <a id="50c5" class="tk">b</a>;</td></tr>
+<tr name="51" id="51">
+<td>51</td><td></td></tr>
+<tr name="52" id="52">
+<td>52</td><td>  <span class="kw">unsigned</span> <span class="kw">int</span> <a id="52c16" class="tk">val</a>;</td></tr>
+<tr name="53" id="53">
+<td>53</td><td><span class="br">}</span> <span class="kw">volatile</span> <a id="53c12" class="tk">MCHP_MCU_Overload</a>;</td></tr>
+<tr name="54" id="54">
+<td>54</td><td></td></tr>
+<tr name="55" id="55">
+<td>55</td><td><span class="kw">volatile</span> <a id="55c10" class="tk">uint16_T</a> <a id="55c19" class="tk">BusyFlagRecursion</a> <a id="55c37" class="tk">__attribute__</a> ((<a id="55c53" class="tk">near</a>)) = 0;<span class="ct">/* Set Fuses Options */</span></td></tr>
+<tr name="56" id="56">
+<td>56</td><td><a id="56c1" class="tk">_FGS</a>( <a id="56c7" class="tk">GSSK_OFF</a> ) ;</td></tr>
+<tr name="57" id="57">
+<td>57</td><td><a id="57c1" class="tk">_FOSCSEL</a>( <a id="57c11" class="tk">FNOSC_PRI</a> ) ;</td></tr>
+<tr name="58" id="58">
+<td>58</td><td><a id="58c1" class="tk">_FOSC</a>( <a id="58c8" class="tk">POSCMD_XT</a> &amp; <a id="58c20" class="tk">OSCIOFNC_ON</a> &amp; <a id="58c34" class="tk">FCKSM_CSECME</a> ) ;</td></tr>
+<tr name="59" id="59">
+<td>59</td><td><a id="59c1" class="tk">_FWDT</a>( <a id="59c8" class="tk">FWDTEN_OFF</a> ) ;</td></tr>
+<tr name="60" id="60">
+<td>60</td><td><a id="60c1" class="tk">_FPOR</a>( <a id="60c8" class="tk">BOREN_OFF</a> &amp; <a id="60c20" class="tk">ALTI2C2_ON</a> ) ;</td></tr>
+<tr name="61" id="61">
+<td>61</td><td><a id="61c1" class="tk">_FICD</a>( <a id="61c8" class="tk">ICS_PGD3</a> &amp; <a id="61c19" class="tk">JTAGEN_OFF</a> ) ;</td></tr>
+<tr name="62" id="62">
+<td>62</td><td><a id="62c1" class="tk">_FAS</a>( <a id="62c7" class="tk">APLK_OFF</a> ) ;</td></tr>
+<tr name="63" id="63">
+<td>63</td><td></td></tr>
+<tr name="64" id="64">
+<td>64</td><td><span class="ct">/* Scheduler */</span></td></tr>
+<tr name="65" id="65">
+<td>65</td><td><span class="kw">void</span> <a id="65c6" class="tk">__attribute__</a>((<a id="65c21" class="tk">__interrupt__</a>,<a id="65c35" class="tk">__auto_psv__</a>)) <a id="65c50" class="tk">_T1Interrupt</a>(<span class="kw">void</span>)</td></tr>
+<tr name="66" id="66">
+<td>66</td><td><span class="br">{</span></td></tr>
+<tr name="67" id="67">
+<td>67</td><td>  <span class="kw">asm</span>("INC _mcuFlagRecursion");        <span class="ct">/* ensure atomic	mcuFlagRecursion++; */</span></td></tr>
+<tr name="68" id="68">
+<td>68</td><td>  <a id="68c3" class="tk">T2CONbits</a>.<a id="68c13" class="tk">TON</a> = 1;</td></tr>
+<tr name="69" id="69">
+<td>69</td><td></td></tr>
+<tr name="70" id="70">
+<td>70</td><td>  <span class="br">{</span></td></tr>
+<tr name="71" id="71">
+<td>71</td><td>    <span class="kw">extern</span> <span class="kw">volatile</span> <a id="71c21" class="tk">uint16_T</a> <a id="71c30" class="tk">BusyFlagRecursion</a> <a id="71c48" class="tk">__attribute__</a> ((<a id="71c64" class="tk">near</a>));</td></tr>
+<tr name="72" id="72">
+<td>72</td><td>    <span class="kw">struct</span> <span class="br">{</span></td></tr>
+<tr name="73" id="73">
+<td>73</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="73c20" class="tk">Flags0</a> : 1;</td></tr>
+<tr name="74" id="74">
+<td>74</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="74c20" class="tk">Flags1</a> : 1;</td></tr>
+<tr name="75" id="75">
+<td>75</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="75c20" class="tk">Flags2</a> : 1;</td></tr>
+<tr name="76" id="76">
+<td>76</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="76c20" class="tk">Flags3</a> : 1;</td></tr>
+<tr name="77" id="77">
+<td>77</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="77c20" class="tk">Flags4</a> : 1;</td></tr>
+<tr name="78" id="78">
+<td>78</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="78c20" class="tk">Flags5</a> : 1;</td></tr>
+<tr name="79" id="79">
+<td>79</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="79c20" class="tk">Flags6</a> : 1;</td></tr>
+<tr name="80" id="80">
+<td>80</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="80c20" class="tk">Flags7</a> : 1;</td></tr>
+<tr name="81" id="81">
+<td>81</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="81c20" class="tk">Flags8</a> : 1;</td></tr>
+<tr name="82" id="82">
+<td>82</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="82c20" class="tk">Flags9</a> : 1;</td></tr>
+<tr name="83" id="83">
+<td>83</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="83c20" class="tk">Flags10</a> : 1;</td></tr>
+<tr name="84" id="84">
+<td>84</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="84c20" class="tk">Flags11</a> : 1;</td></tr>
+<tr name="85" id="85">
+<td>85</td><td>    <span class="br">}</span> <span class="kw">static</span> <span class="kw">volatile</span> <a id="85c23" class="tk">Overrun</a>;</td></tr>
+<tr name="86" id="86">
+<td>86</td><td></td></tr>
+<tr name="87" id="87">
+<td>87</td><td>    <span class="kw">struct</span> <span class="br">{</span></td></tr>
+<tr name="88" id="88">
+<td>88</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="88c20" class="tk">Flags0</a> : 1;</td></tr>
+<tr name="89" id="89">
+<td>89</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="89c20" class="tk">Flags1</a> : 1;</td></tr>
+<tr name="90" id="90">
+<td>90</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="90c20" class="tk">Flags2</a> : 1;</td></tr>
+<tr name="91" id="91">
+<td>91</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="91c20" class="tk">Flags3</a> : 1;</td></tr>
+<tr name="92" id="92">
+<td>92</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="92c20" class="tk">Flags4</a> : 1;</td></tr>
+<tr name="93" id="93">
+<td>93</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="93c20" class="tk">Flags5</a> : 1;</td></tr>
+<tr name="94" id="94">
+<td>94</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="94c20" class="tk">Flags6</a> : 1;</td></tr>
+<tr name="95" id="95">
+<td>95</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="95c20" class="tk">Flags7</a> : 1;</td></tr>
+<tr name="96" id="96">
+<td>96</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="96c20" class="tk">Flags8</a> : 1;</td></tr>
+<tr name="97" id="97">
+<td>97</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="97c20" class="tk">Flags9</a> : 1;</td></tr>
+<tr name="98" id="98">
+<td>98</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="98c20" class="tk">Flags10</a> : 1;</td></tr>
+<tr name="99" id="99">
+<td>99</td><td>      <span class="kw">unsigned</span> <span class="kw">int</span> <a id="99c20" class="tk">Flags11</a> : 1;</td></tr>
+<tr name="100" id="100">
+<td>100</td><td>    <span class="br">}</span> <span class="kw">static</span> <span class="kw">volatile</span> <a id="100c23" class="tk">event</a>;</td></tr>
+<tr name="101" id="101">
+<td>101</td><td></td></tr>
+<tr name="102" id="102">
+<td>102</td><td>    <span class="kw">static</span> <a id="102c12" class="tk">int_T</a> <a id="102c18" class="tk">taskCounter</a>[12] = <span class="br">{</span> 0, 0, 0, 0, 0, 0, 72, 64, 56, 48, 0, 0 <span class="br">}</span>;</td></tr>
+<tr name="103" id="103">
+<td>103</td><td></td></tr>
+<tr name="104" id="104">
+<td>104</td><td>    <a id="104c5" class="tk">_T1IF</a> = 0;                         <span class="ct">/* Re-enable interrupt */</span></td></tr>
+<tr name="105" id="105">
+<td>105</td><td></td></tr>
+<tr name="106" id="106">
+<td>106</td><td>    <span class="ct">/* Set busy flag */</span></td></tr>
+<tr name="107" id="107">
+<td>107</td><td>    <span class="kw">asm</span>("INC _BusyFlagRecursion");     <span class="ct">/* ensure atomic operation for BusyFlagRecursion++; */</span></td></tr>
+<tr name="108" id="108">
+<td>108</td><td>    <a id="108c5" class="tk">LATAbits</a>.<a id="108c14" class="tk">LATA6</a> = 1;</td></tr>
+<tr name="109" id="109">
+<td>109</td><td></td></tr>
+<tr name="110" id="110">
+<td>110</td><td>    <span class="ct">/* Check subrate overrun, set rates that need to run this time step*/</span></td></tr>
+<tr name="111" id="111">
+<td>111</td><td>    <span class="kw">if</span> (<a id="111c9" class="tk">taskCounter</a>[1] == 0) <span class="br">{</span>         <span class="ct">/* task dropped on overload */</span></td></tr>
+<tr name="112" id="112">
+<td>112</td><td>      <a id="112c7" class="tk">event</a>.<a id="112c13" class="tk">Flags1</a> = 1U;</td></tr>
+<tr name="113" id="113">
+<td>113</td><td>      <span class="kw">if</span> (<a id="113c11" class="tk">Overrun</a>.<a id="113c19" class="tk">Flags1</a>) <span class="br">{</span></td></tr>
+<tr name="114" id="114">
+<td>114</td><td>        <a id="114c9" class="tk">MCHP_MCU_Overload</a>.<a id="114c27" class="tk">b</a>.<a id="114c29" class="tk">task1</a> = 1U;<span class="ct">/* Set overload bit for tid 1 */</span></td></tr>
+<tr name="115" id="115">
+<td>115</td><td>      <span class="br">}</span></td></tr>
+<tr name="116" id="116">
+<td>116</td><td>    <span class="br">}</span></td></tr>
+<tr name="117" id="117">
+<td>117</td><td></td></tr>
+<tr name="118" id="118">
+<td>118</td><td>    <span class="kw">if</span> (<a id="118c9" class="tk">taskCounter</a>[2] == 0) <span class="br">{</span>         <span class="ct">/* task dropped on overload */</span></td></tr>
+<tr name="119" id="119">
+<td>119</td><td>      <a id="119c7" class="tk">event</a>.<a id="119c13" class="tk">Flags2</a> = 1U;</td></tr>
+<tr name="120" id="120">
+<td>120</td><td>      <span class="kw">if</span> (<a id="120c11" class="tk">Overrun</a>.<a id="120c19" class="tk">Flags2</a>) <span class="br">{</span></td></tr>
+<tr name="121" id="121">
+<td>121</td><td>        <a id="121c9" class="tk">MCHP_MCU_Overload</a>.<a id="121c27" class="tk">b</a>.<a id="121c29" class="tk">task2</a> = 1U;<span class="ct">/* Set overload bit for tid 2 */</span></td></tr>
+<tr name="122" id="122">
+<td>122</td><td>      <span class="br">}</span></td></tr>
+<tr name="123" id="123">
+<td>123</td><td>    <span class="br">}</span></td></tr>
+<tr name="124" id="124">
+<td>124</td><td></td></tr>
+<tr name="125" id="125">
+<td>125</td><td>    <span class="kw">if</span> (<a id="125c9" class="tk">taskCounter</a>[3] == 0) <span class="br">{</span>         <span class="ct">/* task dropped on overload */</span></td></tr>
+<tr name="126" id="126">
+<td>126</td><td>      <a id="126c7" class="tk">event</a>.<a id="126c13" class="tk">Flags3</a> = 1U;</td></tr>
+<tr name="127" id="127">
+<td>127</td><td>      <span class="kw">if</span> (<a id="127c11" class="tk">Overrun</a>.<a id="127c19" class="tk">Flags3</a>) <span class="br">{</span></td></tr>
+<tr name="128" id="128">
+<td>128</td><td>        <a id="128c9" class="tk">MCHP_MCU_Overload</a>.<a id="128c27" class="tk">b</a>.<a id="128c29" class="tk">task3</a> = 1U;<span class="ct">/* Set overload bit for tid 3 */</span></td></tr>
+<tr name="129" id="129">
+<td>129</td><td>      <span class="br">}</span></td></tr>
+<tr name="130" id="130">
+<td>130</td><td>    <span class="br">}</span></td></tr>
+<tr name="131" id="131">
+<td>131</td><td></td></tr>
+<tr name="132" id="132">
+<td>132</td><td>    <span class="kw">if</span> (<a id="132c9" class="tk">taskCounter</a>[4] == 0) <span class="br">{</span>         <span class="ct">/* task dropped on overload */</span></td></tr>
+<tr name="133" id="133">
+<td>133</td><td>      <a id="133c7" class="tk">event</a>.<a id="133c13" class="tk">Flags4</a> = 1U;</td></tr>
+<tr name="134" id="134">
+<td>134</td><td>      <span class="kw">if</span> (<a id="134c11" class="tk">Overrun</a>.<a id="134c19" class="tk">Flags4</a>) <span class="br">{</span></td></tr>
+<tr name="135" id="135">
+<td>135</td><td>        <a id="135c9" class="tk">MCHP_MCU_Overload</a>.<a id="135c27" class="tk">b</a>.<a id="135c29" class="tk">task4</a> = 1U;<span class="ct">/* Set overload bit for tid 4 */</span></td></tr>
+<tr name="136" id="136">
+<td>136</td><td>      <span class="br">}</span></td></tr>
+<tr name="137" id="137">
+<td>137</td><td>    <span class="br">}</span></td></tr>
+<tr name="138" id="138">
+<td>138</td><td></td></tr>
+<tr name="139" id="139">
+<td>139</td><td>    <span class="kw">if</span> (<a id="139c9" class="tk">taskCounter</a>[5] == 0) <span class="br">{</span>         <span class="ct">/* task dropped on overload */</span></td></tr>
+<tr name="140" id="140">
+<td>140</td><td>      <a id="140c7" class="tk">event</a>.<a id="140c13" class="tk">Flags5</a> = 1U;</td></tr>
+<tr name="141" id="141">
+<td>141</td><td>      <span class="kw">if</span> (<a id="141c11" class="tk">Overrun</a>.<a id="141c19" class="tk">Flags5</a>) <span class="br">{</span></td></tr>
+<tr name="142" id="142">
+<td>142</td><td>        <a id="142c9" class="tk">MCHP_MCU_Overload</a>.<a id="142c27" class="tk">b</a>.<a id="142c29" class="tk">task5</a> = 1U;<span class="ct">/* Set overload bit for tid 5 */</span></td></tr>
+<tr name="143" id="143">
+<td>143</td><td>      <span class="br">}</span></td></tr>
+<tr name="144" id="144">
+<td>144</td><td>    <span class="br">}</span></td></tr>
+<tr name="145" id="145">
+<td>145</td><td></td></tr>
+<tr name="146" id="146">
+<td>146</td><td>    <span class="kw">if</span> (<a id="146c9" class="tk">taskCounter</a>[6] == 0) <span class="br">{</span>         <span class="ct">/* task dropped on overload */</span></td></tr>
+<tr name="147" id="147">
+<td>147</td><td>      <a id="147c7" class="tk">event</a>.<a id="147c13" class="tk">Flags6</a> = 1U;</td></tr>
+<tr name="148" id="148">
+<td>148</td><td>      <span class="kw">if</span> (<a id="148c11" class="tk">Overrun</a>.<a id="148c19" class="tk">Flags6</a>) <span class="br">{</span></td></tr>
+<tr name="149" id="149">
+<td>149</td><td>        <a id="149c9" class="tk">MCHP_MCU_Overload</a>.<a id="149c27" class="tk">b</a>.<a id="149c29" class="tk">task6</a> = 1U;<span class="ct">/* Set overload bit for tid 6 */</span></td></tr>
+<tr name="150" id="150">
+<td>150</td><td>      <span class="br">}</span></td></tr>
+<tr name="151" id="151">
+<td>151</td><td>    <span class="br">}</span></td></tr>
+<tr name="152" id="152">
+<td>152</td><td></td></tr>
+<tr name="153" id="153">
+<td>153</td><td>    <span class="kw">if</span> (<a id="153c9" class="tk">taskCounter</a>[7] == 0) <span class="br">{</span>         <span class="ct">/* task dropped on overload */</span></td></tr>
+<tr name="154" id="154">
+<td>154</td><td>      <a id="154c7" class="tk">event</a>.<a id="154c13" class="tk">Flags7</a> = 1U;</td></tr>
+<tr name="155" id="155">
+<td>155</td><td>      <span class="kw">if</span> (<a id="155c11" class="tk">Overrun</a>.<a id="155c19" class="tk">Flags7</a>) <span class="br">{</span></td></tr>
+<tr name="156" id="156">
+<td>156</td><td>        <a id="156c9" class="tk">MCHP_MCU_Overload</a>.<a id="156c27" class="tk">b</a>.<a id="156c29" class="tk">task7</a> = 1U;<span class="ct">/* Set overload bit for tid 7 */</span></td></tr>
+<tr name="157" id="157">
+<td>157</td><td>      <span class="br">}</span></td></tr>
+<tr name="158" id="158">
+<td>158</td><td>    <span class="br">}</span></td></tr>
+<tr name="159" id="159">
+<td>159</td><td></td></tr>
+<tr name="160" id="160">
+<td>160</td><td>    <span class="kw">if</span> (<a id="160c9" class="tk">taskCounter</a>[8] == 0) <span class="br">{</span>         <span class="ct">/* task dropped on overload */</span></td></tr>
+<tr name="161" id="161">
+<td>161</td><td>      <a id="161c7" class="tk">event</a>.<a id="161c13" class="tk">Flags8</a> = 1U;</td></tr>
+<tr name="162" id="162">
+<td>162</td><td>      <span class="kw">if</span> (<a id="162c11" class="tk">Overrun</a>.<a id="162c19" class="tk">Flags8</a>) <span class="br">{</span></td></tr>
+<tr name="163" id="163">
+<td>163</td><td>        <a id="163c9" class="tk">MCHP_MCU_Overload</a>.<a id="163c27" class="tk">b</a>.<a id="163c29" class="tk">task8</a> = 1U;<span class="ct">/* Set overload bit for tid 8 */</span></td></tr>
+<tr name="164" id="164">
+<td>164</td><td>      <span class="br">}</span></td></tr>
+<tr name="165" id="165">
+<td>165</td><td>    <span class="br">}</span></td></tr>
+<tr name="166" id="166">
+<td>166</td><td></td></tr>
+<tr name="167" id="167">
+<td>167</td><td>    <span class="kw">if</span> (<a id="167c9" class="tk">taskCounter</a>[9] == 0) <span class="br">{</span>         <span class="ct">/* task dropped on overload */</span></td></tr>
+<tr name="168" id="168">
+<td>168</td><td>      <a id="168c7" class="tk">event</a>.<a id="168c13" class="tk">Flags9</a> = 1U;</td></tr>
+<tr name="169" id="169">
+<td>169</td><td>      <span class="kw">if</span> (<a id="169c11" class="tk">Overrun</a>.<a id="169c19" class="tk">Flags9</a>) <span class="br">{</span></td></tr>
+<tr name="170" id="170">
+<td>170</td><td>        <a id="170c9" class="tk">MCHP_MCU_Overload</a>.<a id="170c27" class="tk">b</a>.<a id="170c29" class="tk">task9</a> = 1U;<span class="ct">/* Set overload bit for tid 9 */</span></td></tr>
+<tr name="171" id="171">
+<td>171</td><td>      <span class="br">}</span></td></tr>
+<tr name="172" id="172">
+<td>172</td><td>    <span class="br">}</span></td></tr>
+<tr name="173" id="173">
+<td>173</td><td></td></tr>
+<tr name="174" id="174">
+<td>174</td><td>    <span class="kw">if</span> (<a id="174c9" class="tk">taskCounter</a>[10] == 0) <span class="br">{</span>        <span class="ct">/* task dropped on overload */</span></td></tr>
+<tr name="175" id="175">
+<td>175</td><td>      <a id="175c7" class="tk">event</a>.<a id="175c13" class="tk">Flags10</a> = 1U;</td></tr>
+<tr name="176" id="176">
+<td>176</td><td>      <span class="kw">if</span> (<a id="176c11" class="tk">Overrun</a>.<a id="176c19" class="tk">Flags10</a>) <span class="br">{</span></td></tr>
+<tr name="177" id="177">
+<td>177</td><td>        <a id="177c9" class="tk">MCHP_MCU_Overload</a>.<a id="177c27" class="tk">b</a>.<a id="177c29" class="tk">task10</a> = 1U;<span class="ct">/* Set overload bit for tid 10 */</span></td></tr>
+<tr name="178" id="178">
+<td>178</td><td>      <span class="br">}</span></td></tr>
+<tr name="179" id="179">
+<td>179</td><td>    <span class="br">}</span></td></tr>
+<tr name="180" id="180">
+<td>180</td><td></td></tr>
+<tr name="181" id="181">
+<td>181</td><td>    <span class="kw">if</span> (<a id="181c9" class="tk">taskCounter</a>[11] == 0) <span class="br">{</span>        <span class="ct">/* task dropped on overload */</span></td></tr>
+<tr name="182" id="182">
+<td>182</td><td>      <a id="182c7" class="tk">event</a>.<a id="182c13" class="tk">Flags11</a> = 1U;</td></tr>
+<tr name="183" id="183">
+<td>183</td><td>      <span class="kw">if</span> (<a id="183c11" class="tk">Overrun</a>.<a id="183c19" class="tk">Flags11</a>) <span class="br">{</span></td></tr>
+<tr name="184" id="184">
+<td>184</td><td>        <a id="184c9" class="tk">MCHP_MCU_Overload</a>.<a id="184c27" class="tk">b</a>.<a id="184c29" class="tk">task11</a> = 1U;<span class="ct">/* Set overload bit for tid 11 */</span></td></tr>
+<tr name="185" id="185">
+<td>185</td><td>      <span class="br">}</span></td></tr>
+<tr name="186" id="186">
+<td>186</td><td>    <span class="br">}</span></td></tr>
+<tr name="187" id="187">
+<td>187</td><td></td></tr>
+<tr name="188" id="188">
+<td>188</td><td>    <span class="ct">/* Update task internal counters */</span></td></tr>
+<tr name="189" id="189">
+<td>189</td><td>    <a id="189c5" class="tk">taskCounter</a>[1]++;</td></tr>
+<tr name="190" id="190">
+<td>190</td><td>    <span class="kw">if</span> (<a id="190c9" class="tk">taskCounter</a>[1] == 4) <span class="br">{</span></td></tr>
+<tr name="191" id="191">
+<td>191</td><td>      <a id="191c7" class="tk">taskCounter</a>[1]= 0;</td></tr>
+<tr name="192" id="192">
+<td>192</td><td>    <span class="br">}</span></td></tr>
+<tr name="193" id="193">
+<td>193</td><td></td></tr>
+<tr name="194" id="194">
+<td>194</td><td>    <a id="194c5" class="tk">taskCounter</a>[2]++;</td></tr>
+<tr name="195" id="195">
+<td>195</td><td>    <span class="kw">if</span> (<a id="195c9" class="tk">taskCounter</a>[2] == 8) <span class="br">{</span></td></tr>
+<tr name="196" id="196">
+<td>196</td><td>      <a id="196c7" class="tk">taskCounter</a>[2]= 0;</td></tr>
+<tr name="197" id="197">
+<td>197</td><td>    <span class="br">}</span></td></tr>
+<tr name="198" id="198">
+<td>198</td><td></td></tr>
+<tr name="199" id="199">
+<td>199</td><td>    <a id="199c5" class="tk">taskCounter</a>[3]++;</td></tr>
+<tr name="200" id="200">
+<td>200</td><td>    <span class="kw">if</span> (<a id="200c9" class="tk">taskCounter</a>[3] == 20) <span class="br">{</span></td></tr>
+<tr name="201" id="201">
+<td>201</td><td>      <a id="201c7" class="tk">taskCounter</a>[3]= 0;</td></tr>
+<tr name="202" id="202">
+<td>202</td><td>    <span class="br">}</span></td></tr>
+<tr name="203" id="203">
+<td>203</td><td></td></tr>
+<tr name="204" id="204">
+<td>204</td><td>    <a id="204c5" class="tk">taskCounter</a>[4]++;</td></tr>
+<tr name="205" id="205">
+<td>205</td><td>    <span class="kw">if</span> (<a id="205c9" class="tk">taskCounter</a>[4] == 40) <span class="br">{</span></td></tr>
+<tr name="206" id="206">
+<td>206</td><td>      <a id="206c7" class="tk">taskCounter</a>[4]= 0;</td></tr>
+<tr name="207" id="207">
+<td>207</td><td>    <span class="br">}</span></td></tr>
+<tr name="208" id="208">
+<td>208</td><td></td></tr>
+<tr name="209" id="209">
+<td>209</td><td>    <a id="209c5" class="tk">taskCounter</a>[5]++;</td></tr>
+<tr name="210" id="210">
+<td>210</td><td>    <span class="kw">if</span> (<a id="210c9" class="tk">taskCounter</a>[5] == 80) <span class="br">{</span></td></tr>
+<tr name="211" id="211">
+<td>211</td><td>      <a id="211c7" class="tk">taskCounter</a>[5]= 0;</td></tr>
+<tr name="212" id="212">
+<td>212</td><td>    <span class="br">}</span></td></tr>
+<tr name="213" id="213">
+<td>213</td><td></td></tr>
+<tr name="214" id="214">
+<td>214</td><td>    <a id="214c5" class="tk">taskCounter</a>[6]++;</td></tr>
+<tr name="215" id="215">
+<td>215</td><td>    <span class="kw">if</span> (<a id="215c9" class="tk">taskCounter</a>[6] == 80) <span class="br">{</span></td></tr>
+<tr name="216" id="216">
+<td>216</td><td>      <a id="216c7" class="tk">taskCounter</a>[6]= 0;</td></tr>
+<tr name="217" id="217">
+<td>217</td><td>    <span class="br">}</span></td></tr>
+<tr name="218" id="218">
+<td>218</td><td></td></tr>
+<tr name="219" id="219">
+<td>219</td><td>    <a id="219c5" class="tk">taskCounter</a>[7]++;</td></tr>
+<tr name="220" id="220">
+<td>220</td><td>    <span class="kw">if</span> (<a id="220c9" class="tk">taskCounter</a>[7] == 80) <span class="br">{</span></td></tr>
+<tr name="221" id="221">
+<td>221</td><td>      <a id="221c7" class="tk">taskCounter</a>[7]= 0;</td></tr>
+<tr name="222" id="222">
+<td>222</td><td>    <span class="br">}</span></td></tr>
+<tr name="223" id="223">
+<td>223</td><td></td></tr>
+<tr name="224" id="224">
+<td>224</td><td>    <a id="224c5" class="tk">taskCounter</a>[8]++;</td></tr>
+<tr name="225" id="225">
+<td>225</td><td>    <span class="kw">if</span> (<a id="225c9" class="tk">taskCounter</a>[8] == 80) <span class="br">{</span></td></tr>
+<tr name="226" id="226">
+<td>226</td><td>      <a id="226c7" class="tk">taskCounter</a>[8]= 0;</td></tr>
+<tr name="227" id="227">
+<td>227</td><td>    <span class="br">}</span></td></tr>
+<tr name="228" id="228">
+<td>228</td><td></td></tr>
+<tr name="229" id="229">
+<td>229</td><td>    <a id="229c5" class="tk">taskCounter</a>[9]++;</td></tr>
+<tr name="230" id="230">
+<td>230</td><td>    <span class="kw">if</span> (<a id="230c9" class="tk">taskCounter</a>[9] == 80) <span class="br">{</span></td></tr>
+<tr name="231" id="231">
+<td>231</td><td>      <a id="231c7" class="tk">taskCounter</a>[9]= 0;</td></tr>
+<tr name="232" id="232">
+<td>232</td><td>    <span class="br">}</span></td></tr>
+<tr name="233" id="233">
+<td>233</td><td></td></tr>
+<tr name="234" id="234">
+<td>234</td><td>    <a id="234c5" class="tk">taskCounter</a>[10]++;</td></tr>
+<tr name="235" id="235">
+<td>235</td><td>    <span class="kw">if</span> (<a id="235c9" class="tk">taskCounter</a>[10] == 100) <span class="br">{</span></td></tr>
+<tr name="236" id="236">
+<td>236</td><td>      <a id="236c7" class="tk">taskCounter</a>[10]= 0;</td></tr>
+<tr name="237" id="237">
+<td>237</td><td>    <span class="br">}</span></td></tr>
+<tr name="238" id="238">
+<td>238</td><td></td></tr>
+<tr name="239" id="239">
+<td>239</td><td>    <a id="239c5" class="tk">taskCounter</a>[11]++;</td></tr>
+<tr name="240" id="240">
+<td>240</td><td>    <span class="kw">if</span> (<a id="240c9" class="tk">taskCounter</a>[11] == 200) <span class="br">{</span></td></tr>
+<tr name="241" id="241">
+<td>241</td><td>      <a id="241c7" class="tk">taskCounter</a>[11]= 0;</td></tr>
+<tr name="242" id="242">
+<td>242</td><td>    <span class="br">}</span></td></tr>
+<tr name="243" id="243">
+<td>243</td><td></td></tr>
+<tr name="244" id="244">
+<td>244</td><td>    <span class="ct">/* Step the model for base rate */</span></td></tr>
+<tr name="245" id="245">
+<td>245</td><td>    <span class="ct">/* Start profiling task 0 */</span></td></tr>
+<tr name="246" id="246">
+<td>246</td><td>    <a id="246c5" class="tk">AUAV3_AND_SLUGS_SENSOR_step</a>(0);</td></tr>
+<tr name="247" id="247">
+<td>247</td><td></td></tr>
+<tr name="248" id="248">
+<td>248</td><td>    <span class="ct">/* Get model outputs here */</span></td></tr>
+<tr name="249" id="249">
+<td>249</td><td>    <a id="249c5" class="tk">_T1IF</a> = 0;</td></tr>
+<tr name="250" id="250">
+<td>250</td><td></td></tr>
+<tr name="251" id="251">
+<td>251</td><td>    <span class="ct">/* Stop profiling task 0 */</span></td></tr>
+<tr name="252" id="252">
+<td>252</td><td>    <span class="kw">if</span> (<a id="252c9" class="tk">_T1IF</a>) <span class="br">{</span></td></tr>
+<tr name="253" id="253">
+<td>253</td><td>      <span class="kw">asm</span>("DEC _BusyFlagRecursion");   <span class="ct">/* ensure atomic operation for BusyFlagRecursion--; */</span></td></tr>
+<tr name="254" id="254">
+<td>254</td><td>      <span class="kw">asm</span>("DEC _mcuFlagRecursion");    <span class="ct">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</span></td></tr>
+<tr name="255" id="255">
+<td>255</td><td>      <a id="255c7" class="tk">MCHP_MCU_Overload</a>.<a id="255c25" class="tk">b</a>.<a id="255c27" class="tk">task0</a> = 1U;  <span class="ct">/* Set overload bit for tid 0 */</span></td></tr>
+<tr name="256" id="256">
+<td>256</td><td>      <span class="kw">return</span>;                          <span class="ct">/* Will re-enter into the interrupt */</span></td></tr>
+<tr name="257" id="257">
+<td>257</td><td>    <span class="br">}</span></td></tr>
+<tr name="258" id="258">
+<td>258</td><td></td></tr>
+<tr name="259" id="259">
+<td>259</td><td>    <span class="ct">/* Re-Enable Interrupt */</span></td></tr>
+<tr name="260" id="260">
+<td>260</td><td>    <a id="260c5" class="tk">_IPL0</a> = 1;                         <span class="ct">/* Set IPL to 1 (interrupt priority is 2) */</span></td></tr>
+<tr name="261" id="261">
+<td>261</td><td>    <a id="261c5" class="tk">_IPL1</a> = 0;</td></tr>
+<tr name="262" id="262">
+<td>262</td><td></td></tr>
+<tr name="263" id="263">
+<td>263</td><td>    <span class="ct">/* Step the model for any subrate */</span></td></tr>
+<tr name="264" id="264">
+<td>264</td><td>    <span class="ct">/* Handle Task 1 */</span></td></tr>
+<tr name="265" id="265">
+<td>265</td><td>    <span class="kw">if</span> (<a id="265c9" class="tk">Overrun</a>.<a id="265c17" class="tk">Flags1</a>) <span class="br">{</span></td></tr>
+<tr name="266" id="266">
+<td>266</td><td>      <span class="kw">asm</span>("DEC _BusyFlagRecursion");   <span class="ct">/* ensure atomic operation for BusyFlagRecursion--; */</span></td></tr>
+<tr name="267" id="267">
+<td>267</td><td>      <span class="kw">asm</span>("DEC _mcuFlagRecursion");    <span class="ct">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</span></td></tr>
+<tr name="268" id="268">
+<td>268</td><td>      <span class="kw">return</span>;                          <span class="ct">/* Priority to higher rate steps interrupted */</span></td></tr>
+<tr name="269" id="269">
+<td>269</td><td>    <span class="br">}</span></td></tr>
+<tr name="270" id="270">
+<td>270</td><td></td></tr>
+<tr name="271" id="271">
+<td>271</td><td>    <span class="kw">if</span> (<a id="271c9" class="tk">event</a>.<a id="271c15" class="tk">Flags1</a>) <span class="br">{</span></td></tr>
+<tr name="272" id="272">
+<td>272</td><td>      <a id="272c7" class="tk">Overrun</a>.<a id="272c15" class="tk">Flags1</a> = 1;</td></tr>
+<tr name="273" id="273">
+<td>273</td><td>      <span class="kw">do</span> <span class="br">{</span></td></tr>
+<tr name="274" id="274">
+<td>274</td><td>        <span class="ct">/* Start profiling task 1 */</span></td></tr>
+<tr name="275" id="275">
+<td>275</td><td>        <span class="br">{</span></td></tr>
+<tr name="276" id="276">
+<td>276</td><td>          <a id="276c11" class="tk">uint16_T</a> <a id="276c20" class="tk">Tmp_TMR</a>;</td></tr>
+<tr name="277" id="277">
+<td>277</td><td>          <a id="277c11" class="tk">Tmp_TMR</a> = <a id="277c21" class="tk">TMR2</a>;</td></tr>
+<tr name="278" id="278">
+<td>278</td><td>          <a id="278c11" class="tk">MCHP_MCULoadResult</a>[0] = <a id="278c35" class="tk">Tmp_TMR</a> - <a id="278c45" class="tk">MCHP_MCULoadPreviousTimerValue</a>[0];</td></tr>
+<tr name="279" id="279">
+<td>279</td><td>          <a id="279c11" class="tk">MCHP_MCULoadPreviousTimerValue</a>[0] = <a id="279c47" class="tk">Tmp_TMR</a>;</td></tr>
+<tr name="280" id="280">
+<td>280</td><td>        <span class="br">}</span></td></tr>
+<tr name="281" id="281">
+<td>281</td><td></td></tr>
+<tr name="282" id="282">
+<td>282</td><td>        <a id="282c9" class="tk">event</a>.<a id="282c15" class="tk">Flags1</a> = 0U;</td></tr>
+<tr name="283" id="283">
+<td>283</td><td>        <a id="283c9" class="tk">AUAV3_AND_SLUGS_SENSOR_step</a>(1);</td></tr>
+<tr name="284" id="284">
+<td>284</td><td></td></tr>
+<tr name="285" id="285">
+<td>285</td><td>        <span class="ct">/* Get model outputs here */</span></td></tr>
+<tr name="286" id="286">
+<td>286</td><td>        ;                              <span class="ct">/* Execute task tid 1 */</span></td></tr>
+<tr name="287" id="287">
+<td>287</td><td></td></tr>
+<tr name="288" id="288">
+<td>288</td><td>        <span class="ct">/* Stop profiling task 1 */</span></td></tr>
+<tr name="289" id="289">
+<td>289</td><td>      <span class="br">}</span> <span class="kw">while</span> (<a id="289c16" class="tk">event</a>.<a id="289c22" class="tk">Flags1</a>);</td></tr>
+<tr name="290" id="290">
+<td>290</td><td></td></tr>
+<tr name="291" id="291">
+<td>291</td><td>      <a id="291c7" class="tk">Overrun</a>.<a id="291c15" class="tk">Flags1</a> = 0U;</td></tr>
+<tr name="292" id="292">
+<td>292</td><td>    <span class="br">}</span></td></tr>
+<tr name="293" id="293">
+<td>293</td><td></td></tr>
+<tr name="294" id="294">
+<td>294</td><td>    <span class="ct">/* Handle Task 2 */</span></td></tr>
+<tr name="295" id="295">
+<td>295</td><td>    <span class="kw">if</span> (<a id="295c9" class="tk">Overrun</a>.<a id="295c17" class="tk">Flags2</a>) <span class="br">{</span></td></tr>
+<tr name="296" id="296">
+<td>296</td><td>      <span class="kw">asm</span>("DEC _BusyFlagRecursion");   <span class="ct">/* ensure atomic operation for BusyFlagRecursion--; */</span></td></tr>
+<tr name="297" id="297">
+<td>297</td><td>      <span class="kw">asm</span>("DEC _mcuFlagRecursion");    <span class="ct">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</span></td></tr>
+<tr name="298" id="298">
+<td>298</td><td>      <span class="kw">return</span>;                          <span class="ct">/* Priority to higher rate steps interrupted */</span></td></tr>
+<tr name="299" id="299">
+<td>299</td><td>    <span class="br">}</span></td></tr>
+<tr name="300" id="300">
+<td>300</td><td></td></tr>
+<tr name="301" id="301">
+<td>301</td><td>    <span class="kw">if</span> (<a id="301c9" class="tk">event</a>.<a id="301c15" class="tk">Flags2</a>) <span class="br">{</span></td></tr>
+<tr name="302" id="302">
+<td>302</td><td>      <a id="302c7" class="tk">Overrun</a>.<a id="302c15" class="tk">Flags2</a> = 1;</td></tr>
+<tr name="303" id="303">
+<td>303</td><td>      <span class="kw">do</span> <span class="br">{</span></td></tr>
+<tr name="304" id="304">
+<td>304</td><td>        <span class="ct">/* Start profiling task 2 */</span></td></tr>
+<tr name="305" id="305">
+<td>305</td><td>        <a id="305c9" class="tk">event</a>.<a id="305c15" class="tk">Flags2</a> = 0U;</td></tr>
+<tr name="306" id="306">
+<td>306</td><td>        <a id="306c9" class="tk">AUAV3_AND_SLUGS_SENSOR_step</a>(2);</td></tr>
+<tr name="307" id="307">
+<td>307</td><td></td></tr>
+<tr name="308" id="308">
+<td>308</td><td>        <span class="ct">/* Get model outputs here */</span></td></tr>
+<tr name="309" id="309">
+<td>309</td><td>        ;                              <span class="ct">/* Execute task tid 2 */</span></td></tr>
+<tr name="310" id="310">
+<td>310</td><td></td></tr>
+<tr name="311" id="311">
+<td>311</td><td>        <span class="ct">/* Stop profiling task 2 */</span></td></tr>
+<tr name="312" id="312">
+<td>312</td><td>      <span class="br">}</span> <span class="kw">while</span> (<a id="312c16" class="tk">event</a>.<a id="312c22" class="tk">Flags2</a>);</td></tr>
+<tr name="313" id="313">
+<td>313</td><td></td></tr>
+<tr name="314" id="314">
+<td>314</td><td>      <a id="314c7" class="tk">Overrun</a>.<a id="314c15" class="tk">Flags2</a> = 0U;</td></tr>
+<tr name="315" id="315">
+<td>315</td><td>    <span class="br">}</span></td></tr>
+<tr name="316" id="316">
+<td>316</td><td></td></tr>
+<tr name="317" id="317">
+<td>317</td><td>    <span class="ct">/* Handle Task 3 */</span></td></tr>
+<tr name="318" id="318">
+<td>318</td><td>    <span class="kw">if</span> (<a id="318c9" class="tk">Overrun</a>.<a id="318c17" class="tk">Flags3</a>) <span class="br">{</span></td></tr>
+<tr name="319" id="319">
+<td>319</td><td>      <span class="kw">asm</span>("DEC _BusyFlagRecursion");   <span class="ct">/* ensure atomic operation for BusyFlagRecursion--; */</span></td></tr>
+<tr name="320" id="320">
+<td>320</td><td>      <span class="kw">asm</span>("DEC _mcuFlagRecursion");    <span class="ct">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</span></td></tr>
+<tr name="321" id="321">
+<td>321</td><td>      <span class="kw">return</span>;                          <span class="ct">/* Priority to higher rate steps interrupted */</span></td></tr>
+<tr name="322" id="322">
+<td>322</td><td>    <span class="br">}</span></td></tr>
+<tr name="323" id="323">
+<td>323</td><td></td></tr>
+<tr name="324" id="324">
+<td>324</td><td>    <span class="kw">if</span> (<a id="324c9" class="tk">event</a>.<a id="324c15" class="tk">Flags3</a>) <span class="br">{</span></td></tr>
+<tr name="325" id="325">
+<td>325</td><td>      <a id="325c7" class="tk">Overrun</a>.<a id="325c15" class="tk">Flags3</a> = 1;</td></tr>
+<tr name="326" id="326">
+<td>326</td><td>      <span class="kw">do</span> <span class="br">{</span></td></tr>
+<tr name="327" id="327">
+<td>327</td><td>        <span class="ct">/* Start profiling task 3 */</span></td></tr>
+<tr name="328" id="328">
+<td>328</td><td>        <a id="328c9" class="tk">event</a>.<a id="328c15" class="tk">Flags3</a> = 0U;</td></tr>
+<tr name="329" id="329">
+<td>329</td><td>        <a id="329c9" class="tk">AUAV3_AND_SLUGS_SENSOR_step</a>(3);</td></tr>
+<tr name="330" id="330">
+<td>330</td><td></td></tr>
+<tr name="331" id="331">
+<td>331</td><td>        <span class="ct">/* Get model outputs here */</span></td></tr>
+<tr name="332" id="332">
+<td>332</td><td>        ;                              <span class="ct">/* Execute task tid 3 */</span></td></tr>
+<tr name="333" id="333">
+<td>333</td><td></td></tr>
+<tr name="334" id="334">
+<td>334</td><td>        <span class="ct">/* Stop profiling task 3 */</span></td></tr>
+<tr name="335" id="335">
+<td>335</td><td>      <span class="br">}</span> <span class="kw">while</span> (<a id="335c16" class="tk">event</a>.<a id="335c22" class="tk">Flags3</a>);</td></tr>
+<tr name="336" id="336">
+<td>336</td><td></td></tr>
+<tr name="337" id="337">
+<td>337</td><td>      <a id="337c7" class="tk">Overrun</a>.<a id="337c15" class="tk">Flags3</a> = 0U;</td></tr>
+<tr name="338" id="338">
+<td>338</td><td>    <span class="br">}</span></td></tr>
+<tr name="339" id="339">
+<td>339</td><td></td></tr>
+<tr name="340" id="340">
+<td>340</td><td>    <span class="ct">/* Handle Task 4 */</span></td></tr>
+<tr name="341" id="341">
+<td>341</td><td>    <span class="kw">if</span> (<a id="341c9" class="tk">Overrun</a>.<a id="341c17" class="tk">Flags4</a>) <span class="br">{</span></td></tr>
+<tr name="342" id="342">
+<td>342</td><td>      <span class="kw">asm</span>("DEC _BusyFlagRecursion");   <span class="ct">/* ensure atomic operation for BusyFlagRecursion--; */</span></td></tr>
+<tr name="343" id="343">
+<td>343</td><td>      <span class="kw">asm</span>("DEC _mcuFlagRecursion");    <span class="ct">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</span></td></tr>
+<tr name="344" id="344">
+<td>344</td><td>      <span class="kw">return</span>;                          <span class="ct">/* Priority to higher rate steps interrupted */</span></td></tr>
+<tr name="345" id="345">
+<td>345</td><td>    <span class="br">}</span></td></tr>
+<tr name="346" id="346">
+<td>346</td><td></td></tr>
+<tr name="347" id="347">
+<td>347</td><td>    <span class="kw">if</span> (<a id="347c9" class="tk">event</a>.<a id="347c15" class="tk">Flags4</a>) <span class="br">{</span></td></tr>
+<tr name="348" id="348">
+<td>348</td><td>      <a id="348c7" class="tk">Overrun</a>.<a id="348c15" class="tk">Flags4</a> = 1;</td></tr>
+<tr name="349" id="349">
+<td>349</td><td>      <span class="kw">do</span> <span class="br">{</span></td></tr>
+<tr name="350" id="350">
+<td>350</td><td>        <span class="ct">/* Start profiling task 4 */</span></td></tr>
+<tr name="351" id="351">
+<td>351</td><td>        <a id="351c9" class="tk">event</a>.<a id="351c15" class="tk">Flags4</a> = 0U;</td></tr>
+<tr name="352" id="352">
+<td>352</td><td>        <a id="352c9" class="tk">AUAV3_AND_SLUGS_SENSOR_step</a>(4);</td></tr>
+<tr name="353" id="353">
+<td>353</td><td></td></tr>
+<tr name="354" id="354">
+<td>354</td><td>        <span class="ct">/* Get model outputs here */</span></td></tr>
+<tr name="355" id="355">
+<td>355</td><td>        ;                              <span class="ct">/* Execute task tid 4 */</span></td></tr>
+<tr name="356" id="356">
+<td>356</td><td></td></tr>
+<tr name="357" id="357">
+<td>357</td><td>        <span class="ct">/* Stop profiling task 4 */</span></td></tr>
+<tr name="358" id="358">
+<td>358</td><td>      <span class="br">}</span> <span class="kw">while</span> (<a id="358c16" class="tk">event</a>.<a id="358c22" class="tk">Flags4</a>);</td></tr>
+<tr name="359" id="359">
+<td>359</td><td></td></tr>
+<tr name="360" id="360">
+<td>360</td><td>      <a id="360c7" class="tk">Overrun</a>.<a id="360c15" class="tk">Flags4</a> = 0U;</td></tr>
+<tr name="361" id="361">
+<td>361</td><td>    <span class="br">}</span></td></tr>
+<tr name="362" id="362">
+<td>362</td><td></td></tr>
+<tr name="363" id="363">
+<td>363</td><td>    <span class="ct">/* Handle Task 5 */</span></td></tr>
+<tr name="364" id="364">
+<td>364</td><td>    <span class="kw">if</span> (<a id="364c9" class="tk">Overrun</a>.<a id="364c17" class="tk">Flags5</a>) <span class="br">{</span></td></tr>
+<tr name="365" id="365">
+<td>365</td><td>      <span class="kw">asm</span>("DEC _BusyFlagRecursion");   <span class="ct">/* ensure atomic operation for BusyFlagRecursion--; */</span></td></tr>
+<tr name="366" id="366">
+<td>366</td><td>      <span class="kw">asm</span>("DEC _mcuFlagRecursion");    <span class="ct">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</span></td></tr>
+<tr name="367" id="367">
+<td>367</td><td>      <span class="kw">return</span>;                          <span class="ct">/* Priority to higher rate steps interrupted */</span></td></tr>
+<tr name="368" id="368">
+<td>368</td><td>    <span class="br">}</span></td></tr>
+<tr name="369" id="369">
+<td>369</td><td></td></tr>
+<tr name="370" id="370">
+<td>370</td><td>    <span class="kw">if</span> (<a id="370c9" class="tk">event</a>.<a id="370c15" class="tk">Flags5</a>) <span class="br">{</span></td></tr>
+<tr name="371" id="371">
+<td>371</td><td>      <a id="371c7" class="tk">Overrun</a>.<a id="371c15" class="tk">Flags5</a> = 1;</td></tr>
+<tr name="372" id="372">
+<td>372</td><td>      <span class="kw">do</span> <span class="br">{</span></td></tr>
+<tr name="373" id="373">
+<td>373</td><td>        <span class="ct">/* Start profiling task 5 */</span></td></tr>
+<tr name="374" id="374">
+<td>374</td><td>        <a id="374c9" class="tk">event</a>.<a id="374c15" class="tk">Flags5</a> = 0U;</td></tr>
+<tr name="375" id="375">
+<td>375</td><td>        <a id="375c9" class="tk">AUAV3_AND_SLUGS_SENSOR_step</a>(5);</td></tr>
+<tr name="376" id="376">
+<td>376</td><td></td></tr>
+<tr name="377" id="377">
+<td>377</td><td>        <span class="ct">/* Get model outputs here */</span></td></tr>
+<tr name="378" id="378">
+<td>378</td><td>        ;                              <span class="ct">/* Execute task tid 5 */</span></td></tr>
+<tr name="379" id="379">
+<td>379</td><td></td></tr>
+<tr name="380" id="380">
+<td>380</td><td>        <span class="ct">/* Stop profiling task 5 */</span></td></tr>
+<tr name="381" id="381">
+<td>381</td><td>      <span class="br">}</span> <span class="kw">while</span> (<a id="381c16" class="tk">event</a>.<a id="381c22" class="tk">Flags5</a>);</td></tr>
+<tr name="382" id="382">
+<td>382</td><td></td></tr>
+<tr name="383" id="383">
+<td>383</td><td>      <a id="383c7" class="tk">Overrun</a>.<a id="383c15" class="tk">Flags5</a> = 0U;</td></tr>
+<tr name="384" id="384">
+<td>384</td><td>    <span class="br">}</span></td></tr>
+<tr name="385" id="385">
+<td>385</td><td></td></tr>
+<tr name="386" id="386">
+<td>386</td><td>    <span class="ct">/* Handle Task 6 */</span></td></tr>
+<tr name="387" id="387">
+<td>387</td><td>    <span class="kw">if</span> (<a id="387c9" class="tk">Overrun</a>.<a id="387c17" class="tk">Flags6</a>) <span class="br">{</span></td></tr>
+<tr name="388" id="388">
+<td>388</td><td>      <span class="kw">asm</span>("DEC _BusyFlagRecursion");   <span class="ct">/* ensure atomic operation for BusyFlagRecursion--; */</span></td></tr>
+<tr name="389" id="389">
+<td>389</td><td>      <span class="kw">asm</span>("DEC _mcuFlagRecursion");    <span class="ct">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</span></td></tr>
+<tr name="390" id="390">
+<td>390</td><td>      <span class="kw">return</span>;                          <span class="ct">/* Priority to higher rate steps interrupted */</span></td></tr>
+<tr name="391" id="391">
+<td>391</td><td>    <span class="br">}</span></td></tr>
+<tr name="392" id="392">
+<td>392</td><td></td></tr>
+<tr name="393" id="393">
+<td>393</td><td>    <span class="kw">if</span> (<a id="393c9" class="tk">event</a>.<a id="393c15" class="tk">Flags6</a>) <span class="br">{</span></td></tr>
+<tr name="394" id="394">
+<td>394</td><td>      <a id="394c7" class="tk">Overrun</a>.<a id="394c15" class="tk">Flags6</a> = 1;</td></tr>
+<tr name="395" id="395">
+<td>395</td><td>      <span class="kw">do</span> <span class="br">{</span></td></tr>
+<tr name="396" id="396">
+<td>396</td><td>        <span class="ct">/* Start profiling task 6 */</span></td></tr>
+<tr name="397" id="397">
+<td>397</td><td>        <a id="397c9" class="tk">event</a>.<a id="397c15" class="tk">Flags6</a> = 0U;</td></tr>
+<tr name="398" id="398">
+<td>398</td><td>        <a id="398c9" class="tk">AUAV3_AND_SLUGS_SENSOR_step</a>(6);</td></tr>
+<tr name="399" id="399">
+<td>399</td><td></td></tr>
+<tr name="400" id="400">
+<td>400</td><td>        <span class="ct">/* Get model outputs here */</span></td></tr>
+<tr name="401" id="401">
+<td>401</td><td>        ;                              <span class="ct">/* Execute task tid 6 */</span></td></tr>
+<tr name="402" id="402">
+<td>402</td><td></td></tr>
+<tr name="403" id="403">
+<td>403</td><td>        <span class="ct">/* Stop profiling task 6 */</span></td></tr>
+<tr name="404" id="404">
+<td>404</td><td>      <span class="br">}</span> <span class="kw">while</span> (<a id="404c16" class="tk">event</a>.<a id="404c22" class="tk">Flags6</a>);</td></tr>
+<tr name="405" id="405">
+<td>405</td><td></td></tr>
+<tr name="406" id="406">
+<td>406</td><td>      <a id="406c7" class="tk">Overrun</a>.<a id="406c15" class="tk">Flags6</a> = 0U;</td></tr>
+<tr name="407" id="407">
+<td>407</td><td>    <span class="br">}</span></td></tr>
+<tr name="408" id="408">
+<td>408</td><td></td></tr>
+<tr name="409" id="409">
+<td>409</td><td>    <span class="ct">/* Handle Task 7 */</span></td></tr>
+<tr name="410" id="410">
+<td>410</td><td>    <span class="kw">if</span> (<a id="410c9" class="tk">Overrun</a>.<a id="410c17" class="tk">Flags7</a>) <span class="br">{</span></td></tr>
+<tr name="411" id="411">
+<td>411</td><td>      <span class="kw">asm</span>("DEC _BusyFlagRecursion");   <span class="ct">/* ensure atomic operation for BusyFlagRecursion--; */</span></td></tr>
+<tr name="412" id="412">
+<td>412</td><td>      <span class="kw">asm</span>("DEC _mcuFlagRecursion");    <span class="ct">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</span></td></tr>
+<tr name="413" id="413">
+<td>413</td><td>      <span class="kw">return</span>;                          <span class="ct">/* Priority to higher rate steps interrupted */</span></td></tr>
+<tr name="414" id="414">
+<td>414</td><td>    <span class="br">}</span></td></tr>
+<tr name="415" id="415">
+<td>415</td><td></td></tr>
+<tr name="416" id="416">
+<td>416</td><td>    <span class="kw">if</span> (<a id="416c9" class="tk">event</a>.<a id="416c15" class="tk">Flags7</a>) <span class="br">{</span></td></tr>
+<tr name="417" id="417">
+<td>417</td><td>      <a id="417c7" class="tk">Overrun</a>.<a id="417c15" class="tk">Flags7</a> = 1;</td></tr>
+<tr name="418" id="418">
+<td>418</td><td>      <span class="kw">do</span> <span class="br">{</span></td></tr>
+<tr name="419" id="419">
+<td>419</td><td>        <span class="ct">/* Start profiling task 7 */</span></td></tr>
+<tr name="420" id="420">
+<td>420</td><td>        <a id="420c9" class="tk">event</a>.<a id="420c15" class="tk">Flags7</a> = 0U;</td></tr>
+<tr name="421" id="421">
+<td>421</td><td>        <a id="421c9" class="tk">AUAV3_AND_SLUGS_SENSOR_step</a>(7);</td></tr>
+<tr name="422" id="422">
+<td>422</td><td></td></tr>
+<tr name="423" id="423">
+<td>423</td><td>        <span class="ct">/* Get model outputs here */</span></td></tr>
+<tr name="424" id="424">
+<td>424</td><td>        ;                              <span class="ct">/* Execute task tid 7 */</span></td></tr>
+<tr name="425" id="425">
+<td>425</td><td></td></tr>
+<tr name="426" id="426">
+<td>426</td><td>        <span class="ct">/* Stop profiling task 7 */</span></td></tr>
+<tr name="427" id="427">
+<td>427</td><td>      <span class="br">}</span> <span class="kw">while</span> (<a id="427c16" class="tk">event</a>.<a id="427c22" class="tk">Flags7</a>);</td></tr>
+<tr name="428" id="428">
+<td>428</td><td></td></tr>
+<tr name="429" id="429">
+<td>429</td><td>      <a id="429c7" class="tk">Overrun</a>.<a id="429c15" class="tk">Flags7</a> = 0U;</td></tr>
+<tr name="430" id="430">
+<td>430</td><td>    <span class="br">}</span></td></tr>
+<tr name="431" id="431">
+<td>431</td><td></td></tr>
+<tr name="432" id="432">
+<td>432</td><td>    <span class="ct">/* Handle Task 8 */</span></td></tr>
+<tr name="433" id="433">
+<td>433</td><td>    <span class="kw">if</span> (<a id="433c9" class="tk">Overrun</a>.<a id="433c17" class="tk">Flags8</a>) <span class="br">{</span></td></tr>
+<tr name="434" id="434">
+<td>434</td><td>      <span class="kw">asm</span>("DEC _BusyFlagRecursion");   <span class="ct">/* ensure atomic operation for BusyFlagRecursion--; */</span></td></tr>
+<tr name="435" id="435">
+<td>435</td><td>      <span class="kw">asm</span>("DEC _mcuFlagRecursion");    <span class="ct">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</span></td></tr>
+<tr name="436" id="436">
+<td>436</td><td>      <span class="kw">return</span>;                          <span class="ct">/* Priority to higher rate steps interrupted */</span></td></tr>
+<tr name="437" id="437">
+<td>437</td><td>    <span class="br">}</span></td></tr>
+<tr name="438" id="438">
+<td>438</td><td></td></tr>
+<tr name="439" id="439">
+<td>439</td><td>    <span class="kw">if</span> (<a id="439c9" class="tk">event</a>.<a id="439c15" class="tk">Flags8</a>) <span class="br">{</span></td></tr>
+<tr name="440" id="440">
+<td>440</td><td>      <a id="440c7" class="tk">Overrun</a>.<a id="440c15" class="tk">Flags8</a> = 1;</td></tr>
+<tr name="441" id="441">
+<td>441</td><td>      <span class="kw">do</span> <span class="br">{</span></td></tr>
+<tr name="442" id="442">
+<td>442</td><td>        <span class="ct">/* Start profiling task 8 */</span></td></tr>
+<tr name="443" id="443">
+<td>443</td><td>        <a id="443c9" class="tk">event</a>.<a id="443c15" class="tk">Flags8</a> = 0U;</td></tr>
+<tr name="444" id="444">
+<td>444</td><td>        <a id="444c9" class="tk">AUAV3_AND_SLUGS_SENSOR_step</a>(8);</td></tr>
+<tr name="445" id="445">
+<td>445</td><td></td></tr>
+<tr name="446" id="446">
+<td>446</td><td>        <span class="ct">/* Get model outputs here */</span></td></tr>
+<tr name="447" id="447">
+<td>447</td><td>        ;                              <span class="ct">/* Execute task tid 8 */</span></td></tr>
+<tr name="448" id="448">
+<td>448</td><td></td></tr>
+<tr name="449" id="449">
+<td>449</td><td>        <span class="ct">/* Stop profiling task 8 */</span></td></tr>
+<tr name="450" id="450">
+<td>450</td><td>      <span class="br">}</span> <span class="kw">while</span> (<a id="450c16" class="tk">event</a>.<a id="450c22" class="tk">Flags8</a>);</td></tr>
+<tr name="451" id="451">
+<td>451</td><td></td></tr>
+<tr name="452" id="452">
+<td>452</td><td>      <a id="452c7" class="tk">Overrun</a>.<a id="452c15" class="tk">Flags8</a> = 0U;</td></tr>
+<tr name="453" id="453">
+<td>453</td><td>    <span class="br">}</span></td></tr>
+<tr name="454" id="454">
+<td>454</td><td></td></tr>
+<tr name="455" id="455">
+<td>455</td><td>    <span class="ct">/* Handle Task 9 */</span></td></tr>
+<tr name="456" id="456">
+<td>456</td><td>    <span class="kw">if</span> (<a id="456c9" class="tk">Overrun</a>.<a id="456c17" class="tk">Flags9</a>) <span class="br">{</span></td></tr>
+<tr name="457" id="457">
+<td>457</td><td>      <span class="kw">asm</span>("DEC _BusyFlagRecursion");   <span class="ct">/* ensure atomic operation for BusyFlagRecursion--; */</span></td></tr>
+<tr name="458" id="458">
+<td>458</td><td>      <span class="kw">asm</span>("DEC _mcuFlagRecursion");    <span class="ct">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</span></td></tr>
+<tr name="459" id="459">
+<td>459</td><td>      <span class="kw">return</span>;                          <span class="ct">/* Priority to higher rate steps interrupted */</span></td></tr>
+<tr name="460" id="460">
+<td>460</td><td>    <span class="br">}</span></td></tr>
+<tr name="461" id="461">
+<td>461</td><td></td></tr>
+<tr name="462" id="462">
+<td>462</td><td>    <span class="kw">if</span> (<a id="462c9" class="tk">event</a>.<a id="462c15" class="tk">Flags9</a>) <span class="br">{</span></td></tr>
+<tr name="463" id="463">
+<td>463</td><td>      <a id="463c7" class="tk">Overrun</a>.<a id="463c15" class="tk">Flags9</a> = 1;</td></tr>
+<tr name="464" id="464">
+<td>464</td><td>      <span class="kw">do</span> <span class="br">{</span></td></tr>
+<tr name="465" id="465">
+<td>465</td><td>        <span class="ct">/* Start profiling task 9 */</span></td></tr>
+<tr name="466" id="466">
+<td>466</td><td>        <a id="466c9" class="tk">event</a>.<a id="466c15" class="tk">Flags9</a> = 0U;</td></tr>
+<tr name="467" id="467">
+<td>467</td><td>        <a id="467c9" class="tk">AUAV3_AND_SLUGS_SENSOR_step</a>(9);</td></tr>
+<tr name="468" id="468">
+<td>468</td><td></td></tr>
+<tr name="469" id="469">
+<td>469</td><td>        <span class="ct">/* Get model outputs here */</span></td></tr>
+<tr name="470" id="470">
+<td>470</td><td>        ;                              <span class="ct">/* Execute task tid 9 */</span></td></tr>
+<tr name="471" id="471">
+<td>471</td><td></td></tr>
+<tr name="472" id="472">
+<td>472</td><td>        <span class="ct">/* Stop profiling task 9 */</span></td></tr>
+<tr name="473" id="473">
+<td>473</td><td>      <span class="br">}</span> <span class="kw">while</span> (<a id="473c16" class="tk">event</a>.<a id="473c22" class="tk">Flags9</a>);</td></tr>
+<tr name="474" id="474">
+<td>474</td><td></td></tr>
+<tr name="475" id="475">
+<td>475</td><td>      <a id="475c7" class="tk">Overrun</a>.<a id="475c15" class="tk">Flags9</a> = 0U;</td></tr>
+<tr name="476" id="476">
+<td>476</td><td>    <span class="br">}</span></td></tr>
+<tr name="477" id="477">
+<td>477</td><td></td></tr>
+<tr name="478" id="478">
+<td>478</td><td>    <span class="ct">/* Handle Task 10 */</span></td></tr>
+<tr name="479" id="479">
+<td>479</td><td>    <span class="kw">if</span> (<a id="479c9" class="tk">Overrun</a>.<a id="479c17" class="tk">Flags10</a>) <span class="br">{</span></td></tr>
+<tr name="480" id="480">
+<td>480</td><td>      <span class="kw">asm</span>("DEC _BusyFlagRecursion");   <span class="ct">/* ensure atomic operation for BusyFlagRecursion--; */</span></td></tr>
+<tr name="481" id="481">
+<td>481</td><td>      <span class="kw">asm</span>("DEC _mcuFlagRecursion");    <span class="ct">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</span></td></tr>
+<tr name="482" id="482">
+<td>482</td><td>      <span class="kw">return</span>;                          <span class="ct">/* Priority to higher rate steps interrupted */</span></td></tr>
+<tr name="483" id="483">
+<td>483</td><td>    <span class="br">}</span></td></tr>
+<tr name="484" id="484">
+<td>484</td><td></td></tr>
+<tr name="485" id="485">
+<td>485</td><td>    <span class="kw">if</span> (<a id="485c9" class="tk">event</a>.<a id="485c15" class="tk">Flags10</a>) <span class="br">{</span></td></tr>
+<tr name="486" id="486">
+<td>486</td><td>      <a id="486c7" class="tk">Overrun</a>.<a id="486c15" class="tk">Flags10</a> = 1;</td></tr>
+<tr name="487" id="487">
+<td>487</td><td>      <span class="kw">do</span> <span class="br">{</span></td></tr>
+<tr name="488" id="488">
+<td>488</td><td>        <span class="ct">/* Start profiling task 10 */</span></td></tr>
+<tr name="489" id="489">
+<td>489</td><td>        <a id="489c9" class="tk">event</a>.<a id="489c15" class="tk">Flags10</a> = 0U;</td></tr>
+<tr name="490" id="490">
+<td>490</td><td>        <a id="490c9" class="tk">AUAV3_AND_SLUGS_SENSOR_step</a>(10);</td></tr>
+<tr name="491" id="491">
+<td>491</td><td></td></tr>
+<tr name="492" id="492">
+<td>492</td><td>        <span class="ct">/* Get model outputs here */</span></td></tr>
+<tr name="493" id="493">
+<td>493</td><td>        ;                              <span class="ct">/* Execute task tid 10 */</span></td></tr>
+<tr name="494" id="494">
+<td>494</td><td></td></tr>
+<tr name="495" id="495">
+<td>495</td><td>        <span class="ct">/* Stop profiling task 10 */</span></td></tr>
+<tr name="496" id="496">
+<td>496</td><td>      <span class="br">}</span> <span class="kw">while</span> (<a id="496c16" class="tk">event</a>.<a id="496c22" class="tk">Flags10</a>);</td></tr>
+<tr name="497" id="497">
+<td>497</td><td></td></tr>
+<tr name="498" id="498">
+<td>498</td><td>      <a id="498c7" class="tk">Overrun</a>.<a id="498c15" class="tk">Flags10</a> = 0U;</td></tr>
+<tr name="499" id="499">
+<td>499</td><td>    <span class="br">}</span></td></tr>
+<tr name="500" id="500">
+<td>500</td><td></td></tr>
+<tr name="501" id="501">
+<td>501</td><td>    <span class="ct">/* Handle Task 11 */</span></td></tr>
+<tr name="502" id="502">
+<td>502</td><td>    <span class="kw">if</span> (<a id="502c9" class="tk">Overrun</a>.<a id="502c17" class="tk">Flags11</a>) <span class="br">{</span></td></tr>
+<tr name="503" id="503">
+<td>503</td><td>      <span class="kw">asm</span>("DEC _BusyFlagRecursion");   <span class="ct">/* ensure atomic operation for BusyFlagRecursion--; */</span></td></tr>
+<tr name="504" id="504">
+<td>504</td><td>      <span class="kw">asm</span>("DEC _mcuFlagRecursion");    <span class="ct">/* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */</span></td></tr>
+<tr name="505" id="505">
+<td>505</td><td>      <span class="kw">return</span>;                          <span class="ct">/* Priority to higher rate steps interrupted */</span></td></tr>
+<tr name="506" id="506">
+<td>506</td><td>    <span class="br">}</span></td></tr>
+<tr name="507" id="507">
+<td>507</td><td></td></tr>
+<tr name="508" id="508">
+<td>508</td><td>    <span class="kw">if</span> (<a id="508c9" class="tk">event</a>.<a id="508c15" class="tk">Flags11</a>) <span class="br">{</span></td></tr>
+<tr name="509" id="509">
+<td>509</td><td>      <a id="509c7" class="tk">Overrun</a>.<a id="509c15" class="tk">Flags11</a> = 1;</td></tr>
+<tr name="510" id="510">
+<td>510</td><td>      <span class="kw">do</span> <span class="br">{</span></td></tr>
+<tr name="511" id="511">
+<td>511</td><td>        <span class="ct">/* Start profiling task 11 */</span></td></tr>
+<tr name="512" id="512">
+<td>512</td><td>        <a id="512c9" class="tk">event</a>.<a id="512c15" class="tk">Flags11</a> = 0U;</td></tr>
+<tr name="513" id="513">
+<td>513</td><td>        <a id="513c9" class="tk">AUAV3_AND_SLUGS_SENSOR_step</a>(11);</td></tr>
+<tr name="514" id="514">
+<td>514</td><td></td></tr>
+<tr name="515" id="515">
+<td>515</td><td>        <span class="ct">/* Get model outputs here */</span></td></tr>
+<tr name="516" id="516">
+<td>516</td><td>        ;                              <span class="ct">/* Execute task tid 11 */</span></td></tr>
+<tr name="517" id="517">
+<td>517</td><td></td></tr>
+<tr name="518" id="518">
+<td>518</td><td>        <span class="ct">/* Stop profiling task 11 */</span></td></tr>
+<tr name="519" id="519">
+<td>519</td><td>      <span class="br">}</span> <span class="kw">while</span> (<a id="519c16" class="tk">event</a>.<a id="519c22" class="tk">Flags11</a>);</td></tr>
+<tr name="520" id="520">
+<td>520</td><td></td></tr>
+<tr name="521" id="521">
+<td>521</td><td>      <a id="521c7" class="tk">Overrun</a>.<a id="521c15" class="tk">Flags11</a> = 0U;</td></tr>
+<tr name="522" id="522">
+<td>522</td><td>    <span class="br">}</span></td></tr>
+<tr name="523" id="523">
+<td>523</td><td></td></tr>
+<tr name="524" id="524">
+<td>524</td><td>    <a id="524c5" class="tk">_IPL1</a> = 1;</td></tr>
+<tr name="525" id="525">
+<td>525</td><td>    <a id="525c5" class="tk">_IPL0</a> = 0;</td></tr>
+<tr name="526" id="526">
+<td>526</td><td></td></tr>
+<tr name="527" id="527">
+<td>527</td><td>    <span class="ct">/* Release busy flag */</span></td></tr>
+<tr name="528" id="528">
+<td>528</td><td>    <span class="kw">asm</span>("DEC _BusyFlagRecursion");     <span class="ct">/* ensure atomic operation for BusyFlagRecursion--; */</span></td></tr>
+<tr name="529" id="529">
+<td>529</td><td>    <span class="kw">if</span> (<a id="529c9" class="tk">BusyFlagRecursion</a> == 0)</td></tr>
+<tr name="530" id="530">
+<td>530</td><td>      <a id="530c7" class="tk">LATAbits</a>.<a id="530c16" class="tk">LATA6</a> = 0;</td></tr>
+<tr name="531" id="531">
+<td>531</td><td>  <span class="br">}</span></td></tr>
+<tr name="532" id="532">
+<td>532</td><td></td></tr>
+<tr name="533" id="533">
+<td>533</td><td>  <span class="kw">asm</span>("DEC _mcuFlagRecursion");        <span class="ct">/* ensure --mcuFlagRecursion is atomic */</span></td></tr>
+<tr name="534" id="534">
+<td>534</td><td>  <span class="kw">if</span> (<a id="534c7" class="tk">mcuFlagRecursion</a> == 0) <span class="br">{</span></td></tr>
+<tr name="535" id="535">
+<td>535</td><td>    <a id="535c5" class="tk">T2CONbits</a>.<a id="535c15" class="tk">TON</a> = 0;</td></tr>
+<tr name="536" id="536">
+<td>536</td><td>  <span class="br">}</span></td></tr>
+<tr name="537" id="537">
+<td>537</td><td><span class="br">}</span></td></tr>
+<tr name="538" id="538">
+<td>538</td><td></td></tr>
+<tr name="539" id="539">
+<td>539</td><td><span class="kw">int</span> <a id="539c5" class="tk">main</a>()</td></tr>
+<tr name="540" id="540">
+<td>540</td><td><span class="br">{</span></td></tr>
+<tr name="541" id="541">
+<td>541</td><td>  <span class="ct">/* Initialize model */</span></td></tr>
+<tr name="542" id="542">
+<td>542</td><td>  <span class="ct">/* Start Clock Switching */</span></td></tr>
+<tr name="543" id="543">
+<td>543</td><td>  <span class="kw">if</span> ((<a id="543c8" class="tk">OSCCONbits</a>.<a id="543c19" class="tk">COSC</a> &amp; 1) &amp;&amp; !(<a id="543c34" class="tk">OSCCONbits</a>.<a id="543c45" class="tk">COSC</a> &amp; 4))<span class="ct">/* check not already in PLL mode (0?1) */</span></td></tr>
+<tr name="544" id="544">
+<td>544</td><td>  <span class="br">{</span></td></tr>
+<tr name="545" id="545">
+<td>545</td><td>    <a id="545c5" class="tk">__builtin_write_OSCCONH</a>(0);        <span class="ct">/* Clock Switch to non PLL mode */</span></td></tr>
+<tr name="546" id="546">
+<td>546</td><td>    <a id="546c5" class="tk">__builtin_write_OSCCONL</a>(0x01);     <span class="ct">/* Start clock switching */</span></td></tr>
+<tr name="547" id="547">
+<td>547</td><td>    <span class="kw">asm</span>("nop");</td></tr>
+<tr name="548" id="548">
+<td>548</td><td>    <span class="kw">asm</span>("nop");</td></tr>
+<tr name="549" id="549">
+<td>549</td><td>    <span class="kw">while</span> (<a id="549c12" class="tk">OSCCONbits</a>.<a id="549c23" class="tk">COSC</a> != 0) ;</td></tr>
+<tr name="550" id="550">
+<td>550</td><td>  <span class="br">}</span></td></tr>
+<tr name="551" id="551">
+<td>551</td><td></td></tr>
+<tr name="552" id="552">
+<td>552</td><td>  <a id="552c3" class="tk">PLLFBD</a> = 0xF3;                       <span class="ct">/* configure Oscillator PLL : PLLDIV */</span></td></tr>
+<tr name="553" id="553">
+<td>553</td><td>  <a id="553c3" class="tk">CLKDIV</a> = 0x05;                       <span class="ct">/* configure Oscillator PLL : FRCDIV ; PLLPOST ; PLLPRE */</span></td></tr>
+<tr name="554" id="554">
+<td>554</td><td>  <a id="554c3" class="tk">__builtin_write_OSCCONH</a>(3);          <span class="ct">/* Clock Switch to desired configuration */</span></td></tr>
+<tr name="555" id="555">
+<td>555</td><td>  <a id="555c3" class="tk">__builtin_write_OSCCONL</a>(0x01);       <span class="ct">/* Start clock switching */</span></td></tr>
+<tr name="556" id="556">
+<td>556</td><td></td></tr>
+<tr name="557" id="557">
+<td>557</td><td>  <span class="ct">/* Configure Pins as Analog or Digital */</span></td></tr>
+<tr name="558" id="558">
+<td>558</td><td>  <a id="558c3" class="tk">ANSELA</a> = 0xFFBF;</td></tr>
+<tr name="559" id="559">
+<td>559</td><td>  <a id="559c3" class="tk">ANSELB</a> = 0xFFC3;</td></tr>
+<tr name="560" id="560">
+<td>560</td><td>  <a id="560c3" class="tk">ANSELE</a> = 0xFFC2;</td></tr>
+<tr name="561" id="561">
+<td>561</td><td></td></tr>
+<tr name="562" id="562">
+<td>562</td><td>  <span class="ct">/* Configure Remappables Pins */</span></td></tr>
+<tr name="563" id="563">
+<td>563</td><td>  <a id="563c3" class="tk">RPINR7</a> = 0x4840;</td></tr>
+<tr name="564" id="564">
+<td>564</td><td>  <a id="564c3" class="tk">RPINR8</a> = 0x1F4B;</td></tr>
+<tr name="565" id="565">
+<td>565</td><td>  <a id="565c3" class="tk">RPINR9</a> = 0x15;</td></tr>
+<tr name="566" id="566">
+<td>566</td><td>  <a id="566c3" class="tk">RPINR20</a> = 0x53;</td></tr>
+<tr name="567" id="567">
+<td>567</td><td>  <a id="567c3" class="tk">RPOR4</a> = 0x1100;</td></tr>
+<tr name="568" id="568">
+<td>568</td><td>  <a id="568c3" class="tk">RPOR5</a> = 0x05;</td></tr>
+<tr name="569" id="569">
+<td>569</td><td>  <a id="569c3" class="tk">RPOR6</a> = 0x1D;</td></tr>
+<tr name="570" id="570">
+<td>570</td><td>  <a id="570c3" class="tk">RPOR8</a> = 0x0100;</td></tr>
+<tr name="571" id="571">
+<td>571</td><td>  <a id="571c3" class="tk">RPOR12</a> = 0x1000;</td></tr>
+<tr name="572" id="572">
+<td>572</td><td>  <a id="572c3" class="tk">RPOR15</a> = 0x0600;</td></tr>
+<tr name="573" id="573">
+<td>573</td><td></td></tr>
+<tr name="574" id="574">
+<td>574</td><td>  <span class="ct">/* Configure Digitals I/O directions */</span></td></tr>
+<tr name="575" id="575">
+<td>575</td><td>  <a id="575c3" class="tk">TRISA</a> = 0xFFBF;</td></tr>
+<tr name="576" id="576">
+<td>576</td><td>  <a id="576c3" class="tk">TRISB</a> = 0xFFC3;</td></tr>
+<tr name="577" id="577">
+<td>577</td><td>  <a id="577c3" class="tk">TRISE</a> = 0xFFCA;</td></tr>
+<tr name="578" id="578">
+<td>578</td><td>  <a id="578c3" class="tk">TRISF</a> = 0xFFF7;</td></tr>
+<tr name="579" id="579">
+<td>579</td><td>  <a id="579c3" class="tk">TRISG</a> = 0x7FFE;</td></tr>
+<tr name="580" id="580">
+<td>580</td><td></td></tr>
+<tr name="581" id="581">
+<td>581</td><td>  <span class="ct">/* Finish clock switching procedure */</span></td></tr>
+<tr name="582" id="582">
+<td>582</td><td>  <span class="kw">while</span> (<a id="582c10" class="tk">OSCCONbits</a>.<a id="582c21" class="tk">COSC</a> != 3) ;       <span class="ct">/* Wait for Oscillator Stabilisation */</span></td></tr>
+<tr name="583" id="583">
+<td>583</td><td>  <span class="kw">while</span> (<a id="583c10" class="tk">OSCCONbits</a>.<a id="583c21" class="tk">LOCK</a> != 1) ;       <span class="ct">/* Wait for PLL Stabilisation */</span></td></tr>
+<tr name="584" id="584">
+<td>584</td><td></td></tr>
+<tr name="585" id="585">
+<td>585</td><td>  <span class="ct">/* Initialize model */</span></td></tr>
+<tr name="586" id="586">
+<td>586</td><td>  <a id="586c3" class="tk">AUAV3_AND_SLUGS_SENSOR_initialize</a>();</td></tr>
+<tr name="587" id="587">
+<td>587</td><td></td></tr>
+<tr name="588" id="588">
+<td>588</td><td>  <span class="ct">/* Configure Timers */</span></td></tr>
+<tr name="589" id="589">
+<td>589</td><td>  <span class="ct">/* Configure Timers */</span></td></tr>
+<tr name="590" id="590">
+<td>590</td><td>  <span class="ct">/* Configuration for TIMER 1 */</span></td></tr>
+<tr name="591" id="591">
+<td>591</td><td>  <a id="591c3" class="tk">_T1IP</a> = 2;</td></tr>
+<tr name="592" id="592">
+<td>592</td><td>  <a id="592c3" class="tk">_T1IF</a> = 0;</td></tr>
+<tr name="593" id="593">
+<td>593</td><td>  <a id="593c3" class="tk">_T1IE</a> = 1;                           <span class="ct">/* Enable Timer interrupt. */</span></td></tr>
+<tr name="594" id="594">
+<td>594</td><td>  <a id="594c3" class="tk">PR1</a> = 0x5572;                        <span class="ct">/* Period */</span></td></tr>
+<tr name="595" id="595">
+<td>595</td><td></td></tr>
+<tr name="596" id="596">
+<td>596</td><td>  <span class="ct">/* Timer 1 will be enabled after the configuration function. */</span></td></tr>
+<tr name="597" id="597">
+<td>597</td><td>  <span class="ct">/* Configuration for TIMER 2 */</span></td></tr>
+<tr name="598" id="598">
+<td>598</td><td>  <a id="598c3" class="tk">PR2</a> = 0xFFFF;                        <span class="ct">/* Period */</span></td></tr>
+<tr name="599" id="599">
+<td>599</td><td>  <a id="599c3" class="tk">T2CON</a> = 0x20;</td></tr>
+<tr name="600" id="600">
+<td>600</td><td></td></tr>
+<tr name="601" id="601">
+<td>601</td><td>  <span class="ct">/* Enable Time-step */</span></td></tr>
+<tr name="602" id="602">
+<td>602</td><td>  <a id="602c3" class="tk">TMR1</a> = 0x5571;</td></tr>
+<tr name="603" id="603">
+<td>603</td><td>  <a id="603c3" class="tk">T1CON</a> = 0x8010;                      <span class="ct">/* Timer 1 is the source trigger for the model Time-step */</span></td></tr>
+<tr name="604" id="604">
+<td>604</td><td></td></tr>
+<tr name="605" id="605">
+<td>605</td><td>  <span class="ct">/* Main Loop */</span></td></tr>
+<tr name="606" id="606">
+<td>606</td><td>  <span class="kw">for</span> (;;) ;</td></tr>
+<tr name="607" id="607">
+<td>607</td><td><span class="br">}</span>                                      <span class="ct">/* end of main() */</span></td></tr>
+<tr name="608" id="608">
+<td>608</td><td></td></tr>
+<tr name="609" id="609">
+<td>609</td><td><span class="ct">/* File trailer for Real-Time Workshop generated code.</span></td></tr>
+<tr name="610" id="610">
+<td>610</td><td><span class="ct"> *</span></td></tr>
+<tr name="611" id="611">
+<td>611</td><td><span class="ct"> * [EOF]</span></td></tr>
+<tr name="612" id="612">
+<td>612</td><td><span class="ct"> */</span></td></tr>
+<tr name="613" id="613">
+<td>613</td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

@@ -19,32 +19,33 @@
  *
  * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.
  *
- * Model version                        : 1.208
- * Real-Time Workshop file version      : 8.1 (R2011b) 08-Jul-2011
- * Real-Time Workshop file generated on : Wed Apr 27 00:58:09 2016
- * TLC version                          : 8.1 (Jul  9 2011)
- * C source code generated on           : Wed Apr 27 00:58:11 2016
+ * Model version                        : 1.219
+ * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
+ * Real-Time Workshop file generated on : Fri Apr 29 16:39:44 2016
+ * TLC version                          : 8.8 (Jan 20 2015)
+ * C source code generated on           : Fri Apr 29 16:39:46 2016
  */
 
 #ifndef __RTWTYPES_H__
 #define __RTWTYPES_H__
-#ifndef TRUE
-# define TRUE                          (1U)
-#endif
 
-#ifndef FALSE
-# define FALSE                         (0U)
-#endif
+/* Logical type definitions */
+#if (!defined(__cplusplus))
+#  ifndef false
+#   define false                       (0U)
+#  endif
 
-#ifndef __TMWTYPES__
-#define __TMWTYPES__
-#include <limits.h>
+#  ifndef true
+#   define true                        (1U)
+#  endif
+#endif
 
 /*=======================================================================*
  * Target hardware information
  *   Device type: Generic->Custom
  *   Number of bits:     char:   8    short:   16    int:  16
- *                       long:  32      native word size:  16
+ *                       long:  32
+ *                       native word size:  16
  *   Byte ordering: LittleEndian
  *   Signed integer division rounds to: Zero
  *   Shift right on a signed integer as arithmetic shift: on
@@ -99,30 +100,42 @@ typedef struct {
   real_T im;
 } creal_T;
 
+#define CINT8_T
+
 typedef struct {
   int8_T re;
   int8_T im;
 } cint8_T;
+
+#define CUINT8_T
 
 typedef struct {
   uint8_T re;
   uint8_T im;
 } cuint8_T;
 
+#define CINT16_T
+
 typedef struct {
   int16_T re;
   int16_T im;
 } cint16_T;
+
+#define CUINT16_T
 
 typedef struct {
   uint16_T re;
   uint16_T im;
 } cuint16_T;
 
+#define CINT32_T
+
 typedef struct {
   int32_T re;
   int32_T im;
 } cint32_T;
+
+#define CUINT32_T
 
 typedef struct {
   uint32_T re;
@@ -137,206 +150,16 @@ typedef struct {
 #define MAX_int8_T                     ((int8_T)(127))
 #define MIN_int8_T                     ((int8_T)(-128))
 #define MAX_uint8_T                    ((uint8_T)(255U))
-#define MIN_uint8_T                    ((uint8_T)(0U))
 #define MAX_int16_T                    ((int16_T)(32767))
 #define MIN_int16_T                    ((int16_T)(-32768))
 #define MAX_uint16_T                   ((uint16_T)(65535U))
-#define MIN_uint16_T                   ((uint16_T)(0U))
 #define MAX_int32_T                    ((int32_T)(2147483647))
 #define MIN_int32_T                    ((int32_T)(-2147483647-1))
 #define MAX_uint32_T                   ((uint32_T)(0xFFFFFFFFU))
-#define MIN_uint32_T                   ((uint32_T)(0U))
-
-/* Logical type definitions */
-#if (!defined(__cplusplus)) && (!defined(__true_false_are_keywords))
-#  ifndef false
-#   define false                       (0U)
-#  endif
-
-#  ifndef true
-#   define true                        (1U)
-#  endif
-#endif
-
-/*
- * Simulink Coder assumes the code is compiled on a target using a 2's complement representation
- * for signed integer values.
- */
-#if ((SCHAR_MIN + 1) != -SCHAR_MAX)
-#error "This code must be compiled using a 2's complement representation for signed integer values"
-#endif
-
-/* This ID is used to detect inclusion of an incompatible rtwtypes.h */
-#define RTWTYPES_ID_C08S16I16L32N16F1
-#else                                  /* __TMWTYPES__ */
-#define TMWTYPES_PREVIOUSLY_INCLUDED
-#endif                                 /* __TMWTYPES__ */
 
 /* Block D-Work pointer type */
 typedef void * pointer_T;
 
-/*
- * MultiWord supporting definitions
- */
-typedef long int long_T;
-
-/*
- * MultiWord types
- */
-typedef struct {
-  uint32_T chunks[2];
-} int64m_T;
-
-typedef struct {
-  int64m_T re;
-  int64m_T im;
-} cint64m_T;
-
-typedef struct {
-  uint32_T chunks[2];
-} uint64m_T;
-
-typedef struct {
-  uint64m_T re;
-  uint64m_T im;
-} cuint64m_T;
-
-typedef struct {
-  uint32_T chunks[3];
-} int96m_T;
-
-typedef struct {
-  int96m_T re;
-  int96m_T im;
-} cint96m_T;
-
-typedef struct {
-  uint32_T chunks[3];
-} uint96m_T;
-
-typedef struct {
-  uint96m_T re;
-  uint96m_T im;
-} cuint96m_T;
-
-typedef struct {
-  uint32_T chunks[4];
-} int128m_T;
-
-typedef struct {
-  int128m_T re;
-  int128m_T im;
-} cint128m_T;
-
-typedef struct {
-  uint32_T chunks[4];
-} uint128m_T;
-
-typedef struct {
-  uint128m_T re;
-  uint128m_T im;
-} cuint128m_T;
-
-typedef struct {
-  uint32_T chunks[5];
-} int160m_T;
-
-typedef struct {
-  int160m_T re;
-  int160m_T im;
-} cint160m_T;
-
-typedef struct {
-  uint32_T chunks[5];
-} uint160m_T;
-
-typedef struct {
-  uint160m_T re;
-  uint160m_T im;
-} cuint160m_T;
-
-typedef struct {
-  uint32_T chunks[6];
-} int192m_T;
-
-typedef struct {
-  int192m_T re;
-  int192m_T im;
-} cint192m_T;
-
-typedef struct {
-  uint32_T chunks[6];
-} uint192m_T;
-
-typedef struct {
-  uint192m_T re;
-  uint192m_T im;
-} cuint192m_T;
-
-typedef struct {
-  uint32_T chunks[7];
-} int224m_T;
-
-typedef struct {
-  int224m_T re;
-  int224m_T im;
-} cint224m_T;
-
-typedef struct {
-  uint32_T chunks[7];
-} uint224m_T;
-
-typedef struct {
-  uint224m_T re;
-  uint224m_T im;
-} cuint224m_T;
-
-typedef struct {
-  uint32_T chunks[8];
-} int256m_T;
-
-typedef struct {
-  int256m_T re;
-  int256m_T im;
-} cint256m_T;
-
-typedef struct {
-  uint32_T chunks[8];
-} uint256m_T;
-
-typedef struct {
-  uint256m_T re;
-  uint256m_T im;
-} cuint256m_T;
-
-/* Simulink specific types */
-#ifndef __SIMSTRUC_TYPES_H__
-#define __SIMSTRUC_TYPES_H__
-
-/* Trigger directions: falling, either, and rising */
-typedef enum {
-  FALLING_ZERO_CROSSING = -1,
-  ANY_ZERO_CROSSING = 0,
-  RISING_ZERO_CROSSING = 1
-} ZCDirection;
-
-/* Previous state of a trigger signal */
-typedef uint8_T ZCSigState;
-
-/* Initial value of a trigger zero crossing signal */
-#define UNINITIALIZED_ZCSIG            0x03U
-#define NEG_ZCSIG                      0x02U
-#define POS_ZCSIG                      0x01U
-#define ZERO_ZCSIG                     0x00U
-
-/* Current state of a trigger signal */
-typedef enum {
-  FALLING_ZCEVENT = -1,
-  NO_ZCEVENT = 0,
-  RISING_ZCEVENT = 1
-} ZCEventType;
-
-#endif                                 /* __SIMSTRUC_TYPES_H__ */
 #endif                                 /* __RTWTYPES_H__ */
 
 /* File trailer for Real-Time Workshop generated code.

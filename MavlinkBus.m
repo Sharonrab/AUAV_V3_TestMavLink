@@ -75,127 +75,259 @@
 % mavlink_volt_sensor_t.Elements = elems;
 % assignin('base', 'mavlink_volt_sensor_t', mavlink_volt_sensor_t)
 % 
-% % Bus object: mlPwmCommands
-% clear elems;
-% 
-% elems(1) = Simulink.BusElement;
-% elems(1).Name = 'time_usec';
-% elems(1).Dimensions = 1;
-% elems(1).DimensionsMode = 'Fixed';
-% elems(1).DataType = 'uint32';
-% elems(1).SampleTime = -1;
-% elems(1).Complexity = 'real';
-% elems(1).SamplingMode = 'Sample based';
-% elems(1).Min = [];
-% elems(1).Max = [];
-% 
-% elems(2) = Simulink.BusElement;
-% elems(2).Name = 'servo1_raw';
-% elems(2).Dimensions = 1;
-% elems(2).DimensionsMode = 'Fixed';
-% elems(2).DataType = 'uint16';
-% elems(2).SampleTime = -1;
-% elems(2).Complexity = 'real';
-% elems(2).SamplingMode = 'Sample based';
-% elems(2).Min = [];
-% elems(2).Max = [];
-% 
-% elems(3) = Simulink.BusElement;
-% elems(3).Name = 'servo2_raw';
-% elems(3).Dimensions = 1;
-% elems(3).DimensionsMode = 'Fixed';
-% elems(3).DataType = 'uint16';
-% elems(3).SampleTime = -1;
-% elems(3).Complexity = 'real';
-% elems(3).SamplingMode = 'Sample based';
-% elems(3).Min = [];
-% elems(3).Max = [];
-% 
-% elems(4) = Simulink.BusElement;
-% elems(4).Name = 'servo3_raw';
-% elems(4).Dimensions = 1;
-% elems(4).DimensionsMode = 'Fixed';
-% elems(4).DataType = 'uint16';
-% elems(4).SampleTime = -1;
-% elems(4).Complexity = 'real';
-% elems(4).SamplingMode = 'Sample based';
-% elems(4).Min = [];
-% elems(4).Max = [];
-% 
-% elems(5) = Simulink.BusElement;
-% elems(5).Name = 'servo4_raw';
-% elems(5).Dimensions = 1;
-% elems(5).DimensionsMode = 'Fixed';
-% elems(5).DataType = 'uint16';
-% elems(5).SampleTime = -1;
-% elems(5).Complexity = 'real';
-% elems(5).SamplingMode = 'Sample based';
-% elems(5).Min = [];
-% elems(5).Max = [];
-% 
-% elems(6) = Simulink.BusElement;
-% elems(6).Name = 'servo5_raw';
-% elems(6).Dimensions = 1;
-% elems(6).DimensionsMode = 'Fixed';
-% elems(6).DataType = 'uint16';
-% elems(6).SampleTime = -1;
-% elems(6).Complexity = 'real';
-% elems(6).SamplingMode = 'Sample based';
-% elems(6).Min = [];
-% elems(6).Max = [];
-% 
-% elems(7) = Simulink.BusElement;
-% elems(7).Name = 'servo6_raw';
-% elems(7).Dimensions = 1;
-% elems(7).DimensionsMode = 'Fixed';
-% elems(7).DataType = 'uint16';
-% elems(7).SampleTime = -1;
-% elems(7).Complexity = 'real';
-% elems(7).SamplingMode = 'Sample based';
-% elems(7).Min = [];
-% elems(7).Max = [];
-% 
-% elems(8) = Simulink.BusElement;
-% elems(8).Name = 'servo7_raw';
-% elems(8).Dimensions = 1;
-% elems(8).DimensionsMode = 'Fixed';
-% elems(8).DataType = 'uint16';
-% elems(8).SampleTime = -1;
-% elems(8).Complexity = 'real';
-% elems(8).SamplingMode = 'Sample based';
-% elems(8).Min = [];
-% elems(8).Max = [];
-% 
-% elems(9) = Simulink.BusElement;
-% elems(9).Name = 'servo8_raw';
-% elems(9).Dimensions = 1;
-% elems(9).DimensionsMode = 'Fixed';
-% elems(9).DataType = 'uint16';
-% elems(9).SampleTime = -1;
-% elems(9).Complexity = 'real';
-% elems(9).SamplingMode = 'Sample based';
-% elems(9).Min = [];
-% elems(9).Max = [];
-% 
-% elems(10) = Simulink.BusElement;
-% elems(10).Name = 'port';
-% elems(10).Dimensions = 1;
-% elems(10).DimensionsMode = 'Fixed';
-% elems(10).DataType = 'uint8';
-% elems(10).SampleTime = -1;
-% elems(10).Complexity = 'real';
-% elems(10).SamplingMode = 'Sample based';
-% elems(10).Min = [];
-% elems(10).Max = [];
-% 
-% mavlink_servo_output_raw_t = Simulink.Bus;
-% mavlink_servo_output_raw_t.Description = sprintf('mavlink_rtb');
-% mavlink_servo_output_raw_t.DataScope = 'Imported';
-% mavlink_servo_output_raw_t.HeaderFile = 'mavlinkControlMcu.h'; 
-% mavlink_servo_output_raw_t.Alignment = -1;
-% mavlink_servo_output_raw_t.Elements = elems;
-% assignin('base', 'mavlink_servo_output_raw_t', mavlink_servo_output_raw_t)
-% 
+% Bus object: mlPwmCommands
+clear elems;
+
+elems(1) = Simulink.BusElement;
+elems(1).Name = 'time_usec';
+elems(1).Dimensions = 1;
+elems(1).DimensionsMode = 'Fixed';
+elems(1).DataType = 'uint32';
+elems(1).SampleTime = -1;
+elems(1).Complexity = 'real';
+elems(1).SamplingMode = 'Sample based';
+elems(1).Min = [];
+elems(1).Max = [];
+
+elems(2) = Simulink.BusElement;
+elems(2).Name = 'servo1_raw';
+elems(2).Dimensions = 1;
+elems(2).DimensionsMode = 'Fixed';
+elems(2).DataType = 'uint16';
+elems(2).SampleTime = -1;
+elems(2).Complexity = 'real';
+elems(2).SamplingMode = 'Sample based';
+elems(2).Min = [];
+elems(2).Max = [];
+
+elems(3) = Simulink.BusElement;
+elems(3).Name = 'servo2_raw';
+elems(3).Dimensions = 1;
+elems(3).DimensionsMode = 'Fixed';
+elems(3).DataType = 'uint16';
+elems(3).SampleTime = -1;
+elems(3).Complexity = 'real';
+elems(3).SamplingMode = 'Sample based';
+elems(3).Min = [];
+elems(3).Max = [];
+
+elems(4) = Simulink.BusElement;
+elems(4).Name = 'servo3_raw';
+elems(4).Dimensions = 1;
+elems(4).DimensionsMode = 'Fixed';
+elems(4).DataType = 'uint16';
+elems(4).SampleTime = -1;
+elems(4).Complexity = 'real';
+elems(4).SamplingMode = 'Sample based';
+elems(4).Min = [];
+elems(4).Max = [];
+
+elems(5) = Simulink.BusElement;
+elems(5).Name = 'servo4_raw';
+elems(5).Dimensions = 1;
+elems(5).DimensionsMode = 'Fixed';
+elems(5).DataType = 'uint16';
+elems(5).SampleTime = -1;
+elems(5).Complexity = 'real';
+elems(5).SamplingMode = 'Sample based';
+elems(5).Min = [];
+elems(5).Max = [];
+
+elems(6) = Simulink.BusElement;
+elems(6).Name = 'servo5_raw';
+elems(6).Dimensions = 1;
+elems(6).DimensionsMode = 'Fixed';
+elems(6).DataType = 'uint16';
+elems(6).SampleTime = -1;
+elems(6).Complexity = 'real';
+elems(6).SamplingMode = 'Sample based';
+elems(6).Min = [];
+elems(6).Max = [];
+
+elems(7) = Simulink.BusElement;
+elems(7).Name = 'servo6_raw';
+elems(7).Dimensions = 1;
+elems(7).DimensionsMode = 'Fixed';
+elems(7).DataType = 'uint16';
+elems(7).SampleTime = -1;
+elems(7).Complexity = 'real';
+elems(7).SamplingMode = 'Sample based';
+elems(7).Min = [];
+elems(7).Max = [];
+
+elems(8) = Simulink.BusElement;
+elems(8).Name = 'servo7_raw';
+elems(8).Dimensions = 1;
+elems(8).DimensionsMode = 'Fixed';
+elems(8).DataType = 'uint16';
+elems(8).SampleTime = -1;
+elems(8).Complexity = 'real';
+elems(8).SamplingMode = 'Sample based';
+elems(8).Min = [];
+elems(8).Max = [];
+
+elems(9) = Simulink.BusElement;
+elems(9).Name = 'servo8_raw';
+elems(9).Dimensions = 1;
+elems(9).DimensionsMode = 'Fixed';
+elems(9).DataType = 'uint16';
+elems(9).SampleTime = -1;
+elems(9).Complexity = 'real';
+elems(9).SamplingMode = 'Sample based';
+elems(9).Min = [];
+elems(9).Max = [];
+
+elems(10) = Simulink.BusElement;
+elems(10).Name = 'port';
+elems(10).Dimensions = 1;
+elems(10).DimensionsMode = 'Fixed';
+elems(10).DataType = 'uint8';
+elems(10).SampleTime = -1;
+elems(10).Complexity = 'real';
+elems(10).SamplingMode = 'Sample based';
+elems(10).Min = [];
+elems(10).Max = [];
+
+mavlink_servo_output_raw_t = Simulink.Bus;
+mavlink_servo_output_raw_t.Description = sprintf('mavlink_servo_output_raw');
+mavlink_servo_output_raw_t.DataScope = 'Imported';
+mavlink_servo_output_raw_t.HeaderFile = 'mavlink.h'; 
+mavlink_servo_output_raw_t.Alignment = -1;
+mavlink_servo_output_raw_t.Elements = elems;
+assignin('base', 'mavlink_servo_output_raw_t', mavlink_servo_output_raw_t)
+
+% Bus object: mlRC_Commands
+clear elems;
+
+elems(1) = Simulink.BusElement;
+elems(1).Name = 'time_usec';
+elems(1).Dimensions = 1;
+elems(1).DimensionsMode = 'Fixed';
+elems(1).DataType = 'uint32';
+elems(1).SampleTime = -1;
+elems(1).Complexity = 'real';
+elems(1).SamplingMode = 'Sample based';
+elems(1).Min = [];
+elems(1).Max = [];
+
+elems(2) = Simulink.BusElement;
+elems(2).Name = 'chan1_raw';
+elems(2).Dimensions = 1;
+elems(2).DimensionsMode = 'Fixed';
+elems(2).DataType = 'uint16';
+elems(2).SampleTime = -1;
+elems(2).Complexity = 'real';
+elems(2).SamplingMode = 'Sample based';
+elems(2).Min = [];
+elems(2).Max = [];
+
+elems(3) = Simulink.BusElement;
+elems(3).Name = 'chan2_raw';
+elems(3).Dimensions = 1;
+elems(3).DimensionsMode = 'Fixed';
+elems(3).DataType = 'uint16';
+elems(3).SampleTime = -1;
+elems(3).Complexity = 'real';
+elems(3).SamplingMode = 'Sample based';
+elems(3).Min = [];
+elems(3).Max = [];
+
+elems(4) = Simulink.BusElement;
+elems(4).Name = 'chan3_raw';
+elems(4).Dimensions = 1;
+elems(4).DimensionsMode = 'Fixed';
+elems(4).DataType = 'uint16';
+elems(4).SampleTime = -1;
+elems(4).Complexity = 'real';
+elems(4).SamplingMode = 'Sample based';
+elems(4).Min = [];
+elems(4).Max = [];
+
+elems(5) = Simulink.BusElement;
+elems(5).Name = 'chan4_raw';
+elems(5).Dimensions = 1;
+elems(5).DimensionsMode = 'Fixed';
+elems(5).DataType = 'uint16';
+elems(5).SampleTime = -1;
+elems(5).Complexity = 'real';
+elems(5).SamplingMode = 'Sample based';
+elems(5).Min = [];
+elems(5).Max = [];
+
+elems(6) = Simulink.BusElement;
+elems(6).Name = 'chan5_raw';
+elems(6).Dimensions = 1;
+elems(6).DimensionsMode = 'Fixed';
+elems(6).DataType = 'uint16';
+elems(6).SampleTime = -1;
+elems(6).Complexity = 'real';
+elems(6).SamplingMode = 'Sample based';
+elems(6).Min = [];
+elems(6).Max = [];
+
+elems(7) = Simulink.BusElement;
+elems(7).Name = 'chan6_raw';
+elems(7).Dimensions = 1;
+elems(7).DimensionsMode = 'Fixed';
+elems(7).DataType = 'uint16';
+elems(7).SampleTime = -1;
+elems(7).Complexity = 'real';
+elems(7).SamplingMode = 'Sample based';
+elems(7).Min = [];
+elems(7).Max = [];
+
+elems(8) = Simulink.BusElement;
+elems(8).Name = 'chan7_raw';
+elems(8).Dimensions = 1;
+elems(8).DimensionsMode = 'Fixed';
+elems(8).DataType = 'uint16';
+elems(8).SampleTime = -1;
+elems(8).Complexity = 'real';
+elems(8).SamplingMode = 'Sample based';
+elems(8).Min = [];
+elems(8).Max = [];
+
+elems(9) = Simulink.BusElement;
+elems(9).Name = 'chan8_raw';
+elems(9).Dimensions = 1;
+elems(9).DimensionsMode = 'Fixed';
+elems(9).DataType = 'uint16';
+elems(9).SampleTime = -1;
+elems(9).Complexity = 'real';
+elems(9).SamplingMode = 'Sample based';
+elems(9).Min = [];
+elems(9).Max = [];
+
+elems(10) = Simulink.BusElement;
+elems(10).Name = 'port';
+elems(10).Dimensions = 1;
+elems(10).DimensionsMode = 'Fixed';
+elems(10).DataType = 'uint8';
+elems(10).SampleTime = -1;
+elems(10).Complexity = 'real';
+elems(10).SamplingMode = 'Sample based';
+elems(10).Min = [];
+elems(10).Max = [];
+
+elems(11) = Simulink.BusElement;
+elems(11).Name = 'rssi';
+elems(11).Dimensions = 1;
+elems(11).DimensionsMode = 'Fixed';
+elems(11).DataType = 'uint8';
+elems(11).SampleTime = -1;
+elems(11).Complexity = 'real';
+elems(11).SamplingMode = 'Sample based';
+elems(11).Min = [];
+elems(11).Max = [];
+
+mavlink_rc_channels_raw_t = Simulink.Bus;
+mavlink_rc_channels_raw_t.Description = sprintf('mavlink_rc_channels_raw');
+mavlink_rc_channels_raw_t.DataScope = 'Imported';
+mavlink_rc_channels_raw_t.HeaderFile = 'mavlink.h'; 
+mavlink_rc_channels_raw_t.Alignment = -1;
+mavlink_rc_channels_raw_t.Elements = elems;
+assignin('base', 'mavlink_rc_channels_raw_t', mavlink_rc_channels_raw_t)
+
 % % Bus object: mlRTB
 % clear elems;
 % 

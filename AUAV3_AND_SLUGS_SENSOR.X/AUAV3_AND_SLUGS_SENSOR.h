@@ -19,53 +19,43 @@
  *
  * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.
  *
- * Model version                        : 1.208
- * Real-Time Workshop file version      : 8.1 (R2011b) 08-Jul-2011
- * Real-Time Workshop file generated on : Wed Apr 27 00:58:09 2016
- * TLC version                          : 8.1 (Jul  9 2011)
- * C source code generated on           : Wed Apr 27 00:58:11 2016
+ * Model version                        : 1.219
+ * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
+ * Real-Time Workshop file generated on : Fri Apr 29 16:39:44 2016
+ * TLC version                          : 8.8 (Jan 20 2015)
+ * C source code generated on           : Fri Apr 29 16:39:46 2016
  */
 
 #ifndef RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_h_
 #define RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_h_
-#ifndef AUAV3_AND_SLUGS_SENSOR_COMMON_INCLUDES_
-# define AUAV3_AND_SLUGS_SENSOR_COMMON_INCLUDES_
 #include <math.h>
 #include <string.h>
+#include <stddef.h>
+#ifndef AUAV3_AND_SLUGS_SENSOR_COMMON_INCLUDES_
+# define AUAV3_AND_SLUGS_SENSOR_COMMON_INCLUDES_
 #include "rtwtypes.h"
-#include "rtGetInf.h"
-#include "rtGetNaN.h"
-#include "rt_defines.h"
-#include "rt_nonfinite.h"
 #endif                                 /* AUAV3_AND_SLUGS_SENSOR_COMMON_INCLUDES_ */
 
 #include "AUAV3_AND_SLUGS_SENSOR_types.h"
+
+/* Shared type includes */
+#include "multiword_types.h"
 #define FCY                            7.0E+7
 
 /* Include for pic 33E */
 #include <p33Exxxx.h>
 #include <libpic30.h>                  /* For possible use with C function Call block (delay_ms or delay_us functions might be used by few peripherals) */
 #include <libq.h>                      /* For possible use with C function Call block */
+#include "rt_nonfinite.h"
+#include "rtGetInf.h"
 
 /* Macros for accessing real-time model data structure */
 #ifndef rtmCounterLimit
 # define rtmCounterLimit(rtm, idx)     ((rtm)->Timing.TaskCounters.cLimit[(idx)])
 #endif
 
-#ifndef rtmGetErrorStatus
-# define rtmGetErrorStatus(rtm)        ((void*) 0)
-#endif
-
-#ifndef rtmSetErrorStatus
-# define rtmSetErrorStatus(rtm, val)   ((void) 0)
-#endif
-
 #ifndef rtmStepTask
 # define rtmStepTask(rtm, idx)         ((rtm)->Timing.TaskCounters.TID[(idx)] == 0)
-#endif
-
-#ifndef rtmGetStopRequested
-# define rtmGetStopRequested(rtm)      ((void*) 0)
 #endif
 
 #ifndef rtmTaskCounter
@@ -106,40 +96,6 @@ typedef struct MCHP_I2C2_QueueStr{
   volatile uint16_T head;              /* head is the index for the next value to be written into the Circular buffer */
 } MCHP_I2C2_QueueStr;
 
-/* Block signals for system '<S29>/myMux Fun1' */
-typedef struct {
-  real_T y[3];                         /* '<S29>/myMux Fun1' */
-} rtB_myMuxFun1_AUAV3_AND_SLUGS_T;
-
-/* Block signals for system '<S56>/negprotect' */
-typedef struct {
-  real32_T zpVal;                      /* '<S56>/negprotect' */
-} rtB_negprotect_AUAV3_AND_SLUG_T;
-
-/* Block signals for system '<S57>/Embedded MATLAB Function' */
-typedef struct {
-  real32_T xDoty;                      /* '<S57>/Embedded MATLAB Function' */
-} rtB_EmbeddedMATLABFunction_AU_T;
-
-/* Block signals for system '<S104>/Embedded MATLAB Function1' */
-typedef struct {
-  real32_T y;                          /* '<S104>/Embedded MATLAB Function1' */
-} rtB_EmbeddedMATLABFunction1_A_T;
-
-/* Block states (auto storage) for system '<S104>/Embedded MATLAB Function1' */
-typedef struct {
-  real32_T LastU;                      /* '<S104>/Embedded MATLAB Function1' */
-  real32_T TimeSinceLast;              /* '<S104>/Embedded MATLAB Function1' */
-  real32_T rate;                       /* '<S104>/Embedded MATLAB Function1' */
-  real32_T OldRate;                    /* '<S104>/Embedded MATLAB Function1' */
-  boolean_T LastU_not_empty;           /* '<S104>/Embedded MATLAB Function1' */
-} rtDW_EmbeddedMATLABFunction1__T;
-
-/* Block signals for system '<S96>/myMux Fun1' */
-typedef struct {
-  real32_T y[3];                       /* '<S96>/myMux Fun1' */
-} rtB_myMuxFun1_AUAV3_AND_SLU_c_T;
-
 /* Block signals for system '<S123>/Enabled Subsystem' */
 typedef struct {
   real32_T In1;                        /* '<S131>/In1' */
@@ -156,20 +112,10 @@ typedef struct {
   real_T tIni;                         /* '<S123>/Enables//Disables the Computation of  initial Baro Bias' */
 } rtDW_EnablesDisablestheComput_T;
 
-/* Block signals for system '<S123>/Zero Out Height' */
-typedef struct {
-  real32_T Sum;                        /* '<S134>/Sum' */
-} rtB_ZeroOutHeight_AUAV3_AND_S_T;
-
-/* Block states (auto storage) for system '<S123>/Zero Out Height' */
-typedef struct {
-  real32_T IntegerDelay_DSTATE;        /* '<S134>/Integer Delay' */
-} rtDW_ZeroOutHeight_AUAV3_AND__T;
-
 /* Block signals for system '<S160>/Embedded MATLAB Function' */
 typedef struct {
   real_T y;                            /* '<S160>/Embedded MATLAB Function' */
-} rtB_EmbeddedMATLABFunction_n_T;
+} rtB_EmbeddedMATLABFunction_AU_T;
 
 /* Block states (auto storage) for system '<S160>/Embedded MATLAB Function' */
 typedef struct {
@@ -178,54 +124,38 @@ typedef struct {
   real_T y_km1;                        /* '<S160>/Embedded MATLAB Function' */
   real_T u_km1;                        /* '<S160>/Embedded MATLAB Function' */
   boolean_T a_not_empty;               /* '<S160>/Embedded MATLAB Function' */
-} rtDW_EmbeddedMATLABFunction_i_T;
-
-/* Block signals for system '<S160>/myMux Fun' */
-typedef struct {
-  real_T y[3];                         /* '<S160>/myMux Fun' */
-} rtB_myMuxFun_AUAV3_AND_SLUGS__T;
+} rtDW_EmbeddedMATLABFunction_A_T;
 
 /* Block signals for system '<S155>/Embedded MATLAB Function' */
 typedef struct {
   real_T y;                            /* '<S155>/Embedded MATLAB Function' */
-} rtB_EmbeddedMATLABFunction_d_T;
+} rtB_EmbeddedMATLABFunction_n_T;
 
 /* Block signals (auto storage) */
 typedef struct {
   mavlink_gps_raw_int_t GetRawGpsInt;  /* '<S4>/Get RawGpsInt' */
   mavlink_sys_status_t GetmlSysStatus; /* '<S4>/Get mlSysStatus' */
   mavlink_raw_imu_t GetRawIMU;         /* '<S4>/Get Raw IMU' */
+  mavlink_rc_channels_raw_t GetRawRC;  /* '<S4>/Get Raw RC' */
   mavlink_scaled_pressure_t GetmlAirData;/* '<S4>/Get mlAirData' */
-  real32_T Sum1;                       /* '<S130>/Sum1' */
-  real32_T VectorConcatenate[9];       /* '<S76>/Vector Concatenate' */
-  real32_T Submatrix1[3];              /* '<S22>/Submatrix1' */
-  real32_T apUtilsc;                   /* '<S61>/[apUtils.c]' */
-  real32_T GettheGSLocationupdateSensorMCU[3];/* '<S6>/Get the GS Location [updateSensorMCUState.c]1' */
-  real32_T UnitConversion;             /* '<S80>/Unit Conversion' */
-  real32_T apUtilsc1;                  /* '<S81>/[apUtils.c]1' */
-  real32_T apUtilsc_e;                 /* '<S81>/[apUtils.c]' */
-  real32_T GettheGSLocationupdateSensorM_j[3];/* '<S200>/Get the GS Location [updateSensorMCUState.c]1' */
-  real32_T Merge;                      /* '<S191>/Merge' */
-  real32_T Sum1_b;                     /* '<S197>/Sum1' */
-  real32_T apUtilsc_n;                 /* '<S56>/[apUtils.c]' */
-  real32_T g_hat[3];                   /* '<S22>/Submatrix' */
-  real32_T Merge_p;                    /* '<S190>/Merge' */
+  real32_T Merge;                      /* '<S190>/Merge' */
+  real32_T Merge_k;                    /* '<S191>/Merge' */
+  real32_T GettheGSLocationupdateSensorMCU[3];/* '<S200>/Get the GS Location [updateSensorMCUState.c]1' */
   real32_T y[4];                       /* '<S152>/myMux Fun1' */
+  real32_T Sum;                        /* '<S202>/Sum' */
   real32_T u0k120k;                    /* '<S201>/[80k - 120k]' */
   real32_T AirData[3];                 /* '<S156>/AirData' */
-  real32_T Switch2[5];                 /* '<S155>/Switch2' */
   real32_T ProducetheGPSMainDataandupdatet[5];/* '<S183>/Produce the GPS Main Data and update the AP State (lat lon hei cog sog) [gpsUblox.c]1' */
-  real32_T ProducetheGPSMainDataandupdat_i[5];/* '<S182>/Produce the GPS Main Data and update the AP State (lat lon hei cog sog) [gps.c//novatel.c]2' */
-  real32_T u0k120k_e;                  /* '<S133>/[80k - 120k]' */
-  real32_T In1[3];                     /* '<S25>/In1' */
-  real32_T In2;                        /* '<S25>/In2' */
-  real32_T In3;                        /* '<S25>/In3' */
+  real32_T ProducetheGPSMainDataandupdat_c[5];/* '<S182>/Produce the GPS Main Data and update the AP State (lat lon hei cog sog) [gps.c//novatel.c]2' */
+  real32_T Sum_k;                      /* '<S134>/Sum' */
+  real32_T u0k120k_i;                  /* '<S133>/[80k - 120k]' */
   uint32_T Gettime;                    /* '<S4>/Get time' */
   uint32_T Gettime1;                   /* '<S4>/Get time1' */
   uint32_T Gettime2;                   /* '<S4>/Get time2' */
+  uint32_T Gettime3;                   /* '<S4>/Get time3' */
   int16_T ReadtheCubeDataadisCube16405c1[10];/* '<S155>/Read the Cube Data [adisCube16405.c]1' */
-  int16_T y_h[13];                     /* '<S155>/myMux Fun4' */
-  int16_T y_p[4];                      /* '<S155>/myMux Fun' */
+  int16_T y_g[13];                     /* '<S155>/myMux Fun4' */
+  int16_T y_b[4];                      /* '<S155>/myMux Fun' */
   int16_T RateTransition11;            /* '<S124>/Rate Transition11' */
   int16_T RateTransition12;            /* '<S124>/Rate Transition12' */
   int16_T RateTransition2;             /* '<S124>/Rate Transition2' */
@@ -234,6 +164,8 @@ typedef struct {
   int16_T RateTransition8;             /* '<S124>/Rate Transition8' */
   int16_T RateTransition9;             /* '<S124>/Rate Transition9' */
   uint16_T U3CH4;                      /* '<Root>/MCU Load' */
+  uint16_T Saturation;                 /* '<S10>/Saturation' */
+  uint16_T Saturation1;                /* '<S10>/Saturation1' */
   uint16_T U1CH8[3];                   /* '<S8>/BUS SPI Read MPU 6050 Axyz, T°, Gxyz (1 kHz)' */
   uint16_T U1CH4;                      /* '<S8>/BUS SPI Read MPU 6050 Axyz, T°, Gxyz (1 kHz)' */
   uint16_T BUSSPIReadMPU6050AxyzTGxyz1kHz_[3];/* '<S8>/BUS SPI Read MPU 6050 Axyz, T°, Gxyz (1 kHz)' */
@@ -245,12 +177,6 @@ typedef struct {
   uint16_T CalculusTimeStep1;          /* '<S154>/Calculus Time Step1' */
   uint16_T CalculusTimeStep2;          /* '<S154>/Calculus Time Step2' */
   uint16_T DataTypeConversion8;        /* '<S157>/Data Type Conversion8' */
-  uint16_T InputCaptureRCReceiver1_o2; /* '<S10>/Input Capture RC Receiver1' */
-  uint16_T InputCaptureRCReceiver1_o3; /* '<S10>/Input Capture RC Receiver1' */
-  uint16_T InputCaptureRCReceiver1_o5; /* '<S10>/Input Capture RC Receiver1' */
-  uint16_T InputCaptureRCReceiver1_o6; /* '<S10>/Input Capture RC Receiver1' */
-  uint16_T Saturation;                 /* '<S10>/Saturation' */
-  uint16_T Saturation1;                /* '<S10>/Saturation1' */
   uint16_T PackRawIMU;                 /* '<S4>/PackRawIMU' */
   uint16_T PackHeartBeat;              /* '<S4>/PackHeartBeat' */
   uint16_T PackGpsRawInt;              /* '<S4>/PackGpsRawInt' */
@@ -258,15 +184,18 @@ typedef struct {
   uint16_T PackSysStatus;              /* '<S4>/PackSysStatus' */
   uint16_T ParamInterfaceResponse;     /* '<S4>/ParamInterfaceResponse' */
   uint16_T ParamInterfaceResponse1;    /* '<S4>/ParamInterfaceResponse1' */
+  uint16_T PackRawRC;                  /* '<S4>/PackRawRC' */
   uint16_T RateTransition5;            /* '<S124>/Rate Transition5' */
   uint16_T RateTransition6;            /* '<S124>/Rate Transition6' */
   uint16_T RateTransition7;            /* '<S124>/Rate Transition7' */
   uint16_T cmdPITCHraw;                /* '<S10>/Input Capture RC Receiver1' */
+  uint16_T InputCaptureRCReceiver1_o2; /* '<S10>/Input Capture RC Receiver1' */
+  uint16_T InputCaptureRCReceiver1_o3; /* '<S10>/Input Capture RC Receiver1' */
   uint16_T cmdROLLraw;                 /* '<S10>/Input Capture RC Receiver1' */
+  uint16_T InputCaptureRCReceiver1_o5; /* '<S10>/Input Capture RC Receiver1' */
   uint8_T BUSI2CInitializeBMP180ReadTConv[2];/* '<S7>/BUS I2C Initialize BMP180 Read T°, Convert P @ 100Hz' */
   uint8_T BUSI2CInitializeBMP180ReadPConv[2];/* '<S7>/BUS I2C Initialize BMP180 Read P, Convert T° @100Hz' */
   uint8_T BUSI2CReadHMC5883Magn50Hz[6];/* '<S8>/BUS I2C Read HMC5883 Magn (50 Hz)' */
-  uint8_T ChecksifFixTypeis3updateSensorM;/* '<S6>/Checks if FixType is 3 [updateSensorMCUState.c]1' */
   uint8_T DataTypeConversion12;        /* '<S154>/Data Type Conversion12' */
   uint8_T IstheGPSNovatelorUbloxgpsPortc1;/* '<S155>/Is the GPS Novatel or Ublox? [gpsPort.c]1' */
   uint8_T ReadtheRawDatafromGPSgpsPortc2;/* '<S182>/Read the Raw Data from GPS [gpsPort.c]2' */
@@ -274,103 +203,62 @@ typedef struct {
   uint8_T HILMessagesParserDecoderhilc1[13];/* '<S151>/HIL Messages  Parser//Decoder [hil.c]1' */
   uint8_T HILRawReadingshilc1[13];     /* '<S151>/HIL Raw Readings [hil.c]1' */
   uint8_T BUSI2CInitializeBMP180readCalib[22];/* '<S124>/BUS I2C Initialize BMP180 read Calibration data @ 1Hz' */
-  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction_o;/* '<S196>/Embedded MATLAB Function' */
-  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction_l;/* '<S195>/Embedded MATLAB Function' */
-  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction_g;/* '<S194>/Embedded MATLAB Function' */
-  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction_a;/* '<S193>/Embedded MATLAB Function' */
-  rtB_ZeroOutHeight_AUAV3_AND_S_T ZeroOutHeight_d;/* '<S186>/Zero Out Height' */
-  rtB_EnablesDisablestheComputa_T sf_EnablesDisablestheComputat_e;/* '<S186>/Enables//Disables the Computation of  initial Baro Bias' */
-  rtB_EnabledSubsystem_AUAV3_AN_T EnabledSubsystem_o;/* '<S186>/Enabled Subsystem' */
-  rtB_EmbeddedMATLABFunction_d_T sf_EmbeddedMATLABFunction3_c;/* '<S155>/Embedded MATLAB Function3' */
-  rtB_EmbeddedMATLABFunction_d_T sf_EmbeddedMATLABFunction2_o;/* '<S155>/Embedded MATLAB Function2' */
-  rtB_EmbeddedMATLABFunction_d_T sf_EmbeddedMATLABFunction1_d;/* '<S155>/Embedded MATLAB Function1' */
-  rtB_EmbeddedMATLABFunction_d_T sf_EmbeddedMATLABFunction_kd;/* '<S155>/Embedded MATLAB Function' */
-  rtB_myMuxFun_AUAV3_AND_SLUGS__T sf_myMuxFun_d;/* '<S162>/myMux Fun' */
-  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction2_c;/* '<S162>/Embedded MATLAB Function2' */
-  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction1_my;/* '<S162>/Embedded MATLAB Function1' */
-  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction_hj;/* '<S162>/Embedded MATLAB Function' */
-  rtB_myMuxFun_AUAV3_AND_SLUGS__T sf_myMuxFun;/* '<S161>/myMux Fun' */
-  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction2;/* '<S161>/Embedded MATLAB Function2' */
-  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction1;/* '<S161>/Embedded MATLAB Function1' */
-  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction_h;/* '<S161>/Embedded MATLAB Function' */
-  rtB_myMuxFun_AUAV3_AND_SLUGS__T sf_myMuxFun_g;/* '<S160>/myMux Fun' */
-  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction2_p;/* '<S160>/Embedded MATLAB Function2' */
-  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction1_m;/* '<S160>/Embedded MATLAB Function1' */
-  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction_k;/* '<S160>/Embedded MATLAB Function' */
-  rtB_ZeroOutHeight_AUAV3_AND_S_T ZeroOutHeight;/* '<S123>/Zero Out Height' */
+  boolean_T DigitalOutputRead_o2;      /* '<S18>/Digital Output Read' */
+  boolean_T DigitalOutputRead_o2_h;    /* '<S19>/Digital Output Read' */
+  boolean_T DigitalOutputRead_o2_d;    /* '<S20>/Digital Output Read' */
+  boolean_T DigitalOutputRead_o2_hf;   /* '<S21>/Digital Output Read' */
+  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction_a;/* '<S196>/Embedded MATLAB Function' */
+  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction_o;/* '<S195>/Embedded MATLAB Function' */
+  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction_j;/* '<S194>/Embedded MATLAB Function' */
+  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction;/* '<S193>/Embedded MATLAB Function' */
+  rtB_EnablesDisablestheComputa_T sf_EnablesDisablestheComputat_m;/* '<S186>/Enables//Disables the Computation of  initial Baro Bias' */
+  rtB_EnabledSubsystem_AUAV3_AN_T EnabledSubsystem_e;/* '<S186>/Enabled Subsystem' */
+  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction3;/* '<S155>/Embedded MATLAB Function3' */
+  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction2_db;/* '<S155>/Embedded MATLAB Function2' */
+  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction1_m;/* '<S155>/Embedded MATLAB Function1' */
+  rtB_EmbeddedMATLABFunction_n_T sf_EmbeddedMATLABFunction_i;/* '<S155>/Embedded MATLAB Function' */
+  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction2_f;/* '<S162>/Embedded MATLAB Function2' */
+  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction1_d;/* '<S162>/Embedded MATLAB Function1' */
+  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction_d;/* '<S162>/Embedded MATLAB Function' */
+  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction2_d;/* '<S161>/Embedded MATLAB Function2' */
+  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction1_h;/* '<S161>/Embedded MATLAB Function1' */
+  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction_ph;/* '<S161>/Embedded MATLAB Function' */
+  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction2;/* '<S160>/Embedded MATLAB Function2' */
+  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction1;/* '<S160>/Embedded MATLAB Function1' */
+  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction_p;/* '<S160>/Embedded MATLAB Function' */
   rtB_EnablesDisablestheComputa_T sf_EnablesDisablestheComputatio;/* '<S123>/Enables//Disables the Computation of  initial Baro Bias' */
   rtB_EnabledSubsystem_AUAV3_AN_T EnabledSubsystem;/* '<S123>/Enabled Subsystem' */
-  rtB_myMuxFun1_AUAV3_AND_SLU_c_T sf_myMuxFun2_a;/* '<S96>/myMux Fun2' */
-  rtB_myMuxFun1_AUAV3_AND_SLU_c_T sf_myMuxFun1_p;/* '<S96>/myMux Fun1' */
-  rtB_EmbeddedMATLABFunction1_A_T sf_EmbeddedMATLABFunction2_n;/* '<S104>/Embedded MATLAB Function2' */
-  rtB_EmbeddedMATLABFunction1_A_T sf_EmbeddedMATLABFunction1_o;/* '<S104>/Embedded MATLAB Function1' */
-  rtB_myMuxFun1_AUAV3_AND_SLUGS_T sf_myMuxFun1;/* '<S98>/myMux Fun1' */
-  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction;/* '<S62>/Embedded MATLAB Function' */
-  rtB_negprotect_AUAV3_AND_SLUG_T sf_negprotect;/* '<S61>/negprotect' */
-  rtB_EmbeddedMATLABFunction_AU_T sf_EmbeddedMATLABFunction_e;/* '<S57>/Embedded MATLAB Function' */
-  rtB_negprotect_AUAV3_AND_SLUG_T sf_negprotect_m;/* '<S56>/negprotect' */
-  rtB_myMuxFun1_AUAV3_AND_SLUGS_T sf_myMuxFun1_j;/* '<S29>/myMux Fun1' */
 } BlockIO_AUAV3_AND_SLUGS_SENSO_T;
 
 /* Block states (auto storage) for system '<Root>' */
 typedef struct {
   mavlink_raw_imu_t mlRawIMU;          /* '<Root>/mlRawIMU' */
-  real_T DiscreteZeroPole_DSTATE;      /* '<S110>/Discrete Zero-Pole' */
-  real_T DiscreteZeroPole_DSTATE_o;    /* '<S111>/Discrete Zero-Pole' */
-  real_T DiscreteZeroPole_DSTATE_k;    /* '<S112>/Discrete Zero-Pole' */
-  real_T DiscreteZeroPole_DSTATE_p;    /* '<S42>/Discrete Zero-Pole' */
-  real_T DiscreteZeroPole_DSTATE_o2;   /* '<S43>/Discrete Zero-Pole' */
-  real_T DiscreteZeroPole_DSTATE_d;    /* '<S44>/Discrete Zero-Pole' */
-  real_T DiscreteZeroPole_DSTATE_f;    /* '<S115>/Discrete Zero-Pole' */
-  real_T DiscreteZeroPole_DSTATE_fl;   /* '<S117>/Discrete Zero-Pole' */
-  real_T DiscreteZeroPole_DSTATE_db;   /* '<S119>/Discrete Zero-Pole' */
-  real_T DiscreteZeroPole_DSTATE_m;    /* '<S204>/Discrete Zero-Pole' */
-  real_T DiscreteZeroPole_DSTATE_j;    /* '<S136>/Discrete Zero-Pole' */
-  real_T a;                            /* '<S108>/Embedded MATLAB Function' */
-  real_T b;                            /* '<S108>/Embedded MATLAB Function' */
-  real32_T DiscreteTimeIntegrator1_DSTATE[4];/* '<S22>/Discrete-Time Integrator1' */
-  real32_T IntegerDelay_DSTATE[3];     /* '<S22>/Integer Delay' */
-  real32_T UD_DSTATE;                  /* '<S88>/UD' */
-  real32_T UD_DSTATE_i;                /* '<S89>/UD' */
-  real32_T UD_DSTATE_h;                /* '<S90>/UD' */
-  real32_T UnitDelay_DSTATE;           /* '<S101>/Unit Delay' */
-  real32_T IntegerDelay1_DSTATE[15];   /* '<S33>/Integer Delay1' */
-  real32_T IntegerDelay1_DSTATE_k[15]; /* '<S103>/Integer Delay1' */
-  real32_T UnitDelay_DSTATE_c;         /* '<S99>/Unit Delay' */
-  real32_T UnitDelay_DSTATE_a;         /* '<S100>/Unit Delay' */
+  mavlink_rc_channels_raw_t mlRC_Commands;/* '<Root>/mlRawRC' */
+  mavlink_servo_output_raw_t mlPwmCommands;/* '<Root>/mlRawServo' */
+  real_T DiscreteZeroPole_DSTATE;      /* '<S204>/Discrete Zero-Pole' */
+  real_T DiscreteZeroPole_DSTATE_n;    /* '<S136>/Discrete Zero-Pole' */
+  real32_T IntegerDelay_DSTATE;        /* '<S202>/Integer Delay' */
+  real32_T IntegerDelay_DSTATE_j;      /* '<S134>/Integer Delay' */
   uint32_T Output_DSTATE;              /* '<S2>/Output' */
   uint32_T Delay11_DSTATE;             /* '<S125>/Delay11' */
   uint32_T Delay11_DSTATE_j;           /* '<S126>/Delay11' */
-  real32_T PrevY[3];                   /* '<S96>/Rate Limiter' */
-  real32_T PrevY_c[3];                 /* '<S22>/Bias Rate Limiter' */
-  real32_T y_km1;                      /* '<S108>/Embedded MATLAB Function' */
-  real32_T u_km1;                      /* '<S108>/Embedded MATLAB Function' */
-  real32_T lastGps_h;                  /* '<S97>/Embedded MATLAB Function3' */
-  real32_T TimeSinceLast;              /* '<S97>/Embedded MATLAB Function3' */
   uint32_T time_since_boot_usec;       /* '<Root>/TimeSinceBoot_usec' */
   uint16_T Delay_DSTATE;               /* '<S7>/Delay' */
-  boolean_T a_not_empty;               /* '<S108>/Embedded MATLAB Function' */
-  boolean_T lastGps_h_not_empty;       /* '<S97>/Embedded MATLAB Function3' */
-  boolean_T Subsystem_MODE;            /* '<S96>/Subsystem' */
-  rtDW_EmbeddedMATLABFunction_i_T sf_EmbeddedMATLABFunction_o;/* '<S196>/Embedded MATLAB Function' */
-  rtDW_EmbeddedMATLABFunction_i_T sf_EmbeddedMATLABFunction_l;/* '<S195>/Embedded MATLAB Function' */
-  rtDW_EmbeddedMATLABFunction_i_T sf_EmbeddedMATLABFunction_g;/* '<S194>/Embedded MATLAB Function' */
-  rtDW_EmbeddedMATLABFunction_i_T sf_EmbeddedMATLABFunction_a;/* '<S193>/Embedded MATLAB Function' */
-  rtDW_ZeroOutHeight_AUAV3_AND__T ZeroOutHeight_d;/* '<S186>/Zero Out Height' */
-  rtDW_EnablesDisablestheComput_T sf_EnablesDisablestheComputat_e;/* '<S186>/Enables//Disables the Computation of  initial Baro Bias' */
-  rtDW_EmbeddedMATLABFunction_i_T sf_EmbeddedMATLABFunction2_c;/* '<S162>/Embedded MATLAB Function2' */
-  rtDW_EmbeddedMATLABFunction_i_T sf_EmbeddedMATLABFunction1_my;/* '<S162>/Embedded MATLAB Function1' */
-  rtDW_EmbeddedMATLABFunction_i_T sf_EmbeddedMATLABFunction_hj;/* '<S162>/Embedded MATLAB Function' */
-  rtDW_EmbeddedMATLABFunction_i_T sf_EmbeddedMATLABFunction2;/* '<S161>/Embedded MATLAB Function2' */
-  rtDW_EmbeddedMATLABFunction_i_T sf_EmbeddedMATLABFunction1;/* '<S161>/Embedded MATLAB Function1' */
-  rtDW_EmbeddedMATLABFunction_i_T sf_EmbeddedMATLABFunction_h;/* '<S161>/Embedded MATLAB Function' */
-  rtDW_EmbeddedMATLABFunction_i_T sf_EmbeddedMATLABFunction2_p;/* '<S160>/Embedded MATLAB Function2' */
-  rtDW_EmbeddedMATLABFunction_i_T sf_EmbeddedMATLABFunction1_m;/* '<S160>/Embedded MATLAB Function1' */
-  rtDW_EmbeddedMATLABFunction_i_T sf_EmbeddedMATLABFunction_k;/* '<S160>/Embedded MATLAB Function' */
-  rtDW_ZeroOutHeight_AUAV3_AND__T ZeroOutHeight;/* '<S123>/Zero Out Height' */
+  rtDW_EmbeddedMATLABFunction_A_T sf_EmbeddedMATLABFunction_a;/* '<S196>/Embedded MATLAB Function' */
+  rtDW_EmbeddedMATLABFunction_A_T sf_EmbeddedMATLABFunction_o;/* '<S195>/Embedded MATLAB Function' */
+  rtDW_EmbeddedMATLABFunction_A_T sf_EmbeddedMATLABFunction_j;/* '<S194>/Embedded MATLAB Function' */
+  rtDW_EmbeddedMATLABFunction_A_T sf_EmbeddedMATLABFunction;/* '<S193>/Embedded MATLAB Function' */
+  rtDW_EnablesDisablestheComput_T sf_EnablesDisablestheComputat_m;/* '<S186>/Enables//Disables the Computation of  initial Baro Bias' */
+  rtDW_EmbeddedMATLABFunction_A_T sf_EmbeddedMATLABFunction2_f;/* '<S162>/Embedded MATLAB Function2' */
+  rtDW_EmbeddedMATLABFunction_A_T sf_EmbeddedMATLABFunction1_d;/* '<S162>/Embedded MATLAB Function1' */
+  rtDW_EmbeddedMATLABFunction_A_T sf_EmbeddedMATLABFunction_d;/* '<S162>/Embedded MATLAB Function' */
+  rtDW_EmbeddedMATLABFunction_A_T sf_EmbeddedMATLABFunction2_d;/* '<S161>/Embedded MATLAB Function2' */
+  rtDW_EmbeddedMATLABFunction_A_T sf_EmbeddedMATLABFunction1_h;/* '<S161>/Embedded MATLAB Function1' */
+  rtDW_EmbeddedMATLABFunction_A_T sf_EmbeddedMATLABFunction_ph;/* '<S161>/Embedded MATLAB Function' */
+  rtDW_EmbeddedMATLABFunction_A_T sf_EmbeddedMATLABFunction2;/* '<S160>/Embedded MATLAB Function2' */
+  rtDW_EmbeddedMATLABFunction_A_T sf_EmbeddedMATLABFunction1;/* '<S160>/Embedded MATLAB Function1' */
+  rtDW_EmbeddedMATLABFunction_A_T sf_EmbeddedMATLABFunction_p;/* '<S160>/Embedded MATLAB Function' */
   rtDW_EnablesDisablestheComput_T sf_EnablesDisablestheComputatio;/* '<S123>/Enables//Disables the Computation of  initial Baro Bias' */
-  rtDW_EmbeddedMATLABFunction1__T sf_EmbeddedMATLABFunction2_n;/* '<S104>/Embedded MATLAB Function2' */
-  rtDW_EmbeddedMATLABFunction1__T sf_EmbeddedMATLABFunction1_o;/* '<S104>/Embedded MATLAB Function1' */
 } D_Work_AUAV3_AND_SLUGS_SENSOR_T;
 
 /* Constant parameters (auto storage) */
@@ -382,26 +270,20 @@ typedef struct {
    *   '<S155>/Constant2'
    *   '<S155>/Constant3'
    */
-  real_T pooled7[5];
-
-  /* Computed Parameter: UEN2NEU_Gain
-   * Referenced by: '<S27>/UEN 2 NEU'
-   */
-  real32_T UEN2NEU_Gain[9];
+  real_T pooled5[5];
 } ConstParam_AUAV3_AND_SLUGS_SE_T;
 
 /* Real-time Model Data Structure */
-struct RT_MODEL_AUAV3_AND_SLUGS_SENS_T {
+struct tag_RTM_AUAV3_AND_SLUGS_SENSO_T {
   /*
    * Timing:
    * The following substructure contains information regarding
    * the timing information for the model.
    */
   struct {
-    uint32_T clockTick0;
     struct {
-      uint8_T TID[11];
-      uint8_T cLimit[11];
+      uint16_T TID[12];
+      uint16_T cLimit[12];
     } TaskCounters;
   } Timing;
 };
@@ -439,11 +321,11 @@ extern const mavlink_raw_pressure_t
 extern const mavlink_sys_status_t AUAV3_AND_SLUGS_SENSOR_rtZmavlink_sys_status_t;/* mavlink_sys_status_t ground */
 
 /* Model entry point functions */
-extern void AUAV3_AND_SLUGS_SENSOR_initialize(boolean_T firstTime);
+extern void AUAV3_AND_SLUGS_SENSOR_initialize(void);
 extern void AUAV3_AND_SLUGS_SENSOR_step(int_T tid);
 
 /* Real-time Model object */
-extern struct RT_MODEL_AUAV3_AND_SLUGS_SENS_T *const AUAV3_AND_SLUGS_SENSOR_M;
+extern RT_MODEL_AUAV3_AND_SLUGS_SENS_T *const AUAV3_AND_SLUGS_SENSOR_M;
 
 /*-
  * The generated code includes comments that allow you to trace directly

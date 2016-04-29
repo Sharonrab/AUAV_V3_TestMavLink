@@ -1,49 +1,54 @@
-<HTML>
-<HEAD>
-<TITLE>RTW Report - MCHP_I2C2_Interrupt_data.c </TITLE>
-<STYLE> .LN { font-style: italic; color: #888888 } </STYLE>
-<STYLE> .CT { font-style: italic; color: #117755 } </STYLE>
-<STYLE> .PP { font-style: bold;   color: #992211 } </STYLE>
-<STYLE> .KW { font-style: bold;   color: #112266 } </STYLE>
-<STYLE> .DT { font-style: bold;   color: #112266 } </STYLE>
-<SCRIPT language="JavaScript" type="text/javascript">
-<!--
-function rtwHilite(aBlock,aParentSID) {
- aParentSID = "";
- try {
-    window.location.href="matlab: if ~isempty(which('private/rtwbindmodel')), rtwprivate rtwbindmodel 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.mdl' 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.X' '', end; rtwprivate code2model "+aBlock+" "+aParentSID+";"
- } catch (e) { 
- }
-} // end rtwHilite
-//-->
-</SCRIPT>
-</HEAD>
-<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);} ">
-<P>
-<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
-<H4>File: <A HREF="file:///C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\AUAV3_AND_SLUGS_SENSOR.X\MCHP_I2C2_Interrupt_data.c" TARGET="rtwreport_document_frame">C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\AUAV3_AND_SLUGS_SENSOR.X\MCHP_I2C2_Interrupt_data.c</A></H4>
-<PRE id="RTWcode">
-<SPAN><A CLASS="LN" NAME="1">    1   </A><SPAN CLASS="CT">/* Declaration of Global Variable for I2C 2 Peripheral */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="2">    2   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="3">    3   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;AUAV3_AND_SLUGS_SENSOR.h&quot;</FONT>
-</SPAN><SPAN><A CLASS="LN" NAME="4">    4   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;AUAV3_AND_SLUGS_SENSOR_private.h&quot;</FONT>
-</SPAN><SPAN><A CLASS="LN" NAME="5">    5   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="6">    6   </A><SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <A NAME="var_MCHP_I2C2_State">MCHP_I2C2_State</A> = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="7">    7   </A><SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A NAME="var_MCHP_I2C22_Request">MCHP_I2C22_Request</A> = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="8">    8   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="9">    9   </A><SPAN CLASS="CT">/* Declare I2C2 Queue Circular Buffer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="10">   10   </A><A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_MCHP_I2C2_QueueStr" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_QueueStr');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_QueueStr</FONT></A> <A NAME="var_MCHP_I2C2_Queue">MCHP_I2C2_Queue</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="11">   11   </A><SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A> <A NAME="var_I2C22_Buff8">I2C22_Buff8</A>[2];
-</SPAN><SPAN><A CLASS="LN" NAME="12">   12   </A><SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A NAME="var_MCHP_I2C23_Request">MCHP_I2C23_Request</A> = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="13">   13   </A><SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A> <A NAME="var_I2C23_Buff8">I2C23_Buff8</A>[2];
-</SPAN><SPAN><A CLASS="LN" NAME="14">   14   </A><SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A NAME="var_MCHP_I2C21_Request">MCHP_I2C21_Request</A> = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="15">   15   </A><SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A> <A NAME="var_I2C21_Buff8">I2C21_Buff8</A>[22];
-</SPAN><SPAN><A CLASS="LN" NAME="16">   16   </A><SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A NAME="var_MCHP_I2C24_Request">MCHP_I2C24_Request</A> = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="17">   17   </A><SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A> <A NAME="var_I2C24_Buff8">I2C24_Buff8</A>[6];
-</SPAN><SPAN><A CLASS="LN" NAME="18">   18   </A><SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A NAME="var_MCHP_I2C25_Request">MCHP_I2C25_Request</A> = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="19">   19   </A>
-</SPAN></PRE>
-</TD></TR></TABLE>
-</P>
-</BODY>
-</HTML>
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td>1</td><td><span class="ct">/* Declaration of Global Variable for I2C 2 Peripheral */</span></td></tr>
+<tr name="2" id="2">
+<td>2</td><td></td></tr>
+<tr name="3" id="3">
+<td>3</td><td><span class="pp">#include "AUAV3_AND_SLUGS_SENSOR.h"</span></td></tr>
+<tr name="4" id="4">
+<td>4</td><td><span class="pp">#include "AUAV3_AND_SLUGS_SENSOR_private.h"</span></td></tr>
+<tr name="5" id="5">
+<td>5</td><td></td></tr>
+<tr name="6" id="6">
+<td>6</td><td><span class="kw">volatile</span> <a id="6c10" class="tk">uint16_T</a> <a id="6c19" class="tk">MCHP_I2C2_State</a> = 0;</td></tr>
+<tr name="7" id="7">
+<td>7</td><td><span class="kw">unsigned</span> <span class="kw">int</span> <span class="kw">volatile</span> <a id="7c23" class="tk">MCHP_I2C22_Request</a> = 0;</td></tr>
+<tr name="8" id="8">
+<td>8</td><td></td></tr>
+<tr name="9" id="9">
+<td>9</td><td><span class="ct">/* Declare I2C2 Queue Circular Buffer */</span></td></tr>
+<tr name="10" id="10">
+<td>10</td><td><a id="10c1" class="tk">MCHP_I2C2_QueueStr</a> <a id="10c20" class="tk">MCHP_I2C2_Queue</a>;</td></tr>
+<tr name="11" id="11">
+<td>11</td><td><span class="kw">volatile</span> <a id="11c10" class="tk">uint8_T</a> <a id="11c18" class="tk">I2C22_Buff8</a>[2];</td></tr>
+<tr name="12" id="12">
+<td>12</td><td><span class="kw">unsigned</span> <span class="kw">int</span> <span class="kw">volatile</span> <a id="12c23" class="tk">MCHP_I2C23_Request</a> = 0;</td></tr>
+<tr name="13" id="13">
+<td>13</td><td><span class="kw">volatile</span> <a id="13c10" class="tk">uint8_T</a> <a id="13c18" class="tk">I2C23_Buff8</a>[2];</td></tr>
+<tr name="14" id="14">
+<td>14</td><td><span class="kw">unsigned</span> <span class="kw">int</span> <span class="kw">volatile</span> <a id="14c23" class="tk">MCHP_I2C21_Request</a> = 0;</td></tr>
+<tr name="15" id="15">
+<td>15</td><td><span class="kw">volatile</span> <a id="15c10" class="tk">uint8_T</a> <a id="15c18" class="tk">I2C21_Buff8</a>[22];</td></tr>
+<tr name="16" id="16">
+<td>16</td><td><span class="kw">unsigned</span> <span class="kw">int</span> <span class="kw">volatile</span> <a id="16c23" class="tk">MCHP_I2C24_Request</a> = 0;</td></tr>
+<tr name="17" id="17">
+<td>17</td><td><span class="kw">volatile</span> <a id="17c10" class="tk">uint8_T</a> <a id="17c18" class="tk">I2C24_Buff8</a>[6];</td></tr>
+<tr name="18" id="18">
+<td>18</td><td><span class="kw">unsigned</span> <span class="kw">int</span> <span class="kw">volatile</span> <a id="18c23" class="tk">MCHP_I2C25_Request</a> = 0;</td></tr>
+<tr name="19" id="19">
+<td>19</td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

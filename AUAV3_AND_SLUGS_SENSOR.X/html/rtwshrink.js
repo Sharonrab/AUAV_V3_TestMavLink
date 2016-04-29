@@ -1,4 +1,4 @@
-// Copyright 2011 The MathWorks, Inc.
+// Copyright 2011-2012 The MathWorks, Inc.
 
 function RTW_STRUCT(prop, value) {
     this.prop = prop;
@@ -89,12 +89,18 @@ function RTW_PAGE()
 
 function rtwTableShrink(doc, obj, id, isSymbol){
     if (isSymbol) {
-    hide = "[-]";
-    show = "[+]";
-  } else {
+        hide = "[-]";
+        hide_text = hide;
+        show = "[+]";
+        show_text = show;
+    } else {
         hide = "[<u>hide</u>]";
+        hide_text  = "[hide]";
         show = "[<u>show</u>]";
+        show_text = "[show]";
     }
+    hide = "<span class='shrink-button'>" + hide + "</span>";
+    show = "<span class='shrink-button'>" + show + "</span>";
     if (doc.getElementsByName) {
         var o = doc.getElementsByName(id);
         for (var oid = 0; oid < o.length; ++oid) {
@@ -106,15 +112,32 @@ function rtwTableShrink(doc, obj, id, isSymbol){
         }
         if (o.length >= 0 && top && top.addToPage)
             top.addToPage(doc, o[0], 'display');
-    }  
-    if (obj.innerHTML.toLowerCase() == show.toLowerCase())
+    }
+
+    // IE supports innerText while other browsers support textContent
+    if (obj.textContent)
+      var objText = obj.textContent;
+    else
+      var objText = obj.innerText;
+
+    if (objText.toLowerCase() == show_text.toLowerCase())
         obj.innerHTML = hide; 
     else 
         obj.innerHTML = show; 
+
     if (top && top.addToPage)
         top.addToPage(doc, obj, 'innerHTML');
 }
 
+function rtwTableExpand(doc, controlObj, id) 
+{
+    if (doc.getElementById) {
+        var obj = doc.getElementById(id);
+        if (obj && obj.style.display == "none") {
+            rtwTableShrink(doc, controlObj, id, false);
+        }
+    }            
+}
 
 function restoreState(docObj) {
     var filename = docObj.location.href;

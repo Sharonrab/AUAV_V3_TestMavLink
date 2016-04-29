@@ -1,321 +1,562 @@
-<HTML>
-<HEAD>
-<TITLE>RTW Report - AUAV3_AND_SLUGS_SENSOR_private.h </TITLE>
-<STYLE> .LN { font-style: italic; color: #888888 } </STYLE>
-<STYLE> .CT { font-style: italic; color: #117755 } </STYLE>
-<STYLE> .PP { font-style: bold;   color: #992211 } </STYLE>
-<STYLE> .KW { font-style: bold;   color: #112266 } </STYLE>
-<STYLE> .DT { font-style: bold;   color: #112266 } </STYLE>
-<SCRIPT language="JavaScript" type="text/javascript">
-<!--
-function rtwHilite(aBlock,aParentSID) {
- aParentSID = "";
- try {
-    window.location.href="matlab: if ~isempty(which('private/rtwbindmodel')), rtwprivate rtwbindmodel 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.mdl' 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.X' '', end; rtwprivate code2model "+aBlock+" "+aParentSID+";"
- } catch (e) { 
- }
-} // end rtwHilite
-//-->
-</SCRIPT>
-</HEAD>
-<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);} ">
-<P>
-<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
-<H4>File: <A HREF="file:///C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\AUAV3_AND_SLUGS_SENSOR.X\AUAV3_AND_SLUGS_SENSOR_private.h" TARGET="rtwreport_document_frame">C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\AUAV3_AND_SLUGS_SENSOR.X\AUAV3_AND_SLUGS_SENSOR_private.h</A></H4>
-<PRE id="RTWcode">
-<SPAN><A CLASS="LN" NAME="1">    1   </A><SPAN CLASS="CT">/*--------------------------------------------------------------</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="2">    2   </A><SPAN CLASS="CT"> *   MPLAB Blockset v3.35 for Microchip dsPIC chip family.     *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="3">    3   </A><SPAN CLASS="CT"> *   Generate .c and .h files from Simulink model              *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="4">    4   </A><SPAN CLASS="CT"> *   and compile to .elf, .hex and .cof file that can be       *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="5">    5   </A><SPAN CLASS="CT"> *   flashed into the microcontroller                          *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="6">    6   </A><SPAN CLASS="CT"> *                                                             *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="7">    7   </A><SPAN CLASS="CT"> *      The Microchip name PIC, dsPIC, and MPLAB are           *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="8">    8   </A><SPAN CLASS="CT"> *      registered trademarks of Microchip Technology Inc.     *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="9">    9   </A><SPAN CLASS="CT"> *      MATLAB, Simulink, and Real-Time Workshop are           *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="10">   10   </A><SPAN CLASS="CT"> *      registered trademarks of The MathWorks, Inc.           *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="11">   11   </A><SPAN CLASS="CT"> *                                                             *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="12">   12   </A><SPAN CLASS="CT"> *  Blockset authors: L.Kerhuel, U.Kumar                       *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="13">   13   </A><SPAN CLASS="CT"> *  Product Page:  http://www.microchip.com/SimulinkBlocks     *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="14">   14   </A><SPAN CLASS="CT"> *          Forum: http://www.microchip.com/forums/f192.aspx   *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="15">   15   </A><SPAN CLASS="CT"> *          Wiki:  http://microchip.wikidot.com/simulink:start *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="16">   16   </A><SPAN CLASS="CT"> *--------------------------------------------------------------</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="17">   17   </A><SPAN CLASS="CT"> *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="18">   18   </A><SPAN CLASS="CT"> * File: AUAV3_AND_SLUGS_SENSOR_private.h</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="19">   19   </A><SPAN CLASS="CT"> *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="20">   20   </A><SPAN CLASS="CT"> * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="21">   21   </A><SPAN CLASS="CT"> *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="22">   22   </A><SPAN CLASS="CT"> * Model version                        : 1.208</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="23">   23   </A><SPAN CLASS="CT"> * Real-Time Workshop file version      : 8.1 (R2011b) 08-Jul-2011</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="24">   24   </A><SPAN CLASS="CT"> * Real-Time Workshop file generated on : Wed Apr 27 00:58:09 2016</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="25">   25   </A><SPAN CLASS="CT"> * TLC version                          : 8.1 (Jul  9 2011)</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="26">   26   </A><SPAN CLASS="CT"> * C source code generated on           : Wed Apr 27 00:58:11 2016</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="27">   27   </A><SPAN CLASS="CT"> */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="28">   28   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="29">   29   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">ifndef</SPAN> RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_private_h_
-</SPAN><SPAN><A CLASS="LN" NAME="30">   30   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">define</SPAN> RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_private_h_
-</SPAN><SPAN><A CLASS="LN" NAME="31">   31   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;rtwtypes.h&quot;</FONT>
-</SPAN><SPAN><A CLASS="LN" NAME="32">   32   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">define</SPAN> CALL_EVENT                     (-1)
-</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">ifndef</SPAN> UCHAR_MAX
-</SPAN><SPAN><A CLASS="LN" NAME="34">   34   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&lt;limits.h&gt;</FONT>
-</SPAN><SPAN><A CLASS="LN" NAME="35">   35   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="36">   36   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="37">   37   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">if</SPAN> ( UCHAR_MAX != (0xFFU) ) || ( SCHAR_MAX != (0x7F) )
-</SPAN><SPAN><A CLASS="LN" NAME="38">   38   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">error</SPAN> &quot;Code was generated for compiler with different sized uchar/char. Consider adjusting Emulation Hardware word size settings on the Hardware Implementation pane to match your compiler word sizes as defined in the compiler's limits.h header file. Alternatively, you can select 'None' for Emulation Hardware and select the 'Enable portable word sizes' option for ERT based targets, which will disable the preprocessor word size checks.&quot;
-</SPAN><SPAN><A CLASS="LN" NAME="39">   39   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="40">   40   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="41">   41   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">if</SPAN> ( USHRT_MAX != (0xFFFFU) ) || ( SHRT_MAX != (0x7FFF) )
-</SPAN><SPAN><A CLASS="LN" NAME="42">   42   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">error</SPAN> &quot;Code was generated for compiler with different sized ushort/short. Consider adjusting Emulation Hardware word size settings on the Hardware Implementation pane to match your compiler word sizes as defined in the compilers limits.h header file. Alternatively, you can select 'None' for Emulation Hardware and select the 'Enable portable word sizes' option for ERT based targets, this will disable the preprocessor word size checks.&quot;
-</SPAN><SPAN><A CLASS="LN" NAME="43">   43   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="44">   44   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="45">   45   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">if</SPAN> ( UINT_MAX != (0xFFFFU) ) || ( INT_MAX != (0x7FFF) )
-</SPAN><SPAN><A CLASS="LN" NAME="46">   46   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">error</SPAN> &quot;Code was generated for compiler with different sized uint/int. Consider adjusting Emulation Hardware word size settings on the Hardware Implementation pane to match your compiler word sizes as defined in the compilers limits.h header file. Alternatively, you can select 'None' for Emulation Hardware and select the 'Enable portable word sizes' option for ERT based targets, this will disable the preprocessor word size checks.&quot;
-</SPAN><SPAN><A CLASS="LN" NAME="47">   47   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="48">   48   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="49">   49   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">if</SPAN> ( ULONG_MAX != (0xFFFFFFFFUL) ) || ( LONG_MAX != (0x7FFFFFFFL) )
-</SPAN><SPAN><A CLASS="LN" NAME="50">   50   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">error</SPAN> &quot;Code was generated for compiler with different sized ulong/long. Consider adjusting Emulation Hardware word size settings on the Hardware Implementation pane to match your compiler word sizes as defined in the compilers limits.h header file. Alternatively, you can select 'None' for Emulation Hardware and select the 'Enable portable word sizes' option for ERT based targets, this will disable the preprocessor word size checks.&quot;
-</SPAN><SPAN><A CLASS="LN" NAME="51">   51   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="52">   52   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="53">   53   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">ifndef</SPAN> __RTWTYPES_H__
-</SPAN><SPAN><A CLASS="LN" NAME="54">   54   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">error</SPAN> This file requires rtwtypes.h to be included
-</SPAN><SPAN><A CLASS="LN" NAME="55">   55   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">else</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="56">   56   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">ifdef</SPAN> TMWTYPES_PREVIOUSLY_INCLUDED
-</SPAN><SPAN><A CLASS="LN" NAME="57">   57   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">error</SPAN> This file requires rtwtypes.h to be included before tmwtypes.h
-</SPAN><SPAN><A CLASS="LN" NAME="58">   58   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">else</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="59">   59   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="60">   60   </A><SPAN CLASS="CT">/* Check for inclusion of an incorrect version of rtwtypes.h */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="61">   61   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">ifndef</SPAN> RTWTYPES_ID_C08S16I16L32N16F1
-</SPAN><SPAN><A CLASS="LN" NAME="62">   62   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">error</SPAN> This code was generated with a different &quot;rtwtypes.h&quot; than the file included
-</SPAN><SPAN><A CLASS="LN" NAME="63">   63   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>                                 <SPAN CLASS="CT">/* RTWTYPES_ID_C08S16I16L32N16F1 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="64">   64   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>                                 <SPAN CLASS="CT">/* TMWTYPES_PREVIOUSLY_INCLUDED */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="65">   65   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>                                 <SPAN CLASS="CT">/* __RTWTYPES_H__ */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="66">   66   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="67">   67   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> mcuFlagRecursion <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#fcn___attribute__" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var___attribute__');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">__attribute__</FONT></A> ((near));
-</SPAN><SPAN><A CLASS="LN" NAME="68">   68   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> MCHP_MCULoadResult[] <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#fcn___attribute__" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var___attribute__');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">__attribute__</FONT></A> ((near));
-</SPAN><SPAN><A CLASS="LN" NAME="69">   69   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> MCHP_MCULoadPreviousTimerValue[] <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#fcn___attribute__" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var___attribute__');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">__attribute__</FONT></A> ((near));
-</SPAN><SPAN><A CLASS="LN" NAME="70">   70   </A><SPAN CLASS="KW">union</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="71">   71   </A><B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="72">   72   </A>  <SPAN CLASS="KW">struct</SPAN> <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="73">   73   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> <A NAME="var_task0">task0</A> : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="74">   74   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task1 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="75">   75   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task2 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="76">   76   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task3 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="77">   77   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task4 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="78">   78   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task5 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="79">   79   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task6 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="80">   80   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task7 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="81">   81   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task8 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="82">   82   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task9 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="83">   83   </A>    <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> task10 : 1;
-</SPAN><SPAN><A CLASS="LN" NAME="84">   84   </A>  <B>}</B> b;
-</SPAN><SPAN><A CLASS="LN" NAME="85">   85   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="86">   86   </A>  <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> val;
-</SPAN><SPAN><A CLASS="LN" NAME="87">   87   </A><B>}</B> <SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#var_MCHP_MCU_Overload" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_MCU_Overload');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_MCU_Overload</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="88">   88   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="89">   89   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <SPAN CLASS="DT">volatile</SPAN> <A HREF="MCHP_SPI1_Interrupt_data_c.html#var_MCHP_SPI1_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_SPI1_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_SPI1_State</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="90">   90   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_boolean_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_boolean_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">boolean_T</FONT></A> <SPAN CLASS="DT">volatile</SPAN> <A HREF="MCHP_SPI1_Interrupt_data_c.html#var_MCHP_SPI12_Request" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_SPI12_Request');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_SPI12_Request</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="91">   91   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="92">   92   </A><SPAN CLASS="CT">/* Declare SPI1 Queue Circular Buffer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="93">   93   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_MCHP_SPI1_QueueStr" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_SPI1_QueueStr');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_SPI1_QueueStr</FONT></A> <A HREF="MCHP_SPI1_Interrupt_data_c.html#var_MCHP_SPI1_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_SPI1_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_SPI1_Queue</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="94">   94   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="95">   95   </A><SPAN CLASS="CT">/* Declare UART1 Tx Circular Buffer Structure */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="96">   96   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_MCHP_UART1_TxStr" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_UART1_TxStr');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_UART1_TxStr</FONT></A> <A HREF="MCHP_UART1_Interrupt_c.html#fcn_MCHP_UART1_Tx" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_UART1_Tx');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_UART1_Tx</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="97">   97   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="98">   98   </A><SPAN CLASS="CT">/* Declare UART4 Tx Circular Buffer Structure */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="99">   99   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_MCHP_UART4_TxStr" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_UART4_TxStr');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_UART4_TxStr</FONT></A> <A HREF="MCHP_UART4_Interrupt_c.html#fcn_MCHP_UART4_Tx" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_UART4_Tx');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_UART4_Tx</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="100">  100   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <SPAN CLASS="DT">volatile</SPAN> <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_State" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_State');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_State</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="101">  101   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C22_Request" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C22_Request');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C22_Request</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="102">  102   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="103">  103   </A><SPAN CLASS="CT">/* Declare I2C2 Queue Circular Buffer */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="104">  104   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_MCHP_I2C2_QueueStr" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_QueueStr');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_QueueStr</FONT></A> <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C2_Queue" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C2_Queue');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C2_Queue</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="105">  105   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A> <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C22_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C22_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C22_Buff8</FONT></A>[2];
-</SPAN><SPAN><A CLASS="LN" NAME="106">  106   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C23_Request" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C23_Request');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C23_Request</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="107">  107   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A> <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C23_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C23_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C23_Buff8</FONT></A>[2];
-</SPAN><SPAN><A CLASS="LN" NAME="108">  108   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C21_Request" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C21_Request');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C21_Request</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="109">  109   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A> <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C21_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C21_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C21_Buff8</FONT></A>[22];
-</SPAN><SPAN><A CLASS="LN" NAME="110">  110   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_boolean_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_boolean_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">boolean_T</FONT></A> <SPAN CLASS="DT">volatile</SPAN> <A HREF="MCHP_SPI1_Interrupt_data_c.html#var_MCHP_SPI11_Request" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_SPI11_Request');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_SPI11_Request</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="111">  111   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <A HREF="MCHP_SPI1_Interrupt_data_c.html#var_SPI11_Buff16" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_SPI11_Buff16');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">SPI11_Buff16</FONT></A>[7];
-</SPAN><SPAN><A CLASS="LN" NAME="112">  112   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C24_Request" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C24_Request');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C24_Request</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="113">  113   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A> <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_I2C24_Buff8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_I2C24_Buff8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">I2C24_Buff8</FONT></A>[6];
-</SPAN><SPAN><A CLASS="LN" NAME="114">  114   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">int</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="MCHP_I2C2_Interrupt_data_c.html#var_MCHP_I2C25_Request" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_I2C25_Request');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_I2C25_Request</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="115">  115   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <A HREF="MCHP_IC_Interrupt_c.html#var_MCHP_ic1up" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_ic1up');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_ic1up</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="116">  116   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <A HREF="MCHP_IC_Interrupt_c.html#var_MCHP_ic2up" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_ic2up');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_ic2up</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="117">  117   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <A HREF="MCHP_IC_Interrupt_c.html#var_MCHP_ic3up" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_ic3up');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_ic3up</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="118">  118   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <A HREF="MCHP_IC_Interrupt_c.html#var_MCHP_ic4up" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_ic4up');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_ic4up</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="119">  119   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <A HREF="MCHP_IC_Interrupt_c.html#var_MCHP_ic5up" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_ic5up');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_ic5up</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="120">  120   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="121">  121   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="122">  122   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> <A HREF="apUtils_c.html#fcn_mySqrt" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mySqrt');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mySqrt</FONT></A>(<A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> u1);
-</SPAN><SPAN><A CLASS="LN" NAME="123">  123   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="124">  124   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="125">  125   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="updateSensorMcuState_c.html#fcn_getGSLocation" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_getGSLocation');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">getGSLocation</FONT></A>(<A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A>* y1);
-</SPAN><SPAN><A CLASS="LN" NAME="126">  126   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="127">  127   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="128">  128   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="novatel_c.html#fcn_getGpsMainData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_getGpsMainData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">getGpsMainData</FONT></A>(<A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A>* data);
-</SPAN><SPAN><A CLASS="LN" NAME="129">  129   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="130">  130   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="131">  131   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="gpsPort_c.html#fcn_getGPSRawData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_getGPSRawData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">getGPSRawData</FONT></A>(<A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A>* y1);
-</SPAN><SPAN><A CLASS="LN" NAME="132">  132   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="133">  133   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="134">  134   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="novatel_c.html#fcn_gpsParse" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_gpsParse');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">gpsParse</FONT></A>(<A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A>* dataStream);
-</SPAN><SPAN><A CLASS="LN" NAME="135">  135   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="136">  136   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="137">  137   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="gpsUblox_c.html#fcn_getGpsUbloxMainData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_getGpsUbloxMainData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">getGpsUbloxMainData</FONT></A>(<A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A>* y1);
-</SPAN><SPAN><A CLASS="LN" NAME="138">  138   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="139">  139   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="140">  140   </A><SPAN CLASS="DT">extern</SPAN> uint8_t <A HREF="updateSensorMcuState_c.html#fcn_isFixValid" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_isFixValid');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">isFixValid</FONT></A>(<SPAN CLASS="DT">void</SPAN>);
-</SPAN><SPAN><A CLASS="LN" NAME="141">  141   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="142">  142   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="143">  143   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> <A HREF="apUtils_c.html#fcn_myCos" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_myCos');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">myCos</FONT></A>(<A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> u1);
-</SPAN><SPAN><A CLASS="LN" NAME="144">  144   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="145">  145   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="146">  146   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> <A HREF="apUtils_c.html#fcn_mySin" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mySin');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mySin</FONT></A>(<A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> u1);
-</SPAN><SPAN><A CLASS="LN" NAME="147">  147   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="148">  148   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="149">  149   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="updateSensorMcuState_c.html#fcn_getGSLocation" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_getGSLocation');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">getGSLocation</FONT></A>(<A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A>* y1);
-</SPAN><SPAN><A CLASS="LN" NAME="150">  150   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="151">  151   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="152">  152   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="hil_c.html#fcn_hilRead" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_hilRead');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">hilRead</FONT></A>(<A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A>* y1);
-</SPAN><SPAN><A CLASS="LN" NAME="153">  153   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="154">  154   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="155">  155   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="hil_c.html#fcn_protDecodeHil" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_protDecodeHil');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">protDecodeHil</FONT></A>(<A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A>* u1);
-</SPAN><SPAN><A CLASS="LN" NAME="156">  156   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="157">  157   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="158">  158   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="hil_c.html#fcn_hil_getRawRead" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_hil_getRawRead');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">hil_getRawRead</FONT></A>(<A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A>* y1);
-</SPAN><SPAN><A CLASS="LN" NAME="159">  159   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="160">  160   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="161">  161   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> <A HREF="apUtils_c.html#fcn_mySqrt" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mySqrt');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mySqrt</FONT></A>(<A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> u1);
-</SPAN><SPAN><A CLASS="LN" NAME="162">  162   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <A HREF="MCHP_IC_Interrupt_c.html#var_MCHP_ic1up" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_ic1up');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_ic1up</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="163">  163   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <A HREF="MCHP_IC_Interrupt_c.html#var_MCHP_ic2up" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_ic2up');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_ic2up</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="164">  164   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <A HREF="MCHP_IC_Interrupt_c.html#var_MCHP_ic3up" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_ic3up');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_ic3up</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="165">  165   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <A HREF="MCHP_IC_Interrupt_c.html#var_MCHP_ic4up" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_ic4up');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_ic4up</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="166">  166   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <A HREF="MCHP_IC_Interrupt_c.html#var_MCHP_ic5up" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_ic5up');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_ic5up</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="167">  167   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">volatile</SPAN> <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> <A HREF="MCHP_SPI1_Interrupt_c.html#fcn_MCHP_ic6up" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MCHP_ic6up');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MCHP_ic6up</FONT></A>;
-</SPAN><SPAN><A CLASS="LN" NAME="168">  168   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="169">  169   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="170">  170   </A><SPAN CLASS="DT">extern</SPAN> uint16_t <A HREF="MavlinkComm_c.html#fcn_PackRawIMU" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PackRawIMU');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PackRawIMU</FONT></A>(uint8_t system_id, uint8_t component_id,
-</SPAN><SPAN><A CLASS="LN" NAME="171">  171   </A>  mavlink_raw_imu_t mlRawIMUData ,uint32_t time_usec);
-</SPAN><SPAN><A CLASS="LN" NAME="172">  172   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="173">  173   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="174">  174   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="MavlinkComm_c.html#fcn_TxN_Data_OverU1" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_TxN_Data_OverU1');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">TxN_Data_OverU1</FONT></A>(uint16_t N);
-</SPAN><SPAN><A CLASS="LN" NAME="175">  175   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="176">  176   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="177">  177   </A><SPAN CLASS="DT">extern</SPAN> uint16_t <A HREF="MavlinkComm_c.html#fcn_PackHeartBeat" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PackHeartBeat');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PackHeartBeat</FONT></A>(uint8_t system_id, uint8_t component_id);
-</SPAN><SPAN><A CLASS="LN" NAME="178">  178   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="179">  179   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="180">  180   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="MavlinkComm_c.html#fcn_TxN_Data_OverU1" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_TxN_Data_OverU1');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">TxN_Data_OverU1</FONT></A>(uint16_t N);
-</SPAN><SPAN><A CLASS="LN" NAME="181">  181   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="182">  182   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="183">  183   </A><SPAN CLASS="DT">extern</SPAN> uint16_t <A HREF="MavlinkComm_c.html#fcn_PackGpsRawInt" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PackGpsRawInt');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PackGpsRawInt</FONT></A>(uint8_t system_id, uint8_t component_id,
-</SPAN><SPAN><A CLASS="LN" NAME="184">  184   </A>  mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec);
-</SPAN><SPAN><A CLASS="LN" NAME="185">  185   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="186">  186   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="187">  187   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="MavlinkComm_c.html#fcn_TxN_Data_OverU1" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_TxN_Data_OverU1');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">TxN_Data_OverU1</FONT></A>(uint16_t N);
-</SPAN><SPAN><A CLASS="LN" NAME="188">  188   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="189">  189   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="190">  190   </A><SPAN CLASS="DT">extern</SPAN> uint16_t <A HREF="MavlinkComm_c.html#fcn_PackScaledPressure" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PackScaledPressure');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PackScaledPressure</FONT></A>(uint8_t system_id, uint8_t component_id,
-</SPAN><SPAN><A CLASS="LN" NAME="191">  191   </A>  mavlink_scaled_pressure_t <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlAirData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlAirData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlAirData</FONT></A> ,uint32_t time_usec);
-</SPAN><SPAN><A CLASS="LN" NAME="192">  192   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="193">  193   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="194">  194   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="MavlinkComm_c.html#fcn_TxN_Data_OverU1" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_TxN_Data_OverU1');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">TxN_Data_OverU1</FONT></A>(uint16_t N);
-</SPAN><SPAN><A CLASS="LN" NAME="195">  195   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="196">  196   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="197">  197   </A><SPAN CLASS="DT">extern</SPAN> uint16_t <A HREF="MavlinkComm_c.html#fcn_PackSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PackSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PackSysStatus</FONT></A>(uint8_t system_id, uint8_t component_id,
-</SPAN><SPAN><A CLASS="LN" NAME="198">  198   </A>  mavlink_sys_status_t <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#var_mlSysStatus" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlSysStatus');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlSysStatus</FONT></A>);
-</SPAN><SPAN><A CLASS="LN" NAME="199">  199   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="200">  200   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="201">  201   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="MavlinkComm_c.html#fcn_TxN_Data_OverU1" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_TxN_Data_OverU1');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">TxN_Data_OverU1</FONT></A>(uint16_t N);
-</SPAN><SPAN><A CLASS="LN" NAME="202">  202   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="203">  203   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="204">  204   </A><SPAN CLASS="DT">extern</SPAN> uint16_t <A HREF="MavlinkComm_c.html#fcn_ParameterInterfaceResponse" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_ParameterInterfaceResponse');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">ParameterInterfaceResponse</FONT></A>(uint8_t system_id, uint8_t
-</SPAN><SPAN><A CLASS="LN" NAME="205">  205   </A>  component_id);
-</SPAN><SPAN><A CLASS="LN" NAME="206">  206   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="207">  207   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="208">  208   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="MavlinkComm_c.html#fcn_TxN_Data_OverU1" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_TxN_Data_OverU1');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">TxN_Data_OverU1</FONT></A>(uint16_t N);
-</SPAN><SPAN><A CLASS="LN" NAME="209">  209   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="210">  210   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="211">  211   </A><SPAN CLASS="DT">extern</SPAN> uint16_t <A HREF="MavlinkComm_c.html#fcn_MissionInterfaceResponse" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MissionInterfaceResponse');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MissionInterfaceResponse</FONT></A>(uint8_t system_id, uint8_t component_id);
-</SPAN><SPAN><A CLASS="LN" NAME="212">  212   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="213">  213   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="214">  214   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="MavlinkComm_c.html#fcn_TxN_Data_OverU1" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_TxN_Data_OverU1');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">TxN_Data_OverU1</FONT></A>(uint16_t N);
-</SPAN><SPAN><A CLASS="LN" NAME="215">  215   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="216">  216   </A><SPAN CLASS="CT">/* C Function Call declare function as extern */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="217">  217   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="gpsUblox_c.html#fcn_gpsUbloxParse" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_gpsUbloxParse');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">gpsUbloxParse</FONT></A>(<SPAN CLASS="DT">void</SPAN>);
-</SPAN><SPAN><A CLASS="LN" NAME="218">  218   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_int16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int16_T</FONT></A> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_div_s16s32_round" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_div_s16s32_round');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">div_s16s32_round</FONT></A>(<A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> numerator, <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> denominator);
-</SPAN><SPAN><A CLASS="LN" NAME="219">  219   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_div_u32_round" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_div_u32_round');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">div_u32_round</FONT></A>(<A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> numerator, <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> denominator);
-</SPAN><SPAN><A CLASS="LN" NAME="220">  220   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_div_repeat_u32_round" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_div_repeat_u32_round');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">div_repeat_u32_round</FONT></A>(<A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> numerator, <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> denominator,
-</SPAN><SPAN><A CLASS="LN" NAME="221">  221   </A>  <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> nRepeatSub);
-</SPAN><SPAN><A CLASS="LN" NAME="222">  222   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_mul_wide_u32" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mul_wide_u32');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mul_wide_u32</FONT></A>(<A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> in0, <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> in1, <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> *ptrOutBitsHi,
-</SPAN><SPAN><A CLASS="LN" NAME="223">  223   </A>  <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> *ptrOutBitsLo);
-</SPAN><SPAN><A CLASS="LN" NAME="224">  224   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_mul_u32_u32_u32_sr15" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mul_u32_u32_u32_sr15');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mul_u32_u32_u32_sr15</FONT></A>(<A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> a, <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> b);
-</SPAN><SPAN><A CLASS="LN" NAME="225">  225   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_mul_wide_s32" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mul_wide_s32');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mul_wide_s32</FONT></A>(<A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> in0, <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> in1, <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> *ptrOutBitsHi,
-</SPAN><SPAN><A CLASS="LN" NAME="226">  226   </A>  <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> *ptrOutBitsLo);
-</SPAN><SPAN><A CLASS="LN" NAME="227">  227   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_mul_u32_s32_s32_sat" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mul_u32_s32_s32_sat');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mul_u32_s32_s32_sat</FONT></A>(<A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> a, <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> b);
-</SPAN><SPAN><A CLASS="LN" NAME="228">  228   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_mul_wide_su32" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mul_wide_su32');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mul_wide_su32</FONT></A>(<A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> in0, <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> in1, <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> *ptrOutBitsHi,
-</SPAN><SPAN><A CLASS="LN" NAME="229">  229   </A>  <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> *ptrOutBitsLo);
-</SPAN><SPAN><A CLASS="LN" NAME="230">  230   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_mul_s32_s32_u32_sr16" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mul_s32_s32_u32_sr16');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mul_s32_s32_u32_sr16</FONT></A>(<A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> a, <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> b);
-</SPAN><SPAN><A CLASS="LN" NAME="231">  231   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_mul_u32_u32_u32_sr11_round" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mul_u32_u32_u32_sr11_round');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mul_u32_u32_u32_sr11_round</FONT></A>(<A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> a, <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> b);
-</SPAN><SPAN><A CLASS="LN" NAME="232">  232   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_mul_u32_s32_u32_sr15" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mul_u32_s32_u32_sr15');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mul_u32_s32_u32_sr15</FONT></A>(<A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> a, <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> b);
-</SPAN><SPAN><A CLASS="LN" NAME="233">  233   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_mul_s32_s32_s32_sr28" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mul_s32_s32_s32_sr28');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mul_s32_s32_s32_sr28</FONT></A>(<A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> a, <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> b);
-</SPAN><SPAN><A CLASS="LN" NAME="234">  234   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_mul_s32_s32_s32_sr23" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mul_s32_s32_s32_sr23');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mul_s32_s32_s32_sr23</FONT></A>(<A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> a, <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> b);
-</SPAN><SPAN><A CLASS="LN" NAME="235">  235   </A><SPAN CLASS="DT">extern</SPAN> <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_MultiWord2uLong" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_MultiWord2uLong');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">MultiWord2uLong</FONT></A>(<SPAN CLASS="DT">const</SPAN> <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> u[]);
-</SPAN><SPAN><A CLASS="LN" NAME="236">  236   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_uMultiWordShr" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uMultiWordShr');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uMultiWordShr</FONT></A>(<SPAN CLASS="DT">const</SPAN> <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> u1[], <A HREF="rtwtypes_h.html#type_int16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int16_T</FONT></A> n1, <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> n2, <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A>
-</SPAN><SPAN><A CLASS="LN" NAME="237">  237   </A>  y[], <A HREF="rtwtypes_h.html#type_int16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int16_T</FONT></A> n);
-</SPAN><SPAN><A CLASS="LN" NAME="238">  238   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_uMultiWordMul" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uMultiWordMul');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uMultiWordMul</FONT></A>(<SPAN CLASS="DT">const</SPAN> <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> u1[], <A HREF="rtwtypes_h.html#type_int16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int16_T</FONT></A> n1, <SPAN CLASS="DT">const</SPAN> <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> u2[],
-</SPAN><SPAN><A CLASS="LN" NAME="239">  239   </A>  <A HREF="rtwtypes_h.html#type_int16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int16_T</FONT></A> n2, <A HREF="rtwtypes_h.html#type_uint32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint32_T</FONT></A> y[], <A HREF="rtwtypes_h.html#type_int16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int16_T</FONT></A> n);
-</SPAN><SPAN><A CLASS="LN" NAME="240">  240   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS__myMuxFun1" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS__myMuxFun1');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS__myMuxFun1</FONT></A>(<A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rtu_u1, <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rtu_u2, <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A>
-</SPAN><SPAN><A CLASS="LN" NAME="241">  241   </A>  rtu_u3, <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtB_myMuxFun1_AUAV3_AND_SLUGS_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtB_myMuxFun1_AUAV3_AND_SLUGS_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtB_myMuxFun1_AUAV3_AND_SLUGS_T</FONT></A> *localB);
-</SPAN><SPAN><A CLASS="LN" NAME="242">  242   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_negprotect" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_negprotect');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_negprotect</FONT></A>(<A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> rtu_val,
-</SPAN><SPAN><A CLASS="LN" NAME="243">  243   </A>  <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtB_negprotect_AUAV3_AND_SLUG_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtB_negprotect_AUAV3_AND_SLUG_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtB_negprotect_AUAV3_AND_SLUG_T</FONT></A> *localB);
-</SPAN><SPAN><A CLASS="LN" NAME="244">  244   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUA_EmbeddedMATLABFunction" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUA_EmbeddedMATLABFunction');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUA_EmbeddedMATLABFunction</FONT></A>(<SPAN CLASS="DT">const</SPAN> <A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> rtu_x[3],
-</SPAN><SPAN><A CLASS="LN" NAME="245">  245   </A>  <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtB_EmbeddedMATLABFunction_AU_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtB_EmbeddedMATLABFunction_AU_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtB_EmbeddedMATLABFunction_AU_T</FONT></A> *localB);
-</SPAN><SPAN><A CLASS="LN" NAME="246">  246   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_EmbeddedMATLABFunct_a_Init" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_EmbeddedMATLABFunct_a_Init');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">EmbeddedMATLABFunct_a_Init</FONT></A>(<A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtDW_EmbeddedMATLABFunction1__T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtDW_EmbeddedMATLABFunction1__T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtDW_EmbeddedMATLABFunction1__T</FONT></A> *localDW);
-</SPAN><SPAN><A CLASS="LN" NAME="247">  247   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AU_EmbeddedMATLABFunction1" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AU_EmbeddedMATLABFunction1');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AU_EmbeddedMATLABFunction1</FONT></A>(<A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> rtu_u, <A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A> rtu_NewGPS,
-</SPAN><SPAN><A CLASS="LN" NAME="248">  248   </A>  <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtB_EmbeddedMATLABFunction1_A_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtB_EmbeddedMATLABFunction1_A_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtB_EmbeddedMATLABFunction1_A_T</FONT></A> *localB, <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtDW_EmbeddedMATLABFunction1__T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtDW_EmbeddedMATLABFunction1__T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtDW_EmbeddedMATLABFunction1__T</FONT></A>
-</SPAN><SPAN><A CLASS="LN" NAME="249">  249   </A>  *localDW);
-</SPAN><SPAN><A CLASS="LN" NAME="250">  250   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUG_myMuxFun1_p" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUG_myMuxFun1_p');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUG_myMuxFun1_p</FONT></A>(<A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> rtu_u1, <A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> rtu_u2,
-</SPAN><SPAN><A CLASS="LN" NAME="251">  251   </A>  <A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> rtu_u3, <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtB_myMuxFun1_AUAV3_AND_SLU_c_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtB_myMuxFun1_AUAV3_AND_SLU_c_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtB_myMuxFun1_AUAV3_AND_SLU_c_T</FONT></A> *localB);
-</SPAN><SPAN><A CLASS="LN" NAME="252">  252   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUA_EnabledSubsystem_Start" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUA_EnabledSubsystem_Start');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUA_EnabledSubsystem_Start</FONT></A>(<A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtB_EnabledSubsystem_AUAV3_AN_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtB_EnabledSubsystem_AUAV3_AN_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtB_EnabledSubsystem_AUAV3_AN_T</FONT></A> *localB);
-</SPAN><SPAN><A CLASS="LN" NAME="253">  253   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_EnabledSubsystem" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_EnabledSubsystem');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_EnabledSubsystem</FONT></A>(<A HREF="rtwtypes_h.html#type_boolean_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_boolean_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">boolean_T</FONT></A> rtu_0, <A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> rtu_1,
-</SPAN><SPAN><A CLASS="LN" NAME="254">  254   </A>  <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtB_EnabledSubsystem_AUAV3_AN_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtB_EnabledSubsystem_AUAV3_AN_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtB_EnabledSubsystem_AUAV3_AN_T</FONT></A> *localB);
-</SPAN><SPAN><A CLASS="LN" NAME="255">  255   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_EnablesDisablestheCom_Init" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_EnablesDisablestheCom_Init');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">EnablesDisablestheCom_Init</FONT></A>(<A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtDW_EnablesDisablestheComput_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtDW_EnablesDisablestheComput_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtDW_EnablesDisablestheComput_T</FONT></A> *localDW);
-</SPAN><SPAN><A CLASS="LN" NAME="256">  256   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_EnablesDisablestheComputat" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_EnablesDisablestheComputat');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">EnablesDisablestheComputat</FONT></A>(<A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtB_EnablesDisablestheComputa_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtB_EnablesDisablestheComputa_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtB_EnablesDisablestheComputa_T</FONT></A> *localB,
-</SPAN><SPAN><A CLASS="LN" NAME="257">  257   </A>  <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtDW_EnablesDisablestheComput_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtDW_EnablesDisablestheComput_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtDW_EnablesDisablestheComput_T</FONT></A> *localDW);
-</SPAN><SPAN><A CLASS="LN" NAME="258">  258   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_A_ZeroOutHeight_Init" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_A_ZeroOutHeight_Init');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_A_ZeroOutHeight_Init</FONT></A>(<A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtDW_ZeroOutHeight_AUAV3_AND__T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtDW_ZeroOutHeight_AUAV3_AND__T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtDW_ZeroOutHeight_AUAV3_AND__T</FONT></A> *localDW);
-</SPAN><SPAN><A CLASS="LN" NAME="259">  259   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3__ZeroOutHeight_Start" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3__ZeroOutHeight_Start');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3__ZeroOutHeight_Start</FONT></A>(<A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtDW_ZeroOutHeight_AUAV3_AND__T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtDW_ZeroOutHeight_AUAV3_AND__T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtDW_ZeroOutHeight_AUAV3_AND__T</FONT></A> *localDW);
-</SPAN><SPAN><A CLASS="LN" NAME="260">  260   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_ZeroOutHeight_Update" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_ZeroOutHeight_Update');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_ZeroOutHeight_Update</FONT></A>(<A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rtu_0, <A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> rtu_ComputedHeight,
-</SPAN><SPAN><A CLASS="LN" NAME="261">  261   </A>  <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtDW_ZeroOutHeight_AUAV3_AND__T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtDW_ZeroOutHeight_AUAV3_AND__T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtDW_ZeroOutHeight_AUAV3_AND__T</FONT></A> *localDW);
-</SPAN><SPAN><A CLASS="LN" NAME="262">  262   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SL_ZeroOutHeight" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SL_ZeroOutHeight');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SL_ZeroOutHeight</FONT></A>(<A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rtu_0, <A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> rtu_BaseHeight,
-</SPAN><SPAN><A CLASS="LN" NAME="263">  263   </A>  <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtB_ZeroOutHeight_AUAV3_AND_S_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtB_ZeroOutHeight_AUAV3_AND_S_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtB_ZeroOutHeight_AUAV3_AND_S_T</FONT></A> *localB, <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtDW_ZeroOutHeight_AUAV3_AND__T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtDW_ZeroOutHeight_AUAV3_AND__T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtDW_ZeroOutHeight_AUAV3_AND__T</FONT></A>
-</SPAN><SPAN><A CLASS="LN" NAME="264">  264   </A>  *localDW);
-</SPAN><SPAN><A CLASS="LN" NAME="265">  265   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_EmbeddedMATLABFunct_m_Init" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_EmbeddedMATLABFunct_m_Init');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">EmbeddedMATLABFunct_m_Init</FONT></A>(<A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtDW_EmbeddedMATLABFunction_i_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtDW_EmbeddedMATLABFunction_i_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtDW_EmbeddedMATLABFunction_i_T</FONT></A> *localDW);
-</SPAN><SPAN><A CLASS="LN" NAME="266">  266   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_A_EmbeddedMATLABFunction_k" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_A_EmbeddedMATLABFunction_k');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">A_EmbeddedMATLABFunction_k</FONT></A>(<A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rtu_u, <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rtu_T, <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rtu_f,
-</SPAN><SPAN><A CLASS="LN" NAME="267">  267   </A>  <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtB_EmbeddedMATLABFunction_n_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtB_EmbeddedMATLABFunction_n_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtB_EmbeddedMATLABFunction_n_T</FONT></A> *localB, <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtDW_EmbeddedMATLABFunction_i_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtDW_EmbeddedMATLABFunction_i_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtDW_EmbeddedMATLABFunction_i_T</FONT></A>
-</SPAN><SPAN><A CLASS="LN" NAME="268">  268   </A>  *localDW);
-</SPAN><SPAN><A CLASS="LN" NAME="269">  269   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_S_myMuxFun" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_S_myMuxFun');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_S_myMuxFun</FONT></A>(<A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rtu_u1, <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rtu_u2, <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A>
-</SPAN><SPAN><A CLASS="LN" NAME="270">  270   </A>  rtu_u3, <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtB_myMuxFun_AUAV3_AND_SLUGS__T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtB_myMuxFun_AUAV3_AND_SLUGS__T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtB_myMuxFun_AUAV3_AND_SLUGS__T</FONT></A> *localB);
-</SPAN><SPAN><A CLASS="LN" NAME="271">  271   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_EmbeddedMATLABFunction_kd" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_EmbeddedMATLABFunction_kd');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">EmbeddedMATLABFunction_kd</FONT></A>(<SPAN CLASS="DT">const</SPAN> <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rtu_u[5],
-</SPAN><SPAN><A CLASS="LN" NAME="272">  272   </A>  <A HREF="AUAV3_AND_SLUGS_SENSOR_h.html#type_rtB_EmbeddedMATLABFunction_d_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtB_EmbeddedMATLABFunction_d_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtB_EmbeddedMATLABFunction_d_T</FONT></A> *localB);
-</SPAN><SPAN><A CLASS="LN" NAME="273">  273   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step0" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step0');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step0</FONT></A>(<SPAN CLASS="DT">void</SPAN>);
-</SPAN><SPAN><A CLASS="LN" NAME="274">  274   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step1" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step1');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step1</FONT></A>(<SPAN CLASS="DT">void</SPAN>);
-</SPAN><SPAN><A CLASS="LN" NAME="275">  275   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step2" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step2');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step2</FONT></A>(<SPAN CLASS="DT">void</SPAN>);
-</SPAN><SPAN><A CLASS="LN" NAME="276">  276   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step3" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step3');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step3</FONT></A>(<SPAN CLASS="DT">void</SPAN>);
-</SPAN><SPAN><A CLASS="LN" NAME="277">  277   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step4" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step4');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step4</FONT></A>(<SPAN CLASS="DT">void</SPAN>);
-</SPAN><SPAN><A CLASS="LN" NAME="278">  278   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step5" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step5');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step5</FONT></A>(<SPAN CLASS="DT">void</SPAN>);
-</SPAN><SPAN><A CLASS="LN" NAME="279">  279   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step6" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step6');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step6</FONT></A>(<SPAN CLASS="DT">void</SPAN>);
-</SPAN><SPAN><A CLASS="LN" NAME="280">  280   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step7" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step7');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step7</FONT></A>(<SPAN CLASS="DT">void</SPAN>);
-</SPAN><SPAN><A CLASS="LN" NAME="281">  281   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step8" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step8');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step8</FONT></A>(<SPAN CLASS="DT">void</SPAN>);
-</SPAN><SPAN><A CLASS="LN" NAME="282">  282   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step9" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step9');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step9</FONT></A>(<SPAN CLASS="DT">void</SPAN>);
-</SPAN><SPAN><A CLASS="LN" NAME="283">  283   </A><SPAN CLASS="DT">extern</SPAN> <SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_c.html#fcn_AUAV3_AND_SLUGS_SENSOR_step10" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_AUAV3_AND_SLUGS_SENSOR_step10');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">AUAV3_AND_SLUGS_SENSOR_step10</FONT></A>(<SPAN CLASS="DT">void</SPAN>);
-</SPAN><SPAN><A CLASS="LN" NAME="284">  284   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="285">  285   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN>                                 <SPAN CLASS="CT">/* RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_private_h_ */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="286">  286   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="287">  287   </A><SPAN CLASS="CT">/* File trailer for Real-Time Workshop generated code.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="288">  288   </A><SPAN CLASS="CT"> *</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="289">  289   </A><SPAN CLASS="CT"> * [EOF]</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="290">  290   </A><SPAN CLASS="CT"> */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="291">  291   </A>
-</SPAN></PRE>
-</TD></TR></TABLE>
-</P>
-</BODY>
-</HTML>
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td>1</td><td><span class="ct">/*--------------------------------------------------------------</span></td></tr>
+<tr name="2" id="2">
+<td>2</td><td><span class="ct"> *   MPLAB Blockset v3.35 for Microchip dsPIC chip family.     *</span></td></tr>
+<tr name="3" id="3">
+<td>3</td><td><span class="ct"> *   Generate .c and .h files from Simulink model              *</span></td></tr>
+<tr name="4" id="4">
+<td>4</td><td><span class="ct"> *   and compile to .elf, .hex and .cof file that can be       *</span></td></tr>
+<tr name="5" id="5">
+<td>5</td><td><span class="ct"> *   flashed into the microcontroller                          *</span></td></tr>
+<tr name="6" id="6">
+<td>6</td><td><span class="ct"> *                                                             *</span></td></tr>
+<tr name="7" id="7">
+<td>7</td><td><span class="ct"> *      The Microchip name PIC, dsPIC, and MPLAB are           *</span></td></tr>
+<tr name="8" id="8">
+<td>8</td><td><span class="ct"> *      registered trademarks of Microchip Technology Inc.     *</span></td></tr>
+<tr name="9" id="9">
+<td>9</td><td><span class="ct"> *      MATLAB, Simulink, and Real-Time Workshop are           *</span></td></tr>
+<tr name="10" id="10">
+<td>10</td><td><span class="ct"> *      registered trademarks of The MathWorks, Inc.           *</span></td></tr>
+<tr name="11" id="11">
+<td>11</td><td><span class="ct"> *                                                             *</span></td></tr>
+<tr name="12" id="12">
+<td>12</td><td><span class="ct"> *  Blockset authors: L.Kerhuel, U.Kumar                       *</span></td></tr>
+<tr name="13" id="13">
+<td>13</td><td><span class="ct"> *  Product Page:  http://www.microchip.com/SimulinkBlocks     *</span></td></tr>
+<tr name="14" id="14">
+<td>14</td><td><span class="ct"> *          Forum: http://www.microchip.com/forums/f192.aspx   *</span></td></tr>
+<tr name="15" id="15">
+<td>15</td><td><span class="ct"> *          Wiki:  http://microchip.wikidot.com/simulink:start *</span></td></tr>
+<tr name="16" id="16">
+<td>16</td><td><span class="ct"> *--------------------------------------------------------------</span></td></tr>
+<tr name="17" id="17">
+<td>17</td><td><span class="ct"> *</span></td></tr>
+<tr name="18" id="18">
+<td>18</td><td><span class="ct"> * File: AUAV3_AND_SLUGS_SENSOR_private.h</span></td></tr>
+<tr name="19" id="19">
+<td>19</td><td><span class="ct"> *</span></td></tr>
+<tr name="20" id="20">
+<td>20</td><td><span class="ct"> * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.</span></td></tr>
+<tr name="21" id="21">
+<td>21</td><td><span class="ct"> *</span></td></tr>
+<tr name="22" id="22">
+<td>22</td><td><span class="ct"> * Model version                        : 1.219</span></td></tr>
+<tr name="23" id="23">
+<td>23</td><td><span class="ct"> * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015</span></td></tr>
+<tr name="24" id="24">
+<td>24</td><td><span class="ct"> * Real-Time Workshop file generated on : Fri Apr 29 16:39:44 2016</span></td></tr>
+<tr name="25" id="25">
+<td>25</td><td><span class="ct"> * TLC version                          : 8.8 (Jan 20 2015)</span></td></tr>
+<tr name="26" id="26">
+<td>26</td><td><span class="ct"> * C source code generated on           : Fri Apr 29 16:39:46 2016</span></td></tr>
+<tr name="27" id="27">
+<td>27</td><td><span class="ct"> */</span></td></tr>
+<tr name="28" id="28">
+<td>28</td><td></td></tr>
+<tr name="29" id="29">
+<td>29</td><td><span class="pp">#ifndef</span> <a id="29c9" class="tk">RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_private_h_</a></td></tr>
+<tr name="30" id="30">
+<td>30</td><td><span class="pp">#define</span> <a id="30c9" class="tk">RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_private_h_</a></td></tr>
+<tr name="31" id="31">
+<td>31</td><td><span class="pp">#include "rtwtypes.h"</span></td></tr>
+<tr name="32" id="32">
+<td>32</td><td><span class="pp">#include "multiword_types.h"</span></td></tr>
+<tr name="33" id="33">
+<td>33</td><td><span class="pp">#ifndef</span> <a id="33c9" class="tk">UCHAR_MAX</a></td></tr>
+<tr name="34" id="34">
+<td>34</td><td><span class="pp">#include &lt;limits.h&gt;</span></td></tr>
+<tr name="35" id="35">
+<td>35</td><td><span class="pp">#endif</span></td></tr>
+<tr name="36" id="36">
+<td>36</td><td></td></tr>
+<tr name="37" id="37">
+<td>37</td><td><span class="pp">#if</span> ( <a id="37c7" class="tk">UCHAR_MAX</a> != (0xFFU) ) || ( <a id="37c35" class="tk">SCHAR_MAX</a> != (0x7F) )</td></tr>
+<tr name="38" id="38">
+<td>38</td><td><span class="pp">#error</span> <a id="38c8" class="tk">Code</a> <a id="38c13" class="tk">was</a> <a id="38c17" class="tk">generated</a> <span class="kw">for</span> <a id="38c31" class="tk">compiler</a> <a id="38c40" class="tk">with</a> <a id="38c45" class="tk">different</a> <a id="38c55" class="tk">sized</a> <a id="38c61" class="tk">uchar</a>/<span class="kw">char</span>. \</td></tr>
+<tr name="39" id="39">
+<td>39</td><td><a id="39c73" class="tk">Consider</a> <a id="39c82" class="tk">adjusting</a> <a id="39c92" class="tk">Test</a> <a id="39c97" class="tk">hardware</a> <a id="39c106" class="tk">word</a> <a id="39c111" class="tk">size</a> <a id="39c116" class="tk">settings</a> <a id="39c125" class="tk">on</a> <a id="39c128" class="tk">the</a> \</td></tr>
+<tr name="40" id="40">
+<td>40</td><td><a id="40c132" class="tk">Hardware</a> <a id="40c141" class="tk">Implementation</a> <a id="40c156" class="tk">pane</a> <a id="40c161" class="tk">to</a> <a id="40c164" class="tk">match</a> <a id="40c170" class="tk">your</a> <a id="40c175" class="tk">compiler</a> <a id="40c184" class="tk">word</a> <a id="40c189" class="tk">sizes</a> <a id="40c195" class="tk">as</a> \</td></tr>
+<tr name="41" id="41">
+<td>41</td><td><a id="41c198" class="tk">defined</a> <a id="41c206" class="tk">in</a> <a id="41c209" class="tk">limits</a>.<a id="41c216" class="tk">h</a> <a id="41c218" class="tk">of</a> <a id="41c221" class="tk">the</a> <a id="41c225" class="tk">compiler</a>. <a id="41c235" class="tk">Alternatively</a>, <a id="41c250" class="tk">you</a> <a id="41c254" class="tk">can</a> \</td></tr>
+<tr name="42" id="42">
+<td>42</td><td><a id="42c258" class="tk">select</a> <a id="42c265" class="tk">the</a> <a id="42c269" class="tk">Test</a> <a id="42c274" class="tk">hardware</a> <a id="42c283" class="tk">is</a> <a id="42c286" class="tk">the</a> <a id="42c290" class="tk">same</a> <a id="42c295" class="tk">as</a> <a id="42c298" class="tk">production</a> <a id="42c309" class="tk">hardware</a> <a id="42c318" class="tk">option</a> and \</td></tr>
+<tr name="43" id="43">
+<td>43</td><td><a id="43c329" class="tk">select</a> <a id="43c336" class="tk">the</a> <a id="43c340" class="tk">Enable</a> <a id="43c347" class="tk">portable</a> <a id="43c356" class="tk">word</a> <a id="43c361" class="tk">sizes</a> <a id="43c367" class="tk">option</a> <a id="43c374" class="tk">on</a> <a id="43c377" class="tk">the</a> <a id="43c381" class="tk">Code</a> <a id="43c386" class="tk">Generation</a> &gt; \</td></tr>
+<tr name="44" id="44">
+<td>44</td><td><a id="44c399" class="tk">Verification</a> <a id="44c412" class="tk">pane</a> <span class="kw">for</span> <a id="44c421" class="tk">ERT</a> <a id="44c425" class="tk">based</a> <a id="44c431" class="tk">targets</a>, <a id="44c440" class="tk">which</a> <a id="44c446" class="tk">will</a> <a id="44c451" class="tk">disable</a> <a id="44c459" class="tk">the</a> \</td></tr>
+<tr name="45" id="45">
+<td>45</td><td><a id="45c463" class="tk">preprocessor</a> <a id="45c476" class="tk">word</a> <a id="45c481" class="tk">size</a> <a id="45c486" class="tk">checks</a>.</td></tr>
+<tr name="46" id="46">
+<td>46</td><td><span class="pp">#endif</span></td></tr>
+<tr name="47" id="47">
+<td>47</td><td></td></tr>
+<tr name="48" id="48">
+<td>48</td><td><span class="pp">#if</span> ( <a id="48c7" class="tk">USHRT_MAX</a> != (0xFFFFU) ) || ( <a id="48c37" class="tk">SHRT_MAX</a> != (0x7FFF) )</td></tr>
+<tr name="49" id="49">
+<td>49</td><td><span class="pp">#error</span> <a id="49c8" class="tk">Code</a> <a id="49c13" class="tk">was</a> <a id="49c17" class="tk">generated</a> <span class="kw">for</span> <a id="49c31" class="tk">compiler</a> <a id="49c40" class="tk">with</a> <a id="49c45" class="tk">different</a> <a id="49c55" class="tk">sized</a> <a id="49c61" class="tk">ushort</a>/<span class="kw">short</span>. \</td></tr>
+<tr name="50" id="50">
+<td>50</td><td><a id="50c75" class="tk">Consider</a> <a id="50c84" class="tk">adjusting</a> <a id="50c94" class="tk">Test</a> <a id="50c99" class="tk">hardware</a> <a id="50c108" class="tk">word</a> <a id="50c113" class="tk">size</a> <a id="50c118" class="tk">settings</a> <a id="50c127" class="tk">on</a> <a id="50c130" class="tk">the</a> \</td></tr>
+<tr name="51" id="51">
+<td>51</td><td><a id="51c134" class="tk">Hardware</a> <a id="51c143" class="tk">Implementation</a> <a id="51c158" class="tk">pane</a> <a id="51c163" class="tk">to</a> <a id="51c166" class="tk">match</a> <a id="51c172" class="tk">your</a> <a id="51c177" class="tk">compiler</a> <a id="51c186" class="tk">word</a> <a id="51c191" class="tk">sizes</a> <a id="51c197" class="tk">as</a> \</td></tr>
+<tr name="52" id="52">
+<td>52</td><td><a id="52c200" class="tk">defined</a> <a id="52c208" class="tk">in</a> <a id="52c211" class="tk">limits</a>.<a id="52c218" class="tk">h</a> <a id="52c220" class="tk">of</a> <a id="52c223" class="tk">the</a> <a id="52c227" class="tk">compiler</a>. <a id="52c237" class="tk">Alternatively</a>, <a id="52c252" class="tk">you</a> <a id="52c256" class="tk">can</a> \</td></tr>
+<tr name="53" id="53">
+<td>53</td><td><a id="53c260" class="tk">select</a> <a id="53c267" class="tk">the</a> <a id="53c271" class="tk">Test</a> <a id="53c276" class="tk">hardware</a> <a id="53c285" class="tk">is</a> <a id="53c288" class="tk">the</a> <a id="53c292" class="tk">same</a> <a id="53c297" class="tk">as</a> <a id="53c300" class="tk">production</a> <a id="53c311" class="tk">hardware</a> <a id="53c320" class="tk">option</a> and \</td></tr>
+<tr name="54" id="54">
+<td>54</td><td><a id="54c331" class="tk">select</a> <a id="54c338" class="tk">the</a> <a id="54c342" class="tk">Enable</a> <a id="54c349" class="tk">portable</a> <a id="54c358" class="tk">word</a> <a id="54c363" class="tk">sizes</a> <a id="54c369" class="tk">option</a> <a id="54c376" class="tk">on</a> <a id="54c379" class="tk">the</a> <a id="54c383" class="tk">Code</a> <a id="54c388" class="tk">Generation</a> &gt; \</td></tr>
+<tr name="55" id="55">
+<td>55</td><td><a id="55c401" class="tk">Verification</a> <a id="55c414" class="tk">pane</a> <span class="kw">for</span> <a id="55c423" class="tk">ERT</a> <a id="55c427" class="tk">based</a> <a id="55c433" class="tk">targets</a>, <a id="55c442" class="tk">which</a> <a id="55c448" class="tk">will</a> <a id="55c453" class="tk">disable</a> <a id="55c461" class="tk">the</a> \</td></tr>
+<tr name="56" id="56">
+<td>56</td><td><a id="56c465" class="tk">preprocessor</a> <a id="56c478" class="tk">word</a> <a id="56c483" class="tk">size</a> <a id="56c488" class="tk">checks</a>.</td></tr>
+<tr name="57" id="57">
+<td>57</td><td><span class="pp">#endif</span></td></tr>
+<tr name="58" id="58">
+<td>58</td><td></td></tr>
+<tr name="59" id="59">
+<td>59</td><td><span class="pp">#if</span> ( <a id="59c7" class="tk">UINT_MAX</a> != (0xFFFFU) ) || ( <a id="59c36" class="tk">INT_MAX</a> != (0x7FFF) )</td></tr>
+<tr name="60" id="60">
+<td>60</td><td><span class="pp">#error</span> <a id="60c8" class="tk">Code</a> <a id="60c13" class="tk">was</a> <a id="60c17" class="tk">generated</a> <span class="kw">for</span> <a id="60c31" class="tk">compiler</a> <a id="60c40" class="tk">with</a> <a id="60c45" class="tk">different</a> <a id="60c55" class="tk">sized</a> <a id="60c61" class="tk">uint</a>/<span class="kw">int</span>. \</td></tr>
+<tr name="61" id="61">
+<td>61</td><td><a id="61c71" class="tk">Consider</a> <a id="61c80" class="tk">adjusting</a> <a id="61c90" class="tk">Test</a> <a id="61c95" class="tk">hardware</a> <a id="61c104" class="tk">word</a> <a id="61c109" class="tk">size</a> <a id="61c114" class="tk">settings</a> <a id="61c123" class="tk">on</a> <a id="61c126" class="tk">the</a> \</td></tr>
+<tr name="62" id="62">
+<td>62</td><td><a id="62c130" class="tk">Hardware</a> <a id="62c139" class="tk">Implementation</a> <a id="62c154" class="tk">pane</a> <a id="62c159" class="tk">to</a> <a id="62c162" class="tk">match</a> <a id="62c168" class="tk">your</a> <a id="62c173" class="tk">compiler</a> <a id="62c182" class="tk">word</a> <a id="62c187" class="tk">sizes</a> <a id="62c193" class="tk">as</a> \</td></tr>
+<tr name="63" id="63">
+<td>63</td><td><a id="63c196" class="tk">defined</a> <a id="63c204" class="tk">in</a> <a id="63c207" class="tk">limits</a>.<a id="63c214" class="tk">h</a> <a id="63c216" class="tk">of</a> <a id="63c219" class="tk">the</a> <a id="63c223" class="tk">compiler</a>. <a id="63c233" class="tk">Alternatively</a>, <a id="63c248" class="tk">you</a> <a id="63c252" class="tk">can</a> \</td></tr>
+<tr name="64" id="64">
+<td>64</td><td><a id="64c256" class="tk">select</a> <a id="64c263" class="tk">the</a> <a id="64c267" class="tk">Test</a> <a id="64c272" class="tk">hardware</a> <a id="64c281" class="tk">is</a> <a id="64c284" class="tk">the</a> <a id="64c288" class="tk">same</a> <a id="64c293" class="tk">as</a> <a id="64c296" class="tk">production</a> <a id="64c307" class="tk">hardware</a> <a id="64c316" class="tk">option</a> and \</td></tr>
+<tr name="65" id="65">
+<td>65</td><td><a id="65c327" class="tk">select</a> <a id="65c334" class="tk">the</a> <a id="65c338" class="tk">Enable</a> <a id="65c345" class="tk">portable</a> <a id="65c354" class="tk">word</a> <a id="65c359" class="tk">sizes</a> <a id="65c365" class="tk">option</a> <a id="65c372" class="tk">on</a> <a id="65c375" class="tk">the</a> <a id="65c379" class="tk">Code</a> <a id="65c384" class="tk">Generation</a> &gt; \</td></tr>
+<tr name="66" id="66">
+<td>66</td><td><a id="66c397" class="tk">Verification</a> <a id="66c410" class="tk">pane</a> <span class="kw">for</span> <a id="66c419" class="tk">ERT</a> <a id="66c423" class="tk">based</a> <a id="66c429" class="tk">targets</a>, <a id="66c438" class="tk">which</a> <a id="66c444" class="tk">will</a> <a id="66c449" class="tk">disable</a> <a id="66c457" class="tk">the</a> \</td></tr>
+<tr name="67" id="67">
+<td>67</td><td><a id="67c461" class="tk">preprocessor</a> <a id="67c474" class="tk">word</a> <a id="67c479" class="tk">size</a> <a id="67c484" class="tk">checks</a>.</td></tr>
+<tr name="68" id="68">
+<td>68</td><td><span class="pp">#endif</span></td></tr>
+<tr name="69" id="69">
+<td>69</td><td></td></tr>
+<tr name="70" id="70">
+<td>70</td><td><span class="pp">#if</span> ( <a id="70c7" class="tk">ULONG_MAX</a> != (0xFFFFFFFFUL) ) || ( <a id="70c42" class="tk">LONG_MAX</a> != (0x7FFFFFFFL) )</td></tr>
+<tr name="71" id="71">
+<td>71</td><td><span class="pp">#error</span> <a id="71c8" class="tk">Code</a> <a id="71c13" class="tk">was</a> <a id="71c17" class="tk">generated</a> <span class="kw">for</span> <a id="71c31" class="tk">compiler</a> <a id="71c40" class="tk">with</a> <a id="71c45" class="tk">different</a> <a id="71c55" class="tk">sized</a> <a id="71c61" class="tk">ulong</a>/<span class="kw">long</span>. \</td></tr>
+<tr name="72" id="72">
+<td>72</td><td><a id="72c73" class="tk">Consider</a> <a id="72c82" class="tk">adjusting</a> <a id="72c92" class="tk">Test</a> <a id="72c97" class="tk">hardware</a> <a id="72c106" class="tk">word</a> <a id="72c111" class="tk">size</a> <a id="72c116" class="tk">settings</a> <a id="72c125" class="tk">on</a> <a id="72c128" class="tk">the</a> \</td></tr>
+<tr name="73" id="73">
+<td>73</td><td><a id="73c132" class="tk">Hardware</a> <a id="73c141" class="tk">Implementation</a> <a id="73c156" class="tk">pane</a> <a id="73c161" class="tk">to</a> <a id="73c164" class="tk">match</a> <a id="73c170" class="tk">your</a> <a id="73c175" class="tk">compiler</a> <a id="73c184" class="tk">word</a> <a id="73c189" class="tk">sizes</a> <a id="73c195" class="tk">as</a> \</td></tr>
+<tr name="74" id="74">
+<td>74</td><td><a id="74c198" class="tk">defined</a> <a id="74c206" class="tk">in</a> <a id="74c209" class="tk">limits</a>.<a id="74c216" class="tk">h</a> <a id="74c218" class="tk">of</a> <a id="74c221" class="tk">the</a> <a id="74c225" class="tk">compiler</a>. <a id="74c235" class="tk">Alternatively</a>, <a id="74c250" class="tk">you</a> <a id="74c254" class="tk">can</a> \</td></tr>
+<tr name="75" id="75">
+<td>75</td><td><a id="75c258" class="tk">select</a> <a id="75c265" class="tk">the</a> <a id="75c269" class="tk">Test</a> <a id="75c274" class="tk">hardware</a> <a id="75c283" class="tk">is</a> <a id="75c286" class="tk">the</a> <a id="75c290" class="tk">same</a> <a id="75c295" class="tk">as</a> <a id="75c298" class="tk">production</a> <a id="75c309" class="tk">hardware</a> <a id="75c318" class="tk">option</a> and \</td></tr>
+<tr name="76" id="76">
+<td>76</td><td><a id="76c329" class="tk">select</a> <a id="76c336" class="tk">the</a> <a id="76c340" class="tk">Enable</a> <a id="76c347" class="tk">portable</a> <a id="76c356" class="tk">word</a> <a id="76c361" class="tk">sizes</a> <a id="76c367" class="tk">option</a> <a id="76c374" class="tk">on</a> <a id="76c377" class="tk">the</a> <a id="76c381" class="tk">Code</a> <a id="76c386" class="tk">Generation</a> &gt; \</td></tr>
+<tr name="77" id="77">
+<td>77</td><td><a id="77c399" class="tk">Verification</a> <a id="77c412" class="tk">pane</a> <span class="kw">for</span> <a id="77c421" class="tk">ERT</a> <a id="77c425" class="tk">based</a> <a id="77c431" class="tk">targets</a>, <a id="77c440" class="tk">which</a> <a id="77c446" class="tk">will</a> <a id="77c451" class="tk">disable</a> <a id="77c459" class="tk">the</a> \</td></tr>
+<tr name="78" id="78">
+<td>78</td><td><a id="78c463" class="tk">preprocessor</a> <a id="78c476" class="tk">word</a> <a id="78c481" class="tk">size</a> <a id="78c486" class="tk">checks</a>.</td></tr>
+<tr name="79" id="79">
+<td>79</td><td><span class="pp">#endif</span></td></tr>
+<tr name="80" id="80">
+<td>80</td><td></td></tr>
+<tr name="81" id="81">
+<td>81</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="81c17" class="tk">uint16_T</a> <a id="81c26" class="tk">mcuFlagRecursion</a> <a id="81c43" class="tk">__attribute__</a> ((<a id="81c59" class="tk">near</a>));</td></tr>
+<tr name="82" id="82">
+<td>82</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="82c17" class="tk">uint16_T</a> <a id="82c26" class="tk">MCHP_MCULoadResult</a>[] <a id="82c47" class="tk">__attribute__</a> ((<a id="82c63" class="tk">near</a>));</td></tr>
+<tr name="83" id="83">
+<td>83</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="83c17" class="tk">uint16_T</a> <a id="83c26" class="tk">MCHP_MCULoadPreviousTimerValue</a>[] <a id="83c59" class="tk">__attribute__</a> ((<a id="83c75" class="tk">near</a>));</td></tr>
+<tr name="84" id="84">
+<td>84</td><td><span class="kw">union</span></td></tr>
+<tr name="85" id="85">
+<td>85</td><td><span class="br">{</span></td></tr>
+<tr name="86" id="86">
+<td>86</td><td>  <span class="kw">struct</span> <span class="br">{</span></td></tr>
+<tr name="87" id="87">
+<td>87</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="87c18" class="tk">task0</a> : 1;</td></tr>
+<tr name="88" id="88">
+<td>88</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="88c18" class="tk">task1</a> : 1;</td></tr>
+<tr name="89" id="89">
+<td>89</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="89c18" class="tk">task2</a> : 1;</td></tr>
+<tr name="90" id="90">
+<td>90</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="90c18" class="tk">task3</a> : 1;</td></tr>
+<tr name="91" id="91">
+<td>91</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="91c18" class="tk">task4</a> : 1;</td></tr>
+<tr name="92" id="92">
+<td>92</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="92c18" class="tk">task5</a> : 1;</td></tr>
+<tr name="93" id="93">
+<td>93</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="93c18" class="tk">task6</a> : 1;</td></tr>
+<tr name="94" id="94">
+<td>94</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="94c18" class="tk">task7</a> : 1;</td></tr>
+<tr name="95" id="95">
+<td>95</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="95c18" class="tk">task8</a> : 1;</td></tr>
+<tr name="96" id="96">
+<td>96</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="96c18" class="tk">task9</a> : 1;</td></tr>
+<tr name="97" id="97">
+<td>97</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="97c18" class="tk">task10</a> : 1;</td></tr>
+<tr name="98" id="98">
+<td>98</td><td>    <span class="kw">unsigned</span> <span class="kw">int</span> <a id="98c18" class="tk">task11</a> : 1;</td></tr>
+<tr name="99" id="99">
+<td>99</td><td>  <span class="br">}</span> <a id="99c5" class="tk">b</a>;</td></tr>
+<tr name="100" id="100">
+<td>100</td><td></td></tr>
+<tr name="101" id="101">
+<td>101</td><td>  <span class="kw">unsigned</span> <span class="kw">int</span> <a id="101c16" class="tk">val</a>;</td></tr>
+<tr name="102" id="102">
+<td>102</td><td><span class="br">}</span> <span class="kw">extern</span> <span class="kw">volatile</span> <a id="102c19" class="tk">MCHP_MCU_Overload</a>;</td></tr>
+<tr name="103" id="103">
+<td>103</td><td></td></tr>
+<tr name="104" id="104">
+<td>104</td><td><span class="kw">extern</span> <a id="104c8" class="tk">uint16_T</a> <span class="kw">volatile</span> <a id="104c26" class="tk">MCHP_SPI1_State</a>;</td></tr>
+<tr name="105" id="105">
+<td>105</td><td><span class="kw">extern</span> <a id="105c8" class="tk">boolean_T</a> <span class="kw">volatile</span> <a id="105c27" class="tk">MCHP_SPI12_Request</a>;</td></tr>
+<tr name="106" id="106">
+<td>106</td><td></td></tr>
+<tr name="107" id="107">
+<td>107</td><td><span class="ct">/* Declare SPI1 Queue Circular Buffer */</span></td></tr>
+<tr name="108" id="108">
+<td>108</td><td><span class="kw">extern</span> <a id="108c8" class="tk">MCHP_SPI1_QueueStr</a> <a id="108c27" class="tk">MCHP_SPI1_Queue</a>;</td></tr>
+<tr name="109" id="109">
+<td>109</td><td></td></tr>
+<tr name="110" id="110">
+<td>110</td><td><span class="ct">/* Declare UART1 Tx Circular Buffer Structure */</span></td></tr>
+<tr name="111" id="111">
+<td>111</td><td><span class="kw">extern</span> <a id="111c8" class="tk">MCHP_UART1_TxStr</a> <a id="111c25" class="tk">MCHP_UART1_Tx</a>;</td></tr>
+<tr name="112" id="112">
+<td>112</td><td></td></tr>
+<tr name="113" id="113">
+<td>113</td><td><span class="ct">/* Declare UART4 Tx Circular Buffer Structure */</span></td></tr>
+<tr name="114" id="114">
+<td>114</td><td><span class="kw">extern</span> <a id="114c8" class="tk">MCHP_UART4_TxStr</a> <a id="114c25" class="tk">MCHP_UART4_Tx</a>;</td></tr>
+<tr name="115" id="115">
+<td>115</td><td><span class="kw">extern</span> <a id="115c8" class="tk">uint16_T</a> <span class="kw">volatile</span> <a id="115c26" class="tk">MCHP_I2C2_State</a>;</td></tr>
+<tr name="116" id="116">
+<td>116</td><td><span class="kw">extern</span> <span class="kw">unsigned</span> <span class="kw">int</span> <span class="kw">volatile</span> <a id="116c30" class="tk">MCHP_I2C22_Request</a>;</td></tr>
+<tr name="117" id="117">
+<td>117</td><td></td></tr>
+<tr name="118" id="118">
+<td>118</td><td><span class="ct">/* Declare I2C2 Queue Circular Buffer */</span></td></tr>
+<tr name="119" id="119">
+<td>119</td><td><span class="kw">extern</span> <a id="119c8" class="tk">MCHP_I2C2_QueueStr</a> <a id="119c27" class="tk">MCHP_I2C2_Queue</a>;</td></tr>
+<tr name="120" id="120">
+<td>120</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="120c17" class="tk">uint8_T</a> <a id="120c25" class="tk">I2C22_Buff8</a>[2];</td></tr>
+<tr name="121" id="121">
+<td>121</td><td><span class="kw">extern</span> <span class="kw">unsigned</span> <span class="kw">int</span> <span class="kw">volatile</span> <a id="121c30" class="tk">MCHP_I2C23_Request</a>;</td></tr>
+<tr name="122" id="122">
+<td>122</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="122c17" class="tk">uint8_T</a> <a id="122c25" class="tk">I2C23_Buff8</a>[2];</td></tr>
+<tr name="123" id="123">
+<td>123</td><td><span class="kw">extern</span> <span class="kw">unsigned</span> <span class="kw">int</span> <span class="kw">volatile</span> <a id="123c30" class="tk">MCHP_I2C21_Request</a>;</td></tr>
+<tr name="124" id="124">
+<td>124</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="124c17" class="tk">uint8_T</a> <a id="124c25" class="tk">I2C21_Buff8</a>[22];</td></tr>
+<tr name="125" id="125">
+<td>125</td><td><span class="kw">extern</span> <a id="125c8" class="tk">boolean_T</a> <span class="kw">volatile</span> <a id="125c27" class="tk">MCHP_SPI11_Request</a>;</td></tr>
+<tr name="126" id="126">
+<td>126</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="126c17" class="tk">uint16_T</a> <a id="126c26" class="tk">SPI11_Buff16</a>[7];</td></tr>
+<tr name="127" id="127">
+<td>127</td><td><span class="kw">extern</span> <span class="kw">unsigned</span> <span class="kw">int</span> <span class="kw">volatile</span> <a id="127c30" class="tk">MCHP_I2C24_Request</a>;</td></tr>
+<tr name="128" id="128">
+<td>128</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="128c17" class="tk">uint8_T</a> <a id="128c25" class="tk">I2C24_Buff8</a>[6];</td></tr>
+<tr name="129" id="129">
+<td>129</td><td><span class="kw">extern</span> <span class="kw">unsigned</span> <span class="kw">int</span> <span class="kw">volatile</span> <a id="129c30" class="tk">MCHP_I2C25_Request</a>;</td></tr>
+<tr name="130" id="130">
+<td>130</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="130c17" class="tk">uint16_T</a> <a id="130c26" class="tk">MCHP_ic1up</a>;</td></tr>
+<tr name="131" id="131">
+<td>131</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="131c17" class="tk">uint16_T</a> <a id="131c26" class="tk">MCHP_ic2up</a>;</td></tr>
+<tr name="132" id="132">
+<td>132</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="132c17" class="tk">uint16_T</a> <a id="132c26" class="tk">MCHP_ic3up</a>;</td></tr>
+<tr name="133" id="133">
+<td>133</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="133c17" class="tk">uint16_T</a> <a id="133c26" class="tk">MCHP_ic4up</a>;</td></tr>
+<tr name="134" id="134">
+<td>134</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="134c17" class="tk">uint16_T</a> <a id="134c26" class="tk">MCHP_ic5up</a>;</td></tr>
+<tr name="135" id="135">
+<td>135</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="135c17" class="tk">uint16_T</a> <a id="135c26" class="tk">MCHP_ic1up</a>;</td></tr>
+<tr name="136" id="136">
+<td>136</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="136c17" class="tk">uint16_T</a> <a id="136c26" class="tk">MCHP_ic2up</a>;</td></tr>
+<tr name="137" id="137">
+<td>137</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="137c17" class="tk">uint16_T</a> <a id="137c26" class="tk">MCHP_ic3up</a>;</td></tr>
+<tr name="138" id="138">
+<td>138</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="138c17" class="tk">uint16_T</a> <a id="138c26" class="tk">MCHP_ic4up</a>;</td></tr>
+<tr name="139" id="139">
+<td>139</td><td><span class="kw">extern</span> <span class="kw">volatile</span> <a id="139c17" class="tk">uint16_T</a> <a id="139c26" class="tk">MCHP_ic5up</a>;</td></tr>
+<tr name="140" id="140">
+<td>140</td><td></td></tr>
+<tr name="141" id="141">
+<td>141</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="142" id="142">
+<td>142</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="142c13" class="tk">hilRead</a>(<a id="142c21" class="tk">uint8_T</a>* <a id="142c30" class="tk">y1</a>);</td></tr>
+<tr name="143" id="143">
+<td>143</td><td></td></tr>
+<tr name="144" id="144">
+<td>144</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="145" id="145">
+<td>145</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="145c13" class="tk">protDecodeHil</a>(<a id="145c27" class="tk">uint8_T</a>* <a id="145c36" class="tk">u1</a>);</td></tr>
+<tr name="146" id="146">
+<td>146</td><td></td></tr>
+<tr name="147" id="147">
+<td>147</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="148" id="148">
+<td>148</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="148c13" class="tk">hil_getRawRead</a>(<a id="148c28" class="tk">uint8_T</a>* <a id="148c37" class="tk">y1</a>);</td></tr>
+<tr name="149" id="149">
+<td>149</td><td></td></tr>
+<tr name="150" id="150">
+<td>150</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="151" id="151">
+<td>151</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="151c13" class="tk">getGpsMainData</a>(<a id="151c28" class="tk">real32_T</a>* <a id="151c38" class="tk">data</a>);</td></tr>
+<tr name="152" id="152">
+<td>152</td><td></td></tr>
+<tr name="153" id="153">
+<td>153</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="154" id="154">
+<td>154</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="154c13" class="tk">getGPSRawData</a>(<a id="154c27" class="tk">uint8_T</a>* <a id="154c36" class="tk">y1</a>);</td></tr>
+<tr name="155" id="155">
+<td>155</td><td></td></tr>
+<tr name="156" id="156">
+<td>156</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="157" id="157">
+<td>157</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="157c13" class="tk">gpsParse</a>(<a id="157c22" class="tk">uint8_T</a>* <a id="157c31" class="tk">dataStream</a>);</td></tr>
+<tr name="158" id="158">
+<td>158</td><td></td></tr>
+<tr name="159" id="159">
+<td>159</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="160" id="160">
+<td>160</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="160c13" class="tk">getGpsUbloxMainData</a>(<a id="160c33" class="tk">real32_T</a>* <a id="160c43" class="tk">y1</a>);</td></tr>
+<tr name="161" id="161">
+<td>161</td><td></td></tr>
+<tr name="162" id="162">
+<td>162</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="163" id="163">
+<td>163</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="163c13" class="tk">getGSLocation</a>(<a id="163c27" class="tk">real32_T</a>* <a id="163c37" class="tk">y1</a>);</td></tr>
+<tr name="164" id="164">
+<td>164</td><td></td></tr>
+<tr name="165" id="165">
+<td>165</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="166" id="166">
+<td>166</td><td><span class="kw">extern</span> <a id="166c8" class="tk">uint16_t</a> <a id="166c17" class="tk">PackRawIMU</a>(<a id="166c28" class="tk">uint8_t</a> <a id="166c36" class="tk">system_id</a>, <a id="166c47" class="tk">uint8_t</a> <a id="166c55" class="tk">component_id</a>,</td></tr>
+<tr name="167" id="167">
+<td>167</td><td>  <a id="167c3" class="tk">mavlink_raw_imu_t</a> <a id="167c21" class="tk">mlRawIMUData</a> ,<a id="167c35" class="tk">uint32_t</a> <a id="167c44" class="tk">time_usec</a>);</td></tr>
+<tr name="168" id="168">
+<td>168</td><td></td></tr>
+<tr name="169" id="169">
+<td>169</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="170" id="170">
+<td>170</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="170c13" class="tk">TxN_Data_OverU1</a>(<a id="170c29" class="tk">uint16_t</a> <a id="170c38" class="tk">N</a>);</td></tr>
+<tr name="171" id="171">
+<td>171</td><td></td></tr>
+<tr name="172" id="172">
+<td>172</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="173" id="173">
+<td>173</td><td><span class="kw">extern</span> <a id="173c8" class="tk">uint16_t</a> <a id="173c17" class="tk">PackHeartBeat</a>(<a id="173c31" class="tk">uint8_t</a> <a id="173c39" class="tk">system_id</a>, <a id="173c50" class="tk">uint8_t</a> <a id="173c58" class="tk">component_id</a>);</td></tr>
+<tr name="174" id="174">
+<td>174</td><td></td></tr>
+<tr name="175" id="175">
+<td>175</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="176" id="176">
+<td>176</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="176c13" class="tk">TxN_Data_OverU1</a>(<a id="176c29" class="tk">uint16_t</a> <a id="176c38" class="tk">N</a>);</td></tr>
+<tr name="177" id="177">
+<td>177</td><td></td></tr>
+<tr name="178" id="178">
+<td>178</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="179" id="179">
+<td>179</td><td><span class="kw">extern</span> <a id="179c8" class="tk">uint16_t</a> <a id="179c17" class="tk">PackGpsRawInt</a>(<a id="179c31" class="tk">uint8_t</a> <a id="179c39" class="tk">system_id</a>, <a id="179c50" class="tk">uint8_t</a> <a id="179c58" class="tk">component_id</a>,</td></tr>
+<tr name="180" id="180">
+<td>180</td><td>  <a id="180c3" class="tk">mavlink_gps_raw_int_t</a> <a id="180c25" class="tk">mlRawGpsDataInt</a> ,<a id="180c42" class="tk">uint32_t</a> <a id="180c51" class="tk">time_usec</a>);</td></tr>
+<tr name="181" id="181">
+<td>181</td><td></td></tr>
+<tr name="182" id="182">
+<td>182</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="183" id="183">
+<td>183</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="183c13" class="tk">TxN_Data_OverU1</a>(<a id="183c29" class="tk">uint16_t</a> <a id="183c38" class="tk">N</a>);</td></tr>
+<tr name="184" id="184">
+<td>184</td><td></td></tr>
+<tr name="185" id="185">
+<td>185</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="186" id="186">
+<td>186</td><td><span class="kw">extern</span> <a id="186c8" class="tk">uint16_t</a> <a id="186c17" class="tk">PackScaledPressure</a>(<a id="186c36" class="tk">uint8_t</a> <a id="186c44" class="tk">system_id</a>, <a id="186c55" class="tk">uint8_t</a> <a id="186c63" class="tk">component_id</a>,</td></tr>
+<tr name="187" id="187">
+<td>187</td><td>  <a id="187c3" class="tk">mavlink_scaled_pressure_t</a> <a id="187c29" class="tk">mlAirData</a> ,<a id="187c40" class="tk">uint32_t</a> <a id="187c49" class="tk">time_usec</a>);</td></tr>
+<tr name="188" id="188">
+<td>188</td><td></td></tr>
+<tr name="189" id="189">
+<td>189</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="190" id="190">
+<td>190</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="190c13" class="tk">TxN_Data_OverU1</a>(<a id="190c29" class="tk">uint16_t</a> <a id="190c38" class="tk">N</a>);</td></tr>
+<tr name="191" id="191">
+<td>191</td><td></td></tr>
+<tr name="192" id="192">
+<td>192</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="193" id="193">
+<td>193</td><td><span class="kw">extern</span> <a id="193c8" class="tk">uint16_t</a> <a id="193c17" class="tk">PackSysStatus</a>(<a id="193c31" class="tk">uint8_t</a> <a id="193c39" class="tk">system_id</a>, <a id="193c50" class="tk">uint8_t</a> <a id="193c58" class="tk">component_id</a>,</td></tr>
+<tr name="194" id="194">
+<td>194</td><td>  <a id="194c3" class="tk">mavlink_sys_status_t</a> <a id="194c24" class="tk">mlSysStatus</a>);</td></tr>
+<tr name="195" id="195">
+<td>195</td><td></td></tr>
+<tr name="196" id="196">
+<td>196</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="197" id="197">
+<td>197</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="197c13" class="tk">TxN_Data_OverU1</a>(<a id="197c29" class="tk">uint16_t</a> <a id="197c38" class="tk">N</a>);</td></tr>
+<tr name="198" id="198">
+<td>198</td><td></td></tr>
+<tr name="199" id="199">
+<td>199</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="200" id="200">
+<td>200</td><td><span class="kw">extern</span> <a id="200c8" class="tk">uint16_t</a> <a id="200c17" class="tk">ParameterInterfaceResponse</a>(<a id="200c44" class="tk">uint8_t</a> <a id="200c52" class="tk">system_id</a>, <a id="200c63" class="tk">uint8_t</a></td></tr>
+<tr name="201" id="201">
+<td>201</td><td>  <a id="201c3" class="tk">component_id</a>);</td></tr>
+<tr name="202" id="202">
+<td>202</td><td></td></tr>
+<tr name="203" id="203">
+<td>203</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="204" id="204">
+<td>204</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="204c13" class="tk">TxN_Data_OverU1</a>(<a id="204c29" class="tk">uint16_t</a> <a id="204c38" class="tk">N</a>);</td></tr>
+<tr name="205" id="205">
+<td>205</td><td></td></tr>
+<tr name="206" id="206">
+<td>206</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="207" id="207">
+<td>207</td><td><span class="kw">extern</span> <a id="207c8" class="tk">uint16_t</a> <a id="207c17" class="tk">MissionInterfaceResponse</a>(<a id="207c42" class="tk">uint8_t</a> <a id="207c50" class="tk">system_id</a>, <a id="207c61" class="tk">uint8_t</a> <a id="207c69" class="tk">component_id</a>);</td></tr>
+<tr name="208" id="208">
+<td>208</td><td></td></tr>
+<tr name="209" id="209">
+<td>209</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="210" id="210">
+<td>210</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="210c13" class="tk">TxN_Data_OverU1</a>(<a id="210c29" class="tk">uint16_t</a> <a id="210c38" class="tk">N</a>);</td></tr>
+<tr name="211" id="211">
+<td>211</td><td></td></tr>
+<tr name="212" id="212">
+<td>212</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="213" id="213">
+<td>213</td><td><span class="kw">extern</span> <a id="213c8" class="tk">uint16_t</a> <a id="213c17" class="tk">PackRawRC</a>(<a id="213c27" class="tk">uint8_t</a> <a id="213c35" class="tk">system_id</a>, <a id="213c46" class="tk">uint8_t</a> <a id="213c54" class="tk">component_id</a>,</td></tr>
+<tr name="214" id="214">
+<td>214</td><td>  <a id="214c3" class="tk">mavlink_rc_channels_raw_t</a> <a id="214c29" class="tk">mlRC_Commands</a> ,<a id="214c44" class="tk">uint32_t</a> <a id="214c53" class="tk">time_usec</a>);</td></tr>
+<tr name="215" id="215">
+<td>215</td><td></td></tr>
+<tr name="216" id="216">
+<td>216</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="217" id="217">
+<td>217</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="217c13" class="tk">TxN_Data_OverU1</a>(<a id="217c29" class="tk">uint16_t</a> <a id="217c38" class="tk">N</a>);</td></tr>
+<tr name="218" id="218">
+<td>218</td><td></td></tr>
+<tr name="219" id="219">
+<td>219</td><td><span class="ct">/* C Function Call declare function as extern */</span></td></tr>
+<tr name="220" id="220">
+<td>220</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="220c13" class="tk">gpsUbloxParse</a>(<span class="kw">void</span>);</td></tr>
+<tr name="221" id="221">
+<td>221</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="221c13" class="tk">mul_wide_u32</a>(<a id="221c26" class="tk">uint32_T</a> <a id="221c35" class="tk">in0</a>, <a id="221c40" class="tk">uint32_T</a> <a id="221c49" class="tk">in1</a>, <a id="221c54" class="tk">uint32_T</a> *<a id="221c64" class="tk">ptrOutBitsHi</a>,</td></tr>
+<tr name="222" id="222">
+<td>222</td><td>  <a id="222c3" class="tk">uint32_T</a> *<a id="222c13" class="tk">ptrOutBitsLo</a>);</td></tr>
+<tr name="223" id="223">
+<td>223</td><td><span class="kw">extern</span> <a id="223c8" class="tk">uint32_T</a> <a id="223c17" class="tk">mul_u32_u32_u32_sr15</a>(<a id="223c38" class="tk">uint32_T</a> <a id="223c47" class="tk">a</a>, <a id="223c50" class="tk">uint32_T</a> <a id="223c59" class="tk">b</a>);</td></tr>
+<tr name="224" id="224">
+<td>224</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="224c13" class="tk">mul_wide_s32</a>(<a id="224c26" class="tk">int32_T</a> <a id="224c34" class="tk">in0</a>, <a id="224c39" class="tk">int32_T</a> <a id="224c47" class="tk">in1</a>, <a id="224c52" class="tk">uint32_T</a> *<a id="224c62" class="tk">ptrOutBitsHi</a>,</td></tr>
+<tr name="225" id="225">
+<td>225</td><td>  <a id="225c3" class="tk">uint32_T</a> *<a id="225c13" class="tk">ptrOutBitsLo</a>);</td></tr>
+<tr name="226" id="226">
+<td>226</td><td><span class="kw">extern</span> <a id="226c8" class="tk">uint32_T</a> <a id="226c17" class="tk">mul_u32_s32_s32_sat</a>(<a id="226c37" class="tk">int32_T</a> <a id="226c45" class="tk">a</a>, <a id="226c48" class="tk">int32_T</a> <a id="226c56" class="tk">b</a>);</td></tr>
+<tr name="227" id="227">
+<td>227</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="227c13" class="tk">mul_wide_su32</a>(<a id="227c27" class="tk">int32_T</a> <a id="227c35" class="tk">in0</a>, <a id="227c40" class="tk">uint32_T</a> <a id="227c49" class="tk">in1</a>, <a id="227c54" class="tk">uint32_T</a> *<a id="227c64" class="tk">ptrOutBitsHi</a>,</td></tr>
+<tr name="228" id="228">
+<td>228</td><td>  <a id="228c3" class="tk">uint32_T</a> *<a id="228c13" class="tk">ptrOutBitsLo</a>);</td></tr>
+<tr name="229" id="229">
+<td>229</td><td><span class="kw">extern</span> <a id="229c8" class="tk">int32_T</a> <a id="229c16" class="tk">mul_s32_s32_u32_sr16</a>(<a id="229c37" class="tk">int32_T</a> <a id="229c45" class="tk">a</a>, <a id="229c48" class="tk">uint32_T</a> <a id="229c57" class="tk">b</a>);</td></tr>
+<tr name="230" id="230">
+<td>230</td><td><span class="kw">extern</span> <a id="230c8" class="tk">uint32_T</a> <a id="230c17" class="tk">div_u32_round</a>(<a id="230c31" class="tk">uint32_T</a> <a id="230c40" class="tk">numerator</a>, <a id="230c51" class="tk">uint32_T</a> <a id="230c60" class="tk">denominator</a>);</td></tr>
+<tr name="231" id="231">
+<td>231</td><td><span class="kw">extern</span> <a id="231c8" class="tk">uint32_T</a> <a id="231c17" class="tk">mul_u32_u32_u32_sr11_round</a>(<a id="231c44" class="tk">uint32_T</a> <a id="231c53" class="tk">a</a>, <a id="231c56" class="tk">uint32_T</a> <a id="231c65" class="tk">b</a>);</td></tr>
+<tr name="232" id="232">
+<td>232</td><td><span class="kw">extern</span> <a id="232c8" class="tk">uint32_T</a> <a id="232c17" class="tk">div_repeat_u32_round</a>(<a id="232c38" class="tk">uint32_T</a> <a id="232c47" class="tk">numerator</a>, <a id="232c58" class="tk">uint32_T</a> <a id="232c67" class="tk">denominator</a>,</td></tr>
+<tr name="233" id="233">
+<td>233</td><td>  <a id="233c3" class="tk">uint16_T</a> <a id="233c12" class="tk">nRepeatSub</a>);</td></tr>
+<tr name="234" id="234">
+<td>234</td><td><span class="kw">extern</span> <a id="234c8" class="tk">uint32_T</a> <a id="234c17" class="tk">mul_u32_s32_u32_sr15</a>(<a id="234c38" class="tk">int32_T</a> <a id="234c46" class="tk">a</a>, <a id="234c49" class="tk">uint32_T</a> <a id="234c58" class="tk">b</a>);</td></tr>
+<tr name="235" id="235">
+<td>235</td><td><span class="kw">extern</span> <a id="235c8" class="tk">int32_T</a> <a id="235c16" class="tk">mul_s32_s32_s32_sr28</a>(<a id="235c37" class="tk">int32_T</a> <a id="235c45" class="tk">a</a>, <a id="235c48" class="tk">int32_T</a> <a id="235c56" class="tk">b</a>);</td></tr>
+<tr name="236" id="236">
+<td>236</td><td><span class="kw">extern</span> <a id="236c8" class="tk">int32_T</a> <a id="236c16" class="tk">mul_s32_s32_s32_sr23</a>(<a id="236c37" class="tk">int32_T</a> <a id="236c45" class="tk">a</a>, <a id="236c48" class="tk">int32_T</a> <a id="236c56" class="tk">b</a>);</td></tr>
+<tr name="237" id="237">
+<td>237</td><td><span class="kw">extern</span> <a id="237c8" class="tk">int16_T</a> <a id="237c16" class="tk">div_s16s32_round</a>(<a id="237c33" class="tk">int32_T</a> <a id="237c41" class="tk">numerator</a>, <a id="237c52" class="tk">int32_T</a> <a id="237c60" class="tk">denominator</a>);</td></tr>
+<tr name="238" id="238">
+<td>238</td><td><span class="kw">extern</span> <a id="238c8" class="tk">uint32_T</a> <a id="238c17" class="tk">MultiWord2uLong</a>(<span class="kw">const</span> <a id="238c39" class="tk">uint32_T</a> <a id="238c48" class="tk">u</a>[]);</td></tr>
+<tr name="239" id="239">
+<td>239</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="239c13" class="tk">uMultiWordShr</a>(<span class="kw">const</span> <a id="239c33" class="tk">uint32_T</a> <a id="239c42" class="tk">u1</a>[], <a id="239c48" class="tk">int16_T</a> <a id="239c56" class="tk">n1</a>, <a id="239c60" class="tk">uint16_T</a> <a id="239c69" class="tk">n2</a>, <a id="239c73" class="tk">uint32_T</a></td></tr>
+<tr name="240" id="240">
+<td>240</td><td>  <a id="240c3" class="tk">y</a>[], <a id="240c8" class="tk">int16_T</a> <a id="240c16" class="tk">n</a>);</td></tr>
+<tr name="241" id="241">
+<td>241</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="241c13" class="tk">uMultiWordMul</a>(<span class="kw">const</span> <a id="241c33" class="tk">uint32_T</a> <a id="241c42" class="tk">u1</a>[], <a id="241c48" class="tk">int16_T</a> <a id="241c56" class="tk">n1</a>, <span class="kw">const</span> <a id="241c66" class="tk">uint32_T</a> <a id="241c75" class="tk">u2</a>[],</td></tr>
+<tr name="242" id="242">
+<td>242</td><td>  <a id="242c3" class="tk">int16_T</a> <a id="242c11" class="tk">n2</a>, <a id="242c15" class="tk">uint32_T</a> <a id="242c24" class="tk">y</a>[], <a id="242c29" class="tk">int16_T</a> <a id="242c37" class="tk">n</a>);</td></tr>
+<tr name="243" id="243">
+<td>243</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="243c13" class="tk">AUAV3_AND_EnabledSubsystem</a>(<a id="243c40" class="tk">boolean_T</a> <a id="243c50" class="tk">rtu_Enable</a>, <a id="243c62" class="tk">real32_T</a> <a id="243c71" class="tk">rtu_In1</a>,</td></tr>
+<tr name="244" id="244">
+<td>244</td><td>  <a id="244c3" class="tk">rtB_EnabledSubsystem_AUAV3_AN_T</a> *<a id="244c36" class="tk">localB</a>);</td></tr>
+<tr name="245" id="245">
+<td>245</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="245c13" class="tk">EnablesDisablestheCom_Init</a>(<a id="245c40" class="tk">rtDW_EnablesDisablestheComput_T</a> *<a id="245c73" class="tk">localDW</a>);</td></tr>
+<tr name="246" id="246">
+<td>246</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="246c13" class="tk">EnablesDisablestheComputat</a>(<a id="246c40" class="tk">rtB_EnablesDisablestheComputa_T</a> *<a id="246c73" class="tk">localB</a>,</td></tr>
+<tr name="247" id="247">
+<td>247</td><td>  <a id="247c3" class="tk">rtDW_EnablesDisablestheComput_T</a> *<a id="247c36" class="tk">localDW</a>);</td></tr>
+<tr name="248" id="248">
+<td>248</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="248c13" class="tk">EmbeddedMATLABFunctio_Init</a>(<a id="248c40" class="tk">rtDW_EmbeddedMATLABFunction_A_T</a> *<a id="248c73" class="tk">localDW</a>);</td></tr>
+<tr name="249" id="249">
+<td>249</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="249c13" class="tk">AUA_EmbeddedMATLABFunction</a>(<a id="249c40" class="tk">real_T</a> <a id="249c47" class="tk">rtu_u</a>, <a id="249c54" class="tk">real_T</a> <a id="249c61" class="tk">rtu_T</a>, <a id="249c68" class="tk">real_T</a> <a id="249c75" class="tk">rtu_f</a>,</td></tr>
+<tr name="250" id="250">
+<td>250</td><td>  <a id="250c3" class="tk">rtB_EmbeddedMATLABFunction_AU_T</a> *<a id="250c36" class="tk">localB</a>, <a id="250c44" class="tk">rtDW_EmbeddedMATLABFunction_A_T</a></td></tr>
+<tr name="251" id="251">
+<td>251</td><td>  *<a id="251c4" class="tk">localDW</a>);</td></tr>
+<tr name="252" id="252">
+<td>252</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="252c13" class="tk">A_EmbeddedMATLABFunction_i</a>(<span class="kw">const</span> <a id="252c46" class="tk">real_T</a> <a id="252c53" class="tk">rtu_u</a>[5],</td></tr>
+<tr name="253" id="253">
+<td>253</td><td>  <a id="253c3" class="tk">rtB_EmbeddedMATLABFunction_n_T</a> *<a id="253c35" class="tk">localB</a>);</td></tr>
+<tr name="254" id="254">
+<td>254</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="254c13" class="tk">AUAV3_AND_SLUGS_SENSOR_step0</a>(<span class="kw">void</span>);</td></tr>
+<tr name="255" id="255">
+<td>255</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="255c13" class="tk">AUAV3_AND_SLUGS_SENSOR_step1</a>(<span class="kw">void</span>);</td></tr>
+<tr name="256" id="256">
+<td>256</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="256c13" class="tk">AUAV3_AND_SLUGS_SENSOR_step2</a>(<span class="kw">void</span>);</td></tr>
+<tr name="257" id="257">
+<td>257</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="257c13" class="tk">AUAV3_AND_SLUGS_SENSOR_step3</a>(<span class="kw">void</span>);</td></tr>
+<tr name="258" id="258">
+<td>258</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="258c13" class="tk">AUAV3_AND_SLUGS_SENSOR_step4</a>(<span class="kw">void</span>);</td></tr>
+<tr name="259" id="259">
+<td>259</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="259c13" class="tk">AUAV3_AND_SLUGS_SENSOR_step5</a>(<span class="kw">void</span>);</td></tr>
+<tr name="260" id="260">
+<td>260</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="260c13" class="tk">AUAV3_AND_SLUGS_SENSOR_step6</a>(<span class="kw">void</span>);</td></tr>
+<tr name="261" id="261">
+<td>261</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="261c13" class="tk">AUAV3_AND_SLUGS_SENSOR_step7</a>(<span class="kw">void</span>);</td></tr>
+<tr name="262" id="262">
+<td>262</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="262c13" class="tk">AUAV3_AND_SLUGS_SENSOR_step8</a>(<span class="kw">void</span>);</td></tr>
+<tr name="263" id="263">
+<td>263</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="263c13" class="tk">AUAV3_AND_SLUGS_SENSOR_step9</a>(<span class="kw">void</span>);</td></tr>
+<tr name="264" id="264">
+<td>264</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="264c13" class="tk">AUAV3_AND_SLUGS_SENSOR_step10</a>(<span class="kw">void</span>);</td></tr>
+<tr name="265" id="265">
+<td>265</td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="265c13" class="tk">AUAV3_AND_SLUGS_SENSOR_step11</a>(<span class="kw">void</span>);</td></tr>
+<tr name="266" id="266">
+<td>266</td><td></td></tr>
+<tr name="267" id="267">
+<td>267</td><td><span class="pp">#endif</span>                                 <span class="ct">/* RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_private_h_ */</span></td></tr>
+<tr name="268" id="268">
+<td>268</td><td></td></tr>
+<tr name="269" id="269">
+<td>269</td><td><span class="ct">/* File trailer for Real-Time Workshop generated code.</span></td></tr>
+<tr name="270" id="270">
+<td>270</td><td><span class="ct"> *</span></td></tr>
+<tr name="271" id="271">
+<td>271</td><td><span class="ct"> * [EOF]</span></td></tr>
+<tr name="272" id="272">
+<td>272</td><td><span class="ct"> */</span></td></tr>
+<tr name="273" id="273">
+<td>273</td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

@@ -1,314 +1,586 @@
-<HTML>
-<HEAD>
-<TITLE>RTW Report - adisCube16405.c </TITLE>
-<STYLE> .LN { font-style: italic; color: #888888 } </STYLE>
-<STYLE> .CT { font-style: italic; color: #117755 } </STYLE>
-<STYLE> .PP { font-style: bold;   color: #992211 } </STYLE>
-<STYLE> .KW { font-style: bold;   color: #112266 } </STYLE>
-<STYLE> .DT { font-style: bold;   color: #112266 } </STYLE>
-<SCRIPT language="JavaScript" type="text/javascript">
-<!--
-function rtwHilite(aBlock,aParentSID) {
- aParentSID = "";
- try {
-    window.location.href="matlab: if ~isempty(which('private/rtwbindmodel')), rtwprivate rtwbindmodel 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.mdl' 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.X' '', end; rtwprivate code2model "+aBlock+" "+aParentSID+";"
- } catch (e) { 
- }
-} // end rtwHilite
-//-->
-</SCRIPT>
-</HEAD>
-<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);} ">
-<P>
-<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
-<H4>File: <A HREF="file:///C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\adisCube16405.c" TARGET="rtwreport_document_frame">C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\adisCube16405.c</A></H4>
-<PRE id="RTWcode">
-<SPAN><A CLASS="LN" NAME="1">    1   </A><SPAN CLASS="CT">/*</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="2">    2   </A><SPAN CLASS="CT">The MIT License</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="3">    3   </A><SPAN CLASS="CT"></SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="4">    4   </A><SPAN CLASS="CT">Copyright (c) 2009 UCSC Autonomous Systems Lab</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="5">    5   </A><SPAN CLASS="CT"></SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="6">    6   </A><SPAN CLASS="CT">Permission is hereby granted, free of charge, to any person obtaining a copy</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="7">    7   </A><SPAN CLASS="CT">of this software and associated documentation files (the "Software"), to deal</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="8">    8   </A><SPAN CLASS="CT">in the Software without restriction, including without limitation the rights</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="9">    9   </A><SPAN CLASS="CT">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="10">   10   </A><SPAN CLASS="CT">copies of the Software, and to permit persons to whom the Software is</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="11">   11   </A><SPAN CLASS="CT">furnished to do so, subject to the following conditions:</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="12">   12   </A><SPAN CLASS="CT"></SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="13">   13   </A><SPAN CLASS="CT">The above copyright notice and this permission notice shall be included in</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="14">   14   </A><SPAN CLASS="CT">all copies or substantial portions of the Software.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="15">   15   </A><SPAN CLASS="CT"></SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="16">   16   </A><SPAN CLASS="CT">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="17">   17   </A><SPAN CLASS="CT">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="18">   18   </A><SPAN CLASS="CT">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="19">   19   </A><SPAN CLASS="CT">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="20">   20   </A><SPAN CLASS="CT">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="21">   21   </A><SPAN CLASS="CT">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="22">   22   </A><SPAN CLASS="CT">THE SOFTWARE.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="23">   23   </A><SPAN CLASS="CT"></SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="24">   24   </A><SPAN CLASS="CT">*/</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="25">   25   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="26">   26   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;adisCube16405.h&quot;</FONT>
-</SPAN><SPAN><A CLASS="LN" NAME="27">   27   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="28">   28   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">if</SPAN> (USE_CUBE_16405 == 1)
-</SPAN><SPAN><A CLASS="LN" NAME="29">   29   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="30">   30   </A><SPAN CLASS="DT">static</SPAN> tCubeBuffer <A NAME="var_cubeBuffer">cubeBuffer</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="31">   31   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="32">   32   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_cubeInit">cubeInit</A> (<SPAN CLASS="DT">void</SPAN>)<B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A><SPAN CLASS="CT">//	long long i = 0;</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="34">   34   </A>	
-</SPAN><SPAN><A CLASS="LN" NAME="35">   35   </A>	<SPAN CLASS="CT">/* printToUart2("Starting %s\n\r","Cube Init 1st print AM");</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="36">   36   </A><SPAN CLASS="CT"></SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="37">   37   </A><SPAN CLASS="CT">	// 150 ms Delay for powerup</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="38">   38   </A><SPAN CLASS="CT">	for(i = 0; i &lt; 6000000; i += 1 )		//porque no i++; </SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="39">   39   </A><SPAN CLASS="CT">	{</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="40">   40   </A><SPAN CLASS="CT">		Nop();</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="41">   41   </A><SPAN CLASS="CT">	}	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="42">   42   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="43">   43   </A><SPAN CLASS="CT">    // SPI1CON1 Register Settings</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="44">   44   </A><SPAN CLASS="CT">    SPI2CON1bits.DISSCK = 0;    //Internal Serial Clock is Enabled.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="45">   45   </A><SPAN CLASS="CT">    SPI2CON1bits.DISSDO = 0;    //SDOx pin is controlled by the module.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="46">   46   </A><SPAN CLASS="CT">    SPI2CON1bits.MODE16 = 1;    //Communication is word-wide (16 bits).</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="47">   47   </A><SPAN CLASS="CT">    SPI2CON1bits.SMP    = 0;    //Sample at the middle.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="48">   48   </A><SPAN CLASS="CT">    SPI2CON1bits.CKE    = 0;    //Serial output data changes on transition from</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="49">   49   </A><SPAN CLASS="CT">                                //Idle clock state to active clock state</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="50">   50   </A><SPAN CLASS="CT">    SPI2CON1bits.CKP    = 1;    //Idle state for clock is a high level;</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="51">   51   </A><SPAN CLASS="CT">                                //active state is a low level</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="52">   52   </A><SPAN CLASS="CT">    SPI2CON1bits.SSEN   = 0;    // SS not Used ( Master mode)    </SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="53">   53   </A><SPAN CLASS="CT">    SPI2CON1bits.MSTEN  = 1;    //Master Mode Enabled</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="54">   54   </A><SPAN CLASS="CT">    </SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="55">   55   </A><SPAN CLASS="CT">    // Configure the clock for 192 KHz</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="56">   56   </A><SPAN CLASS="CT">    SPI2CON1bits.SPRE   = 5;    //Secondary prescaler to 3:1</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="57">   57   </A><SPAN CLASS="CT">    SPI2CON1bits.PPRE   = 0;    //Primary prescaler 64:1</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="58">   58   </A><SPAN CLASS="CT">        </SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="59">   59   </A><SPAN CLASS="CT">    // Enable the module </SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="60">   60   </A><SPAN CLASS="CT">    SPI2STATbits.SPIROV  = 0;   //Clear overflow bit</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="61">   61   </A><SPAN CLASS="CT">    SPI2STATbits.SPIEN   = 1;   //Enable SPI Module</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="62">   62   </A><SPAN CLASS="CT">    printToUart2("Starting %s\n\r","SPI Enabled");</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="63">   63   </A><SPAN CLASS="CT">    </SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="64">   64   </A><SPAN CLASS="CT">	// AN18 is used for data reading</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="65">   65   </A><SPAN CLASS="CT">    // Configure the Analog pins C3 as digital.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="66">   66   </A><SPAN CLASS="CT">    // C3 is used to determine if data is ready on the </SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="67">   67   </A><SPAN CLASS="CT">    // CUBE</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="68">   68   </A><SPAN CLASS="CT">   // AD1PCFGHbits.PCFG18 = 1;</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="69">   69   </A><SPAN CLASS="CT">	TRISCbits.TRISC3 	= 1;</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="70">   70   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="71">   71   </A><SPAN CLASS="CT">	// Configure RG9 as output pin to use as chip-select</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="72">   72   </A><SPAN CLASS="CT">	TRISGbits.TRISG9	= 0;</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="73">   73   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="74">   74   </A><SPAN CLASS="CT">	printToUart2("Starting %s\n\r","Cube Config");</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="75">   75   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="76">   76   </A><SPAN CLASS="CT">	// Start the Configuration Process</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="77">   77   </A><SPAN CLASS="CT">	// ===============================</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="78">   78   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="79">   79   </A><SPAN CLASS="CT">	// Set the DIO pin and Gyro accel compensation</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="80">   80   </A><SPAN CLASS="CT">	write2Cube(W_MSC_CTRL);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="81">   81   </A><SPAN CLASS="CT">	printToUart2("Starting %s\n\r","Gyro Comp");</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="82">   82   </A><SPAN CLASS="CT">	// Set the internal sample rate</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="83">   83   </A><SPAN CLASS="CT">	write2Cube(W_SMPL_PRD);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="84">   84   </A><SPAN CLASS="CT">	printToUart2("Starting %s\n\r","Sample Rate");</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="85">   85   </A><SPAN CLASS="CT">	// Set the sensitivity</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="86">   86   </A><SPAN CLASS="CT">	write2Cube(W_SENS_AVG_H);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="87">   87   </A><SPAN CLASS="CT">	printToUart2("Starting %s\n\r","sensitivity");</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="88">   88   </A><SPAN CLASS="CT">	// Set the digital filtering</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="89">   89   </A><SPAN CLASS="CT">	write2Cube(W_SENS_AVG_L);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="90">   90   </A><SPAN CLASS="CT">	printToUart2("Starting %s\n\r","Filtering");</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="91">   91   </A><SPAN CLASS="CT">	// Dont Sleep</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="92">   92   </A><SPAN CLASS="CT">	write2Cube(W_SLP_CNT);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="93">   93   </A><SPAN CLASS="CT">	printToUart2("Starting %s\n\r","No Sleep");</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="94">   94   </A><SPAN CLASS="CT">	// Correct X Accel</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="95">   95   </A><SPAN CLASS="CT">	write2Cube(W_XACC_OFFSET_LO);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="96">   96   </A><SPAN CLASS="CT">	write2Cube(W_XACC_OFFSET_HI);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="97">   97   </A><SPAN CLASS="CT">	// Correct Y Accel</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="98">   98   </A><SPAN CLASS="CT">	write2Cube(W_YACC_OFFSET_LO);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="99">   99   </A><SPAN CLASS="CT">	write2Cube(W_YACC_OFFSET_HI);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="100">  100   </A><SPAN CLASS="CT">	// Correct Z Accel</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="101">  101   </A><SPAN CLASS="CT">	write2Cube(W_ZACC_OFFSET_LO);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="102">  102   </A><SPAN CLASS="CT">	write2Cube(W_ZACC_OFFSET_HI);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="103">  103   </A><SPAN CLASS="CT"></SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="104">  104   </A><SPAN CLASS="CT"></SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="105">  105   </A><SPAN CLASS="CT">	// Start a full calibration</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="106">  106   </A><SPAN CLASS="CT">//	#ifdef DO_FULL_CAL</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="107">  107   </A><SPAN CLASS="CT">    		printToUart2("Starting %s\n\r","Full Cal");</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="108">  108   </A><SPAN CLASS="CT">		write2Cube(W_COMMAND_FULLCAL);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="109">  109   </A><SPAN CLASS="CT">		while(!cubeDataReady());</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="110">  110   </A><SPAN CLASS="CT">		printToUart2("%s\n\r","Done Calibration");</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="111">  111   </A><SPAN CLASS="CT">        </SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="112">  112   </A><SPAN CLASS="CT">//	#endif</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="113">  113   </A><SPAN CLASS="CT">	// Change the SPI Speed</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="114">  114   </A><SPAN CLASS="CT">	SPI2STATbits.SPIEN   = 0;   //Disable SPI Module</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="115">  115   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="116">  116   </A><SPAN CLASS="CT">	// Configure the clock for 2 MHz</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="117">  117   </A><SPAN CLASS="CT">	SPI2CON1bits.SPRE   = 3;    //Secondary prescaler to 5:1</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="118">  118   </A><SPAN CLASS="CT">	SPI2CON1bits.PPRE   = 2;    //Primary prescaler 4:1</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="119">  119   </A><SPAN CLASS="CT">    </SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="120">  120   </A><SPAN CLASS="CT">    </SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="121">  121   </A><SPAN CLASS="CT">	// Enable the module </SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="122">  122   </A><SPAN CLASS="CT">	SPI2STATbits.SPIROV  = 0;   //Clear overflow bit</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="123">  123   </A><SPAN CLASS="CT">	SPI2STATbits.SPIEN   = 1;   //Enable SPI Module</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="124">  124   </A><SPAN CLASS="CT">    </SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="125">  125   </A><SPAN CLASS="CT"></SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="126">  126   </A><SPAN CLASS="CT">	// Configure TIMER5 for the cube sampling</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="127">  127   </A><SPAN CLASS="CT">	memset(&cubeBuffer, 0, sizeof(cubeBuffer));</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="128">  128   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="129">  129   </A><SPAN CLASS="CT">	T5CONbits.TSIDL			= 1;		// stop in idle mode</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="130">  130   </A><SPAN CLASS="CT">	T5CONbits.TCKPS			= 3;		// 256:1 prescaler</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="131">  131   </A><SPAN CLASS="CT">	T5CONbits.TCS				=	0;		// Internal clock</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="132">  132   </A><SPAN CLASS="CT">	T5CONbits.TGATE			= 0;		// Gated time disabled</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="133">  133   </A><SPAN CLASS="CT">	TMR5								= 0;		// Clear the timer</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="134">  134   </A><SPAN CLASS="CT">	PR5									= 312;	// Set the period to 500 Hz</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="135">  135   </A><SPAN CLASS="CT">	IFS1bits.T5IF				= 0;		// clear the interrupt flag</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="136">  136   </A><SPAN CLASS="CT">	IEC1bits.T5IE				=	1;		// Enable the interrupts</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="137">  137   </A><SPAN CLASS="CT">	IPC7bits.T5IP				=	5;		// Interrupt priority 5</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="138">  138   </A><SPAN CLASS="CT">	T5CONbits.TON				= 0; 		// Make sure timer is off</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="139">  139   </A><SPAN CLASS="CT"> */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="140">  140   </A><B>}</B><SPAN CLASS="CT">//cubeInit</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="141">  141   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="142">  142   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="143">  143   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_getCubeData">getCubeData</A> (<SPAN CLASS="DT">short</SPAN> * cubeData) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="144">  144   </A>	<SPAN CLASS="CT">// Do the last reading</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="145">  145   </A>	<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_GYROX);
-</SPAN><SPAN><A CLASS="LN" NAME="146">  146   </A>	
-</SPAN><SPAN><A CLASS="LN" NAME="147">  147   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.gx[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] = <A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_GYROY));
-</SPAN><SPAN><A CLASS="LN" NAME="148">  148   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.gy[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] = <A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_GYROZ));
-</SPAN><SPAN><A CLASS="LN" NAME="149">  149   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.gz[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] = <A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_ACCELX));
-</SPAN><SPAN><A CLASS="LN" NAME="150">  150   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.ax[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] =<A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_ACCELY));
-</SPAN><SPAN><A CLASS="LN" NAME="151">  151   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.ay[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] =<A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_ACCELZ));
-</SPAN><SPAN><A CLASS="LN" NAME="152">  152   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.az[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] =<A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_MAGNX)); 
-</SPAN><SPAN><A CLASS="LN" NAME="153">  153   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.mx[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] =<A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_MAGNY)); 
-</SPAN><SPAN><A CLASS="LN" NAME="154">  154   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.my[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] =<A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_MAGNZ)); 
-</SPAN><SPAN><A CLASS="LN" NAME="155">  155   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.mz[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] =<A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_STATUS)); <SPAN CLASS="CT">// dummy write</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="156">  156   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount++;
-</SPAN><SPAN><A CLASS="LN" NAME="157">  157   </A>	
-</SPAN><SPAN><A CLASS="LN" NAME="158">  158   </A>	cubeData[9]= <A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount;		<SPAN CLASS="CT">// se incorporaron los magnetometros</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="159">  159   </A>	<SPAN CLASS="CT">// Update the state structure with the collected values</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="160">  160   </A>	<A HREF="adisCube16405_c.html#fcn_updateCubeData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_updateCubeData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">updateCubeData</FONT></A>();
-</SPAN><SPAN><A CLASS="LN" NAME="161">  161   </A>	
-</SPAN><SPAN><A CLASS="LN" NAME="162">  162   </A>	<SPAN CLASS="CT">// Return the averaged values</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="163">  163   </A>	cubeData[0] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.xgyro;
-</SPAN><SPAN><A CLASS="LN" NAME="164">  164   </A>	cubeData[1] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.ygyro;
-</SPAN><SPAN><A CLASS="LN" NAME="165">  165   </A>	cubeData[2] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.zgyro;
-</SPAN><SPAN><A CLASS="LN" NAME="166">  166   </A>	cubeData[3] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.xacc;
-</SPAN><SPAN><A CLASS="LN" NAME="167">  167   </A>	cubeData[4] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.yacc;
-</SPAN><SPAN><A CLASS="LN" NAME="168">  168   </A>	cubeData[5] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.zacc;
-</SPAN><SPAN><A CLASS="LN" NAME="169">  169   </A>	cubeData[6] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.xmag;
-</SPAN><SPAN><A CLASS="LN" NAME="170">  170   </A>	cubeData[7] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.ymag;
-</SPAN><SPAN><A CLASS="LN" NAME="171">  171   </A>	cubeData[8] = <A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.zmag;
-</SPAN><SPAN><A CLASS="LN" NAME="172">  172   </A>	
-</SPAN><SPAN><A CLASS="LN" NAME="173">  173   </A>	<SPAN CLASS="CT">// Turn on the timer for the first MAX_CUBE_READ readings</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="174">  174   </A>	T5CONbits.TON				= 1;
-</SPAN><SPAN><A CLASS="LN" NAME="175">  175   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="176">  176   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="177">  177   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_updateCubeData">updateCubeData</A>(<SPAN CLASS="DT">void</SPAN>)<B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="178">  178   </A>		
-</SPAN><SPAN><A CLASS="LN" NAME="179">  179   </A>	<SPAN CLASS="CT">// Read the buffered measurements</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="180">  180   </A>	<A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.xgyro = <A HREF="adisCube16405_c.html#fcn_averageData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_averageData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">averageData</FONT></A>(<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.gx, <A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount);
-</SPAN><SPAN><A CLASS="LN" NAME="181">  181   </A>	<A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.ygyro = <A HREF="adisCube16405_c.html#fcn_averageData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_averageData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">averageData</FONT></A>(<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.gy, <A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount);
-</SPAN><SPAN><A CLASS="LN" NAME="182">  182   </A>	<A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.zgyro = <A HREF="adisCube16405_c.html#fcn_averageData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_averageData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">averageData</FONT></A>(<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.gz, <A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount);
-</SPAN><SPAN><A CLASS="LN" NAME="183">  183   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="184">  184   </A>	<A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.xacc = <A HREF="adisCube16405_c.html#fcn_averageData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_averageData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">averageData</FONT></A>(<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.ax, <A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount);
-</SPAN><SPAN><A CLASS="LN" NAME="185">  185   </A>	<A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.yacc = <A HREF="adisCube16405_c.html#fcn_averageData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_averageData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">averageData</FONT></A>(<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.ay, <A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount);
-</SPAN><SPAN><A CLASS="LN" NAME="186">  186   </A>	<A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.zacc = <A HREF="adisCube16405_c.html#fcn_averageData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_averageData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">averageData</FONT></A>(<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.az, <A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount);
-</SPAN><SPAN><A CLASS="LN" NAME="187">  187   </A>	
-</SPAN><SPAN><A CLASS="LN" NAME="188">  188   </A>	<A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.xmag = <A HREF="adisCube16405_c.html#fcn_averageData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_averageData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">averageData</FONT></A>(<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.mx, <A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount);
-</SPAN><SPAN><A CLASS="LN" NAME="189">  189   </A>	<A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.ymag = <A HREF="adisCube16405_c.html#fcn_averageData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_averageData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">averageData</FONT></A>(<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.my, <A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount);
-</SPAN><SPAN><A CLASS="LN" NAME="190">  190   </A>	<A HREF="mavlinkSensorMcu_c.html#var_mlRawImuData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_mlRawImuData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">mlRawImuData</FONT></A>.zmag = <A HREF="adisCube16405_c.html#fcn_averageData" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_averageData');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">averageData</FONT></A>(<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.mz, <A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount);
-</SPAN><SPAN><A CLASS="LN" NAME="191">  191   </A>	
-</SPAN><SPAN><A CLASS="LN" NAME="192">  192   </A>	<SPAN CLASS="CT">// Clear the count for the next reading</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="193">  193   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="194">  194   </A> 
-</SPAN><SPAN><A CLASS="LN" NAME="195">  195   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="196">  196   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="197">  197   </A>int16_t <A NAME="fcn_averageData">averageData</A>(int16_t* theData, uint8_t count)<B>{</B>			
-</SPAN><SPAN><A CLASS="LN" NAME="198">  198   </A>	<SPAN CLASS="DT">char</SPAN> i;
-</SPAN><SPAN><A CLASS="LN" NAME="199">  199   </A>	<SPAN CLASS="DT">short</SPAN> value = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="200">  200   </A>	<SPAN CLASS="KW">for</SPAN> (i=0; i&lt; count; i++)<B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="201">  201   </A>		value+= theData[(<SPAN CLASS="DT">int</SPAN>)i];
-</SPAN><SPAN><A CLASS="LN" NAME="202">  202   </A>	<B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="203">  203   </A>	
-</SPAN><SPAN><A CLASS="LN" NAME="204">  204   </A>	<SPAN CLASS="KW">return</SPAN> (count&gt;0)? ((int16_t)(value/count)) : 0;
-</SPAN><SPAN><A CLASS="LN" NAME="205">  205   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="206">  206   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="207">  207   </A><SPAN CLASS="CT">// SPI Primitives</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="208">  208   </A><SPAN CLASS="CT">// ==============</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="209">  209   </A><SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">short</SPAN> <A NAME="fcn_write2Cube">write2Cube</A> (<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">short</SPAN> data2Send) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="210">  210   </A>	<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">short</SPAN> temp = 3;
-</SPAN><SPAN><A CLASS="LN" NAME="211">  211   </A>	
-</SPAN><SPAN><A CLASS="LN" NAME="212">  212   </A>	<SPAN CLASS="CT">// Drive SS Low</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="213">  213   </A>	<SPAN CLASS="CT">/* selectCube();</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="214">  214   </A><SPAN CLASS="CT">	Nop(); Nop();</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="215">  215   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="216">  216   </A><SPAN CLASS="CT">	// Write the data to the SPI buffer</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="217">  217   </A><SPAN CLASS="CT">	WriteSPI2(data2Send);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="218">  218   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="219">  219   </A><SPAN CLASS="CT">	// Wait for the TX buffer to empty</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="220">  220   </A><SPAN CLASS="CT">	while(SPI2STATbits.SPITBF);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="221">  221   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="222">  222   </A><SPAN CLASS="CT">	// Wait for the RX buffer to be full</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="223">  223   </A><SPAN CLASS="CT">	while(!SPI2STATbits.SPIRBF);</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="224">  224   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="225">  225   </A><SPAN CLASS="CT">	// Read the receive buffer</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="226">  226   </A><SPAN CLASS="CT">	temp =  ReadSPI2();</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="227">  227   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="228">  228   </A><SPAN CLASS="CT">	Nop(); Nop();</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="229">  229   </A><SPAN CLASS="CT"></SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="230">  230   </A><SPAN CLASS="CT">	//Drive SS High</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="231">  231   </A><SPAN CLASS="CT">	deselectCube();</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="232">  232   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="233">  233   </A><SPAN CLASS="CT">	// Clear the overflow for safekeeping</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="234">  234   </A><SPAN CLASS="CT">	// If overflow occurs and the flag is not cleared the module will freeze</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="235">  235   </A><SPAN CLASS="CT">	SPI2STATbits.SPIROV  = 0;   </SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="236">  236   </A><SPAN CLASS="CT">	</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="237">  237   </A><SPAN CLASS="CT">	// Delay for 33uS for a total of 40uS which is the max data rate</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="238">  238   </A><SPAN CLASS="CT">	for(i = 0; i &lt; 330; i += 1 )</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="239">  239   </A><SPAN CLASS="CT">	{</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="240">  240   </A><SPAN CLASS="CT">		Nop();</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="241">  241   </A><SPAN CLASS="CT">	} */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="242">  242   </A>	<SPAN CLASS="KW">return</SPAN> temp;
-</SPAN><SPAN><A CLASS="LN" NAME="243">  243   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="244">  244   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="245">  245   </A><SPAN CLASS="CT">// interrupcion del timer5</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="246">  246   </A><SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#fcn___attribute__" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var___attribute__');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">__attribute__</FONT></A> ((interrupt, no_auto_psv)) _T5Interrupt(<SPAN CLASS="DT">void</SPAN>)
-</SPAN><SPAN><A CLASS="LN" NAME="247">  247   </A><B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="248">  248   </A>	<SPAN CLASS="CT">// Do the reading</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="249">  249   </A>	<SPAN CLASS="CT">// lee datos del gyro</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="250">  250   </A>	<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_GYROX);
-</SPAN><SPAN><A CLASS="LN" NAME="251">  251   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.gx[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] = <A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_GYROY));
-</SPAN><SPAN><A CLASS="LN" NAME="252">  252   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.gy[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] = <A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_GYROZ));
-</SPAN><SPAN><A CLASS="LN" NAME="253">  253   </A>	<SPAN CLASS="CT">//lee datos del acelerometro</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="254">  254   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.gz[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] = <A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_ACCELX));
-</SPAN><SPAN><A CLASS="LN" NAME="255">  255   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.ax[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] =<A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_ACCELY));
-</SPAN><SPAN><A CLASS="LN" NAME="256">  256   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.ay[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] =<A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_ACCELZ));
-</SPAN><SPAN><A CLASS="LN" NAME="257">  257   </A>	<SPAN CLASS="CT">// lee datos del magnetometro</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="258">  258   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.az[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] =<A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_MAGNX)); 
-</SPAN><SPAN><A CLASS="LN" NAME="259">  259   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.mx[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] =<A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_MAGNY)); 
-</SPAN><SPAN><A CLASS="LN" NAME="260">  260   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.my[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] =<A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_MAGNZ)); 
-</SPAN><SPAN><A CLASS="LN" NAME="261">  261   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.mz[<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount] =<A HREF="adisCube16405_c.html#fcn_convert14BitToShort" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_convert14BitToShort');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">convert14BitToShort</FONT></A>(<A HREF="adisCube16405_c.html#fcn_write2Cube" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_write2Cube');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">write2Cube</FONT></A>(R_STATUS)); <SPAN CLASS="CT">// dummy write</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="262">  262   </A>	<A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount++;
-</SPAN><SPAN><A CLASS="LN" NAME="263">  263   </A>		
-</SPAN><SPAN><A CLASS="LN" NAME="264">  264   </A>	<SPAN CLASS="CT">// If this is the MAX_CUBE_READ read value turn the timer off</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="265">  265   </A>	<SPAN CLASS="KW">if</SPAN>(MAX_CUBE_READ &lt;= <A HREF="adisCube16405_c.html#var_cubeBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_cubeBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">cubeBuffer</FONT></A>.sampleCount)<B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="266">  266   </A>		T5CONbits.TON = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="267">  267   </A>	<B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="268">  268   </A>	
-</SPAN><SPAN><A CLASS="LN" NAME="269">  269   </A>	IFS1bits.T5IF = 0;		<SPAN CLASS="CT">// clear the interrupt flag</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="270">  270   </A>	TMR5 = 0;							<SPAN CLASS="CT">// Start the count again</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="271">  271   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="272">  272   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="273">  273   </A><SPAN CLASS="DT">short</SPAN> <A NAME="fcn_convert14BitToShort">convert14BitToShort</A> (<SPAN CLASS="DT">short</SPAN> wordData) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="274">  274   </A>	<SPAN CLASS="KW">return</SPAN> (wordData &amp; BITTEST_14)? (wordData | BITEXTEND_14) : (wordData &amp; BITMASK_14);
-</SPAN><SPAN><A CLASS="LN" NAME="275">  275   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="276">  276   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="277">  277   </A><SPAN CLASS="DT">short</SPAN> <A NAME="fcn_convert12BitToShort">convert12BitToShort</A> (<SPAN CLASS="DT">short</SPAN> wordData) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="278">  278   </A>	<SPAN CLASS="KW">return</SPAN> (wordData &amp; BITTEST_12)? (wordData | BITEXTEND_12) : (wordData &amp; BITMASK_12);
-</SPAN><SPAN><A CLASS="LN" NAME="279">  279   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="280">  280   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="281">  281   </A><SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> <A NAME="fcn_isCube16405">isCube16405</A> (<SPAN CLASS="DT">void</SPAN>)<B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="282">  282   </A>	<SPAN CLASS="KW">return</SPAN> 1;
-</SPAN><SPAN><A CLASS="LN" NAME="283">  283   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="284">  284   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">endif</SPAN> <SPAN CLASS="CT">// USE_CUBE_16405</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="285">  285   </A> </PRE>
-</TD></TR></TABLE>
-</P>
-</BODY>
-</HTML>
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td>1</td><td><span class="ct">/*</span></td></tr>
+<tr name="2" id="2">
+<td>2</td><td><span class="ct">The MIT License</span></td></tr>
+<tr name="3" id="3">
+<td>3</td><td><span class="ct"></span></td></tr>
+<tr name="4" id="4">
+<td>4</td><td><span class="ct">Copyright (c) 2009 UCSC Autonomous Systems Lab</span></td></tr>
+<tr name="5" id="5">
+<td>5</td><td><span class="ct"></span></td></tr>
+<tr name="6" id="6">
+<td>6</td><td><span class="ct">Permission is hereby granted, free of charge, to any person obtaining a copy</span></td></tr>
+<tr name="7" id="7">
+<td>7</td><td><span class="ct">of this software and associated documentation files (the "Software"), to deal</span></td></tr>
+<tr name="8" id="8">
+<td>8</td><td><span class="ct">in the Software without restriction, including without limitation the rights</span></td></tr>
+<tr name="9" id="9">
+<td>9</td><td><span class="ct">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></td></tr>
+<tr name="10" id="10">
+<td>10</td><td><span class="ct">copies of the Software, and to permit persons to whom the Software is</span></td></tr>
+<tr name="11" id="11">
+<td>11</td><td><span class="ct">furnished to do so, subject to the following conditions:</span></td></tr>
+<tr name="12" id="12">
+<td>12</td><td><span class="ct"></span></td></tr>
+<tr name="13" id="13">
+<td>13</td><td><span class="ct">The above copyright notice and this permission notice shall be included in</span></td></tr>
+<tr name="14" id="14">
+<td>14</td><td><span class="ct">all copies or substantial portions of the Software.</span></td></tr>
+<tr name="15" id="15">
+<td>15</td><td><span class="ct"></span></td></tr>
+<tr name="16" id="16">
+<td>16</td><td><span class="ct">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></td></tr>
+<tr name="17" id="17">
+<td>17</td><td><span class="ct">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></td></tr>
+<tr name="18" id="18">
+<td>18</td><td><span class="ct">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></td></tr>
+<tr name="19" id="19">
+<td>19</td><td><span class="ct">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></td></tr>
+<tr name="20" id="20">
+<td>20</td><td><span class="ct">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></td></tr>
+<tr name="21" id="21">
+<td>21</td><td><span class="ct">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN</span></td></tr>
+<tr name="22" id="22">
+<td>22</td><td><span class="ct">THE SOFTWARE.</span></td></tr>
+<tr name="23" id="23">
+<td>23</td><td><span class="ct"></span></td></tr>
+<tr name="24" id="24">
+<td>24</td><td><span class="ct">*/</span></td></tr>
+<tr name="25" id="25">
+<td>25</td><td></td></tr>
+<tr name="26" id="26">
+<td>26</td><td><span class="pp">#include "adisCube16405.h"</span></td></tr>
+<tr name="27" id="27">
+<td>27</td><td></td></tr>
+<tr name="28" id="28">
+<td>28</td><td><span class="pp">#if</span> (<a id="28c6" class="tk">USE_CUBE_16405</a> == 1)</td></tr>
+<tr name="29" id="29">
+<td>29</td><td></td></tr>
+<tr name="30" id="30">
+<td>30</td><td><span class="kw">static</span> <a id="30c8" class="tk">tCubeBuffer</a> <a id="30c20" class="tk">cubeBuffer</a>;</td></tr>
+<tr name="31" id="31">
+<td>31</td><td></td></tr>
+<tr name="32" id="32">
+<td>32</td><td><span class="kw">void</span> <a id="32c6" class="tk">cubeInit</a> (<span class="kw">void</span>)<span class="br">{</span></td></tr>
+<tr name="33" id="33">
+<td>33</td><td><span class="ct">//	long long i = 0;</span></td></tr>
+<tr name="34" id="34">
+<td>34</td><td>	</td></tr>
+<tr name="35" id="35">
+<td>35</td><td>	<span class="ct">/* printToUart2("Starting %s\n\r","Cube Init 1st print AM");</span></td></tr>
+<tr name="36" id="36">
+<td>36</td><td><span class="ct"></span></td></tr>
+<tr name="37" id="37">
+<td>37</td><td><span class="ct">	// 150 ms Delay for powerup</span></td></tr>
+<tr name="38" id="38">
+<td>38</td><td><span class="ct">	for(i = 0; i &lt; 6000000; i += 1 )		//porque no i++; </span></td></tr>
+<tr name="39" id="39">
+<td>39</td><td><span class="ct">	{</span></td></tr>
+<tr name="40" id="40">
+<td>40</td><td><span class="ct">		Nop();</span></td></tr>
+<tr name="41" id="41">
+<td>41</td><td><span class="ct">	}	</span></td></tr>
+<tr name="42" id="42">
+<td>42</td><td><span class="ct">	</span></td></tr>
+<tr name="43" id="43">
+<td>43</td><td><span class="ct">    // SPI1CON1 Register Settings</span></td></tr>
+<tr name="44" id="44">
+<td>44</td><td><span class="ct">    SPI2CON1bits.DISSCK = 0;    //Internal Serial Clock is Enabled.</span></td></tr>
+<tr name="45" id="45">
+<td>45</td><td><span class="ct">    SPI2CON1bits.DISSDO = 0;    //SDOx pin is controlled by the module.</span></td></tr>
+<tr name="46" id="46">
+<td>46</td><td><span class="ct">    SPI2CON1bits.MODE16 = 1;    //Communication is word-wide (16 bits).</span></td></tr>
+<tr name="47" id="47">
+<td>47</td><td><span class="ct">    SPI2CON1bits.SMP    = 0;    //Sample at the middle.</span></td></tr>
+<tr name="48" id="48">
+<td>48</td><td><span class="ct">    SPI2CON1bits.CKE    = 0;    //Serial output data changes on transition from</span></td></tr>
+<tr name="49" id="49">
+<td>49</td><td><span class="ct">                                //Idle clock state to active clock state</span></td></tr>
+<tr name="50" id="50">
+<td>50</td><td><span class="ct">    SPI2CON1bits.CKP    = 1;    //Idle state for clock is a high level;</span></td></tr>
+<tr name="51" id="51">
+<td>51</td><td><span class="ct">                                //active state is a low level</span></td></tr>
+<tr name="52" id="52">
+<td>52</td><td><span class="ct">    SPI2CON1bits.SSEN   = 0;    // SS not Used ( Master mode)    </span></td></tr>
+<tr name="53" id="53">
+<td>53</td><td><span class="ct">    SPI2CON1bits.MSTEN  = 1;    //Master Mode Enabled</span></td></tr>
+<tr name="54" id="54">
+<td>54</td><td><span class="ct">    </span></td></tr>
+<tr name="55" id="55">
+<td>55</td><td><span class="ct">    // Configure the clock for 192 KHz</span></td></tr>
+<tr name="56" id="56">
+<td>56</td><td><span class="ct">    SPI2CON1bits.SPRE   = 5;    //Secondary prescaler to 3:1</span></td></tr>
+<tr name="57" id="57">
+<td>57</td><td><span class="ct">    SPI2CON1bits.PPRE   = 0;    //Primary prescaler 64:1</span></td></tr>
+<tr name="58" id="58">
+<td>58</td><td><span class="ct">        </span></td></tr>
+<tr name="59" id="59">
+<td>59</td><td><span class="ct">    // Enable the module </span></td></tr>
+<tr name="60" id="60">
+<td>60</td><td><span class="ct">    SPI2STATbits.SPIROV  = 0;   //Clear overflow bit</span></td></tr>
+<tr name="61" id="61">
+<td>61</td><td><span class="ct">    SPI2STATbits.SPIEN   = 1;   //Enable SPI Module</span></td></tr>
+<tr name="62" id="62">
+<td>62</td><td><span class="ct">    printToUart2("Starting %s\n\r","SPI Enabled");</span></td></tr>
+<tr name="63" id="63">
+<td>63</td><td><span class="ct">    </span></td></tr>
+<tr name="64" id="64">
+<td>64</td><td><span class="ct">	// AN18 is used for data reading</span></td></tr>
+<tr name="65" id="65">
+<td>65</td><td><span class="ct">    // Configure the Analog pins C3 as digital.</span></td></tr>
+<tr name="66" id="66">
+<td>66</td><td><span class="ct">    // C3 is used to determine if data is ready on the </span></td></tr>
+<tr name="67" id="67">
+<td>67</td><td><span class="ct">    // CUBE</span></td></tr>
+<tr name="68" id="68">
+<td>68</td><td><span class="ct">   // AD1PCFGHbits.PCFG18 = 1;</span></td></tr>
+<tr name="69" id="69">
+<td>69</td><td><span class="ct">	TRISCbits.TRISC3 	= 1;</span></td></tr>
+<tr name="70" id="70">
+<td>70</td><td><span class="ct">	</span></td></tr>
+<tr name="71" id="71">
+<td>71</td><td><span class="ct">	// Configure RG9 as output pin to use as chip-select</span></td></tr>
+<tr name="72" id="72">
+<td>72</td><td><span class="ct">	TRISGbits.TRISG9	= 0;</span></td></tr>
+<tr name="73" id="73">
+<td>73</td><td><span class="ct">	</span></td></tr>
+<tr name="74" id="74">
+<td>74</td><td><span class="ct">	printToUart2("Starting %s\n\r","Cube Config");</span></td></tr>
+<tr name="75" id="75">
+<td>75</td><td><span class="ct">	</span></td></tr>
+<tr name="76" id="76">
+<td>76</td><td><span class="ct">	// Start the Configuration Process</span></td></tr>
+<tr name="77" id="77">
+<td>77</td><td><span class="ct">	// ===============================</span></td></tr>
+<tr name="78" id="78">
+<td>78</td><td><span class="ct">	</span></td></tr>
+<tr name="79" id="79">
+<td>79</td><td><span class="ct">	// Set the DIO pin and Gyro accel compensation</span></td></tr>
+<tr name="80" id="80">
+<td>80</td><td><span class="ct">	write2Cube(W_MSC_CTRL);</span></td></tr>
+<tr name="81" id="81">
+<td>81</td><td><span class="ct">	printToUart2("Starting %s\n\r","Gyro Comp");</span></td></tr>
+<tr name="82" id="82">
+<td>82</td><td><span class="ct">	// Set the internal sample rate</span></td></tr>
+<tr name="83" id="83">
+<td>83</td><td><span class="ct">	write2Cube(W_SMPL_PRD);</span></td></tr>
+<tr name="84" id="84">
+<td>84</td><td><span class="ct">	printToUart2("Starting %s\n\r","Sample Rate");</span></td></tr>
+<tr name="85" id="85">
+<td>85</td><td><span class="ct">	// Set the sensitivity</span></td></tr>
+<tr name="86" id="86">
+<td>86</td><td><span class="ct">	write2Cube(W_SENS_AVG_H);</span></td></tr>
+<tr name="87" id="87">
+<td>87</td><td><span class="ct">	printToUart2("Starting %s\n\r","sensitivity");</span></td></tr>
+<tr name="88" id="88">
+<td>88</td><td><span class="ct">	// Set the digital filtering</span></td></tr>
+<tr name="89" id="89">
+<td>89</td><td><span class="ct">	write2Cube(W_SENS_AVG_L);</span></td></tr>
+<tr name="90" id="90">
+<td>90</td><td><span class="ct">	printToUart2("Starting %s\n\r","Filtering");</span></td></tr>
+<tr name="91" id="91">
+<td>91</td><td><span class="ct">	// Dont Sleep</span></td></tr>
+<tr name="92" id="92">
+<td>92</td><td><span class="ct">	write2Cube(W_SLP_CNT);</span></td></tr>
+<tr name="93" id="93">
+<td>93</td><td><span class="ct">	printToUart2("Starting %s\n\r","No Sleep");</span></td></tr>
+<tr name="94" id="94">
+<td>94</td><td><span class="ct">	// Correct X Accel</span></td></tr>
+<tr name="95" id="95">
+<td>95</td><td><span class="ct">	write2Cube(W_XACC_OFFSET_LO);</span></td></tr>
+<tr name="96" id="96">
+<td>96</td><td><span class="ct">	write2Cube(W_XACC_OFFSET_HI);</span></td></tr>
+<tr name="97" id="97">
+<td>97</td><td><span class="ct">	// Correct Y Accel</span></td></tr>
+<tr name="98" id="98">
+<td>98</td><td><span class="ct">	write2Cube(W_YACC_OFFSET_LO);</span></td></tr>
+<tr name="99" id="99">
+<td>99</td><td><span class="ct">	write2Cube(W_YACC_OFFSET_HI);</span></td></tr>
+<tr name="100" id="100">
+<td>100</td><td><span class="ct">	// Correct Z Accel</span></td></tr>
+<tr name="101" id="101">
+<td>101</td><td><span class="ct">	write2Cube(W_ZACC_OFFSET_LO);</span></td></tr>
+<tr name="102" id="102">
+<td>102</td><td><span class="ct">	write2Cube(W_ZACC_OFFSET_HI);</span></td></tr>
+<tr name="103" id="103">
+<td>103</td><td><span class="ct"></span></td></tr>
+<tr name="104" id="104">
+<td>104</td><td><span class="ct"></span></td></tr>
+<tr name="105" id="105">
+<td>105</td><td><span class="ct">	// Start a full calibration</span></td></tr>
+<tr name="106" id="106">
+<td>106</td><td><span class="ct">//	#ifdef DO_FULL_CAL</span></td></tr>
+<tr name="107" id="107">
+<td>107</td><td><span class="ct">    		printToUart2("Starting %s\n\r","Full Cal");</span></td></tr>
+<tr name="108" id="108">
+<td>108</td><td><span class="ct">		write2Cube(W_COMMAND_FULLCAL);</span></td></tr>
+<tr name="109" id="109">
+<td>109</td><td><span class="ct">		while(!cubeDataReady());</span></td></tr>
+<tr name="110" id="110">
+<td>110</td><td><span class="ct">		printToUart2("%s\n\r","Done Calibration");</span></td></tr>
+<tr name="111" id="111">
+<td>111</td><td><span class="ct">        </span></td></tr>
+<tr name="112" id="112">
+<td>112</td><td><span class="ct">//	#endif</span></td></tr>
+<tr name="113" id="113">
+<td>113</td><td><span class="ct">	// Change the SPI Speed</span></td></tr>
+<tr name="114" id="114">
+<td>114</td><td><span class="ct">	SPI2STATbits.SPIEN   = 0;   //Disable SPI Module</span></td></tr>
+<tr name="115" id="115">
+<td>115</td><td><span class="ct">	</span></td></tr>
+<tr name="116" id="116">
+<td>116</td><td><span class="ct">	// Configure the clock for 2 MHz</span></td></tr>
+<tr name="117" id="117">
+<td>117</td><td><span class="ct">	SPI2CON1bits.SPRE   = 3;    //Secondary prescaler to 5:1</span></td></tr>
+<tr name="118" id="118">
+<td>118</td><td><span class="ct">	SPI2CON1bits.PPRE   = 2;    //Primary prescaler 4:1</span></td></tr>
+<tr name="119" id="119">
+<td>119</td><td><span class="ct">    </span></td></tr>
+<tr name="120" id="120">
+<td>120</td><td><span class="ct">    </span></td></tr>
+<tr name="121" id="121">
+<td>121</td><td><span class="ct">	// Enable the module </span></td></tr>
+<tr name="122" id="122">
+<td>122</td><td><span class="ct">	SPI2STATbits.SPIROV  = 0;   //Clear overflow bit</span></td></tr>
+<tr name="123" id="123">
+<td>123</td><td><span class="ct">	SPI2STATbits.SPIEN   = 1;   //Enable SPI Module</span></td></tr>
+<tr name="124" id="124">
+<td>124</td><td><span class="ct">    </span></td></tr>
+<tr name="125" id="125">
+<td>125</td><td><span class="ct"></span></td></tr>
+<tr name="126" id="126">
+<td>126</td><td><span class="ct">	// Configure TIMER5 for the cube sampling</span></td></tr>
+<tr name="127" id="127">
+<td>127</td><td><span class="ct">	memset(&amp;cubeBuffer, 0, sizeof(cubeBuffer));</span></td></tr>
+<tr name="128" id="128">
+<td>128</td><td><span class="ct">	</span></td></tr>
+<tr name="129" id="129">
+<td>129</td><td><span class="ct">	T5CONbits.TSIDL			= 1;		// stop in idle mode</span></td></tr>
+<tr name="130" id="130">
+<td>130</td><td><span class="ct">	T5CONbits.TCKPS			= 3;		// 256:1 prescaler</span></td></tr>
+<tr name="131" id="131">
+<td>131</td><td><span class="ct">	T5CONbits.TCS				=	0;		// Internal clock</span></td></tr>
+<tr name="132" id="132">
+<td>132</td><td><span class="ct">	T5CONbits.TGATE			= 0;		// Gated time disabled</span></td></tr>
+<tr name="133" id="133">
+<td>133</td><td><span class="ct">	TMR5								= 0;		// Clear the timer</span></td></tr>
+<tr name="134" id="134">
+<td>134</td><td><span class="ct">	PR5									= 312;	// Set the period to 500 Hz</span></td></tr>
+<tr name="135" id="135">
+<td>135</td><td><span class="ct">	IFS1bits.T5IF				= 0;		// clear the interrupt flag</span></td></tr>
+<tr name="136" id="136">
+<td>136</td><td><span class="ct">	IEC1bits.T5IE				=	1;		// Enable the interrupts</span></td></tr>
+<tr name="137" id="137">
+<td>137</td><td><span class="ct">	IPC7bits.T5IP				=	5;		// Interrupt priority 5</span></td></tr>
+<tr name="138" id="138">
+<td>138</td><td><span class="ct">	T5CONbits.TON				= 0; 		// Make sure timer is off</span></td></tr>
+<tr name="139" id="139">
+<td>139</td><td><span class="ct"> */</span></td></tr>
+<tr name="140" id="140">
+<td>140</td><td><span class="br">}</span><span class="ct">//cubeInit</span></td></tr>
+<tr name="141" id="141">
+<td>141</td><td></td></tr>
+<tr name="142" id="142">
+<td>142</td><td></td></tr>
+<tr name="143" id="143">
+<td>143</td><td><span class="kw">void</span> <a id="143c6" class="tk">getCubeData</a> (<span class="kw">short</span> * <a id="143c27" class="tk">cubeData</a>) <span class="br">{</span></td></tr>
+<tr name="144" id="144">
+<td>144</td><td>	<span class="ct">// Do the last reading</span></td></tr>
+<tr name="145" id="145">
+<td>145</td><td>	<a id="145c2" class="tk">write2Cube</a>(<a id="145c13" class="tk">R_GYROX</a>);</td></tr>
+<tr name="146" id="146">
+<td>146</td><td>	</td></tr>
+<tr name="147" id="147">
+<td>147</td><td>	<a id="147c2" class="tk">cubeBuffer</a>.<a id="147c13" class="tk">gx</a>[<a id="147c16" class="tk">cubeBuffer</a>.<a id="147c27" class="tk">sampleCount</a>] = <a id="147c42" class="tk">convert14BitToShort</a>(<a id="147c62" class="tk">write2Cube</a>(<a id="147c73" class="tk">R_GYROY</a>));</td></tr>
+<tr name="148" id="148">
+<td>148</td><td>	<a id="148c2" class="tk">cubeBuffer</a>.<a id="148c13" class="tk">gy</a>[<a id="148c16" class="tk">cubeBuffer</a>.<a id="148c27" class="tk">sampleCount</a>] = <a id="148c42" class="tk">convert14BitToShort</a>(<a id="148c62" class="tk">write2Cube</a>(<a id="148c73" class="tk">R_GYROZ</a>));</td></tr>
+<tr name="149" id="149">
+<td>149</td><td>	<a id="149c2" class="tk">cubeBuffer</a>.<a id="149c13" class="tk">gz</a>[<a id="149c16" class="tk">cubeBuffer</a>.<a id="149c27" class="tk">sampleCount</a>] = <a id="149c42" class="tk">convert14BitToShort</a>(<a id="149c62" class="tk">write2Cube</a>(<a id="149c73" class="tk">R_ACCELX</a>));</td></tr>
+<tr name="150" id="150">
+<td>150</td><td>	<a id="150c2" class="tk">cubeBuffer</a>.<a id="150c13" class="tk">ax</a>[<a id="150c16" class="tk">cubeBuffer</a>.<a id="150c27" class="tk">sampleCount</a>] =<a id="150c41" class="tk">convert14BitToShort</a>(<a id="150c61" class="tk">write2Cube</a>(<a id="150c72" class="tk">R_ACCELY</a>));</td></tr>
+<tr name="151" id="151">
+<td>151</td><td>	<a id="151c2" class="tk">cubeBuffer</a>.<a id="151c13" class="tk">ay</a>[<a id="151c16" class="tk">cubeBuffer</a>.<a id="151c27" class="tk">sampleCount</a>] =<a id="151c41" class="tk">convert14BitToShort</a>(<a id="151c61" class="tk">write2Cube</a>(<a id="151c72" class="tk">R_ACCELZ</a>));</td></tr>
+<tr name="152" id="152">
+<td>152</td><td>	<a id="152c2" class="tk">cubeBuffer</a>.<a id="152c13" class="tk">az</a>[<a id="152c16" class="tk">cubeBuffer</a>.<a id="152c27" class="tk">sampleCount</a>] =<a id="152c41" class="tk">convert14BitToShort</a>(<a id="152c61" class="tk">write2Cube</a>(<a id="152c72" class="tk">R_MAGNX</a>)); </td></tr>
+<tr name="153" id="153">
+<td>153</td><td>	<a id="153c2" class="tk">cubeBuffer</a>.<a id="153c13" class="tk">mx</a>[<a id="153c16" class="tk">cubeBuffer</a>.<a id="153c27" class="tk">sampleCount</a>] =<a id="153c41" class="tk">convert14BitToShort</a>(<a id="153c61" class="tk">write2Cube</a>(<a id="153c72" class="tk">R_MAGNY</a>)); </td></tr>
+<tr name="154" id="154">
+<td>154</td><td>	<a id="154c2" class="tk">cubeBuffer</a>.<a id="154c13" class="tk">my</a>[<a id="154c16" class="tk">cubeBuffer</a>.<a id="154c27" class="tk">sampleCount</a>] =<a id="154c41" class="tk">convert14BitToShort</a>(<a id="154c61" class="tk">write2Cube</a>(<a id="154c72" class="tk">R_MAGNZ</a>)); </td></tr>
+<tr name="155" id="155">
+<td>155</td><td>	<a id="155c2" class="tk">cubeBuffer</a>.<a id="155c13" class="tk">mz</a>[<a id="155c16" class="tk">cubeBuffer</a>.<a id="155c27" class="tk">sampleCount</a>] =<a id="155c41" class="tk">convert14BitToShort</a>(<a id="155c61" class="tk">write2Cube</a>(<a id="155c72" class="tk">R_STATUS</a>)); <span class="ct">// dummy write</span></td></tr>
+<tr name="156" id="156">
+<td>156</td><td>	<a id="156c2" class="tk">cubeBuffer</a>.<a id="156c13" class="tk">sampleCount</a>++;</td></tr>
+<tr name="157" id="157">
+<td>157</td><td>	</td></tr>
+<tr name="158" id="158">
+<td>158</td><td>	<a id="158c2" class="tk">cubeData</a>[9]= <a id="158c15" class="tk">cubeBuffer</a>.<a id="158c26" class="tk">sampleCount</a>;		<span class="ct">// se incorporaron los magnetometros</span></td></tr>
+<tr name="159" id="159">
+<td>159</td><td>	<span class="ct">// Update the state structure with the collected values</span></td></tr>
+<tr name="160" id="160">
+<td>160</td><td>	<a id="160c2" class="tk">updateCubeData</a>();</td></tr>
+<tr name="161" id="161">
+<td>161</td><td>	</td></tr>
+<tr name="162" id="162">
+<td>162</td><td>	<span class="ct">// Return the averaged values</span></td></tr>
+<tr name="163" id="163">
+<td>163</td><td>	<a id="163c2" class="tk">cubeData</a>[0] = <a id="163c16" class="tk">mlRawImuData</a>.<a id="163c29" class="tk">xgyro</a>;</td></tr>
+<tr name="164" id="164">
+<td>164</td><td>	<a id="164c2" class="tk">cubeData</a>[1] = <a id="164c16" class="tk">mlRawImuData</a>.<a id="164c29" class="tk">ygyro</a>;</td></tr>
+<tr name="165" id="165">
+<td>165</td><td>	<a id="165c2" class="tk">cubeData</a>[2] = <a id="165c16" class="tk">mlRawImuData</a>.<a id="165c29" class="tk">zgyro</a>;</td></tr>
+<tr name="166" id="166">
+<td>166</td><td>	<a id="166c2" class="tk">cubeData</a>[3] = <a id="166c16" class="tk">mlRawImuData</a>.<a id="166c29" class="tk">xacc</a>;</td></tr>
+<tr name="167" id="167">
+<td>167</td><td>	<a id="167c2" class="tk">cubeData</a>[4] = <a id="167c16" class="tk">mlRawImuData</a>.<a id="167c29" class="tk">yacc</a>;</td></tr>
+<tr name="168" id="168">
+<td>168</td><td>	<a id="168c2" class="tk">cubeData</a>[5] = <a id="168c16" class="tk">mlRawImuData</a>.<a id="168c29" class="tk">zacc</a>;</td></tr>
+<tr name="169" id="169">
+<td>169</td><td>	<a id="169c2" class="tk">cubeData</a>[6] = <a id="169c16" class="tk">mlRawImuData</a>.<a id="169c29" class="tk">xmag</a>;</td></tr>
+<tr name="170" id="170">
+<td>170</td><td>	<a id="170c2" class="tk">cubeData</a>[7] = <a id="170c16" class="tk">mlRawImuData</a>.<a id="170c29" class="tk">ymag</a>;</td></tr>
+<tr name="171" id="171">
+<td>171</td><td>	<a id="171c2" class="tk">cubeData</a>[8] = <a id="171c16" class="tk">mlRawImuData</a>.<a id="171c29" class="tk">zmag</a>;</td></tr>
+<tr name="172" id="172">
+<td>172</td><td>	</td></tr>
+<tr name="173" id="173">
+<td>173</td><td>	<span class="ct">// Turn on the timer for the first MAX_CUBE_READ readings</span></td></tr>
+<tr name="174" id="174">
+<td>174</td><td>	<a id="174c2" class="tk">T5CONbits</a>.<a id="174c12" class="tk">TON</a>				= 1;</td></tr>
+<tr name="175" id="175">
+<td>175</td><td><span class="br">}</span></td></tr>
+<tr name="176" id="176">
+<td>176</td><td></td></tr>
+<tr name="177" id="177">
+<td>177</td><td><span class="kw">void</span> <a id="177c6" class="tk">updateCubeData</a>(<span class="kw">void</span>)<span class="br">{</span></td></tr>
+<tr name="178" id="178">
+<td>178</td><td>		</td></tr>
+<tr name="179" id="179">
+<td>179</td><td>	<span class="ct">// Read the buffered measurements</span></td></tr>
+<tr name="180" id="180">
+<td>180</td><td>	<a id="180c2" class="tk">mlRawImuData</a>.<a id="180c15" class="tk">xgyro</a> = <a id="180c23" class="tk">averageData</a>(<a id="180c35" class="tk">cubeBuffer</a>.<a id="180c46" class="tk">gx</a>, <a id="180c50" class="tk">cubeBuffer</a>.<a id="180c61" class="tk">sampleCount</a>);</td></tr>
+<tr name="181" id="181">
+<td>181</td><td>	<a id="181c2" class="tk">mlRawImuData</a>.<a id="181c15" class="tk">ygyro</a> = <a id="181c23" class="tk">averageData</a>(<a id="181c35" class="tk">cubeBuffer</a>.<a id="181c46" class="tk">gy</a>, <a id="181c50" class="tk">cubeBuffer</a>.<a id="181c61" class="tk">sampleCount</a>);</td></tr>
+<tr name="182" id="182">
+<td>182</td><td>	<a id="182c2" class="tk">mlRawImuData</a>.<a id="182c15" class="tk">zgyro</a> = <a id="182c23" class="tk">averageData</a>(<a id="182c35" class="tk">cubeBuffer</a>.<a id="182c46" class="tk">gz</a>, <a id="182c50" class="tk">cubeBuffer</a>.<a id="182c61" class="tk">sampleCount</a>);</td></tr>
+<tr name="183" id="183">
+<td>183</td><td></td></tr>
+<tr name="184" id="184">
+<td>184</td><td>	<a id="184c2" class="tk">mlRawImuData</a>.<a id="184c15" class="tk">xacc</a> = <a id="184c22" class="tk">averageData</a>(<a id="184c34" class="tk">cubeBuffer</a>.<a id="184c45" class="tk">ax</a>, <a id="184c49" class="tk">cubeBuffer</a>.<a id="184c60" class="tk">sampleCount</a>);</td></tr>
+<tr name="185" id="185">
+<td>185</td><td>	<a id="185c2" class="tk">mlRawImuData</a>.<a id="185c15" class="tk">yacc</a> = <a id="185c22" class="tk">averageData</a>(<a id="185c34" class="tk">cubeBuffer</a>.<a id="185c45" class="tk">ay</a>, <a id="185c49" class="tk">cubeBuffer</a>.<a id="185c60" class="tk">sampleCount</a>);</td></tr>
+<tr name="186" id="186">
+<td>186</td><td>	<a id="186c2" class="tk">mlRawImuData</a>.<a id="186c15" class="tk">zacc</a> = <a id="186c22" class="tk">averageData</a>(<a id="186c34" class="tk">cubeBuffer</a>.<a id="186c45" class="tk">az</a>, <a id="186c49" class="tk">cubeBuffer</a>.<a id="186c60" class="tk">sampleCount</a>);</td></tr>
+<tr name="187" id="187">
+<td>187</td><td>	</td></tr>
+<tr name="188" id="188">
+<td>188</td><td>	<a id="188c2" class="tk">mlRawImuData</a>.<a id="188c15" class="tk">xmag</a> = <a id="188c22" class="tk">averageData</a>(<a id="188c34" class="tk">cubeBuffer</a>.<a id="188c45" class="tk">mx</a>, <a id="188c49" class="tk">cubeBuffer</a>.<a id="188c60" class="tk">sampleCount</a>);</td></tr>
+<tr name="189" id="189">
+<td>189</td><td>	<a id="189c2" class="tk">mlRawImuData</a>.<a id="189c15" class="tk">ymag</a> = <a id="189c22" class="tk">averageData</a>(<a id="189c34" class="tk">cubeBuffer</a>.<a id="189c45" class="tk">my</a>, <a id="189c49" class="tk">cubeBuffer</a>.<a id="189c60" class="tk">sampleCount</a>);</td></tr>
+<tr name="190" id="190">
+<td>190</td><td>	<a id="190c2" class="tk">mlRawImuData</a>.<a id="190c15" class="tk">zmag</a> = <a id="190c22" class="tk">averageData</a>(<a id="190c34" class="tk">cubeBuffer</a>.<a id="190c45" class="tk">mz</a>, <a id="190c49" class="tk">cubeBuffer</a>.<a id="190c60" class="tk">sampleCount</a>);</td></tr>
+<tr name="191" id="191">
+<td>191</td><td>	</td></tr>
+<tr name="192" id="192">
+<td>192</td><td>	<span class="ct">// Clear the count for the next reading</span></td></tr>
+<tr name="193" id="193">
+<td>193</td><td>	<a id="193c2" class="tk">cubeBuffer</a>.<a id="193c13" class="tk">sampleCount</a> = 0;</td></tr>
+<tr name="194" id="194">
+<td>194</td><td> </td></tr>
+<tr name="195" id="195">
+<td>195</td><td><span class="br">}</span></td></tr>
+<tr name="196" id="196">
+<td>196</td><td></td></tr>
+<tr name="197" id="197">
+<td>197</td><td><a id="197c1" class="tk">int16_t</a> <a id="197c9" class="tk">averageData</a>(<a id="197c21" class="tk">int16_t</a>* <a id="197c30" class="tk">theData</a>, <a id="197c39" class="tk">uint8_t</a> <a id="197c47" class="tk">count</a>)<span class="br">{</span>			</td></tr>
+<tr name="198" id="198">
+<td>198</td><td>	<span class="kw">char</span> <a id="198c7" class="tk">i</a>;</td></tr>
+<tr name="199" id="199">
+<td>199</td><td>	<span class="kw">short</span> <a id="199c8" class="tk">value</a> = 0;</td></tr>
+<tr name="200" id="200">
+<td>200</td><td>	<span class="kw">for</span> (<a id="200c7" class="tk">i</a>=0; <a id="200c12" class="tk">i</a>&lt; <a id="200c15" class="tk">count</a>; <a id="200c22" class="tk">i</a>++)<span class="br">{</span></td></tr>
+<tr name="201" id="201">
+<td>201</td><td>		<a id="201c3" class="tk">value</a>+= <a id="201c11" class="tk">theData</a>[(<span class="kw">int</span>)<a id="201c24" class="tk">i</a>];</td></tr>
+<tr name="202" id="202">
+<td>202</td><td>	<span class="br">}</span></td></tr>
+<tr name="203" id="203">
+<td>203</td><td>	</td></tr>
+<tr name="204" id="204">
+<td>204</td><td>	<span class="kw">return</span> (<a id="204c10" class="tk">count</a>&gt;0)? ((<a id="204c22" class="tk">int16_t</a>)(<a id="204c31" class="tk">value</a>/<a id="204c37" class="tk">count</a>)) : 0;</td></tr>
+<tr name="205" id="205">
+<td>205</td><td><span class="br">}</span></td></tr>
+<tr name="206" id="206">
+<td>206</td><td></td></tr>
+<tr name="207" id="207">
+<td>207</td><td><span class="ct">// SPI Primitives</span></td></tr>
+<tr name="208" id="208">
+<td>208</td><td><span class="ct">// ==============</span></td></tr>
+<tr name="209" id="209">
+<td>209</td><td><span class="kw">unsigned</span> <span class="kw">short</span> <a id="209c16" class="tk">write2Cube</a> (<span class="kw">unsigned</span> <span class="kw">short</span> <a id="209c43" class="tk">data2Send</a>) <span class="br">{</span></td></tr>
+<tr name="210" id="210">
+<td>210</td><td>	<span class="kw">unsigned</span> <span class="kw">short</span> <a id="210c17" class="tk">temp</a> = 3;</td></tr>
+<tr name="211" id="211">
+<td>211</td><td>	</td></tr>
+<tr name="212" id="212">
+<td>212</td><td>	<span class="ct">// Drive SS Low</span></td></tr>
+<tr name="213" id="213">
+<td>213</td><td>	<span class="ct">/* selectCube();</span></td></tr>
+<tr name="214" id="214">
+<td>214</td><td><span class="ct">	Nop(); Nop();</span></td></tr>
+<tr name="215" id="215">
+<td>215</td><td><span class="ct">	</span></td></tr>
+<tr name="216" id="216">
+<td>216</td><td><span class="ct">	// Write the data to the SPI buffer</span></td></tr>
+<tr name="217" id="217">
+<td>217</td><td><span class="ct">	WriteSPI2(data2Send);</span></td></tr>
+<tr name="218" id="218">
+<td>218</td><td><span class="ct">	</span></td></tr>
+<tr name="219" id="219">
+<td>219</td><td><span class="ct">	// Wait for the TX buffer to empty</span></td></tr>
+<tr name="220" id="220">
+<td>220</td><td><span class="ct">	while(SPI2STATbits.SPITBF);</span></td></tr>
+<tr name="221" id="221">
+<td>221</td><td><span class="ct">	</span></td></tr>
+<tr name="222" id="222">
+<td>222</td><td><span class="ct">	// Wait for the RX buffer to be full</span></td></tr>
+<tr name="223" id="223">
+<td>223</td><td><span class="ct">	while(!SPI2STATbits.SPIRBF);</span></td></tr>
+<tr name="224" id="224">
+<td>224</td><td><span class="ct">	</span></td></tr>
+<tr name="225" id="225">
+<td>225</td><td><span class="ct">	// Read the receive buffer</span></td></tr>
+<tr name="226" id="226">
+<td>226</td><td><span class="ct">	temp =  ReadSPI2();</span></td></tr>
+<tr name="227" id="227">
+<td>227</td><td><span class="ct">	</span></td></tr>
+<tr name="228" id="228">
+<td>228</td><td><span class="ct">	Nop(); Nop();</span></td></tr>
+<tr name="229" id="229">
+<td>229</td><td><span class="ct"></span></td></tr>
+<tr name="230" id="230">
+<td>230</td><td><span class="ct">	//Drive SS High</span></td></tr>
+<tr name="231" id="231">
+<td>231</td><td><span class="ct">	deselectCube();</span></td></tr>
+<tr name="232" id="232">
+<td>232</td><td><span class="ct">	</span></td></tr>
+<tr name="233" id="233">
+<td>233</td><td><span class="ct">	// Clear the overflow for safekeeping</span></td></tr>
+<tr name="234" id="234">
+<td>234</td><td><span class="ct">	// If overflow occurs and the flag is not cleared the module will freeze</span></td></tr>
+<tr name="235" id="235">
+<td>235</td><td><span class="ct">	SPI2STATbits.SPIROV  = 0;   </span></td></tr>
+<tr name="236" id="236">
+<td>236</td><td><span class="ct">	</span></td></tr>
+<tr name="237" id="237">
+<td>237</td><td><span class="ct">	// Delay for 33uS for a total of 40uS which is the max data rate</span></td></tr>
+<tr name="238" id="238">
+<td>238</td><td><span class="ct">	for(i = 0; i &lt; 330; i += 1 )</span></td></tr>
+<tr name="239" id="239">
+<td>239</td><td><span class="ct">	{</span></td></tr>
+<tr name="240" id="240">
+<td>240</td><td><span class="ct">		Nop();</span></td></tr>
+<tr name="241" id="241">
+<td>241</td><td><span class="ct">	} */</span></td></tr>
+<tr name="242" id="242">
+<td>242</td><td>	<span class="kw">return</span> <a id="242c9" class="tk">temp</a>;</td></tr>
+<tr name="243" id="243">
+<td>243</td><td><span class="br">}</span></td></tr>
+<tr name="244" id="244">
+<td>244</td><td></td></tr>
+<tr name="245" id="245">
+<td>245</td><td><span class="ct">// interrupcion del timer5</span></td></tr>
+<tr name="246" id="246">
+<td>246</td><td><span class="kw">void</span> <a id="246c6" class="tk">__attribute__</a> ((<a id="246c22" class="tk">interrupt</a>, <a id="246c33" class="tk">no_auto_psv</a>)) <a id="246c47" class="tk">_T5Interrupt</a>(<span class="kw">void</span>)</td></tr>
+<tr name="247" id="247">
+<td>247</td><td><span class="br">{</span></td></tr>
+<tr name="248" id="248">
+<td>248</td><td>	<span class="ct">// Do the reading</span></td></tr>
+<tr name="249" id="249">
+<td>249</td><td>	<span class="ct">// lee datos del gyro</span></td></tr>
+<tr name="250" id="250">
+<td>250</td><td>	<a id="250c2" class="tk">write2Cube</a>(<a id="250c13" class="tk">R_GYROX</a>);</td></tr>
+<tr name="251" id="251">
+<td>251</td><td>	<a id="251c2" class="tk">cubeBuffer</a>.<a id="251c13" class="tk">gx</a>[<a id="251c16" class="tk">cubeBuffer</a>.<a id="251c27" class="tk">sampleCount</a>] = <a id="251c42" class="tk">convert14BitToShort</a>(<a id="251c62" class="tk">write2Cube</a>(<a id="251c73" class="tk">R_GYROY</a>));</td></tr>
+<tr name="252" id="252">
+<td>252</td><td>	<a id="252c2" class="tk">cubeBuffer</a>.<a id="252c13" class="tk">gy</a>[<a id="252c16" class="tk">cubeBuffer</a>.<a id="252c27" class="tk">sampleCount</a>] = <a id="252c42" class="tk">convert14BitToShort</a>(<a id="252c62" class="tk">write2Cube</a>(<a id="252c73" class="tk">R_GYROZ</a>));</td></tr>
+<tr name="253" id="253">
+<td>253</td><td>	<span class="ct">//lee datos del acelerometro</span></td></tr>
+<tr name="254" id="254">
+<td>254</td><td>	<a id="254c2" class="tk">cubeBuffer</a>.<a id="254c13" class="tk">gz</a>[<a id="254c16" class="tk">cubeBuffer</a>.<a id="254c27" class="tk">sampleCount</a>] = <a id="254c42" class="tk">convert14BitToShort</a>(<a id="254c62" class="tk">write2Cube</a>(<a id="254c73" class="tk">R_ACCELX</a>));</td></tr>
+<tr name="255" id="255">
+<td>255</td><td>	<a id="255c2" class="tk">cubeBuffer</a>.<a id="255c13" class="tk">ax</a>[<a id="255c16" class="tk">cubeBuffer</a>.<a id="255c27" class="tk">sampleCount</a>] =<a id="255c41" class="tk">convert14BitToShort</a>(<a id="255c61" class="tk">write2Cube</a>(<a id="255c72" class="tk">R_ACCELY</a>));</td></tr>
+<tr name="256" id="256">
+<td>256</td><td>	<a id="256c2" class="tk">cubeBuffer</a>.<a id="256c13" class="tk">ay</a>[<a id="256c16" class="tk">cubeBuffer</a>.<a id="256c27" class="tk">sampleCount</a>] =<a id="256c41" class="tk">convert14BitToShort</a>(<a id="256c61" class="tk">write2Cube</a>(<a id="256c72" class="tk">R_ACCELZ</a>));</td></tr>
+<tr name="257" id="257">
+<td>257</td><td>	<span class="ct">// lee datos del magnetometro</span></td></tr>
+<tr name="258" id="258">
+<td>258</td><td>	<a id="258c2" class="tk">cubeBuffer</a>.<a id="258c13" class="tk">az</a>[<a id="258c16" class="tk">cubeBuffer</a>.<a id="258c27" class="tk">sampleCount</a>] =<a id="258c41" class="tk">convert14BitToShort</a>(<a id="258c61" class="tk">write2Cube</a>(<a id="258c72" class="tk">R_MAGNX</a>)); </td></tr>
+<tr name="259" id="259">
+<td>259</td><td>	<a id="259c2" class="tk">cubeBuffer</a>.<a id="259c13" class="tk">mx</a>[<a id="259c16" class="tk">cubeBuffer</a>.<a id="259c27" class="tk">sampleCount</a>] =<a id="259c41" class="tk">convert14BitToShort</a>(<a id="259c61" class="tk">write2Cube</a>(<a id="259c72" class="tk">R_MAGNY</a>)); </td></tr>
+<tr name="260" id="260">
+<td>260</td><td>	<a id="260c2" class="tk">cubeBuffer</a>.<a id="260c13" class="tk">my</a>[<a id="260c16" class="tk">cubeBuffer</a>.<a id="260c27" class="tk">sampleCount</a>] =<a id="260c41" class="tk">convert14BitToShort</a>(<a id="260c61" class="tk">write2Cube</a>(<a id="260c72" class="tk">R_MAGNZ</a>)); </td></tr>
+<tr name="261" id="261">
+<td>261</td><td>	<a id="261c2" class="tk">cubeBuffer</a>.<a id="261c13" class="tk">mz</a>[<a id="261c16" class="tk">cubeBuffer</a>.<a id="261c27" class="tk">sampleCount</a>] =<a id="261c41" class="tk">convert14BitToShort</a>(<a id="261c61" class="tk">write2Cube</a>(<a id="261c72" class="tk">R_STATUS</a>)); <span class="ct">// dummy write</span></td></tr>
+<tr name="262" id="262">
+<td>262</td><td>	<a id="262c2" class="tk">cubeBuffer</a>.<a id="262c13" class="tk">sampleCount</a>++;</td></tr>
+<tr name="263" id="263">
+<td>263</td><td>		</td></tr>
+<tr name="264" id="264">
+<td>264</td><td>	<span class="ct">// If this is the MAX_CUBE_READ read value turn the timer off</span></td></tr>
+<tr name="265" id="265">
+<td>265</td><td>	<span class="kw">if</span>(<a id="265c5" class="tk">MAX_CUBE_READ</a> &lt;= <a id="265c22" class="tk">cubeBuffer</a>.<a id="265c33" class="tk">sampleCount</a>)<span class="br">{</span></td></tr>
+<tr name="266" id="266">
+<td>266</td><td>		<a id="266c3" class="tk">T5CONbits</a>.<a id="266c13" class="tk">TON</a> = 0;</td></tr>
+<tr name="267" id="267">
+<td>267</td><td>	<span class="br">}</span></td></tr>
+<tr name="268" id="268">
+<td>268</td><td>	</td></tr>
+<tr name="269" id="269">
+<td>269</td><td>	<a id="269c2" class="tk">IFS1bits</a>.<a id="269c11" class="tk">T5IF</a> = 0;		<span class="ct">// clear the interrupt flag</span></td></tr>
+<tr name="270" id="270">
+<td>270</td><td>	<a id="270c2" class="tk">TMR5</a> = 0;							<span class="ct">// Start the count again</span></td></tr>
+<tr name="271" id="271">
+<td>271</td><td><span class="br">}</span></td></tr>
+<tr name="272" id="272">
+<td>272</td><td></td></tr>
+<tr name="273" id="273">
+<td>273</td><td><span class="kw">short</span> <a id="273c7" class="tk">convert14BitToShort</a> (<span class="kw">short</span> <a id="273c34" class="tk">wordData</a>) <span class="br">{</span></td></tr>
+<tr name="274" id="274">
+<td>274</td><td>	<span class="kw">return</span> (<a id="274c10" class="tk">wordData</a> &amp; <a id="274c21" class="tk">BITTEST_14</a>)? (<a id="274c35" class="tk">wordData</a> | <a id="274c46" class="tk">BITEXTEND_14</a>) : (<a id="274c63" class="tk">wordData</a> &amp; <a id="274c74" class="tk">BITMASK_14</a>);</td></tr>
+<tr name="275" id="275">
+<td>275</td><td><span class="br">}</span></td></tr>
+<tr name="276" id="276">
+<td>276</td><td></td></tr>
+<tr name="277" id="277">
+<td>277</td><td><span class="kw">short</span> <a id="277c7" class="tk">convert12BitToShort</a> (<span class="kw">short</span> <a id="277c34" class="tk">wordData</a>) <span class="br">{</span></td></tr>
+<tr name="278" id="278">
+<td>278</td><td>	<span class="kw">return</span> (<a id="278c10" class="tk">wordData</a> &amp; <a id="278c21" class="tk">BITTEST_12</a>)? (<a id="278c35" class="tk">wordData</a> | <a id="278c46" class="tk">BITEXTEND_12</a>) : (<a id="278c63" class="tk">wordData</a> &amp; <a id="278c74" class="tk">BITMASK_12</a>);</td></tr>
+<tr name="279" id="279">
+<td>279</td><td><span class="br">}</span></td></tr>
+<tr name="280" id="280">
+<td>280</td><td></td></tr>
+<tr name="281" id="281">
+<td>281</td><td><span class="kw">unsigned</span> <span class="kw">char</span> <a id="281c15" class="tk">isCube16405</a> (<span class="kw">void</span>)<span class="br">{</span></td></tr>
+<tr name="282" id="282">
+<td>282</td><td>	<span class="kw">return</span> 1;</td></tr>
+<tr name="283" id="283">
+<td>283</td><td><span class="br">}</span></td></tr>
+<tr name="284" id="284">
+<td>284</td><td><span class="pp">#endif</span> <span class="ct">// USE_CUBE_16405</span></td></tr>
+<tr name="285" id="285">
+<td>285</td><td> </td></tr>
+</table>
+</pre>
+</body>
+</html>

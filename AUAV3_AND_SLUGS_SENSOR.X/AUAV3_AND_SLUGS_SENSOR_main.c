@@ -19,11 +19,11 @@
  *
  * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.
  *
- * Model version                        : 1.208
- * Real-Time Workshop file version      : 8.1 (R2011b) 08-Jul-2011
- * Real-Time Workshop file generated on : Wed Apr 27 00:58:09 2016
- * TLC version                          : 8.1 (Jul  9 2011)
- * C source code generated on           : Wed Apr 27 00:58:11 2016
+ * Model version                        : 1.219
+ * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
+ * Real-Time Workshop file generated on : Fri Apr 29 16:39:44 2016
+ * TLC version                          : 8.8 (Jan 20 2015)
+ * C source code generated on           : Fri Apr 29 16:39:46 2016
  */
 
 #define MCHP_isMainFile
@@ -46,6 +46,7 @@ union{
     unsigned int task8 : 1;
     unsigned int task9 : 1;
     unsigned int task10 : 1;
+    unsigned int task11 : 1;
   } b;
 
   unsigned int val;
@@ -61,10 +62,10 @@ _FICD( ICS_PGD3 & JTAGEN_OFF ) ;
 _FAS( APLK_OFF ) ;
 
 /* Scheduler */
-void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt(void)
+void __attribute__((__interrupt__,__auto_psv__)) _T1Interrupt(void)
 {
   asm("INC _mcuFlagRecursion");        /* ensure atomic	mcuFlagRecursion++; */
-  T3CONbits.TON = 1;
+  T2CONbits.TON = 1;
 
   {
     extern volatile uint16_T BusyFlagRecursion __attribute__ ((near));
@@ -80,6 +81,7 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt(void)
       unsigned int Flags8 : 1;
       unsigned int Flags9 : 1;
       unsigned int Flags10 : 1;
+      unsigned int Flags11 : 1;
     } static volatile Overrun;
 
     struct {
@@ -94,11 +96,12 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt(void)
       unsigned int Flags8 : 1;
       unsigned int Flags9 : 1;
       unsigned int Flags10 : 1;
+      unsigned int Flags11 : 1;
     } static volatile event;
 
-    static int_T taskCounter[11] = { 0, 0, 0, 0, 0, 18, 16, 14, 12, 0, 0 };
+    static int_T taskCounter[12] = { 0, 0, 0, 0, 0, 0, 72, 64, 56, 48, 0, 0 };
 
-    _T2IF = 0;                         /* Re-enable interrupt */
+    _T1IF = 0;                         /* Re-enable interrupt */
 
     /* Set busy flag */
     asm("INC _BusyFlagRecursion");     /* ensure atomic operation for BusyFlagRecursion++; */
@@ -175,73 +178,78 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt(void)
       }
     }
 
+    if (taskCounter[11] == 0) {        /* task dropped on overload */
+      event.Flags11 = 1U;
+      if (Overrun.Flags11) {
+        MCHP_MCU_Overload.b.task11 = 1U;/* Set overload bit for tid 11 */
+      }
+    }
+
     /* Update task internal counters */
     taskCounter[1]++;
-    if (taskCounter[1] == 2) {
+    if (taskCounter[1] == 4) {
       taskCounter[1]= 0;
     }
 
     taskCounter[2]++;
-    if (taskCounter[2] == 5) {
+    if (taskCounter[2] == 8) {
       taskCounter[2]= 0;
     }
 
     taskCounter[3]++;
-    if (taskCounter[3] == 10) {
+    if (taskCounter[3] == 20) {
       taskCounter[3]= 0;
     }
 
     taskCounter[4]++;
-    if (taskCounter[4] == 20) {
+    if (taskCounter[4] == 40) {
       taskCounter[4]= 0;
     }
 
     taskCounter[5]++;
-    if (taskCounter[5] == 20) {
+    if (taskCounter[5] == 80) {
       taskCounter[5]= 0;
     }
 
     taskCounter[6]++;
-    if (taskCounter[6] == 20) {
+    if (taskCounter[6] == 80) {
       taskCounter[6]= 0;
     }
 
     taskCounter[7]++;
-    if (taskCounter[7] == 20) {
+    if (taskCounter[7] == 80) {
       taskCounter[7]= 0;
     }
 
     taskCounter[8]++;
-    if (taskCounter[8] == 20) {
+    if (taskCounter[8] == 80) {
       taskCounter[8]= 0;
     }
 
     taskCounter[9]++;
-    if (taskCounter[9] == 25) {
+    if (taskCounter[9] == 80) {
       taskCounter[9]= 0;
     }
 
     taskCounter[10]++;
-    if (taskCounter[10] == 50) {
+    if (taskCounter[10] == 100) {
       taskCounter[10]= 0;
+    }
+
+    taskCounter[11]++;
+    if (taskCounter[11] == 200) {
+      taskCounter[11]= 0;
     }
 
     /* Step the model for base rate */
     /* Start profiling task 0 */
-    {
-      uint16_T Tmp_TMR;
-      Tmp_TMR = TMR3;
-      MCHP_MCULoadResult[0] = Tmp_TMR - MCHP_MCULoadPreviousTimerValue[0];
-      MCHP_MCULoadPreviousTimerValue[0] = Tmp_TMR;
-    }
-
     AUAV3_AND_SLUGS_SENSOR_step(0);
 
     /* Get model outputs here */
-    _T2IF = 0;
+    _T1IF = 0;
 
     /* Stop profiling task 0 */
-    if (_T2IF) {
+    if (_T1IF) {
       asm("DEC _BusyFlagRecursion");   /* ensure atomic operation for BusyFlagRecursion--; */
       asm("DEC _mcuFlagRecursion");    /* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */
       MCHP_MCU_Overload.b.task0 = 1U;  /* Set overload bit for tid 0 */
@@ -264,6 +272,13 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt(void)
       Overrun.Flags1 = 1;
       do {
         /* Start profiling task 1 */
+        {
+          uint16_T Tmp_TMR;
+          Tmp_TMR = TMR2;
+          MCHP_MCULoadResult[0] = Tmp_TMR - MCHP_MCULoadPreviousTimerValue[0];
+          MCHP_MCULoadPreviousTimerValue[0] = Tmp_TMR;
+        }
+
         event.Flags1 = 0U;
         AUAV3_AND_SLUGS_SENSOR_step(1);
 
@@ -483,6 +498,29 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt(void)
       Overrun.Flags10 = 0U;
     }
 
+    /* Handle Task 11 */
+    if (Overrun.Flags11) {
+      asm("DEC _BusyFlagRecursion");   /* ensure atomic operation for BusyFlagRecursion--; */
+      asm("DEC _mcuFlagRecursion");    /* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */
+      return;                          /* Priority to higher rate steps interrupted */
+    }
+
+    if (event.Flags11) {
+      Overrun.Flags11 = 1;
+      do {
+        /* Start profiling task 11 */
+        event.Flags11 = 0U;
+        AUAV3_AND_SLUGS_SENSOR_step(11);
+
+        /* Get model outputs here */
+        ;                              /* Execute task tid 11 */
+
+        /* Stop profiling task 11 */
+      } while (event.Flags11);
+
+      Overrun.Flags11 = 0U;
+    }
+
     _IPL1 = 1;
     _IPL0 = 0;
 
@@ -494,7 +532,7 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt(void)
 
   asm("DEC _mcuFlagRecursion");        /* ensure --mcuFlagRecursion is atomic */
   if (mcuFlagRecursion == 0) {
-    T3CONbits.TON = 0;
+    T2CONbits.TON = 0;
   }
 }
 
@@ -519,23 +557,25 @@ int main()
   /* Configure Pins as Analog or Digital */
   ANSELA = 0xFFBF;
   ANSELB = 0xFFC3;
-  ANSELE = 0xFFE2;
+  ANSELE = 0xFFC2;
 
   /* Configure Remappables Pins */
   RPINR7 = 0x4840;
   RPINR8 = 0x1F4B;
-  RPINR9 = 0x1E15;
+  RPINR9 = 0x15;
   RPINR20 = 0x53;
-  RPOR0 = 0x1D;
   RPOR4 = 0x1100;
   RPOR5 = 0x05;
+  RPOR6 = 0x1D;
+  RPOR8 = 0x0100;
   RPOR12 = 0x1000;
   RPOR15 = 0x0600;
 
   /* Configure Digitals I/O directions */
   TRISA = 0xFFBF;
   TRISB = 0xFFC3;
-  TRISE = 0xFFEA;
+  TRISE = 0xFFCA;
+  TRISF = 0xFFF7;
   TRISG = 0x7FFE;
 
   /* Finish clock switching procedure */
@@ -543,28 +583,24 @@ int main()
   while (OSCCONbits.LOCK != 1) ;       /* Wait for PLL Stabilisation */
 
   /* Initialize model */
-  AUAV3_AND_SLUGS_SENSOR_initialize(1);
+  AUAV3_AND_SLUGS_SENSOR_initialize();
 
   /* Configure Timers */
   /* Configure Timers */
   /* Configuration for TIMER 1 */
-  PR1 = 0xFFFF;                        /* Period */
-  T1CON = 0x8010;
+  _T1IP = 2;
+  _T1IF = 0;
+  _T1IE = 1;                           /* Enable Timer interrupt. */
+  PR1 = 0x5572;                        /* Period */
 
+  /* Timer 1 will be enabled after the configuration function. */
   /* Configuration for TIMER 2 */
-  _T2IP = 2;
-  _T2IF = 0;
-  _T2IE = 1;                           /* Enable Timer interrupt. */
-  PR2 = 0x2AB8;                        /* Period */
-
-  /* Timer 2 will be enabled after the configuration function. */
-  /* Configuration for TIMER 3 */
-  PR3 = 0xFFFF;                        /* Period */
-  T3CON = 0x20;
+  PR2 = 0xFFFF;                        /* Period */
+  T2CON = 0x20;
 
   /* Enable Time-step */
-  TMR2 = 0x2AB7;
-  T2CON = 0x8020;                      /* Timer 2 is the source trigger for the model Time-step */
+  TMR1 = 0x5571;
+  T1CON = 0x8010;                      /* Timer 1 is the source trigger for the model Time-step */
 
   /* Main Loop */
   for (;;) ;

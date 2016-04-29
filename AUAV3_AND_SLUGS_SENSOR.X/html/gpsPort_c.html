@@ -1,102 +1,160 @@
-<HTML>
-<HEAD>
-<TITLE>RTW Report - gpsPort.c </TITLE>
-<STYLE> .LN { font-style: italic; color: #888888 } </STYLE>
-<STYLE> .CT { font-style: italic; color: #117755 } </STYLE>
-<STYLE> .PP { font-style: bold;   color: #992211 } </STYLE>
-<STYLE> .KW { font-style: bold;   color: #112266 } </STYLE>
-<STYLE> .DT { font-style: bold;   color: #112266 } </STYLE>
-<SCRIPT language="JavaScript" type="text/javascript">
-<!--
-function rtwHilite(aBlock,aParentSID) {
- aParentSID = "";
- try {
-    window.location.href="matlab: if ~isempty(which('private/rtwbindmodel')), rtwprivate rtwbindmodel 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.mdl' 'C:\\Users\\sharon\\Documents\\GitHub\\AUAV_V3_TestMavLink\\AUAV3_AND_SLUGS_SENSOR.X' '', end; rtwprivate code2model "+aBlock+" "+aParentSID+";"
- } catch (e) { 
- }
-} // end rtwHilite
-//-->
-</SCRIPT>
-</HEAD>
-<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);} ">
-<P>
-<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
-<H4>File: <A HREF="file:///C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\gpsPort.c" TARGET="rtwreport_document_frame">C:\Users\sharon\Documents\GitHub\AUAV_V3_TestMavLink\clib\gpsPort.c</A></H4>
-<PRE id="RTWcode">
-<SPAN><A CLASS="LN" NAME="1">    1   </A><SPAN CLASS="CT">// ==============================================================</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="2">    2   </A><SPAN CLASS="CT">// gps.c</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="3">    3   </A><SPAN CLASS="CT">// This is code implements a fully interrupt driven UART reader to</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="4">    4   </A><SPAN CLASS="CT">// be used in the UCSC Autopilot project. It makes use of the</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="5">    5   </A><SPAN CLASS="CT">// circular buffer data structure circBuffer.c. It has been</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="6">    6   </A><SPAN CLASS="CT">// written to be implemented in Simulink. It configures UART 1</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="7">    7   </A><SPAN CLASS="CT">// at a predefined baud rate, then initializes a circular buffer,</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="8">    8   </A><SPAN CLASS="CT">// configures the interrupt and starts the service.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="9">    9   </A><SPAN CLASS="CT">// The main function gpsRead returns an array where byte 0 indicates</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="10">   10   </A><SPAN CLASS="CT">// how many new bytes were read, and byte m indicates how many remain</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="11">   11   </A><SPAN CLASS="CT">// in the buffer.</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="12">   12   </A><SPAN CLASS="CT">//</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="13">   13   </A><SPAN CLASS="CT">// Code by: Mariano I. Lizarraga</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="14">   14   </A><SPAN CLASS="CT">// First Revision: Aug 21 2008 @ 21:15</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="15">   15   </A><SPAN CLASS="CT">// Last Revision: Feb 25 2012 @ 12:38</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="16">   16   </A><SPAN CLASS="CT">// ==============================================================</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="17">   17   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&lt;string.h&gt;</FONT>
-</SPAN><SPAN><A CLASS="LN" NAME="18">   18   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;.\rtwtypes.h&quot;</FONT>
-</SPAN><SPAN><A CLASS="LN" NAME="19">   19   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">include</SPAN> <FONT COLOR="#992211">&quot;gpsPort.h&quot;</FONT>
-</SPAN><SPAN><A CLASS="LN" NAME="20">   20   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">define</SPAN>  USE_NOVATEL_GPS 0
-</SPAN><SPAN><A CLASS="LN" NAME="21">   21   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="22">   22   </A><SPAN CLASS="KW">struct</SPAN> CircBuffer <A NAME="var_com4Buffer">com4Buffer</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="23">   23   </A>CBRef <A NAME="var_uartBuffer">uartBuffer</A>;
-</SPAN><SPAN><A CLASS="LN" NAME="24">   24   </A>    <SPAN CLASS="CT">// GPS Circular Buffers</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="25">   25   </A>    <SPAN CLASS="CT">// ====================</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="26">   26   </A><FONT COLOR="#992211">#</FONT><SPAN CLASS="PP">define</SPAN> MSIZE			180
-</SPAN><SPAN><A CLASS="LN" NAME="27">   27   </A><SPAN CLASS="CT">// UART and Buffer initialization</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="28">   28   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="29">   29   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_uartBufferInit">uartBufferInit</A>(<SPAN CLASS="DT">void</SPAN>) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="30">   30   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="31">   31   </A>     <SPAN CLASS="CT">/* Configure Pins as Analog or Digital */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="32">   32   </A>    ANSELE = 0xFF83;
-</SPAN><SPAN><A CLASS="LN" NAME="33">   33   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="34">   34   </A>    <SPAN CLASS="CT">/* Configure Remappables Pins */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="35">   35   </A>    RPINR28 = 0x56;
-</SPAN><SPAN><A CLASS="LN" NAME="36">   36   </A>    <SPAN CLASS="CT">/* Configure UART4 Rx Interruption */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="37">   37   </A>    _U4RXIP = 1;                         <SPAN CLASS="CT">/* Rx Interrupt priority set to 1 */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="38">   38   </A>    _U4RXIF = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="39">   39   </A>    _U4RXIE = 1;                         <SPAN CLASS="CT">/* Enable Interrupt */</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="40">   40   </A>    <A HREF="gpsPort_c.html#var_uartBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartBuffer</FONT></A> = (<SPAN CLASS="KW">struct</SPAN> CircBuffer*) &amp;com4Buffer;
-</SPAN><SPAN><A CLASS="LN" NAME="41">   41   </A>    <A HREF="circBuffer_c.html#fcn_newCircBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_newCircBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">newCircBuffer</FONT></A>(<A HREF="gpsPort_c.html#var_uartBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartBuffer</FONT></A>);
-</SPAN><SPAN><A CLASS="LN" NAME="42">   42   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="43">   43   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="44">   44   </A><SPAN CLASS="CT">// Interrupt service routine for U4 GPS port</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="45">   45   </A><SPAN CLASS="DT">void</SPAN> <A HREF="AUAV3_AND_SLUGS_SENSOR_main_c.html#fcn___attribute__" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var___attribute__');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">__attribute__</FONT></A>((__interrupt__, no_auto_psv)) _U4RXInterrupt(<SPAN CLASS="DT">void</SPAN>) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="46">   46   </A>      _U4RXIF = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="47">   47   </A>    <SPAN CLASS="CT">// Read the buffer while it has data</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="48">   48   </A>    <SPAN CLASS="CT">// and add it to the circular buffer</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="49">   49   </A>    <SPAN CLASS="KW">while</SPAN> (U4STAbits.URXDA == 1) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="50">   50   </A>        <A HREF="circBuffer_c.html#fcn_writeBack" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_writeBack');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">writeBack</FONT></A>(<A HREF="gpsPort_c.html#var_uartBuffer" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uartBuffer');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uartBuffer</FONT></A>, (<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>) U4RXREG);
-</SPAN><SPAN><A CLASS="LN" NAME="51">   51   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="52">   52   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="53">   53   </A>    <SPAN CLASS="CT">// If there was an overun error clear it and continue</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="54">   54   </A>    <SPAN CLASS="KW">if</SPAN> (U4STAbits.OERR == 1) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="55">   55   </A>        _U4RXIF = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="56">   56   </A>        U4STAbits.OERR = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="57">   57   </A>    <B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="58">   58   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="59">   59   </A>    <SPAN CLASS="CT">// clear the interrupt</SPAN>
-</SPAN><SPAN><A CLASS="LN" NAME="60">   60   </A>    IFS5bits.U4RXIF = 0;
-</SPAN><SPAN><A CLASS="LN" NAME="61">   61   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="62">   62   </A><SPAN CLASS="DT">void</SPAN> <A NAME="fcn_getGPSRawData">getGPSRawData</A>(<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>* gpsBuffer) <B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="63">   63   </A>	
-</SPAN><SPAN><A CLASS="LN" NAME="64">   64   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="65">   65   </A><SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN> <A NAME="fcn_isGPSNovatel">isGPSNovatel</A> (<SPAN CLASS="DT">void</SPAN>)<B>{</B>
-</SPAN><SPAN><A CLASS="LN" NAME="66">   66   </A>    <SPAN CLASS="KW">return</SPAN> (<SPAN CLASS="DT">unsigned</SPAN> <SPAN CLASS="DT">char</SPAN>) USE_NOVATEL_GPS;
-</SPAN><SPAN><A CLASS="LN" NAME="67">   67   </A><B>}</B>
-</SPAN><SPAN><A CLASS="LN" NAME="68">   68   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="69">   69   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="70">   70   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="71">   71   </A>
-</SPAN><SPAN><A CLASS="LN" NAME="72">   72   </A>
-</SPAN></PRE>
-</TD></TR></TABLE>
-</P>
-</BODY>
-</HTML>
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td>1</td><td><span class="ct">// ==============================================================</span></td></tr>
+<tr name="2" id="2">
+<td>2</td><td><span class="ct">// gps.c</span></td></tr>
+<tr name="3" id="3">
+<td>3</td><td><span class="ct">// This is code implements a fully interrupt driven UART reader to</span></td></tr>
+<tr name="4" id="4">
+<td>4</td><td><span class="ct">// be used in the UCSC Autopilot project. It makes use of the</span></td></tr>
+<tr name="5" id="5">
+<td>5</td><td><span class="ct">// circular buffer data structure circBuffer.c. It has been</span></td></tr>
+<tr name="6" id="6">
+<td>6</td><td><span class="ct">// written to be implemented in Simulink. It configures UART 1</span></td></tr>
+<tr name="7" id="7">
+<td>7</td><td><span class="ct">// at a predefined baud rate, then initializes a circular buffer,</span></td></tr>
+<tr name="8" id="8">
+<td>8</td><td><span class="ct">// configures the interrupt and starts the service.</span></td></tr>
+<tr name="9" id="9">
+<td>9</td><td><span class="ct">// The main function gpsRead returns an array where byte 0 indicates</span></td></tr>
+<tr name="10" id="10">
+<td>10</td><td><span class="ct">// how many new bytes were read, and byte m indicates how many remain</span></td></tr>
+<tr name="11" id="11">
+<td>11</td><td><span class="ct">// in the buffer.</span></td></tr>
+<tr name="12" id="12">
+<td>12</td><td><span class="ct">//</span></td></tr>
+<tr name="13" id="13">
+<td>13</td><td><span class="ct">// Code by: Mariano I. Lizarraga</span></td></tr>
+<tr name="14" id="14">
+<td>14</td><td><span class="ct">// First Revision: Aug 21 2008 @ 21:15</span></td></tr>
+<tr name="15" id="15">
+<td>15</td><td><span class="ct">// Last Revision: Feb 25 2012 @ 12:38</span></td></tr>
+<tr name="16" id="16">
+<td>16</td><td><span class="ct">// ==============================================================</span></td></tr>
+<tr name="17" id="17">
+<td>17</td><td><span class="pp">#include &lt;string.h&gt;</span></td></tr>
+<tr name="18" id="18">
+<td>18</td><td><span class="pp">#include ".\rtwtypes.h"</span></td></tr>
+<tr name="19" id="19">
+<td>19</td><td><span class="pp">#include "gpsPort.h"</span></td></tr>
+<tr name="20" id="20">
+<td>20</td><td><span class="pp">#define</span>  <a id="20c10" class="tk">USE_NOVATEL_GPS</a> 0</td></tr>
+<tr name="21" id="21">
+<td>21</td><td></td></tr>
+<tr name="22" id="22">
+<td>22</td><td><span class="kw">struct</span> <a id="22c8" class="tk">CircBuffer</a> <a id="22c19" class="tk">com4Buffer</a>;</td></tr>
+<tr name="23" id="23">
+<td>23</td><td><a id="23c1" class="tk">CBRef</a> <a id="23c7" class="tk">uartBuffer</a>;</td></tr>
+<tr name="24" id="24">
+<td>24</td><td>    <span class="ct">// GPS Circular Buffers</span></td></tr>
+<tr name="25" id="25">
+<td>25</td><td>    <span class="ct">// ====================</span></td></tr>
+<tr name="26" id="26">
+<td>26</td><td><span class="pp">#define</span> <a id="26c9" class="tk">MSIZE</a>			180</td></tr>
+<tr name="27" id="27">
+<td>27</td><td><span class="ct">// UART and Buffer initialization</span></td></tr>
+<tr name="28" id="28">
+<td>28</td><td></td></tr>
+<tr name="29" id="29">
+<td>29</td><td><span class="kw">void</span> <a id="29c6" class="tk">uartBufferInit</a>(<span class="kw">void</span>) <span class="br">{</span></td></tr>
+<tr name="30" id="30">
+<td>30</td><td></td></tr>
+<tr name="31" id="31">
+<td>31</td><td>     <span class="ct">/* Configure Pins as Analog or Digital */</span></td></tr>
+<tr name="32" id="32">
+<td>32</td><td>    <a id="32c5" class="tk">ANSELE</a> = 0xFF83;</td></tr>
+<tr name="33" id="33">
+<td>33</td><td></td></tr>
+<tr name="34" id="34">
+<td>34</td><td>    <span class="ct">/* Configure Remappables Pins */</span></td></tr>
+<tr name="35" id="35">
+<td>35</td><td>    <a id="35c5" class="tk">RPINR28</a> = 0x56;</td></tr>
+<tr name="36" id="36">
+<td>36</td><td>    <span class="ct">/* Configure UART4 Rx Interruption */</span></td></tr>
+<tr name="37" id="37">
+<td>37</td><td>    <a id="37c5" class="tk">_U4RXIP</a> = 1;                         <span class="ct">/* Rx Interrupt priority set to 1 */</span></td></tr>
+<tr name="38" id="38">
+<td>38</td><td>    <a id="38c5" class="tk">_U4RXIF</a> = 0;</td></tr>
+<tr name="39" id="39">
+<td>39</td><td>    <a id="39c5" class="tk">_U4RXIE</a> = 1;                         <span class="ct">/* Enable Interrupt */</span></td></tr>
+<tr name="40" id="40">
+<td>40</td><td>    <a id="40c5" class="tk">uartBuffer</a> = (<span class="kw">struct</span> <a id="40c26" class="tk">CircBuffer</a>*) &amp;<a id="40c40" class="tk">com4Buffer</a>;</td></tr>
+<tr name="41" id="41">
+<td>41</td><td>    <a id="41c5" class="tk">newCircBuffer</a>(<a id="41c19" class="tk">uartBuffer</a>);</td></tr>
+<tr name="42" id="42">
+<td>42</td><td><span class="br">}</span></td></tr>
+<tr name="43" id="43">
+<td>43</td><td></td></tr>
+<tr name="44" id="44">
+<td>44</td><td><span class="ct">// Interrupt service routine for U4 GPS port</span></td></tr>
+<tr name="45" id="45">
+<td>45</td><td><span class="kw">void</span> <a id="45c6" class="tk">__attribute__</a>((<a id="45c21" class="tk">__interrupt__</a>, <a id="45c36" class="tk">no_auto_psv</a>)) <a id="45c50" class="tk">_U4RXInterrupt</a>(<span class="kw">void</span>) <span class="br">{</span></td></tr>
+<tr name="46" id="46">
+<td>46</td><td>      <a id="46c7" class="tk">_U4RXIF</a> = 0;</td></tr>
+<tr name="47" id="47">
+<td>47</td><td>    <span class="ct">// Read the buffer while it has data</span></td></tr>
+<tr name="48" id="48">
+<td>48</td><td>    <span class="ct">// and add it to the circular buffer</span></td></tr>
+<tr name="49" id="49">
+<td>49</td><td>    <span class="kw">while</span> (<a id="49c12" class="tk">U4STAbits</a>.<a id="49c22" class="tk">URXDA</a> == 1) <span class="br">{</span></td></tr>
+<tr name="50" id="50">
+<td>50</td><td>        <a id="50c9" class="tk">writeBack</a>(<a id="50c19" class="tk">uartBuffer</a>, (<span class="kw">unsigned</span> <span class="kw">char</span>) <a id="50c47" class="tk">U4RXREG</a>);</td></tr>
+<tr name="51" id="51">
+<td>51</td><td>    <span class="br">}</span></td></tr>
+<tr name="52" id="52">
+<td>52</td><td></td></tr>
+<tr name="53" id="53">
+<td>53</td><td>    <span class="ct">// If there was an overun error clear it and continue</span></td></tr>
+<tr name="54" id="54">
+<td>54</td><td>    <span class="kw">if</span> (<a id="54c9" class="tk">U4STAbits</a>.<a id="54c19" class="tk">OERR</a> == 1) <span class="br">{</span></td></tr>
+<tr name="55" id="55">
+<td>55</td><td>        <a id="55c9" class="tk">_U4RXIF</a> = 0;</td></tr>
+<tr name="56" id="56">
+<td>56</td><td>        <a id="56c9" class="tk">U4STAbits</a>.<a id="56c19" class="tk">OERR</a> = 0;</td></tr>
+<tr name="57" id="57">
+<td>57</td><td>    <span class="br">}</span></td></tr>
+<tr name="58" id="58">
+<td>58</td><td></td></tr>
+<tr name="59" id="59">
+<td>59</td><td>    <span class="ct">// clear the interrupt</span></td></tr>
+<tr name="60" id="60">
+<td>60</td><td>    <a id="60c5" class="tk">IFS5bits</a>.<a id="60c14" class="tk">U4RXIF</a> = 0;</td></tr>
+<tr name="61" id="61">
+<td>61</td><td><span class="br">}</span></td></tr>
+<tr name="62" id="62">
+<td>62</td><td><span class="kw">void</span> <a id="62c6" class="tk">getGPSRawData</a>(<span class="kw">unsigned</span> <span class="kw">char</span>* <a id="62c35" class="tk">gpsBuffer</a>) <span class="br">{</span></td></tr>
+<tr name="63" id="63">
+<td>63</td><td>	</td></tr>
+<tr name="64" id="64">
+<td>64</td><td><span class="br">}</span></td></tr>
+<tr name="65" id="65">
+<td>65</td><td><span class="kw">unsigned</span> <span class="kw">char</span> <a id="65c15" class="tk">isGPSNovatel</a> (<span class="kw">void</span>)<span class="br">{</span></td></tr>
+<tr name="66" id="66">
+<td>66</td><td>    <span class="kw">return</span> (<span class="kw">unsigned</span> <span class="kw">char</span>) <a id="66c28" class="tk">USE_NOVATEL_GPS</a>;</td></tr>
+<tr name="67" id="67">
+<td>67</td><td><span class="br">}</span></td></tr>
+<tr name="68" id="68">
+<td>68</td><td></td></tr>
+<tr name="69" id="69">
+<td>69</td><td></td></tr>
+<tr name="70" id="70">
+<td>70</td><td></td></tr>
+<tr name="71" id="71">
+<td>71</td><td></td></tr>
+<tr name="72" id="72">
+<td>72</td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

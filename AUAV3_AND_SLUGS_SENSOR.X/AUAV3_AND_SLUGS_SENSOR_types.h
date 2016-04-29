@@ -19,27 +19,19 @@
  *
  * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.
  *
- * Model version                        : 1.208
- * Real-Time Workshop file version      : 8.1 (R2011b) 08-Jul-2011
- * Real-Time Workshop file generated on : Wed Apr 27 00:58:09 2016
- * TLC version                          : 8.1 (Jul  9 2011)
- * C source code generated on           : Wed Apr 27 00:58:11 2016
+ * Model version                        : 1.219
+ * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
+ * Real-Time Workshop file generated on : Fri Apr 29 16:39:44 2016
+ * TLC version                          : 8.8 (Jan 20 2015)
+ * C source code generated on           : Fri Apr 29 16:39:46 2016
  */
 
 #ifndef RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_types_h_
 #define RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_types_h_
-#include "rtwtypes.h"
 #include "mavlink.h"
-#ifndef SS_LONG
-#define SS_LONG                        43
-#endif
-
-#ifndef SS_ULONG
-#define SS_ULONG                       44
-#endif
 
 /* Forward declaration for rtModel */
-typedef struct RT_MODEL_AUAV3_AND_SLUGS_SENS_T RT_MODEL_AUAV3_AND_SLUGS_SENS_T;
+typedef struct tag_RTM_AUAV3_AND_SLUGS_SENSO_T RT_MODEL_AUAV3_AND_SLUGS_SENS_T;
 
 #endif                                 /* RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_types_h_ */
 
