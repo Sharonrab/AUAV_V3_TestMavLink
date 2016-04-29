@@ -508,13 +508,13 @@ elems(14).SamplingMode = 'Sample based';
 elems(14).Min = [];
 elems(14).Max = [];
 
-mavlink_raw_imu_t = Simulink.Bus;
-mavlink_raw_imu_t.Description = sprintf('mavlink_highres_imu');
-mavlink_raw_imu_t.DataScope = 'Imported';
-mavlink_raw_imu_t.HeaderFile = 'mavlink.h'; 
-mavlink_raw_imu_t.Alignment = -1;
-mavlink_raw_imu_t.Elements = elems;
-assignin('base', 'mavlink_highres_imu_t', mavlink_raw_imu_t)
+mavlink_highres_imu_t = Simulink.Bus;
+mavlink_highres_imu_t.Description = sprintf('mavlink_highres_imu');
+mavlink_highres_imu_t.DataScope = 'Imported';
+mavlink_highres_imu_t.HeaderFile = 'mavlink.h'; 
+mavlink_highres_imu_t.Alignment = -1;
+mavlink_highres_imu_t.Elements = elems;
+assignin('base', 'mavlink_highres_imu_t', mavlink_highres_imu_t)
 
 % Bus object: mlFilteredData
 % clear elems;

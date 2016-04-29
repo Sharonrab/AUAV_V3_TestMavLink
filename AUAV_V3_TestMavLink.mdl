@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.143"
+    ComputedModelVersion    "1.148"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -34,9 +34,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "UglyRed"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Apr 28 07:22:54 2016"
-  RTWModifiedTimeStamp	  383727530
-  ModelVersionFormat	  "1.%<AutoIncrement:143>"
+  LastModifiedDate	  "Fri Apr 29 07:22:26 2016"
+  RTWModifiedTimeStamp	  383813869
+  ModelVersionFormat	  "1.%<AutoIncrement:148>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  on
@@ -1221,7 +1221,7 @@ Model {
   }
   System {
     Name		    "AUAV_V3_TestMavLink"
-    Location		    [167, 104, 1109, 621]
+    Location		    [871, 95, 1335, 612]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1235,7 +1235,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "522"
+    SIDHighWatermark	    "552"
     Block {
       BlockType		      Reference
       Name		      " gpsUbloxParse"
@@ -8702,7 +8702,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Read MPU600 and HMC5883"
-	Location		[202, 75, 1364, 707]
+	Location		[202, 83, 1331, 715]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -8716,11 +8716,44 @@ Model {
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	Block {
+	  BlockType		  Gain
+	  Name			  "AcclScale"
+	  SID			  "475"
+	  Position		  [635, 347, 665, 373]
+	  ShowName		  off
+	  Gain			  "AcclScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "AcclScale1"
+	  SID			  "543"
+	  Position		  [635, 377, 665, 403]
+	  ShowName		  off
+	  Gain			  "AcclScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "AcclScale2"
+	  SID			  "544"
+	  Position		  [635, 407, 665, 433]
+	  ShowName		  off
+	  Gain			  "AcclScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
 	  BlockType		  Reference
 	  Name			  "BUS I2C\nRead HMC5883\nMagn\n(50 Hz)"
 	  SID			  "30"
 	  Ports			  [0, 1]
-	  Position		  [25, 264, 170, 316]
+	  Position		  [25, 314, 170, 366]
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
 	  SourceType		  "I2C Driver"
@@ -8752,7 +8785,7 @@ Model {
 	  Name			  "BUS SPI\nRead MPU 6050\nAxyz, T°, Gxyz\n(1 kHz)"
 	  SID			  "134"
 	  Ports			  [0, 3]
-	  Position		  [45, 36, 190, 184]
+	  Position		  [45, 86, 190, 234]
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/BUS SPI/BUS SPI"
 	  SourceType		  "SPI Driver"
@@ -8794,241 +8827,123 @@ Model {
 	  }
 	}
 	Block {
-	  BlockType		  Gain
-	  Name			  "D/S - > rad/sec"
-	  SID			  "470"
-	  Position		  [635, 447, 665, 473]
-	  ShowName		  off
-	  Gain			  "GyroScale"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "int16"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "D/S - > rad/sec1"
-	  SID			  "471"
-	  Position		  [635, 417, 665, 443]
-	  ShowName		  off
-	  Gain			  "GyroScale"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "int16"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "D/S - > rad/sec2"
-	  SID			  "472"
-	  Position		  [635, 387, 665, 413]
-	  ShowName		  off
-	  Gain			  "GyroScale"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "int16"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "D/S - > rad/sec3"
-	  SID			  "473"
-	  Position		  [635, 357, 665, 383]
-	  ShowName		  off
-	  Gain			  "AcclScale"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "int16"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "D/S - > rad/sec4"
-	  SID			  "474"
-	  Position		  [635, 327, 665, 353]
-	  ShowName		  off
-	  Gain			  "AcclScale"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "int16"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "D/S - > rad/sec5"
-	  SID			  "475"
-	  Position		  [635, 297, 665, 323]
-	  ShowName		  off
-	  Gain			  "AcclScale"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "int16"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "D/S - > rad/sec6"
-	  SID			  "476"
-	  Position		  [635, 537, 665, 563]
-	  ShowName		  off
-	  Gain			  "MagScale"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "int16"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "D/S - > rad/sec7"
-	  SID			  "477"
-	  Position		  [635, 507, 665, 533]
-	  ShowName		  off
-	  Gain			  "MagScale"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "int16"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "D/S - > rad/sec8"
-	  SID			  "478"
-	  Position		  [635, 477, 665, 503]
-	  ShowName		  off
-	  Gain			  "MagScale"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "int16"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion"
 	  SID			  "92"
-	  Position		  [830, 58, 875, 72]
+	  Position		  [830, 108, 875, 122]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion1"
-	  SID			  "93"
-	  Position		  [830, 83, 875, 97]
+	  SID			  "531"
+	  Position		  [830, 133, 875, 147]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion10"
-	  SID			  "510"
-	  Position		  [550, 363, 595, 377]
+	  SID			  "526"
+	  Position		  [550, 443, 595, 457]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "single"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion11"
-	  SID			  "511"
-	  Position		  [550, 393, 595, 407]
+	  SID			  "527"
+	  Position		  [550, 503, 595, 517]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "single"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion12"
-	  SID			  "512"
-	  Position		  [550, 423, 595, 437]
+	  SID			  "528"
+	  Position		  [550, 533, 595, 547]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "single"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion13"
-	  SID			  "513"
-	  Position		  [550, 453, 595, 467]
+	  SID			  "529"
+	  Position		  [550, 563, 595, 577]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "single"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion14"
-	  SID			  "522"
-	  Position		  [505, 543, 550, 557]
+	  SID			  "530"
+	  Position		  [550, 593, 595, 607]
 	  ZOrder		  -5
 	  ShowName		  off
-	  RndMeth		  "Floor"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  DataTypeConversion
-	  Name			  "Data Type Conversion15"
-	  SID			  "515"
-	  Position		  [830, 208, 875, 222]
-	  ZOrder		  -5
-	  ShowName		  off
-	  RndMeth		  "Floor"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  DataTypeConversion
-	  Name			  "Data Type Conversion16"
-	  SID			  "516"
-	  Position		  [830, 233, 875, 247]
-	  ZOrder		  -5
-	  ShowName		  off
-	  RndMeth		  "Floor"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  DataTypeConversion
-	  Name			  "Data Type Conversion17"
-	  SID			  "517"
-	  Position		  [830, 258, 875, 272]
-	  ZOrder		  -5
-	  ShowName		  off
+	  OutDataTypeStr	  "single"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion2"
-	  SID			  "94"
-	  Position		  [830, 108, 875, 122]
+	  SID			  "532"
+	  Position		  [830, 158, 875, 172]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion3"
-	  SID			  "95"
-	  Position		  [830, 133, 875, 147]
+	  SID			  "533"
+	  Position		  [830, 183, 875, 197]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion4"
-	  SID			  "96"
-	  Position		  [830, 158, 875, 172]
+	  SID			  "534"
+	  Position		  [830, 208, 875, 222]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion5"
-	  SID			  "97"
-	  Position		  [830, 183, 875, 197]
+	  SID			  "535"
+	  Position		  [830, 233, 875, 247]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
@@ -9036,39 +8951,43 @@ Model {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion6"
 	  SID			  "508"
-	  Position		  [550, 303, 595, 317]
+	  Position		  [550, 353, 595, 367]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "single"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion7"
-	  SID			  "520"
-	  Position		  [505, 483, 550, 497]
+	  SID			  "523"
+	  Position		  [550, 383, 595, 397]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "single"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion8"
-	  SID			  "521"
-	  Position		  [505, 513, 550, 527]
+	  SID			  "524"
+	  Position		  [550, 413, 595, 427]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "single"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion9"
-	  SID			  "509"
-	  Position		  [550, 333, 595, 347]
+	  SID			  "525"
+	  Position		  [550, 473, 595, 487]
 	  ZOrder		  -5
 	  ShowName		  off
+	  OutDataTypeStr	  "single"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
 	}
@@ -9077,7 +8996,7 @@ Model {
 	  Name			  "Demux1"
 	  SID			  "25"
 	  Ports			  [1, 3]
-	  Position		  [270, 25, 275, 95]
+	  Position		  [270, 75, 275, 145]
 	  ShowName		  off
 	  Outputs		  "3"
 	  DisplayOption		  "bar"
@@ -9105,7 +9024,7 @@ Model {
 	  Name			  "Demux2"
 	  SID			  "26"
 	  Ports			  [1, 3]
-	  Position		  [270, 125, 275, 195]
+	  Position		  [270, 175, 275, 245]
 	  ShowName		  off
 	  Outputs		  "3"
 	  DisplayOption		  "bar"
@@ -9133,17 +9052,83 @@ Model {
 	  Name			  "Demux3"
 	  SID			  "31"
 	  Ports			  [1, 6]
-	  Position		  [200, 205, 205, 370]
+	  Position		  [200, 255, 205, 420]
 	  ShowName		  off
 	  Outputs		  "6"
 	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "GyroScale"
+	  SID			  "472"
+	  Position		  [635, 437, 665, 463]
+	  ShowName		  off
+	  Gain			  "GyroScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "GyroScale1"
+	  SID			  "545"
+	  Position		  [635, 467, 665, 493]
+	  ShowName		  off
+	  Gain			  "GyroScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "GyroScale2"
+	  SID			  "546"
+	  Position		  [635, 497, 665, 523]
+	  ShowName		  off
+	  Gain			  "GyroScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "MagScale"
+	  SID			  "478"
+	  Position		  [635, 527, 665, 553]
+	  ShowName		  off
+	  Gain			  "MagScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "MagScale1"
+	  SID			  "541"
+	  Position		  [635, 557, 665, 583]
+	  ShowName		  off
+	  Gain			  "MagScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "MagScale2"
+	  SID			  "542"
+	  Position		  [635, 587, 665, 613]
+	  ShowName		  off
+	  Gain			  "MagScale"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Subsystem10"
 	  SID			  "32"
 	  Ports			  [2, 1]
-	  Position		  [240, 314, 290, 361]
+	  Position		  [240, 364, 290, 411]
 	  ForegroundColor	  "[0.901961, 0.000000, 0.000000]"
 	  ShowName		  off
 	  MinAlgLoopOccurrences	  off
@@ -9299,7 +9284,7 @@ Model {
 	  Name			  "Subsystem8"
 	  SID			  "41"
 	  Ports			  [2, 1]
-	  Position		  [240, 214, 290, 261]
+	  Position		  [240, 264, 290, 311]
 	  ForegroundColor	  "[0.901961, 0.000000, 0.000000]"
 	  ShowName		  off
 	  MinAlgLoopOccurrences	  off
@@ -9455,7 +9440,7 @@ Model {
 	  Name			  "Subsystem9"
 	  SID			  "50"
 	  Ports			  [2, 1]
-	  Position		  [240, 264, 290, 311]
+	  Position		  [240, 314, 290, 361]
 	  ForegroundColor	  "[0.901961, 0.000000, 0.000000]"
 	  NamePlacement		  "alternate"
 	  ShowName		  off
@@ -9612,7 +9597,7 @@ Model {
 	  Name			  "Update HighResIMU data"
 	  SID			  "468"
 	  Ports			  [9]
-	  Position		  [695, 292, 795, 568]
+	  Position		  [695, 343, 760, 617]
 	  ZOrder		  -6
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlHighresImu"
@@ -9624,7 +9609,7 @@ Model {
 	  Name			  "Update MPU_T"
 	  SID			  "133"
 	  Ports			  [1]
-	  Position		  [265, 97, 325, 123]
+	  Position		  [265, 147, 325, 173]
 	  ZOrder		  -6
 	  BackgroundColor	  "orange"
 	  ShowName		  off
@@ -9636,7 +9621,7 @@ Model {
 	  Name			  "Update Raw IMU DATA"
 	  SID			  "74"
 	  Ports			  [9]
-	  Position		  [920, 46, 1000, 284]
+	  Position		  [920, 92, 985, 338]
 	  ZOrder		  -6
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlRawIMU"
@@ -9662,14 +9647,14 @@ Model {
 	  Labels		  [0, 1]
 	  SrcBlock		  "Demux1"
 	  SrcPort		  3
-	  Points		  [55, 0; 0, 30; 145, 0]
+	  Points		  [55, 0; 0, 30; 160, 0]
 	  Branch {
 	    DstBlock		    "Data Type Conversion2"
 	    DstPort		    1
 	  }
 	  Branch {
 	    Points		    [0, 255]
-	    DstBlock		    "Data Type Conversion10"
+	    DstBlock		    "Data Type Conversion8"
 	    DstPort		    1
 	  }
 	}
@@ -9678,14 +9663,12 @@ Model {
 	  Labels		  [0, 1]
 	  SrcBlock		  "Demux1"
 	  SrcPort		  1
-	  Points		  [85, 0; 0, 30; 55, 0]
+	  Points		  [85, 0; 0, 30; 170, 0]
 	  Branch {
-	    Points		    [0, 0]
 	    DstBlock		    "Data Type Conversion"
 	    DstPort		    1
 	  }
 	  Branch {
-	    Points		    [100, 0; 0, 245]
 	    DstBlock		    "Data Type Conversion6"
 	    DstPort		    1
 	  }
@@ -9695,15 +9678,14 @@ Model {
 	  Labels		  [0, 1]
 	  SrcBlock		  "Demux1"
 	  SrcPort		  2
-	  Points		  [65, 0; 0, 25; 65, 0]
+	  Points		  [65, 0; 0, 30; 170, 0]
 	  Branch {
-	    Points		    [0, 0; 405, 0]
 	    DstBlock		    "Data Type Conversion1"
 	    DstPort		    1
 	  }
 	  Branch {
-	    Points		    [90, 0; 0, 255]
-	    DstBlock		    "Data Type Conversion9"
+	    Points		    [0, 250]
+	    DstBlock		    "Data Type Conversion7"
 	    DstPort		    1
 	  }
 	}
@@ -9712,15 +9694,15 @@ Model {
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  1
-	  Points		  [185, 0]
+	  Points		  [200, 0]
 	  Branch {
-	    Points		    [350, 0]
+	    Points		    [335, 0]
 	    DstBlock		    "Data Type Conversion3"
 	    DstPort		    1
 	  }
 	  Branch {
 	    Points		    [0, 265]
-	    DstBlock		    "Data Type Conversion11"
+	    DstBlock		    "Data Type Conversion10"
 	    DstPort		    1
 	  }
 	}
@@ -9729,15 +9711,15 @@ Model {
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  2
-	  Points		  [160, 0]
+	  Points		  [185, 0]
 	  Branch {
-	    Points		    [375, 0]
+	    Points		    [350, 0]
 	    DstBlock		    "Data Type Conversion4"
 	    DstPort		    1
 	  }
 	  Branch {
 	    Points		    [0, 270]
-	    DstBlock		    "Data Type Conversion12"
+	    DstBlock		    "Data Type Conversion9"
 	    DstPort		    1
 	  }
 	}
@@ -9746,15 +9728,15 @@ Model {
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  3
-	  Points		  [140, 0]
+	  Points		  [165, 0]
 	  Branch {
-	    Points		    [395, 0]
+	    Points		    [370, 0]
 	    DstBlock		    "Data Type Conversion5"
 	    DstPort		    1
 	  }
 	  Branch {
 	    Points		    [0, 275]
-	    DstBlock		    "Data Type Conversion13"
+	    DstBlock		    "Data Type Conversion11"
 	    DstPort		    1
 	  }
 	}
@@ -9845,55 +9827,55 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "D/S - > rad/sec2"
+	  SrcBlock		  "GyroScale"
 	  SrcPort		  1
 	  DstBlock		  "Update HighResIMU data"
 	  DstPort		  4
 	}
 	Line {
-	  SrcBlock		  "D/S - > rad/sec1"
+	  SrcBlock		  "GyroScale1"
 	  SrcPort		  1
 	  DstBlock		  "Update HighResIMU data"
 	  DstPort		  5
 	}
 	Line {
-	  SrcBlock		  "D/S - > rad/sec"
+	  SrcBlock		  "GyroScale2"
 	  SrcPort		  1
 	  DstBlock		  "Update HighResIMU data"
 	  DstPort		  6
 	}
 	Line {
-	  SrcBlock		  "D/S - > rad/sec5"
+	  SrcBlock		  "AcclScale"
 	  SrcPort		  1
 	  DstBlock		  "Update HighResIMU data"
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "D/S - > rad/sec4"
+	  SrcBlock		  "AcclScale1"
 	  SrcPort		  1
 	  DstBlock		  "Update HighResIMU data"
 	  DstPort		  2
 	}
 	Line {
-	  SrcBlock		  "D/S - > rad/sec3"
+	  SrcBlock		  "AcclScale2"
 	  SrcPort		  1
 	  DstBlock		  "Update HighResIMU data"
 	  DstPort		  3
 	}
 	Line {
-	  SrcBlock		  "D/S - > rad/sec8"
+	  SrcBlock		  "MagScale"
 	  SrcPort		  1
 	  DstBlock		  "Update HighResIMU data"
 	  DstPort		  7
 	}
 	Line {
-	  SrcBlock		  "D/S - > rad/sec7"
+	  SrcBlock		  "MagScale1"
 	  SrcPort		  1
 	  DstBlock		  "Update HighResIMU data"
 	  DstPort		  8
 	}
 	Line {
-	  SrcBlock		  "D/S - > rad/sec6"
+	  SrcBlock		  "MagScale2"
 	  SrcPort		  1
 	  DstBlock		  "Update HighResIMU data"
 	  DstPort		  9
@@ -9901,7 +9883,7 @@ Model {
 	Line {
 	  SrcBlock		  "Data Type Conversion14"
 	  SrcPort		  1
-	  DstBlock		  "D/S - > rad/sec6"
+	  DstBlock		  "MagScale2"
 	  DstPort		  1
 	}
 	Line {
@@ -9909,22 +9891,21 @@ Model {
 	  Labels		  [0, 0]
 	  SrcBlock		  "Subsystem10"
 	  SrcPort		  1
-	  Points		  [70, 0]
+	  Points		  [70, 0; 0, -75; 40, 0]
 	  Branch {
-	    Points		    [0, -75]
-	    DstBlock		    "Data Type Conversion17"
-	    DstPort		    1
+	    DstBlock		    "Update Raw IMU DATA"
+	    DstPort		    9
 	  }
 	  Branch {
-	    Points		    [0, 210]
+	    Points		    [0, 285]
 	    DstBlock		    "Data Type Conversion14"
 	    DstPort		    1
 	  }
 	}
 	Line {
-	  SrcBlock		  "Data Type Conversion8"
+	  SrcBlock		  "Data Type Conversion13"
 	  SrcPort		  1
-	  DstBlock		  "D/S - > rad/sec7"
+	  DstBlock		  "MagScale1"
 	  DstPort		  1
 	}
 	Line {
@@ -9932,21 +9913,21 @@ Model {
 	  Labels		  [0, 0]
 	  SrcBlock		  "Subsystem8"
 	  SrcPort		  1
-	  Points		  [0, -25; 105, 0]
+	  Points		  [0, -25; 135, 0]
 	  Branch {
-	    DstBlock		    "Data Type Conversion15"
-	    DstPort		    1
+	    DstBlock		    "Update Raw IMU DATA"
+	    DstPort		    7
 	  }
 	  Branch {
 	    Points		    [0, 275]
-	    DstBlock		    "Data Type Conversion7"
+	    DstBlock		    "Data Type Conversion12"
 	    DstPort		    1
 	  }
 	}
 	Line {
 	  SrcBlock		  "Data Type Conversion6"
 	  SrcPort		  1
-	  DstBlock		  "D/S - > rad/sec5"
+	  DstBlock		  "AcclScale"
 	  DstPort		  1
 	}
 	Line {
@@ -9954,81 +9935,63 @@ Model {
 	  Labels		  [0, 0]
 	  SrcBlock		  "Subsystem9"
 	  SrcPort		  1
-	  Points		  [40, 0; 0, -50; 45, 0]
+	  Points		  [40, 0; 0, -50; 85, 0]
 	  Branch {
-	    DstBlock		    "Data Type Conversion16"
-	    DstPort		    1
+	    DstBlock		    "Update Raw IMU DATA"
+	    DstPort		    8
 	  }
 	  Branch {
 	    Points		    [0, 280]
-	    DstBlock		    "Data Type Conversion8"
+	    DstBlock		    "Data Type Conversion13"
 	    DstPort		    1
 	  }
 	}
 	Line {
-	  SrcBlock		  "Data Type Conversion9"
+	  SrcBlock		  "Data Type Conversion7"
 	  SrcPort		  1
-	  DstBlock		  "D/S - > rad/sec4"
+	  DstBlock		  "AcclScale1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion8"
+	  SrcPort		  1
+	  DstBlock		  "AcclScale2"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Data Type Conversion10"
 	  SrcPort		  1
-	  DstBlock		  "D/S - > rad/sec3"
+	  DstBlock		  "GyroScale"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion9"
+	  SrcPort		  1
+	  DstBlock		  "GyroScale1"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Data Type Conversion11"
 	  SrcPort		  1
-	  DstBlock		  "D/S - > rad/sec2"
+	  DstBlock		  "GyroScale2"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Data Type Conversion12"
 	  SrcPort		  1
-	  DstBlock		  "D/S - > rad/sec1"
+	  DstBlock		  "MagScale"
 	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Data Type Conversion13"
-	  SrcPort		  1
-	  DstBlock		  "D/S - > rad/sec"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Data Type Conversion7"
-	  SrcPort		  1
-	  DstBlock		  "D/S - > rad/sec8"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Data Type Conversion15"
-	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  7
-	}
-	Line {
-	  SrcBlock		  "Data Type Conversion16"
-	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  8
-	}
-	Line {
-	  SrcBlock		  "Data Type Conversion17"
-	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  9
 	}
 	Annotation {
-	  Position		  [110, 287]
+	  Position		  [110, 337]
 	}
 	Annotation {
 	  Name			  "gyro scale is set to 500deg/sec --> to rad/sec\naccel scale is 4g --> m/sec^2\nMagScale 0.88G --> Magneti"
 	  "c field (Gauss)"
-	  Position		  [683, 54]
+	  Position		  [583, 49]
 	}
 	Annotation {
-	  Position		  [855, 59]
+	  Position		  [855, 109]
 	}
       }
     }
@@ -10048,7 +10011,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Sensor Data"
-	Location		[747, 216, 1082, 700]
+	Location		[445, 89, 780, 687]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -10063,13 +10026,57 @@ Model {
 	ZoomFactor		"100"
 	Block {
 	  BlockType		  Gain
-	  Name			  "D/S - > rad/sec5"
+	  Name			  "GPS_2_FLOAT"
 	  SID			  "479"
-	  Position		  [225, 357, 255, 383]
+	  Position		  [180, 302, 210, 328]
 	  ShowName		  off
 	  Gain			  "0.0000001"
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "int16"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "GPS_2_FLOAT1"
+	  SID			  "548"
+	  Position		  [180, 327, 210, 353]
+	  ShowName		  off
+	  Gain			  "0.0000001"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "GPS_2_FLOAT2"
+	  SID			  "549"
+	  Position		  [180, 352, 210, 378]
+	  ShowName		  off
+	  Gain			  "0.0000001"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "GPS_2_FLOAT3"
+	  SID			  "550"
+	  Position		  [180, 377, 210, 403]
+	  ShowName		  off
+	  Gain			  "0.0000001"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "GPS_2_FLOAT4"
+	  SID			  "551"
+	  Position		  [180, 402, 210, 428]
+	  ShowName		  off
+	  Gain			  "0.0000001"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via back propagation"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
@@ -10077,35 +10084,23 @@ Model {
 	  Name			  "Get GPS data"
 	  SID			  "461"
 	  Ports			  [0, 5]
-	  Position		  [25, 305, 130, 425]
+	  Position		  [65, 299, 130, 431]
 	  ZOrder		  -5
 	  BackgroundColor	  "orange"
-	  NamePlacement		  "alternate"
 	  DataStoreName		  "mlGpsData"
-	  DataStoreElements	  "mlGpsData.lat#mlGpsData.lon#mlGpsData.alt#mlGpsData.vel#mlGpsData.cog"
+	  DataStoreElements	  "mlGpsData.lat#mlGpsData.lon#mlGpsData.alt#mlGpsData.cog#mlGpsData.vel"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get HighResIMU data"
 	  SID			  "460"
 	  Ports			  [0, 10]
-	  Position		  [25, 31, 130, 274]
+	  Position		  [50, 33, 130, 272]
 	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlHighresImu"
 	  DataStoreElements	  "mlHighresImu.xacc#mlHighresImu.yacc#mlHighresImu.zacc#mlHighresImu.xgyro#mlHighresImu.ygyro#ml"
 	  "HighresImu.zgyro#mlHighresImu.xmag#mlHighresImu.ymag#mlHighresImu.zmag#mlHighresImu.pressure_alt"
-	}
-	Block {
-	  BlockType		  Mux
-	  Name			  "Mux"
-	  SID			  "480"
-	  Ports			  [5, 1]
-	  Position		  [180, 307, 190, 423]
-	  ZOrder		  -16
-	  ShowName		  off
-	  Inputs		  "5"
-	  DisplayOption		  "bar"
 	}
 	Block {
 	  BlockType		  Mux
@@ -10138,6 +10133,17 @@ Model {
 	  ZOrder		  -16
 	  ShowName		  off
 	  Inputs		  "3"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux4"
+	  SID			  "552"
+	  Ports			  [5, 1]
+	  Position		  [240, 300, 250, 430]
+	  ZOrder		  -16
+	  ShowName		  off
+	  Inputs		  "5"
 	  DisplayOption		  "bar"
 	}
 	Block {
@@ -10175,33 +10181,9 @@ Model {
 	  BlockType		  Outport
 	  Name			  "GPS"
 	  SID			  "489"
-	  Position		  [280, 363, 310, 377]
+	  Position		  [280, 358, 310, 372]
 	  Port			  "5"
 	  IconDisplay		  "Port number"
-	}
-	Line {
-	  SrcBlock		  "Get GPS data"
-	  SrcPort		  1
-	  DstBlock		  "Mux"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Get GPS data"
-	  SrcPort		  2
-	  DstBlock		  "Mux"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Get GPS data"
-	  SrcPort		  3
-	  DstBlock		  "Mux"
-	  DstPort		  3
-	}
-	Line {
-	  SrcBlock		  "Mux"
-	  SrcPort		  1
-	  DstBlock		  "D/S - > rad/sec5"
-	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Get HighResIMU data"
@@ -10282,24 +10264,70 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "D/S - > rad/sec5"
+	  SrcBlock		  "Get GPS data"
 	  SrcPort		  1
-	  DstBlock		  "GPS"
+	  DstBlock		  "GPS_2_FLOAT"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Get GPS data"
+	  SrcPort		  2
+	  DstBlock		  "GPS_2_FLOAT1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Get GPS data"
+	  SrcPort		  3
+	  DstBlock		  "GPS_2_FLOAT2"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Get GPS data"
 	  SrcPort		  4
-	  Points		  [15, 0; 0, 25]
-	  DstBlock		  "Mux"
-	  DstPort		  5
+	  DstBlock		  "GPS_2_FLOAT3"
+	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Get GPS data"
 	  SrcPort		  5
-	  Points		  [0, -10; 30, 0]
-	  DstBlock		  "Mux"
+	  DstBlock		  "GPS_2_FLOAT4"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "GPS_2_FLOAT"
+	  SrcPort		  1
+	  DstBlock		  "Mux4"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "GPS_2_FLOAT1"
+	  SrcPort		  1
+	  DstBlock		  "Mux4"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "GPS_2_FLOAT2"
+	  SrcPort		  1
+	  DstBlock		  "Mux4"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "GPS_2_FLOAT3"
+	  SrcPort		  1
+	  DstBlock		  "Mux4"
 	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "GPS_2_FLOAT4"
+	  SrcPort		  1
+	  DstBlock		  "Mux4"
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "Mux4"
+	  SrcPort		  1
+	  DstBlock		  "GPS"
+	  DstPort		  1
 	}
       }
     }
