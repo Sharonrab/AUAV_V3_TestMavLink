@@ -1,4 +1,5 @@
 
+#include <.\rtwtypes.h>
 #include "mavlinkSensorMcu.h"
 #include "apDefinitions.h"
 
@@ -9,12 +10,12 @@ BOOL sendCommandAcknowledgement; // used for IPC of command acks to control MCU
 
 
 mavlink_raw_imu_t mlRawImuData;
-mavlink_gps_raw_int_t mlGpsData;
+//mavlink_gps_raw_int_t mlGpsData;
 mavlink_cpu_load_t mlCpuLoadData;
-mavlink_scaled_pressure_t mlAirData;
+//mavlink_scaled_pressure_t mlAirData;
 mavlink_sensor_bias_t mlSensorBiasData;
 mavlink_diagnostic_t mlDiagnosticData;
-mavlink_raw_pressure_t mlRawPressureData;
+//mavlink_raw_pressure_t mlRawPressureData;
 mavlink_attitude_t mlAttitudeData;
 mavlink_local_position_ned_t mlLocalPositionData;
 mavlink_rc_channels_raw_t mlPilotConsoleData;
@@ -30,7 +31,7 @@ mavlink_sensor_diag_t mlSensorDiag;
 
 
 // via SPI
-mavlink_set_gps_global_origin_t mlGSLocation;
+//mavlink_set_gps_global_origin_t mlGSLocation;
 mavlink_command_ack_t mlCommandAck;
 mavlink_servo_output_raw_t mlPwmCommands;
 

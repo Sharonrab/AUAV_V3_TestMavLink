@@ -38,13 +38,21 @@ THE SOFTWARE.
 // Code by: Mariano I. Lizarraga
 // First Revision: Aug 21 2008 @ 21:15
 // ==============================================================
+//#ifdef UNIT_TEST
+//#include "UnitTest.h"
+//#else
+//#include "AUAV3_AND_SLUGS_SENSOR.h"
+//#endif
 
+#include "..\mavlink\include\slugs\mavlink.h"
 #include "gpsUblox.h"
-
+#include "circBuffer.h"
 
 // this function converts one hex ascii character to decimal
 // used for the checksum comparison
 // Kindly contributed by: Bryant Mairs
+extern CBRef uartBuffer;
+extern mavlink_gps_raw_int_t mlGpsData;
 
 char hex2char(char halfhex) {
     char rv;
@@ -91,21 +99,21 @@ unsigned char gpsUbloxSeparate(unsigned char* outStream) {
     // If the previous message was complete, then
     // go over the buffer and advance until you find a dollar sign
     if (previousComplete) {
-        while (tmpLen > 0 && peak(uartBuffer) != DOLLAR) {
+        while (tmpLen > 0 && peak(uartBuffer) != '$') {
             readFront(uartBuffer);
             tmpLen--;
         }
     }
 
     // read until you find a CR or run out of bytes to read
-    while (tmpLen > 0 && peak(uartBuffer) != CR) {
+    while (tmpLen > 0 && peak(uartBuffer) != 13) { //CR = 13
         outBuf[indexLast] = readFront(uartBuffer);
         indexLast++;
         tmpLen--;
     }
 
     // if we found a carriage return, then the message is complete
-    if (peak(uartBuffer) == CR) {
+    if (peak(uartBuffer) == 13) {
         // validate the checksum
         chsmStr_0 = hex2char(outBuf[indexLast - 2]);
         chsmStr_1 = hex2char(outBuf[indexLast - 1]);
@@ -255,15 +263,15 @@ void parseRMC(unsigned char* stream) {
     // 1.- hhmmss.ssss
     myTokenizer(NULL, ',', token);
     if (strlen(token) > 5) {
-        tmp[0] = token[0];
-        tmp[1] = token[1];
-        mlGpsDateTime.hour = (unsigned char) atoi(tmp);
-        tmp[0] = token[2];
-        tmp[1] = token[3];
-        mlGpsDateTime.min = (unsigned char) atoi(tmp);
-        tmp[0] = token[4];
-        tmp[1] = token[5];
-        mlGpsDateTime.sec = (unsigned char) atoi(tmp);
+//        tmp[0] = token[0];
+//        tmp[1] = token[1];
+//        mlGpsDateTime.hour = (unsigned char) atoi(tmp);
+//        tmp[0] = token[2];
+//        tmp[1] = token[3];
+//        mlGpsDateTime.min = (unsigned char) atoi(tmp);
+//        tmp[0] = token[4];
+//        tmp[1] = token[5];
+//        mlGpsDateTime.sec = (unsigned char) atoi(tmp);
     }
 
     // 2.- Status of position Fix
@@ -339,17 +347,17 @@ void parseRMC(unsigned char* stream) {
     myTokenizer(NULL, ',', token);
     if (strlen(token) > 5) {
         // get day
-        tmp[0] = token[0];
-        tmp[1] = token[1];
-        mlGpsDateTime.day = (unsigned char) atoi(tmp);
-        // get month
-        tmp[0] = token[2];
-        tmp[1] = token[3];
-        mlGpsDateTime.month = (unsigned char) atoi(tmp);
-        // get year
-        tmp[0] = token[4];
-        tmp[1] = token[5];
-        mlGpsDateTime.year = (unsigned char) atoi(tmp);
+//        tmp[0] = token[0];
+//        tmp[1] = token[1];
+//        mlGpsDateTime.day = (unsigned char) atoi(tmp);
+//        // get month
+//        tmp[0] = token[2];
+//        tmp[1] = token[3];
+//        mlGpsDateTime.month = (unsigned char) atoi(tmp);
+//        // get year
+//        tmp[0] = token[4];
+//        tmp[1] = token[5];
+//        mlGpsDateTime.year = (unsigned char) atoi(tmp);
     }
 }
 
@@ -365,15 +373,15 @@ void parseGGA(unsigned char* stream) {
     // 1.- hhmmss.ssss
     myTokenizer(NULL, ',', token);
     if (strlen(token) > 5) {
-        tmp[0] = token[0];
-        tmp[1] = token[1];
-        mlGpsDateTime.hour = (unsigned char) atoi(tmp);
-        tmp[0] = token[2];
-        tmp[1] = token[3];
-        mlGpsDateTime.min = (unsigned char) atoi(tmp);
-        tmp[0] = token[4];
-        tmp[1] = token[5];
-        mlGpsDateTime.sec = (unsigned char) atoi(tmp);
+//        tmp[0] = token[0];
+//        tmp[1] = token[1];
+//        mlGpsDateTime.hour = (unsigned char) atoi(tmp);
+//        tmp[0] = token[2];
+//        tmp[1] = token[3];
+//        mlGpsDateTime.min = (unsigned char) atoi(tmp);
+//        tmp[0] = token[4];
+//        tmp[1] = token[5];
+//        mlGpsDateTime.sec = (unsigned char) atoi(tmp);
     }
     // 2.- Latitude
     // ddmm.mmmmmm
@@ -434,7 +442,8 @@ void parseGGA(unsigned char* stream) {
     // xx
     myTokenizer(NULL, ',', token);
     if (strlen(token) > 0) {
-        mlGpsDateTime.visSat = (unsigned char) atoi(token);
+        //mlGpsDateTime.visSat = (unsigned char) atoi(token);
+        mlGpsData.satellites_visible = (unsigned char) atoi(token);
     }
 
     // 8.- HDOP given from 0 to 99.99 but stored from 0 - 990 

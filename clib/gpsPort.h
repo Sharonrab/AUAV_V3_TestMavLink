@@ -8,21 +8,22 @@
            
 #define DOUBLE_BAUD_RATE  1
 #define USE_SBAS 0
-       	
-#include "circBuffer.h"
-#include "apUtils.h"
-#include "mavlinkSensorMcu.h"
-#include "apDefinitions.h"
 
-#include <p33fxxxx.h>
-#include <uart.h>
+
+#include "circBuffer.h"
+//#include "apUtils.h"
+//#include "mavlinkSensorMcu.h"
+//#include "apDefinitions.h"
+
+
+#include <p33exxxx.h>
+//#include <uart.h>
 
 extern CBRef uartBuffer;
+extern struct CircBuffer com4Buffer;
 void uartBufferInit (void);
-void gpsSentenceConfig (void);
-void gpsFreqConfig (void);
 void getGPSRawData(unsigned char* gpsBuffer);
-uint8_t isGPSNovatel (void);
+unsigned char isGPSNovatel (void);
 
 
 #ifdef __cplusplus

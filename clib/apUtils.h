@@ -36,7 +36,7 @@ THE SOFTWARE.
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include "mavlink.h"
+#include "..\mavlink\include\slugs\mavlink.h"
 #include <uart.h>
 // Uncomment if you want to use sensor
 // mcu diagnostic  data. Note that you can only

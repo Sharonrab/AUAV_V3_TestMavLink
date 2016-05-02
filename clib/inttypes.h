@@ -1,38 +1,39 @@
-
-/*
-The MIT License
-
-Copyright (c) 2009 UCSC Autonomous Systems Lab
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-*/
-
-
-// This file is included since Microchip does not provide inttypes.h as PART
-// of the C30 compiler. This is NOT a full inttypes.h implementation
+//
+// inttypes
+//
+// Copyright 2007 Dean Ferreyra, All rights reserved
+//
+// This file is part of dspic-helper.
+//
+// dspic-helper is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// dspic-helper is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with dspic-helper.  If not, see <http://www.gnu.org/licenses/>.
+//
+// $Id: inttypes.h,v 1.1 2008-11-12 22:39:59 dean Exp $
 
 #ifndef INTTYPES_H_INCL
-#define INTTYPES_H_INCL 
+#define INTTYPES_H_INCL 1
 
 #include <limits.h>
-#include <stdint.h>
+
+typedef int __attribute__((__mode__(QI))) int8_t;
+typedef int __attribute__((__mode__(HI))) int16_t;
+typedef int __attribute__((__mode__(SI))) int32_t;
+typedef int __attribute__((__mode__(DI))) int64_t;
+
+typedef unsigned int __attribute__((__mode__(QI))) uint8_t;
+typedef unsigned int __attribute__((__mode__(HI))) uint16_t;
+typedef unsigned int __attribute__((__mode__(SI))) uint32_t;
+typedef unsigned int __attribute__((__mode__(DI))) uint64_t;
 
 #define UINT8_MAX  UCHAR_MAX
 #define INT8_MAX   SCHAR_MAX

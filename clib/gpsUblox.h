@@ -30,15 +30,12 @@ THE SOFTWARE.
 #ifdef __cplusplus
        extern "C"{
 #endif
-       	
-#include "apDefinitions.h"
-#include "apUtils.h"
-#include "mavlinkSensorMcu.h"
-#include "gpsPort.h"
 
 #include <stdlib.h>
 #include <string.h>
-
+    // GPS Circular Buffers
+    // ====================
+#define MSIZE			180
 
 #define TOKEN_SIZE	15
 
@@ -46,7 +43,38 @@ THE SOFTWARE.
 // =====================
 #define GGACS			86
 #define RMCCS			75
+    // GPS Header IDs
+    // ==============
+#define GGAID			1
+#define RMCID			2
+#define VTGID			3
+#define UNKID			254
 
+// GPS Fix Types
+enum GPS_FIX {
+    GPS_FIX_NONE = 0,
+    GPS_FIX_2D = 2,
+    GPS_FIX_3D = 3
+};
+
+           // Scaling functions for GPS data message
+#define INT32_1E7_TO_FLOAT(x)  ((float)x * 0.0000001f)
+#define FLOAT_TO_INT32_1E7(x) ((int32_t)(x * 10000000.0f))
+
+// Used for eph, epv, vel, and cog
+#define UINT16_1E2_TO_FLOAT(x)  ((float)x * 0.01f)
+#define FLOAT_TO_UINT16_1E2(x) ((uint16_t)(x * 100.0f))
+//
+#define INT32_1E3_TO_FLOAT(x)  ((float)x * 0.001f)
+#define FLOAT_TO_INT32_1E3(x) ((int32_t)(x * 1000.0f))
+
+#define KTS2MPS 		0.514444444
+
+#define DOLLAR	36
+#define STAR	42
+#define CR	13
+#define LF      10
+#define AT	64
 
 char hex2char (char halfhex);
 unsigned char gpsUbloxSeparate (unsigned char* outStream);

@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include "mavlink.h"
+#include "..\mavlink\include\slugs\mavlink.h"
 #include "apDefinitions.h"
 
     typedef struct _mavlink_coordinate_float_t {

@@ -30,9 +30,9 @@ THE SOFTWARE.
 static tCubeBuffer cubeBuffer;
 
 void cubeInit (void){
-	long long i = 0;
+//	long long i = 0;
 	
-	printToUart2("Starting %s\n\r","Cube Init 1st print AM");
+	/* printToUart2("Starting %s\n\r","Cube Init 1st print AM");
 
 	// 150 ms Delay for powerup
 	for(i = 0; i < 6000000; i += 1 )		//porque no i++; 
@@ -65,7 +65,7 @@ void cubeInit (void){
     // Configure the Analog pins C3 as digital.
     // C3 is used to determine if data is ready on the 
     // CUBE
-    AD1PCFGHbits.PCFG18 = 1;
+   // AD1PCFGHbits.PCFG18 = 1;
 	TRISCbits.TRISC3 	= 1;
 	
 	// Configure RG9 as output pin to use as chip-select
@@ -136,7 +136,7 @@ void cubeInit (void){
 	IEC1bits.T5IE				=	1;		// Enable the interrupts
 	IPC7bits.T5IP				=	5;		// Interrupt priority 5
 	T5CONbits.TON				= 0; 		// Make sure timer is off
-
+ */
 }//cubeInit
 
 
@@ -207,10 +207,10 @@ int16_t averageData(int16_t* theData, uint8_t count){
 // SPI Primitives
 // ==============
 unsigned short write2Cube (unsigned short data2Send) {
-	unsigned short temp = 3, i;
+	unsigned short temp = 3;
 	
 	// Drive SS Low
-	selectCube();
+	/* selectCube();
 	Nop(); Nop();
 	
 	// Write the data to the SPI buffer
@@ -238,7 +238,7 @@ unsigned short write2Cube (unsigned short data2Send) {
 	for(i = 0; i < 330; i += 1 )
 	{
 		Nop();
-	}
+	} */
 	return temp;
 }
 
