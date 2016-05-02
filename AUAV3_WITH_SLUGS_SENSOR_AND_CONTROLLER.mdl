@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.257"
+    ComputedModelVersion    "1.259"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -30,11 +30,11 @@ Model {
   Creator		  "M91449"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "Marcello"
+  LastModifiedBy	  "Marcello G"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun May 01 22:57:00 2016"
-  RTWModifiedTimeStamp	  384008871
-  ModelVersionFormat	  "1.%<AutoIncrement:257>"
+  LastModifiedDate	  "Mon May 02 12:45:22 2016"
+  RTWModifiedTimeStamp	  384092782
+  ModelVersionFormat	  "1.%<AutoIncrement:259>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  on
@@ -1322,8 +1322,8 @@ Model {
   }
   System {
     Name		    "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER"
-    Location		    [268, 83, 2541, 1010]
-    Open		    off
+    Location		    [328, 107, 1945, 1034]
+    Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    266
     ScreenColor		    "white"
@@ -1336,12 +1336,12 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "2628"
+    SIDHighWatermark	    "2629"
     Block {
       BlockType		      Reference
       Name		      " gpsUbloxParse"
       SID		      "118"
-      Ports		      [1]
+      Ports		      []
       Position		      [245, 332, 405, 388]
       LibraryVersion	      "3.10"
       SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
@@ -1356,7 +1356,8 @@ Model {
       S_OUTPUT_Size	      "[]"
       ORDERING		      "None"
       SampleTime	      "0.2"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       PinDigitalInput	      "[]"
       PinDigitalOutput	      "[]   "
       PinAnalogInput	      "[]"
@@ -1365,7 +1366,7 @@ Model {
       BlockType		      Reference
       Name		      " protDecodeMavlink"
       SID		      "429"
-      Ports		      [1]
+      Ports		      []
       Position		      [430, 332, 590, 388]
       LibraryVersion	      "3.10"
       SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
@@ -1380,7 +1381,8 @@ Model {
       S_OUTPUT_Size	      "[]"
       ORDERING		      "None"
       SampleTime	      "0.2"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       PinDigitalInput	      "[]"
       PinDigitalOutput	      "[]   "
       PinAnalogInput	      "[]"
@@ -1410,7 +1412,8 @@ Model {
       S_INPUT_Size	      "[2  2]"
       S_OUTPUT_Size	      "[4]"
       SampleTime	      ".5"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       MCHP_PORT		      "{I2C 2 Clock}{SCL2}13:1:A2;{I2C 2 SDA}{SDA2}13:1:A3;"
       MCHP_OrderInOut	      "0"
     }
@@ -1459,7 +1462,8 @@ Model {
       S_INPUT_Size	      "[2  2]"
       S_OUTPUT_Size	      "[4]"
       SampleTime	      "inf"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       MCHP_PORT		      "{SPI 1 input}{SDI1}12:0:P83;{SPI 1 output}{SDO1}12:1:P82;{SPI 1 Clock output}{SCK1}12:1:P127;{"
       "SPI 1 Digital output}{SPI1-DOU}12:1:E4;{SPI 1 Digital output}{SPI1-DOU}12:1:E4;{SPI 1 Digital output}{SPI1-DOU}1"
       "2:1:E4;{SPI 1 Digital output}{SPI1-DOU}12:1:E4;{SPI 1 Digital output}{SPI1-DOU}12:1:E4;{SPI 1 Digital output}{SP"
@@ -1492,7 +1496,8 @@ Model {
       OMF		      "elf"
       DEBUG_INFO	      off
       AssemblyListing	      off
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
     }
     Block {
       BlockType		      Constant
@@ -1580,8 +1585,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Control Surface Input"
-	Location		[227, 261, 1373, 631]
-	Open			off
+	Location		[473, 126, 1619, 496]
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2088,7 +2093,7 @@ Model {
 	  S_OUTPUT_Size		  "[-1]"
 	  ORDERING		  "None"
 	  SampleTime		  ".01"
-	  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -2123,7 +2128,8 @@ Model {
       DOC_FilePath	      "C:\\Users\\M91449\\AppData\\Local\\Temp\\70616g.pdf"
       DOC_FileLastCheckTime   "[2013             11             10             22              4         17.021]"
       cpy_MCHP_Id	      "33EP512MU810"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
     }
     Block {
       BlockType		      DataTypeConversion
@@ -2617,7 +2623,8 @@ Model {
       S_OUTPUT_Size	      "[0]"
       ORDERING		      "None"
       SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       PinDigitalInput	      "[]"
       PinDigitalOutput	      "[]   "
       PinAnalogInput	      "[]"
@@ -2643,7 +2650,8 @@ Model {
       S_OUTPUT_Size	      "[-1]"
       ORDERING		      "None"
       SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       PinDigitalInput	      "[]"
       PinDigitalOutput	      "[]   "
       PinAnalogInput	      "[]"
@@ -2669,7 +2677,8 @@ Model {
       S_OUTPUT_Size	      "[-1]"
       ORDERING		      "None"
       SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       PinDigitalInput	      "[]"
       PinDigitalOutput	      "[]   "
       PinAnalogInput	      "[]"
@@ -2696,7 +2705,8 @@ Model {
       S_OUTPUT_Size	      "[-1]"
       ORDERING		      "None"
       SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       PinDigitalInput	      "[]"
       PinDigitalOutput	      "[]   "
       PinAnalogInput	      "[]"
@@ -2723,7 +2733,8 @@ Model {
       S_OUTPUT_Size	      "[-1]"
       ORDERING		      "None"
       SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       PinDigitalInput	      "[]"
       PinDigitalOutput	      "[]   "
       PinAnalogInput	      "[]"
@@ -2750,7 +2761,8 @@ Model {
       S_OUTPUT_Size	      "[-1]"
       ORDERING		      "None"
       SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       PinDigitalInput	      "[]"
       PinDigitalOutput	      "[]   "
       PinAnalogInput	      "[]"
@@ -2956,7 +2968,8 @@ Model {
       S_OUTPUT_Size	      "[]"
       ORDERING		      "None"
       SampleTime	      "-1"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       PinDigitalInput	      "[]"
       PinDigitalOutput	      "[]   "
       PinAnalogInput	      "[]"
@@ -3629,7 +3642,7 @@ Model {
 		  LibraryVersion	  "3.10"
 		  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 		  SourceType		  "C Function Call"
-		  ListFunctions1	  "     float myCos(float x)"
+		  ListFunctions1	  "Custom Function"
 		  Function1		  "float myCos(float x)"
 		  Function1Type		  "when block is updated (default)"
 		  AddHeaderDeclaration	  off
@@ -3741,7 +3754,7 @@ Model {
 		  LibraryVersion	  "3.10"
 		  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 		  SourceType		  "C Function Call"
-		  ListFunctions1	  "     float mySin(float x)"
+		  ListFunctions1	  "Custom Function"
 		  Function1		  "float mySin(float x)"
 		  Function1Type		  "when block is updated (default)"
 		  AddHeaderDeclaration	  off
@@ -4242,7 +4255,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myExp(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myExp(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -5974,7 +5987,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myExp(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myExp(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -7281,7 +7294,7 @@ Model {
 		DstPort			1
 	      }
 	      Branch {
-		Points			[0, 175; -1075, 0; 0, -125]
+		Points			[0, 175; -1075, 0]
 		DstBlock		"Sum2"
 		DstPort			1
 	      }
@@ -7801,7 +7814,7 @@ Model {
 		    Position		    [180, 100, 230, 180]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[3 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -10168,7 +10181,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myTan(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myTan(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -10296,7 +10309,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -11181,7 +11194,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myTan(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myTan(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -13128,7 +13141,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myTan(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myTan(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -14294,7 +14307,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myTan(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myTan(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -15226,7 +15239,7 @@ Model {
 		    Position		    [180, 100, 230, 180]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[3 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -20223,7 +20236,7 @@ Model {
 		    Position		    [180, 100, 230, 180]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[3 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -20522,7 +20535,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myPow(float x; float toTheN)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myPow(float x, float toTheN)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -20826,7 +20839,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -20911,7 +20924,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -21965,7 +21978,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myCos(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myCos(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -23322,6 +23335,7 @@ Model {
 		    Name		    "Action Port"
 		    SID			    "1511:2586"
 		    Position		    [170, 15, 229, 43]
+		    ActionType		    "elseif"
 		    }
 		    Block {
 		    BlockType		    From
@@ -23670,7 +23684,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "P"
@@ -23986,6 +24000,7 @@ Model {
 		    Name		    "Action Port"
 		    SID			    "1511:2707"
 		    Position		    [170, 15, 229, 43]
+		    ActionType		    "elseif"
 		    }
 		    Block {
 		    BlockType		    SubSystem
@@ -24062,7 +24077,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "topCoord"
@@ -24311,6 +24326,7 @@ Model {
 		    Name		    "Action Port"
 		    SID			    "1511:2723"
 		    Position		    [175, 85, 234, 113]
+		    ActionType		    "else"
 		    }
 		    Block {
 		    BlockType		    SubSystem
@@ -24515,7 +24531,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -24600,7 +24616,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -24825,7 +24841,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myAcos(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myAcos(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -24953,7 +24969,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -25285,7 +25301,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -25370,7 +25386,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -25594,7 +25610,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myAcos(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myAcos(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -25721,7 +25737,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -25925,7 +25941,7 @@ Model {
 		    Position		    [180, 100, 230, 180]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 3]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "P31"
@@ -26350,7 +26366,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myAbs(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myAbs(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -26479,7 +26495,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myAbs(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myAbs(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -26615,7 +26631,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -26700,7 +26716,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -26872,7 +26888,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -26996,7 +27012,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -27497,6 +27513,7 @@ Model {
 		    Name		    "Action Port"
 		    SID			    "1511:2761"
 		    Position		    [170, 15, 229, 43]
+		    ActionType		    "then"
 		    }
 		    Block {
 		    BlockType		    Constant
@@ -27776,7 +27793,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -27861,7 +27878,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -28064,7 +28081,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myAbs(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myAbs(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    off
@@ -28679,7 +28696,7 @@ Model {
 		  LibraryVersion	  "3.10"
 		  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 		  SourceType		  "C Function Call"
-		  ListFunctions1	  "     void setDiagnosticFloat(float * flValues)"
+		  ListFunctions1	  "Custom Function"
 		  Function1		  "void setDiagnosticFloat(float * flValues)"
 		  Function1Type		  "when block is updated (default)"
 		  AddHeaderDeclaration	  on
@@ -29387,7 +29404,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -29472,7 +29489,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -30665,7 +30682,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -30750,7 +30767,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -30952,7 +30969,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "P"
@@ -31341,7 +31358,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -31733,7 +31750,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -32011,7 +32028,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myAtan(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myAtan(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -32199,7 +32216,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myAbs(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myAbs(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -32346,7 +32363,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myAtan2(float num; float denom)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myAtan2(float num, float denom)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -32751,6 +32768,7 @@ Model {
 		    Name		    "Action Port"
 		    SID			    "1511:3062"
 		    Position		    [170, 15, 229, 43]
+		    ActionType		    "elseif"
 		    }
 		    Block {
 		    BlockType		    Gain
@@ -32921,7 +32939,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -33006,7 +33024,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -33247,7 +33265,7 @@ Model {
 		  LibraryVersion	  "3.10"
 		  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 		  SourceType		  "C Function Call"
-		  ListFunctions1	  "     void setDiagnosticFloat(float * flValues)"
+		  ListFunctions1	  "Custom Function"
 		  Function1		  "void setDiagnosticFloat(float * flValues)"
 		  Function1Type		  "when block is updated (default)"
 		  AddHeaderDeclaration	  on
@@ -33273,7 +33291,7 @@ Model {
 		  LibraryVersion	  "3.10"
 		  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 		  SourceType		  "C Function Call"
-		  ListFunctions1	  "     void setDiagnosticShort(int16_t* shValues)"
+		  ListFunctions1	  "Custom Function"
 		  Function1		  "void setDiagnosticShort(int16_t* shValues)"
 		  Function1Type		  "when block is updated (default)"
 		  AddHeaderDeclaration	  on
@@ -33299,7 +33317,7 @@ Model {
 		  LibraryVersion	  "3.10"
 		  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 		  SourceType		  "C Function Call"
-		  ListFunctions1	  "     void setDiagnosticFloat(float * flValues)"
+		  ListFunctions1	  "Custom Function"
 		  Function1		  "void setDiagnosticFloat(float * flValues)"
 		  Function1Type		  "when block is updated (default)"
 		  AddHeaderDeclaration	  on
@@ -33673,6 +33691,7 @@ Model {
 		    Name		    "Action Port"
 		    SID			    "1511:3102"
 		    Position		    [400, 20, 459, 48]
+		    ActionType		    "elseif"
 		    }
 		    Block {
 		    BlockType		    Sum
@@ -34424,7 +34443,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float myAbs(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float myAbs(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -34553,7 +34572,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -34638,7 +34657,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -35201,7 +35220,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "reached"
@@ -35668,7 +35687,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -35753,7 +35772,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -36115,7 +36134,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -36200,7 +36219,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -36454,7 +36473,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "N"
@@ -36715,7 +36734,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "P"
@@ -36832,7 +36851,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "P"
@@ -36949,7 +36968,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "P"
@@ -37099,7 +37118,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     void getWP(unsigned char idx; float* WPpos)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "void getWP(unsigned char idx, float* WPpos)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -37348,7 +37367,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -37480,7 +37499,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -37612,7 +37631,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -38011,7 +38030,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     void getWP(unsigned char idx; float* WPpos)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "void getWP(unsigned char idx, float* WPpos)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -38260,7 +38279,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -38392,7 +38411,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -38524,7 +38543,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -39438,7 +39457,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -39523,7 +39542,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -39885,7 +39904,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -39970,7 +39989,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -40224,7 +40243,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "N"
@@ -40487,7 +40506,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     void getWP(unsigned char idx; float* WPpos)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "void getWP(unsigned char idx, float* WPpos)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -40736,7 +40755,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -40868,7 +40887,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -41000,7 +41019,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -41399,7 +41418,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     void getWP(unsigned char idx; float* WPpos)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "void getWP(unsigned char idx, float* WPpos)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -41648,7 +41667,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -41780,7 +41799,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -41912,7 +41931,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -42607,7 +42626,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -42692,7 +42711,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -42894,7 +42913,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "P"
@@ -43026,7 +43045,7 @@ Model {
 		    Position		    [180, 100, 230, 180]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[3 3]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "WP0"
@@ -43614,6 +43633,7 @@ Model {
 		    Name		    "Action Port"
 		    SID			    "1511:3554"
 		    Position		    [400, 15, 459, 43]
+		    ActionType		    "then"
 		    }
 		    Block {
 		    BlockType		    SubSystem
@@ -44105,7 +44125,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     float mySqrt(float x)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "float mySqrt(float x)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -44190,7 +44210,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "zpVal"
@@ -44392,7 +44412,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "P"
@@ -45556,7 +45576,7 @@ Model {
 		    LibraryVersion	    "3.10"
 		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
 		    SourceType		    "C Function Call"
-		    ListFunctions1	    "     void getGSLocation(float* altLatLon)"
+		    ListFunctions1	    "Custom Function"
 		    Function1		    "void getGSLocation(float* altLatLon)"
 		    Function1Type	    "when block is updated (default)"
 		    AddHeaderDeclaration    on
@@ -46175,7 +46195,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "P"
@@ -46292,7 +46312,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "P"
@@ -46351,7 +46371,7 @@ Model {
 		  LibraryVersion	  "3.10"
 		  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 		  SourceType		  "C Function Call"
-		  ListFunctions1	  "     void getXYZ(float* xyz)"
+		  ListFunctions1	  "Custom Function"
 		  Function1		  "void getXYZ(float* xyz)"
 		  Function1Type		  "when block is updated (default)"
 		  AddHeaderDeclaration	  on
@@ -46460,7 +46480,7 @@ Model {
 		    Position		    [180, 102, 230, 203]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[4 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -46612,7 +46632,7 @@ Model {
 		    Position		    [180, 100, 230, 180]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[3 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -46750,7 +46770,7 @@ Model {
 		    Position		    [180, 100, 230, 160]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -46890,7 +46910,7 @@ Model {
 		    Position		    [180, 100, 230, 180]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[3 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -47036,7 +47056,7 @@ Model {
 		    Position		    [180, 100, 230, 180]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[3 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -47182,7 +47202,7 @@ Model {
 		    Position		    [180, 100, 230, 180]
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[3 2]"
-		    EnableBusSupport	    off
+		    EnableBusSupport	    on
 		    Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -49267,7 +49287,7 @@ Model {
 	  BlockType		  Reference
 	  Name			  "PackGpsRawInt"
 	  SID			  "123"
-	  Ports			  [1]
+	  Ports			  []
 	  Position		  [320, 315, 480, 415]
 	  LibraryVersion	  "3.10"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -49284,7 +49304,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "0.2"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49293,7 +49313,7 @@ Model {
 	  BlockType		  Reference
 	  Name			  "PackHeartBeat"
 	  SID			  "109"
-	  Ports			  [1]
+	  Ports			  []
 	  Position		  [320, 191, 480, 289]
 	  LibraryVersion	  "3.10"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -49309,7 +49329,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "0.5"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49318,7 +49338,7 @@ Model {
 	  BlockType		  Reference
 	  Name			  "PackRawIMU"
 	  SID			  "108"
-	  Ports			  [1]
+	  Ports			  []
 	  Position		  [320, 35, 480, 175]
 	  LibraryVersion	  "3.10"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -49335,7 +49355,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "0.02"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49344,7 +49364,7 @@ Model {
 	  BlockType		  Reference
 	  Name			  "PackScaledPressure"
 	  SID			  "390"
-	  Ports			  [1]
+	  Ports			  []
 	  Position		  [320, 448, 480, 552]
 	  LibraryVersion	  "3.10"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -49361,7 +49381,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "[0.2 0.02]"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49370,7 +49390,7 @@ Model {
 	  BlockType		  Reference
 	  Name			  "PackSysStatus"
 	  SID			  "395"
-	  Ports			  [1]
+	  Ports			  []
 	  Position		  [320, 577, 480, 673]
 	  LibraryVersion	  "3.10"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -49386,7 +49406,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "[0.2 0.04]"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49395,7 +49415,7 @@ Model {
 	  BlockType		  Reference
 	  Name			  "ParamInterfaceResponse"
 	  SID			  "430"
-	  Ports			  [1]
+	  Ports			  []
 	  Position		  [320, 691, 480, 789]
 	  LibraryVersion	  "3.10"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -49411,7 +49431,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "[0.2 0.06]"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49420,7 +49440,7 @@ Model {
 	  BlockType		  Reference
 	  Name			  "ParamInterfaceResponse1"
 	  SID			  "458"
-	  Ports			  [1]
+	  Ports			  []
 	  Position		  [320, 831, 480, 929]
 	  LibraryVersion	  "3.10"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -49436,7 +49456,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "[0.2 0.08]"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49470,7 +49490,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "-1"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49495,7 +49515,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "-1"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49520,7 +49540,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "-1"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49545,7 +49565,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "-1"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49570,7 +49590,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "-1"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49595,7 +49615,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "-1"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49620,7 +49640,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "None"
 	  SampleTime		  "-1"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -49731,45 +49751,36 @@ Model {
 	  SrcPort		  1
 	  Points		  [170, 0]
 	  Branch {
-	    DstBlock		    "PackRawIMU"
-	    DstPort		    1
+	    Points		    [50, 65]
 	  }
 	  Branch {
 	    Points		    [0, 175]
 	    Branch {
-	      DstBlock		      "PackHeartBeat"
-	      DstPort		      1
+	      Points		      [50, 25]
 	    }
 	    Branch {
 	      Points		      [0, 110]
 	      Branch {
-		DstBlock		"PackGpsRawInt"
-		DstPort			1
+		Points			[50, 40]
 	      }
 	      Branch {
 		Points			[0, 125]
 		Branch {
-		  DstBlock		  "PackScaledPressure"
-		  DstPort		  1
+		  Points		  [50, 50]
 		}
 		Branch {
 		  Points		  [0, 135; 5, 0]
 		  Branch {
 		    Points		    [-5, 0; 0, 125]
 		    Branch {
-		    Points		    [0, 5]
-		    DstBlock		    "ParamInterfaceResponse"
-		    DstPort		    1
+		    Points		    [0, 5; 50, 25]
 		    }
 		    Branch {
-		    Points		    [0, 145]
-		    DstBlock		    "ParamInterfaceResponse1"
-		    DstPort		    1
+		    Points		    [0, 145; 50, 25]
 		    }
 		  }
 		  Branch {
-		    DstBlock		    "PackSysStatus"
-		    DstPort		    1
+		    Points		    [45, 40]
 		  }
 		}
 	      }
@@ -49939,7 +49950,7 @@ Model {
       MCHP_TIMER_REQUEST      "{Time Step}{TS}0:2:3:1:[]:700000;"
       MCHP_TIMER_RESULT	      "[2 10936.499999999987 ]"
       MCHP_PORT		      "{Busy Flag}{Busy}0:1:A6;"
-      MCHP_PLLRegisters	      "[5    243  16385     -1]"
+      MCHP_PLLRegisters	      "[5  243    3]"
       MCHPVAR		      "MCHP.id = '33EP512MU810';MCHP.idN = [33  512  810];MCHP.idL = {'EP','MU',''};MCHP.Arch =3;MCHP.R"
       "x = reshape([17   25   -1   72   93   87   90   -1   -1   -1   -1   38   24    6   76   94   88   89   -1   -1  "
       " -1   -1   58   23    7   77   98   52   57   -1   -1   -1   -1   59   22    8   78   99   51   56   -1   -1   -"
@@ -50188,7 +50199,7 @@ Model {
 	  S_OUTPUT_Size		  "[-1]"
 	  ORDERING		  "None"
 	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -50215,7 +50226,7 @@ Model {
 	  S_OUTPUT_Size		  "[-1]"
 	  ORDERING		  "None"
 	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -50242,7 +50253,7 @@ Model {
 	  S_OUTPUT_Size		  "[-1]"
 	  ORDERING		  "None"
 	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -50269,7 +50280,7 @@ Model {
 	  S_OUTPUT_Size		  "[-1]"
 	  ORDERING		  "None"
 	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -50296,7 +50307,7 @@ Model {
 	  S_OUTPUT_Size		  "[-1]"
 	  ORDERING		  "None"
 	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -50323,7 +50334,7 @@ Model {
 	  S_OUTPUT_Size		  "[0]"
 	  ORDERING		  "None"
 	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -50350,7 +50361,7 @@ Model {
 	  S_OUTPUT_Size		  "[0]"
 	  ORDERING		  "None"
 	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -50781,7 +50792,8 @@ Model {
       LibraryVersion	      "3.10"
       SourceBlock	      "MCHP_Blockset/System Info/Port Info"
       SourceType	      ""
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
     }
     Block {
       BlockType		      SubSystem
@@ -52692,7 +52704,8 @@ Model {
 		    S_OUTPUT_Size	    "[0]"
 		    ORDERING		    "None"
 		    SampleTime		    "-1"
-		    MCHP_MASTERLINK	    "integratedMCUSlugs_ver2/Microchip Master"
+		    MCHP_MASTERLINK	    "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA"
+		    "6)"
 		    PinDigitalInput	    "[]"
 		    PinDigitalOutput	    "[]   "
 		    PinAnalogInput	    "[]"
@@ -54103,7 +54116,7 @@ Model {
 		  S_OUTPUT_Size		  "[0]"
 		  ORDERING		  "None"
 		  SampleTime		  "-1"
-		  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+		  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 		  PinDigitalInput	  "[]"
 		  PinDigitalOutput	  "[]   "
 		  PinAnalogInput	  "[]"
@@ -54128,7 +54141,7 @@ Model {
 		  S_OUTPUT_Size		  "[0]"
 		  ORDERING		  "None"
 		  SampleTime		  "-1"
-		  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+		  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 		  PinDigitalInput	  "[]"
 		  PinDigitalOutput	  "[]   "
 		  PinAnalogInput	  "[]"
@@ -62458,7 +62471,7 @@ Model {
 	  S_INPUT_Size		  "[2  2]"
 	  S_OUTPUT_Size		  "[4]"
 	  SampleTime		  "[ .01]"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  MCHP_PORT		  "{I2C 2 Clock}{SCL2}13:1:A2;{I2C 2 SDA}{SDA2}13:1:A3;"
 	  MCHP_OrderInOut	  "0"
 	}
@@ -62492,7 +62505,7 @@ Model {
 	  S_INPUT_Size		  "[2  2]"
 	  S_OUTPUT_Size		  "[4]"
 	  SampleTime		  "[.01]"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  MCHP_PORT		  "{I2C 2 Clock}{SCL2}13:1:A2;{I2C 2 SDA}{SDA2}13:1:A3;"
 	  MCHP_OrderInOut	  "0"
 	}
@@ -63710,7 +63723,8 @@ Model {
 	      S_INPUT_Size	      "[2  2]"
 	      S_OUTPUT_Size	      "[4]"
 	      SampleTime	      ".01"
-	      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
+	      "(RA6)"
 	      MCHP_PORT		      "{I2C 2 Clock}{SCL2}13:1:A2;{I2C 2 SDA}{SDA2}13:1:A3;"
 	      MCHP_OrderInOut	      "0"
 	    }
@@ -67072,7 +67086,7 @@ Model {
 	  S_INPUT_Size		  "[2  2]"
 	  S_OUTPUT_Size		  "[4]"
 	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  MCHP_PORT		  "{I2C 2 Clock}{SCL2}13:1:A2;{I2C 2 SDA}{SDA2}13:1:A3;"
 	  MCHP_OrderInOut	  "0"
 	}
@@ -67104,7 +67118,7 @@ Model {
 	  S_INPUT_Size		  "[2  2]"
 	  S_OUTPUT_Size		  "[4]"
 	  SampleTime		  "[.01]"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  MCHP_PORT		  "{SPI 1 input}{SDI1}12:0:P83;{SPI 1 output}{SDO1}12:1:P82;{SPI 1 Clock output}{SCK1}12:1:P127;{SPI 1 D"
 	  "igital output}{SPI1-DOU}12:1:E4;{SPI 1 Digital output}{SPI1-DOU}12:1:E4;"
 	  MCHP_OrderInOut	  "0"
@@ -68047,7 +68061,8 @@ Model {
 	      S_OUTPUT_Size	      "[13]"
 	      ORDERING		      "None"
 	      SampleTime	      ".01"
-	      MCHP_MASTERLINK	      "integratedMCUSlugs_ver2/Microchip Master"
+	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
+	      "(RA6)"
 	      PinDigitalInput	      "[]"
 	      PinDigitalOutput	      "[]   "
 	      PinAnalogInput	      "[]"
@@ -68074,7 +68089,8 @@ Model {
 	      S_OUTPUT_Size	      "[13]"
 	      ORDERING		      "None"
 	      SampleTime	      "-1"
-	      MCHP_MASTERLINK	      "integratedMCUSlugs_ver2/Microchip Master"
+	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
+	      "(RA6)"
 	      PinDigitalInput	      "[]"
 	      PinDigitalOutput	      "[]   "
 	      PinAnalogInput	      "[]"
@@ -68101,7 +68117,8 @@ Model {
 	      S_OUTPUT_Size	      "[13]"
 	      ORDERING		      "None"
 	      SampleTime	      "-1"
-	      MCHP_MASTERLINK	      "integratedMCUSlugs_ver2/Microchip Master"
+	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
+	      "(RA6)"
 	      PinDigitalInput	      "[]"
 	      PinDigitalOutput	      "[]   "
 	      PinAnalogInput	      "[]"
@@ -71997,7 +72014,7 @@ Model {
 		  S_OUTPUT_Size		  "[0]"
 		  ORDERING		  "None"
 		  SampleTime		  ".01"
-		  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+		  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 		  PinDigitalInput	  "[]"
 		  PinDigitalOutput	  "[]   "
 		  PinAnalogInput	  "[]"
@@ -72034,7 +72051,7 @@ Model {
 		  S_OUTPUT_Size		  "[10]"
 		  ORDERING		  "None"
 		  SampleTime		  ".01"
-		  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+		  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 		  PinDigitalInput	  "[]"
 		  PinDigitalOutput	  "[]   "
 		  PinAnalogInput	  "[]"
@@ -72080,7 +72097,7 @@ Model {
 		  S_OUTPUT_Size		  "[]"
 		  ORDERING		  "None"
 		  SampleTime		  ".01"
-		  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+		  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 		  PinDigitalInput	  "[]"
 		  PinDigitalOutput	  "[]   "
 		  PinAnalogInput	  "[]"
@@ -72141,7 +72158,8 @@ Model {
 		    S_OUTPUT_Size	    "[]"
 		    ORDERING		    "None"
 		    SampleTime		    ".01"
-		    MCHP_MASTERLINK	    "integratedMCUSlugs_ver2/Microchip Master"
+		    MCHP_MASTERLINK	    "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA"
+		    "6)"
 		    PinDigitalInput	    "[]"
 		    PinDigitalOutput	    "[]   "
 		    PinAnalogInput	    "[]"
@@ -72167,7 +72185,8 @@ Model {
 		    S_OUTPUT_Size	    "[5]"
 		    ORDERING		    "None"
 		    SampleTime		    ".01"
-		    MCHP_MASTERLINK	    "integratedMCUSlugs_ver2/Microchip Master"
+		    MCHP_MASTERLINK	    "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA"
+		    "6)"
 		    PinDigitalInput	    "[]"
 		    PinDigitalOutput	    "[]   "
 		    PinAnalogInput	    "[]"
@@ -72193,7 +72212,8 @@ Model {
 		    S_OUTPUT_Size	    "[-1]"
 		    ORDERING		    "None"
 		    SampleTime		    ".01"
-		    MCHP_MASTERLINK	    "integratedMCUSlugs_ver2/Microchip Master"
+		    MCHP_MASTERLINK	    "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA"
+		    "6)"
 		    PinDigitalInput	    "[]"
 		    PinDigitalOutput	    "[]   "
 		    PinAnalogInput	    "[]"
@@ -72274,7 +72294,8 @@ Model {
 		    S_OUTPUT_Size	    "[5]"
 		    ORDERING		    "None"
 		    SampleTime		    ".01"
-		    MCHP_MASTERLINK	    "integratedMCUSlugs_ver2/Microchip Master"
+		    MCHP_MASTERLINK	    "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA"
+		    "6)"
 		    PinDigitalInput	    "[]"
 		    PinDigitalOutput	    "[]   "
 		    PinAnalogInput	    "[]"
@@ -73103,7 +73124,7 @@ Model {
 		  S_OUTPUT_Size		  "[]"
 		  ORDERING		  "None"
 		  SampleTime		  ".01"
-		  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+		  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 		  PinDigitalInput	  "[]"
 		  PinDigitalOutput	  "[]   "
 		  PinAnalogInput	  "[]"
@@ -73863,7 +73884,8 @@ Model {
 		    S_OUTPUT_Size	    "[-1]"
 		    ORDERING		    "None"
 		    SampleTime		    ".01"
-		    MCHP_MASTERLINK	    "integratedMCUSlugs_ver2/Microchip Master"
+		    MCHP_MASTERLINK	    "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA"
+		    "6)"
 		    PinDigitalInput	    "[]"
 		    PinDigitalOutput	    "[]   "
 		    PinAnalogInput	    "[]"
@@ -78293,7 +78315,7 @@ Model {
 	  "000;{Input Capture 1}{IC1}6:0:1:0:[1  2  3  4  5]:210000;{Input Capture 1}{IC1}6:0:1:0:[1  2  3  4  5]:210000;"
 	  MCHP_TIMER_RESULT	  "[1 26249.000000000011 ;1 26249.000000000011 ;1 26249.000000000011 ;1 26249.000000000011 ;1 262"
 	  "49.000000000011 ;1 26249.000000000011 ]"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  Port {
 	    PortNumber		    1
 	    Name		    "cmd PITCH raw"
@@ -78495,7 +78517,7 @@ Model {
 	  MCHP_TIMER_REQUEST	  "{Output Compare 1}{OC1}7:0:1:0:[1  2  3  4  5]:210000;{Output Compare 1}{OC1}7:0:1:0:[1  2  3"
 	  "  4  5]:210000;"
 	  MCHP_TIMER_RESULT	  "[1 26249.000000000011 ;1 26249.000000000011 ]"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	}
 	Block {
 	  BlockType		  Saturate
@@ -78754,7 +78776,8 @@ Model {
       LibraryVersion	      "3.10"
       SourceBlock	      "MCHP_Blockset/System Info/Timer Info"
       SourceType	      ""
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
     }
     Block {
       BlockType		      SubSystem
@@ -78771,7 +78794,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Trim Vals\n[updated 4.28.16]"
-	Location		[1271, 740, 2853, 1517]
+	Location		[780, 200, 2362, 977]
 	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -79422,8 +79445,8 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Control Surface Input"
-	    Location		    [1078, 607, 2472, 1396]
-	    Open		    off
+	    Location		    [503, 165, 1897, 954]
+	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -79972,22 +79995,68 @@ Model {
 	    }
 	    Block {
 	      BlockType		      Reference
-	      Name		      "Digital Input"
-	      SID		      "1613"
+	      Name		      "Input Capture"
+	      SID		      "2629"
 	      Ports		      [0, 7]
-	      Position		      [30, 35, 135, 255]
+	      Position		      [15, 36, 140, 244]
 	      LibraryVersion	      "3.10"
-	      SourceBlock	      "MCHP_Blockset/Digital IO/Digital Input"
-	      SourceType	      "Input driver for Digital Input Pins"
-	      PORT		      "Dynamic Options"
-	      PORT_TXT		      "A   [ 0  1  2  3  4  5  6  7  9  10  14  15 ]"
-	      PIN		      "[0 1 2 3 4 5 6 ]"
-	      PACK		      off
-	      SIMULTANEOUS	      off
-	      ORDERING		      "None"
-	      SampleTime	      "-1 "
-	      MCHP_PORT		      "{Digital In}{DIN}2:0:A0;{Digital In}{DIN}2:0:A1;{Digital In}{DIN}2:0:A2;{Digital In}{DIN}2:0:"
-	      "A3;{Digital In}{DIN}2:0:A4;{Digital In}{DIN}2:0:A5;{Digital In}{DIN}2:0:A6;"
+	      SourceBlock	      "MCHP_Blockset/Pulse Input//Output/Input Capture"
+	      SourceType	      "Input driver for Input Capture Peripheral"
+	      IntPriority	      "6"
+	      Channel		      "[1     2     3     4     5     6     7]"
+	      Channel_OLD	      "[1  2  3  4  5  6  7]"
+	      PIN_IC1		      "Dynamic Options"
+	      PIN_IC1_TXT	      "D0 / P64 / Pin[72]"
+	      PIN_IC2		      "Dynamic Options"
+	      PIN_IC2_TXT	      "D8 / P72 / Pin[68]"
+	      PIN_IC3		      "Dynamic Options"
+	      PIN_IC3_TXT	      "D11 / P75 / Pin[71]"
+	      PIN_IC4		      "Dynamic Options"
+	      PIN_IC4_TXT	      "A15 / P31 / Pin[67]"
+	      PIN_IC5		      "Dynamic Options"
+	      PIN_IC5_TXT	      "A0 / P16 / Pin[17]"
+	      PIN_IC6		      "Dynamic Options"
+	      PIN_IC6_TXT	      "D13 / P77 / Pin[80]"
+	      PIN_IC7		      "Dynamic Options"
+	      PIN_IC7_TXT	      "C3 / P51 / Pin[8]"
+	      PIN_IC8		      "Dynamic Options"
+	      PIN_IC8_TXT	      "A0 / P16 / Pin[17]"
+	      PIN_IC9		      "Dynamic Options"
+	      PIN_IC9_TXT	      "A0 / P16 / Pin[17]"
+	      PIN_IC10		      "Dynamic Options"
+	      PIN_IC10_TXT	      "A0 / P16 / Pin[17]"
+	      PIN_IC11		      "Dynamic Options"
+	      PIN_IC11_TXT	      "A0 / P16 / Pin[17]"
+	      PIN_IC12		      "Dynamic Options"
+	      PIN_IC12_TXT	      "A0 / P16 / Pin[17]"
+	      PIN_IC13		      "Dynamic Options"
+	      PIN_IC13_TXT	      "A0 / P16 / Pin[17]"
+	      PIN_IC14		      "Dynamic Options"
+	      PIN_IC14_TXT	      "A0 / P16 / Pin[17]"
+	      PIN_IC15		      "Dynamic Options"
+	      PIN_IC15_TXT	      "A0 / P16 / Pin[17]"
+	      PIN_IC16		      "Dynamic Options"
+	      PIN_IC16_TXT	      "A0 / P16 / Pin[17]"
+	      Channel_UP_Down_Periode "[1     1     1     1     1     1     1]"
+	      MaxChannel	      "[0.003   0.003   0.003   0.003   0.003   0.003   0.003]"
+	      SafeMarge		      "[0     0     0     0     0     0     0]"
+	      MaxChannelValue	      "2.^[ 14.680  14.680  14.680  14.680  14.680  14.680  14.680]  =>  [26249  26249  26249  "
+	      "26249  26249  26249  26249]"
+	      ICxmax		      "[26249  26249  26249  26249  26249  26249  26249]"
+	      Timer		      "[1  1  1  1  1  1  1]"
+	      ChangeDetected	      "[0     0     0     0     0     0     0]"
+	      ChangeDetectedPortRef   "3"
+	      SampleTime	      ".02"
+	      Status		      "OK"
+	      MCHP_PORT		      "{Input Capture 1}{IC1}6:0:P64;{Input Capture 2}{IC2}6:0:P72;{Input Capture 3}{IC3}6:0:P75;{In"
+	      "put Capture 4}{IC4}6:0:P31;{Input Capture 5}{IC5}6:0:P16;{Input Capture 6}{IC6}6:0:P77;{Input Capture 7}{IC7}6:"
+	      "0:P51;"
+	      MCHP_TIMER_REQUEST      "{Input Capture 1}{IC1}6:0:1:0:[1  2  3  4  5]:210000;{Input Capture 1}{IC1}6:0:1:0:[1 "
+	      " 2  3  4  5]:210000;{Input Capture 1}{IC1}6:0:1:0:[1  2  3  4  5]:210000;{Input Capture 1}{IC1}6:0:1:0:[1  2  3"
+	      "  4  5]:210000;{Input Capture 1}{IC1}6:0:1:0:[1  2  3  4  5]:210000;{Input Capture 1}{IC1}6:0:1:0:[1  2  3  4  "
+	      "5]:210000;{Input Capture 1}{IC1}6:0:1:0:[1  2  3  4  5]:210000;"
+	      MCHP_TIMER_RESULT	      "[1 26249.000000000011 ;1 26249.000000000011 ;1 26249.000000000011 ;1 26249.00000000001"
+	      "1 ;1 26249.000000000011 ;1 26249.000000000011 ;1 26249.000000000011 ]"
 	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
 	      "(RA6)"
 	    }
@@ -80321,37 +80390,37 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      SrcBlock		      "Digital Input"
+	      SrcBlock		      "Input Capture"
 	      SrcPort		      7
-	      Points		      [90, 0; 0, -50]
+	      Points		      [85, 0; 0, -45]
 	      DstBlock		      "myMux Fun5"
 	      DstPort		      5
 	    }
 	    Line {
-	      SrcBlock		      "Digital Input"
+	      SrcBlock		      "Input Capture"
 	      SrcPort		      5
-	      Points		      [90, 0; 0, -25]
+	      Points		      [85, 0; 0, -20]
 	      DstBlock		      "myMux Fun5"
 	      DstPort		      4
 	    }
 	    Line {
-	      SrcBlock		      "Digital Input"
+	      SrcBlock		      "Input Capture"
 	      SrcPort		      4
-	      Points		      [90, 0; 0, -30]
+	      Points		      [85, 0; 0, -25]
 	      DstBlock		      "myMux Fun5"
 	      DstPort		      3
 	    }
 	    Line {
-	      SrcBlock		      "Digital Input"
+	      SrcBlock		      "Input Capture"
 	      SrcPort		      3
-	      Points		      [90, 0; 0, -35]
+	      Points		      [85, 0; 0, -30]
 	      DstBlock		      "myMux Fun5"
 	      DstPort		      2
 	    }
 	    Line {
-	      SrcBlock		      "Digital Input"
+	      SrcBlock		      "Input Capture"
 	      SrcPort		      2
-	      Points		      [80, 0; 0, -40]
+	      Points		      [75, 0; 0, -35]
 	      DstBlock		      "myMux Fun5"
 	      DstPort		      1
 	    }
@@ -80362,16 +80431,16 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      SrcBlock		      "Digital Input"
+	      SrcBlock		      "Input Capture"
 	      SrcPort		      6
-	      Points		      [55, 0; 0, 65]
+	      Points		      [50, 0; 0, 70]
 	      DstBlock		      "Data Type Conversion2"
 	      DstPort		      1
 	    }
 	    Line {
-	      SrcBlock		      "Digital Input"
+	      SrcBlock		      "Input Capture"
 	      SrcPort		      1
-	      Points		      [70, 0; 0, 250]
+	      Points		      [65, 0; 0, 255]
 	      DstBlock		      "Data Type Conversion3"
 	      DstPort		      1
 	    }
@@ -80511,7 +80580,7 @@ Model {
 	  System {
 	    Name		    "Detect Transition\nHigh to Low"
 	    Location		    [6, 83, 539, 304]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -80804,7 +80873,8 @@ Model {
 	      S_OUTPUT_Size	      "[0]"
 	      ORDERING		      "None"
 	      SampleTime	      "-1"
-	      MCHP_MASTERLINK	      "integratedMCUSlugs_ver2/Microchip Master"
+	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
+	      "(RA6)"
 	      PinDigitalInput	      "[]"
 	      PinDigitalOutput	      "[]   "
 	      PinAnalogInput	      "[]"
@@ -80830,7 +80900,8 @@ Model {
 	      S_OUTPUT_Size	      "[0]"
 	      ORDERING		      "None"
 	      SampleTime	      "-1"
-	      MCHP_MASTERLINK	      "integratedMCUSlugs_ver2/Microchip Master"
+	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
+	      "(RA6)"
 	      PinDigitalInput	      "[]"
 	      PinDigitalOutput	      "[]   "
 	      PinAnalogInput	      "[]"
@@ -80856,7 +80927,8 @@ Model {
 	      S_OUTPUT_Size	      "[0]"
 	      ORDERING		      "None"
 	      SampleTime	      "-1"
-	      MCHP_MASTERLINK	      "integratedMCUSlugs_ver2/Microchip Master"
+	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
+	      "(RA6)"
 	      PinDigitalInput	      "[]"
 	      PinDigitalOutput	      "[]   "
 	      PinAnalogInput	      "[]"
@@ -80882,7 +80954,8 @@ Model {
 	      S_OUTPUT_Size	      "[0]"
 	      ORDERING		      "None"
 	      SampleTime	      "-1"
-	      MCHP_MASTERLINK	      "integratedMCUSlugs_ver2/Microchip Master"
+	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
+	      "(RA6)"
 	      PinDigitalInput	      "[]"
 	      PinDigitalOutput	      "[]   "
 	      PinAnalogInput	      "[]"
@@ -81916,7 +81989,8 @@ Model {
 	      S_OUTPUT_Size	      "[]"
 	      ORDERING		      "None"
 	      SampleTime	      "-1"
-	      MCHP_MASTERLINK	      "integratedMCUSlugs_ver2/Microchip Master"
+	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
+	      "(RA6)"
 	      PinDigitalInput	      "[]"
 	      PinDigitalOutput	      "[]   "
 	      PinAnalogInput	      "[]"
@@ -81941,7 +82015,8 @@ Model {
 	      S_OUTPUT_Size	      "[]"
 	      ORDERING		      "None"
 	      SampleTime	      "-1"
-	      MCHP_MASTERLINK	      "integratedMCUSlugs_ver2/Microchip Master"
+	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
+	      "(RA6)"
 	      PinDigitalInput	      "[]"
 	      PinDigitalOutput	      "[]   "
 	      PinAnalogInput	      "[]"
@@ -81966,7 +82041,8 @@ Model {
 	      S_OUTPUT_Size	      "[]"
 	      ORDERING		      "None"
 	      SampleTime	      "-1"
-	      MCHP_MASTERLINK	      "integratedMCUSlugs_ver2/Microchip Master"
+	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
+	      "(RA6)"
 	      PinDigitalInput	      "[]"
 	      PinDigitalOutput	      "[]   "
 	      PinAnalogInput	      "[]"
@@ -81991,7 +82067,8 @@ Model {
 	      S_OUTPUT_Size	      "[]"
 	      ORDERING		      "None"
 	      SampleTime	      "-1"
-	      MCHP_MASTERLINK	      "integratedMCUSlugs_ver2/Microchip Master"
+	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
+	      "(RA6)"
 	      PinDigitalInput	      "[]"
 	      PinDigitalOutput	      "[]   "
 	      PinAnalogInput	      "[]"
@@ -82672,7 +82749,8 @@ Model {
       BAUD_Choice_IR_InitSeq_TXT "0"
       BAUD_Custom_InitSeq     "0"
       InitSequence	      "'Hello World'"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
     }
     Block {
       BlockType		      Reference
@@ -82713,7 +82791,8 @@ Model {
       BAUD_Choice_IR_InitSeq_TXT "0"
       BAUD_Custom_InitSeq     "0"
       InitSequence	      "'Hello World'"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
     }
     Block {
       BlockType		      SubSystem
@@ -82772,7 +82851,7 @@ Model {
 	  S_OUTPUT_Size		  "[]"
 	  ORDERING		  "Output"
 	  SampleTime		  "-1"
-	  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -83137,6 +83216,7 @@ Model {
 		  Name			  "Action Port"
 		  SID			  "1753"
 		  Position		  [170, 15, 229, 43]
+		  ActionType		  "then"
 		}
 		Block {
 		  BlockType		  Gain
@@ -83212,6 +83292,7 @@ Model {
 		  Name			  "Action Port"
 		  SID			  "1758"
 		  Position		  [170, 15, 229, 43]
+		  ActionType		  "elseif"
 		}
 		Block {
 		  BlockType		  Gain
@@ -83296,6 +83377,7 @@ Model {
 		  Name			  "Action Port"
 		  SID			  "1764"
 		  Position		  [170, 15, 229, 43]
+		  ActionType		  "elseif"
 		}
 		Block {
 		  BlockType		  SubSystem
@@ -84447,6 +84529,7 @@ Model {
 		  Name			  "Action Port"
 		  SID			  "1813"
 		  Position		  [170, 15, 229, 43]
+		  ActionType		  "elseif"
 		}
 		Block {
 		  BlockType		  SubSystem
@@ -86090,7 +86173,7 @@ Model {
 	  S_OUTPUT_Size		  "[-1]"
 	  ORDERING		  "None"
 	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "integratedMCUSlugs_ver2/Microchip Master"
+	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
 	  PinDigitalInput	  "[]"
 	  PinDigitalOutput	  "[]   "
 	  PinAnalogInput	  "[]"
@@ -86743,7 +86826,8 @@ Model {
       S_OUTPUT_Size	      "[0]"
       ORDERING		      "None"
       SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       PinDigitalInput	      "[]"
       PinDigitalOutput	      "[]   "
       PinAnalogInput	      "[]"
@@ -86769,46 +86853,11 @@ Model {
       S_OUTPUT_Size	      "[-1]"
       ORDERING		      "Input"
       SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       PinDigitalInput	      "[]"
       PinDigitalOutput	      "[]   "
       PinAnalogInput	      "[]"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "is it in Mid Level, Pt or SPT?\n[navSupport.c]"
-      SID		      "1890"
-      Tag		      "dsPIC_dsPIC_CFunctionCall"
-      Ports		      [0, 1]
-      Position		      [1870, 737, 1975, 773]
-      BackgroundColor	      "orange"
-      SourceBlock	      "dsPICdrivers/OTHERS/C Function Call"
-      SourceType	      "C Function Call"
-      FctUpdate		      "Output Function"
-      fctName		      "'isPassthrough'"
-      INPUT_SIZE	      "1"
-      INPUT1		      "--"
-      INPUT2		      "--"
-      INPUT3		      "--"
-      OUTPUT_SIZE	      "1"
-      OUTPUT1		      "uint8"
-      SampleTime	      "0.01"
-      InputType		      "[ ]"
-      OutputType	      "[ 2 ]"
-      FctDeclaration	      "extern uint8_T isPassthrough();"
-      FctCall		      "%y1 = isPassthrough();"
-      OrderingInOutPopup      "None"
-      FctStart		      "None"
-      FctStart_Name	      "Init_onlyOnce"
-      FctStart_Declaration    "inline extern void Init_onlyOnce();"
-      FctStart_Call	      "Init_onlyOnce();"
-      FctInit		      "None"
-      FctInit_Name	      "Init_Reset"
-      FctInit_Declaration     "inline extern void Init_Reset();"
-      FctInit_Call	      "Init_Reset();"
-      PinDigitalInput	      "[]"
-      PinDigitalOutput	      "[]"
-      AnalogueInput	      "[]"
     }
     Block {
       BlockType		      Reference
@@ -86830,7 +86879,8 @@ Model {
       S_OUTPUT_Size	      "[0]"
       ORDERING		      "None"
       SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       PinDigitalInput	      "[]"
       PinDigitalOutput	      "[]   "
       PinAnalogInput	      "[]"
@@ -87362,7 +87412,8 @@ Model {
       S_OUTPUT_Size	      "[0]"
       ORDERING		      "None"
       SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
+      "RA6)"
       PinDigitalInput	      "[]"
       PinDigitalOutput	      "[]   "
       PinAnalogInput	      "[]"
@@ -88578,8 +88629,6 @@ Stateflow {
     viewObj		    2
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -88746,8 +88795,6 @@ Stateflow {
     firstJunction	    13
     viewObj		    11
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -88871,8 +88918,6 @@ Stateflow {
     viewObj		    18
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -88994,8 +89039,6 @@ Stateflow {
     firstJunction	    27
     viewObj		    25
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -89160,8 +89203,6 @@ Stateflow {
     firstJunction	    36
     viewObj		    34
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -89305,8 +89346,6 @@ Stateflow {
     firstJunction	    44
     viewObj		    42
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -89476,8 +89515,6 @@ Stateflow {
     viewObj		    51
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -89600,8 +89637,6 @@ Stateflow {
     firstJunction	    60
     viewObj		    58
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -89767,8 +89802,6 @@ Stateflow {
     viewObj		    67
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -89892,8 +89925,6 @@ Stateflow {
     firstJunction	    76
     viewObj		    74
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -90016,8 +90047,6 @@ Stateflow {
     firstJunction	    83
     viewObj		    81
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -90142,8 +90171,6 @@ Stateflow {
     firstJunction	    90
     viewObj		    88
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -90287,8 +90314,6 @@ Stateflow {
     firstJunction	    98
     viewObj		    96
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -90453,8 +90478,6 @@ Stateflow {
     firstJunction	    107
     viewObj		    105
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -90621,8 +90644,6 @@ Stateflow {
     firstJunction	    116
     viewObj		    114
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -90745,8 +90766,6 @@ Stateflow {
     firstJunction	    123
     viewObj		    121
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -90868,8 +90887,6 @@ Stateflow {
     firstJunction	    130
     viewObj		    128
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -90991,8 +91008,6 @@ Stateflow {
     firstJunction	    137
     viewObj		    135
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -91349,8 +91364,6 @@ Stateflow {
     firstJunction	    156
     viewObj		    154
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -91474,8 +91487,6 @@ Stateflow {
     firstJunction	    163
     viewObj		    161
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -91703,8 +91714,6 @@ Stateflow {
     firstJunction	    176
     viewObj		    174
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -91827,8 +91836,6 @@ Stateflow {
     firstJunction	    183
     viewObj		    181
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -91951,8 +91958,6 @@ Stateflow {
     firstJunction	    190
     viewObj		    188
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -92074,8 +92079,6 @@ Stateflow {
     firstJunction	    197
     viewObj		    195
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -92198,8 +92201,6 @@ Stateflow {
     firstJunction	    204
     viewObj		    202
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -92323,8 +92324,6 @@ Stateflow {
     firstJunction	    211
     viewObj		    209
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    10
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -92510,8 +92509,6 @@ Stateflow {
     firstJunction	    221
     viewObj		    219
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -92633,8 +92630,6 @@ Stateflow {
     firstJunction	    228
     viewObj		    226
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -92756,8 +92751,6 @@ Stateflow {
     firstJunction	    235
     viewObj		    233
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -92922,8 +92915,6 @@ Stateflow {
     firstJunction	    244
     viewObj		    242
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -93091,8 +93082,6 @@ Stateflow {
     firstJunction	    253
     viewObj		    251
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    9
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -93302,8 +93291,6 @@ Stateflow {
     firstJunction	    264
     viewObj		    262
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -93490,8 +93477,6 @@ Stateflow {
     firstJunction	    274
     viewObj		    272
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -93633,8 +93618,6 @@ Stateflow {
     firstJunction	    282
     viewObj		    280
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -93799,8 +93782,6 @@ Stateflow {
     firstJunction	    291
     viewObj		    289
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -93969,8 +93950,6 @@ Stateflow {
     firstJunction	    300
     viewObj		    298
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -94157,8 +94136,6 @@ Stateflow {
     firstJunction	    310
     viewObj		    308
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -94322,8 +94299,6 @@ Stateflow {
     firstJunction	    319
     viewObj		    317
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -94489,8 +94464,6 @@ Stateflow {
     viewObj		    326
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -94684,8 +94657,6 @@ Stateflow {
     viewObj		    336
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -94809,8 +94780,6 @@ Stateflow {
     firstJunction	    345
     viewObj		    343
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -94933,8 +94902,6 @@ Stateflow {
     firstJunction	    352
     viewObj		    350
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -95059,8 +95026,6 @@ Stateflow {
     firstJunction	    359
     viewObj		    357
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -95186,8 +95151,6 @@ Stateflow {
     viewObj		    364
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -95312,8 +95275,6 @@ Stateflow {
     viewObj		    371
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -95438,8 +95399,6 @@ Stateflow {
     viewObj		    378
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -95564,8 +95523,6 @@ Stateflow {
     viewObj		    385
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -95688,8 +95645,6 @@ Stateflow {
     firstJunction	    394
     viewObj		    392
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -95811,8 +95766,6 @@ Stateflow {
     firstJunction	    401
     viewObj		    399
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -95933,8 +95886,6 @@ Stateflow {
     firstJunction	    408
     viewObj		    406
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -96100,8 +96051,6 @@ Stateflow {
     firstJunction	    417
     viewObj		    415
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -96246,8 +96195,6 @@ Stateflow {
     viewObj		    423
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -96370,8 +96317,6 @@ Stateflow {
     firstJunction	    432
     viewObj		    430
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -96558,8 +96503,6 @@ Stateflow {
     firstJunction	    442
     viewObj		    440
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -96684,8 +96627,6 @@ Stateflow {
     firstJunction	    449
     viewObj		    447
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -96811,8 +96752,6 @@ Stateflow {
     viewObj		    454
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -96937,8 +96876,6 @@ Stateflow {
     viewObj		    461
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -97062,8 +96999,6 @@ Stateflow {
     firstJunction	    470
     viewObj		    468
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -97208,8 +97143,6 @@ Stateflow {
     viewObj		    476
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -97333,8 +97266,6 @@ Stateflow {
     viewObj		    483
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -97477,8 +97408,6 @@ Stateflow {
     firstJunction	    493
     viewObj		    491
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -97643,8 +97572,6 @@ Stateflow {
     firstJunction	    502
     viewObj		    500
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -97787,8 +97714,6 @@ Stateflow {
     firstJunction	    510
     viewObj		    508
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -97954,8 +97879,6 @@ Stateflow {
     firstJunction	    519
     viewObj		    517
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -98157,8 +98080,6 @@ Stateflow {
     firstJunction	    529
     viewObj		    527
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -98327,8 +98248,6 @@ Stateflow {
     viewObj		    536
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -98490,8 +98409,6 @@ Stateflow {
     firstJunction	    547
     viewObj		    545
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -98661,8 +98578,6 @@ Stateflow {
     firstJunction	    556
     viewObj		    554
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -98831,8 +98746,6 @@ Stateflow {
     firstJunction	    565
     viewObj		    563
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -98997,8 +98910,6 @@ Stateflow {
     firstJunction	    574
     viewObj		    572
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -99164,8 +99075,6 @@ Stateflow {
     firstJunction	    583
     viewObj		    581
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -99333,8 +99242,6 @@ Stateflow {
     firstJunction	    592
     viewObj		    590
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -99478,8 +99385,6 @@ Stateflow {
     firstJunction	    600
     viewObj		    598
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -99647,8 +99552,6 @@ Stateflow {
     firstJunction	    609
     viewObj		    607
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -99815,8 +99718,6 @@ Stateflow {
     firstJunction	    618
     viewObj		    616
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -99984,8 +99885,6 @@ Stateflow {
     firstJunction	    627
     viewObj		    625
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -100153,8 +100052,6 @@ Stateflow {
     firstJunction	    636
     viewObj		    634
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -100277,8 +100174,6 @@ Stateflow {
     firstJunction	    643
     viewObj		    641
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -100444,8 +100339,6 @@ Stateflow {
     firstJunction	    652
     viewObj		    650
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -100614,8 +100507,6 @@ Stateflow {
     firstJunction	    661
     viewObj		    659
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -100784,8 +100675,6 @@ Stateflow {
     firstJunction	    670
     viewObj		    668
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -100954,8 +100843,6 @@ Stateflow {
     firstJunction	    679
     viewObj		    677
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -101121,8 +101008,6 @@ Stateflow {
     firstJunction	    688
     viewObj		    686
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -101291,8 +101176,6 @@ Stateflow {
     firstJunction	    697
     viewObj		    695
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -101461,8 +101344,6 @@ Stateflow {
     firstJunction	    706
     viewObj		    704
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -101631,8 +101512,6 @@ Stateflow {
     firstJunction	    715
     viewObj		    713
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -101798,8 +101677,6 @@ Stateflow {
     firstJunction	    724
     viewObj		    722
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -101921,8 +101798,6 @@ Stateflow {
     firstJunction	    731
     viewObj		    729
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -102044,8 +101919,6 @@ Stateflow {
     firstJunction	    738
     viewObj		    736
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -102167,8 +102040,6 @@ Stateflow {
     firstJunction	    745
     viewObj		    743
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -102289,8 +102160,6 @@ Stateflow {
     firstJunction	    752
     viewObj		    750
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -102476,8 +102345,6 @@ Stateflow {
     firstJunction	    762
     viewObj		    760
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    17
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -102864,8 +102731,6 @@ Stateflow {
     firstJunction	    781
     viewObj		    779
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    4
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -102973,8 +102838,6 @@ Stateflow {
     firstJunction	    787
     viewObj		    785
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -103143,8 +103006,6 @@ Stateflow {
     firstJunction	    796
     viewObj		    794
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -103313,8 +103174,6 @@ Stateflow {
     firstJunction	    805
     viewObj		    803
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -103483,8 +103342,6 @@ Stateflow {
     firstJunction	    814
     viewObj		    812
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -103652,8 +103509,6 @@ Stateflow {
     firstJunction	    823
     viewObj		    821
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -103817,8 +103672,6 @@ Stateflow {
     firstJunction	    832
     viewObj		    830
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -104006,8 +103859,6 @@ Stateflow {
     viewObj		    840
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -104131,8 +103982,6 @@ Stateflow {
     viewObj		    847
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -104256,8 +104105,6 @@ Stateflow {
     firstJunction	    856
     viewObj		    854
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -104404,8 +104251,6 @@ Stateflow {
     firstJunction	    864
     viewObj		    862
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -104552,8 +104397,6 @@ Stateflow {
     firstJunction	    872
     viewObj		    870
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -104700,8 +104543,6 @@ Stateflow {
     firstJunction	    880
     viewObj		    878
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -104848,8 +104689,6 @@ Stateflow {
     firstJunction	    888
     viewObj		    886
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -104996,8 +104835,6 @@ Stateflow {
     firstJunction	    896
     viewObj		    894
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -105145,8 +104982,6 @@ Stateflow {
     viewObj		    902
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -105271,8 +105106,6 @@ Stateflow {
     viewObj		    909
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -105396,8 +105229,6 @@ Stateflow {
     viewObj		    916
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -105521,8 +105352,6 @@ Stateflow {
     firstJunction	    925
     viewObj		    923
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -105669,8 +105498,6 @@ Stateflow {
     firstJunction	    933
     viewObj		    931
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -105817,8 +105644,6 @@ Stateflow {
     firstJunction	    941
     viewObj		    939
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -105965,8 +105790,6 @@ Stateflow {
     firstJunction	    949
     viewObj		    947
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -106113,8 +105936,6 @@ Stateflow {
     firstJunction	    957
     viewObj		    955
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -106261,8 +106082,6 @@ Stateflow {
     firstJunction	    965
     viewObj		    963
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -106410,8 +106229,6 @@ Stateflow {
     viewObj		    971
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -106536,8 +106353,6 @@ Stateflow {
     viewObj		    978
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
