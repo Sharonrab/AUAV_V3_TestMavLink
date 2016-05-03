@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.219"
+    ComputedModelVersion    "1.220"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -34,7 +34,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-1688.0, 62.0, 1696.0, 1026.0]
+      Location		      [-1756.0, 76.0, 1696.0, 1026.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -74,7 +74,7 @@ Model {
 	}
 	Object {
 	  $ObjectID		  7
-	  IsActive		  [0]
+	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
 	  Extents		  [1453.0, 848.0]
@@ -92,7 +92,7 @@ Model {
 	}
 	Object {
 	  $ObjectID		  9
-	  IsActive		  [1]
+	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "452"
 	  Extents		  [1453.0, 848.0]
@@ -109,9 +109,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "sharon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Apr 29 16:37:51 2016"
-  RTWModifiedTimeStamp	  383848661
-  ModelVersionFormat	  "1.%<AutoIncrement:219>"
+  LastModifiedDate	  "Fri Apr 29 16:48:22 2016"
+  RTWModifiedTimeStamp	  383848844
+  ModelVersionFormat	  "1.%<AutoIncrement:220>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  on
@@ -1528,7 +1528,7 @@ Model {
   }
   System {
     Name		    "AUAV3_AND_SLUGS_SENSOR"
-    Location		    [-1688, 62, 8, 1088]
+    Location		    [-1756, 76, -60, 1102]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    266
