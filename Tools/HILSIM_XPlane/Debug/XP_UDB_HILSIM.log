@@ -1,0 +1,31 @@
+﻿Build started 02/09/2015 23:51:51.
+     1>Project "C:\Users\User\Documents\GitHub\MatrixPilot-1\Tools\HILSIM_XPlane\XP_UDB_HILSIM.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D XPNETDATA_EXPORTS /D IBM=1 /D _CRT_SECURE_NO_WARNINGS /D _VC80_UPGRADE=0x0700 /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\XP_UDB_HILSIM.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D XPNETDATA_EXPORTS /D IBM=1 /D _CRT_SECURE_NO_WARNINGS /D _VC80_UPGRADE=0x0700 /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\XP_UDB_HILSIM.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt HILSIM.cpp SerialIO.cpp Setup.cpp utility.cpp
+         utility.cpp
+         Setup.cpp
+         SerialIO.cpp
+         HILSIM.cpp
+         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D XPNETDATA_EXPORTS /D IBM=1 /D _CRT_SECURE_NO_WARNINGS /D _VC80_UPGRADE=0x0700 /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt UDBSocketWin.c
+         UDBSocketWin.c
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1186,5): warning MSB8012: TargetPath(C:\Users\User\Documents\GitHub\MatrixPilot-1\Tools\HILSIM_XPlane\Debug\XP_UDB_HILSIM.dll) does not match the Linker's OutputFile property value (C:\Users\User\Documents\GitHub\MatrixPilot-1\Tools\HILSIM_XPlane\Debug\HILSIM2.xpl). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1187,5): warning MSB8012: TargetExt(.dll) does not match the Linker's OutputFile property value (.xpl). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(1188,5): warning MSB8012: TargetName(XP_UDB_HILSIM) does not match the Linker's OutputFile property value (HILSIM2). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Debug\HILSIM2.xpl" /INCREMENTAL /NOLOGO /LIBPATH:.\lib XPLM.lib opengl32.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"Debug\XP-netdata.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"Debug\XP-netdata.lib" /MACHINE:X86 /SAFESEH /DLL Debug\HILSIM.obj
+         Debug\SerialIO.obj
+         Debug\Setup.obj
+         Debug\stdafx.obj
+         Debug\UDBSocketWin.obj
+         Debug\utility.obj
+     1>HILSIM.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+            Creating library Debug\XP-netdata.lib and object Debug\XP-netdata.exp
+         XP_UDB_HILSIM.vcxproj -> C:\Users\User\Documents\GitHub\MatrixPilot-1\Tools\HILSIM_XPlane\Debug\XP_UDB_HILSIM.dll
+     1>Done Building Project "C:\Users\User\Documents\GitHub\MatrixPilot-1\Tools\HILSIM_XPlane\XP_UDB_HILSIM.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.48

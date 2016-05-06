@@ -1,12 +1,12 @@
 Model {
   Name			  "AUAV_V3_TestMavLink"
-  Version		  7.8
+  Version		  7.6
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.126"
+    ComputedModelVersion    "1.127"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -24,17 +24,16 @@ Model {
   DataTypeOverrideAppliesTo "AllNumericTypes"
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
-  FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
   Created		  "Fri Nov 08 22:37:12 2013"
   Creator		  "M91449"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "sharon"
+  LastModifiedBy	  "User"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Feb 22 16:36:34 2016"
-  RTWModifiedTimeStamp	  378059720
-  ModelVersionFormat	  "1.%<AutoIncrement:126>"
+  LastModifiedDate	  "Thu Apr 07 22:48:26 2016"
+  RTWModifiedTimeStamp	  381968384
+  ModelVersionFormat	  "1.%<AutoIncrement:127>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  on
@@ -42,7 +41,6 @@ Model {
   WideLines		  off
   ShowLineDimensions	  off
   ShowPortDataTypes	  off
-  ShowDesignRanges	  off
   ShowLoopsOnError	  on
   IgnoreBidirectionalLines off
   ShowStorageClass	  off
@@ -110,13 +108,13 @@ Model {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      1
-      Version		      "1.11.1"
+      Version		      "1.10.0"
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
 	  $ObjectID		  2
-	  Version		  "1.11.1"
+	  Version		  "1.10.0"
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
 	  AbsTol		  "auto"
@@ -150,7 +148,7 @@ Model {
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  3
-	  Version		  "1.11.1"
+	  Version		  "1.10.0"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -162,7 +160,6 @@ Model {
 	  SaveFinalState	  off
 	  SaveCompleteFinalSimState off
 	  SaveFormat		  "Array"
-	  SignalLoggingSaveFormat "ModelDataLogs"
 	  SaveOutput		  on
 	  SaveState		  off
 	  SignalLogging		  on
@@ -182,13 +179,12 @@ Model {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  4
-	  Version		  "1.11.1"
+	  Version		  "1.10.0"
 	  BlockReduction	  on
 	  BooleanDataType	  on
 	  ConditionallyExecuteInputs on
 	  InlineParams		  on
 	  UseIntDivNetSlope	  off
-	  UseFloatMulNetSlope	  off
 	  UseSpecifiedMinMax	  off
 	  InlineInvariantSignals  on
 	  OptimizeBlockIOStorage  on
@@ -221,11 +217,10 @@ Model {
 	  BufferReusableBoundary  on
 	  SimCompilerOptimization "Off"
 	  AccelVerboseBuild	  off
-	  AccelParallelForEachSubsystem	on
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  5
-	  Version		  "1.11.1"
+	  Version		  "1.10.0"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -280,7 +275,6 @@ Model {
 	  UnconnectedOutputMsg	  "warning"
 	  UnconnectedLineMsg	  "warning"
 	  SFcnCompatibilityMsg	  "none"
-	  FrameProcessingCompatibilityMsg "warning"
 	  UniqueDataStoreMsg	  "none"
 	  BusObjectLabelMismatch  "warning"
 	  RootOutportRequireBusObject "warning"
@@ -297,7 +291,6 @@ Model {
 	  ModelReferenceExtraNoncontSigs "error"
 	  StateNameClashWarn	  "none"
 	  SimStateInterfaceChecksumMismatchMsg "warning"
-	  SimStateOlderReleaseMsg "error"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -309,11 +302,10 @@ Model {
 	  SFInvalidInputDataAccessInChartInitDiag "warning"
 	  SFNoUnconditionalDefaultTransitionDiag "warning"
 	  SFTransitionOutsideNaturalParentDiag "warning"
-	  SFUnconditionalTransitionShadowingDiag "warning"
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  6
-	  Version		  "1.11.1"
+	  Version		  "1.10.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    12
@@ -367,7 +359,7 @@ Model {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  7
-	  Version		  "1.11.1"
+	  Version		  "1.10.0"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
@@ -382,7 +374,7 @@ Model {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  8
-	  Version		  "1.11.1"
+	  Version		  "1.10.0"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -397,7 +389,7 @@ Model {
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  9
-	  Version		  "1.11.1"
+	  Version		  "1.10.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -440,7 +432,6 @@ Model {
 	  GenerateTraceReportEml  off
 	  GenerateCodeInfo	  off
 	  GenerateSLWebview	  off
-	  GenerateCodeMetricsReport off
 	  RTWCompilerOptimization "Off"
 	  CheckMdlBeforeBuild	  "Off"
 	  CustomRebuildMode	  "OnUpdate"
@@ -449,7 +440,7 @@ Model {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      10
-	      Version		      "1.11.1"
+	      Version		      "1.10.0"
 	      ForceParamTrailComments off
 	      GenerateComments	      on
 	      IgnoreCustomStorageClasses off
@@ -488,7 +479,7 @@ Model {
 	    Simulink.STFCustomTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      11
-	      Version		      "1.11.1"
+	      Version		      "1.10.0"
 	      Array {
 		Type			"Cell"
 		Dimension		7
@@ -507,7 +498,7 @@ Model {
 	      TargetFunctionLibrary   "ANSI_C"
 	      UtilityFuncGeneration   "Auto"
 	      ERTMultiwordTypeDef     "System defined"
-	      CodeExecutionProfiling  off
+	      ERTCodeCoverageTool     "None"
 	      ERTMultiwordLength      256
 	      MultiwordLength	      2048
 	      GenerateFullHeader      on
@@ -517,7 +508,6 @@ Model {
 	      ModelReferenceCompliant on
 	      ParMdlRefBuildCompliant off
 	      CompOptLevelCompliant   off
-	      ConcurrentExecutionCompliant off
 	      IncludeMdlTerminateFcn  off
 	      GeneratePreprocessorConditionals "Use local settings"
 	      CombineOutputUpdateFcns on
@@ -550,7 +540,7 @@ Model {
 		Simulink.ERTTargetCC {
 		  $BackupClass		  "Simulink.TargetCC"
 		  $ObjectID		  12
-		  Version		  "1.11.1"
+		  Version		  "1.10.0"
 		  Array {
 		    Type		    "Cell"
 		    Dimension		    13
@@ -575,7 +565,7 @@ Model {
 		  TargetFunctionLibrary	  "ANSI_C"
 		  UtilityFuncGeneration	  "Auto"
 		  ERTMultiwordTypeDef	  "System defined"
-		  CodeExecutionProfiling  off
+		  ERTCodeCoverageTool	  "None"
 		  ERTMultiwordLength	  256
 		  MultiwordLength	  2048
 		  GenerateFullHeader	  on
@@ -585,7 +575,6 @@ Model {
 		  ModelReferenceCompliant on
 		  ParMdlRefBuildCompliant off
 		  CompOptLevelCompliant	  off
-		  ConcurrentExecutionCompliant off
 		  IncludeMdlTerminateFcn  off
 		  GeneratePreprocessorConditionals "Use local settings"
 		  CombineOutputUpdateFcns on
@@ -612,8 +601,6 @@ Model {
 		  AutosarCompliant	  off
 		  GenerateErtSFunction	  off
 		  CreateSILPILBlock	  "None"
-		  CodeExecutionProfileVariable "executionProfile"
-		  CodeProfilingSaveOptions "SummaryOnly"
 		  GenerateASAP2		  off
 		  ExtMode		  off
 		  ExtModeTransport	  0
@@ -630,14 +617,13 @@ Model {
 		  RTWCAPISignals	  off
 		  RTWCAPIParams		  off
 		  RTWCAPIStates		  off
-		  RTWCAPIRootIO		  off
 		  ERTSrcFileBannerTemplate "MCHP_dsPIC_code_template.cgt"
 		  ERTHdrFileBannerTemplate "MCHP_dsPIC_code_template.cgt"
 		  ERTDataSrcFileTemplate  "MCHP_dsPIC_code_template.cgt"
 		  ERTDataHdrFileTemplate  "MCHP_dsPIC_code_template.cgt"
 		  ERTCustomFileTemplate	  "MCHP_main.tlc"
 		  CoverageDialogOpen	  "off"
-		  EnableDataOwnership	  off
+		  ModuleNamingRule	  "Unspecified"
 		  SignalDisplayLevel	  10
 		  ParamTuneLevel	  10
 		  GlobalDataDefinition	  "Auto"
@@ -650,7 +636,6 @@ Model {
 		  PreserveIfCondition	  off
 		  ConvertIfToSwitch	  off
 		  PreserveExternInFcnDecls on
-		  SuppressUnreachableDefaultCases off
 		  EnableUserReplacementTypes off
 		  Array {
 		    Type		    "Struct"
@@ -678,8 +663,6 @@ Model {
 		  MemSecDataParameters	  "Default"
 		  MemSecFuncInitTerm	  "Default"
 		  MemSecFuncExecute	  "Default"
-		  MemSecFuncSharedUtil	  "Default"
-		  CodeProfilingInstrumentation off
 		}
 		PropName		"Components"
 	      }
@@ -727,26 +710,26 @@ Model {
 	      CustomProperty {
 		DataType		"string"
 		Name			"GCCPATH"
-		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\bin"
+		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\bin"
 	      }
 	      CustomProperty {
 		DataType		"string"
 		Name			"LINKER_SCRIPT"
-		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\support\\dsPIC33E\\gld\\P35C90~1.GLD"
+		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\support\\dsPIC33E\\gld\\P35C90~1.GLD"
 	      }
 	      CustomProperty {
 		DataType		"string"
 		Name			"PIC_LIB"
-		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\lib\\dsPIC33E\\libp33EP512MU810-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1"
-		".24\\lib\\libpic30-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\lib\\libm-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\l"
-		"ib\\libc-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\lib\\libq-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\lib\\libq-d"
+		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\lib\\dsPIC33E\\libp33EP512MU810-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1"
+		".26\\lib\\libpic30-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\lib\\libm-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\l"
+		"ib\\libc-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\lib\\libq-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\lib\\libq-d"
 		"sp-elf.a"
 	      }
 	      CustomProperty {
 		DataType		"string"
 		Name			"PIC_INCLUDES"
-		Value			"-IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\include -IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\support\\dsPIC33E\\h "
-		"-IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\support\\generic\\h -IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\support\\PERIPH~2"
+		Value			"-IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\include -IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\support\\dsPIC33E\\h "
+		"-IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\support\\generic\\h -IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\support\\PERIPH~2"
 	      }
 	      CustomProperty {
 		DataType		"string"
@@ -861,8 +844,8 @@ Model {
       }
       Name		      "Configuration"
       ExtraOptions	      "-aGenerateTraceInfo=0 -aIgnoreTestpoints=0 "
-      CurrentDlgPage	      "Code Generation/Custom Code"
-      ConfigPrmDlgPosition     [ 227, 18, 1140, 711 ] 
+      CurrentDlgPage	      "Real-Time Workshop/Custom Code"
+      ConfigPrmDlgPosition    " [ 227, 18, 1198, 812 ] "
     }
     PropName		    "ConfigurationSets"
   }
@@ -904,12 +887,8 @@ Model {
   BlockParameterDefaults {
     Block {
       BlockType		      ArithShift
-      BitShiftNumberSource    "Dialog"
-      BitShiftNumber	      "0"
-      BinPtShiftNumber	      "0"
-      BitShiftDirection	      "Bidirectional"
-      DiagnosticForOORShift   "None"
-      CheckOORBitShift	      off
+      nBitShiftRight	      "0"
+      nBinPtShiftRight	      "0"
     }
     Block {
       BlockType		      Bias
@@ -945,7 +924,6 @@ Model {
       OutDataTypeStr	      "Inherit: auto"
       LockScale		      off
       SignalType	      "auto"
-      Dimensions	      "-1"
       DataLogging	      off
       DataLoggingLimitDataPoints off
       DataLoggingMaxPoints    "5000"
@@ -975,23 +953,6 @@ Model {
       SampleTime	      "-1"
     }
     Block {
-      BlockType		      Delay
-      DelayLengthSource	      "Dialog"
-      DelayLength	      "2"
-      DelayLengthUpperLimit   "100"
-      InitialConditionSource  "Dialog"
-      InitialCondition	      "0.0"
-      ExternalReset	      "None"
-      PreventDirectFeedthrough off
-      DiagnosticForOutOfRangeDelayLength "None"
-      RemoveProtectionDelayLength off
-      InputProcessing	      "Elements as channels (sample based)"
-      UseCircularBuffer	      off
-      SampleTime	      "-1"
-      StateMustResolveToSignalObject off
-      CodeGenStateStorageClass "Auto"
-    }
-    Block {
       BlockType		      Demux
       Outputs		      "4"
       DisplayOption	      "none"
@@ -1012,12 +973,6 @@ Model {
       PropagateVarSize	      "Only when enabling"
       ShowOutputPort	      off
       ZeroCross		      on
-      PortDimensions	      "1"
-      SampleTime	      "-1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "double"
-      Interpolate	      on
     }
     Block {
       BlockType		      Gain
@@ -1040,7 +995,6 @@ Model {
     Block {
       BlockType		      Inport
       Port		      "1"
-      OutputFunctionCall      off
       OutMin		      "[]"
       OutMax		      "[]"
       OutDataTypeStr	      "Inherit: auto"
@@ -1121,7 +1075,7 @@ Model {
       OutPortSampleTime	      "-1"
     }
     Block {
-      BlockType		      S-Function
+      BlockType		      "S-Function"
       FunctionName	      "system"
       SFunctionModules	      "''"
       PortCounts	      "[]"
@@ -1161,7 +1115,6 @@ Model {
       DataTypeOverride	      "UseLocalSettings"
       DataTypeOverrideAppliesTo	"AllNumericTypes"
       MinMaxOverflowLogging   "UseLocalSettings"
-      SFBlockType	      "NONE"
       Variant		      off
       GeneratePreprocessorConditionals off
     }
@@ -1224,6 +1177,19 @@ Model {
       Ports		      []
       Position		      [245, 332, 405, 388]
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	InputBlockIdxFct	"[]"
+	OutputBlockIdxFct	"[]"
+	FctType			"1"
+	FctName			"gpsUbloxParse"
+	FctParam_PtrSize	"[0  0  0  0  0  0  0  0  0  0]"
+	FctOutput		"0"
+	FctOutput_PtrSize	"[0  0  0  0  0  0  0  0  0  0]"
+	AddHeaderDeclaration	"1"
+	FctDeclarationName	"extern  void   gpsUbloxParse(void)"
+	FctParamValue		"[0]"
+      }
       SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
       SourceType	      "C Function Call"
       ParseFilesChkbx	      on
@@ -1254,6 +1220,19 @@ Model {
       Ports		      []
       Position		      [430, 332, 590, 388]
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	InputBlockIdxFct	"[]"
+	OutputBlockIdxFct	"[]"
+	FctType			"1"
+	FctName			"protDecodeMavlink"
+	FctParam_PtrSize	"[0  0  0  0  0  0  0  0  0  0]"
+	FctOutput		"0"
+	FctOutput_PtrSize	"[0  0  0  0  0  0  0  0  0  0]"
+	AddHeaderDeclaration	"0"
+	FctDeclarationName	"extern  void   protDecodeMavlink(void)"
+	FctParamValue		"[0]"
+      }
       SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
       SourceType	      "C Function Call"
       ParseFilesChkbx	      on
@@ -1298,6 +1277,25 @@ Model {
       Ports		      []
       Position		      [822, 102, 892, 132]
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	PIN_SCL			"2"
+	PIN_SDA			"3"
+	I2CSequence		"[-1      33536      400000   399771.5591       165        -1        -1        -1        -1        -1   "
+	"     1        -1        -1        -1        -1        -1        -1        -1        -1        -1        32        0  "
+	"      0        60        -1        -1        -1        -1        -1        -1        64        1        0        5   "
+	"     4        -1        -1        -1        -1        -1        2        -1        -1        -1        -1        -1  "
+	"      -1        -1        -1        -1]"
+	I2CUserData		"[0 120  0  0]"
+	I2CRef			"2"
+	I2CxCON			"49151"
+	NewRegName		"1"
+	hexHandle		"4090cc00e0000000"
+	Buff8_size		"0"
+	Buff16_size		"0"
+	IntPriority		"6"
+	blockingMode		"0"
+      }
       SourceBlock	      "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
       SourceType	      "I2C Driver"
       I2CRef		      "2"
@@ -1328,6 +1326,68 @@ Model {
       Ports		      []
       Position		      [705, 102, 775, 132]
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	PIN_SDO			"66"
+	PIN_SCK_out		"111"
+	SPISequence		"[-1       1140         0       32768      364583   364583.33333        -1        -1        -1        -1"
+	"         4        68         1        -1        -1        -1        -1        -1        -1        -1         8       "
+	"0.01      700000        -1        -1        -1        -1        -1        -1        -1         4        68         0 "
+	"       -1        -1        -1        -1        -1        -1        -1         1         1         0         2        "
+	" 1         1        -1        -1        -1        -1         4        68         1        -1        -1        -1     "
+	"   -1        -1        -1        -1         8       0.06      4200000        -1        -1        -1        -1        "
+	"-1        -1        -1         4        68         0        -1        -1        -1        -1        -1        -1     "
+	"   -1         1         1         0         3         1         1        -1        -1        -1        -1         4  "
+	"      68         1        -1        -1        -1        -1        -1        -1        -1         8       0.01      70"
+	"0000        -1        -1        -1        -1        -1        -1        -1         4        68         0        -1   "
+	"     -1        -1        -1        -1        -1        -1         1         1         0         4         1         1"
+	"        -1        -1        -1        -1         4        68         1        -1        -1        -1        -1       "
+	" -1        -1        -1         8       0.01      700000        -1        -1        -1        -1        -1        -1 "
+	"       -1         4        68         0        -1        -1        -1        -1        -1        -1        -1        "
+	" 1         1         0         5         1         1        -1        -1        -1        -1         4        68     "
+	"    1        -1        -1        -1        -1        -1        -1        -1         8       0.01      700000        -"
+	"1        -1        -1        -1        -1        -1        -1         4        68         0        -1        -1      "
+	"  -1        -1        -1        -1        -1         1         1         0         6         1         1        -1   "
+	"     -1        -1        -1         4        68         1        -1        -1        -1        -1        -1        -1"
+	"        -1         8       0.01      700000        -1        -1        -1        -1        -1        -1        -1    "
+	"     4        68         0        -1        -1        -1        -1        -1        -1        -1         1         1 "
+	"        0         7         1         1        -1        -1        -1        -1         4        68         1        "
+	"-1        -1        -1        -1        -1        -1        -1]"
+	SPISequenceFold		"[-1       1140         0       32768      364583   364583.33333        -1        -1        -1      "
+	"  -1         4        68         1        -1        -1        -1        -1        -1        -1        -1         8   "
+	"    0.01      700000        -1        -1        -1        -1        -1        -1        -1         4        68       "
+	"  0        -1        -1        -1        -1        -1        -1        -1         1         1         0         2    "
+	"     1         1        -1        -1        -1        -1         4        68         1        -1        -1        -1 "
+	"       -1        -1        -1        -1         8       0.06      4200000        -1        -1        -1        -1    "
+	"    -1        -1        -1         4        68         0        -1        -1        -1        -1        -1        -1 "
+	"       -1         1         1         0         3         1         1        -1        -1        -1        -1        "
+	" 4        68         1        -1        -1        -1        -1        -1        -1        -1         8       0.01    "
+	"  700000        -1        -1        -1        -1        -1        -1        -1         4        68         0        -"
+	"1        -1        -1        -1        -1        -1        -1         1         1         0         4         1      "
+	"   1        -1        -1        -1        -1         4        68         1        -1        -1        -1        -1   "
+	"     -1        -1        -1         8       0.01      700000        -1        -1        -1        -1        -1       "
+	" -1        -1         4        68         0        -1        -1        -1        -1        -1        -1        -1    "
+	"     1         1         0         5         1         1        -1        -1        -1        -1         4        68 "
+	"        1        -1        -1        -1        -1        -1        -1        -1         8       0.01      700000     "
+	"   -1        -1        -1        -1        -1        -1        -1         4        68         0        -1        -1  "
+	"      -1        -1        -1        -1        -1         1         1         0         6         1         1        -"
+	"1        -1        -1        -1         4        68         1        -1        -1        -1        -1        -1      "
+	"  -1        -1         8       0.01      700000        -1        -1        -1        -1        -1        -1        -1"
+	"         4        68         0        -1        -1        -1        -1        -1        -1        -1         1       "
+	"  1         0         7         1         1        -1        -1        -1        -1         4        68         1    "
+	"    -1        -1        -1        -1        -1        -1        -1]"
+	SPIUserData		"[27520 27393 27152  6404  6659  6920]"
+	SPIRef			"1"
+	SPIxCON2		"57347"
+	MASTER			"1"
+	hexHandle		"4090d00100000000"
+	Buff8_size		"0"
+	Buff16_size		"0"
+	IntPriority		"5"
+	DMA_Rx			"-1"
+	DMA_Tx			"-1"
+	blockingMode		"0"
+      }
       SourceBlock	      "MCHP_Blockset/BUS SPI/BUS SPI"
       SourceType	      "SPI Driver"
       SPIRef		      "1"
@@ -1388,7 +1448,7 @@ Model {
       SourceType	      ""
       LATEST_CMPLR	      on
       COMP_LIST		      "Dynamic Options"
-      COMP_LIST_TXT	      "xc16 - v1.24"
+      COMP_LIST_TXT	      "xc16 - v1.26"
       USE_64BIT_DOUBLE	      off
       MCHP_MULTITHREAD_COMPILATION off
       MCHP_MASTERLINK	      "AUAV_V3_TestMavLink/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -1414,10 +1474,18 @@ Model {
       SID		      "128"
       Ports		      [0, 1]
       Position		      [80, 260, 110, 290]
-      ZOrder		      -6
-      LibraryVersion	      "1.256"
+      LibraryVersion	      "1.225"
       SourceBlock	      "simulink/Sources/Counter\nFree-Running"
       SourceType	      "Counter Free-Running"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
       NumBits		      "32"
       tsamp		      "T"
     }
@@ -1429,6 +1497,14 @@ Model {
       Position		      [345, 97, 392, 142]
       AttributesFormatString  "%<cpy_MCHP_Id>"
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	Pins			"[0  1]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+	ReadPrevious_Flag	"1"
+      }
       SourceBlock	      "MCHP_Blockset/System Info/Data Sheet"
       SourceType	      ""
       DOC_MCHP_Id	      "33EP512MU810"
@@ -1442,7 +1518,6 @@ Model {
       Name		      "Data Type Conversion6"
       SID		      "129"
       Position		      [250, 268, 295, 282]
-      ZOrder		      -5
       ShowName		      off
       OutDataTypeStr	      "uint32"
       RndMeth		      "Floor"
@@ -1484,8 +1559,27 @@ Model {
 	  Position		  [45, 28, 130, 62]
 	  BackgroundColor	  "[0.380392, 0.741176, 0.988235]"
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    Port		    "A"
+	    PortNum		    "0"
+	    PinsBitewise	    "15"
+	    Pins		    "[0  1  2  3]"
+	    Simultaneous_Flag	    "0"
+	    Pack_Flag		    "0"
+	    ReadPrevious_Flag	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/Digital IO/Digital Output"
 	  SourceType		  ""
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  GeneratePreprocessorConditionals off
 	  PORT			  "Dynamic Options"
 	  PORT_TXT		  "B   [ 0 : 15 ]"
 	  PIN			  "2"
@@ -1504,8 +1598,27 @@ Model {
 	  Position		  [45, 148, 130, 182]
 	  BackgroundColor	  "[0.901961, 0.000000, 0.000000]"
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    Port		    "A"
+	    PortNum		    "0"
+	    PinsBitewise	    "15"
+	    Pins		    "[0  1  2  3]"
+	    Simultaneous_Flag	    "0"
+	    Pack_Flag		    "0"
+	    ReadPrevious_Flag	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/Digital IO/Digital Output"
 	  SourceType		  ""
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  GeneratePreprocessorConditionals off
 	  PORT			  "Dynamic Options"
 	  PORT_TXT		  "B   [ 0 : 15 ]"
 	  PIN			  "3"
@@ -1524,8 +1637,27 @@ Model {
 	  Position		  [200, 28, 285, 62]
 	  BackgroundColor	  "[0.000000, 0.819608, 0.000000]"
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    Port		    "A"
+	    PortNum		    "0"
+	    PinsBitewise	    "15"
+	    Pins		    "[0  1  2  3]"
+	    Simultaneous_Flag	    "0"
+	    Pack_Flag		    "0"
+	    ReadPrevious_Flag	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/Digital IO/Digital Output"
 	  SourceType		  ""
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  GeneratePreprocessorConditionals off
 	  PORT			  "Dynamic Options"
 	  PORT_TXT		  "B   [ 0 : 15 ]"
 	  PIN			  "4"
@@ -1544,8 +1676,27 @@ Model {
 	  Position		  [200, 148, 285, 182]
 	  BackgroundColor	  "[0.909804, 0.819608, 0.321569]"
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    Port		    "A"
+	    PortNum		    "0"
+	    PinsBitewise	    "15"
+	    Pins		    "[0  1  2  3]"
+	    Simultaneous_Flag	    "0"
+	    Pack_Flag		    "0"
+	    ReadPrevious_Flag	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/Digital IO/Digital Output"
 	  SourceType		  ""
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  GeneratePreprocessorConditionals off
 	  PORT			  "Dynamic Options"
 	  PORT_TXT		  "B   [ 0 : 15 ]"
 	  PIN			  "5"
@@ -1663,7 +1814,6 @@ Model {
       Name		      "Gain"
       SID		      "85"
       Position		      [165, 255, 220, 295]
-      ZOrder		      -8
       Gain		      "T*10e6"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
@@ -1676,6 +1826,11 @@ Model {
       Ports		      [0, 1]
       Position		      [765, 642, 890, 718]
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	MCULoadTimerRef		"2"
+	MCULoadPin		"-1"
+      }
       SourceBlock	      "MCHP_Blockset/Profiling/MCU Load"
       SourceType	      "MCU Load (Profile execution time)"
       MCULoadPin	      "Dynamic Options"
@@ -1701,7 +1856,6 @@ Model {
       Name		      "MPU_T"
       SID		      "132"
       Position		      [35, 368, 144, 392]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "MPU_T"
       ReadBeforeWriteMsg      "warning"
@@ -1743,27 +1897,21 @@ Model {
 	  Name			  "COMP_ID"
 	  SID			  "79"
 	  Position		  [125, 60, 155, 90]
-	  ZOrder		  -4
 	  OutDataTypeStr	  "uint8"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get Raw IMU"
 	  SID			  "89"
-	  Ports			  [0, 1]
 	  Position		  [185, 97, 270, 123]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlRawIMU"
-	  DataStoreElements	  "mlRawIMU"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get RawGpsInt"
 	  SID			  "120"
-	  Ports			  [0, 1]
 	  Position		  [190, 363, 265, 387]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlGpsData"
 	}
@@ -1771,56 +1919,41 @@ Model {
 	  BlockType		  DataStoreRead
 	  Name			  "Get mlAirData"
 	  SID			  "393"
-	  Ports			  [0, 1]
 	  Position		  [190, 488, 265, 512]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlAirData"
-	  DataStoreElements	  "mlAirData"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get mlSysStatus"
 	  SID			  "397"
-	  Ports			  [0, 1]
 	  Position		  [190, 633, 265, 657]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlSysStatus"
-	  DataStoreElements	  "mlSysStatus"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get time"
 	  SID			  "81"
-	  Ports			  [0, 1]
 	  Position		  [25, 132, 175, 158]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
-	  DataStoreElements	  "time_since_boot_usec"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get time1"
 	  SID			  "126"
-	  Ports			  [0, 1]
 	  Position		  [35, 387, 185, 413]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
-	  DataStoreElements	  "time_since_boot_usec"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get time2"
 	  SID			  "392"
-	  Ports			  [0, 1]
 	  Position		  [35, 512, 185, 538]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
-	  DataStoreElements	  "time_since_boot_usec"
 	}
 	Block {
 	  BlockType		  Reference
@@ -1829,6 +1962,21 @@ Model {
 	  Ports			  [4, 1]
 	  Position		  [320, 313, 480, 412]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2  3  4]"
+	    OutputBlockIdxFct	    "[-1 -1 -1 -1]"
+	    FctType		    "1"
+	    FctName		    "PackGpsRawInt"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  "
+	    "0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw"
+	    "_int_t mlRawGpsDataInt ,uint32_t time_usec)"
+	    FctParamValue	    "[0  0  0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -1874,6 +2022,19 @@ Model {
 	  Ports			  [2, 1]
 	  Position		  [320, 191, 480, 289]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2]"
+	    OutputBlockIdxFct	    "[-1 -1]"
+	    FctType		    "1"
+	    FctName		    "PackHeartBeat"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   PackHeartBeat(uint8_t system_id, uint8_t component_id)"
+	    FctParamValue	    "[0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -1915,9 +2076,24 @@ Model {
 	  BlockType		  Reference
 	  Name			  "PackRawIMU"
 	  SID			  "108"
-	  Ports			  [4, 1]
-	  Position		  [320, 29, 480, 166]
+	  Ports			  [3, 1]
+	  Position		  [320, 31, 480, 169]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2 -1  3]"
+	    OutputBlockIdxFct	    "[-1 -1 -1]"
+	    FctType		    "1"
+	    FctName		    "PackRawIMU"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  "
+	    "0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   PackRawIMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t "
+	    "mlRawIMUData ,uint32_t time_usec)"
+	    FctParamValue	    "[0  0  0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -1960,9 +2136,24 @@ Model {
 	  BlockType		  Reference
 	  Name			  "PackScaledPressure"
 	  SID			  "390"
-	  Ports			  [4, 1]
-	  Position		  [320, 442, 480, 543]
+	  Ports			  [3, 1]
+	  Position		  [320, 444, 480, 546]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2 -1  3]"
+	    OutputBlockIdxFct	    "[-1 -1 -1]"
+	    FctType		    "1"
+	    FctName		    "PackScaledPressure"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  "
+	    "0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   PackScaledPressure(uint8_t system_id, uint8_t component_id, mavlink_sc"
+	    "aled_pressure_t mlAirData ,uint32_t time_usec)"
+	    FctParamValue	    "[0  0  0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2005,9 +2196,23 @@ Model {
 	  BlockType		  Reference
 	  Name			  "PackSysStatus"
 	  SID			  "395"
-	  Ports			  [3, 1]
-	  Position		  [320, 573, 480, 667]
+	  Ports			  [2, 1]
+	  Position		  [320, 575, 480, 670]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2]"
+	    OutputBlockIdxFct	    "[-1 -1]"
+	    FctType		    "1"
+	    FctName		    "PackSysStatus"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   PackSysStatus(uint8_t system_id, uint8_t component_id, mavlink_sys_sta"
+	    "tus_t mlSysStatus)"
+	    FctParamValue	    "[0  0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2052,6 +2257,19 @@ Model {
 	  Ports			  [2, 1]
 	  Position		  [320, 691, 480, 789]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2]"
+	    OutputBlockIdxFct	    "[-1 -1]"
+	    FctType		    "1"
+	    FctName		    "ParameterInterfaceResponse"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   ParameterInterfaceResponse(uint8_t system_id, uint8_t component_id)"
+	    FctParamValue	    "[0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2096,6 +2314,19 @@ Model {
 	  Ports			  [2, 1]
 	  Position		  [320, 831, 480, 929]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2]"
+	    OutputBlockIdxFct	    "[-1 -1]"
+	    FctType		    "1"
+	    FctName		    "MissionInterfaceResponse"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   MissionInterfaceResponse(uint8_t system_id, uint8_t component_id)"
+	    FctParamValue	    "[0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2138,7 +2369,6 @@ Model {
 	  Name			  "SYS_ID"
 	  SID			  "78"
 	  Position		  [60, 25, 90, 55]
-	  ZOrder		  -4
 	  Value			  "101"
 	  OutDataTypeStr	  "uint8"
 	}
@@ -2149,6 +2379,19 @@ Model {
 	  Ports			  [1]
 	  Position		  [525, 27, 685, 163]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2177,6 +2420,19 @@ Model {
 	  Ports			  [1]
 	  Position		  [525, 191, 685, 289]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2205,6 +2461,19 @@ Model {
 	  Ports			  [1]
 	  Position		  [525, 316, 685, 414]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2233,6 +2502,19 @@ Model {
 	  Ports			  [1]
 	  Position		  [525, 441, 685, 539]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2261,6 +2543,19 @@ Model {
 	  Ports			  [1]
 	  Position		  [525, 566, 685, 664]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2289,6 +2584,19 @@ Model {
 	  Ports			  [1]
 	  Position		  [525, 691, 685, 789]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2317,6 +2625,19 @@ Model {
 	  Ports			  [1]
 	  Position		  [525, 831, 685, 929]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2346,7 +2667,7 @@ Model {
 	Line {
 	  SrcBlock		  "PackSysStatus"
 	  SrcPort		  1
-	  Points		  [0, -10]
+	  Points		  [0, -15]
 	  DstBlock		  "TX_N_Data4"
 	  DstPort		  1
 	}
@@ -2364,7 +2685,7 @@ Model {
 	Line {
 	  SrcBlock		  "PackScaledPressure"
 	  SrcPort		  1
-	  Points		  [0, -5]
+	  Points		  [0, -10]
 	  DstBlock		  "TX_N_Data3"
 	  DstPort		  1
 	}
@@ -2395,7 +2716,7 @@ Model {
 	Line {
 	  SrcBlock		  "PackRawIMU"
 	  SrcPort		  1
-	  Points		  [0, -5]
+	  Points		  [0, -10]
 	  DstBlock		  "TX_N_Data"
 	  DstPort		  1
 	}
@@ -2741,7 +3062,7 @@ Model {
       "-1];MCHP.UART.port_ATx = [-1 -1];MCHP.UART.port_RTS = [32767  32767  32767  32767     -1     -1];MCHP.UART.port_"
       "CTS = [32767  32767  32767  32767     -1     -1];MCHP.UART.reg_UxMODE = [48127  48127  48127  48127     -1     -"
       "1];MCHP.UART.reg_UxSTA = [61439  61439  61439  61439     -1     -1];"
-      MCHP_CRC		      "-1119943"
+      MCHP_CRC		      "-1050224"
       BTMODE		      "Device is in Single Boot (legacy) mode"
       RES1		      "Not used"
       PLLSS		      "PLL is fed by the Primary oscillator"
@@ -2794,11 +3115,20 @@ Model {
       Ports		      []
       Position		      [180, 19, 808, 83]
       ShowName		      off
-      LibraryVersion	      "1.256"
+      LibraryVersion	      "1.225"
       FontName		      "Arial"
       FontWeight	      "bold"
       SourceBlock	      "simulink/Model-Wide\nUtilities/Model Info"
       SourceType	      "CMBlock"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
       InitialBlockCM	      "none"
       BlockCM		      "None"
       Frame		      "off"
@@ -2819,6 +3149,14 @@ Model {
       Position		      [1152, 137, 1316, 392]
       DropShadow	      on
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	Pins			"[0  1]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+	ReadPrevious_Flag	"1"
+      }
       SourceBlock	      "MCHP_Blockset/System Info/Port Info"
       SourceType	      ""
       MCHP_MASTERLINK	      "AUAV_V3_TestMavLink/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -3977,6 +4315,30 @@ Model {
 	  Ports			  [0, 1]
 	  Position		  [25, 737, 215, 803]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    PIN_SCL		    "2"
+	    PIN_SDA		    "3"
+	    I2CSequence		    "[-1      33536      400000   399771.5591       165        -1        -1        -1        -1     "
+	    "   -1        1        -1        -1        -1        -1        -1        -1        -1        -1        -1        3"
+	    "2        0        0       238        -1        -1        -1        -1        -1        -1        64        1     "
+	    "   0        2        1        -1        -1        -1        -1        -1        3       239        -1        -1  "
+	    "      -1        -1        -1        -1        -1        -1       128        2        -1        -1        -1      "
+	    "  -1        -1        0        -1        -1        2        -1        -1        -1        -1        -1        -1 "
+	    "       -1        -1        -1        1        -1        -1        -1        -1        -1        -1        -1     "
+	    "   -1        -1        32        0        0       238        -1        -1        -1        -1        -1        -1"
+	    "        64        1        0        4        2        -1        -1        -1        -1        -1        2        "
+	    "-1        -1        -1        -1        -1        -1        -1        -1        -1]"
+	    I2CUserData		    "[246 244  46]"
+	    I2CRef		    "2"
+	    I2CxCON		    "49151"
+	    NewRegName		    "1"
+	    hexHandle		    "4091f400c0000000"
+	    Buff8_size		    "2"
+	    Buff16_size		    "0"
+	    IntPriority		    "6"
+	    blockingMode	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
 	  SourceType		  "I2C Driver"
 	  I2CRef		  "2"
@@ -4012,6 +4374,30 @@ Model {
 	  Ports			  [0, 1]
 	  Position		  [25, 622, 215, 688]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    PIN_SCL		    "2"
+	    PIN_SDA		    "3"
+	    I2CSequence		    "[-1      33536      400000   399771.5591       165        -1        -1        -1        -1     "
+	    "   -1        1        -1        -1        -1        -1        -1        -1        -1        -1        -1        3"
+	    "2        0        0       238        -1        -1        -1        -1        -1        -1        64        1     "
+	    "   0        2        1        -1        -1        -1        -1        -1        3       239        -1        -1  "
+	    "      -1        -1        -1        -1        -1        -1       128        2        -1        -1        -1      "
+	    "  -1        -1        0        -1        -1        2        -1        -1        -1        -1        -1        -1 "
+	    "       -1        -1        -1        1        -1        -1        -1        -1        -1        -1        -1     "
+	    "   -1        -1        32        0        0       238        -1        -1        -1        -1        -1        -1"
+	    "        64        1        0        4        2        -1        -1        -1        -1        -1        2        "
+	    "-1        -1        -1        -1        -1        -1        -1        -1        -1]"
+	    I2CUserData		    "[246 244  52]"
+	    I2CRef		    "2"
+	    I2CxCON		    "49151"
+	    NewRegName		    "1"
+	    hexHandle		    "4091f800e0000000"
+	    Buff8_size		    "2"
+	    Buff16_size		    "0"
+	    IntPriority		    "6"
+	    blockingMode	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
 	  SourceType		  "I2C Driver"
 	  I2CRef		  "2"
@@ -4064,7 +4450,7 @@ Model {
 	  System {
 	    Name		    "Baro Altimeter"
 	    Location		    [255, 103, 1497, 760]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -4272,9 +4658,18 @@ Model {
 		  SID			  "201:14532"
 		  Ports			  [1, 1]
 		  Position		  [805, 125, 895, 155]
-		  LibraryVersion	  "1.71"
+		  LibraryVersion	  "1.69"
 		  SourceBlock		  "aerolibconvert2/Length Conversion"
 		  SourceType		  "Length Conversion"
+		  ShowPortLabels	  "FromPortIcon"
+		  SystemSampleTime	  "-1"
+		  FunctionWithSeparateData off
+		  RTWMemSecFuncInitTerm	  "Inherit from model"
+		  RTWMemSecFuncExecute	  "Inherit from model"
+		  RTWMemSecDataConstants  "Inherit from model"
+		  RTWMemSecDataInternal	  "Inherit from model"
+		  RTWMemSecDataParameters "Inherit from model"
+		  GeneratePreprocessorConditionals off
 		  IU			  "ft"
 		  OU			  "m"
 		}
@@ -4544,12 +4939,10 @@ Model {
 	      Opaque		      off
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
-	      SFBlockType	      "MATLAB Function"
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
 	      MaskSelfModifiable      on
-	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
-	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'getTIni']);"
+	      MaskDisplay	      "disp('getTIni');"
 	      MaskIconFrame	      on
 	      MaskIconOpaque	      off
 	      MaskIconRotate	      "none"
@@ -4586,7 +4979,7 @@ Model {
 		  Position		  [20, 121, 40, 139]
 		}
 		Block {
-		  BlockType		  S-Function
+		  BlockType		  "S-Function"
 		  Name			  " SFunction "
 		  SID			  "201:14541::10"
 		  Tag			  "Stateflow S-Function AUAV_V3_TestMavLink 22"
@@ -4930,10 +5323,8 @@ Model {
 		  BlockType		  Delay
 		  Name			  "Integer Delay"
 		  SID			  "201:14561"
-		  Ports			  [1, 1]
 		  Position		  [200, 173, 235, 207]
 		  ShowName		  off
-		  InputPortMap		  "u0"
 		  DelayLength		  "1"
 		  InitialCondition	  "0"
 		  ExternalReset		  "None"
@@ -5108,7 +5499,6 @@ Model {
 	  Name			  "Data Type Conversion10"
 	  SID			  "403"
 	  Position		  [930, 323, 970, 337]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -5119,7 +5509,6 @@ Model {
 	  Name			  "Data Type Conversion7"
 	  SID			  "401"
 	  Position		  [610, 648, 650, 662]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -5130,7 +5519,6 @@ Model {
 	  Name			  "Data Type Conversion8"
 	  SID			  "400"
 	  Position		  [610, 673, 650, 687]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -5141,7 +5529,6 @@ Model {
 	  Name			  "Data Type Conversion9"
 	  SID			  "402"
 	  Position		  [935, 348, 975, 362]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "single"
 	  RndMeth		  "Floor"
@@ -5151,9 +5538,7 @@ Model {
 	  BlockType		  Delay
 	  Name			  "Delay"
 	  SID			  "206"
-	  Ports			  [1, 1]
 	  Position		  [275, 28, 310, 62]
-	  InputPortMap		  "u0"
 	  DelayLength		  "1"
 	  InitialCondition	  "1"
 	  ExternalReset		  "None"
@@ -5234,6 +5619,27 @@ Model {
 	      Position		      [20, 207, 210, 273]
 	      ForegroundColor	      "[1.000000, 0.258824, 0.819608]"
 	      LibraryVersion	      "3.37"
+	      List {
+		ListType		RTWdata
+		PIN_SCL			"2"
+		PIN_SDA			"3"
+		I2CSequence		"[-1      33536      400000   399771.5591       165        -1        -1        -1        -1        -1  "
+		"      1        -1        -1        -1        -1        -1        -1        -1        -1        -1        32        0"
+		"        0       238        -1        -1        -1        -1        -1        -1        64        1        0        2"
+		"        1        -1        -1        -1        -1        -1        3       239        -1        -1        -1        "
+		"-1        -1        -1        -1        -1       128        22        -1        -1        -1        -1        -1    "
+		"    0        -1        -1        2        -1        -1        -1        -1        -1        -1        -1        -1  "
+		"      -1]"
+		I2CUserData		"[170]"
+		I2CRef			"2"
+		I2CxCON			"49151"
+		NewRegName		"1"
+		hexHandle		"4091fc00e0000000"
+		Buff8_size		"22"
+		Buff16_size		"0"
+		IntPriority		"6"
+		blockingMode		"1"
+	      }
 	      SourceBlock	      "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
 	      SourceType	      "I2C Driver"
 	      I2CRef		      "2"
@@ -5516,7 +5922,7 @@ Model {
 		  SID			  "227"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
-		  LibraryVersion	  "1.256"
+		  LibraryVersion	  "1.225"
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -5666,7 +6072,7 @@ Model {
 		  SID			  "236"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
-		  LibraryVersion	  "1.256"
+		  LibraryVersion	  "1.225"
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -5816,7 +6222,7 @@ Model {
 		  SID			  "245"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
-		  LibraryVersion	  "1.256"
+		  LibraryVersion	  "1.225"
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -5966,7 +6372,7 @@ Model {
 		  SID			  "254"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
-		  LibraryVersion	  "1.256"
+		  LibraryVersion	  "1.225"
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -6116,7 +6522,7 @@ Model {
 		  SID			  "263"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
-		  LibraryVersion	  "1.256"
+		  LibraryVersion	  "1.225"
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -6266,7 +6672,7 @@ Model {
 		  SID			  "272"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
-		  LibraryVersion	  "1.256"
+		  LibraryVersion	  "1.225"
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -6416,7 +6822,7 @@ Model {
 		  SID			  "281"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
-		  LibraryVersion	  "1.256"
+		  LibraryVersion	  "1.225"
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -6566,7 +6972,7 @@ Model {
 		  SID			  "290"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
-		  LibraryVersion	  "1.256"
+		  LibraryVersion	  "1.225"
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -6716,7 +7122,7 @@ Model {
 		  SID			  "299"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
-		  LibraryVersion	  "1.256"
+		  LibraryVersion	  "1.225"
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -6866,7 +7272,7 @@ Model {
 		  SID			  "308"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
-		  LibraryVersion	  "1.256"
+		  LibraryVersion	  "1.225"
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -7016,7 +7422,7 @@ Model {
 		  SID			  "317"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
-		  LibraryVersion	  "1.256"
+		  LibraryVersion	  "1.225"
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -7701,11 +8107,9 @@ Model {
 	      BlockType		      Delay
 	      Name		      "Delay11"
 	      SID		      "347"
-	      Ports		      [1, 1]
 	      Position		      [480, 150, 510, 180]
 	      BlockRotation	      270
 	      BlockMirror	      on
-	      InputPortMap	      "u0"
 	      DelayLength	      "1"
 	      InitialCondition	      "0"
 	      ExternalReset	      "None"
@@ -7860,11 +8264,9 @@ Model {
 	      BlockType		      Delay
 	      Name		      "Delay11"
 	      SID		      "355"
-	      Ports		      [1, 1]
 	      Position		      [360, 130, 390, 160]
 	      BlockRotation	      270
 	      BlockMirror	      on
-	      InputPortMap	      "u0"
 	      DelayLength	      "1"
 	      InitialCondition	      "0"
 	      ExternalReset	      "None"
@@ -8032,7 +8434,7 @@ Model {
 	      SID		      "365"
 	      Ports		      [2, 1]
 	      Position		      [350, 21, 400, 119]
-	      LibraryVersion	      "1.256"
+	      LibraryVersion	      "1.225"
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 	      SourceType	      "Bitwise Operator"
 	      logicop		      "OR"
@@ -8187,7 +8589,7 @@ Model {
 	      SID		      "374"
 	      Ports		      [2, 1]
 	      Position		      [350, 21, 400, 119]
-	      LibraryVersion	      "1.256"
+	      LibraryVersion	      "1.225"
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 	      SourceType	      "Bitwise Operator"
 	      logicop		      "OR"
@@ -8306,34 +8708,37 @@ Model {
 	  SID			  "381"
 	  Ports			  []
 	  Position		  [772, 280, 812, 319]
-	  LibraryVersion	  "1.256"
+	  LibraryVersion	  "1.225"
 	  UserDataPersistent	  on
 	  UserData		  "DataTag2"
 	  SourceBlock		  "simulink/Model-Wide\nUtilities/DocBlock"
 	  SourceType		  "DocBlock"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  GeneratePreprocessorConditionals off
 	  DocumentType		  "Text"
 	}
 	Block {
 	  BlockType		  DataStoreWrite
 	  Name			  "Update RawPressure"
 	  SID			  "386"
-	  Ports			  [2]
-	  Position		  [680, 643, 770, 692]
-	  ZOrder		  -6
+	  Position		  [680, 645, 770, 695]
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlRawPressureData"
-	  DataStoreElements	  "mlRawPressureData.press_abs#mlRawPressureData.temperature"
 	}
 	Block {
 	  BlockType		  DataStoreWrite
 	  Name			  "Update ScaledPressure"
 	  SID			  "387"
-	  Ports			  [2]
-	  Position		  [1000, 318, 1090, 367]
-	  ZOrder		  -6
+	  Position		  [1000, 320, 1090, 370]
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlAirData"
-	  DataStoreElements	  "mlAirData.temperature#mlAirData.press_abs"
 	}
 	Line {
 	  SrcBlock		  "BUS I2C\nInitialize BMP180\nRead T°, Convert P @ 100Hz"
@@ -8521,8 +8926,7 @@ Model {
 	Line {
 	  SrcBlock		  "Data Type Conversion8"
 	  SrcPort		  1
-	  DstBlock		  "Update RawPressure"
-	  DstPort		  2
+	  Points		  [0, 0]
 	}
 	Line {
 	  Name			  "Temp (deg) * 10"
@@ -8557,8 +8961,7 @@ Model {
 	Line {
 	  SrcBlock		  "Data Type Conversion9"
 	  SrcPort		  1
-	  DstBlock		  "Update ScaledPressure"
-	  DstPort		  2
+	  Points		  [0, 0]
 	}
       }
     }
@@ -8597,6 +9000,29 @@ Model {
 	  Ports			  [0, 1]
 	  Position		  [25, 264, 170, 316]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    PIN_SCL		    "2"
+	    PIN_SDA		    "3"
+	    I2CSequence		    "[-1      33536      400000   399771.5591       165        -1        -1        -1        -1     "
+	    "   -1        1        -1        -1        -1        -1        -1        -1        -1        -1        -1        3"
+	    "2        0        0        60        -1        -1        -1        -1        -1        -1        64        1     "
+	    "   0        2        1        -1        -1        -1        -1        -1        2        -1        -1        -1  "
+	    "      -1        -1        -1        -1        -1        -1        1        -1        -1        -1        -1      "
+	    "  -1        -1        -1        -1        -1        32        0        0        61        -1        -1        -1 "
+	    "       -1        -1        -1       128        6        -1        -1        -1        -1        -1        0      "
+	    "  -1        -1        2        -1        -1        -1        -1        -1        -1        -1        -1        -1"
+	    "]"
+	    I2CUserData		    "[3]"
+	    I2CRef		    "2"
+	    I2CxCON		    "49151"
+	    NewRegName		    "1"
+	    hexHandle		    "4092000140000000"
+	    Buff8_size		    "6"
+	    Buff16_size		    "0"
+	    IntPriority		    "6"
+	    blockingMode	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
 	  SourceType		  "I2C Driver"
 	  I2CRef		  "2"
@@ -8629,6 +9055,36 @@ Model {
 	  Ports			  [0, 3]
 	  Position		  [45, 36, 190, 184]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    PIN_SDO		    "66"
+	    PIN_SCK_out		    "111"
+	    SPISequence		    "[-1       1140        0      32768      364583   364583.3333        -1        -1        -1     "
+	    "   -1        4        68        0        -1        -1        -1        -1        -1        -1        -1        1 "
+	    "       1        0        2        1        1        -1        -1        -1        -1        2        3        -1 "
+	    "       -1        -1        1        -1        0        -1        -1        2        1        -1        -1        "
+	    "-1        1        -1        3        -1        -1        2        3        -1        -1        -1        1      "
+	    "  -1        4        -1        -1        4        68        1        -1        -1        -1        -1        -1  "
+	    "      -1        -1]"
+	    SPISequenceFold	    "[-1       1140        0      32768      364583   364583.3333        -1        -1        -1  "
+	    "      -1        4        68        0        -1        -1        -1        -1        -1        -1        -1       "
+	    " 1        1        0        2        1        1        -1        -1        -1        -1        2        3        "
+	    "-1        -1        -1        1        -1        0        -1        -1        2        1        -1        -1     "
+	    "   -1        1        -1        3        -1        -1        2        3        -1        -1        -1        1   "
+	    "     -1        4        -1        -1        4        68        1        -1        -1        -1        -1        -"
+	    "1        -1        -1]"
+	    SPIUserData		    "[47616]"
+	    SPIRef		    "1"
+	    SPIxCON2		    "57347"
+	    MASTER		    "1"
+	    hexHandle		    "40920800e0000000"
+	    Buff8_size		    "0"
+	    Buff16_size		    "7"
+	    IntPriority		    "5"
+	    DMA_Rx		    "-1"
+	    DMA_Tx		    "-1"
+	    blockingMode	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/BUS SPI/BUS SPI"
 	  SourceType		  "SPI Driver"
 	  SPIRef		  "1"
@@ -8673,7 +9129,6 @@ Model {
 	  Name			  "Data Type Conversion"
 	  SID			  "92"
 	  Position		  [390, 113, 435, 127]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -8684,7 +9139,6 @@ Model {
 	  Name			  "Data Type Conversion1"
 	  SID			  "93"
 	  Position		  [390, 133, 435, 147]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -8695,7 +9149,6 @@ Model {
 	  Name			  "Data Type Conversion2"
 	  SID			  "94"
 	  Position		  [390, 153, 435, 167]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -8706,7 +9159,6 @@ Model {
 	  Name			  "Data Type Conversion3"
 	  SID			  "95"
 	  Position		  [390, 173, 435, 187]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -8717,7 +9169,6 @@ Model {
 	  Name			  "Data Type Conversion4"
 	  SID			  "96"
 	  Position		  [390, 193, 435, 207]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -8728,7 +9179,6 @@ Model {
 	  Name			  "Data Type Conversion5"
 	  SID			  "97"
 	  Position		  [390, 213, 435, 227]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -8857,7 +9307,7 @@ Model {
 	      SID		      "35"
 	      Ports		      [2, 1]
 	      Position		      [350, 21, 400, 119]
-	      LibraryVersion	      "1.256"
+	      LibraryVersion	      "1.225"
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 	      SourceType	      "Bitwise Operator"
 	      logicop		      "OR"
@@ -8900,10 +9350,7 @@ Model {
 	      BlockType		      ArithShift
 	      Name		      "Shift\nArithmetic"
 	      SID		      "67"
-	      Ports		      [1, 1]
 	      Position		      [230, 25, 310, 65]
-	      InputPortMap	      "u0"
-	      BitShiftNumber	      "8"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -9013,7 +9460,7 @@ Model {
 	      SID		      "44"
 	      Ports		      [2, 1]
 	      Position		      [350, 21, 400, 119]
-	      LibraryVersion	      "1.256"
+	      LibraryVersion	      "1.225"
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 	      SourceType	      "Bitwise Operator"
 	      logicop		      "OR"
@@ -9056,10 +9503,7 @@ Model {
 	      BlockType		      ArithShift
 	      Name		      "Shift\nArithmetic"
 	      SID		      "68"
-	      Ports		      [1, 1]
 	      Position		      [230, 25, 310, 65]
-	      InputPortMap	      "u0"
-	      BitShiftNumber	      "8"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -9170,7 +9614,7 @@ Model {
 	      SID		      "53"
 	      Ports		      [2, 1]
 	      Position		      [350, 21, 400, 119]
-	      LibraryVersion	      "1.256"
+	      LibraryVersion	      "1.225"
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 	      SourceType	      "Bitwise Operator"
 	      logicop		      "OR"
@@ -9213,10 +9657,7 @@ Model {
 	      BlockType		      ArithShift
 	      Name		      "Shift\nArithmetic"
 	      SID		      "69"
-	      Ports		      [1, 1]
 	      Position		      [230, 25, 310, 65]
-	      InputPortMap	      "u0"
-	      BitShiftNumber	      "8"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -9273,25 +9714,18 @@ Model {
 	  BlockType		  DataStoreWrite
 	  Name			  "Update MPU_T"
 	  SID			  "133"
-	  Ports			  [1]
 	  Position		  [265, 97, 325, 123]
-	  ZOrder		  -6
 	  BackgroundColor	  "orange"
 	  ShowName		  off
 	  DataStoreName		  "MPU_T"
-	  DataStoreElements	  "MPU_T"
 	}
 	Block {
 	  BlockType		  DataStoreWrite
 	  Name			  "Update Raw IMU DATA"
 	  SID			  "74"
-	  Ports			  [9]
 	  Position		  [455, 102, 520, 298]
-	  ZOrder		  -6
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlRawIMU"
-	  DataStoreElements	  "mlRawIMU.xacc#mlRawIMU.yacc#mlRawIMU.zacc#mlRawIMU.xgyro#mlRawIMU.ygyro#mlRawIMU.zgyro#mlRawIM"
-	  "U.xmag#mlRawIMU.ymag#mlRawIMU.zmag"
 	}
 	Line {
 	  Name			  "U1 CH8"
@@ -9409,16 +9843,13 @@ Model {
 	  SrcBlock		  "Subsystem9"
 	  SrcPort		  1
 	  Points		  [50, 0; 0, -30]
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  8
 	}
 	Line {
 	  Name			  "U1 CH8"
 	  Labels		  [0, 0]
 	  SrcBlock		  "Subsystem8"
 	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  7
+	  Points		  [0, 0]
 	}
 	Line {
 	  Name			  "U1 CH10"
@@ -9426,8 +9857,6 @@ Model {
 	  SrcBlock		  "Subsystem10"
 	  SrcPort		  1
 	  Points		  [65, 0; 0, -60]
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  9
 	}
 	Line {
 	  SrcBlock		  "Data Type Conversion"
@@ -9438,32 +9867,27 @@ Model {
 	Line {
 	  SrcBlock		  "Data Type Conversion1"
 	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  2
+	  Points		  [0, 0]
 	}
 	Line {
 	  SrcBlock		  "Data Type Conversion2"
 	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  3
+	  Points		  [0, 0]
 	}
 	Line {
 	  SrcBlock		  "Data Type Conversion3"
 	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  4
+	  Points		  [0, 0]
 	}
 	Line {
 	  SrcBlock		  "Data Type Conversion4"
 	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  5
+	  Points		  [0, 0]
 	}
 	Line {
 	  SrcBlock		  "Data Type Conversion5"
 	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  6
+	  Points		  [0, 0]
 	}
 	Line {
 	  Name			  "U1 CH4"
@@ -9589,6 +10013,17 @@ Model {
 	  Ports			  [0, 6]
 	  Position		  [25, 49, 115, 256]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    ICxCON1		    "[4099  4099  4099  4099  4099  4099]"
+	    ICxCON2		    "[0  0  0  0  0  0]"
+	    IntPriority		    "7"
+	    ICtype		    "1"
+	    Channels		    "[1  2  3  4  5  6]"
+	    RefTimers		    "[1  1  1  1  1  1]"
+	    Channel_UP_Down_Periode "[1     1     1     1     1     1]"
+	    ChangeDetected	    "[0     0     0     0     0     0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/Pulse Input//Output/Input Capture"
 	  SourceType		  "Input driver for Input Capture Peripheral"
 	  IntPriority		  "7"
@@ -9791,6 +10226,20 @@ Model {
 	  Ports			  [2]
 	  Position		  [1165, 25, 1285, 180]
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    OCxCON1		    "[4108  4108]"
+	    OCxCON2		    "[159  159]"
+	    OCtype		    "1"
+	    PulseTrig		    "1"
+	    Channels		    "[1  2]"
+	    RefTimers		    "[1  1]"
+	    Channel_UP_Down_Periode "[5     5]"
+	    RefTimersMax	    "[26249  26249]"
+	    PortPin		    "[0  0]"
+	    PortLetter		    "[6  4]"
+	    PeriodIsBlockInput	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/Pulse Input//Output/Output Compare - HW"
 	  SourceType		  "Input driver for Output Compare Peripheral Hardware"
 	  Channel		  "[1     2]"
@@ -10021,7 +10470,6 @@ Model {
       Name		      "TimeSinceBoot_usec"
       SID		      "80"
       Position		      [35, 323, 144, 347]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "time_since_boot_usec"
       ReadBeforeWriteMsg      "warning"
@@ -10037,6 +10485,14 @@ Model {
       Position		      [922, 102, 1054, 157]
       DropShadow	      on
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	Pins			"[0  1]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+	ReadPrevious_Flag	"1"
+      }
       SourceBlock	      "MCHP_Blockset/System Info/Timer Info"
       SourceType	      ""
       MCHP_MASTERLINK	      "AUAV_V3_TestMavLink/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -10048,6 +10504,27 @@ Model {
       Ports		      []
       Position		      [440, 97, 540, 153]
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	UARTRef			"1"
+	UxBRG			"75"
+	DesiredBaud		"57600"
+	Error			"-0.06"
+	InitSequence_enable	"1"
+	UxBRG_InitSeq		"39772"
+	DesiredBaud_InitSeq	"110"
+	Error_InitSeq		"-0.00"
+	InitSequence		"[72  101  108  108  111   32   87  111  114  108  100]"
+	InitSequence_str	"{72, 101, 108, 108, 111,  32,  87, 111, 114, 108, 100}"
+	InitBreakPos		"[1]"
+	InitBreakValue		"[1909091]"
+	UxMODE			"32768"
+	UxSTA			"9216"
+	UxMODE_InitSeq		"32768"
+	TX_INT_PRIORITY		"1"
+	TX_CIRCULAR_SIZE	"128"
+	MCHP_COM_ExtPIL		"0"
+      }
       SourceBlock	      "MCHP_Blockset/BUS UART/UART Configuration"
       SourceType	      "Configuration for UART peripheral"
       UART_REF		      "1"
@@ -10095,6 +10572,23 @@ Model {
       Ports		      []
       Position		      [570, 97, 670, 153]
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	UARTRef			"4"
+	UxBRG			"113"
+	DesiredBaud		"38400"
+	Error			"-0.06"
+	InitSequence_enable	"0"
+	UxBRG_InitSeq		"39772"
+	DesiredBaud_InitSeq	"110"
+	Error_InitSeq		"-0.00"
+	UxMODE			"32768"
+	UxSTA			"9216"
+	UxMODE_InitSeq		"32768"
+	TX_INT_PRIORITY		"1"
+	TX_CIRCULAR_SIZE	"128"
+	MCHP_COM_ExtPIL		"0"
+      }
       SourceBlock	      "MCHP_Blockset/BUS UART/UART Configuration"
       SourceType	      "Configuration for UART peripheral"
       UART_REF		      "4"
@@ -10139,30 +10633,23 @@ Model {
       BlockType		      DataStoreWrite
       Name		      "Update SysStatus Load"
       SID		      "426"
-      Ports		      [1]
       Position		      [920, 655, 1010, 705]
-      ZOrder		      -6
       BackgroundColor	      "orange"
       DataStoreName	      "mlSysStatus"
-      DataStoreElements	      "mlSysStatus.load"
     }
     Block {
       BlockType		      DataStoreWrite
       Name		      "Update time"
       SID		      "83"
-      Ports		      [1]
       Position		      [335, 261, 465, 289]
-      ZOrder		      -6
       BackgroundColor	      "orange"
       DataStoreName	      "time_since_boot_usec"
-      DataStoreElements	      "time_since_boot_usec"
     }
     Block {
       BlockType		      DataStoreMemory
       Name		      "mlAirData"
       SID		      "385"
       Position		      [35, 539, 145, 564]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "mlAirData"
       ReadBeforeWriteMsg      "warning"
@@ -10176,7 +10663,6 @@ Model {
       Name		      "mlGpsData"
       SID		      "117"
       Position		      [35, 449, 145, 474]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "mlGpsData"
       ReadBeforeWriteMsg      "warning"
@@ -10190,7 +10676,6 @@ Model {
       Name		      "mlRawIMU"
       SID		      "71"
       Position		      [35, 408, 144, 432]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "mlRawIMU"
       ReadBeforeWriteMsg      "warning"
@@ -10203,7 +10688,6 @@ Model {
       Name		      "mlRawPressureData"
       SID		      "384"
       Position		      [35, 494, 145, 519]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "mlRawPressureData"
       ReadBeforeWriteMsg      "warning"
@@ -10217,7 +10701,6 @@ Model {
       Name		      "mlSysStatus"
       SID		      "388"
       Position		      [35, 584, 145, 609]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "mlSysStatus"
       ReadBeforeWriteMsg      "warning"
@@ -10741,7 +11224,7 @@ MatData {
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.6 (R2011b) dated Aug  6 2011, 13:17:15
+#    Stateflow Version 7.5 (R2010a) dated Jul 24 2010, 06:19:54
 #
 #
 
@@ -10753,7 +11236,7 @@ Stateflow {
     created		    "03-Feb-2015 21:06:34"
     isLibrary		    0
     firstTarget		    8
-    sfVersion		    76014001.0002
+    sfVersion		    75014000.000003
   }
   chart {
     id			    2
