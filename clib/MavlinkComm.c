@@ -5,6 +5,7 @@
 #include "gpsPort.h"
 #include <stdio.h>
 #include "AUAV_V3_TestMavlink.h"
+
 uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
 struct CircBuffer comMavlinkBuffer;
 CBRef uartMavlinkInBuffer;
