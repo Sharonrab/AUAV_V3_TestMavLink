@@ -38,7 +38,8 @@ First Revision: Aug 18 2008 @ 17:42
 extern "C" {
 #endif
 
-#include "stdint.h"
+//#include "stdint.h"
+#include "inttypes.h"
 
     // =========== Global Definitions ==========
 
@@ -106,11 +107,11 @@ typedef char BOOL;
     // ==============
 
     // GPS Fix Types
-//    enum GPS_FIX {
-//        GPS_FIX_NONE = 0,
-//        GPS_FIX_2D = 2,
-//        GPS_FIX_3D = 3
-//    };
+    enum GPS_FIX {
+        GPS_FIX_NONE = 0,
+        GPS_FIX_2D = 2,
+        GPS_FIX_3D = 3
+    };
 
     // PID EEPROM Error Messages
 
@@ -147,7 +148,7 @@ typedef char BOOL;
         SLUGS_ACTION_CAMERA_CONFIG,
     };
 
-    enum WP_PROTOCOL {
+   /*  enum WP_PROTOCOL {
         WP_PROT_IDLE,
         WP_PROT_LIST_REQUESTED,
         WP_PROT_NUM_SENT,
@@ -155,13 +156,13 @@ typedef char BOOL;
         WP_PROT_RX_WP,
         WP_PROT_SENDING_WP_IDLE,
         WP_PROT_GETTING_WP_IDLE
-    };
+    }; */
 
-    enum PARAM_INTERFACE {
+   /*  enum PARAM_INTERFACE {
         PI_IDLE,
         PI_SEND_ALL_PARAM,
         PI_SEND_ONE_PARAM
-    };
+    }; */
 
 
     // Standard characters used in the parsing of messages

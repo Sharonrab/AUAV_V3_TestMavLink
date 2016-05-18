@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="62">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+				   <itemPath>AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.h</itemPath>
+<itemPath>AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_private.h</itemPath>
+<itemPath>AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_types.h</itemPath>
+
+    </logicalFolder>
+    <logicalFolder name="LibraryFiles"
+                   displayName="Library Files"
+                   projectFiles="true">
+				   <itemPath>C:/PROGRA~2/MICROC~1/mplabc30/v3.31/lib/dsPIC33E/libp33EP512MU810-elf.a</itemPath>
+<itemPath>C:/PROGRA~2/MICROC~1/mplabc30/v3.31/lib/libpic30-elf.a</itemPath>
+<itemPath>C:/PROGRA~2/MICROC~1/mplabc30/v3.31/lib/libm-elf.a</itemPath>
+<itemPath>C:/PROGRA~2/MICROC~1/mplabc30/v3.31/lib/libc-elf.a</itemPath>
+<itemPath>C:/PROGRA~2/MICROC~1/mplabc30/v3.31/lib/libq-elf.a</itemPath>
+<itemPath>C:/PROGRA~2/MICROC~1/mplabc30/v3.31/lib/libq-dsp-elf.a</itemPath>
+
+    </logicalFolder>
+    <logicalFolder name="LinkerFiles"
+                   displayName="Linker Files"
+                   projectFiles="true">
+				   
+    </logicalFolder>
+    <logicalFolder name="ObjectFiles"
+                   displayName="Object Files"
+                   projectFiles="true">
+				   <itemPath>MavlinkComm.o</itemPath>
+<itemPath>adisCube16405.o</itemPath>
+<itemPath>circBuffer.o</itemPath>
+<itemPath>gpsPort.o</itemPath>
+<itemPath>gpsUblox.o</itemPath>
+<itemPath>hil.o</itemPath>
+<itemPath>mavlinkSensorMcu.o</itemPath>
+<itemPath>novatel.o</itemPath>
+<itemPath>updateSensorMcuState.o</itemPath>
+
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+				   <itemPath>UnitTest.c</itemPath>
+<itemPath>MCHP_I2C2_Interrupt.c</itemPath>
+<itemPath>MCHP_I2C2_Interrupt_data.c</itemPath>
+<itemPath>MCHP_SPI1_Interrupt.c</itemPath>
+<itemPath>MCHP_SPI1_Interrupt_data.c</itemPath>
+<itemPath>MCHP_UART1_Interrupt.c</itemPath>
+<itemPath>MCHP_UART4_Interrupt.c</itemPath>
+<itemPath>UnitTest_main.c</itemPath>
+
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+				   
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="default" type="2">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <targetDevice>dsPIC33EP512MU810</targetDevice>
+        <targetHeader></targetHeader>
+        <platformTool>PICkit3PlatformTool</platformTool>
+        <languageToolchain>XC16</languageToolchain>
+        <languageToolchainVersion>1.26</languageToolchainVersion>
+        <platform>4</platform>
+      </toolsSet>
+      <compileType>
+        <linkerTool>
+          <linkerLibItems>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <C30>
+        <property key="extra-include-directories" value=";AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.X;.;/AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.X;-I/mavlink/include/slugs;/clib;C:/PROGRA~2/MICROC~1/mplabc30/v3.31/include;C:/PROGRA~2/MICROC~1/mplabc30/v3.31/support/dsPIC33E/h;C:/PROGRA~2/MICROC~1/mplabc30/v3.31/support/generic/h;C:/PROGRA~2/MICROC~1/mplabc30/v3.31/support/PERIPH~2;C:/Program Files/MATLAB/R2011b/rtw/c/ert;C:/Program Files/MATLAB/R2011b/extern/include;C:/Program Files/MATLAB/R2011b/simulink/include;C:/Program Files/MATLAB/MATLAB Production Server/R2015a/rtw/c/src;C:/Program Files/MATLAB/MATLAB Production Server/R2015a/rtw/c/src/ext_mode/common"/>
+		<appendMe value="-O3 -mlarge-data -mlarge-scalar -fschedule-insns -fschedule-insns2"/>		
+      </C30>
+      <C30-AS>
+      </C30-AS>
+      <C30-LD>
+		<property key="extra-lib-directories" value=";AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.X;.;/AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.X;-I/mavlink/include/slugs;/clib;C:/PROGRA~2/MICROC~1/mplabc30/v3.31/include;C:/PROGRA~2/MICROC~1/mplabc30/v3.31/support/dsPIC33E/h;C:/PROGRA~2/MICROC~1/mplabc30/v3.31/support/generic/h;C:/PROGRA~2/MICROC~1/mplabc30/v3.31/support/PERIPH~2;C:/Program Files/MATLAB/MATLAB Production Server/R2015a/rtw/c/ert;C:/Program Files/MATLAB/MATLAB Production Server/R2015a/extern/include;C:/Program Files/MATLAB/MATLAB Production Server/R2015a/simulink/include;C:/Program Files/MATLAB/MATLAB Production Server/R2015a/rtw/c/src;C:/Program Files/MATLAB/MATLAB Production Server/R2015a/rtw/c/src/ext_mode/common"/>
+      </C30-LD>
+      <C30Global>
+      </C30Global>
+      <ICD3PlatformTool>
+      </ICD3PlatformTool>
+    </conf>
+  </confs>
+</configurationDescriptor>

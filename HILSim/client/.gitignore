@@ -1,0 +1,4 @@
+*.sdf
+*.pdb
+ipch/
+HILBridgeClient/HILBridgeClient/Release/

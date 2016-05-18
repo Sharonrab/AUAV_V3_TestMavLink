@@ -15,14 +15,15 @@
 // Last Revision: Feb 25 2012 @ 12:38
 // ==============================================================
 #include <string.h>
+#include ".\rtwtypes.h"
 #include "gpsPort.h"
+#define  USE_NOVATEL_GPS 0
 
 struct CircBuffer com4Buffer;
 CBRef uartBuffer;
     // GPS Circular Buffers
     // ====================
 #define MSIZE			180
-
 // UART and Buffer initialization
 
 void uartBufferInit(void) {
@@ -57,6 +58,12 @@ void __attribute__((__interrupt__, no_auto_psv)) _U4RXInterrupt(void) {
 
     // clear the interrupt
     IFS5bits.U4RXIF = 0;
+}
+void getGPSRawData(unsigned char* gpsBuffer) {
+	
+}
+unsigned char isGPSNovatel (void){
+    return (unsigned char) USE_NOVATEL_GPS;
 }
 
 

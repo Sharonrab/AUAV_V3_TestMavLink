@@ -38,7 +38,13 @@ THE SOFTWARE.
 // Code by: Mariano I. Lizarraga
 // First Revision: Aug 21 2008 @ 21:15
 // ==============================================================
-#include "AUAV_V3_TestMavLink.h"
+//#ifdef UNIT_TEST
+//#include "UnitTest.h"
+//#else
+//#include "AUAV3_AND_SLUGS_SENSOR.h"
+//#endif
+
+#include "..\mavlink\include\slugs\mavlink.h"
 #include "gpsUblox.h"
 #include "circBuffer.h"
 
