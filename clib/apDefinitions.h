@@ -46,8 +46,8 @@ extern "C" {
     // Boolean types
     // ===================
 typedef char BOOL;
-//#define TRUE ((char)1)
-//#define FALSE ((char)0)
+#define TRUE ((char)1)
+#define FALSE ((char)0)
 
 #define SUCCESS ((char)0)
 #define FAILURE ((char)-1)

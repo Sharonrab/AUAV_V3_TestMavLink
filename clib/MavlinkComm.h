@@ -16,6 +16,8 @@ extern struct CircBuffer comMavlinkBuffer;
 
 
 void uartMavlinkBufferInit (void);
+#define TRUE ((char)1)
+#define FALSE ((char)0)
 
 #define SUCCESS ((char)0)
 #define FAILURE ((char)-1)

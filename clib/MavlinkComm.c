@@ -2,7 +2,7 @@
 #include "circBuffer.h"
 #include "gpsPort.h"
 #include <stdio.h>
-#include "AUAV3_AND_SLUGS_SENSOR.h"
+#include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.h"
 uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
 struct CircBuffer comMavlinkBuffer;
 CBRef uartMavlinkInBuffer;

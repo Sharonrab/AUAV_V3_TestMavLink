@@ -1,7 +1,8 @@
 
 #include <math.h>
 #include "mavlinkCommsControlMcu.h"
-
+#define TRUE ((char)1)
+#define FALSE ((char)0)
 /*
 
 MAVLink supports the following UAV Modes:
@@ -101,7 +102,7 @@ void uart2Init(void) {
 
     // DMA1STA Register
     // ================
-    DMA1STA = __builtin_dmaoffset(BufferB);
+    //DMA1STA = __builtin_dmaoffset(BufferB);
 
     // Enable DMA1 TX interrupts
     IFS0bits.DMA1IF = 0; // Clear DMA Interrupt Flag
@@ -928,731 +929,731 @@ void sendTelemetryMavlink(unsigned char* dataOut) {
 
 }
 
-void protDecodeMavlink(uint8_t* dataIn) {
+// void protDecodeMavlink(uint8_t* dataIn) {
 
-    uint8_t i, indx, writeSuccess, commChannel = dataIn[MAXSPI + 1];
-    uint32_t temp;
-    mavlink_param_set_t set;
-    //mavlink_set_nav_mode_t mode;
+    // uint8_t i, indx, writeSuccess, commChannel = dataIn[MAXSPI + 1];
+    // uint32_t temp;
+    // mavlink_param_set_t set;
+    // //mavlink_set_nav_mode_t mode;
 
 
 
-    //static int16_t packet_drops = 0;
-    mavlink_message_t msg;
-    mavlink_status_t status;
+    // //static int16_t packet_drops = 0;
+    // mavlink_message_t msg;
+    // mavlink_status_t status;
 
-    // increment the age of heartbeat
-    mlPending.heartbeatAge++;
+    // // increment the age of heartbeat
+    // mlPending.heartbeatAge++;
 
-    for (i = 1; i <= dataIn[0]; i++) {
+    // for (i = 1; i <= dataIn[0]; i++) {
 
-        // Try to get a new message
-        if (mavlink_parse_char(commChannel, dataIn[i], &msg, &status)) {
+        // // Try to get a new message
+        // if (mavlink_parse_char(commChannel, dataIn[i], &msg, &status)) {
 
-            // Handle message
-            switch (msg.msgid) {
-                case MAVLINK_MSG_ID_HEARTBEAT:
-                    mavlink_msg_heartbeat_decode(&msg, &mlHeartbeat);
-                    // Reset the heartbeat
-                    mlPending.heartbeatAge = 0;
-                    break;
-
-                case MAVLINK_MSG_ID_GPS_RAW_INT:
-                    mavlink_msg_gps_raw_int_decode(&msg, &mlGpsData);
-                    //updateGpsPosition(); // scales raw ints to floats
-                    break;
-
-                case MAVLINK_MSG_ID_CPU_LOAD:
-                    mavlink_msg_cpu_load_decode(&msg, &mlCpuLoadData);
-                    // Copy battery voltage to system status message
-                    mlSystemStatus.voltage_battery = mlCpuLoadData.batVolt;
-                    break;
-
-                case MAVLINK_MSG_ID_LOCAL_POSITION_NED:
-                    mavlink_msg_local_position_ned_decode(&msg, &mlLocalPositionData);
-                    break;
-
-                case MAVLINK_MSG_ID_SCALED_PRESSURE:
-                    mavlink_msg_scaled_pressure_decode(&msg, &mlAirData);
-                    break;
-
-                case MAVLINK_MSG_ID_BOOT:
-                    temp = mavlink_msg_boot_get_version(&msg);
-
-                    if (temp) {
-                        mlPending.spiSendGSLocation = 1;
-                    }
-                    /*
-                    if (temp != 0 && mlBoot.version != 0) {
-                        mlBoot.version += temp;
-                    } else if (mlBoot.version == 0) {
-                        mavlink_msg_boot_decode(&msg, &mlBoot);
-                    }
-                     */
-
-                    break;
-
-                case MAVLINK_MSG_ID_SENSOR_BIAS:
-                    mavlink_msg_sensor_bias_decode(&msg, &mlSensorBiasData);
-                    break;
-
-                case MAVLINK_MSG_ID_DIAGNOSTIC:
-                    //mavlink_msg_diagnostic_decode(&msg, &mlDiagnosticData);
-                    break;
-
-                case MAVLINK_MSG_ID_RC_CHANNELS_RAW:
-                    mavlink_msg_rc_channels_raw_decode(&msg, &mlPilotConsoleData);
-                    break;
-
-                case MAVLINK_MSG_ID_SCALED_IMU:
-                    mavlink_msg_scaled_imu_decode(&msg, &mlFilteredData);
-                    break;
-
-                case MAVLINK_MSG_ID_ATTITUDE:
-                    mavlink_msg_attitude_decode(&msg, &mlAttitudeData);
-                    break;
-
-                case MAVLINK_MSG_ID_RAW_IMU:
-                    mavlink_msg_raw_imu_decode(&msg, &mlRawImuData);
-                    break;
-
-                case MAVLINK_MSG_ID_RAW_PRESSURE:
-                    mavlink_msg_raw_pressure_decode(&msg, &mlRawPressureData);
-                    break;
-
-                case MAVLINK_MSG_ID_GPS_DATE_TIME:
-                    mavlink_msg_gps_date_time_decode(&msg, &mlGpsDateTime);
-                    break;
-
-#if USE_NMEA
-                case MAVLINK_MSG_ID_STATUS_GPS:
-                    mavlink_msg_status_gps_decode(&msg, &mlGpsStatus);
-                    break;
-#else
-                case MAVLINK_MSG_ID_NOVATEL_DIAG:
-                    mavlink_msg_novatel_diag_decode(&msg, &mlNovatelStatus);
-                    break;
-#endif
-
-                case MAVLINK_MSG_ID_SENSOR_DIAG:
-                    mavlink_msg_sensor_diag_decode(&msg, &mlSensorDiag );
-                    break;
-                    //  End of Sensor MCU exclusive Messages
-                    // =====================================
-
-                case MAVLINK_MSG_ID_SET_MODE:
-                {
-                    mavlink_set_mode_t mlSetMode;
-                    mavlink_msg_set_mode_decode(&msg, &mlSetMode );
-                    // Can set custom_mode (previously nav_mode) and or base_mode
-                    if (mlSetMode.base_mode != 0) {
-
-                        if (!hasMode(mlHeartbeatLocal.base_mode,MAV_MODE_FLAG_HIL_ENABLED)
-                            && hasMode(mlSetMode.base_mode, MAV_MODE_FLAG_HIL_ENABLED)) {
-                            // Turned HIL on
-                            mlPending.statustext++;
-
-                            mlStatustext.severity = MAV_SEVERITY_INFO;
-                            strncpy(mlStatustext.text, "Turning on HIL mode.", 49);
-                        }
-                        else if (hasMode(mlHeartbeatLocal.base_mode, MAV_MODE_FLAG_HIL_ENABLED)
-                            && !hasMode(mlSetMode.base_mode,MAV_MODE_FLAG_HIL_ENABLED)) {
-                            // Turned HIL off
-                            mlPending.statustext++;
-
-                            mlStatustext.severity = MAV_SEVERITY_INFO;
-                            strncpy(mlStatustext.text, "Turning off HIL mode.", 49);
-                        }
-                        mlHeartbeatLocal.base_mode = mlSetMode.base_mode;
-
-                    }
-                    if (mlSetMode.custom_mode != SLUGS_MODE_NONE) {
-                        /*
-                        BOOL badMode = FALSE;
-                        // Note: some modes are unused. consider pruning
-                        switch (mlSetMode.custom_mode) {
-                            case SLUGS_MODE_LIFTOFF:
-                                break;
-                            case SLUGS_MODE_PASSTHROUGH:
-                                mlPending.pt = TRUE; // want passthrough mode
-                                break;
-                            case SLUGS_MODE_WAYPOINT:
-                                break;
-                            case SLUGS_MODE_MID_LEVEL:
-                                break;
-                            case SLUGS_MODE_RETURNING:
-                                break;
-                            case SLUGS_MODE_LANDING:
-                                break;
-                            case SLUGS_MODE_LOST:
-                                break;
-                            case SLUGS_MODE_SELECTIVE_PASSTHROUGH:
-                                break;
-                            case SLUGS_MODE_ISR:
-                                break;
-                            case SLUGS_MODE_LINE_PATROL:
-                                break;
-                            default:
-                                badMode = TRUE;
-                                // Send an error message
-                                mlPending.statustext++;
-
-                                mlStatustext.severity = MAV_SEVERITY_ERROR;
-                                sprintf(mlStatustext.text, "Unknown slugs mode sent: %X.", mlSetMode.custom_mode)
-                                strncpy(mlStatustext.text,"Failed to clear waypoints from EEPROM.", 49);
-
-                        }
-                        // Set new slugs mode if valid
-                        if (!badMode)
-                        */
-                        //lastNavigationMode = mlHeartbeatLocal.custom_mode;
-                        mlHeartbeatLocal.custom_mode = mlSetMode.custom_mode;
-                    }
-
-                    break;
-                }
-                case MAVLINK_MSG_ID_MID_LVL_CMDS:
-                {
-                    mavlink_msg_mid_lvl_cmds_decode(&msg, &mlMidLevelCommands);
-
-                    // Report the Change
-
-                    mlPending.statustext++;
-
-                    mlStatustext.severity = MAV_SEVERITY_INFO;
-                    strncpy(mlStatustext.text, "Mid level flight parameters received.", 49);
-                    /*
-                    mlAction.actionId = SLUGS_ACTION_MLC_CHANGE;
-                    mlAction.actionVal = SLUGS_ACTION_SUCCESS;
-                     */
-
-                    mlPending.midLvlCmds = 1;
-
-                    break;
-                }
-                // Slugs camera orders not used, but should be moved to command_long
-                /*
-                case MAVLINK_MSG_ID_SLUGS_CAMERA_ORDER:
-                    mavlink_msg_slugs_camera_order_decode(&msg, &mlCameraOrder);
-
-                    // Report the Change
-                    mlPending.commandAck++;
-                    mlCommandAck.command = MAVLINK_MSG_ID_SLUGS_CAMERA_ORDER;
-                    mlCommandAck.result = MAV_RESULT_ACCEPTED;
-
-                    break;
-
-                case MAVLINK_MSG_ID_SLUGS_CONFIGURATION_CAMERA:
-                    mavlink_msg_slugs_configuration_camera_decode(&msg, &mlCameraConfig);
-
-                    // Report the Change
-                    mlPending.commandAck++;
-                    mlCommandAck.command = MAVLINK_MSG_ID_SLUGS_CONFIGURATION_CAMERA;
-                    mlCommandAck.result = MAV_RESULT_ACCEPTED;
-
-                    break;
-                */
-                case MAVLINK_MSG_ID_MISSION_COUNT:
-
-                    if (!mlPending.wpTransaction && (mlPending.wpProtState == WP_PROT_IDLE)) {
-
-
-                        mavlink_msg_mission_count_decode(&msg, &mlWpCount);
-
-                        // Start the transaction
-                        mlPending.wpTransaction = 1;
-
-                        // change the state	
-                        mlPending.wpProtState = WP_PROT_GETTING_WP_IDLE;
-
-                        // reset the rest of the state machine
-                        mlPending.wpTotalWps = mlWpCount.count;
-                        mlPending.wpCurrentWpInTransaction = 0;
-                        mlPending.wpTimeOut = 0;
-                    }
-
-                    break;
-
-                case MAVLINK_MSG_ID_MISSION_REQUEST_LIST:
-
-                    // if there is no transaction going on
-                    if (!mlPending.wpTransaction && (mlPending.wpProtState == WP_PROT_IDLE)) {
-                        // Start the transaction
-                        mlPending.wpTransaction = 1;
-
-                        // change the state
-                        mlPending.wpProtState = WP_PROT_LIST_REQUESTED;
-
-
-
-                        // reset the rest of the state machine
-                        mlPending.wpCurrentWpInTransaction = 0;
-                        mlPending.wpTimeOut = 0;
-                    }
-                    break;
-
-                case MAVLINK_MSG_ID_MISSION_REQUEST:
-                    mavlink_msg_mission_request_decode(&msg, &mlWpRequest);
-
-                    if (mlPending.wpTransaction && (mlWpRequest.seq < mlWpValues.wpCount)) {
-                        // change the state
-                        mlPending.wpProtState = WP_PROT_TX_WP;
-
-                        // reset the rest of the state machine
-                        mlPending.wpCurrentWpInTransaction = mlWpRequest.seq;
-                        mlPending.wpTimeOut = 0;
-                    } else {
-                        // TODO: put here a report for a single WP, i.e. not inside a transaction
-                    }
-                    break;
-
-                case MAVLINK_MSG_ID_MISSION_ACK:
-                    mavlink_msg_mission_ack_decode(&msg, &mlWpAck);
-
-                    if (mlPending.wpTransaction) {
-                        // End the transaction
-                        mlPending.wpTransaction = 0;
-
-                        // change the state
-                        mlPending.wpProtState = WP_PROT_IDLE;
-
-                        // reset the rest of the state machine
-                        mlPending.wpCurrentWpInTransaction = 0;
-                        mlPending.wpTimeOut = 0;
-
-                        // send current waypoint index
-                        mlPending.wpSendCurrent = TRUE;
-                    }
-
-                    break;
-
-                case MAVLINK_MSG_ID_MISSION_ITEM:
-                    writeSuccess = SUCCESS;
-                    mavlink_msg_mission_item_decode(&msg, &mlSingleWp);
-
-                    if (mlPending.wpTransaction && (mlPending.wpProtState == WP_PROT_RX_WP)) {
-                        mlPending.wpProtState = WP_PROT_GETTING_WP_IDLE;
-
-                    }
-
-                    indx = (uint8_t) mlSingleWp.seq;
-
-                    mlWpValues.lat[indx] = mlSingleWp.x;
-                    mlWpValues.lon[indx] = mlSingleWp.y;
-                    mlWpValues.alt[indx] = mlSingleWp.z;
-
-                    mlWpValues.type[indx] = mlSingleWp.command;
-
-                    mlWpValues.orbit[indx] = (uint16_t) mlSingleWp.param3;
-
-                    // Record the data in EEPROM
-                    writeSuccess = storeWaypointInEeprom(&mlSingleWp);
-
-                    // Set the flag of Aknowledge for the AKN Message
-                    // if the write was not successful
-                    if (writeSuccess != SUCCESS) {
-                        mlPending.wpAck++;
-
-                        //mlWpAck.target_system =
-                        mlWpAck.target_component = MAV_COMP_ID_MISSIONPLANNER;
-                        mlWpAck.type = MAV_MISSION_ERROR;
-                        /*
-                        mlAction.actionId = SLUGS_ACTION_EEPROM;
-                        mlAction.actionVal = SLUGS_ACTION_FAIL;
-                        */
-                    }
-
-                    break;
-
-                case MAVLINK_MSG_ID_MISSION_CLEAR_ALL:
-
-                    writeSuccess = SUCCESS;
-
-                    // clear the WP values in memory;
-                    memset(&mlWpValues, 0, sizeof (mavlink_mission_item_values_t));
-
-                    writeSuccess = clearWaypointsFrom(0);
-
-                    // Set the flag of Aknowledge fail
-                    // if the write was unsuccessful
-                    if (writeSuccess != SUCCESS) {
-                        mlPending.statustext++;
-
-                        mlStatustext.severity = MAV_SEVERITY_ERROR;
-                        strncpy(mlStatustext.text, "Failed to clear waypoints from EEPROM.", 49);
-
-                    }
-                    /*
-                        mlCommandAck.command = MAVLINK_MSG_ID_MISSION_CLEAR_ALL;
-                        mlCommandAck.result = MAV_RESULT_FAILED;
-                        
-                        mlAction.actionId = SLUGS_ACTION_EEPROM;
-                        mlAction.actionVal = SLUGS_ACTION_FAIL;
-                         
-                    }
-                     * */
-
-                    // Update the waypoint count
-                    mlWpValues.wpCount = 0;
-
-                    // Set the state machine ready to send the WP akn
-                    mlPending.wpCurrentWpInTransaction = 0;
-                    mlPending.wpTotalWps = 0;
-                    mlPending.wpTransaction = 1;
-                    mlPending.wpProtState = WP_PROT_GETTING_WP_IDLE;
-
-                    break;
-
-                case MAVLINK_MSG_ID_SET_GPS_GLOBAL_ORIGIN:
-                    writeSuccess = SUCCESS;
-
-                    memset(&mlSingleWp, 0, sizeof (mavlink_mission_item_t));
-
-                    mavlink_msg_set_gps_global_origin_decode(&msg, &mlGSLocation);
-
-
-                    addMessageToSpiOut(&msg);   
-
-                    mlSingleWp.x = (float) (mlGSLocation.latitude);
-                    mlSingleWp.y = (float) (mlGSLocation.longitude);
-                    mlSingleWp.z = (float) (mlGSLocation.altitude);
-
-                    indx = (uint8_t) MAX_NUM_WPS - 1;
-
-                    mlWpValues.lat[indx] = mlSingleWp.x;
-                    mlWpValues.lon[indx] = mlSingleWp.y;
-                    mlWpValues.alt[indx] = mlSingleWp.z;
-                    mlWpValues.type[indx] = MAV_CMD_NAV_LAND;
-                    mlWpValues.orbit[indx] = 0;
-
-                    // Record the data in EEPROM
-                    writeSuccess = storeWaypointInEeprom(&mlSingleWp);
-
-                    if (writeSuccess != SUCCESS) {
-                        mlPending.statustext++;
-
-                        mlStatustext.severity = MAV_SEVERITY_ERROR;
-                        strncpy(mlStatustext.text, "Failed to write origin to EEPROM.", 49);
-                    }
-                    else {
-
-                        mlPending.statustext++;
-
-                        mlStatustext.severity = MAV_SEVERITY_INFO;
-                        strncpy(mlStatustext.text, "Control DSC GPS origin set.", 49);
-                    }
-
-                    // Set the flag of Aknowledge for the AKN Message
-                    // if the write was not successful
-                    /*
-                    if (writeSuccess != SUCCESS) {
-                        
-                        mlAction.actionId = SLUGS_ACTION_EEPROM;
-                        mlAction.actionVal = SLUGS_ACTION_FAIL;
-                         
-                    }
-                    */
-                    break;
-
-                case MAVLINK_MSG_ID_CTRL_SRFC_PT:
-                    mavlink_msg_ctrl_srfc_pt_decode(&msg, &mlPassthrough);
-
-                    // Report the Change // NOTE: look into this
-                    /*
-                    mlPending.slugsAction++;
-                    mlAction.actionId = SLUGS_ACTION_PT_CHANGE;
-                    mlAction.actionVal = SLUGS_ACTION_SUCCESS;
-                    */
-
-                    mlPending.statustext++;
-
-                    mlStatustext.severity = MAV_SEVERITY_INFO;
-                    sprintf(mlStatustext.text, "Control surface passthrough: 0x%X", mlPassthrough.bitfieldPt);
-                    break;
-
-                case MAVLINK_MSG_ID_PING:
-                    mavlink_msg_ping_decode(&msg, &mlPing);
-
-                    mlPending.ping = 1;
-                    break;
-
-
-                case MAVLINK_MSG_ID_STATUSTEXT:
-                    // Received status message from the sensor MCU -- forward to GS
-                    mavlink_msg_statustext_decode(&msg, &mlStatustext);
-                    mlPending.statustext++;
-                    break;
-
-
-                case MAVLINK_MSG_ID_COMMAND_ACK:
-                    // Received a command ack from the sensor MCU
-                    mavlink_msg_command_ack_decode(&msg, &mlCommandAck);
-
-                    switch (mlCommandAck.command) {
-                        case MAVLINK_MSG_ID_SET_GPS_GLOBAL_ORIGIN:
-                            // since this case has no specific action required on this end
-                            // then just increment slugs action and report it
-                            //mlPending.slugsAction++;
-                            mlPending.statustext++;
-
-                            mlStatustext.severity = MAV_SEVERITY_INFO;
-                            strncpy(mlStatustext.text, "Sensor DSC GPS origin set.", 49);
-                            break;
-                    }
-
-                    break;
-
-                // Replaced by COMMAND_ACK above
-                // Action stuff was here
-
-                case MAVLINK_MSG_ID_COMMAND_LONG:
-                    mavlink_msg_command_long_decode(&msg, &mlCommand);
-
-                    switch (mlCommand.command) {
-                        // TODO: Only handle this in PREFLIGHT mode
-                        case MAV_CMD_PREFLIGHT_STORAGE:
-                            writeSuccess = FAILURE;
-                            // Parameter storage
-                            if (mlCommand.param1 == 0.0f) { // read
-                                memset(&(mlParamInterface.param[0]), 0, sizeof (float) *PAR_PARAM_COUNT);
-
-                                // Comment out MAVLINK_TELEMETRY_RATE in apDefinitions.h to disable this feature
-#ifdef MAVLINK_TELEMETRY_RATE
-    // Default parameter
-    mlParamInterface.param[PAR_RATE_TELEMETRY] = MAVLINK_TELEMETRY_RATE; // (Hz)
-#endif
-
-                                writeSuccess = readParamsInEeprom();
-                            }
-                            else if (mlCommand.param1 == 1.0f) { // write
-
-                                writeSuccess = storeAllParamsInEeprom();
-                            }
-                            // Waypoint storage (only handle either params or waypoints)
-                            // TODO look into implementing this (again?)
-                            else if (mlCommand.param2 == 0.0f) { // read
-                            }
-                            else if (mlCommand.param2 == 1.0f) { // write
-                            }
-
-                            mlPending.commandAck = TRUE;
-
-                            mlCommandAck.command = MAV_CMD_PREFLIGHT_STORAGE;
-                            mlCommandAck.result = (writeSuccess == SUCCESS)?
-                                MAV_RESULT_ACCEPTED : MAV_RESULT_FAILED;
-
-                            break;
-                        // Store or read mid-level commands to/from eeprom
-                        case MAV_CMD_MIDLEVEL_STORAGE:
-                            writeSuccess = FAILURE;
-                            if (mlCommand.param1 == 0.0f) { // read
-                                mlMidLevelCommands.hCommand = 0.0f;
-                                mlMidLevelCommands.rCommand = 0.0f;
-                                mlMidLevelCommands.uCommand = 0.0f;
-                                writeSuccess = readMidLevelCommandsInEeprom();
-                            }
-                            else if (mlCommand.param1 == 1.0f) { // write
-                                writeSuccess = storeMidLevelCommandsInEeprom();
-                                mlPending.statustext++;
-
-                                mlStatustext.severity = MAV_SEVERITY_INFO;
-                                strncpy(mlStatustext.text, "Wrote mid-level commands to EEPROM.", 49);
-                            }
-
-                            mlPending.commandAck = TRUE;
-                            mlCommandAck.command = MAV_CMD_MIDLEVEL_STORAGE;
-                            mlCommandAck.result = (writeSuccess == SUCCESS)?
-                                MAV_RESULT_ACCEPTED : MAV_RESULT_FAILED;
-
-                            break;
-                        // HIL Stuff Moved to set_mode
-                        case MAV_CMD_RETURN_TO_BASE:
-                            mlRTB.rtb = TRUE;
-                            mlRTB.track_mobile = mlCommand.param1;
-                            mlPending.commandAck = TRUE;
-                            mlCommandAck.command = MAV_CMD_RETURN_TO_BASE;
-                            mlCommandAck.result = MAV_RESULT_ACCEPTED;
-                            break;
-                        case MAV_CMD_TURN_LIGHT:
-                            mlLights.state = mlCommand.param2;
-                            mlLights.type = mlCommand.param1;
-
-                            mlPending.commandAck = TRUE;
-                            mlCommandAck.command = MAV_CMD_TURN_LIGHT;
-                            mlCommandAck.result = MAV_RESULT_ACCEPTED;
-                            break;
-                        case MAV_CMD_GET_MID_LEVEL_COMMANDS:
-                            mlPending.midLvlCmds = 1;
-
-                            mlPending.commandAck = TRUE;
-                            mlCommandAck.command = MAV_CMD_GET_MID_LEVEL_COMMANDS;
-                            mlCommandAck.result = MAV_RESULT_ACCEPTED;
-                            break;
-
-                    } // switch COMMAND_LONG
-
-                    break;
-
-                case MAVLINK_MSG_ID_PARAM_REQUEST_LIST:
-                    mlPending.piTransaction = 1;
-                    mlPending.piProtState = PI_SEND_ALL_PARAM;
-                    mlPending.piCurrentParamInTransaction = 0;
-                    break;
-
-                case MAVLINK_MSG_ID_PARAM_REQUEST_READ:
-                    // If it was in the middle of a list transmission or there is already a param enqueued
-                    mlPending.piTransaction = 1;
-                    switch (mlPending.piProtState) {
-                        case PI_IDLE:
-                            mlPending.piBackToList = 0; // no need to go back
-                            mlPending.piQIdx = -1; // no Index
-                            mlPending.piCurrentParamInTransaction = mavlink_msg_param_request_read_get_param_index(&msg); // assign directly
-                            mlPending.piProtState = PI_SEND_ONE_PARAM;
-                            break;
-
-                        case PI_SEND_ALL_PARAM:
-                            mlPending.piBackToList = 1; // mark to go back
-                            mlPending.piQIdx++; // done like this because when empty index = -1
-                            mlPending.piQueue[mlPending.piQIdx] = mavlink_msg_param_request_read_get_param_index(&msg); // put in in queue
-                            mlPending.piProtState = PI_SEND_ONE_PARAM;
-                            break;
-
-                        case PI_SEND_ONE_PARAM:
-                            if (mlPending.piBackToList) {
-                                mlPending.piQIdx++; // done like this because when empty index = -1
-                                mlPending.piQueue[mlPending.piQIdx] = mavlink_msg_param_request_read_get_param_index(&msg); // put in in queue				  									  		
-                            }
-                            mlPending.piProtState = PI_SEND_ONE_PARAM;
-                            break;
-                    }
-                    break;
-
-                case MAVLINK_MSG_ID_PARAM_SET:
-                    mavlink_msg_param_set_decode(&msg, &set);
-
-                    if ((uint8_t) set.target_system == (uint8_t) SLUGS_SYSTEMID &&
-                        (uint8_t) set.target_component == (uint8_t) SLUGS_COMPID) {
-
-
-                        char* key = (char*) set.param_id;
-                        uint8_t i, j;
-                        uint8_t match;
-                        for (i = 0; i < PAR_PARAM_COUNT; i++) {
-                            match = 1;
-                            for (j = 0; j < SLUGS_PARAM_NAME_LENGTH; j++) {
-                                // Compare
-                                if (((char) (mlParamInterface.param_name[i][j]))
-                                    != (char) (key[j])) {
-                                    match = 0;
-                                } // if
-
-                                // End matching if null termination is reached
-                                if (((char) mlParamInterface.param_name[i][j]) == '\0') {
-                                    break;
-                                } // if
-                            }// for j
-
-                            // Check if matched
-                            if (match) {
-                                //sw_debug = 1;
-                                // Only write and emit changes if there is actually a difference
-                                // AND only write if new value is NOT "not-a-number"
-                                // AND is NOT infinity
-
-                                if (isFinite(set.param_value)) {
-
-                                    mlParamInterface.param[i] = set.param_value;
-
-                                    // Report back new value
-                                    mlPending.piBackToList = 0; // no need to go back
-                                    mlPending.piQIdx = -1; // no Index
-                                    mlPending.piCurrentParamInTransaction = i; // assign directly
-                                    mlPending.piProtState = PI_SEND_ONE_PARAM;
-                                    mlPending.piTransaction = 1;
-
-                                } // if different and not nan and not inf
-                            } // if match
-                        }// for i
-                    } // if addressed to this
-                    break;
-
-                    // case MAVLINK_MSG_ID_SLUGS_CAMERA_ORDER:
-                    // 	mavlink_msg_slugs_camera_order_decode(&msg, &mlCameraOrder); 
+            // // Handle message
+            // switch (msg.msgid) {
+                // case MAVLINK_MSG_ID_HEARTBEAT:
+                    // mavlink_msg_heartbeat_decode(&msg, &mlHeartbeat);
+                    // // Reset the heartbeat
+                    // mlPending.heartbeatAge = 0;
                     // break;
-                // mav_mode moved into custom_mode of set_mode 
-                /*
-                case MAVLINK_MSG_ID_SET_NAV_MODE:
-                    mavlink_msg_set_nav_mode_decode(&msg, &mode);
 
-                    mlSystemStatus.nav_mode = mode.nav_mode;
-                    break;
-                */
-                // moved to MAV_CMD_RETURN_TO_BASE
-                    /*
-                case MAVLINK_MSG_ID_SLUGS_RTB:
-                    mavlink_msg_slugs_rtb_decode(&msg, &mlRTB);
+                // case MAVLINK_MSG_ID_GPS_RAW_INT:
+                    // mavlink_msg_gps_raw_int_decode(&msg, &mlGpsData);
+                    // //updateGpsPosition(); // scales raw ints to floats
+                    // break;
 
-                    // Report the Change
-                    //mlPending.
-                    //mlPending.slugsAction++;
+                // case MAVLINK_MSG_ID_CPU_LOAD:
+                    // mavlink_msg_cpu_load_decode(&msg, &mlCpuLoadData);
+                    // // Copy battery voltage to system status message
+                    // mlSystemStatus.voltage_battery = mlCpuLoadData.batVolt;
+                    // break;
 
-                    if (!mlRTB.rtb) {
-                        mlAction.actionId = SLUGS_ACTION_RTB_OFF;
-                    } else if (!mlRTB.track_mobile) {
-                        mlAction.actionId = SLUGS_ACTION_RTB_ON_NO_MOBILE;
-                    } else {
-                        mlAction.actionId = SLUGS_ACTION_RTB_ON_MOBILE;
-                    }
-                    mlAction.actionVal = SLUGS_ACTION_SUCCESS;
+                // case MAVLINK_MSG_ID_LOCAL_POSITION_NED:
+                    // mavlink_msg_local_position_ned_decode(&msg, &mlLocalPositionData);
+                    // break;
+
+                // case MAVLINK_MSG_ID_SCALED_PRESSURE:
+                    // mavlink_msg_scaled_pressure_decode(&msg, &mlAirData);
+                    // break;
+
+                // case MAVLINK_MSG_ID_BOOT:
+                    // temp = mavlink_msg_boot_get_version(&msg);
+
+                    // if (temp) {
+                        // mlPending.spiSendGSLocation = 1;
+                    // }
+                    // /*
+                    // if (temp != 0 && mlBoot.version != 0) {
+                        // mlBoot.version += temp;
+                    // } else if (mlBoot.version == 0) {
+                        // mavlink_msg_boot_decode(&msg, &mlBoot);
+                    // }
+                     // */
+
+                    // break;
+
+                // case MAVLINK_MSG_ID_SENSOR_BIAS:
+                    // mavlink_msg_sensor_bias_decode(&msg, &mlSensorBiasData);
+                    // break;
+
+                // case MAVLINK_MSG_ID_DIAGNOSTIC:
+                    // //mavlink_msg_diagnostic_decode(&msg, &mlDiagnosticData);
+                    // break;
+
+                // case MAVLINK_MSG_ID_RC_CHANNELS_RAW:
+                    // mavlink_msg_rc_channels_raw_decode(&msg, &mlPilotConsoleData);
+                    // break;
+
+                // case MAVLINK_MSG_ID_SCALED_IMU:
+                    // mavlink_msg_scaled_imu_decode(&msg, &mlFilteredData);
+                    // break;
+
+                // case MAVLINK_MSG_ID_ATTITUDE:
+                    // mavlink_msg_attitude_decode(&msg, &mlAttitudeData);
+                    // break;
+
+                // case MAVLINK_MSG_ID_RAW_IMU:
+                    // mavlink_msg_raw_imu_decode(&msg, &mlRawImuData);
+                    // break;
+
+                // case MAVLINK_MSG_ID_RAW_PRESSURE:
+                    // mavlink_msg_raw_pressure_decode(&msg, &mlRawPressureData);
+                    // break;
+
+                // case MAVLINK_MSG_ID_GPS_DATE_TIME:
+                    // mavlink_msg_gps_date_time_decode(&msg, &mlGpsDateTime);
+                    // break;
+
+// #if USE_NMEA
+                // case MAVLINK_MSG_ID_STATUS_GPS:
+                    // mavlink_msg_status_gps_decode(&msg, &mlGpsStatus);
+                    // break;
+// #else
+                // case MAVLINK_MSG_ID_NOVATEL_DIAG:
+                    // mavlink_msg_novatel_diag_decode(&msg, &mlNovatelStatus);
+                    // break;
+// #endif
+
+                // case MAVLINK_MSG_ID_SENSOR_DIAG:
+                    // mavlink_msg_sensor_diag_decode(&msg, &mlSensorDiag );
+                    // break;
+                    // //  End of Sensor MCU exclusive Messages
+                    // // =====================================
+
+                // case MAVLINK_MSG_ID_SET_MODE:
+                // {
+                    // mavlink_set_mode_t mlSetMode;
+                    // mavlink_msg_set_mode_decode(&msg, &mlSetMode );
+                    // // Can set custom_mode (previously nav_mode) and or base_mode
+                    // if (mlSetMode.base_mode != 0) {
+
+                        // if (!hasMode(mlHeartbeatLocal.base_mode,MAV_MODE_FLAG_HIL_ENABLED)
+                            // && hasMode(mlSetMode.base_mode, MAV_MODE_FLAG_HIL_ENABLED)) {
+                            // // Turned HIL on
+                            // mlPending.statustext++;
+
+                            // mlStatustext.severity = MAV_SEVERITY_INFO;
+                            // strncpy(mlStatustext.text, "Turning on HIL mode.", 49);
+                        // }
+                        // else if (hasMode(mlHeartbeatLocal.base_mode, MAV_MODE_FLAG_HIL_ENABLED)
+                            // && !hasMode(mlSetMode.base_mode,MAV_MODE_FLAG_HIL_ENABLED)) {
+                            // // Turned HIL off
+                            // mlPending.statustext++;
+
+                            // mlStatustext.severity = MAV_SEVERITY_INFO;
+                            // strncpy(mlStatustext.text, "Turning off HIL mode.", 49);
+                        // }
+                        // mlHeartbeatLocal.base_mode = mlSetMode.base_mode;
+
+                    // }
+                    // if (mlSetMode.custom_mode != SLUGS_MODE_NONE) {
+                        // /*
+                        // BOOL badMode = FALSE;
+                        // // Note: some modes are unused. consider pruning
+                        // switch (mlSetMode.custom_mode) {
+                            // case SLUGS_MODE_LIFTOFF:
+                                // break;
+                            // case SLUGS_MODE_PASSTHROUGH:
+                                // mlPending.pt = TRUE; // want passthrough mode
+                                // break;
+                            // case SLUGS_MODE_WAYPOINT:
+                                // break;
+                            // case SLUGS_MODE_MID_LEVEL:
+                                // break;
+                            // case SLUGS_MODE_RETURNING:
+                                // break;
+                            // case SLUGS_MODE_LANDING:
+                                // break;
+                            // case SLUGS_MODE_LOST:
+                                // break;
+                            // case SLUGS_MODE_SELECTIVE_PASSTHROUGH:
+                                // break;
+                            // case SLUGS_MODE_ISR:
+                                // break;
+                            // case SLUGS_MODE_LINE_PATROL:
+                                // break;
+                            // default:
+                                // badMode = TRUE;
+                                // // Send an error message
+                                // mlPending.statustext++;
+
+                                // mlStatustext.severity = MAV_SEVERITY_ERROR;
+                                // sprintf(mlStatustext.text, "Unknown slugs mode sent: %X.", mlSetMode.custom_mode)
+                                // strncpy(mlStatustext.text,"Failed to clear waypoints from EEPROM.", 49);
+
+                        // }
+                        // // Set new slugs mode if valid
+                        // if (!badMode)
+                        // */
+                        // //lastNavigationMode = mlHeartbeatLocal.custom_mode;
+                        // mlHeartbeatLocal.custom_mode = mlSetMode.custom_mode;
+                    // }
+
+                    // break;
+                // }
+                // case MAVLINK_MSG_ID_MID_LVL_CMDS:
+                // {
+                    // mavlink_msg_mid_lvl_cmds_decode(&msg, &mlMidLevelCommands);
+
+                    // // Report the Change
+
+                    // mlPending.statustext++;
+
+                    // mlStatustext.severity = MAV_SEVERITY_INFO;
+                    // strncpy(mlStatustext.text, "Mid level flight parameters received.", 49);
+                    // /*
+                    // mlAction.actionId = SLUGS_ACTION_MLC_CHANGE;
+                    // mlAction.actionVal = SLUGS_ACTION_SUCCESS;
+                     // */
+
+                    // mlPending.midLvlCmds = 1;
+
+                    // break;
+                // }
+                // // Slugs camera orders not used, but should be moved to command_long
+                // /*
+                // case MAVLINK_MSG_ID_SLUGS_CAMERA_ORDER:
+                    // mavlink_msg_slugs_camera_order_decode(&msg, &mlCameraOrder);
+
+                    // // Report the Change
+                    // mlPending.commandAck++;
+                    // mlCommandAck.command = MAVLINK_MSG_ID_SLUGS_CAMERA_ORDER;
+                    // mlCommandAck.result = MAV_RESULT_ACCEPTED;
+
+                    // break;
+
+                // case MAVLINK_MSG_ID_SLUGS_CONFIGURATION_CAMERA:
+                    // mavlink_msg_slugs_configuration_camera_decode(&msg, &mlCameraConfig);
+
+                    // // Report the Change
+                    // mlPending.commandAck++;
+                    // mlCommandAck.command = MAVLINK_MSG_ID_SLUGS_CONFIGURATION_CAMERA;
+                    // mlCommandAck.result = MAV_RESULT_ACCEPTED;
+
+                    // break;
+                // */
+                // case MAVLINK_MSG_ID_MISSION_COUNT:
+
+                    // if (!mlPending.wpTransaction && (mlPending.wpProtState == WP_PROT_IDLE)) {
+
+
+                        // mavlink_msg_mission_count_decode(&msg, &mlWpCount);
+
+                        // // Start the transaction
+                        // mlPending.wpTransaction = 1;
+
+                        // // change the state	
+                        // mlPending.wpProtState = WP_PROT_GETTING_WP_IDLE;
+
+                        // // reset the rest of the state machine
+                        // mlPending.wpTotalWps = mlWpCount.count;
+                        // mlPending.wpCurrentWpInTransaction = 0;
+                        // mlPending.wpTimeOut = 0;
+                    // }
+
+                    // break;
+
+                // case MAVLINK_MSG_ID_MISSION_REQUEST_LIST:
+
+                    // // if there is no transaction going on
+                    // if (!mlPending.wpTransaction && (mlPending.wpProtState == WP_PROT_IDLE)) {
+                        // // Start the transaction
+                        // mlPending.wpTransaction = 1;
+
+                        // // change the state
+                        // mlPending.wpProtState = WP_PROT_LIST_REQUESTED;
+
+
+
+                        // // reset the rest of the state machine
+                        // mlPending.wpCurrentWpInTransaction = 0;
+                        // mlPending.wpTimeOut = 0;
+                    // }
+                    // break;
+
+                // case MAVLINK_MSG_ID_MISSION_REQUEST:
+                    // mavlink_msg_mission_request_decode(&msg, &mlWpRequest);
+
+                    // if (mlPending.wpTransaction && (mlWpRequest.seq < mlWpValues.wpCount)) {
+                        // // change the state
+                        // mlPending.wpProtState = WP_PROT_TX_WP;
+
+                        // // reset the rest of the state machine
+                        // mlPending.wpCurrentWpInTransaction = mlWpRequest.seq;
+                        // mlPending.wpTimeOut = 0;
+                    // } else {
+                        // // TODO: put here a report for a single WP, i.e. not inside a transaction
+                    // }
+                    // break;
+
+                // case MAVLINK_MSG_ID_MISSION_ACK:
+                    // mavlink_msg_mission_ack_decode(&msg, &mlWpAck);
+
+                    // if (mlPending.wpTransaction) {
+                        // // End the transaction
+                        // mlPending.wpTransaction = 0;
+
+                        // // change the state
+                        // mlPending.wpProtState = WP_PROT_IDLE;
+
+                        // // reset the rest of the state machine
+                        // mlPending.wpCurrentWpInTransaction = 0;
+                        // mlPending.wpTimeOut = 0;
+
+                        // // send current waypoint index
+                        // mlPending.wpSendCurrent = TRUE;
+                    // }
+
+                    // break;
+
+                // case MAVLINK_MSG_ID_MISSION_ITEM:
+                    // writeSuccess = SUCCESS;
+                    // mavlink_msg_mission_item_decode(&msg, &mlSingleWp);
+
+                    // if (mlPending.wpTransaction && (mlPending.wpProtState == WP_PROT_RX_WP)) {
+                        // mlPending.wpProtState = WP_PROT_GETTING_WP_IDLE;
+
+                    // }
+
+                    // indx = (uint8_t) mlSingleWp.seq;
+
+                    // mlWpValues.lat[indx] = mlSingleWp.x;
+                    // mlWpValues.lon[indx] = mlSingleWp.y;
+                    // mlWpValues.alt[indx] = mlSingleWp.z;
+
+                    // mlWpValues.type[indx] = mlSingleWp.command;
+
+                    // mlWpValues.orbit[indx] = (uint16_t) mlSingleWp.param3;
+
+                    // // Record the data in EEPROM
+                    // writeSuccess = storeWaypointInEeprom(&mlSingleWp);
+
+                    // // Set the flag of Aknowledge for the AKN Message
+                    // // if the write was not successful
+                    // if (writeSuccess != SUCCESS) {
+                        // mlPending.wpAck++;
+
+                        // //mlWpAck.target_system =
+                        // mlWpAck.target_component = MAV_COMP_ID_MISSIONPLANNER;
+                        // mlWpAck.type = MAV_MISSION_ERROR;
+                        // /*
+                        // mlAction.actionId = SLUGS_ACTION_EEPROM;
+                        // mlAction.actionVal = SLUGS_ACTION_FAIL;
+                        // */
+                    // }
+
+                    // break;
+
+                // case MAVLINK_MSG_ID_MISSION_CLEAR_ALL:
+
+                    // writeSuccess = SUCCESS;
+
+                    // // clear the WP values in memory;
+                    // memset(&mlWpValues, 0, sizeof (mavlink_mission_item_values_t));
+
+                    // writeSuccess = clearWaypointsFrom(0);
+
+                    // // Set the flag of Aknowledge fail
+                    // // if the write was unsuccessful
+                    // if (writeSuccess != SUCCESS) {
+                        // mlPending.statustext++;
+
+                        // mlStatustext.severity = MAV_SEVERITY_ERROR;
+                        // strncpy(mlStatustext.text, "Failed to clear waypoints from EEPROM.", 49);
+
+                    // }
+                    // /*
+                        // mlCommandAck.command = MAVLINK_MSG_ID_MISSION_CLEAR_ALL;
+                        // mlCommandAck.result = MAV_RESULT_FAILED;
+                        
+                        // mlAction.actionId = SLUGS_ACTION_EEPROM;
+                        // mlAction.actionVal = SLUGS_ACTION_FAIL;
+                         
+                    // }
+                     // * */
+
+                    // // Update the waypoint count
+                    // mlWpValues.wpCount = 0;
+
+                    // // Set the state machine ready to send the WP akn
+                    // mlPending.wpCurrentWpInTransaction = 0;
+                    // mlPending.wpTotalWps = 0;
+                    // mlPending.wpTransaction = 1;
+                    // mlPending.wpProtState = WP_PROT_GETTING_WP_IDLE;
+
+                    // break;
+
+                // case MAVLINK_MSG_ID_SET_GPS_GLOBAL_ORIGIN:
+                    // writeSuccess = SUCCESS;
+
+                    // memset(&mlSingleWp, 0, sizeof (mavlink_mission_item_t));
+
+                    // mavlink_msg_set_gps_global_origin_decode(&msg, &mlGSLocation);
+
+
+                    // addMessageToSpiOut(&msg);   
+
+                    // mlSingleWp.x = (float) (mlGSLocation.latitude);
+                    // mlSingleWp.y = (float) (mlGSLocation.longitude);
+                    // mlSingleWp.z = (float) (mlGSLocation.altitude);
+
+                    // indx = (uint8_t) MAX_NUM_WPS - 1;
+
+                    // mlWpValues.lat[indx] = mlSingleWp.x;
+                    // mlWpValues.lon[indx] = mlSingleWp.y;
+                    // mlWpValues.alt[indx] = mlSingleWp.z;
+                    // mlWpValues.type[indx] = MAV_CMD_NAV_LAND;
+                    // mlWpValues.orbit[indx] = 0;
+
+                    // // Record the data in EEPROM
+                    // writeSuccess = storeWaypointInEeprom(&mlSingleWp);
+
+                    // if (writeSuccess != SUCCESS) {
+                        // mlPending.statustext++;
+
+                        // mlStatustext.severity = MAV_SEVERITY_ERROR;
+                        // strncpy(mlStatustext.text, "Failed to write origin to EEPROM.", 49);
+                    // }
+                    // else {
+
+                        // mlPending.statustext++;
+
+                        // mlStatustext.severity = MAV_SEVERITY_INFO;
+                        // strncpy(mlStatustext.text, "Control DSC GPS origin set.", 49);
+                    // }
+
+                    // // Set the flag of Aknowledge for the AKN Message
+                    // // if the write was not successful
+                    // /*
+                    // if (writeSuccess != SUCCESS) {
+                        
+                        // mlAction.actionId = SLUGS_ACTION_EEPROM;
+                        // mlAction.actionVal = SLUGS_ACTION_FAIL;
+                         
+                    // }
+                    // */
+                    // break;
+
+                // case MAVLINK_MSG_ID_CTRL_SRFC_PT:
+                    // mavlink_msg_ctrl_srfc_pt_decode(&msg, &mlPassthrough);
+
+                    // // Report the Change // NOTE: look into this
+                    // /*
+                    // mlPending.slugsAction++;
+                    // mlAction.actionId = SLUGS_ACTION_PT_CHANGE;
+                    // mlAction.actionVal = SLUGS_ACTION_SUCCESS;
+                    // */
+
+                    // mlPending.statustext++;
+
+                    // mlStatustext.severity = MAV_SEVERITY_INFO;
+                    // sprintf(mlStatustext.text, "Control surface passthrough: 0x%X", mlPassthrough.bitfieldPt);
+                    // break;
+
+                // case MAVLINK_MSG_ID_PING:
+                    // mavlink_msg_ping_decode(&msg, &mlPing);
+
+                    // mlPending.ping = 1;
+                    // break;
+
+
+                // case MAVLINK_MSG_ID_STATUSTEXT:
+                    // // Received status message from the sensor MCU -- forward to GS
+                    // mavlink_msg_statustext_decode(&msg, &mlStatustext);
+                    // mlPending.statustext++;
+                    // break;
+
+
+                // case MAVLINK_MSG_ID_COMMAND_ACK:
+                    // // Received a command ack from the sensor MCU
+                    // mavlink_msg_command_ack_decode(&msg, &mlCommandAck);
+
+                    // switch (mlCommandAck.command) {
+                        // case MAVLINK_MSG_ID_SET_GPS_GLOBAL_ORIGIN:
+                            // // since this case has no specific action required on this end
+                            // // then just increment slugs action and report it
+                            // //mlPending.slugsAction++;
+                            // mlPending.statustext++;
+
+                            // mlStatustext.severity = MAV_SEVERITY_INFO;
+                            // strncpy(mlStatustext.text, "Sensor DSC GPS origin set.", 49);
+                            // break;
+                    // }
+
+                    // break;
+
+                // // Replaced by COMMAND_ACK above
+                // // Action stuff was here
+
+                // case MAVLINK_MSG_ID_COMMAND_LONG:
+                    // mavlink_msg_command_long_decode(&msg, &mlCommand);
+
+                    // switch (mlCommand.command) {
+                        // // TODO: Only handle this in PREFLIGHT mode
+                        // case MAV_CMD_PREFLIGHT_STORAGE:
+                            // writeSuccess = FAILURE;
+                            // // Parameter storage
+                            // if (mlCommand.param1 == 0.0f) { // read
+                                // memset(&(mlParamInterface.param[0]), 0, sizeof (float) *PAR_PARAM_COUNT);
+
+                                // // Comment out MAVLINK_TELEMETRY_RATE in apDefinitions.h to disable this feature
+// #ifdef MAVLINK_TELEMETRY_RATE
+    // // Default parameter
+    // mlParamInterface.param[PAR_RATE_TELEMETRY] = MAVLINK_TELEMETRY_RATE; // (Hz)
+// #endif
+
+                                // writeSuccess = readParamsInEeprom();
+                            // }
+                            // else if (mlCommand.param1 == 1.0f) { // write
+
+                                // writeSuccess = storeAllParamsInEeprom();
+                            // }
+                            // // Waypoint storage (only handle either params or waypoints)
+                            // // TODO look into implementing this (again?)
+                            // else if (mlCommand.param2 == 0.0f) { // read
+                            // }
+                            // else if (mlCommand.param2 == 1.0f) { // write
+                            // }
+
+                            // mlPending.commandAck = TRUE;
+
+                            // mlCommandAck.command = MAV_CMD_PREFLIGHT_STORAGE;
+                            // mlCommandAck.result = (writeSuccess == SUCCESS)?
+                                // MAV_RESULT_ACCEPTED : MAV_RESULT_FAILED;
+
+                            // break;
+                        // // Store or read mid-level commands to/from eeprom
+                        // case MAV_CMD_MIDLEVEL_STORAGE:
+                            // writeSuccess = FAILURE;
+                            // if (mlCommand.param1 == 0.0f) { // read
+                                // mlMidLevelCommands.hCommand = 0.0f;
+                                // mlMidLevelCommands.rCommand = 0.0f;
+                                // mlMidLevelCommands.uCommand = 0.0f;
+                                // writeSuccess = readMidLevelCommandsInEeprom();
+                            // }
+                            // else if (mlCommand.param1 == 1.0f) { // write
+                                // writeSuccess = storeMidLevelCommandsInEeprom();
+                                // mlPending.statustext++;
+
+                                // mlStatustext.severity = MAV_SEVERITY_INFO;
+                                // strncpy(mlStatustext.text, "Wrote mid-level commands to EEPROM.", 49);
+                            // }
+
+                            // mlPending.commandAck = TRUE;
+                            // mlCommandAck.command = MAV_CMD_MIDLEVEL_STORAGE;
+                            // mlCommandAck.result = (writeSuccess == SUCCESS)?
+                                // MAV_RESULT_ACCEPTED : MAV_RESULT_FAILED;
+
+                            // break;
+                        // // HIL Stuff Moved to set_mode
+                        // case MAV_CMD_RETURN_TO_BASE:
+                            // mlRTB.rtb = TRUE;
+                            // mlRTB.track_mobile = mlCommand.param1;
+                            // mlPending.commandAck = TRUE;
+                            // mlCommandAck.command = MAV_CMD_RETURN_TO_BASE;
+                            // mlCommandAck.result = MAV_RESULT_ACCEPTED;
+                            // break;
+                        // case MAV_CMD_TURN_LIGHT:
+                            // mlLights.state = mlCommand.param2;
+                            // mlLights.type = mlCommand.param1;
+
+                            // mlPending.commandAck = TRUE;
+                            // mlCommandAck.command = MAV_CMD_TURN_LIGHT;
+                            // mlCommandAck.result = MAV_RESULT_ACCEPTED;
+                            // break;
+                        // case MAV_CMD_GET_MID_LEVEL_COMMANDS:
+                            // mlPending.midLvlCmds = 1;
+
+                            // mlPending.commandAck = TRUE;
+                            // mlCommandAck.command = MAV_CMD_GET_MID_LEVEL_COMMANDS;
+                            // mlCommandAck.result = MAV_RESULT_ACCEPTED;
+                            // break;
+
+                    // } // switch COMMAND_LONG
+
+                    // break;
+
+                // case MAVLINK_MSG_ID_PARAM_REQUEST_LIST:
+                    // mlPending.piTransaction = 1;
+                    // mlPending.piProtState = PI_SEND_ALL_PARAM;
+                    // mlPending.piCurrentParamInTransaction = 0;
+                    // break;
+
+                // case MAVLINK_MSG_ID_PARAM_REQUEST_READ:
+                    // // If it was in the middle of a list transmission or there is already a param enqueued
+                    // mlPending.piTransaction = 1;
+                    // switch (mlPending.piProtState) {
+                        // case PI_IDLE:
+                            // mlPending.piBackToList = 0; // no need to go back
+                            // mlPending.piQIdx = -1; // no Index
+                            // mlPending.piCurrentParamInTransaction = mavlink_msg_param_request_read_get_param_index(&msg); // assign directly
+                            // mlPending.piProtState = PI_SEND_ONE_PARAM;
+                            // break;
+
+                        // case PI_SEND_ALL_PARAM:
+                            // mlPending.piBackToList = 1; // mark to go back
+                            // mlPending.piQIdx++; // done like this because when empty index = -1
+                            // mlPending.piQueue[mlPending.piQIdx] = mavlink_msg_param_request_read_get_param_index(&msg); // put in in queue
+                            // mlPending.piProtState = PI_SEND_ONE_PARAM;
+                            // break;
+
+                        // case PI_SEND_ONE_PARAM:
+                            // if (mlPending.piBackToList) {
+                                // mlPending.piQIdx++; // done like this because when empty index = -1
+                                // mlPending.piQueue[mlPending.piQIdx] = mavlink_msg_param_request_read_get_param_index(&msg); // put in in queue				  									  		
+                            // }
+                            // mlPending.piProtState = PI_SEND_ONE_PARAM;
+                            // break;
+                    // }
+                    // break;
+
+                // case MAVLINK_MSG_ID_PARAM_SET:
+                    // mavlink_msg_param_set_decode(&msg, &set);
+
+                    // if ((uint8_t) set.target_system == (uint8_t) SLUGS_SYSTEMID &&
+                        // (uint8_t) set.target_component == (uint8_t) SLUGS_COMPID) {
+
+
+                        // char* key = (char*) set.param_id;
+                        // uint8_t i, j;
+                        // uint8_t match;
+                        // for (i = 0; i < PAR_PARAM_COUNT; i++) {
+                            // match = 1;
+                            // for (j = 0; j < SLUGS_PARAM_NAME_LENGTH; j++) {
+                                // // Compare
+                                // if (((char) (mlParamInterface.param_name[i][j]))
+                                    // != (char) (key[j])) {
+                                    // match = 0;
+                                // } // if
+
+                                // // End matching if null termination is reached
+                                // if (((char) mlParamInterface.param_name[i][j]) == '\0') {
+                                    // break;
+                                // } // if
+                            // }// for j
+
+                            // // Check if matched
+                            // if (match) {
+                                // //sw_debug = 1;
+                                // // Only write and emit changes if there is actually a difference
+                                // // AND only write if new value is NOT "not-a-number"
+                                // // AND is NOT infinity
+
+                                // if (isFinite(set.param_value)) {
+
+                                    // mlParamInterface.param[i] = set.param_value;
+
+                                    // // Report back new value
+                                    // mlPending.piBackToList = 0; // no need to go back
+                                    // mlPending.piQIdx = -1; // no Index
+                                    // mlPending.piCurrentParamInTransaction = i; // assign directly
+                                    // mlPending.piProtState = PI_SEND_ONE_PARAM;
+                                    // mlPending.piTransaction = 1;
+
+                                // } // if different and not nan and not inf
+                            // } // if match
+                        // }// for i
+                    // } // if addressed to this
+                    // break;
+
+                    // // case MAVLINK_MSG_ID_SLUGS_CAMERA_ORDER:
+                    // // 	mavlink_msg_slugs_camera_order_decode(&msg, &mlCameraOrder); 
+                    // // break;
+                // // mav_mode moved into custom_mode of set_mode 
+                // /*
+                // case MAVLINK_MSG_ID_SET_NAV_MODE:
+                    // mavlink_msg_set_nav_mode_decode(&msg, &mode);
+
+                    // mlSystemStatus.nav_mode = mode.nav_mode;
+                    // break;
+                // */
+                // // moved to MAV_CMD_RETURN_TO_BASE
+                    // /*
+                // case MAVLINK_MSG_ID_SLUGS_RTB:
+                    // mavlink_msg_slugs_rtb_decode(&msg, &mlRTB);
+
+                    // // Report the Change
+                    // //mlPending.
+                    // //mlPending.slugsAction++;
+
+                    // if (!mlRTB.rtb) {
+                        // mlAction.actionId = SLUGS_ACTION_RTB_OFF;
+                    // } else if (!mlRTB.track_mobile) {
+                        // mlAction.actionId = SLUGS_ACTION_RTB_ON_NO_MOBILE;
+                    // } else {
+                        // mlAction.actionId = SLUGS_ACTION_RTB_ON_MOBILE;
+                    // }
+                    // mlAction.actionVal = SLUGS_ACTION_SUCCESS;
                      
-                    break;
-                    */
-                case MAVLINK_MSG_ID_SLUGS_MOBILE_LOCATION:
-                    mavlink_msg_slugs_mobile_location_decode(&msg, &mlMobileLocation);
-                    break;
+                    // break;
+                    // */
+                // case MAVLINK_MSG_ID_SLUGS_MOBILE_LOCATION:
+                    // mavlink_msg_slugs_mobile_location_decode(&msg, &mlMobileLocation);
+                    // break;
 
 
-                case MAVLINK_MSG_ID_ISR_LOCATION:
-                    mavlink_msg_isr_location_decode(&msg, &mlISR);
+                // case MAVLINK_MSG_ID_ISR_LOCATION:
+                    // mavlink_msg_isr_location_decode(&msg, &mlISR);
 
-                    // Report the Change
-                    // Actions removed. TODO: determine reporting for ISR_LOC set
-                    /*
-                    mlPending.slugsAction++;
-                    mlAction.actionId = SLUGS_ACTION_ISR_LOCATION;
-                    mlAction.actionVal = SLUGS_ACTION_SUCCESS;
-                    */
+                    // // Report the Change
+                    // // Actions removed. TODO: determine reporting for ISR_LOC set
+                    // /*
+                    // mlPending.slugsAction++;
+                    // mlAction.actionId = SLUGS_ACTION_ISR_LOCATION;
+                    // mlAction.actionVal = SLUGS_ACTION_SUCCESS;
+                    // */
 
-                    mlPending.statustext++;
+                    // mlPending.statustext++;
 
-                    mlStatustext.severity = MAV_SEVERITY_INFO;
-                    strncpy(mlStatustext.text, "ISR position recieved.", 49);
+                    // mlStatustext.severity = MAV_SEVERITY_INFO;
+                    // strncpy(mlStatustext.text, "ISR position recieved.", 49);
 
-                    mlPending.isrLoc = 1;
-                    break;
-                // Moved to MAV_CMD_TURN_LIGHT
-                    /*
-                case MAVLINK_MSG_ID_TURN_LIGHT:
-                    mavlink_msg_turn_light_decode(&msg, &mlLights);
-
-
-                    mlPending.slugsAction++;
-                    mlAction.actionId = SLUGS_ACTION_LIGHTS;
-                    mlAction.actionVal = SLUGS_ACTION_SUCCESS;
-
-                    break;
-                    */
-            } // switch	
-        } // if
-
-        // Update global packet drops counter
-        if (commChannel == 1) {
-            mlSystemStatus.errors_comm += status.packet_rx_drop_count;
-        }
+                    // mlPending.isrLoc = 1;
+                    // break;
+                // // Moved to MAV_CMD_TURN_LIGHT
+                    // /*
+                // case MAVLINK_MSG_ID_TURN_LIGHT:
+                    // mavlink_msg_turn_light_decode(&msg, &mlLights);
 
 
-    }// for  
-}
+                    // mlPending.slugsAction++;
+                    // mlAction.actionId = SLUGS_ACTION_LIGHTS;
+                    // mlAction.actionVal = SLUGS_ACTION_SUCCESS;
+
+                    // break;
+                    // */
+            // } // switch	
+        // } // if
+
+        // // Update global packet drops counter
+        // if (commChannel == 1) {
+            // mlSystemStatus.errors_comm += status.packet_rx_drop_count;
+        // }
+
+
+    // }// for  
+// }
 
 void copyBufferToDMA1(unsigned char size) {
     unsigned char i;
@@ -1726,20 +1727,20 @@ void __attribute__((interrupt, no_auto_psv)) _U2ErrInterrupt(void) {
     }
 }
 
-char sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart) {
-    mavlink_message_t msg;
-    unsigned char bytes2Send = 0; // size in bytes of the mavlink packed message (return value)
+// char sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart) {
+    // mavlink_message_t msg;
+    // unsigned char bytes2Send = 0; // size in bytes of the mavlink packed message (return value)
 
-    mavlink_msg_statustext_pack(SLUGS_SYSTEMID,
-        SLUGS_COMPID,
-        &msg,
-        severity,
-        dbgMessage);
+    // mavlink_msg_statustext_pack(SLUGS_SYSTEMID,
+        // SLUGS_COMPID,
+        // &msg,
+        // severity,
+        // dbgMessage);
 
-    bytes2Send = mavlink_msg_to_send_buffer((bytesToAdd + positionStart), &msg);
+    // bytes2Send = mavlink_msg_to_send_buffer((bytesToAdd + positionStart), &msg);
 
-    return bytes2Send;
-}
+    // return bytes2Send;
+// }
 
 // TODO: This probably needs to move to another file since, strictly speaking it has nothing
 //				to do with Mavlink comms.

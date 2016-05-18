@@ -33,7 +33,7 @@ THE SOFTWARE.
 #include "apDefinitions.h"
 #include "mavlinkControlMcu.h"
 #include "apUtils.h"
-#include <p33fxxxx.h>
+//#include <p33fxxxx.h>
 #include <string.h>
 
 #include "DEE.h"
