@@ -678,84 +678,84 @@ clear PAR_PARAM_COUNT;
 clear SLUGS_PARAM_NAME_LENGTH; 
 
 %% Bus object: mlISR
-% clear elems;
-% 
-% elems(1) = Simulink.BusElement;
-% elems(1).Name = 'latitude';
-% elems(1).Dimensions = 1;
-% elems(1).DimensionsMode = 'Fixed';
-% elems(1).DataType = 'single';
-% elems(1).SampleTime = -1;
-% elems(1).Complexity = 'real';
-% elems(1).SamplingMode = 'Sample based';
-% elems(1).Min = [];
-% elems(1).Max = [];
-% 
-% elems(2) = Simulink.BusElement;
-% elems(2).Name = 'longitude';
-% elems(2).Dimensions = 1;
-% elems(2).DimensionsMode = 'Fixed';
-% elems(2).DataType = 'single';
-% elems(2).SampleTime = -1;
-% elems(2).Complexity = 'real';
-% elems(2).SamplingMode = 'Sample based';
-% elems(2).Min = [];
-% elems(2).Max = [];
-% 
-% elems(3) = Simulink.BusElement;
-% elems(3).Name = 'height';
-% elems(3).Dimensions = 1;
-% elems(3).DimensionsMode = 'Fixed';
-% elems(3).DataType = 'single';
-% elems(3).SampleTime = -1;
-% elems(3).Complexity = 'real';
-% elems(3).SamplingMode = 'Sample based';
-% elems(3).Min = [];
-% elems(3).Max = [];
-% 
-% elems(4) = Simulink.BusElement;
-% elems(4).Name = 'option1';
-% elems(4).Dimensions = 1;
-% elems(4).DimensionsMode = 'Fixed';
-% elems(4).DataType = 'uint8';
-% elems(4).SampleTime = -1;
-% elems(4).Complexity = 'real';
-% elems(4).SamplingMode = 'Sample based';
-% elems(4).Min = [];
-% elems(4).Max = [];
-% 
-% elems(5) = Simulink.BusElement;
-% elems(5).Name = 'option2';
-% elems(5).Dimensions = 1;
-% elems(5).DimensionsMode = 'Fixed';
-% elems(5).DataType = 'uint8';
-% elems(5).SampleTime = -1;
-% elems(5).Complexity = 'real';
-% elems(5).SamplingMode = 'Sample based';
-% elems(5).Min = [];
-% elems(5).Max = [];
-% 
-% elems(6) = Simulink.BusElement;
-% elems(6).Name = 'option3';
-% elems(6).Dimensions = 1;
-% elems(6).DimensionsMode = 'Fixed';
-% elems(6).DataType = 'uint8';
-% elems(6).SampleTime = -1;
-% elems(6).Complexity = 'real';
-% elems(6).SamplingMode = 'Sample based';
-% elems(6).Min = [];
-% elems(6).Max = [];
-% 
-% mavlink_isr_location_t = Simulink.Bus;
-% mavlink_isr_location_t.Description = sprintf('mavlink_isr_location');
-% mavlink_isr_location_t.DataScope = 'Imported';
-% mavlink_isr_location_t.HeaderFile = 'mavlink.h'; 
-% mavlink_isr_location_t.Alignment = -1;
-% mavlink_isr_location_t.Elements = elems;
-% assignin('base', 'mavlink_isr_location_t', mavlink_isr_location_t)
-% 
-% 
-% % Bus object: mlNavigation
+clear elems;
+
+elems(1) = Simulink.BusElement;
+elems(1).Name = 'latitude';
+elems(1).Dimensions = 1;
+elems(1).DimensionsMode = 'Fixed';
+elems(1).DataType = 'single';
+elems(1).SampleTime = -1;
+elems(1).Complexity = 'real';
+elems(1).SamplingMode = 'Sample based';
+elems(1).Min = [];
+elems(1).Max = [];
+
+elems(2) = Simulink.BusElement;
+elems(2).Name = 'longitude';
+elems(2).Dimensions = 1;
+elems(2).DimensionsMode = 'Fixed';
+elems(2).DataType = 'single';
+elems(2).SampleTime = -1;
+elems(2).Complexity = 'real';
+elems(2).SamplingMode = 'Sample based';
+elems(2).Min = [];
+elems(2).Max = [];
+
+elems(3) = Simulink.BusElement;
+elems(3).Name = 'height';
+elems(3).Dimensions = 1;
+elems(3).DimensionsMode = 'Fixed';
+elems(3).DataType = 'single';
+elems(3).SampleTime = -1;
+elems(3).Complexity = 'real';
+elems(3).SamplingMode = 'Sample based';
+elems(3).Min = [];
+elems(3).Max = [];
+
+elems(4) = Simulink.BusElement;
+elems(4).Name = 'option1';
+elems(4).Dimensions = 1;
+elems(4).DimensionsMode = 'Fixed';
+elems(4).DataType = 'uint8';
+elems(4).SampleTime = -1;
+elems(4).Complexity = 'real';
+elems(4).SamplingMode = 'Sample based';
+elems(4).Min = [];
+elems(4).Max = [];
+
+elems(5) = Simulink.BusElement;
+elems(5).Name = 'option2';
+elems(5).Dimensions = 1;
+elems(5).DimensionsMode = 'Fixed';
+elems(5).DataType = 'uint8';
+elems(5).SampleTime = -1;
+elems(5).Complexity = 'real';
+elems(5).SamplingMode = 'Sample based';
+elems(5).Min = [];
+elems(5).Max = [];
+
+elems(6) = Simulink.BusElement;
+elems(6).Name = 'option3';
+elems(6).Dimensions = 1;
+elems(6).DimensionsMode = 'Fixed';
+elems(6).DataType = 'uint8';
+elems(6).SampleTime = -1;
+elems(6).Complexity = 'real';
+elems(6).SamplingMode = 'Sample based';
+elems(6).Min = [];
+elems(6).Max = [];
+
+mavlink_isr_location_t = Simulink.Bus;
+mavlink_isr_location_t.Description = sprintf('mavlink_isr_location');
+mavlink_isr_location_t.DataScope = 'Imported';
+mavlink_isr_location_t.HeaderFile = 'mavlink.h'; 
+mavlink_isr_location_t.Alignment = -1;
+mavlink_isr_location_t.Elements = elems;
+assignin('base', 'mavlink_isr_location_t', mavlink_isr_location_t)
+
+
+%% Bus object: mlNavigation
 % clear elems;
 % 
 % elems(1) = Simulink.BusElement;
@@ -1625,6 +1625,52 @@ assignin('base', 'mavlink_heartbeat_t', mavlink_heartbeat_t)
 
 clear elems;
 
+%% Bus object: mlGSLocationFloat
+clear elems;
+
+elems(1) = Simulink.BusElement;
+elems(1).Name = 'lat';
+elems(1).Dimensions = 1;
+elems(1).DimensionsMode = 'Fixed';
+elems(1).DataType = 'uint32';
+elems(1).SampleTime = -1;
+elems(1).Complexity = 'real';
+elems(1).SamplingMode = 'Sample based';
+elems(1).Min = [];
+elems(1).Max = [];
+
+elems(2) = Simulink.BusElement;
+elems(2).Name = 'lon';
+elems(2).Dimensions = 1;
+elems(2).DimensionsMode = 'Fixed';
+elems(2).DataType = 'uint32';
+elems(2).SampleTime = -1;
+elems(2).Complexity = 'real';
+elems(2).SamplingMode = 'Sample based';
+elems(2).Min = [];
+elems(2).Max = [];
+
+elems(3) = Simulink.BusElement;
+elems(3).Name = 'alt';
+elems(3).Dimensions = 1;
+elems(3).DimensionsMode = 'Fixed';
+elems(3).DataType = 'uint32';
+elems(3).SampleTime = -1;
+elems(3).Complexity = 'real';
+elems(3).SamplingMode = 'Sample based';
+elems(3).Min = [];
+elems(3).Max = [];
+
+mavlink_coordinate_float_t = Simulink.Bus;
+mavlink_coordinate_float_t.Description = sprintf('mavlink_coordinate_float');
+mavlink_coordinate_float_t.DataScope = 'Imported';
+mavlink_coordinate_float_t.HeaderFile = 'mavlink.h'; 
+mavlink_coordinate_float_t.Alignment = -1;
+mavlink_coordinate_float_t.Elements = elems;
+assignin('base', 'mavlink_coordinate_float_t', mavlink_coordinate_float_t)
+
+clear elems;
+
 %% Bus object: mlParamInterface
 % clear elems;
 % 
@@ -1685,10 +1731,10 @@ clear elems;
 %% Bus object: mlWpValues
 
 clear elems;
-
+MAX_NUM_WPS = 17;
 elems(1) = Simulink.BusElement;
 elems(1).Name = 'lat';
-elems(1).Dimensions = 1;
+elems(1).Dimensions = MAX_NUM_WPS;
 elems(1).DimensionsMode = 'Fixed';
 elems(1).DataType = 'uint32';
 elems(1).SampleTime = -1;
@@ -1699,7 +1745,7 @@ elems(1).Max = [];
 
 elems(2) = Simulink.BusElement;
 elems(2).Name = 'lon';
-elems(2).Dimensions = 1;
+elems(2).Dimensions = MAX_NUM_WPS;
 elems(2).DimensionsMode = 'Fixed';
 elems(2).DataType = 'uint32';
 elems(2).SampleTime = -1;
@@ -1710,7 +1756,7 @@ elems(2).Max = [];
 
 elems(3) = Simulink.BusElement;
 elems(3).Name = 'alt';
-elems(3).Dimensions = 1;
+elems(3).Dimensions = MAX_NUM_WPS;
 elems(3).DimensionsMode = 'Fixed';
 elems(3).DataType = 'uint32';
 elems(3).SampleTime = -1;
@@ -1721,7 +1767,7 @@ elems(3).Max = [];
 
 elems(4) = Simulink.BusElement;
 elems(4).Name = 'type';
-elems(4).Dimensions = 1;
+elems(4).Dimensions = MAX_NUM_WPS;
 elems(4).DimensionsMode = 'Fixed';
 elems(4).DataType = 'uint8';
 elems(4).SampleTime = -1;
@@ -1732,7 +1778,7 @@ elems(4).Max = [];
 
 elems(5) = Simulink.BusElement;
 elems(5).Name = 'orbit';
-elems(5).Dimensions = 1;
+elems(5).Dimensions = MAX_NUM_WPS;
 elems(5).DimensionsMode = 'Fixed';
 elems(5).DataType = 'uint16';
 elems(5).SampleTime = -1;
@@ -1758,7 +1804,7 @@ mavlink_mission_item_values_t.DataScope = 'Imported';
 mavlink_mission_item_values_t.HeaderFile = 'mavlink.h'; 
 mavlink_mission_item_values_t.Alignment = -1;
 mavlink_mission_item_values_t.Elements = elems;
-assignin('base', 'mavlink_heartbeat_t', mavlink_mission_item_values_t)
+assignin('base', 'mission_item_values_t', mavlink_mission_item_values_t)
 
 clear elems;
 

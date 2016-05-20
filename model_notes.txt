@@ -1,3 +1,14 @@
+5.20.16
+
+1 - Converted more of the navSupport function calls.
+
+	TODO: a number of the function calls that need to converted use a dynamic index value. Need to determine the appropriate solution to this by either keeping the existing function OR build a logic block in the model that handles this. Simulink's DataReadStore block does not handle dynamic indexes.
+
+5.18.16
+
+1 - Began converting all navSupport function calls that get data from mavlink
+	messages to DataRead blocks. 
+
 5.17.16
 
 1 - Commented out a number of GoTo blocks in the model to remove the warnings generated, replaced the commented blocks with sinks. 
@@ -9,3 +20,6 @@
 3 - Created a config.xml file to include all the necessary directories from the XC16 compiler, mavlink, and clib.
 
 4 - Currently incurring a build error due to model's "_data.o" 
+
+
+

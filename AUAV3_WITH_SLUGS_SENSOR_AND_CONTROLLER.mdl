@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.280"
+    ComputedModelVersion    "1.281"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -34,7 +34,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [848.0, 0.0, 948.0, 1047.0]
+      Location		      [698.0, 0.0, 1152.0, 1047.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -49,7 +49,7 @@ Model {
 	$PropName		"ExplorerBarInfo"
 	$ObjectID		4
 	$ClassName		"Simulink.ExplorerBarInfo"
-	Visible			[1]
+	Visible			[0]
       }
       Object {
 	$PropName		"EditorsInfo"
@@ -58,9 +58,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[898.0, 872.0]
-	ZoomFactor		[0.8]
-	Offset			[915.875, 241.39047689619701]
+	Extents			[1102.0, 902.0]
+	ZoomFactor		[1.0]
+	Offset			[931.7, 605.99999999999989]
       }
     }
   }
@@ -70,9 +70,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Marcello"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri May 20 08:57:43 2016"
-  RTWModifiedTimeStamp	  385582196
-  ModelVersionFormat	  "1.%<AutoIncrement:280>"
+  LastModifiedDate	  "Fri May 20 14:09:54 2016"
+  RTWModifiedTimeStamp	  385649028
+  ModelVersionFormat	  "1.%<AutoIncrement:281>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  on
@@ -1549,7 +1549,7 @@ Model {
   }
   System {
     Name		    "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER"
-    Location		    [848, 0, 1796, 1047]
+    Location		    [698, 0, 1850, 1047]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    266
@@ -1561,9 +1561,9 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "80"
+    ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "2701"
+    SIDHighWatermark	    "2707"
     Block {
       BlockType		      Reference
       Name		      " gpsUbloxParse"
@@ -3017,7 +3017,7 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Inner Loop/ Navigation"
-	Location		[849, 0, 1797, 1047]
+	Location		[698, 0, 1850, 1047]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -24679,7 +24679,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "Navigation Encaps\n[updated 4.28.16]"
-	    Location		    [849, 0, 1797, 1047]
+	    Location		    [698, 0, 1850, 1047]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -24825,58 +24825,39 @@ Model {
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
-	      BlockType		      Reference
-	      Name		      "Nav. Mode\n[navSupport.c]\n[updated 4.28.16]"
-	      SID		      "1509"
-	      Ports		      [0, 1]
-	      Position		      [60, 32, 220, 88]
-	      ZOrder		      -14
+	      BlockType		      DataStoreRead
+	      Name		      "Get ISR Location"
+	      SID		      "2704"
+	      Ports		      [0, 3]
+	      Position		      [30, 169, 205, 251]
+	      ZOrder		      24
 	      BackgroundColor	      "orange"
-	      LibraryVersion	      "3.37"
-	      SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
-	      SourceType	      "C Function Call"
-	      ParseFilesChkbx	      off
-	      ListFunctions1	      "Custom Function"
-	      Function1		      "extern uint8_T getNavMode();"
-	      AddHeaderDeclaration    on
-	      Function1Type	      "when block is updated (default)"
-	      FctReturnBlockOut	      on
-	      Fct1BlockOut	      "y1[3]"
-	      DataCollected	      "0"
-	      ORDERING		      "None"
-	      SampleTime	      "0.01"
-	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
-	      "(RA6)"
-	      PinDigitalInput	      "[]"
-	      PinDigitalOutput	      "[]   "
-	      PinAnalogInput	      "[]"
+	      DialogController	      "Simulink.DDGSource"
+	      DataStoreName	      "mlISR"
+	      DataStoreElements	      "mlISR.latitude#mlISR.longitude#mlISR.height"
 	    }
 	    Block {
-	      BlockType		      Reference
-	      Name		      "Nav. Mode\n[navSupport.c]\n[updated 4.28.16]1"
-	      SID		      "1510"
+	      BlockType		      DataStoreRead
+	      Name		      "Get Nav Mode"
+	      SID		      "2703"
 	      Ports		      [0, 1]
-	      Position		      [60, 182, 220, 238]
-	      ZOrder		      -15
+	      Position		      [45, 42, 220, 78]
+	      ZOrder		      23
 	      BackgroundColor	      "orange"
-	      LibraryVersion	      "3.37"
-	      SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
-	      SourceType	      "C Function Call"
-	      ParseFilesChkbx	      off
-	      ListFunctions1	      "Custom Function"
-	      Function1		      "extern void getISRLocation(real32_T* y1);"
-	      AddHeaderDeclaration    on
-	      Function1Type	      "when block is updated (default)"
-	      FctReturnBlockOut	      on
-	      Fct1BlockOut	      "y1[3]"
-	      DataCollected	      "0"
-	      ORDERING		      "None"
-	      SampleTime	      "0.01"
-	      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 "
-	      "(RA6)"
-	      PinDigitalInput	      "[]"
-	      PinDigitalOutput	      "[]   "
-	      PinAnalogInput	      "[]"
+	      DialogController	      "Simulink.DDGSource"
+	      DataStoreName	      "mlHeartbeatLocal"
+	      DataStoreElements	      "mlHeartbeatLocal.custom_mode"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux"
+	      SID		      "2706"
+	      Ports		      [3, 1]
+	      Position		      [250, 173, 255, 247]
+	      ZOrder		      25
+	      ShowName		      off
+	      Inputs		      "3"
+	      DisplayOption	      "bar"
 	    }
 	    Block {
 	      BlockType		      SubSystem
@@ -24891,7 +24872,7 @@ Model {
 	      RequestExecContextInheritance off
 	      System {
 		Name			"Navigation"
-		Location		[849, 0, 1797, 1047]
+		Location		[698, 0, 1850, 1047]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -24904,7 +24885,7 @@ Model {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"13084"
+		SIDHighWatermark	"13087"
 		SIDPrevWatermark	"13065"
 		Block {
 		  BlockType		  Inport
@@ -35954,7 +35935,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "Normal WP \nNavigation"
-		    Location		    [16, 52, 1292, 1001]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -36084,7 +36065,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "Compute WP\nSwitching\nTrigger"
-		    Location		    [16, 52, 1340, 873]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -36205,7 +36186,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "Compute \nProjection"
-		    Location		    [76, 165, 862, 559]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -37843,7 +37824,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "Get Frenet"
-		    Location		    [-8, 0, 1916, 1056]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -39519,7 +39500,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "get WP Coord from\nIndex1"
-		    Location		    [-8, 0, 1916, 1056]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -39532,7 +39513,7 @@ Model {
 		    TiledPageScale	    1
 		    ShowPageBoundaries	    off
 		    ZoomFactor		    "100"
-		    SIDHighWatermark	    "9278"
+		    SIDHighWatermark	    "9279"
 		    SIDPrevWatermark	    "9277"
 		    Block {
 		    BlockType		    Inport
@@ -39638,7 +39619,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "Get WP from idx SIM"
-		    Location		    [382, 116, 1153, 829]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -40474,7 +40455,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "get WP Coord from\nIndex2"
-		    Location		    [-8, 0, 1916, 1056]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -41721,7 +41702,7 @@ Model {
 		    }
 		    System {
 		    Name		    "On WP Enable"
-		    Location		    [33, 52, 922, 728]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -41805,7 +41786,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "Subsystem"
-		    Location		    [54, 52, 1044, 762]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -44009,7 +43990,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "get WP Coord from\nIndex1"
-		    Location		    [-8, -8, 2568, 1048]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -46379,7 +46360,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "RTB/Follow Mobile Navigation"
-		    Location		    [849, 0, 1797, 1047]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -46470,7 +46451,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "Compute Mobile Location"
-		    Location		    [849, 0, 1797, 1047]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -46654,7 +46635,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "Simple Predictor"
-		    Location		    [16, 52, 1301, 1025]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -46866,7 +46847,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "Vector Norm"
-		    Location		    [276, 75, 924, 404]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -47509,7 +47490,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "Recent Enable"
-		    Location		    [849, 0, 1797, 1047]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -47542,7 +47523,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "Grab Upon Enable"
-		    Location		    [-8, 0, 1916, 1056]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -47573,7 +47554,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "Compute GS Location"
-		    Location		    [-7, 0, 1928, 1047]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -47640,7 +47621,7 @@ Model {
 		    }
 		    System {
 		    Name		    "Geod2ECEF1"
-		    Location		    [177, 52, 1122, 1056]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -48078,7 +48059,7 @@ Model {
 		    ZOrder		    2
 		    SrcBlock		    "sin(phi)"
 		    SrcPort		    1
-		    Points		    [0, 0; 10, 0]
+		    Points		    [10, 0]
 		    Branch {
 		    ZOrder		    3
 		    Points		    [20, 0]
@@ -48236,7 +48217,7 @@ Model {
 		    ZOrder		    27
 		    SrcBlock		    "cos(phi)"
 		    SrcPort		    1
-		    Points		    [0, 0; 30, 0]
+		    Points		    [30, 0]
 		    Branch {
 		    ZOrder		    28
 		    DstBlock		    "(Rh+h)cos(phi)*cos(lamb)=Xe"
@@ -48538,30 +48519,27 @@ Model {
 		    ContentPreviewEnabled   off
 		    }
 		    Block {
-		    BlockType		    Reference
-		    Name		    "Get the GS Location\nupdateControlMCUState.c\n[updated 5.1.16]"
-		    SID			    "1511:13071"
-		    Ports		    [0, 1]
-		    Position		    [40, 157, 200, 213]
-		    ZOrder		    -9
+		    BlockType		    DataStoreRead
+		    Name		    "Get GS Location"
+		    SID			    "1511:13086"
+		    Ports		    [0, 3]
+		    Position		    [20, 159, 170, 211]
+		    ZOrder		    30
 		    BackgroundColor	    "orange"
-		    LibraryVersion	    "3.37"
-		    SourceBlock		    "MCHP_Blockset/User Functions/C Function Call"
-		    SourceType		    "C Function Call"
-		    ParseFilesChkbx	    off
-		    ListFunctions1	    "Custom Function"
-		    Function1		    "void getGSLocation(float* altLatLon)"
-		    AddHeaderDeclaration    on
-		    Function1Type	    "when block is updated (default)"
-		    FctReturnBlockOut	    on
-		    Fct1BlockOut	    "altLatLon[3]"
-		    DataCollected	    "0"
-		    ORDERING		    "None"
-		    SampleTime		    "0.01"
-		    MCHP_MASTERLINK	    "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
-		    PinDigitalInput	    "[]"
-		    PinDigitalOutput	    "[]   "
-		    PinAnalogInput	    "[]"
+		    DialogController	    "Simulink.DDGSource"
+		    DataStoreName	    "mlGSLocationFloat"
+		    DataStoreElements	    "mlGSLocationFloat.lat#mlGSLocationFloat.lon#mlGSLocationFloat.alt"
+		    }
+		    Block {
+		    BlockType		    Mux
+		    Name		    "Mux"
+		    SID			    "1511:13087"
+		    Ports		    [3, 1]
+		    Position		    [190, 158, 195, 212]
+		    ZOrder		    31
+		    ShowName		    off
+		    Inputs		    "3"
+		    DisplayOption	    "bar"
 		    }
 		    Block {
 		    BlockType		    Terminator
@@ -48686,12 +48664,33 @@ Model {
 		    DstPort		    1
 		    }
 		    Line {
-		    ZOrder		    12
-		    SrcBlock		    "Get the GS Location\nupdateControlMCUState.c\n[updated 5.1.16]"
+		    ZOrder		    16
+		    SrcBlock		    "Mux"
 		    SrcPort		    1
-		    Points		    [5, 0; 0, -25]
+		    Points		    [10, 0; 0, -25]
 		    DstBlock		    "Environment\nController"
 		    DstPort		    2
+		    }
+		    Line {
+		    ZOrder		    13
+		    SrcBlock		    "Get GS Location"
+		    SrcPort		    1
+		    DstBlock		    "Mux"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    14
+		    SrcBlock		    "Get GS Location"
+		    SrcPort		    2
+		    DstBlock		    "Mux"
+		    DstPort		    2
+		    }
+		    Line {
+		    ZOrder		    15
+		    SrcBlock		    "Get GS Location"
+		    SrcPort		    3
+		    DstBlock		    "Mux"
+		    DstPort		    3
 		    }
 		    }
 		    }
@@ -48744,7 +48743,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "Subsystem"
-		    Location		    [-7, 0, 1928, 1047]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -48788,7 +48787,7 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "Detect Rising Edge"
-		    Location		    [-7, 0, 1928, 1047]
+		    Location		    [698, 0, 1850, 1047]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -51687,18 +51686,39 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      18
-	      SrcBlock		      "Nav. Mode\n[navSupport.c]\n[updated 4.28.16]"
+	      ZOrder		      20
+	      SrcBlock		      "Get Nav Mode"
 	      SrcPort		      1
 	      DstBlock		      "Navigation"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      19
-	      SrcBlock		      "Nav. Mode\n[navSupport.c]\n[updated 4.28.16]1"
+	      ZOrder		      24
+	      SrcBlock		      "Mux"
 	      SrcPort		      1
 	      DstBlock		      "Navigation"
 	      DstPort		      7
+	    }
+	    Line {
+	      ZOrder		      21
+	      SrcBlock		      "Get ISR Location"
+	      SrcPort		      2
+	      DstBlock		      "Mux"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      22
+	      SrcBlock		      "Get ISR Location"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      23
+	      SrcBlock		      "Get ISR Location"
+	      SrcPort		      3
+	      DstBlock		      "Mux"
+	      DstPort		      3
 	    }
 	  }
 	}
@@ -53568,7 +53588,7 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"PID Gains\n[updated 4.28.16]"
-	Location		[849, 0, 1797, 1047]
+	Location		[698, 0, 1850, 1047]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -53580,7 +53600,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"40"
+	ZoomFactor		"80"
 	Block {
 	  BlockType		  Mux
 	  Name			  "Mux"
@@ -85037,7 +85057,7 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Trim Vals\n[updated 4.28.16]"
-	Location		[849, 0, 1797, 1047]
+	Location		[698, 0, 1850, 1047]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -93580,6 +93600,20 @@ Model {
     }
     Block {
       BlockType		      DataStoreMemory
+      Name		      "mlGSLocationFloat"
+      SID		      "2707"
+      Position		      [35, 884, 145, 909]
+      ZOrder		      29
+      BackgroundColor	      "lightBlue"
+      DataStoreName	      "mlGSLocationFloat"
+      ReadBeforeWriteMsg      "warning"
+      WriteAfterWriteMsg      "warning"
+      WriteAfterReadMsg	      "warning"
+      RTWStateStorageClass    "ExportedGlobal"
+      OutDataTypeStr	      "Bus: mavlink_coordinate_float_t"
+    }
+    Block {
+      BlockType		      DataStoreMemory
       Name		      "mlGpsData"
       SID		      "117"
       Position		      [35, 424, 145, 449]
@@ -93605,6 +93639,20 @@ Model {
       WriteAfterReadMsg	      "warning"
       RTWStateStorageClass    "ExportedGlobal"
       OutDataTypeStr	      "Bus: mavlink_heartbeat_t"
+    }
+    Block {
+      BlockType		      DataStoreMemory
+      Name		      "mlISR"
+      SID		      "2705"
+      Position		      [35, 839, 145, 864]
+      ZOrder		      28
+      BackgroundColor	      "lightBlue"
+      DataStoreName	      "mlISR"
+      ReadBeforeWriteMsg      "warning"
+      WriteAfterWriteMsg      "warning"
+      WriteAfterReadMsg	      "warning"
+      RTWStateStorageClass    "ExportedGlobal"
+      OutDataTypeStr	      "Bus: mavlink_isr_location_t"
     }
     Block {
       BlockType		      DataStoreMemory
