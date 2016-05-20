@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.277"
+    ComputedModelVersion    "1.280"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -34,12 +34,12 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-7.0, 0.0, 1907.0, 1047.0]
+      Location		      [848.0, 0.0, 948.0, 1047.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
 	$ClassName		"Simulink.ModelBrowserInfo"
-	Visible			[1]
+	Visible			[0]
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
@@ -58,9 +58,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1664.0, 872.0]
-	ZoomFactor		[1.0]
-	Offset			[386.0374983429906, 605.99999999999989]
+	Extents			[898.0, 872.0]
+	ZoomFactor		[0.8]
+	Offset			[915.875, 241.39047689619701]
       }
     }
   }
@@ -70,9 +70,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Marcello"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue May 17 22:18:42 2016"
-  RTWModifiedTimeStamp	  385424300
-  ModelVersionFormat	  "1.%<AutoIncrement:277>"
+  LastModifiedDate	  "Fri May 20 08:57:43 2016"
+  RTWModifiedTimeStamp	  385582196
+  ModelVersionFormat	  "1.%<AutoIncrement:280>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  on
@@ -956,7 +956,7 @@ Model {
 		"    -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     "
 		"-1]';s.CLKDIV='5';s.PLLFBD='243';s.SWITCH_OSC='16385';s.PLLRNG='-1';s.MASTER_BusyFlag='6';s.POWERSAVE='0';s.MIPS='70"
 		"000000';s.AN_type2='1';s.UART_TX_IMPLEMENTATION='[2  0  2  2]';s.UART_RX_IMPLEMENTATION='[0  0  0  0]';s.UART_TX_DMA"
-		"CHANNEL='[0  0  2  2]';s.bitFieldsSFR='7';s.ANSEL_Exist='1';s.PortConfigTxt='';"
+		"CHANNEL='[2  0  2  0]';s.bitFieldsSFR='7';s.ANSEL_Exist='1';s.PortConfigTxt='';"
 	      }
 	      CustomProperty {
 		DataType		"slbool"
@@ -1549,9 +1549,9 @@ Model {
   }
   System {
     Name		    "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER"
-    Location		    [-7, 0, 1900, 1047]
+    Location		    [848, 0, 1796, 1047]
     Open		    on
-    ModelBrowserVisibility  on
+    ModelBrowserVisibility  off
     ModelBrowserWidth	    266
     ScreenColor		    "white"
     PaperOrientation	    "landscape"
@@ -1561,9 +1561,9 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "100"
+    ZoomFactor		    "80"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "2666"
+    SIDHighWatermark	    "2701"
     Block {
       BlockType		      Reference
       Name		      " gpsUbloxParse"
@@ -1748,71 +1748,11 @@ Model {
     }
     Block {
       BlockType		      Constant
-      Name		      "Constant1"
-      SID		      "1217"
-      Position		      [1255, 1725, 1375, 1755]
-      ZOrder		      -7
-      ShowName		      off
-      Value		      "PAR_NAV_ISR_FAC"
-      OutDataTypeStr	      "uint8"
-    }
-    Block {
-      BlockType		      Constant
-      Name		      "Constant2"
-      SID		      "1218"
-      Position		      [1370, 1275, 1490, 1305]
-      ZOrder		      -8
-      ShowName		      off
-      Value		      "PAR_NAV_L2_BASE"
-      OutDataTypeStr	      "uint8"
-    }
-    Block {
-      BlockType		      Constant
-      Name		      "Constant3"
-      SID		      "1219"
-      Position		      [1365, 1425, 1485, 1455]
-      ZOrder		      -9
-      ShowName		      off
-      Value		      "PAR_L1_OMEGA"
-      OutDataTypeStr	      "uint8"
-    }
-    Block {
-      BlockType		      Constant
-      Name		      "Constant4"
-      SID		      "1220"
-      Position		      [1365, 1470, 1485, 1500]
-      ZOrder		      -10
-      ShowName		      off
-      Value		      "PAR_L1_ON_OFF"
-      OutDataTypeStr	      "uint8"
-    }
-    Block {
-      BlockType		      Constant
-      Name		      "Constant5"
-      SID		      "1221"
-      Position		      [1255, 1760, 1375, 1790]
-      ZOrder		      -11
-      ShowName		      off
-      Value		      "PAR_PID_RMIX_P"
-      OutDataTypeStr	      "uint8"
-    }
-    Block {
-      BlockType		      Constant
       Name		      "Constant6"
       SID		      "2613"
       Position		      [245, 925, 275, 955]
       ZOrder		      -5
       OutDataTypeStr	      "uint16"
-    }
-    Block {
-      BlockType		      Constant
-      Name		      "Constant7"
-      SID		      "1222"
-      Position		      [1370, 1310, 1490, 1340]
-      ZOrder		      -13
-      ShowName		      off
-      Value		      "PAR_NAV_SSCOMP_ON"
-      OutDataTypeStr	      "uint8"
     }
     Block {
       BlockType		      SubSystem
@@ -1828,7 +1768,7 @@ Model {
 	Name			"Control Surface Input"
 	Location		[-1688, 54, 8, 1080]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -1862,7 +1802,7 @@ Model {
 	    Name		    "Convert to\nMicroseconds "
 	    Location		    [364, 52, 1238, 885]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -2045,7 +1985,7 @@ Model {
 	    Name		    "myMux Fun5"
 	    Location		    [227, 345, 838, 789]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -2340,29 +2280,6 @@ Model {
     }
     Block {
       BlockType		      Demux
-      Name		      "Demux2"
-      SID		      "1228"
-      Ports		      [1, 3]
-      Position		      [1750, 1244, 1760, 1376]
-      ZOrder		      -21
-      BackgroundColor	      "black"
-      ShowName		      off
-      Outputs		      "3"
-      DisplayOption	      "bar"
-    }
-    Block {
-      BlockType		      Demux
-      Name		      "Demux3"
-      SID		      "1229"
-      Ports		      [1, 4]
-      Position		      [1770, 1378, 1775, 1557]
-      ZOrder		      -22
-      BackgroundColor	      "black"
-      ShowName		      off
-      DisplayOption	      "bar"
-    }
-    Block {
-      BlockType		      Demux
       Name		      "Demux4"
       SID		      "1230"
       Ports		      [1, 2]
@@ -2371,18 +2288,6 @@ Model {
       BackgroundColor	      "black"
       ShowName		      off
       Outputs		      "2"
-      DisplayOption	      "bar"
-    }
-    Block {
-      BlockType		      Demux
-      Name		      "Demux5"
-      SID		      "1231"
-      Ports		      [1, 3]
-      Position		      [1655, 1720, 1660, 1790]
-      ZOrder		      -24
-      BackgroundColor	      "black"
-      ShowName		      off
-      Outputs		      "3"
       DisplayOption	      "bar"
     }
     Block {
@@ -2397,7 +2302,7 @@ Model {
 	Name			"Flashing LEDs\nDISCO"
 	Location		[565, 251, 1111, 759]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -2816,64 +2721,35 @@ Model {
       SaturateOnIntegerOverflow	off
     }
     Block {
-      BlockType		      Reference
-      Name		      "Get Max WP\n[navSupport.c]\n[updated 4.27.16]"
-      SID		      "1244"
+      BlockType		      DataStoreRead
+      Name		      "Get Max WP"
+      SID		      "2667"
       Ports		      [0, 1]
-      Position		      [1250, 1207, 1410, 1263]
-      ZOrder		      -46
+      Position		      [1500, 1202, 1675, 1238]
+      ZOrder		      11
       BackgroundColor	      "orange"
-      LibraryVersion	      "3.37"
-      SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
-      SourceType	      "C Function Call"
-      ParseFilesChkbx	      off
-      ListFunctions1	      "Custom Function"
-      Function1		      "extern uint8_T getMaxWp();"
-      AddHeaderDeclaration    on
-      Function1Type	      "when block is updated (default)"
-      FctReturnBlockOut	      on
-      DataCollected	      "0"
-      ORDERING		      "None"
-      SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
-      "RA6)"
-      PinDigitalInput	      "[]"
-      PinDigitalOutput	      "[]   "
-      PinAnalogInput	      "[]"
+      DialogController	      "Simulink.DDGSource"
+      DataStoreName	      "mlWpValues"
+      DataStoreElements	      "mlWpValues.wpCount"
     }
     Block {
-      BlockType		      Reference
-      Name		      "Get Mobile Location\n[navSupport.c]1\n[updated 4.27.16]"
-      SID		      "1245"
-      Ports		      [0, 1]
-      Position		      [1055, 1642, 1215, 1698]
-      ZOrder		      -47
+      BlockType		      DataStoreRead
+      Name		      "Get Mobile Location"
+      SID		      "2670"
+      Ports		      [0, 2]
+      Position		      [1500, 1649, 1675, 1691]
+      ZOrder		      14
       BackgroundColor	      "orange"
-      LibraryVersion	      "3.37"
-      SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
-      SourceType	      "C Function Call"
-      ParseFilesChkbx	      off
-      ListFunctions1	      "Custom Function"
-      Function1		      "extern void getMobileLocation(real32_T* y1);"
-      AddHeaderDeclaration    on
-      Function1Type	      "when block is updated (default)"
-      FctReturnBlockOut	      on
-      Fct1BlockOut	      "y1[2]"
-      DataCollected	      "0"
-      ORDERING		      "None"
-      SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
-      "RA6)"
-      PinDigitalInput	      "[]"
-      PinDigitalOutput	      "[]   "
-      PinAnalogInput	      "[]"
+      DialogController	      "Simulink.DDGSource"
+      DataStoreName	      "mlMobileLocation"
+      DataStoreElements	      "mlMobileLocation.latitude#mlMobileLocation.longitude"
     }
     Block {
       BlockType		      Reference
       Name		      "Get RTB Order\n[navSupport.c]\n[updated 4.27.16]"
       SID		      "1246"
       Ports		      [0, 1]
-      Position		      [1425, 1577, 1585, 1633]
+      Position		      [1290, 1587, 1450, 1643]
       ZOrder		      -48
       BackgroundColor	      "orange"
       LibraryVersion	      "3.37"
@@ -2886,90 +2762,6 @@ Model {
       Function1Type	      "when block is updated (default)"
       FctReturnBlockOut	      on
       Fct1BlockOut	      "y1[2]"
-      DataCollected	      "0"
-      ORDERING		      "None"
-      SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
-      "RA6)"
-      PinDigitalInput	      "[]"
-      PinDigitalOutput	      "[]   "
-      PinAnalogInput	      "[]"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]"
-      SID		      "1247"
-      Ports		      [2, 1]
-      Position		      [1550, 1282, 1710, 1338]
-      ZOrder		      -49
-      BackgroundColor	      "orange"
-      LibraryVersion	      "3.37"
-      SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
-      SourceType	      "C Function Call"
-      ParseFilesChkbx	      off
-      ListFunctions1	      "Custom Function"
-      Function1		      "extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);"
-      AddHeaderDeclaration    on
-      Function1Type	      "when block is updated (default)"
-      Fct1BlockIn	      "u1 u2"
-      FctReturnBlockOut	      on
-      Fct1BlockOut	      "y1[3]"
-      DataCollected	      "0"
-      ORDERING		      "None"
-      SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
-      "RA6)"
-      PinDigitalInput	      "[]"
-      PinDigitalOutput	      "[]   "
-      PinAnalogInput	      "[]"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]1"
-      SID		      "1248"
-      Ports		      [2, 1]
-      Position		      [1535, 1437, 1695, 1493]
-      ZOrder		      -50
-      BackgroundColor	      "orange"
-      LibraryVersion	      "3.37"
-      SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
-      SourceType	      "C Function Call"
-      ParseFilesChkbx	      off
-      ListFunctions1	      "Custom Function"
-      Function1		      "extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);"
-      AddHeaderDeclaration    on
-      Function1Type	      "when block is updated (default)"
-      Fct1BlockIn	      "u1 u2"
-      FctReturnBlockOut	      on
-      Fct1BlockOut	      "y1[4]"
-      DataCollected	      "0"
-      ORDERING		      "None"
-      SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
-      "RA6)"
-      PinDigitalInput	      "[]"
-      PinDigitalOutput	      "[]   "
-      PinAnalogInput	      "[]"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "Get Range of Values\n[navSupport.c]2\n[updated 4.27.16]"
-      SID		      "1249"
-      Ports		      [2, 1]
-      Position		      [1410, 1727, 1570, 1783]
-      ZOrder		      -51
-      BackgroundColor	      "orange"
-      LibraryVersion	      "3.37"
-      SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
-      SourceType	      "C Function Call"
-      ParseFilesChkbx	      off
-      ListFunctions1	      "Custom Function"
-      Function1		      "extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);"
-      AddHeaderDeclaration    on
-      Function1Type	      "when block is updated (default)"
-      Fct1BlockIn	      "u1 u2"
-      FctReturnBlockOut	      on
-      Fct1BlockOut	      "y1[3]"
       DataCollected	      "0"
       ORDERING		      "None"
       SampleTime	      "0.01"
@@ -3220,14 +3012,14 @@ Model {
       Name		      "Inner Loop/ Navigation"
       SID		      "1256"
       Ports		      [39, 9]
-      Position		      [1800, 98, 2010, 1892]
+      Position		      [1805, 98, 2015, 1892]
       ZOrder		      -71
       RequestExecContextInheritance off
       System {
 	Name			"Inner Loop/ Navigation"
-	Location		[-8, 0, 1845, 1056]
+	Location		[849, 0, 1797, 1047]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -3639,7 +3431,7 @@ Model {
 	    Name		    "Compute\npsi_dot_m"
 	    Location		    [1099, 382, 1880, 780]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -3717,7 +3509,7 @@ Model {
 		Name			"Protect NaNs"
 		Location		[16, 52, 1290, 967]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -3873,7 +3665,7 @@ Model {
 		Name			"dsPIC_cos"
 		Location		[395, 52, 1871, 1025]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -4009,7 +3801,7 @@ Model {
 		Name			"dsPIC_sin"
 		Location		[1426, 134, 1957, 615]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -4261,7 +4053,7 @@ Model {
 	    Name		    "L1 Output Feedback\nController\nWith \nProjection Operator"
 	    Location		    [522, 52, 1788, 919]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -4392,7 +4184,7 @@ Model {
 		Name			"Control \nLaw"
 		Location		[279, 149, 953, 745]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -4434,7 +4226,7 @@ Model {
 		    Name		    "Compute\nCoef"
 		    Location		    [89, 158, 698, 559]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -4515,7 +4307,7 @@ Model {
 		    Name		    "dsPIC_exp"
 		    Location		    [522, 52, 1365, 662]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -4712,7 +4504,7 @@ Model {
 		    Name		    "Detect Change"
 		    Location		    [213, 232, 887, 828]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -5089,7 +4881,7 @@ Model {
 		Name			"Projection\nOperator"
 		Location		[294, 52, 1582, 1081]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -5198,7 +4990,7 @@ Model {
 		    Name		    "Enabled\nSubsystem"
 		    Location		    [16, 52, 1304, 1081]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -5256,7 +5048,7 @@ Model {
 		    Name		    "Enabled\nSubsystem1"
 		    Location		    [420, 138, 1708, 1167]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -5440,7 +5232,7 @@ Model {
 		    Name		    "F(theta)"
 		    Location		    [16, 52, 1304, 1081]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -5950,7 +5742,7 @@ Model {
 		Name			"Protect NaNs"
 		Location		[16, 52, 1290, 967]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -6089,7 +5881,7 @@ Model {
 		Name			"Protect NaNs2"
 		Location		[16, 52, 1290, 967]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -6246,7 +6038,7 @@ Model {
 		Name			"State Predictor"
 		Location		[522, 52, 1511, 614]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -6288,7 +6080,7 @@ Model {
 		    Name		    "Compute\nCoef"
 		    Location		    [279, 149, 819, 523]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -6368,7 +6160,7 @@ Model {
 		    Name		    "dsPIC_exp"
 		    Location		    [522, 52, 1365, 662]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -6565,7 +6357,7 @@ Model {
 		    Name		    "Detect Change"
 		    Location		    [213, 232, 887, 828]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -6963,7 +6755,7 @@ Model {
 		Name			"Trapezoidal Integrator"
 		Location		[246, 253, 1190, 1017]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -7145,7 +6937,7 @@ Model {
 		    Name		    "Protect NaNs"
 		    Location		    [492, 650, 823, 1003]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -7284,7 +7076,7 @@ Model {
 		    Name		    "Protect NaNs1"
 		    Location		    [492, 650, 823, 1003]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -7902,7 +7694,7 @@ Model {
 	    Name		    "Lateral Channel Encaps\n[updated 4.28.16]"
 	    Location		    [-8, 0, 1916, 1056]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -8118,7 +7910,7 @@ Model {
 		Name			"Lateral Channel"
 		Location		[-8, 0, 1916, 1056]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -8303,7 +8095,7 @@ Model {
 		    Name		    "0.016 sec  tau"
 		    Location		    [403, 291, 857, 668]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -8354,7 +8146,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -8734,7 +8526,7 @@ Model {
 		    Name		    "Protect NaNs"
 		    Location		    [335, 52, 784, 516]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -8871,7 +8663,7 @@ Model {
 		    Name		    "Protect NaNs2"
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -9069,7 +8861,7 @@ Model {
 		    Name		    "Roll Control\n[PID]"
 		    Location		    [-8, 0, 1916, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -9634,7 +9426,7 @@ Model {
 		    Name		    "Trapezoidal Integrator"
 		    Location		    [246, 253, 1190, 1017]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -9815,7 +9607,7 @@ Model {
 		    Name		    "Protect NaNs "
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -9954,7 +9746,7 @@ Model {
 		    Name		    "Protect NaNs1"
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -10785,7 +10577,7 @@ Model {
 		    Name		    "Sideslip Compensation"
 		    Location		    [67, 52, 1318, 846]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -10854,7 +10646,7 @@ Model {
 		    Name		    "Bank to Psi Dot"
 		    Location		    [181, 52, 1028, 648]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -10950,7 +10742,7 @@ Model {
 		    Name		    "dsPIC_tan"
 		    Location		    [284, 52, 803, 451]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -11087,7 +10879,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -11278,7 +11070,7 @@ Model {
 		    Name		    "Low Pass"
 		    Location		    [16, 52, 1314, 1154]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -11320,7 +11112,7 @@ Model {
 		    Name		    "Compute\nCoef"
 		    Location		    [16, 52, 1314, 1154]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -11474,7 +11266,7 @@ Model {
 		    Name		    "Detect Change"
 		    Location		    [213, 232, 887, 828]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -11776,7 +11568,7 @@ Model {
 		    Name		    "Protect NaNs2"
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -11941,7 +11733,7 @@ Model {
 		    Name		    "psi_dot to Bank"
 		    Location		    [22, 136, 576, 499]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -12012,7 +11804,7 @@ Model {
 		    Name		    "dsPIC_atan"
 		    Location		    [208, 95, 838, 665]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -12363,7 +12155,7 @@ Model {
 		    Name		    "Yaw Damper\n[PID]"
 		    Location		    [172, 52, 1246, 1154]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -12928,7 +12720,7 @@ Model {
 		    Name		    "Trapezoidal Integrator"
 		    Location		    [246, 253, 1190, 1017]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -13109,7 +12901,7 @@ Model {
 		    Name		    "Protect NaNs "
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -13248,7 +13040,7 @@ Model {
 		    Name		    "Protect NaNs1"
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -14090,7 +13882,7 @@ Model {
 		    Name		    "psi_dot to Bank"
 		    Location		    [192, 149, 695, 698]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -14161,7 +13953,7 @@ Model {
 		    Name		    "dsPIC_atan"
 		    Location		    [208, 95, 838, 665]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -14809,7 +14601,7 @@ Model {
 		Name			"myMux Fun1"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -14950,7 +14742,7 @@ Model {
 		Name			"psi_dot_c Select logic1"
 		Location		[665, 384, 1266, 828]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -15036,7 +14828,7 @@ Model {
 		    Name		    "Bank to Psi Dot"
 		    Location		    [181, 52, 1028, 648]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -15116,7 +14908,7 @@ Model {
 		    Name		    "Protect NaNs"
 		    Location		    [16, 52, 1290, 1154]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -15255,7 +15047,7 @@ Model {
 		    Name		    "Protect NaNs1"
 		    Location		    [16, 52, 1290, 1154]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -15421,7 +15213,7 @@ Model {
 		    Name		    "dsPIC_tan"
 		    Location		    [284, 52, 803, 451]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -15997,7 +15789,7 @@ Model {
 	    Name		    "Longitudinal Channel Encaps\n[updated 4.28.16]"
 	    Location		    [-8, 0, 1845, 1056]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -16178,7 +15970,7 @@ Model {
 		Name			"Longitudinal Channel"
 		Location		[-8, 0, 1845, 1056]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -16383,7 +16175,7 @@ Model {
 		    Name		    "0.5 sec  tau for\nTurns"
 		    Location		    [403, 291, 857, 668]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -16434,7 +16226,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -16736,7 +16528,7 @@ Model {
 		    Name		    "Airspeed Hold\n[PID]"
 		    Location		    [-8, 0, 1845, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -17301,7 +17093,7 @@ Model {
 		    Name		    "Trapezoidal Integrator"
 		    Location		    [246, 253, 1190, 1017]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -17482,7 +17274,7 @@ Model {
 		    Name		    "Protect NaNs "
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -17621,7 +17413,7 @@ Model {
 		    Name		    "Protect NaNs1"
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -18545,7 +18337,7 @@ Model {
 		    Name		    "Height Error to Pitch \nCommand\n[PI]"
 		    Location		    [-8, 0, 1845, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -19035,7 +18827,7 @@ Model {
 		    Name		    "Trapezoidal Integrator"
 		    Location		    [246, 253, 1190, 1017]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -19216,7 +19008,7 @@ Model {
 		    Name		    "Protect NaNs"
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -19355,7 +19147,7 @@ Model {
 		    Name		    "Protect NaNs "
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -20149,7 +19941,7 @@ Model {
 		    Name		    "Pitch To Elevator\n[PID]"
 		    Location		    [172, 52, 1246, 1154]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -20714,7 +20506,7 @@ Model {
 		    Name		    "Trapezoidal Integrator"
 		    Location		    [246, 253, 1190, 1017]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -20895,7 +20687,7 @@ Model {
 		    Name		    "Protect NaNs "
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -21034,7 +20826,7 @@ Model {
 		    Name		    "Protect NaNs1"
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -21854,7 +21646,7 @@ Model {
 		    Name		    "Pitot Control End"
 		    Location		    [379, 175, 1185, 621]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -21929,7 +21721,7 @@ Model {
 		    Name		    " 0.3 sec tau for\nhigh speeds"
 		    Location		    [403, 291, 857, 668]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -21980,7 +21772,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -22157,7 +21949,7 @@ Model {
 		    Name		    "Air Density from\nHeight"
 		    Location		    [184, 52, 879, 1008]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -22293,7 +22085,7 @@ Model {
 		    Name		    "dsPIC Power"
 		    Location		    [81, 187, 925, 797]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -22546,7 +22338,7 @@ Model {
 		    Name		    "Compute\nAirspeed"
 		    Location		    [207, 200, 959, 573]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -22626,7 +22418,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 820, 476]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -22713,7 +22505,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -22931,7 +22723,7 @@ Model {
 		    Name		    "Protect NaN"
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -23219,7 +23011,7 @@ Model {
 		    Name		    "Protect NaNs"
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -23358,7 +23150,7 @@ Model {
 		    Name		    "Protect NaNs1"
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -23498,7 +23290,7 @@ Model {
 		    Name		    "Protect NaNs2"
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -23637,7 +23429,7 @@ Model {
 		    Name		    "Protect NaNs4"
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -23840,7 +23632,7 @@ Model {
 		    Name		    "dsPIC_cos"
 		    Location		    [16, 52, 1492, 1025]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -24499,7 +24291,7 @@ Model {
 		Name			"myMux Fun1"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -24887,9 +24679,9 @@ Model {
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "Navigation Encaps\n[updated 4.28.16]"
-	    Location		    [-8, 0, 1916, 1056]
+	    Location		    [849, 0, 1797, 1047]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -25099,9 +24891,9 @@ Model {
 	      RequestExecContextInheritance off
 	      System {
 		Name			"Navigation"
-		Location		[-8, 0, 1845, 1056]
+		Location		[849, 0, 1797, 1047]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -25278,7 +25070,7 @@ Model {
 		    Name		    "Circle\nNavigation"
 		    Location		    [78, 133, 1284, 848]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -25588,7 +25380,7 @@ Model {
 		    Name		    "Get SP Location"
 		    Location		    [220, 148, 1186, 682]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -25692,7 +25484,7 @@ Model {
 		    Name		    "Zero out Z2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -26021,7 +25813,7 @@ Model {
 		    Name		    "Inside the Circle,\n Keep Straight until \nintersection"
 		    Location		    [16, 52, 1492, 1025]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -26085,7 +25877,7 @@ Model {
 		    Name		    "Compute Head of Circle"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -26308,7 +26100,7 @@ Model {
 		    Name		    "Intersection.\nCircular Navigation"
 		    Location		    [16, 52, 889, 869]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -26420,7 +26212,7 @@ Model {
 		    Name		    "Compute Angle\nBetween Vectors1"
 		    Location		    [123, 391, 840, 751]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -26502,7 +26294,7 @@ Model {
 		    Name		    "Vector Norm"
 		    Location		    [276, 75, 924, 404]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -26552,7 +26344,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 820, 476]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -26639,7 +26431,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -26871,7 +26663,7 @@ Model {
 		    Name		    "dsPIC_acos"
 		    Location		    [178, 52, 709, 533]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -27008,7 +26800,7 @@ Model {
 		    Name		    "negprotect3"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -27209,7 +27001,7 @@ Model {
 		    Name		    "Compute Angle\nBetween Vectors2"
 		    Location		    [123, 391, 840, 751]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -27291,7 +27083,7 @@ Model {
 		    Name		    "Vector Norm"
 		    Location		    [276, 75, 924, 404]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -27341,7 +27133,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 820, 476]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -27428,7 +27220,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -27659,7 +27451,7 @@ Model {
 		    Name		    "dsPIC_acos"
 		    Location		    [178, 52, 709, 533]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -27795,7 +27587,7 @@ Model {
 		    Name		    "negprotect3"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -27998,7 +27790,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -28446,7 +28238,7 @@ Model {
 		    Name		    "dsPIC_ABS"
 		    Location		    [256, 52, 788, 527]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -28580,7 +28372,7 @@ Model {
 		    Name		    "dsPIC_ABS1"
 		    Location		    [256, 52, 788, 527]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -28719,7 +28511,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 820, 476]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -28806,7 +28598,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -28980,7 +28772,7 @@ Model {
 		    Name		    "negprotect1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -29098,7 +28890,7 @@ Model {
 		    Name		    "negprotect2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -29675,7 +29467,7 @@ Model {
 		    Name		    "No intersection,\n Navigate to ISR"
 		    Location		    [312, 359, 866, 843]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -29891,7 +29683,7 @@ Model {
 		    Name		    "Vector Norm"
 		    Location		    [276, 75, 924, 404]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -29941,7 +29733,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 820, 476]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -30028,7 +29820,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -30237,7 +30029,7 @@ Model {
 		    Name		    "dsPIC_ABS"
 		    Location		    [256, 52, 788, 527]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -31638,7 +31430,7 @@ Model {
 		    Name		    "Get 2D\nGroundspeed"
 		    Location		    [86, 112, 536, 391]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -31674,7 +31466,7 @@ Model {
 		    Name		    "Vector Norm"
 		    Location		    [276, 75, 924, 404]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -31724,7 +31516,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 1011, 935]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -31811,7 +31603,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -32539,7 +32331,7 @@ Model {
 		    Name		    "L2+"
 		    Location		    [-8, 0, 1916, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -32613,7 +32405,7 @@ Model {
 		    Name		    "Get Sin, Cos\neta"
 		    Location		    [42, 80, 1342, 801]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -32665,7 +32457,7 @@ Model {
 		    Name		    "2D Dot Product "
 		    Location		    [16, 52, 1322, 1180]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -32952,7 +32744,7 @@ Model {
 		    Name		    "Get \nGroundspeed"
 		    Location		    [43, 116, 477, 502]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -32988,7 +32780,7 @@ Model {
 		    Name		    "Vector Norm"
 		    Location		    [276, 75, 924, 404]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -33038,7 +32830,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 1198, 1009]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -33125,7 +32917,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -33335,7 +33127,7 @@ Model {
 		    Name		    "Zero out Z1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -33473,7 +33265,7 @@ Model {
 		    Name		    "Get ZProd"
 		    Location		    [16, 52, 1301, 1025]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -33742,7 +33534,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -34069,7 +33861,7 @@ Model {
 		    Name		    "L2+"
 		    Location		    [352, 138, 1795, 1096]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -34162,7 +33954,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -34357,7 +34149,7 @@ Model {
 		    Name		    "Subsystem"
 		    Location		    [479, 253, 1100, 727]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -34440,7 +34232,7 @@ Model {
 		    Name		    "dsPIC_atan"
 		    Location		    [208, 95, 838, 665]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -34644,7 +34436,7 @@ Model {
 		    Name		    "dsPIC_ABS"
 		    Location		    [256, 52, 788, 527]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -34786,7 +34578,7 @@ Model {
 		    Name		    "dsPIC_atan2"
 		    Location		    [224, 52, 902, 963]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -34944,7 +34736,7 @@ Model {
 		    Name		    "if sin(eta) < 0\n- maxAcc\nelse                \nmaxAcc "
 		    Location		    [57, 192, 658, 580]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -35254,7 +35046,7 @@ Model {
 		    Name		    "Line Segment"
 		    Location		    [176, 239, 1049, 818]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -35356,7 +35148,7 @@ Model {
 		    Name		    "Vector Norm"
 		    Location		    [276, 75, 924, 404]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -35406,7 +35198,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 820, 476]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -35493,7 +35285,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -35974,7 +35766,7 @@ Model {
 		    Name		    "Minimum Turn Radius"
 		    Location		    [16, 52, 1390, 960]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -36164,7 +35956,7 @@ Model {
 		    Name		    "Normal WP \nNavigation"
 		    Location		    [16, 52, 1292, 1001]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -36294,7 +36086,7 @@ Model {
 		    Name		    "Compute WP\nSwitching\nTrigger"
 		    Location		    [16, 52, 1340, 873]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -36415,7 +36207,7 @@ Model {
 		    Name		    "Compute \nProjection"
 		    Location		    [76, 165, 862, 559]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -36467,7 +36259,7 @@ Model {
 		    Name		    "Protect NaNs"
 		    Location		    [16, 52, 1290, 967]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -36998,7 +36790,7 @@ Model {
 		    Name		    "dsPIC_ABS"
 		    Location		    [256, 52, 788, 527]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -37130,7 +36922,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 820, 476]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -37217,7 +37009,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -37838,7 +37630,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -38053,7 +37845,7 @@ Model {
 		    Name		    "Get Frenet"
 		    Location		    [-8, 0, 1916, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -38147,7 +37939,7 @@ Model {
 		    Name		    "Compute Frenet"
 		    Location		    [-8, -8, 2568, 1048]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -38205,7 +37997,7 @@ Model {
 		    Name		    "Normalize Vector"
 		    Location		    [253, 328, 717, 651]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -38256,7 +38048,7 @@ Model {
 		    Name		    "Vector Norm"
 		    Location		    [276, 75, 924, 404]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -38306,7 +38098,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 820, 476]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -38393,7 +38185,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -38661,7 +38453,7 @@ Model {
 		    Name		    "Normalize Vector "
 		    Location		    [253, 328, 717, 651]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -38712,7 +38504,7 @@ Model {
 		    Name		    "Vector Norm"
 		    Location		    [276, 75, 924, 404]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -38762,7 +38554,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 820, 476]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -38849,7 +38641,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -39119,7 +38911,7 @@ Model {
 		    Name		    "Select N \nTerms"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -39399,7 +39191,7 @@ Model {
 		    Name		    "Zero out Z1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -39510,7 +39302,7 @@ Model {
 		    Name		    "Zero out Z2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -39621,7 +39413,7 @@ Model {
 		    Name		    "Zero out Z3"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -39729,7 +39521,7 @@ Model {
 		    Name		    "get WP Coord from\nIndex1"
 		    Location		    [-8, 0, 1916, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -39848,7 +39640,7 @@ Model {
 		    Name		    "Get WP from idx SIM"
 		    Location		    [382, 116, 1153, 829]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -40017,7 +39809,7 @@ Model {
 		    Name		    "Zero out Z1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -40146,7 +39938,7 @@ Model {
 		    Name		    "Zero out Z2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -40275,7 +40067,7 @@ Model {
 		    Name		    "Zero out Z3"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -40684,7 +40476,7 @@ Model {
 		    Name		    "get WP Coord from\nIndex2"
 		    Location		    [-8, 0, 1916, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -40803,7 +40595,7 @@ Model {
 		    Name		    "Get WP from idx SIM"
 		    Location		    [382, 116, 1153, 829]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -40972,7 +40764,7 @@ Model {
 		    Name		    "Zero out Z1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -41101,7 +40893,7 @@ Model {
 		    Name		    "Zero out Z2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -41230,7 +41022,7 @@ Model {
 		    Name		    "Zero out Z3"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -41931,7 +41723,7 @@ Model {
 		    Name		    "On WP Enable"
 		    Location		    [33, 52, 922, 728]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -42015,7 +41807,7 @@ Model {
 		    Name		    "Subsystem"
 		    Location		    [54, 52, 1044, 762]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -42061,7 +41853,7 @@ Model {
 		    Name		    "Compute Frenet"
 		    Location		    [351, 417, 1092, 853]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -42119,7 +41911,7 @@ Model {
 		    Name		    "Normalize Vector"
 		    Location		    [253, 328, 717, 651]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -42170,7 +41962,7 @@ Model {
 		    Name		    "Vector Norm"
 		    Location		    [276, 75, 924, 404]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -42220,7 +42012,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 874, 654]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -42307,7 +42099,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -42575,7 +42367,7 @@ Model {
 		    Name		    "Normalize Vector "
 		    Location		    [253, 328, 717, 651]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -42626,7 +42418,7 @@ Model {
 		    Name		    "Vector Norm"
 		    Location		    [276, 75, 924, 404]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -42676,7 +42468,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 820, 476]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -42763,7 +42555,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -43033,7 +42825,7 @@ Model {
 		    Name		    "Select N \nTerms"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -43264,7 +43056,7 @@ Model {
 		    Name		    "get WP Coord from\nIndex"
 		    Location		    [-8, -8, 2568, 1048]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    318
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -43383,7 +43175,7 @@ Model {
 		    Name		    "Get WP from idx SIM"
 		    Location		    [382, 116, 1153, 829]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -43552,7 +43344,7 @@ Model {
 		    Name		    "Zero out Z1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -43681,7 +43473,7 @@ Model {
 		    Name		    "Zero out Z2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -43810,7 +43602,7 @@ Model {
 		    Name		    "Zero out Z3"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -44219,7 +44011,7 @@ Model {
 		    Name		    "get WP Coord from\nIndex1"
 		    Location		    [-8, -8, 2568, 1048]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -44338,7 +44130,7 @@ Model {
 		    Name		    "Get WP from idx SIM"
 		    Location		    [382, 116, 1153, 829]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -44507,7 +44299,7 @@ Model {
 		    Name		    "Zero out Z1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -44636,7 +44428,7 @@ Model {
 		    Name		    "Zero out Z2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -44765,7 +44557,7 @@ Model {
 		    Name		    "Zero out Z3"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -45477,7 +45269,7 @@ Model {
 		    Name		    "Vector Norm"
 		    Location		    [276, 75, 924, 404]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -45527,7 +45319,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 820, 476]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -45614,7 +45406,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -45824,7 +45616,7 @@ Model {
 		    Name		    "Zero out Z2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -45934,7 +45726,7 @@ Model {
 		    Name		    "computeCurrentWP"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -46587,9 +46379,9 @@ Model {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "RTB/Follow Mobile Navigation"
-		    Location		    [-8, 0, 1916, 1056]
+		    Location		    [849, 0, 1797, 1047]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -46678,9 +46470,9 @@ Model {
 		    RequestExecContextInheritance off
 		    System {
 		    Name		    "Compute Mobile Location"
-		    Location		    [-8, 0, 1916, 1056]
+		    Location		    [849, 0, 1797, 1047]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -46864,7 +46656,7 @@ Model {
 		    Name		    "Simple Predictor"
 		    Location		    [16, 52, 1301, 1025]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -47076,7 +46868,7 @@ Model {
 		    Name		    "Vector Norm"
 		    Location		    [276, 75, 924, 404]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -47126,7 +46918,7 @@ Model {
 		    Name		    "dsPIC_SQRT"
 		    Location		    [178, 52, 820, 476]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -47213,7 +47005,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -47423,7 +47215,7 @@ Model {
 		    Name		    "Zero out Z1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -47717,9 +47509,9 @@ Model {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "Recent Enable"
-		    Location		    [-8, 0, 1916, 1056]
+		    Location		    [849, 0, 1797, 1047]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -47752,7 +47544,7 @@ Model {
 		    Name		    "Grab Upon Enable"
 		    Location		    [-8, 0, 1916, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -47783,7 +47575,7 @@ Model {
 		    Name		    "Compute GS Location"
 		    Location		    [-7, 0, 1928, 1047]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -47850,7 +47642,7 @@ Model {
 		    Name		    "Geod2ECEF1"
 		    Location		    [177, 52, 1122, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -48077,7 +47869,7 @@ Model {
 		    Name		    "eccentricity^2"
 		    Location		    [16, 52, 441, 412]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -48954,7 +48746,7 @@ Model {
 		    Name		    "Subsystem"
 		    Location		    [-7, 0, 1928, 1047]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -48998,7 +48790,7 @@ Model {
 		    Name		    "Detect Rising Edge"
 		    Location		    [-7, 0, 1928, 1047]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -49396,7 +49188,7 @@ Model {
 		    Name		    "Zero out Z1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -49507,7 +49299,7 @@ Model {
 		    Name		    "Zero out Z2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -49645,7 +49437,7 @@ Model {
 		    Name		    "myMux Fun1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -49805,7 +49597,7 @@ Model {
 		    Name		    "myMux Fun2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -49950,7 +49742,7 @@ Model {
 		    Name		    "myMux Fun3"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -50081,7 +49873,7 @@ Model {
 		    Name		    "myMux Fun4"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -50228,7 +50020,7 @@ Model {
 		    Name		    "myMux Fun5"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -50374,7 +50166,7 @@ Model {
 		    Name		    "myMux Fun6"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -51922,7 +51714,7 @@ Model {
 	    Name		    "Protect NaNs"
 	    Location		    [16, 52, 1290, 967]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -52735,7 +52527,7 @@ Model {
 	Name			"MavlinkTX"
 	Location		[-1632, 54, 64, 1080]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -53719,6 +53511,54 @@ Model {
       TagMaxNumber	      "20"
     }
     Block {
+      BlockType		      Mux
+      Name		      "Mux"
+      SID		      "2671"
+      Ports		      [2, 1]
+      Position		      [1740, 1651, 1745, 1689]
+      ZOrder		      15
+      ShowName		      off
+      Inputs		      "2"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      DataStoreRead
+      Name		      "PAR_L1_OMEGA\nPAR_L1_M\nPAR_L1_GAMMA\nPAR_L1_ON_OFF"
+      SID		      "2674"
+      Ports		      [0, 4]
+      Position		      [1500, 1380, 1680, 1555]
+      ZOrder		      18
+      BackgroundColor	      "orange"
+      DialogController	      "Simulink.DDGSource"
+      DataStoreName	      "mlParamInterface"
+      DataStoreElements	      "mlParamInterface.param(22)#mlParamInterface.param(23)#mlParamInterface.param(24)#mlPara"
+      "mInterface.param(25)"
+    }
+    Block {
+      BlockType		      DataStoreRead
+      Name		      "PAR_NAV_ISR_FAC\nPAR_PID_RMIX_ON\nPAR_PID_RMIX_P"
+      SID		      "2675"
+      Ports		      [0, 3]
+      Position		      [1120, 1695, 1295, 1825]
+      ZOrder		      19
+      BackgroundColor	      "orange"
+      DialogController	      "Simulink.DDGSource"
+      DataStoreName	      "mlParamInterface"
+      DataStoreElements	      "mlParamInterface.param(26)#mlParamInterface.param(27)#mlParamInterface.param(28)"
+    }
+    Block {
+      BlockType		      DataStoreRead
+      Name		      "PAR_NAV_L2_BASE\nPAR_NAV_PRETURN_K\nPAR_NAV_SSCOMP_ON"
+      SID		      "2672"
+      Ports		      [0, 3]
+      Position		      [1300, 1245, 1475, 1375]
+      ZOrder		      16
+      BackgroundColor	      "orange"
+      DialogController	      "Simulink.DDGSource"
+      DataStoreName	      "mlParamInterface"
+      DataStoreElements	      "mlParamInterface.param(19)#mlParamInterface.param(20)#mlParamInterface.param(21)"
+    }
+    Block {
       BlockType		      SubSystem
       Name		      "PID Gains\n[updated 4.28.16]"
       SID		      "1539"
@@ -53728,9 +53568,9 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"PID Gains\n[updated 4.28.16]"
-	Location		[-8, 0, 1845, 1056]
+	Location		[849, 0, 1797, 1047]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -53740,321 +53580,151 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
+	ZoomFactor		"40"
 	Block {
-	  BlockType		  Constant
-	  Name			  "Constant1"
-	  SID			  "1540"
-	  Position		  [315, 55, 435, 85]
-	  ZOrder		  -1
+	  BlockType		  Mux
+	  Name			  "Mux"
+	  SID			  "2687"
+	  Ports			  [3, 1]
+	  Position		  [235, 38, 240, 172]
+	  ZOrder		  18
 	  ShowName		  off
-	  Value			  "PAR_PID_AIRSPEED_P"
-	  OutDataTypeStr	  "uint8"
+	  Inputs		  "3"
+	  DisplayOption		  "bar"
 	}
 	Block {
-	  BlockType		  Constant
-	  Name			  "Constant10"
-	  SID			  "1541"
-	  Position		  [315, 534, 440, 566]
-	  ZOrder		  -2
-	  ShowName		  off
-	  Value			  "PAR_PID_PITCH_FO_P"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant11"
-	  SID			  "1542"
-	  Position		  [315, 569, 440, 601]
-	  ZOrder		  -3
-	  ShowName		  off
-	  Value			  "PAR_PID_PITCH_FO_I"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant12"
-	  SID			  "1543"
-	  Position		  [325, 655, 445, 685]
-	  ZOrder		  -4
-	  ShowName		  off
-	  Value			  "PAR_PID_PITC_DT_FF"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant2"
-	  SID			  "1544"
-	  Position		  [315, 330, 435, 360]
-	  ZOrder		  -5
-	  ShowName		  off
-	  Value			  "PAR_PID_ROLL_CON_P"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant3"
-	  SID			  "1545"
-	  Position		  [315, 365, 435, 395]
-	  ZOrder		  -6
-	  ShowName		  off
-	  Value			  "PAR_PID_ROLL_CON_D"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant4"
-	  SID			  "1546"
-	  Position		  [315, 429, 440, 461]
-	  ZOrder		  -7
-	  ShowName		  off
-	  Value			  "PAR_PID_YAW_DAMP_P"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant5"
-	  SID			  "1547"
-	  Position		  [315, 464, 440, 496]
-	  ZOrder		  -8
-	  ShowName		  off
-	  Value			  "PAR_PID_YAW_DAMP_D"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant6"
-	  SID			  "1548"
-	  Position		  [315, 140, 435, 170]
-	  ZOrder		  -9
-	  ShowName		  off
-	  Value			  "PAR_PID_HE_TO_PI_P"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant7"
-	  SID			  "1549"
-	  Position		  [315, 90, 435, 120]
-	  ZOrder		  -10
-	  ShowName		  off
-	  Value			  "PAR_PID_AIRSPEED_D"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant8"
-	  SID			  "1550"
-	  Position		  [315, 175, 435, 205]
-	  ZOrder		  -11
-	  ShowName		  off
-	  Value			  "PAR_PID_HE_TO_PI_I"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant9"
-	  SID			  "1551"
-	  Position		  [315, 260, 435, 290]
-	  ZOrder		  -12
-	  ShowName		  off
-	  Value			  "PAR_PID_HEI_ERR_FF"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]"
-	  SID			  "1552"
+	  BlockType		  Mux
+	  Name			  "Mux1"
+	  SID			  "2688"
 	  Ports			  [2, 1]
-	  Position		  [505, 62, 665, 118]
-	  ZOrder		  -13
-	  BackgroundColor	  "orange"
-	  LibraryVersion	  "3.37"
-	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
-	  SourceType		  "C Function Call"
-	  ParseFilesChkbx	  off
-	  ListFunctions1	  "Custom Function"
-	  Function1		  "extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);"
-	  AddHeaderDeclaration	  on
-	  Function1Type		  "when block is updated (default)"
-	  Fct1BlockIn		  "u1 u2"
-	  FctReturnBlockOut	  on
-	  Fct1BlockOut		  "y1[3]"
-	  DataCollected		  "0"
-	  ORDERING		  "None"
-	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
-	  PinDigitalInput	  "[]"
-	  PinDigitalOutput	  "[]   "
-	  PinAnalogInput	  "[]"
+	  Position		  [235, 225, 240, 360]
+	  ZOrder		  20
+	  ShowName		  off
+	  Inputs		  "2"
+	  DisplayOption		  "bar"
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]1"
-	  SID			  "1553"
-	  Ports			  [2, 1]
-	  Position		  [505, 147, 665, 203]
-	  ZOrder		  -14
-	  BackgroundColor	  "orange"
-	  LibraryVersion	  "3.37"
-	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
-	  SourceType		  "C Function Call"
-	  ParseFilesChkbx	  off
-	  ListFunctions1	  "Custom Function"
-	  Function1		  "extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);"
-	  AddHeaderDeclaration	  on
-	  Function1Type		  "when block is updated (default)"
-	  Fct1BlockIn		  "u1 u2"
-	  FctReturnBlockOut	  on
-	  Fct1BlockOut		  "y1[3]"
-	  DataCollected		  "0"
-	  ORDERING		  "None"
-	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
-	  PinDigitalInput	  "[]"
-	  PinDigitalOutput	  "[]   "
-	  PinAnalogInput	  "[]"
+	  BlockType		  Mux
+	  Name			  "Mux2"
+	  SID			  "2691"
+	  Ports			  [3, 1]
+	  Position		  [235, 593, 240, 727]
+	  ZOrder		  23
+	  ShowName		  off
+	  Inputs		  "3"
+	  DisplayOption		  "bar"
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]2"
-	  SID			  "1554"
-	  Ports			  [2, 1]
-	  Position		  [505, 337, 665, 393]
-	  ZOrder		  -15
-	  BackgroundColor	  "orange"
-	  LibraryVersion	  "3.37"
-	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
-	  SourceType		  "C Function Call"
-	  ParseFilesChkbx	  off
-	  ListFunctions1	  "Custom Function"
-	  Function1		  "extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);"
-	  AddHeaderDeclaration	  on
-	  Function1Type		  "when block is updated (default)"
-	  Fct1BlockIn		  "u1 u2"
-	  FctReturnBlockOut	  on
-	  Fct1BlockOut		  "y1[3]"
-	  DataCollected		  "0"
-	  ORDERING		  "None"
-	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
-	  PinDigitalInput	  "[]"
-	  PinDigitalOutput	  "[]   "
-	  PinAnalogInput	  "[]"
+	  BlockType		  Mux
+	  Name			  "Mux3"
+	  SID			  "2693"
+	  Ports			  [3, 1]
+	  Position		  [235, 788, 240, 922]
+	  ZOrder		  25
+	  ShowName		  off
+	  Inputs		  "3"
+	  DisplayOption		  "bar"
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]3"
-	  SID			  "1555"
-	  Ports			  [2, 1]
-	  Position		  [505, 437, 665, 493]
-	  ZOrder		  -16
-	  BackgroundColor	  "orange"
-	  LibraryVersion	  "3.37"
-	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
-	  SourceType		  "C Function Call"
-	  ParseFilesChkbx	  off
-	  ListFunctions1	  "Custom Function"
-	  Function1		  "extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);"
-	  AddHeaderDeclaration	  on
-	  Function1Type		  "when block is updated (default)"
-	  Fct1BlockIn		  "u1 u2"
-	  FctReturnBlockOut	  on
-	  Fct1BlockOut		  "y1[3]"
-	  DataCollected		  "0"
-	  ORDERING		  "None"
-	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
-	  PinDigitalInput	  "[]"
-	  PinDigitalOutput	  "[]   "
-	  PinAnalogInput	  "[]"
+	  BlockType		  Mux
+	  Name			  "Mux4"
+	  SID			  "2695"
+	  Ports			  [3, 1]
+	  Position		  [235, 972, 240, 1108]
+	  ZOrder		  27
+	  ShowName		  off
+	  Inputs		  "3"
+	  DisplayOption		  "bar"
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]4"
-	  SID			  "1556"
-	  Ports			  [2, 1]
-	  Position		  [505, 542, 665, 598]
-	  ZOrder		  -17
+	  BlockType		  DataStoreRead
+	  Name			  "PAR_PID_AIRSPEED_P\nPAR_PID_AIRSPEED_I\nPAR_PID_AIRSPEED_D"
+	  SID			  "2686"
+	  Ports			  [0, 3]
+	  Position		  [30, 40, 205, 170]
+	  ZOrder		  17
 	  BackgroundColor	  "orange"
-	  LibraryVersion	  "3.37"
-	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
-	  SourceType		  "C Function Call"
-	  ParseFilesChkbx	  off
-	  ListFunctions1	  "Custom Function"
-	  Function1		  "extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);"
-	  AddHeaderDeclaration	  on
-	  Function1Type		  "when block is updated (default)"
-	  Fct1BlockIn		  "u1 u2"
-	  FctReturnBlockOut	  on
-	  Fct1BlockOut		  "y1[3]"
-	  DataCollected		  "0"
-	  ORDERING		  "None"
-	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
-	  PinDigitalInput	  "[]"
-	  PinDigitalOutput	  "[]   "
-	  PinAnalogInput	  "[]"
+	  DialogController	  "Simulink.DDGSource"
+	  DataStoreName		  "mlParamInterface"
+	  DataStoreElements	  "mlParamInterface.param(0)#mlParamInterface.param(1)#mlParamInterface.param(2)"
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "Get a single Param\n[navSupport.c]\n[updated 4.27.16]"
-	  SID			  "1557"
-	  Ports			  [1, 1]
-	  Position		  [505, 247, 665, 303]
-	  ZOrder		  -18
+	  BlockType		  DataStoreRead
+	  Name			  "PAR_PID_HEI_ERR_FF"
+	  SID			  "2690"
+	  Ports			  [0, 1]
+	  Position		  [30, 414, 205, 546]
+	  ZOrder		  21
 	  BackgroundColor	  "orange"
-	  LibraryVersion	  "3.37"
-	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
-	  SourceType		  "C Function Call"
-	  ParseFilesChkbx	  off
-	  ListFunctions1	  "Custom Function"
-	  Function1		  "extern real32_T getParamIdx(uint8_T u1);"
-	  AddHeaderDeclaration	  on
-	  Function1Type		  "when block is updated (default)"
-	  Fct1BlockIn		  "u1"
-	  FctReturnBlockOut	  on
-	  Fct1BlockOut		  "y1"
-	  DataCollected		  "0"
-	  ORDERING		  "None"
-	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
-	  PinDigitalInput	  "[]"
-	  PinDigitalOutput	  "[]   "
-	  PinAnalogInput	  "[]"
+	  DialogController	  "Simulink.DDGSource"
+	  DataStoreName		  "mlParamInterface"
+	  DataStoreElements	  "mlParamInterface.param(11)"
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "Get a single Param\n[navSupport.c]\n[updated 4.27.16]1"
-	  SID			  "1558"
-	  Ports			  [1, 1]
-	  Position		  [505, 642, 665, 698]
-	  ZOrder		  -19
+	  BlockType		  DataStoreRead
+	  Name			  "PAR_PID_HE_TO_PI_P\nPAR_PID_HE_TO_PI_I"
+	  SID			  "2689"
+	  Ports			  [0, 2]
+	  Position		  [30, 227, 205, 358]
+	  ZOrder		  19
 	  BackgroundColor	  "orange"
-	  LibraryVersion	  "3.37"
-	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
-	  SourceType		  "C Function Call"
-	  ParseFilesChkbx	  off
-	  ListFunctions1	  "Custom Function"
-	  Function1		  "extern real32_T getParamIdx(uint8_T u1);"
-	  AddHeaderDeclaration	  on
-	  Function1Type		  "when block is updated (default)"
-	  Fct1BlockIn		  "u1"
-	  FctReturnBlockOut	  on
-	  Fct1BlockOut		  "y1"
-	  DataCollected		  "0"
-	  ORDERING		  "None"
-	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
-	  PinDigitalInput	  "[]"
-	  PinDigitalOutput	  "[]   "
-	  PinAnalogInput	  "[]"
+	  DialogController	  "Simulink.DDGSource"
+	  DataStoreName		  "mlParamInterface"
+	  DataStoreElements	  "mlParamInterface.param(9)#mlParamInterface.param(10)"
+	}
+	Block {
+	  BlockType		  DataStoreRead
+	  Name			  "PAR_PID_PITCH_FO_P\nPAR_PID_PITCH_FO_I\nPAR_PID_PITCH_FO_D"
+	  SID			  "2696"
+	  Ports			  [0, 3]
+	  Position		  [30, 974, 205, 1106]
+	  ZOrder		  26
+	  BackgroundColor	  "orange"
+	  DialogController	  "Simulink.DDGSource"
+	  DataStoreName		  "mlParamInterface"
+	  DataStoreElements	  "mlParamInterface.param(3)#mlParamInterface.param(4)#mlParamInterface.param(5)"
+	}
+	Block {
+	  BlockType		  DataStoreRead
+	  Name			  "PAR_PID_PITC_DT_FF"
+	  SID			  "2699"
+	  Ports			  [0, 1]
+	  Position		  [30, 1169, 205, 1301]
+	  ZOrder		  30
+	  BackgroundColor	  "orange"
+	  DialogController	  "Simulink.DDGSource"
+	  DataStoreName		  "mlParamInterface"
+	  DataStoreElements	  "mlParamInterface.param(15)"
+	}
+	Block {
+	  BlockType		  DataStoreRead
+	  Name			  "PAR_PID_ROLL_P\nPAR_PID_ROLL_I\nPAR_PID_ROLL_D"
+	  SID			  "2692"
+	  Ports			  [0, 3]
+	  Position		  [30, 595, 205, 725]
+	  ZOrder		  22
+	  BackgroundColor	  "orange"
+	  DialogController	  "Simulink.DDGSource"
+	  DataStoreName		  "mlParamInterface"
+	  DataStoreElements	  "mlParamInterface.param(6)#mlParamInterface.param(7)#mlParamInterface.param(8)"
+	}
+	Block {
+	  BlockType		  DataStoreRead
+	  Name			  "PAR_PID_YAW_DAMP_P\nPAR_PID_YAW_DAMP_I\nPAR_PID_YAW_DAMP_D"
+	  SID			  "2694"
+	  Ports			  [0, 3]
+	  Position		  [30, 790, 205, 920]
+	  ZOrder		  24
+	  BackgroundColor	  "orange"
+	  DialogController	  "Simulink.DDGSource"
+	  DataStoreName		  "mlParamInterface"
+	  DataStoreElements	  "mlParamInterface.param(12)#mlParamInterface.param(13)#mlParamInterface.param(14)"
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "uHold PID"
 	  SID			  "1559"
-	  Position		  [740, 83, 770, 97]
+	  Position		  [400, 98, 430, 112]
 	  ZOrder		  -20
 	  BackgroundColor	  "yellow"
 	  IconDisplay		  "Port number"
@@ -54063,7 +53733,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "he2Th PID"
 	  SID			  "1560"
-	  Position		  [740, 173, 770, 187]
+	  Position		  [400, 288, 430, 302]
 	  ZOrder		  -21
 	  BackgroundColor	  "yellow"
 	  Port			  "2"
@@ -54073,7 +53743,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "Roll2H FF"
 	  SID			  "1561"
-	  Position		  [740, 268, 770, 282]
+	  Position		  [400, 473, 430, 487]
 	  ZOrder		  -22
 	  BackgroundColor	  "yellow"
 	  Port			  "3"
@@ -54083,7 +53753,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "th2dE PID"
 	  SID			  "1562"
-	  Position		  [750, 568, 780, 582]
+	  Position		  [400, 1033, 430, 1047]
 	  ZOrder		  -23
 	  BackgroundColor	  "yellow"
 	  Port			  "4"
@@ -54093,7 +53763,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "Yaw Damp PID"
 	  SID			  "1563"
-	  Position		  [745, 463, 775, 477]
+	  Position		  [400, 848, 430, 862]
 	  ZOrder		  -24
 	  BackgroundColor	  "yellow"
 	  Port			  "5"
@@ -54103,7 +53773,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "Roll PID"
 	  SID			  "1564"
-	  Position		  [740, 363, 770, 377]
+	  Position		  [400, 653, 430, 667]
 	  ZOrder		  -25
 	  BackgroundColor	  "yellow"
 	  Port			  "6"
@@ -54113,153 +53783,311 @@ Model {
 	  BlockType		  Outport
 	  Name			  "dT FF"
 	  SID			  "1565"
-	  Position		  [750, 663, 780, 677]
+	  Position		  [400, 1228, 430, 1242]
 	  ZOrder		  -26
 	  BackgroundColor	  "yellow"
 	  Port			  "7"
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  1
-	  SrcBlock		  "Constant7"
-	  SrcPort		  1
-	  DstBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]"
+	  ZOrder		  23
+	  SrcBlock		  "PAR_PID_AIRSPEED_P\nPAR_PID_AIRSPEED_I\nPAR_PID_AIRSPEED_D"
+	  SrcPort		  2
+	  DstBlock		  "Mux"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  2
-	  SrcBlock		  "Constant8"
+	  ZOrder		  24
+	  SrcBlock		  "PAR_PID_AIRSPEED_P\nPAR_PID_AIRSPEED_I\nPAR_PID_AIRSPEED_D"
 	  SrcPort		  1
-	  DstBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]1"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  3
-	  SrcBlock		  "Constant9"
-	  SrcPort		  1
-	  DstBlock		  "Get a single Param\n[navSupport.c]\n[updated 4.27.16]"
+	  DstBlock		  "Mux"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  4
-	  SrcBlock		  "Constant3"
-	  SrcPort		  1
-	  DstBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]2"
-	  DstPort		  2
+	  ZOrder		  25
+	  SrcBlock		  "PAR_PID_AIRSPEED_P\nPAR_PID_AIRSPEED_I\nPAR_PID_AIRSPEED_D"
+	  SrcPort		  3
+	  DstBlock		  "Mux"
+	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  5
-	  SrcBlock		  "Constant5"
-	  SrcPort		  1
-	  DstBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]3"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  6
-	  SrcBlock		  "Constant11"
-	  SrcPort		  1
-	  DstBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]4"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  7
-	  SrcBlock		  "Constant12"
-	  SrcPort		  1
-	  DstBlock		  "Get a single Param\n[navSupport.c]\n[updated 4.27.16]1"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  8
-	  SrcBlock		  "Constant1"
-	  SrcPort		  1
-	  Points		  [25, 0; 0, 5]
-	  DstBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  9
-	  SrcBlock		  "Constant6"
-	  SrcPort		  1
-	  Points		  [25, 0; 0, 5]
-	  DstBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]1"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  10
-	  SrcBlock		  "Constant2"
-	  SrcPort		  1
-	  Points		  [25, 0; 0, 5]
-	  DstBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]2"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  11
-	  SrcBlock		  "Constant4"
-	  SrcPort		  1
-	  Points		  [20, 0; 0, 5]
-	  DstBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]3"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  12
-	  SrcBlock		  "Constant10"
-	  SrcPort		  1
-	  Points		  [20, 0; 0, 5]
-	  DstBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]4"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  13
-	  SrcBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]"
+	  ZOrder		  26
+	  SrcBlock		  "Mux"
 	  SrcPort		  1
 	  DstBlock		  "uHold PID"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  14
-	  SrcBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]1"
+	  ZOrder		  27
+	  SrcBlock		  "PAR_PID_HE_TO_PI_P\nPAR_PID_HE_TO_PI_I"
+	  SrcPort		  2
+	  DstBlock		  "Mux1"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  28
+	  SrcBlock		  "PAR_PID_HE_TO_PI_P\nPAR_PID_HE_TO_PI_I"
 	  SrcPort		  1
-	  Points		  [25, 0; 0, 5]
+	  DstBlock		  "Mux1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  31
+	  SrcBlock		  "Mux1"
+	  SrcPort		  1
 	  DstBlock		  "he2Th PID"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  15
-	  SrcBlock		  "Get a single Param\n[navSupport.c]\n[updated 4.27.16]"
+	  ZOrder		  32
+	  SrcBlock		  "PAR_PID_HEI_ERR_FF"
 	  SrcPort		  1
 	  DstBlock		  "Roll2H FF"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  16
-	  SrcBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]2"
+	  ZOrder		  33
+	  SrcBlock		  "PAR_PID_ROLL_P\nPAR_PID_ROLL_I\nPAR_PID_ROLL_D"
+	  SrcPort		  2
+	  DstBlock		  "Mux2"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  34
+	  SrcBlock		  "PAR_PID_ROLL_P\nPAR_PID_ROLL_I\nPAR_PID_ROLL_D"
 	  SrcPort		  1
-	  Points		  [25, 0; 0, 5]
+	  DstBlock		  "Mux2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  35
+	  SrcBlock		  "PAR_PID_ROLL_P\nPAR_PID_ROLL_I\nPAR_PID_ROLL_D"
+	  SrcPort		  3
+	  DstBlock		  "Mux2"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  37
+	  SrcBlock		  "Mux2"
+	  SrcPort		  1
 	  DstBlock		  "Roll PID"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  17
-	  SrcBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]3"
+	  ZOrder		  38
+	  SrcBlock		  "PAR_PID_YAW_DAMP_P\nPAR_PID_YAW_DAMP_I\nPAR_PID_YAW_DAMP_D"
+	  SrcPort		  2
+	  DstBlock		  "Mux3"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  39
+	  SrcBlock		  "PAR_PID_YAW_DAMP_P\nPAR_PID_YAW_DAMP_I\nPAR_PID_YAW_DAMP_D"
 	  SrcPort		  1
-	  Points		  [30, 0; 0, 5]
+	  DstBlock		  "Mux3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  40
+	  SrcBlock		  "PAR_PID_YAW_DAMP_P\nPAR_PID_YAW_DAMP_I\nPAR_PID_YAW_DAMP_D"
+	  SrcPort		  3
+	  DstBlock		  "Mux3"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  42
+	  SrcBlock		  "Mux3"
+	  SrcPort		  1
 	  DstBlock		  "Yaw Damp PID"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  18
-	  SrcBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]4"
+	  ZOrder		  43
+	  SrcBlock		  "PAR_PID_PITCH_FO_P\nPAR_PID_PITCH_FO_I\nPAR_PID_PITCH_FO_D"
+	  SrcPort		  2
+	  DstBlock		  "Mux4"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  44
+	  SrcBlock		  "PAR_PID_PITCH_FO_P\nPAR_PID_PITCH_FO_I\nPAR_PID_PITCH_FO_D"
 	  SrcPort		  1
-	  Points		  [30, 0; 0, 5]
+	  DstBlock		  "Mux4"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  47
+	  SrcBlock		  "Mux4"
+	  SrcPort		  1
 	  DstBlock		  "th2dE PID"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  19
-	  SrcBlock		  "Get a single Param\n[navSupport.c]\n[updated 4.27.16]1"
+	  ZOrder		  46
+	  SrcBlock		  "PAR_PID_PITCH_FO_P\nPAR_PID_PITCH_FO_I\nPAR_PID_PITCH_FO_D"
+	  SrcPort		  3
+	  DstBlock		  "Mux4"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  51
+	  SrcBlock		  "PAR_PID_PITC_DT_FF"
 	  SrcPort		  1
 	  DstBlock		  "dT FF"
 	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Passthrough Logic"
+      SID		      "2683"
+      Ports		      [1, 1]
+      Position		      [1720, 1820, 1760, 1880]
+      ZOrder		      27
+      BackgroundColor	      "gray"
+      RequestExecContextInheritance off
+      System {
+	Name			"Passthrough Logic"
+	Location		[849, 0, 1797, 1047]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"125"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  SID			  "2684"
+	  Position		  [20, 118, 50, 132]
+	  ZOrder		  27
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Logic
+	  Name			  "Logical\nOperator"
+	  SID			  "2682"
+	  Ports			  [3, 1]
+	  Position		  [335, 26, 370, 224]
+	  ZOrder		  26
+	  Operator		  "XOR"
+	  Inputs		  "3"
+	  AllPortsSameDT	  off
+	  OutDataTypeStr	  "boolean"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "SLUGS_MODE_MID_LEVEL"
+	  SID			  "2680"
+	  Ports			  [1, 1]
+	  Position		  [190, 110, 220, 140]
+	  ZOrder		  24
+	  LibraryVersion	  "1.356"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Compare\nTo Constant"
+	  SourceType		  "Compare To Constant"
+	  ContentPreviewEnabled	  off
+	  relop			  "=="
+	  const			  "4"
+	  OutDataTypeStr	  "uint8"
+	  ZeroCross		  on
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "SLUGS_MODE_PASSTHROUGH"
+	  SID			  "2679"
+	  Ports			  [1, 1]
+	  Position		  [190, 45, 220, 75]
+	  ZOrder		  23
+	  LibraryVersion	  "1.356"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Compare\nTo Constant"
+	  SourceType		  "Compare To Constant"
+	  ContentPreviewEnabled	  off
+	  relop			  "=="
+	  const			  "2"
+	  OutDataTypeStr	  "uint8"
+	  ZeroCross		  on
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "SLUGS_MODE_SELECTIVE_PASSTHROUGH"
+	  SID			  "2681"
+	  Ports			  [1, 1]
+	  Position		  [190, 175, 220, 205]
+	  ZOrder		  25
+	  LibraryVersion	  "1.356"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Compare\nTo Constant"
+	  SourceType		  "Compare To Constant"
+	  ContentPreviewEnabled	  off
+	  relop			  "=="
+	  const			  "8"
+	  OutDataTypeStr	  "uint8"
+	  ZeroCross		  on
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  "2685"
+	  Position		  [470, 118, 500, 132]
+	  ZOrder		  28
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  ZOrder		  257
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  Points		  [29, 0]
+	  Branch {
+	    ZOrder		    251
+	    Points		    [0, 65]
+	    DstBlock		    "SLUGS_MODE_SELECTIVE_PASSTHROUGH"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    250
+	    Points		    [0, -65]
+	    DstBlock		    "SLUGS_MODE_PASSTHROUGH"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    249
+	    DstBlock		    "SLUGS_MODE_MID_LEVEL"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  ZOrder		  258
+	  SrcBlock		  "Logical\nOperator"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  253
+	  SrcBlock		  "SLUGS_MODE_MID_LEVEL"
+	  SrcPort		  1
+	  DstBlock		  "Logical\nOperator"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  254
+	  SrcBlock		  "SLUGS_MODE_PASSTHROUGH"
+	  SrcPort		  1
+	  DstBlock		  "Logical\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  252
+	  SrcBlock		  "SLUGS_MODE_SELECTIVE_PASSTHROUGH"
+	  SrcPort		  1
+	  DstBlock		  "Logical\nOperator"
+	  DstPort		  3
 	}
       }
     }
@@ -54296,7 +54124,7 @@ Model {
 	Name			"Pilot LED and\nHIL Control Pins"
 	Location		[345, 52, 1771, 960]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -54534,7 +54362,7 @@ Model {
 	Name			"Position and Attitude Filter\n[updated 5.13.16]"
 	Location		[-8, 0, 1916, 1056]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -54605,7 +54433,7 @@ Model {
 	    Name		    "Attitude\nComplimentary\nFilter COG"
 	    Location		    [-8, 0, 1916, 1056]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -54730,7 +54558,7 @@ Model {
 		Name			"3D Filter"
 		Location		[16, 52, 1314, 1162]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -54880,7 +54708,7 @@ Model {
 		    Name		    "Filter1"
 		    Location		    [469, 237, 817, 678]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -55031,7 +54859,7 @@ Model {
 		    Name		    "Filter2"
 		    Location		    [469, 237, 817, 678]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -55182,7 +55010,7 @@ Model {
 		    Name		    "Filter3"
 		    Location		    [469, 237, 817, 678]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -55255,7 +55083,7 @@ Model {
 		    Name		    "myMux Fun1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -55593,7 +55421,7 @@ Model {
 		Name			"Deriv "
 		Location		[16, 52, 1314, 1025]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -55751,7 +55579,7 @@ Model {
 		Name			"Embedded\nMATLAB Function"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -55911,7 +55739,7 @@ Model {
 		Name			"Normalize Vector1"
 		Location		[172, 52, 1390, 868]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -55960,7 +55788,7 @@ Model {
 		    Name		    "Norm"
 		    Location		    [16, 52, 1218, 892]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -55996,7 +55824,7 @@ Model {
 		    Name		    "Subsystem2"
 		    Location		    [318, 52, 1697, 1043]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -56059,7 +55887,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -56201,7 +56029,7 @@ Model {
 		    Name		    "Subsystem3"
 		    Location		    [16, 52, 1314, 1162]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -56247,7 +56075,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -56512,7 +56340,7 @@ Model {
 		Name			"Normalize Vector2"
 		Location		[180, 52, 1382, 852]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -56561,7 +56389,7 @@ Model {
 		    Name		    "Norm"
 		    Location		    [16, 52, 1218, 892]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -56597,7 +56425,7 @@ Model {
 		    Name		    "Subsystem2"
 		    Location		    [-8, 0, 1916, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -56660,7 +56488,7 @@ Model {
 		    Name		    "negprotect"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -56802,7 +56630,7 @@ Model {
 		    Name		    "Subsystem3"
 		    Location		    [16, 52, 1314, 1162]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -56848,7 +56676,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -57289,7 +57117,7 @@ Model {
 		Name			"myMux Fun2"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -57432,7 +57260,7 @@ Model {
 		Name			"q dot calc"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -58011,7 +57839,7 @@ Model {
 	    Name		    "COG.SOG2V"
 	    Location		    [16, 52, 1314, 1162]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -58104,7 +57932,7 @@ Model {
 		Name			"Subsystem5"
 		Location		[-8, 0, 1916, 1056]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -58242,7 +58070,7 @@ Model {
 		Name			"myMux Fun2"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -58532,7 +58360,7 @@ Model {
 	    Name		    "Compute GS Location"
 	    Location		    [-8, 0, 1916, 1056]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -58600,7 +58428,7 @@ Model {
 		Name			"Geod2ECEF1"
 		Location		[184, 52, 1129, 1056]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -58827,7 +58655,7 @@ Model {
 		    Name		    "eccentricity^2"
 		    Location		    [16, 52, 441, 412]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -59456,7 +59284,7 @@ Model {
 	    Name		    "Enabled\nSubsystem"
 	    Location		    [16, 61, 1601, 1022]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -59596,7 +59424,7 @@ Model {
 	    Name		    "GPS Update"
 	    Location		    [16, 147, 639, 508]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -59651,7 +59479,7 @@ Model {
 		Name			"Detect Change"
 		Location		[299, 344, 675, 622]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -59765,7 +59593,7 @@ Model {
 		Name			"Detect Change1"
 		Location		[299, 344, 675, 622]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -59879,7 +59707,7 @@ Model {
 		Name			"Detect Change2"
 		Location		[299, 344, 675, 622]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -60129,7 +59957,7 @@ Model {
 	    Name		    "Geod2LTP1"
 	    Location		    [184, 52, 1129, 1056]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -60218,7 +60046,7 @@ Model {
 		Name			"ECEF2LTP\n(UEN)"
 		Location		[158, 52, 1096, 1054]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -60278,7 +60106,7 @@ Model {
 		    Name		    "From Body to Universal1"
 		    Location		    [194, 52, 1262, 906]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -60347,7 +60175,7 @@ Model {
 		    Name		    "Rotation Matrix\nfrom Long//Lat"
 		    Location		    [43, 52, 1012, 710]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -60774,7 +60602,7 @@ Model {
 		Name			"Geod2ECEF1"
 		Location		[184, 52, 1129, 1056]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -61001,7 +60829,7 @@ Model {
 		    Name		    "eccentricity^2"
 		    Location		    [184, 52, 1129, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -61702,7 +61530,7 @@ Model {
 	    Name		    "Position Filter\n[updated 5.13.16]"
 	    Location		    [-8, 0, 1916, 1056]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -61814,7 +61642,7 @@ Model {
 		Name			"BlendPosVel"
 		Location		[-8, 0, 1916, 1056]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -61927,7 +61755,7 @@ Model {
 		    Name		    "2 FIlter Blend"
 		    Location		    [-8, 0, 1916, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -61994,7 +61822,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function3"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -62188,7 +62016,7 @@ Model {
 		    Name		    "Tustin Lowpass, \nAuto Initial Condition4"
 		    Location		    [403, 291, 1298, 827]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -62239,7 +62067,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -62530,7 +62358,7 @@ Model {
 		    Name		    "3D Filter"
 		    Location		    [244, 52, 1542, 1162]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -62680,7 +62508,7 @@ Model {
 		    Name		    "Filter1"
 		    Location		    [522, 249, 870, 690]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -62831,7 +62659,7 @@ Model {
 		    Name		    "Filter2"
 		    Location		    [469, 237, 817, 678]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -62982,7 +62810,7 @@ Model {
 		    Name		    "Filter3"
 		    Location		    [469, 237, 817, 678]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -63055,7 +62883,7 @@ Model {
 		    Name		    "myMux Fun1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -63302,7 +63130,7 @@ Model {
 		    Name		    "CompFiltRate"
 		    Location		    [16, 52, 1492, 1025]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -63385,7 +63213,7 @@ Model {
 		    Name		    "1D Filter1"
 		    Location		    [16, 52, 1314, 1025]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -63522,7 +63350,7 @@ Model {
 		    Name		    "Filter2"
 		    Location		    [469, 218, 910, 678]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -63770,7 +63598,7 @@ Model {
 		    Name		    "CompFiltRate1"
 		    Location		    [196, 173, 959, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -63853,7 +63681,7 @@ Model {
 		    Name		    "1D Filter1"
 		    Location		    [16, 52, 1314, 1162]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -63990,7 +63818,7 @@ Model {
 		    Name		    "Filter2"
 		    Location		    [469, 237, 817, 678]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -64238,7 +64066,7 @@ Model {
 		    Name		    "CompRateOnly"
 		    Location		    [339, 455, 1102, 1071]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -64312,7 +64140,7 @@ Model {
 		    Name		    "1D Filter1"
 		    Location		    [16, 52, 1314, 1162]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -64449,7 +64277,7 @@ Model {
 		    Name		    "Filter2"
 		    Location		    [469, 237, 817, 678]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -64674,7 +64502,7 @@ Model {
 		    Name		    "Deriv "
 		    Location		    [-8, 0, 1916, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -64850,7 +64678,7 @@ Model {
 		    Name		    "Subsystem"
 		    Location		    [-8, 0, 1916, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -64935,7 +64763,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -65064,7 +64892,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -65292,7 +65120,7 @@ Model {
 		    Name		    "myMux Fun1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -65437,7 +65265,7 @@ Model {
 		    Name		    "myMux Fun2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -66363,7 +66191,7 @@ Model {
 	Name			"Read Barometer BMP180"
 	Location		[-7, 0, 1900, 1047]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -66399,7 +66227,7 @@ Model {
 	    Name		    "BMP 180\nTemperature Compensation\nSee datasheet"
 	    Location		    [233, 99, 1567, 945]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -67719,7 +67547,7 @@ Model {
 	    Name		    "Baro Altimeter"
 	    Location		    [225, 52, 1523, 893]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -67780,7 +67608,7 @@ Model {
 		Name			"Compute Barometric\nHeight"
 		Location		[16, 114, 1145, 647]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -68183,7 +68011,7 @@ Model {
 		Name			"Enabled\nSubsystem"
 		Location		[391, 189, 945, 673]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -68244,7 +68072,7 @@ Model {
 		Name			"Enables/Disables\nthe Computation of \ninitial Baro Bias"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -68350,7 +68178,7 @@ Model {
 		Name			"Initial Baro Bias"
 		Location		[318, 264, 1284, 709]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -68495,7 +68323,7 @@ Model {
 		    Name		    "Low Pass8"
 		    Location		    [469, 237, 817, 678]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -68648,7 +68476,7 @@ Model {
 		Name			"Zero Out Height"
 		Location		[16, 52, 1314, 1162]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -68993,7 +68821,7 @@ Model {
 	    Name		    "I2C Initialisation\nRead EEPROM Calibration data\nOnce (Blocking Function)"
 	    Location		    [16, 52, 1218, 892]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -69279,7 +69107,7 @@ Model {
 		Name			"Pack10"
 		Location		[16, 52, 2045, 1700]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -69439,7 +69267,7 @@ Model {
 		Name			"Pack11"
 		Location		[16, 52, 2045, 1700]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -69599,7 +69427,7 @@ Model {
 		Name			"Pack12"
 		Location		[16, 52, 2027, 1682]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -69759,7 +69587,7 @@ Model {
 		Name			"Pack2"
 		Location		[16, 52, 1218, 892]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -69919,7 +69747,7 @@ Model {
 		Name			"Pack3"
 		Location		[16, 52, 2045, 1700]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -70079,7 +69907,7 @@ Model {
 		Name			"Pack4"
 		Location		[16, 52, 1218, 892]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -70239,7 +70067,7 @@ Model {
 		Name			"Pack5"
 		Location		[16, 52, 2045, 1700]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -70399,7 +70227,7 @@ Model {
 		Name			"Pack6"
 		Location		[16, 52, 2045, 1700]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -70559,7 +70387,7 @@ Model {
 		Name			"Pack7"
 		Location		[16, 52, 2045, 1700]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -70719,7 +70547,7 @@ Model {
 		Name			"Pack8"
 		Location		[16, 52, 2045, 1700]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -70879,7 +70707,7 @@ Model {
 		Name			"Pack9"
 		Location		[16, 52, 2045, 1700]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -71662,7 +71490,7 @@ Model {
 	    Name		    "LPF 1Hz"
 	    Location		    [301, 52, 1153, 551]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -71832,7 +71660,7 @@ Model {
 	    Name		    "LPF 1Hz1"
 	    Location		    [400, 61, 1147, 560]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -72005,7 +71833,7 @@ Model {
 	    Name		    "Pack"
 	    Location		    [16, 52, 1218, 892]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -72170,7 +71998,7 @@ Model {
 	    Name		    "Pack1"
 	    Location		    [16, 52, 2045, 1700]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -72643,7 +72471,7 @@ Model {
 	Name			"Read MPU600 and HMC5883"
 	Location		[304, 52, 1319, 770]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -72889,7 +72717,7 @@ Model {
 	    Name		    "Subsystem10"
 	    Location		    [33, 52, 1954, 1332]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -73055,7 +72883,7 @@ Model {
 	    Name		    "Subsystem8"
 	    Location		    [74, 52, 1426, 1175]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -73222,7 +73050,7 @@ Model {
 	    Name		    "Subsystem9"
 	    Location		    [31, 52, 1634, 1152]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -73618,9 +73446,9 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Sensor Data\n[updated 4.28.16]"
-	Location		[180, 52, 1382, 852]
+	Location		[849, 0, 1797, 1047]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -73676,7 +73504,7 @@ Model {
 	    Name		    "Raw HIL \nReadings"
 	    Location		    [-8, 0, 1916, 1056]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -73815,14 +73643,14 @@ Model {
 	  Name			  "Sensor Suite"
 	  SID			  "2259"
 	  Ports			  [2, 5]
-	  Position		  [335, 65, 445, 345]
+	  Position		  [340, 65, 450, 345]
 	  ZOrder		  -4
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "Sensor Suite"
-	    Location		    [-8, 0, 1916, 1056]
+	    Location		    [849, 0, 1797, 1047]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -73864,7 +73692,7 @@ Model {
 		Name			"ADIS16405\nSignal Cond "
 		Location		[179, 52, 1220, 852]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -73947,7 +73775,7 @@ Model {
 		    Name		    "3D Tustin Lowpass, Auto Initial Condition"
 		    Location		    [16, 52, 1288, 959]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -74042,7 +73870,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -74185,7 +74013,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -74328,7 +74156,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -74473,7 +74301,7 @@ Model {
 		    Name		    "myMux Fun"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -74751,7 +74579,7 @@ Model {
 		    Name		    "3D Tustin Lowpass, Auto Initial Condition1"
 		    Location		    [463, 52, 1082, 809]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -74846,7 +74674,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -74989,7 +74817,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -75132,7 +74960,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -75277,7 +75105,7 @@ Model {
 		    Name		    "myMux Fun"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -75555,7 +75383,7 @@ Model {
 		    Name		    "3D Tustin Lowpass, Auto Initial Condition2"
 		    Location		    [16, 53, 1288, 960]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -75650,7 +75478,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -75793,7 +75621,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -75936,7 +75764,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -76081,7 +75909,7 @@ Model {
 		    Name		    "myMux Fun"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -76463,7 +76291,7 @@ Model {
 		    Name		    "Rotate Cube Axis"
 		    Location		    [728, 331, 1049, 667]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -76546,7 +76374,7 @@ Model {
 		    Name		    "Rotate Cube Axis "
 		    Location		    [145, 96, 1185, 783]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -76611,7 +76439,7 @@ Model {
 		    Name		    "Rotate Cube Axis  "
 		    Location		    [92, 52, 1584, 1038]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -77115,9 +76943,9 @@ Model {
 	      RequestExecContextInheritance off
 	      System {
 		Name			"If no HIL then\nRead all the\nSensors"
-		Location		[-8, 0, 1916, 1056]
+		Location		[849, 0, 1797, 1047]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -77293,7 +77121,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -77404,7 +77232,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -77515,7 +77343,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function2"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -77626,7 +77454,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function3"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -77891,9 +77719,9 @@ Model {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "if GPS is Novatel"
-		    Location		    [-8, -8, 2568, 1048]
+		    Location		    [849, 0, 1797, 1047]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -78027,7 +77855,7 @@ Model {
 		    Name		    "if GPS is Ublox"
 		    Location		    [-8, -8, 2568, 1048]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -78108,7 +77936,7 @@ Model {
 		    Name		    "myMux Fun"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -78268,7 +78096,7 @@ Model {
 		    Name		    "myMux Fun4"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -78900,7 +78728,7 @@ Model {
 		Name			"If no HIL then\nupdate Air Data"
 		Location		[194, 52, 1280, 892]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -79038,7 +78866,7 @@ Model {
 		Name			"Low Pass Filtering,Temperature\nCompensation and Calibration"
 		Location		[76, 52, 1261, 892]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -79100,7 +78928,7 @@ Model {
 		    Name		    "Baro Altimeter"
 		    Location		    [16, 52, 1218, 892]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -79159,7 +78987,7 @@ Model {
 		    Name		    "Compute Barometric\nHeight"
 		    Location		    [16, 114, 1145, 647]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -79552,7 +79380,7 @@ Model {
 		    Name		    "Enabled\nSubsystem"
 		    Location		    [391, 189, 945, 673]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -79613,7 +79441,7 @@ Model {
 		    Name		    "Enables/Disables\nthe Computation of \ninitial Baro Bias"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -79718,7 +79546,7 @@ Model {
 		    Name		    "GS Height"
 		    Location		    [-8, 0, 1916, 1056]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -79820,7 +79648,7 @@ Model {
 		    Name		    "Initial Baro Bias"
 		    Location		    [16, 52, 1314, 1162]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -79965,7 +79793,7 @@ Model {
 		    Name		    "Low Pass8"
 		    Location		    [469, 237, 817, 678]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -80118,7 +79946,7 @@ Model {
 		    Name		    "Zero Out Height"
 		    Location		    [16, 52, 1314, 1162]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -80387,7 +80215,7 @@ Model {
 		    Name		    "Barometer\nUnit Conversion"
 		    Location		    [175, 52, 1261, 1083]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -80646,7 +80474,7 @@ Model {
 		    Name		    "Pitot\nUnit Conversion"
 		    Location		    [175, 52, 1261, 1083]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -80796,7 +80624,7 @@ Model {
 		    Name		    "Power\nUnit Conversion"
 		    Location		    [175, 52, 1261, 1083]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -80921,7 +80749,7 @@ Model {
 		    Name		    "Temp Compensate Accel X1"
 		    Location		    [16, 52, 1238, 1154]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -81022,7 +80850,7 @@ Model {
 		    Name		    "Hi Temp\nCompensation2"
 		    Location		    [16, 52, 1264, 1154]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -81220,7 +81048,7 @@ Model {
 		    Name		    "Lo Temp\nCompensation"
 		    Location		    [16, 52, 1238, 1154]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -81568,7 +81396,7 @@ Model {
 		    Name		    "Temp Compensate Baro"
 		    Location		    [16, 52, 1238, 1154]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -81651,7 +81479,7 @@ Model {
 		    Name		    "Hi Temp\nCompensation"
 		    Location		    [16, 52, 1238, 1154]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -81887,7 +81715,7 @@ Model {
 		    Name		    "Lo Temp\nCompensation"
 		    Location		    [16, 52, 1238, 1154]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -82205,7 +82033,7 @@ Model {
 		    Name		    "Thermistor\nUnit Conversion"
 		    Location		    [175, 52, 1261, 1083]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -82361,7 +82189,7 @@ Model {
 		    Name		    "Tustin Lowpass, Auto Initial Condition1"
 		    Location		    [403, 291, 857, 668]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -82412,7 +82240,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -82620,7 +82448,7 @@ Model {
 		    Name		    "Tustin Lowpass, Auto Initial Condition2"
 		    Location		    [403, 291, 857, 668]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -82671,7 +82499,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -82879,7 +82707,7 @@ Model {
 		    Name		    "Tustin Lowpass, Auto Initial Condition3"
 		    Location		    [403, 291, 857, 668]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -82930,7 +82758,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -83138,7 +82966,7 @@ Model {
 		    Name		    "Tustin Lowpass, Auto Initial Condition4"
 		    Location		    [403, 291, 857, 668]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -83189,7 +83017,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -83696,7 +83524,7 @@ Model {
 		Name			"myMux Fun"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -83841,7 +83669,7 @@ Model {
 		Name			"myMux Fun1"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -84504,7 +84332,7 @@ Model {
 	Name			"Servo In Out"
 	Location		[-8, 0, 1916, 1056]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -84688,7 +84516,7 @@ Model {
 	    Name		    "Mixing"
 	    Location		    [560, 52, 1233, 708]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -85209,9 +85037,9 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Trim Vals\n[updated 4.28.16]"
-	Location		[-8, 0, 1916, 1056]
+	Location		[849, 0, 1797, 1047]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -85234,7 +85062,7 @@ Model {
 	    Name		    "Bufffer IC"
 	    Location		    [265, 52, 1715, 1025]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -85271,7 +85099,7 @@ Model {
 		Name			"Buffer IC Channel"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -85383,7 +85211,7 @@ Model {
 		Name			"Buffer IC Channel1"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -85495,7 +85323,7 @@ Model {
 		Name			"Buffer IC Channel2"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -85607,7 +85435,7 @@ Model {
 		Name			"Buffer IC Channel3"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -85840,9 +85668,9 @@ Model {
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "Control Surface Input"
-	    Location		    [-7, 0, 1928, 1047]
+	    Location		    [849, 0, 1797, 1047]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -85896,7 +85724,7 @@ Model {
 		Name			"2 sec  tau"
 		Location		[403, 291, 857, 668]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -85947,7 +85775,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -86154,7 +85982,7 @@ Model {
 		Name			"2 sec  tau1"
 		Location		[403, 291, 857, 668]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -86205,7 +86033,7 @@ Model {
 		    Name		    "Embedded\nMATLAB Function"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -86500,7 +86328,7 @@ Model {
 		Name			"myMux Fun1"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -86629,7 +86457,7 @@ Model {
 		Name			"myMux Fun5"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -86933,7 +86761,7 @@ Model {
 	    Name		    "Convert to\nMicroseconds "
 	    Location		    [16, 52, 1208, 810]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -87016,7 +86844,7 @@ Model {
 	    Name		    "Detect Transition\nHigh to Low"
 	    Location		    [16, 52, 605, 457]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -87070,7 +86898,7 @@ Model {
 		Name			"Subsystem"
 		Location		[265, 52, 1715, 1025]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -87239,7 +87067,7 @@ Model {
 	    Name		    "Grab I.C."
 	    Location		    [-8, 0, 1916, 1056]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -87418,7 +87246,7 @@ Model {
 		Name			"Convert to\nMicroseconds "
 		Location		[16, 52, 1208, 810]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -87503,7 +87331,7 @@ Model {
 		Name			"Convert to\nMicroseconds 1"
 		Location		[16, 52, 1208, 810]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -87588,7 +87416,7 @@ Model {
 		Name			"Convert to\nMicroseconds 2"
 		Location		[16, 52, 1208, 810]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -87673,7 +87501,7 @@ Model {
 		Name			"Convert to\nMicroseconds 3"
 		Location		[16, 52, 1208, 810]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -87781,7 +87609,7 @@ Model {
 		Name			"Convert to Rad"
 		Location		[414, 475, 955, 822]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -87956,7 +87784,7 @@ Model {
 		Name			"Convert to Rad1"
 		Location		[16, 52, 1270, 996]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -88131,7 +87959,7 @@ Model {
 		Name			"Convert to Rad2"
 		Location		[16, 52, 1270, 996]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -88306,7 +88134,7 @@ Model {
 		Name			"Convert to Rad3"
 		Location		[16, 52, 1270, 996]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -88925,7 +88753,7 @@ Model {
 	    Name		    "Mean Filter the\nTransition"
 	    Location		    [-8, 0, 1916, 1056]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -88961,7 +88789,7 @@ Model {
 		Name			"Buffer Failsafe Channel"
 		Location		[227, 345, 838, 789]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -89474,9 +89302,9 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Update PWM Commands\nand Send Telemetry\n[updated 4.27.16]"
-	Location		[-8, 0, 1916, 1056]
+	Location		[849, 0, 1797, 1047]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -89562,7 +89390,7 @@ Model {
 	    Name		    "Convert to\nMicroseconds"
 	    Location		    [612, 433, 973, 703]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -89688,7 +89516,7 @@ Model {
 	    Name		    "Generate PWM Signals\nBased on the Control Type"
 	    Location		    [-7, 0, 1928, 1047]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -89775,7 +89603,7 @@ Model {
 		Name			"If  Control Type\nIs Manual"
 		Location		[312, 359, 866, 843]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -89852,7 +89680,7 @@ Model {
 		Name			"If  Control Type\nIs Passthrough"
 		Location		[784, 361, 1338, 845]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -89929,7 +89757,7 @@ Model {
 		Name			"If  Control Type\nIs Selective\nPassthrough"
 		Location		[-7, 0, 1928, 1047]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -90003,7 +89831,7 @@ Model {
 		    Name		    "Convert to PWM"
 		    Location		    [414, 475, 955, 822]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -90178,7 +90006,7 @@ Model {
 		    Name		    "Convert to PWM1"
 		    Location		    [414, 475, 955, 822]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -90353,7 +90181,7 @@ Model {
 		    Name		    "Convert to PWM2"
 		    Location		    [414, 475, 955, 822]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -90528,7 +90356,7 @@ Model {
 		    Name		    "Convert to PWM3"
 		    Location		    [414, 475, 955, 822]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -90833,7 +90661,7 @@ Model {
 		    Name		    "myMux Fun1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -91220,7 +91048,7 @@ Model {
 		Name			"If  Control Type\nIs Wp, ISR, LP\nor  Mid Lvl Cmds"
 		Location		[287, 144, 1027, 817]
 		Open			off
-		ModelBrowserVisibility	on
+		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -91284,7 +91112,7 @@ Model {
 		    Name		    "Convert to PWM"
 		    Location		    [414, 475, 955, 822]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -91459,7 +91287,7 @@ Model {
 		    Name		    "Convert to PWM1"
 		    Location		    [414, 475, 955, 822]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -91634,7 +91462,7 @@ Model {
 		    Name		    "Convert to PWM2"
 		    Location		    [414, 475, 955, 822]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -91809,7 +91637,7 @@ Model {
 		    Name		    "Convert to PWM3"
 		    Location		    [414, 475, 955, 822]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -91975,7 +91803,7 @@ Model {
 		    Name		    "myMux Fun1"
 		    Location		    [227, 345, 838, 789]
 		    Open		    off
-		    ModelBrowserVisibility  on
+		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -92788,9 +92616,9 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"get Nav Vars\n[updated 4.28.16]"
-	Location		[-8, 0, 1916, 1056]
+	Location		[849, 0, 1797, 1047]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -92805,7 +92633,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "Attitude"
 	  SID			  "1860"
-	  Position		  [290, 168, 320, 182]
+	  Position		  [290, 203, 320, 217]
 	  ZOrder		  -1
 	  BackgroundColor	  "gray"
 	  IconDisplay		  "Port number"
@@ -92814,7 +92642,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "Accel"
 	  SID			  "1861"
-	  Position		  [500, 398, 530, 412]
+	  Position		  [500, 433, 530, 447]
 	  ZOrder		  -2
 	  BackgroundColor	  "gray"
 	  Port			  "2"
@@ -92824,7 +92652,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "Accel. Bias"
 	  SID			  "1862"
-	  Position		  [500, 473, 530, 487]
+	  Position		  [500, 508, 530, 522]
 	  ZOrder		  -3
 	  BackgroundColor	  "gray"
 	  Port			  "3"
@@ -92835,7 +92663,7 @@ Model {
 	  Name			  "Angle Conversion"
 	  SID			  "1863"
 	  Ports			  [1, 1]
-	  Position		  [380, 35, 470, 65]
+	  Position		  [385, 70, 475, 100]
 	  ZOrder		  -4
 	  LibraryVersion	  "1.125"
 	  SourceBlock		  "aerolibconvert2/Angle Conversion"
@@ -92845,31 +92673,11 @@ Model {
 	  OU			  "rad"
 	}
 	Block {
-	  BlockType		  Constant
-	  Name			  "Constant1"
-	  SID			  "1864"
-	  Position		  [20, 15, 140, 45]
-	  ZOrder		  -5
-	  ShowName		  off
-	  Value			  "PAR_CONFIG_ROLL_R"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant7"
-	  SID			  "1865"
-	  Position		  [20, 50, 140, 80]
-	  ZOrder		  -6
-	  ShowName		  off
-	  Value			  "PAR_CONFIG_YAW_R"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
 	  BlockType		  Demux
 	  Name			  "Demux"
 	  SID			  "1866"
 	  Ports			  [1, 3]
-	  Position		  [905, 83, 910, 147]
+	  Position		  [905, 118, 910, 182]
 	  ZOrder		  -6
 	  ShowName		  off
 	  Outputs		  "3"
@@ -92880,7 +92688,7 @@ Model {
 	  Name			  "Direction Cosine Matrix\nto Rotation Angles"
 	  SID			  "1867"
 	  Ports			  [1, 1]
-	  Position		  [785, 85, 860, 145]
+	  Position		  [785, 120, 860, 180]
 	  ZOrder		  -6
 	  AttributesFormatString  "Rotation Order: %<rotationOrder>"
 	  LibraryVersion	  "1.430"
@@ -92895,7 +92703,7 @@ Model {
 	  Name			  "Embedded\nMATLAB Function1"
 	  SID			  "1868"
 	  Ports			  [1, 1]
-	  Position		  [1010, 124, 1080, 156]
+	  Position		  [1010, 159, 1080, 191]
 	  ZOrder		  -9
 	  ErrorFcn		  "Stateflow.Translate.translate"
 	  PermitHierarchicalResolution "ExplicitOnly"
@@ -92906,7 +92714,7 @@ Model {
 	    Name		    "Embedded\nMATLAB Function1"
 	    Location		    [227, 345, 838, 789]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -93005,7 +92813,7 @@ Model {
 	  Name			  "Euler"
 	  SID			  "1869"
 	  Ports			  [1, 1]
-	  Position		  [385, 101, 430, 169]
+	  Position		  [385, 136, 430, 204]
 	  ZOrder		  -10
 	  InputPortWidth	  "6"
 	  Indices		  "[1 2 3]"
@@ -93015,7 +92823,7 @@ Model {
 	  Name			  "Euler Angles to \nDirection Cosine Matrix1"
 	  SID			  "1870"
 	  Ports			  [1, 1]
-	  Position		  [500, 23, 570, 77]
+	  Position		  [500, 58, 570, 112]
 	  ZOrder		  -3
 	  LibraryVersion	  "1.45"
 	  SourceBlock		  "aerolibobsolete/Euler Angles to \nDirection Cosine Matrix"
@@ -93027,7 +92835,7 @@ Model {
 	  Name			  "Euler Angles to \nDirection Cosine Matrix2"
 	  SID			  "1871"
 	  Ports			  [1, 1]
-	  Position		  [515, 108, 585, 162]
+	  Position		  [515, 143, 585, 197]
 	  ZOrder		  -3
 	  LibraryVersion	  "1.45"
 	  SourceBlock		  "aerolibobsolete/Euler Angles to \nDirection Cosine Matrix"
@@ -93035,48 +92843,44 @@ Model {
 	  ContentPreviewEnabled	  off
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]"
-	  SID			  "1872"
-	  Ports			  [2, 1]
-	  Position		  [180, 22, 340, 78]
-	  ZOrder		  -13
-	  BackgroundColor	  "orange"
-	  LibraryVersion	  "3.37"
-	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
-	  SourceType		  "C Function Call"
-	  ParseFilesChkbx	  off
-	  ListFunctions1	  "Custom Function"
-	  Function1		  "extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);"
-	  AddHeaderDeclaration	  on
-	  Function1Type		  "when block is updated (default)"
-	  Fct1BlockIn		  "u1 u2"
-	  FctReturnBlockOut	  on
-	  Fct1BlockOut		  "y1"
-	  DataCollected		  "0"
-	  ORDERING		  "None"
-	  SampleTime		  "0.01"
-	  MCHP_MASTERLINK	  "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
-	  PinDigitalInput	  "[]"
-	  PinDigitalOutput	  "[]   "
-	  PinAnalogInput	  "[]"
-	}
-	Block {
 	  BlockType		  Math
 	  Name			  "Math\nFunction"
 	  SID			  "1873"
 	  Ports			  [1, 1]
-	  Position		  [615, 35, 645, 65]
+	  Position		  [615, 70, 645, 100]
 	  ZOrder		  -14
 	  ShowName		  off
 	  Operator		  "transpose"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux"
+	  SID			  "2701"
+	  Ports			  [3, 1]
+	  Position		  [245, 18, 250, 152]
+	  ZOrder		  23
+	  ShowName		  off
+	  Inputs		  "3"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  DataStoreRead
+	  Name			  "PAR_CONFIG_ROLL_R\nPAR_CONFIG_PITCH_R\nPAR_CONFIG_YAW_R"
+	  SID			  "2700"
+	  Ports			  [0, 3]
+	  Position		  [10, 19, 185, 151]
+	  ZOrder		  22
+	  BackgroundColor	  "orange"
+	  DialogController	  "Simulink.DDGSource"
+	  DataStoreName		  "mlParamInterface"
+	  DataStoreElements	  "mlParamInterface.param(16)#mlParamInterface.param(17)#mlParamInterface.param(18)"
 	}
 	Block {
 	  BlockType		  Product
 	  Name			  "Product"
 	  SID			  "1874"
 	  Ports			  [2, 1]
-	  Position		  [700, 95, 750, 135]
+	  Position		  [700, 130, 750, 170]
 	  ZOrder		  -15
 	  ShowName		  off
 	  Multiplication	  "Matrix(*)"
@@ -93089,7 +92893,7 @@ Model {
 	  Name			  "Product1"
 	  SID			  "1875"
 	  Ports			  [2, 1]
-	  Position		  [700, 190, 750, 230]
+	  Position		  [700, 225, 750, 265]
 	  ZOrder		  -16
 	  ShowName		  off
 	  Multiplication	  "Matrix(*)"
@@ -93102,7 +92906,7 @@ Model {
 	  Name			  "Product2"
 	  SID			  "1876"
 	  Ports			  [2, 1]
-	  Position		  [695, 375, 745, 415]
+	  Position		  [695, 410, 745, 450]
 	  ZOrder		  -17
 	  ShowName		  off
 	  Multiplication	  "Matrix(*)"
@@ -93115,7 +92919,7 @@ Model {
 	  Name			  "Product3"
 	  SID			  "1877"
 	  Ports			  [2, 1]
-	  Position		  [695, 450, 745, 490]
+	  Position		  [695, 485, 745, 525]
 	  ZOrder		  -18
 	  ShowName		  off
 	  Multiplication	  "Matrix(*)"
@@ -93128,7 +92932,7 @@ Model {
 	  Name			  "Rates"
 	  SID			  "1878"
 	  Ports			  [1, 1]
-	  Position		  [385, 186, 430, 254]
+	  Position		  [385, 221, 430, 289]
 	  ZOrder		  -19
 	  InputPortWidth	  "6"
 	  Indices		  "[4 5 6]"
@@ -93138,7 +92942,7 @@ Model {
 	  Name			  "Selector"
 	  SID			  "1879"
 	  Ports			  [1, 1]
-	  Position		  [1230, 176, 1295, 214]
+	  Position		  [1230, 211, 1295, 249]
 	  ZOrder		  -20
 	  InputPortWidth	  "6"
 	  Indices		  "[1 2 5 6]"
@@ -93148,7 +92952,7 @@ Model {
 	  Name			  "Selector1"
 	  SID			  "1880"
 	  Ports			  [1, 1]
-	  Position		  [805, 416, 845, 454]
+	  Position		  [805, 451, 845, 489]
 	  ZOrder		  -21
 	  ShowName		  off
 	  InputPortWidth	  "3"
@@ -93159,7 +92963,7 @@ Model {
 	  Name			  "Sum"
 	  SID			  "1881"
 	  Ports			  [2, 1]
-	  Position		  [765, 425, 785, 445]
+	  Position		  [765, 460, 785, 480]
 	  ZOrder		  -22
 	  ShowName		  off
 	  IconShape		  "round"
@@ -93173,7 +92977,7 @@ Model {
 	  Name			  "myMux Fun1"
 	  SID			  "1882"
 	  Ports			  [3, 1]
-	  Position		  [1115, 79, 1120, 151]
+	  Position		  [1115, 114, 1120, 186]
 	  ZOrder		  -23
 	  BackgroundColor	  "black"
 	  ShowName		  off
@@ -93186,7 +92990,7 @@ Model {
 	    Name		    "myMux Fun1"
 	    Location		    [227, 345, 838, 789]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -93318,7 +93122,7 @@ Model {
 	  Name			  "myMux Fun2"
 	  SID			  "1883"
 	  Ports			  [2, 1]
-	  Position		  [1165, 156, 1170, 229]
+	  Position		  [1165, 191, 1170, 264]
 	  ZOrder		  -24
 	  BackgroundColor	  "black"
 	  ShowName		  off
@@ -93331,7 +93135,7 @@ Model {
 	    Name		    "myMux Fun2"
 	    Location		    [227, 345, 838, 789]
 	    Open		    off
-	    ModelBrowserVisibility  on
+	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -93446,7 +93250,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "[phi the q r]"
 	  SID			  "1884"
-	  Position		  [1340, 188, 1370, 202]
+	  Position		  [1340, 223, 1370, 237]
 	  ZOrder		  -25
 	  BackgroundColor	  "yellow"
 	  IconDisplay		  "Port number"
@@ -93455,7 +93259,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "Euler Rot"
 	  SID			  "1885"
-	  Position		  [1210, 108, 1240, 122]
+	  Position		  [1210, 143, 1240, 157]
 	  ZOrder		  -26
 	  BackgroundColor	  "yellow"
 	  Port			  "2"
@@ -93465,7 +93269,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "PQR Rot"
 	  SID			  "1886"
-	  Position		  [1210, 258, 1240, 272]
+	  Position		  [1210, 293, 1240, 307]
 	  ZOrder		  -27
 	  BackgroundColor	  "yellow"
 	  Port			  "3"
@@ -93475,7 +93279,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "Yb Accel"
 	  SID			  "1887"
-	  Position		  [905, 428, 935, 442]
+	  Position		  [905, 463, 935, 477]
 	  ZOrder		  -28
 	  BackgroundColor	  "yellow"
 	  Port			  "4"
@@ -93707,23 +93511,29 @@ Model {
 	  }
 	}
 	Line {
-	  ZOrder		  36
-	  SrcBlock		  "Constant1"
-	  SrcPort		  1
-	  Points		  [10, 0; 0, 5]
-	  DstBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  37
-	  SrcBlock		  "Constant7"
-	  SrcPort		  1
-	  DstBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]"
+	  ZOrder		  39
+	  SrcBlock		  "PAR_CONFIG_ROLL_R\nPAR_CONFIG_PITCH_R\nPAR_CONFIG_YAW_R"
+	  SrcPort		  2
+	  DstBlock		  "Mux"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  38
-	  SrcBlock		  "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]"
+	  ZOrder		  40
+	  SrcBlock		  "PAR_CONFIG_ROLL_R\nPAR_CONFIG_PITCH_R\nPAR_CONFIG_YAW_R"
+	  SrcPort		  1
+	  DstBlock		  "Mux"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  41
+	  SrcBlock		  "PAR_CONFIG_ROLL_R\nPAR_CONFIG_PITCH_R\nPAR_CONFIG_YAW_R"
+	  SrcPort		  3
+	  DstBlock		  "Mux"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  43
+	  SrcBlock		  "Mux"
 	  SrcPort		  1
 	  DstBlock		  "Angle Conversion"
 	  DstPort		  1
@@ -93731,37 +93541,23 @@ Model {
       }
     }
     Block {
-      BlockType		      Reference
-      Name		      "is it ni Mid Level, Pt or SPT?\n[navSupport.c]\n[updated 4.27.16]"
-      SID		      "1891"
+      BlockType		      DataStoreRead
+      Name		      "isPassthrough"
+      SID		      "2676"
       Ports		      [0, 1]
-      Position		      [1500, 1822, 1660, 1878]
-      ZOrder		      -107
+      Position		      [1485, 1832, 1660, 1868]
+      ZOrder		      20
       BackgroundColor	      "orange"
-      LibraryVersion	      "3.37"
-      SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
-      SourceType	      "C Function Call"
-      ParseFilesChkbx	      off
-      ListFunctions1	      "Custom Function"
-      Function1		      "extern uint8_T isPassthrough();"
-      AddHeaderDeclaration    on
-      Function1Type	      "when block is updated (default)"
-      FctReturnBlockOut	      on
-      DataCollected	      "0"
-      ORDERING		      "None"
-      SampleTime	      "0.01"
-      MCHP_MASTERLINK	      "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 ("
-      "RA6)"
-      PinDigitalInput	      "[]"
-      PinDigitalOutput	      "[]   "
-      PinAnalogInput	      "[]"
+      DialogController	      "Simulink.DDGSource"
+      DataStoreName	      "mlHeartbeatLocal"
+      DataStoreElements	      "mlHeartbeatLocal.custom_mode"
     }
     Block {
       BlockType		      DataStoreRead
       Name		      "isWpFly?"
       SID		      "2666"
       Ports		      [0, 1]
-      Position		      [1500, 1157, 1675, 1193]
+      Position		      [1500, 1147, 1675, 1183]
       ZOrder		      10
       BackgroundColor	      "orange"
       DialogController	      "Simulink.DDGSource"
@@ -93800,7 +93596,7 @@ Model {
       BlockType		      DataStoreMemory
       Name		      "mlHeartbeatLocal"
       SID		      "2665"
-      Position		      [35, 659, 145, 684]
+      Position		      [35, 649, 145, 674]
       ZOrder		      9
       BackgroundColor	      "lightBlue"
       DataStoreName	      "mlHeartbeatLocal"
@@ -93823,6 +93619,34 @@ Model {
       WriteAfterReadMsg	      "warning"
       RTWStateStorageClass    "ExportedGlobal"
       OutDataTypeStr	      "Bus: mavlink_mid_lvl_cmds_t"
+    }
+    Block {
+      BlockType		      DataStoreMemory
+      Name		      "mlMobileLocation"
+      SID		      "2669"
+      Position		      [35, 739, 145, 764]
+      ZOrder		      13
+      BackgroundColor	      "lightBlue"
+      DataStoreName	      "mlMobileLocation"
+      ReadBeforeWriteMsg      "warning"
+      WriteAfterWriteMsg      "warning"
+      WriteAfterReadMsg	      "warning"
+      RTWStateStorageClass    "ExportedGlobal"
+      OutDataTypeStr	      "Bus: mavlink_slugs_mobile_location_t"
+    }
+    Block {
+      BlockType		      DataStoreMemory
+      Name		      "mlParamINterface"
+      SID		      "2673"
+      Position		      [35, 789, 145, 814]
+      ZOrder		      17
+      BackgroundColor	      "lightBlue"
+      DataStoreName	      "mlParamInterface"
+      ReadBeforeWriteMsg      "warning"
+      WriteAfterWriteMsg      "warning"
+      WriteAfterReadMsg	      "warning"
+      RTWStateStorageClass    "ExportedGlobal"
+      OutDataTypeStr	      "Bus: pi_struct"
     }
     Block {
       BlockType		      DataStoreMemory
@@ -93866,6 +93690,20 @@ Model {
       OutDataTypeStr	      "Bus: mavlink_sys_status_t"
     }
     Block {
+      BlockType		      DataStoreMemory
+      Name		      "mlWpValues"
+      SID		      "2668"
+      Position		      [35, 694, 145, 719]
+      ZOrder		      12
+      BackgroundColor	      "lightBlue"
+      DataStoreName	      "mlWpValues"
+      ReadBeforeWriteMsg      "warning"
+      WriteAfterWriteMsg      "warning"
+      WriteAfterReadMsg	      "warning"
+      RTWStateStorageClass    "ExportedGlobal"
+      OutDataTypeStr	      "Bus: mavlink_mission_item_values_t"
+    }
+    Block {
       BlockType		      SubSystem
       Name		      "myMux Fun1"
       SID		      "1892"
@@ -93883,7 +93721,7 @@ Model {
 	Name			"myMux Fun1"
 	Location		[227, 345, 838, 789]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -94044,7 +93882,7 @@ Model {
 	Name			"myMux Fun2"
 	Location		[227, 345, 838, 789]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -94189,7 +94027,7 @@ Model {
 	Name			"myMux Fun3"
 	Location		[227, 345, 838, 789]
 	Open			off
-	ModelBrowserVisibility	on
+	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -94390,7 +94228,7 @@ Model {
       ZOrder		      16
       SrcBlock		      "Trim Vals\n[updated 4.28.16]"
       SrcPort		      1
-      Points		      [0, 10; 160, 0]
+      Points		      [0, 10; 160, 0; 0, 20]
       DstBlock		      "Inner Loop/ Navigation"
       DstPort		      4
     }
@@ -94398,7 +94236,7 @@ Model {
       ZOrder		      17
       SrcBlock		      "Trim Vals\n[updated 4.28.16]"
       SrcPort		      2
-      Points		      [160, 0]
+      Points		      [146, 0; 0, 50]
       DstBlock		      "Inner Loop/ Navigation"
       DstPort		      5
     }
@@ -94514,7 +94352,7 @@ Model {
       ZOrder		      33
       SrcBlock		      "Inner Loop/ Navigation"
       SrcPort		      1
-      Points		      [50, 0; 0, 180]
+      Points		      [45, 0; 0, 180]
       DstBlock		      "myMux Fun1"
       DstPort		      1
     }
@@ -94529,7 +94367,7 @@ Model {
       ZOrder		      35
       SrcBlock		      "Inner Loop/ Navigation"
       SrcPort		      3
-      Points		      [50, 0; 0, -180]
+      Points		      [45, 0; 0, -180]
       DstBlock		      "myMux Fun1"
       DstPort		      3
     }
@@ -94537,7 +94375,7 @@ Model {
       ZOrder		      36
       SrcBlock		      "Inner Loop/ Navigation"
       SrcPort		      4
-      Points		      [65, 0; 0, -360]
+      Points		      [60, 0; 0, -360]
       DstBlock		      "myMux Fun1"
       DstPort		      4
     }
@@ -94613,60 +94451,11 @@ Model {
       DstPort		      10
     }
     Line {
-      ZOrder		      47
-      SrcBlock		      "Demux2"
-      SrcPort		      1
-      DstBlock		      "Inner Loop/ Navigation"
-      DstPort		      26
-    }
-    Line {
-      ZOrder		      48
-      SrcBlock		      "Demux2"
-      SrcPort		      2
-      DstBlock		      "Inner Loop/ Navigation"
-      DstPort		      27
-    }
-    Line {
-      ZOrder		      49
-      SrcBlock		      "Demux2"
-      SrcPort		      3
-      DstBlock		      "Inner Loop/ Navigation"
-      DstPort		      28
-    }
-    Line {
       ZOrder		      50
       SrcBlock		      "PID Gains\n[updated 4.28.16]"
       SrcPort		      7
       DstBlock		      "Inner Loop/ Navigation"
       DstPort		      14
-    }
-    Line {
-      ZOrder		      51
-      SrcBlock		      "Demux3"
-      SrcPort		      1
-      DstBlock		      "Inner Loop/ Navigation"
-      DstPort		      29
-    }
-    Line {
-      ZOrder		      52
-      SrcBlock		      "Demux3"
-      SrcPort		      2
-      DstBlock		      "Inner Loop/ Navigation"
-      DstPort		      30
-    }
-    Line {
-      ZOrder		      53
-      SrcBlock		      "Demux3"
-      SrcPort		      3
-      DstBlock		      "Inner Loop/ Navigation"
-      DstPort		      31
-    }
-    Line {
-      ZOrder		      54
-      SrcBlock		      "Demux3"
-      SrcPort		      4
-      DstBlock		      "Inner Loop/ Navigation"
-      DstPort		      32
     }
     Line {
       ZOrder		      55
@@ -94694,6 +94483,7 @@ Model {
       ZOrder		      58
       SrcBlock		      "Get RTB Order\n[navSupport.c]\n[updated 4.27.16]"
       SrcPort		      1
+      Points		      [230, 0; 0, -10]
       DstBlock		      "Demux4"
       DstPort		      1
     }
@@ -94712,13 +94502,6 @@ Model {
       DstPort		      34
     }
     Line {
-      ZOrder		      61
-      SrcBlock		      "Get Mobile Location\n[navSupport.c]1\n[updated 4.27.16]"
-      SrcPort		      1
-      DstBlock		      "Inner Loop/ Navigation"
-      DstPort		      35
-    }
-    Line {
       ZOrder		      62
       SrcBlock		      "Trim Vals\n[updated 4.28.16]"
       SrcPort		      7
@@ -94732,37 +94515,6 @@ Model {
       SrcPort		      1
       DstBlock		      "Update PWM Commands\nand Send Telemetry\n[updated 4.27.16]"
       DstPort		      6
-    }
-    Line {
-      ZOrder		      64
-      SrcBlock		      "Demux5"
-      SrcPort		      1
-      Points		      [90, 0; 0, -15]
-      DstBlock		      "Inner Loop/ Navigation"
-      DstPort		      36
-    }
-    Line {
-      ZOrder		      65
-      SrcBlock		      "Demux5"
-      SrcPort		      2
-      Points		      [85, 0; 0, 5]
-      DstBlock		      "Inner Loop/ Navigation"
-      DstPort		      37
-    }
-    Line {
-      ZOrder		      66
-      SrcBlock		      "Demux5"
-      SrcPort		      3
-      Points		      [80, 0; 0, 25]
-      DstBlock		      "Inner Loop/ Navigation"
-      DstPort		      38
-    }
-    Line {
-      ZOrder		      67
-      SrcBlock		      "is it ni Mid Level, Pt or SPT?\n[navSupport.c]\n[updated 4.27.16]"
-      SrcPort		      1
-      DstBlock		      "Inner Loop/ Navigation"
-      DstPort		      39
     }
     Line {
       ZOrder		      68
@@ -94808,80 +94560,11 @@ Model {
       DstPort		      1
     }
     Line {
-      ZOrder		      77
-      SrcBlock		      "Get Max WP\n[navSupport.c]\n[updated 4.27.16]"
+      ZOrder		      229
+      SrcBlock		      "Get Max WP"
       SrcPort		      1
-      Points		      [370, 0]
       DstBlock		      "Inner Loop/ Navigation"
       DstPort		      25
-    }
-    Line {
-      ZOrder		      78
-      SrcBlock		      "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]"
-      SrcPort		      1
-      DstBlock		      "Demux2"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      79
-      SrcBlock		      "Constant7"
-      SrcPort		      1
-      DstBlock		      "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]"
-      DstPort		      2
-    }
-    Line {
-      ZOrder		      80
-      SrcBlock		      "Constant2"
-      SrcPort		      1
-      Points		      [40, 0]
-      DstBlock		      "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      81
-      SrcBlock		      "Constant3"
-      SrcPort		      1
-      Points		      [15, 0; 0, 10]
-      DstBlock		      "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]1"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      82
-      SrcBlock		      "Constant4"
-      SrcPort		      1
-      Points		      [15, 0; 0, -5]
-      DstBlock		      "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]1"
-      DstPort		      2
-    }
-    Line {
-      ZOrder		      83
-      SrcBlock		      "Get Range of Values\n[navSupport.c]\n[updated 4.27.16]1"
-      SrcPort		      1
-      Points		      [25, 0; 0, 5]
-      DstBlock		      "Demux3"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      84
-      SrcBlock		      "Get Range of Values\n[navSupport.c]2\n[updated 4.27.16]"
-      SrcPort		      1
-      DstBlock		      "Demux5"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      85
-      SrcBlock		      "Constant1"
-      SrcPort		      1
-      DstBlock		      "Get Range of Values\n[navSupport.c]2\n[updated 4.27.16]"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      86
-      SrcBlock		      "Constant5"
-      SrcPort		      1
-      Points		      [5, 0; 0, -5]
-      DstBlock		      "Get Range of Values\n[navSupport.c]2\n[updated 4.27.16]"
-      DstPort		      2
     }
     Line {
       ZOrder		      87
@@ -95101,8 +94784,114 @@ Model {
       ZOrder		      228
       SrcBlock		      "isWpFly?"
       SrcPort		      1
+      Points		      [110, 0]
       DstBlock		      "Inner Loop/ Navigation"
       DstPort		      24
+    }
+    Line {
+      ZOrder		      230
+      SrcBlock		      "Mux"
+      SrcPort		      1
+      DstBlock		      "Inner Loop/ Navigation"
+      DstPort		      35
+    }
+    Line {
+      ZOrder		      231
+      SrcBlock		      "Get Mobile Location"
+      SrcPort		      2
+      DstBlock		      "Mux"
+      DstPort		      2
+    }
+    Line {
+      ZOrder		      232
+      SrcBlock		      "Get Mobile Location"
+      SrcPort		      1
+      DstBlock		      "Mux"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      235
+      SrcBlock		      "PAR_NAV_L2_BASE\nPAR_NAV_PRETURN_K\nPAR_NAV_SSCOMP_ON"
+      SrcPort		      2
+      DstBlock		      "Inner Loop/ Navigation"
+      DstPort		      27
+    }
+    Line {
+      ZOrder		      237
+      SrcBlock		      "PAR_NAV_L2_BASE\nPAR_NAV_PRETURN_K\nPAR_NAV_SSCOMP_ON"
+      SrcPort		      1
+      DstBlock		      "Inner Loop/ Navigation"
+      DstPort		      26
+    }
+    Line {
+      ZOrder		      238
+      SrcBlock		      "PAR_NAV_L2_BASE\nPAR_NAV_PRETURN_K\nPAR_NAV_SSCOMP_ON"
+      SrcPort		      3
+      DstBlock		      "Inner Loop/ Navigation"
+      DstPort		      28
+    }
+    Line {
+      ZOrder		      239
+      SrcBlock		      "PAR_L1_OMEGA\nPAR_L1_M\nPAR_L1_GAMMA\nPAR_L1_ON_OFF"
+      SrcPort		      4
+      DstBlock		      "Inner Loop/ Navigation"
+      DstPort		      32
+    }
+    Line {
+      ZOrder		      240
+      SrcBlock		      "PAR_L1_OMEGA\nPAR_L1_M\nPAR_L1_GAMMA\nPAR_L1_ON_OFF"
+      SrcPort		      3
+      DstBlock		      "Inner Loop/ Navigation"
+      DstPort		      31
+    }
+    Line {
+      ZOrder		      241
+      SrcBlock		      "PAR_L1_OMEGA\nPAR_L1_M\nPAR_L1_GAMMA\nPAR_L1_ON_OFF"
+      SrcPort		      2
+      DstBlock		      "Inner Loop/ Navigation"
+      DstPort		      30
+    }
+    Line {
+      ZOrder		      242
+      SrcBlock		      "PAR_L1_OMEGA\nPAR_L1_M\nPAR_L1_GAMMA\nPAR_L1_ON_OFF"
+      SrcPort		      1
+      DstBlock		      "Inner Loop/ Navigation"
+      DstPort		      29
+    }
+    Line {
+      ZOrder		      243
+      SrcBlock		      "PAR_NAV_ISR_FAC\nPAR_PID_RMIX_ON\nPAR_PID_RMIX_P"
+      SrcPort		      1
+      DstBlock		      "Inner Loop/ Navigation"
+      DstPort		      36
+    }
+    Line {
+      ZOrder		      244
+      SrcBlock		      "PAR_NAV_ISR_FAC\nPAR_PID_RMIX_ON\nPAR_PID_RMIX_P"
+      SrcPort		      2
+      DstBlock		      "Inner Loop/ Navigation"
+      DstPort		      37
+    }
+    Line {
+      ZOrder		      245
+      SrcBlock		      "PAR_NAV_ISR_FAC\nPAR_PID_RMIX_ON\nPAR_PID_RMIX_P"
+      SrcPort		      3
+      DstBlock		      "Inner Loop/ Navigation"
+      DstPort		      38
+    }
+    Line {
+      ZOrder		      257
+      SrcBlock		      "isPassthrough"
+      SrcPort		      1
+      DstBlock		      "Passthrough Logic"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      258
+      SrcBlock		      "Passthrough Logic"
+      SrcPort		      1
+      DstBlock		      "Inner Loop/ Navigation"
+      DstPort		      39
     }
   }
 }
