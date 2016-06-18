@@ -3,6 +3,8 @@
 #include "gpsPort.h"
 #include <stdio.h>
 #include "AUAV3_AND_SLUGS_SENSOR.h"
+//#include "AUAV_V3_TestMavLink.h"
+
 uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
 struct CircBuffer comMavlinkBuffer;
 CBRef uartMavlinkInBuffer;
@@ -754,6 +756,19 @@ uint16_t PackRawRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_
   mavlink_message_t msg;
   memset(&msg, 0, sizeof (mavlink_message_t));
   mavlink_msg_rc_channels_raw_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlRC_Commands.port, mlRC_Commands.chan1_raw, mlRC_Commands.chan2_raw, mlRC_Commands.chan3_raw, mlRC_Commands.chan4_raw, mlRC_Commands.chan5_raw, mlRC_Commands.chan6_raw, mlRC_Commands.chan7_raw, mlRC_Commands.chan8_raw,mlRC_Commands.rssi );
+  return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
+
+uint16_t PackVFR_HUD(uint8_t system_id, uint8_t component_id, mavlink_vfr_hud_t mlVfr_hud ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_vfr_hud_pack(mavlink_system.sysid, mavlink_system.compid, &msg , mlVfr_hud.airspeed, mlVfr_hud.groundspeed, mlVfr_hud.heading, mlVfr_hud.throttle, mlVfr_hud.alt, mlVfr_hud.climb );
+                                                                                
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
 }
 

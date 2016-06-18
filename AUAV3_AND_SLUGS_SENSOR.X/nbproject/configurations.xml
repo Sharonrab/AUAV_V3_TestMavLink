@@ -121,7 +121,7 @@
         <property key="enable-omit-frame-pointer" value="false"/>
         <property key="enable-procedural-abstraction" value="false"/>
         <property key="enable-short-double" value="false"/>
-        <property key="enable-symbols" value="false"/>
+        <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="extra-include-directories"
                   value="AUAV3_AND_SLUGS_SENSOR.X;.;..;../mavlink/include/slugs;C:/Users/sharon/Documents/GitHub/AUAV_V3_TestMavLink/../clib;../clib;C:/PROGRA~2/MICROC~1/xc16/v1.26/include;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/h;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/generic/h;C:/PROGRA~2/MICROC~1/xc16/v1.26/support/PERIPH~2;C:/Program Files/MATLAB/MATLAB Production Server/R2015a/rtw/c/ert;C:/Program Files/MATLAB/MATLAB Production Server/R2015a/extern/include;C:/Program Files/MATLAB/MATLAB Production Server/R2015a/simulink/include;C:/Program Files/MATLAB/MATLAB Production Server/R2015a/rtw/c/src;C:/Program Files/MATLAB/MATLAB Production Server/R2015a/rtw/c/src/ext_mode/common;C:/Program Files/MATLAB/MATLAB Production Server/R2015a/rtw/c/src/ext_mode/common"/>
@@ -277,7 +277,6 @@
         <property key="UART 3" value="true"/>
         <property key="UART 4" value="true"/>
         <property key="USB" value="true"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

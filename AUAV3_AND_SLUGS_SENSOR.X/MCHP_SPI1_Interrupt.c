@@ -8,7 +8,7 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
   boolean_T Continue;
   _SPI1IF = 0;
   asm("INC _mcuFlagRecursion");        /* ensure atomic	mcuFlagRecursion++; */
-  T2CONbits.TON = 1;
+  T3CONbits.TON = 1;
 
   /* Declaration of Variables */
   uint16_T tmp;
@@ -184,6 +184,6 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
 
   asm("DEC _mcuFlagRecursion");        /* ensure --mcuFlagRecursion is atomic */
   if (mcuFlagRecursion == 0) {
-    T2CONbits.TON = 0;
+    T3CONbits.TON = 0;
   }
 }                                      /* Enf of interrupt */

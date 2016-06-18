@@ -19,11 +19,11 @@
  *
  * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.
  *
- * Model version                        : 1.219
+ * Model version                        : 1.223
  * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Fri Apr 29 16:39:44 2016
+ * Real-Time Workshop file generated on : Fri Jun 17 19:05:27 2016
  * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Fri Apr 29 16:39:46 2016
+ * C source code generated on           : Fri Jun 17 19:05:28 2016
  */
 
 #include "AUAV3_AND_SLUGS_SENSOR.h"
@@ -484,6 +484,17 @@ void uMultiWordMul(const uint32_T u1[], int16_T n1, const uint32_T u2[], int16_T
 }
 
 /*
+ * Start for enable system:
+ *    '<S123>/Enabled Subsystem'
+ *    '<S186>/Enabled Subsystem'
+ */
+void AUA_EnabledSubsystem_Start(rtB_EnabledSubsystem_AUAV3_AN_T *localB)
+{
+  /* VirtualOutportStart for Outport: '<S131>/Out1' */
+  localB->In1 = 143.543F;
+}
+
+/*
  * Output and update for enable system:
  *    '<S123>/Enabled Subsystem'
  *    '<S186>/Enabled Subsystem'
@@ -660,38 +671,7 @@ void A_EmbeddedMATLABFunction_i(const real_T rtu_u[5],
 }
 
 /* Model step function for TID0 */
-void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.0025s, 0.0s] */
-{
-  uint64m_T tmp;
-  uint64m_T tmp_0;
-  uint32_T tmp_1;
-
-  /* Gain: '<Root>/Gain' incorporates:
-   *  UnitDelay: '<S2>/Output'
-   */
-  tmp_1 = 3276800000UL;
-  uMultiWordMul(&tmp_1, 1, &AUAV3_AND_SLUGS_SENSOR_DWork.Output_DSTATE, 1,
-                &tmp_0.chunks[0U], 2);
-
-  /* DataTypeConversion: '<Root>/Data Type Conversion6' */
-  uMultiWordShr(&tmp_0.chunks[0U], 2, 17U, &tmp.chunks[0U], 2);
-
-  /* DataStoreWrite: '<Root>/Update time' incorporates:
-   *  DataTypeConversion: '<Root>/Data Type Conversion6'
-   */
-  AUAV3_AND_SLUGS_SENSOR_DWork.time_since_boot_usec = MultiWord2uLong
-    (&tmp.chunks[0U]);
-
-  /* Switch: '<S17>/FixPt Switch' incorporates:
-   *  Constant: '<S16>/FixPt Constant'
-   *  Sum: '<S16>/FixPt Sum1'
-   *  UnitDelay: '<S2>/Output'
-   */
-  AUAV3_AND_SLUGS_SENSOR_DWork.Output_DSTATE++;
-}
-
-/* Model step function for TID1 */
-void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
+void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
 {
   /* local block i/o variables */
   real_T rtb_DataTypeConversion;
@@ -718,6 +698,24 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
   real_T tmp;
   uint32_T qY;
   uint32_T qY_0;
+  uint64m_T tmp_0;
+  uint64m_T tmp_1;
+
+  /* Gain: '<Root>/Gain' incorporates:
+   *  UnitDelay: '<S2>/Output'
+   */
+  rtb_Sum6 = 3276800000UL;
+  uMultiWordMul(&rtb_Sum6, 1, &AUAV3_AND_SLUGS_SENSOR_DWork.Output_DSTATE, 1,
+                &tmp_1.chunks[0U], 2);
+
+  /* DataTypeConversion: '<Root>/Data Type Conversion6' */
+  uMultiWordShr(&tmp_1.chunks[0U], 2, 15U, &tmp_0.chunks[0U], 2);
+
+  /* DataStoreWrite: '<Root>/Update time' incorporates:
+   *  DataTypeConversion: '<Root>/Data Type Conversion6'
+   */
+  AUAV3_AND_SLUGS_SENSOR_DWork.time_since_boot_usec = MultiWord2uLong
+    (&tmp_0.chunks[0U]);
 
   /* S-Function "MCHP_MCU_LOAD" Block: <Root>/MCU Load */
   AUAV3_AND_SLUGS_SENSOR_B.U3CH4 = MCHP_MCULoadResult[0];
@@ -1064,7 +1062,7 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
      *  Constant: '<S123>/Constant5'
      *  Delay: '<S134>/Integer Delay'
      */
-    AUAV3_AND_SLUGS_SENSOR_B.Sum_k = 0.0F -
+    AUAV3_AND_SLUGS_SENSOR_B.Sum_k = 143.543F -
       AUAV3_AND_SLUGS_SENSOR_DWork.IntegerDelay_DSTATE_j;
   }
 
@@ -1174,6 +1172,7 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
     AUAV3_AND_SLUGS_SENSOR_B.u0k120k_i) / AUAV3_AND_SLUGS_SENSOR_B.u0k120k_i;
 
   /* Sum: '<S130>/Sum1' incorporates:
+   *  Constant: '<S123>/Constant5'
    *  Constant: '<S130>/Constant2'
    *  Constant: '<S130>/Constant3'
    *  Constant: '<S130>/Constant4'
@@ -1187,7 +1186,7 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
    */
   rtb_Sum1 = ((rtb_DataTypeConversion2_h * rtb_DataTypeConversion2_h *
                0.093502529F + rtb_DataTypeConversion2_h * -0.188893303F) +
-              2.18031291E-5F) * 145473.5F * 0.3048F;
+              2.18031291E-5F) * 145473.5F * 0.3048F + 143.543F;
 
   /* Outputs for Enabled SubSystem: '<S123>/Enabled Subsystem' */
 
@@ -1290,6 +1289,13 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
     AUAV3_AND_SLUGS_SENSOR_B.BUSI2CReadHMC5883Magn50Hz[3];
   AUAV3_AND_SLUGS_SENSOR_DWork.mlRawIMU.zmag =
     AUAV3_AND_SLUGS_SENSOR_B.BUSI2CReadHMC5883Magn50Hz[5];
+
+  /* Switch: '<S17>/FixPt Switch' incorporates:
+   *  Constant: '<S16>/FixPt Constant'
+   *  Sum: '<S16>/FixPt Sum1'
+   *  UnitDelay: '<S2>/Output'
+   */
+  AUAV3_AND_SLUGS_SENSOR_DWork.Output_DSTATE++;
 
   /* S-Function (MCHP_Digital_Input): '<S9>/Enable HIL from  Control MCU1' */
 
@@ -1765,7 +1771,7 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
    *  Product: '<S153>/Divide'
    */
   AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[1] *
-    0.000872664619F), 0.0025, 40.0,
+    0.000872664619F), 0.01, 40.0,
     &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_p,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction_p);
 
@@ -1778,7 +1784,7 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
    *  Product: '<S153>/Divide'
    */
   AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[0] *
-    0.000872664619F), 0.0025, 40.0,
+    0.000872664619F), 0.01, 40.0,
     &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction1,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction1);
 
@@ -1791,7 +1797,7 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
    *  Product: '<S153>/Divide'
    */
   AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[2] *
-    0.000872664619F), 0.0025, 40.0,
+    0.000872664619F), 0.01, 40.0,
     &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction2,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction2);
 
@@ -1803,7 +1809,7 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
    *  Product: '<S153>/Divide1'
    */
   AUA_EmbeddedMATLABFunction((real_T)((real32_T)rtb_Switch_j[4] * 0.0326839499F),
-    0.0025, 40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_ph,
+    0.01, 40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_ph,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction_ph);
 
   /* MATLAB Function: '<S161>/Embedded MATLAB Function1' incorporates:
@@ -1814,7 +1820,7 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
    *  Product: '<S153>/Divide1'
    */
   AUA_EmbeddedMATLABFunction((real_T)((real32_T)rtb_Switch_j[3] * 0.0326839499F),
-    0.0025, 40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction1_h,
+    0.01, 40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction1_h,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction1_h);
 
   /* MATLAB Function: '<S161>/Embedded MATLAB Function2' incorporates:
@@ -1825,7 +1831,7 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
    *  Product: '<S153>/Divide1'
    */
   AUA_EmbeddedMATLABFunction((real_T)((real32_T)rtb_Switch_j[5] * 0.0326839499F),
-    0.0025, 40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction2_d,
+    0.01, 40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction2_d,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction2_d);
 
   /* MATLAB Function: '<S162>/Embedded MATLAB Function' incorporates:
@@ -1836,7 +1842,7 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
    *  Gain: '<S165>/[ -1 -1 -1]'
    *  Product: '<S153>/Divide2'
    */
-  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[7] * 0.5F), 0.0025,
+  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[7] * 0.5F), 0.01,
     40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_d,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction_d);
 
@@ -1848,7 +1854,7 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
    *  Gain: '<S165>/[ -1 -1 -1]'
    *  Product: '<S153>/Divide2'
    */
-  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[6] * 0.5F), 0.0025,
+  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[6] * 0.5F), 0.01,
     40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction1_d,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction1_d);
 
@@ -1860,7 +1866,7 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
    *  Gain: '<S165>/[ -1 -1 -1]'
    *  Product: '<S153>/Divide2'
    */
-  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[8] * 0.5F), 0.0025,
+  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[8] * 0.5F), 0.01,
     40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction2_f,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction2_f);
 
@@ -1988,8 +1994,8 @@ void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.01s, 0.0s] */
   /* End of Update for SubSystem: '<S123>/Zero Out Height' */
 }
 
-/* Model step function for TID2 */
-void AUAV3_AND_SLUGS_SENSOR_step2(void) /* Sample time: [0.02s, 0.0s] */
+/* Model step function for TID1 */
+void AUAV3_AND_SLUGS_SENSOR_step1(void) /* Sample time: [0.02s, 0.0s] */
 {
   int16_T rtb_Bias_g;
   int16_T rtb_Bias1;
@@ -2134,6 +2140,26 @@ void AUAV3_AND_SLUGS_SENSOR_step2(void) /* Sample time: [0.02s, 0.0s] */
                   AUAV3_AND_SLUGS_SENSOR_B.PackRawRC
                   );
 
+  /* DataStoreRead: '<S4>/Get VfrHud' */
+  AUAV3_AND_SLUGS_SENSOR_B.GetVfrHud = AUAV3_AND_SLUGS_SENSOR_DWork.mlVfr_hud;
+
+  /* DataStoreRead: '<S4>/Get time4' */
+  AUAV3_AND_SLUGS_SENSOR_B.Gettime4 =
+    AUAV3_AND_SLUGS_SENSOR_DWork.time_since_boot_usec;
+
+  /* S-Function (MCHP_C_function_Call): '<S4>/PackRawRC1' */
+  AUAV3_AND_SLUGS_SENSOR_B.PackRawRC1 = PackVFR_HUD(
+    ((uint8_T)101U)
+    , ((uint8_T)1U)
+    , AUAV3_AND_SLUGS_SENSOR_B.GetVfrHud
+    , AUAV3_AND_SLUGS_SENSOR_B.Gettime4
+    );
+
+  /* S-Function (MCHP_C_function_Call): '<S4>/TX_N_Data8' */
+  TxN_Data_OverU1(
+                  AUAV3_AND_SLUGS_SENSOR_B.PackRawRC1
+                  );
+
   /* S-Function "dsPIC_PWM_OC" Block: <S10>/Output Compare - HW Drive Servo motor */
   OC1CON1 = 0x1008;                    /* Disable OC1 */
   OC1CON2bits.TRIGSTAT = 0;
@@ -2147,8 +2173,8 @@ void AUAV3_AND_SLUGS_SENSOR_step2(void) /* Sample time: [0.02s, 0.0s] */
   OC2CON1 = 0x100C;                    /* Trig OC2 pulse */
 }
 
-/* Model step function for TID3 */
-void AUAV3_AND_SLUGS_SENSOR_step3(void) /* Sample time: [0.05s, 0.0s] */
+/* Model step function for TID2 */
+void AUAV3_AND_SLUGS_SENSOR_step2(void) /* Sample time: [0.05s, 0.0s] */
 {
   /* local block i/o variables */
   boolean_T rtb_LogicalOperator_h;
@@ -2166,8 +2192,8 @@ void AUAV3_AND_SLUGS_SENSOR_step3(void) /* Sample time: [0.05s, 0.0s] */
   LATBbits.LATB2 = rtb_LogicalOperator_h;
 }
 
-/* Model step function for TID4 */
-void AUAV3_AND_SLUGS_SENSOR_step4(void) /* Sample time: [0.1s, 0.0s] */
+/* Model step function for TID3 */
+void AUAV3_AND_SLUGS_SENSOR_step3(void) /* Sample time: [0.1s, 0.0s] */
 {
   /* local block i/o variables */
   boolean_T rtb_LogicalOperator1;
@@ -2185,8 +2211,8 @@ void AUAV3_AND_SLUGS_SENSOR_step4(void) /* Sample time: [0.1s, 0.0s] */
   LATBbits.LATB3 = rtb_LogicalOperator1;
 }
 
-/* Model step function for TID5 */
-void AUAV3_AND_SLUGS_SENSOR_step5(void) /* Sample time: [0.2s, 0.0s] */
+/* Model step function for TID4 */
+void AUAV3_AND_SLUGS_SENSOR_step4(void) /* Sample time: [0.2s, 0.0s] */
 {
   /* DataStoreRead: '<S4>/Get RawGpsInt' */
   AUAV3_AND_SLUGS_SENSOR_B.GetRawGpsInt = mlGpsData;
@@ -2217,8 +2243,8 @@ void AUAV3_AND_SLUGS_SENSOR_step5(void) /* Sample time: [0.2s, 0.0s] */
                     );
 }
 
-/* Model step function for TID6 */
-void AUAV3_AND_SLUGS_SENSOR_step6(void) /* Sample time: [0.2s, 0.02s] */
+/* Model step function for TID5 */
+void AUAV3_AND_SLUGS_SENSOR_step5(void) /* Sample time: [0.2s, 0.02s] */
 {
   /* DataStoreRead: '<S4>/Get mlAirData' */
   AUAV3_AND_SLUGS_SENSOR_B.GetmlAirData = mlAirData;
@@ -2241,8 +2267,8 @@ void AUAV3_AND_SLUGS_SENSOR_step6(void) /* Sample time: [0.2s, 0.02s] */
                   );
 }
 
-/* Model step function for TID7 */
-void AUAV3_AND_SLUGS_SENSOR_step7(void) /* Sample time: [0.2s, 0.04s] */
+/* Model step function for TID6 */
+void AUAV3_AND_SLUGS_SENSOR_step6(void) /* Sample time: [0.2s, 0.04s] */
 {
   /* DataStoreRead: '<S4>/Get mlSysStatus' */
   AUAV3_AND_SLUGS_SENSOR_B.GetmlSysStatus = mlSysStatus;
@@ -2260,8 +2286,8 @@ void AUAV3_AND_SLUGS_SENSOR_step7(void) /* Sample time: [0.2s, 0.04s] */
                   );
 }
 
-/* Model step function for TID8 */
-void AUAV3_AND_SLUGS_SENSOR_step8(void) /* Sample time: [0.2s, 0.06s] */
+/* Model step function for TID7 */
+void AUAV3_AND_SLUGS_SENSOR_step7(void) /* Sample time: [0.2s, 0.06s] */
 {
   /* S-Function (MCHP_C_function_Call): '<S4>/ParamInterfaceResponse' */
   AUAV3_AND_SLUGS_SENSOR_B.ParamInterfaceResponse = ParameterInterfaceResponse(
@@ -2275,8 +2301,8 @@ void AUAV3_AND_SLUGS_SENSOR_step8(void) /* Sample time: [0.2s, 0.06s] */
                   );
 }
 
-/* Model step function for TID9 */
-void AUAV3_AND_SLUGS_SENSOR_step9(void) /* Sample time: [0.2s, 0.08s] */
+/* Model step function for TID8 */
+void AUAV3_AND_SLUGS_SENSOR_step8(void) /* Sample time: [0.2s, 0.08s] */
 {
   /* S-Function (MCHP_C_function_Call): '<S4>/ParamInterfaceResponse1' */
   AUAV3_AND_SLUGS_SENSOR_B.ParamInterfaceResponse1 = MissionInterfaceResponse(
@@ -2290,8 +2316,8 @@ void AUAV3_AND_SLUGS_SENSOR_step9(void) /* Sample time: [0.2s, 0.08s] */
                   );
 }
 
-/* Model step function for TID10 */
-void AUAV3_AND_SLUGS_SENSOR_step10(void) /* Sample time: [0.25s, 0.0s] */
+/* Model step function for TID9 */
+void AUAV3_AND_SLUGS_SENSOR_step9(void) /* Sample time: [0.25s, 0.0s] */
 {
   /* local block i/o variables */
   boolean_T rtb_LogicalOperator2;
@@ -2309,8 +2335,8 @@ void AUAV3_AND_SLUGS_SENSOR_step10(void) /* Sample time: [0.25s, 0.0s] */
   LATBbits.LATB4 = rtb_LogicalOperator2;
 }
 
-/* Model step function for TID11 */
-void AUAV3_AND_SLUGS_SENSOR_step11(void) /* Sample time: [0.5s, 0.0s] */
+/* Model step function for TID10 */
+void AUAV3_AND_SLUGS_SENSOR_step10(void) /* Sample time: [0.5s, 0.0s] */
 {
   /* local block i/o variables */
   boolean_T rtb_LogicalOperator3;
@@ -2409,10 +2435,6 @@ void AUAV3_AND_SLUGS_SENSOR_step(int_T tid)
     AUAV3_AND_SLUGS_SENSOR_step10();
     break;
 
-   case 11 :
-    AUAV3_AND_SLUGS_SENSOR_step11();
-    break;
-
    default :
     break;
   }
@@ -2427,16 +2449,16 @@ void AUAV3_AND_SLUGS_SENSOR_initialize(void)
   rt_InitInfAndNaN(sizeof(real_T));
 
   /* initialize sample time offsets */
-  AUAV3_AND_SLUGS_SENSOR_M->Timing.TaskCounters.TID[6] = 72;/* Sample time: [0.2s, 0.02s] */
+  AUAV3_AND_SLUGS_SENSOR_M->Timing.TaskCounters.TID[5] = 18;/* Sample time: [0.2s, 0.02s] */
 
   /* initialize sample time offsets */
-  AUAV3_AND_SLUGS_SENSOR_M->Timing.TaskCounters.TID[7] = 64;/* Sample time: [0.2s, 0.04s] */
+  AUAV3_AND_SLUGS_SENSOR_M->Timing.TaskCounters.TID[6] = 16;/* Sample time: [0.2s, 0.04s] */
 
   /* initialize sample time offsets */
-  AUAV3_AND_SLUGS_SENSOR_M->Timing.TaskCounters.TID[8] = 56;/* Sample time: [0.2s, 0.06s] */
+  AUAV3_AND_SLUGS_SENSOR_M->Timing.TaskCounters.TID[7] = 14;/* Sample time: [0.2s, 0.06s] */
 
   /* initialize sample time offsets */
-  AUAV3_AND_SLUGS_SENSOR_M->Timing.TaskCounters.TID[9] = 48;/* Sample time: [0.2s, 0.08s] */
+  AUAV3_AND_SLUGS_SENSOR_M->Timing.TaskCounters.TID[8] = 12;/* Sample time: [0.2s, 0.08s] */
 
   /* block I/O */
   (void) memset(((void *) &AUAV3_AND_SLUGS_SENSOR_B), 0,
@@ -2456,7 +2478,7 @@ void AUAV3_AND_SLUGS_SENSOR_initialize(void)
   /* S-Function "Microchip MASTER" initialization Block: <Root>/Microchip Master AUAV V3 Board Busy Flag on D2 (RA6) */
 
   /* Start for S-Function (MCHP_MCU_LOAD): '<Root>/MCU Load' */
-  TMR2 = 0;                            /* Initialize Timer 2 Value to 0.  Timer 2 is enabled only when the mcu is not idle */
+  TMR3 = 0;                            /* Initialize Timer 3 Value to 0.  Timer 3 is enabled only when the mcu is not idle */
 
   /* Start for S-Function (MCHP_IC): '<S10>/Input Capture RC Receiver1' */
   IC1CON1 = 0x1003;
@@ -2506,6 +2528,11 @@ void AUAV3_AND_SLUGS_SENSOR_initialize(void)
   _MI2C2IF = 0;
   _MI2C2IE = 1;
 
+  /* Start for Enabled SubSystem: '<S123>/Enabled Subsystem' */
+  AUA_EnabledSubsystem_Start(&AUAV3_AND_SLUGS_SENSOR_B.EnabledSubsystem);
+
+  /* End of Start for SubSystem: '<S123>/Enabled Subsystem' */
+
   /* Start for S-Function (MCHP_BUS_SPI): '<S8>/BUS SPI Read MPU 6050 Axyz, T°, Gxyz (1 kHz)' */
   /* Set-up SPI 1 peripheral with Fsck = 364583  (364583 with  0.0 \% error)  */
   SPI1CON1 = 0x0474;
@@ -2548,7 +2575,12 @@ void AUAV3_AND_SLUGS_SENSOR_initialize(void)
   _IC5IE = 1;
 
   /* Start for S-Function (MCHP_MCU_LOAD): '<S154>/Calculus Time Step1' */
-  TMR2 = 0;                            /* Initialize Timer 2 Value to 0.  Timer 2 is enabled only when the mcu is not idle */
+  TMR3 = 0;                            /* Initialize Timer 3 Value to 0.  Timer 3 is enabled only when the mcu is not idle */
+
+  /* Start for Enabled SubSystem: '<S186>/Enabled Subsystem' */
+  AUA_EnabledSubsystem_Start(&AUAV3_AND_SLUGS_SENSOR_B.EnabledSubsystem_e);
+
+  /* End of Start for SubSystem: '<S186>/Enabled Subsystem' */
 
   /* Start for S-Function (MCHP_BUS_SPI): '<Root>/BUS SPI Initialize MPU 6000 Once at Startup' */
   /* SPI Initialisation sequence executed once */

@@ -51,16 +51,28 @@ Model {
 	$ClassName		"Simulink.ExplorerBarInfo"
 	Visible			[0]
       }
-      Object {
-	$PropName		"EditorsInfo"
-	$ObjectID		5
-	$ClassName		"Simulink.EditorInfo"
-	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"422"
-	Extents			[1136.0, 595.0]
-	ZoomFactor		[0.8]
-	Offset			[-431.83333333333394, 597.99895788629829]
+      Array {
+	Type			"Simulink.EditorInfo"
+	Dimension		2
+	Object {
+	  $ObjectID		  5
+	  IsActive		  [1]
+	  ViewObjType		  "SimulinkTopLevel"
+	  LoadSaveID		  "0"
+	  Extents		  [1136.0, 592.0]
+	  ZoomFactor		  [1.0]
+	  Offset		  [-91.049996316433067, 374.99999999999989]
+	}
+	Object {
+	  $ObjectID		  6
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "424"
+	  Extents		  [1136.0, 592.0]
+	  ZoomFactor		  [1.0]
+	  Offset		  [0.0, 0.0]
+	}
+	PropName		"EditorsInfo"
       }
     }
   }
@@ -71,7 +83,7 @@ Model {
   LastModifiedBy	  "sharon"
   ModifiedDateFormat	  "%<Auto>"
   LastModifiedDate	  "Fri Jun 17 18:54:06 2016"
-  RTWModifiedTimeStamp	  388090437
+  RTWModifiedTimeStamp	  388090917
   ModelVersionFormat	  "1.%<AutoIncrement:223>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
@@ -113,7 +125,7 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    6
+    $ObjectID		    7
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "AUAV3_AND_SLUGS_SENSOR"
     Array {
@@ -177,13 +189,13 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      7
+      $ObjectID		      8
       Version		      "1.15.0"
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
-	  $ObjectID		  8
+	  $ObjectID		  9
 	  Version		  "1.15.0"
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
@@ -218,7 +230,7 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  9
+	  $ObjectID		  10
 	  Version		  "1.15.0"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -251,7 +263,7 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  10
+	  $ObjectID		  11
 	  Version		  "1.15.0"
 	  BlockReduction	  on
 	  BooleanDataType	  on
@@ -295,7 +307,7 @@ Model {
 	  AccelVerboseBuild	  off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  11
+	  $ObjectID		  12
 	  Version		  "1.15.0"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -384,7 +396,7 @@ Model {
 	  IntegerSaturationMsg	  "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "1.15.0"
 	  Array {
 	    Type		    "Cell"
@@ -441,7 +453,7 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "1.15.0"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -456,7 +468,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "1.15.0"
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -469,7 +481,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  15
+	  $ObjectID		  16
 	  Version		  "1.15.0"
 	  Array {
 	    Type		    "Cell"
@@ -535,7 +547,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      16
+	      $ObjectID		      17
 	      Version		      "1.15.0"
 	      ForceParamTrailComments off
 	      GenerateComments	      on
@@ -578,7 +590,7 @@ Model {
 	    }
 	    Simulink.STFCustomTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      17
+	      $ObjectID		      18
 	      Version		      "1.15.0"
 	      Array {
 		Type			"Cell"
@@ -646,7 +658,7 @@ Model {
 		Dimension		1
 		Simulink.ERTTargetCC {
 		  $BackupClass		  "Simulink.TargetCC"
-		  $ObjectID		  18
+		  $ObjectID		  19
 		  Version		  "1.15.0"
 		  Array {
 		    Type		    "Cell"
@@ -972,11 +984,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    7
+    $ObjectID		    8
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    19
+    $ObjectID		    20
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -1487,8 +1499,8 @@ Model {
   }
   System {
     Name		    "AUAV3_AND_SLUGS_SENSOR"
-    Location		    [-1688, 54, 8, 1080]
-    Open		    off
+    Location		    [-7, 0, 1372, 740]
+    Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    266
     ScreenColor		    "white"
@@ -1586,33 +1598,61 @@ Model {
       SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
       SourceType	      "C Function Call"
       ParseFilesChkbx	      on
-      ListFunctions1	      "Custom Function"
+      ListFunctions1	      "     void protDecodeMavlink(void)"
       Function1		      "void protDecodeMavlink(void)"
       AddHeaderDeclaration    off
       Function1Type	      "when block is updated (default)"
       FctReturnBlockOut	      on
-      DataCollected	      "s.chksm=reshape({ '638503-Feb-2015 20:58:09','200703-Feb-2015 20:58:09','1582103-Feb-2015 2"
-      "0:58:09','3237209-Jun-2015 23:33:04'},1,4);s.File1=reshape({ '  void  newCircBuffer(CBRef cB)','  void  freeCirc"
-      "Buffer(CBRef* cB)','  void  freeCircBuffer(CBRef* cB)',' unsigned int  getLength(CBRef cB)','  int  readHead(CBR"
-      "ef cB)','  int  readTail(CBRef cB)',' unsigned char  peak(CBRef cB)',' unsigned char  readFront(CBRef cB)',' uns"
-      "igned char  writeBack(CBRef cB, unsigned char data)','  void  makeEmpty(CBRef cB)','  void  printCircBuf(CBRef c"
-      "B)'},1,11);s.File2=reshape({ '  void  uartBufferInit(void)','  void  __attribute__((__interrupt__, no_auto_psv))"
-      " _U4RXInterrupt(void)'},1,2);s.File3=reshape({ '  char  hex2char(char halfhex)','  float  degMinToDeg(unsigned c"
-      "har degrees, float minutes)',' unsigned char  gpsUbloxSeparate(unsigned char* outStream)','  void  gpsUbloxParse"
-      "(void)','  void  getGpsUbloxMainData(float* data)','  char  gpSmbl(char symbl)',' unsigned char  myTokenizer(cha"
-      "r* stringToTokenize, char token, char * returnToken)','  void  parseRMC(unsigned char* stream)','  void  parseGG"
-      "A(unsigned char* stream)',' unsigned char  getChecksum(unsigned char* sentence, unsigned char size)'},1,10);s.Fi"
-      "le4=reshape({ '  void  uartMavlinkBufferInit(void)','  void __attribute__((__interrupt__,__auto_psv__)) _U1RXInt"
-      "errupt(void)','  uint8_t  isFinite(float s)','  void  InitParameterInterface(void)','  void  protDecodeMavlink(v"
-      "oid)','  uint16_t  MissionInterfaceResponse(uint8_t system_id, uint8_t component_id)','  uint16_t  ParameterInte"
-      "rfaceResponse(uint8_t system_id, uint8_t component_id)','  uint16_t  PackHeartBeat(uint8_t system_id, uint8_t co"
-      "mponent_id)','  uint16_t  PackTextMsg(uint8_t system_id, uint8_t component_id)','  uint16_t  PackRawIMU(uint8_t "
-      "system_id, uint8_t component_id, mavlink_raw_imu_t mlRawIMUData ,uint32_t time_usec)','  uint16_t  PackGpsRawInt"
-      "(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec)','  uint16_"
-      "t  PackScaledPressure(uint8_t system_id, uint8_t component_id, mavlink_scaled_pressure_t mlAirData ,uint32_t tim"
-      "e_usec)','  uint16_t  PackSysStatus(uint8_t system_id, uint8_t component_id, mavlink_sys_status_t mlSysStatus)',"
-      "'  char  sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionSta"
-      "rt)','  void  TxN_Data_OverU1(uint16_t N)'},1,15);"
+      DataCollected	      "s.chksm=reshape({ '360317-Jun-2016 15:34:16','638503-Feb-2015 20:58:10','219617-Jun-2016 15"
+      ":34:16','1593917-Jun-2016 15:34:16','3558217-Jun-2016 19:00:41','294417-Jun-2016 15:34:16','556017-Jun-2016 15:3"
+      "4:16','963217-Jun-2016 15:34:16','358817-Jun-2016 15:34:16','985917-Jun-2016 15:34:16'},1,10);s.File1=reshape({ "
+      "'  float  myAtan2(float num, float denom)','  float  myPow(float x, float toTheN)','  float  mySqrt(float x)',' "
+      " float  myAbs(float x)','  float  myAtan(float x)','  float  myAsin(float x)','  float  mySin(float x)','  float"
+      "  myCos(float x)','  float  myTan(float x)','  float  myAcos(float x)','  float  myExp(float x)','  void  hugeDe"
+      "lay(void)','  void  smallDelay(void)','  void  tinyDelay(void)','  void  printToUart2(const char *fmt, ...)'},1,"
+      "15);s.File2=reshape({ '  void  newCircBuffer(CBRef cB)','  void  freeCircBuffer(CBRef* cB)','  void  freeCircBuf"
+      "fer(CBRef* cB)',' unsigned int  getLength(CBRef cB)','  int  readHead(CBRef cB)','  int  readTail(CBRef cB)',' u"
+      "nsigned char  peak(CBRef cB)',' unsigned char  readFront(CBRef cB)',' unsigned char  writeBack(CBRef cB, unsigne"
+      "d char data)','  void  makeEmpty(CBRef cB)','  void  printCircBuf(CBRef cB)'},1,11);s.File3=reshape({ '  void  u"
+      "artBufferInit(void)','  void  __attribute__((__interrupt__, no_auto_psv)) _U4RXInterrupt(void)','  void  getGPSR"
+      "awData(unsigned char* gpsBuffer)',' unsigned char  isGPSNovatel(void)'},1,4);s.File4=reshape({ '  char  hex2char"
+      "(char halfhex)','  float  degMinToDeg(unsigned char degrees, float minutes)',' unsigned char  gpsUbloxSeparate(u"
+      "nsigned char* outStream)','  void  gpsUbloxParse(void)','  void  getGpsUbloxMainData(float* data)','  char  gpSm"
+      "bl(char symbl)',' unsigned char  myTokenizer(char* stringToTokenize, char token, char * returnToken)','  void  p"
+      "arseRMC(unsigned char* stream)','  void  parseGGA(unsigned char* stream)',' unsigned char  getChecksum(unsigned "
+      "char* sentence, unsigned char size)'},1,10);s.File5=reshape({ '  void  uartMavlinkBufferInit(void)','  void __at"
+      "tribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void)','  uint8_t  isFinite(float s)','  void  InitParame"
+      "terInterface(void)','  void  protDecodeMavlink(void)','  uint16_t  MissionInterfaceResponse(uint8_t system_id, u"
+      "int8_t component_id)','  uint16_t  ParameterInterfaceResponse(uint8_t system_id, uint8_t component_id)','  uint1"
+      "6_t  PackHeartBeat(uint8_t system_id, uint8_t component_id)','  uint16_t  PackTextMsg(uint8_t system_id, uint8_t"
+      " component_id)','  uint16_t  PackRawIMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t mlRawIMUData "
+      ",uint32_t time_usec)','  uint16_t  PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_int_t "
+      "mlRawGpsDataInt ,uint32_t time_usec)','  uint16_t  PackScaledPressure(uint8_t system_id, uint8_t component_id, m"
+      "avlink_scaled_pressure_t mlAirData ,uint32_t time_usec)','  uint16_t  PackSysStatus(uint8_t system_id, uint8_t c"
+      "omponent_id, mavlink_sys_status_t mlSysStatus)','  uint16_t  PackRawServo(uint8_t system_id, uint8_t component_i"
+      "d, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec)','  uint16_t  PackRawRC(uint8_t system_id, uint"
+      "8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec)','  uint16_t  PackVFR_HUD(uint8_t"
+      " system_id, uint8_t component_id, mavlink_vfr_hud_t mlVfr_hud ,uint32_t time_usec)','  char  sendQGCDebugMessage"
+      "(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart)','  void  TxN_Data_OverU"
+      "1(uint16_t N)'},1,18);s.File6={ '  void  mavlinkInit(void)'};s.File7=reshape({ '  void  updateRawADCData(int16_t"
+      "* adcData)','  void  updateAirData(float* airData)','  void  updateLoadData(uint8_t load, uint16_t mvPower)','  "
+      "void  updateAttitude(float * attitudeData)','  void  getGSLocation(float* altLatLon)','  void  updateTimeStamp(u"
+      "int32_t timeSt)','  void  updatePosition(float * posData)','  void  updatePilotConsole(uint16_t * pilData)','  v"
+      "oid  updateDiagnosticFl(float* diagFl)','  void  updateDiagnosticSh(int16_t* diagSh)','  void  updateBias(float "
+      "* biasData)','  void  updateSensorData(float* sens)','  uint8_t  isFixValid(void)','  void  updateSensorDiag(flo"
+      "at* diag)'},1,14);s.File8=reshape({ '  void  gpsInit(void)','  void  gpsParse(uint8_t* dataStream)','  void  upd"
+      "ateStatus(uint8_t* completeMessage)','  void  updatePositionData(uint8_t* completeMessage)','  void  updateVeloc"
+      "ityData(uint8_t* completeMessage)','  void  updateTimeData(uint8_t* completeMessage)','  void  getGpsMainData(fl"
+      "oat* data)','  uint32_t  CRC32Value(int32_t i)','  uint32_t  CalculateBlockCRC32(uint32_t ulCount, uint8_t *ucBu"
+      "ffer)','  uint16_t  charsToUint16(uint8_t* data)','  uint32_t  charsToUint32(uint8_t* data)','  float  charsToFl"
+      "oat(uint8_t* data)','  double  charsToDouble(uint8_t* data)'},1,13);s.File9=reshape({ '  void  hilRead(unsigned "
+      "char* hilChunk)','  void  hil_getRawRead(short * rawData)','  void  hil_getVned(float* vned)','  void  hil_getEu"
+      "ler(float* euler)','  void  hil_getRates(float* pqr)','  void  hil_getXYZ(float* xyz)',' unsigned int  hil_getTs"
+      "(void)','  void  protDecodeHil(uint8_t* dataIn)'},1,8);s.File10=reshape({ '  void  cubeInit(void)','  void  getC"
+      "ubeData(short * cubeData)','  void  updateCubeData(void)','  int16_t  averageData(int16_t* theData, uint8_t coun"
+      "t)',' unsigned short  write2Cube(unsigned short data2Send)','  void  __attribute__((interrupt, no_auto_psv)) _T5"
+      "Interrupt(void)','  short  convert14BitToShort(short wordData)','  short  convert12BitToShort(short wordData)','"
+      " unsigned char  isCube16405(void)'},1,9);"
       ORDERING		      "None"
       SampleTime	      "0.2"
       MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -1719,7 +1759,7 @@ Model {
       SourceBlock	      "MCHP_Blockset/System Configuration/Compiler Options"
       SourceType	      ""
       LATEST_CMPLR	      off
-      COMP_LIST		      "Dynamic Options"
+      COMP_LIST		      "xc16 - v1.26"
       COMP_LIST_TXT	      "xc16 - v1.26"
       USE_64BIT_DOUBLE	      off
       MCHP_MULTITHREAD_COMPILATION on
@@ -2719,7 +2759,7 @@ Model {
       System {
 	Name			"MavlinkTX"
 	Location		[-7, 0, 1372, 740]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -3128,7 +3168,8 @@ Model {
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
-	  ListFunctions1	  "Custom Function"
+	  ListFunctions1	  "     uint16_t PackVFR_HUD(uint8_t system_id; uint8_t component_id; mavlink_vfr_hud_t mlVfr_hud ;u"
+	  "int32_t time_usec)"
 	  Function1		  "uint16_t PackVFR_HUD(uint8_t system_id, uint8_t component_id, mavlink_vfr_hud_t mlVfr_hud ,uint32_t t"
 	  "ime_usec)"
 	  AddHeaderDeclaration	  on
@@ -3136,7 +3177,7 @@ Model {
 	  Fct1BlockIn		  "system_id  , component_id  , mlVfr_hud  , time_usec"
 	  FctReturnBlockOut	  on
 	  DataCollected		  "s.chksm=reshape({ '360317-Jun-2016 15:34:16','638503-Feb-2015 20:58:10','219617-Jun-2016 15:34:16"
-	  "','1593917-Jun-2016 15:34:16','3551217-Jun-2016 18:48:46','294417-Jun-2016 15:34:16','556017-Jun-2016 15:34:16','96"
+	  "','1593917-Jun-2016 15:34:16','3558217-Jun-2016 19:00:41','294417-Jun-2016 15:34:16','556017-Jun-2016 15:34:16','96"
 	  "3217-Jun-2016 15:34:16','358817-Jun-2016 15:34:16','985917-Jun-2016 15:34:16'},1,10);s.File1=reshape({ '  float  my"
 	  "Atan2(float num, float denom)','  float  myPow(float x, float toTheN)','  float  mySqrt(float x)','  float  myAbs(f"
 	  "loat x)','  float  myAtan(float x)','  float  myAsin(float x)','  float  mySin(float x)','  float  myCos(float x)',"
@@ -3671,14 +3712,14 @@ Model {
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
-	  ListFunctions1	  "Custom Function"
+	  ListFunctions1	  "     void TxN_Data_OverU1(uint16_t N)"
 	  Function1		  "void TxN_Data_OverU1(uint16_t N)"
 	  AddHeaderDeclaration	  on
 	  Function1Type		  "when block is updated (default)"
 	  Fct1BlockIn		  "N"
 	  FctReturnBlockOut	  on
 	  DataCollected		  "s.chksm=reshape({ '360317-Jun-2016 15:34:16','638503-Feb-2015 20:58:10','219617-Jun-2016 15:34:16"
-	  "','1593917-Jun-2016 15:34:16','3470617-Jun-2016 16:37:56','294417-Jun-2016 15:34:16','556017-Jun-2016 15:34:16','96"
+	  "','1593917-Jun-2016 15:34:16','3558217-Jun-2016 19:00:41','294417-Jun-2016 15:34:16','556017-Jun-2016 15:34:16','96"
 	  "3217-Jun-2016 15:34:16','358817-Jun-2016 15:34:16','985917-Jun-2016 15:34:16'},1,10);s.File1=reshape({ '  float  my"
 	  "Atan2(float num, float denom)','  float  myPow(float x, float toTheN)','  float  mySqrt(float x)','  float  myAbs(f"
 	  "loat x)','  float  myAtan(float x)','  float  myAsin(float x)','  float  mySin(float x)','  float  myCos(float x)',"
@@ -3704,27 +3745,28 @@ Model {
 	  "_t system_id, uint8_t component_id, mavlink_scaled_pressure_t mlAirData ,uint32_t time_usec)','  uint16_t  PackSysS"
 	  "tatus(uint8_t system_id, uint8_t component_id, mavlink_sys_status_t mlSysStatus)','  uint16_t  PackRawServo(uint8_t"
 	  " system_id, uint8_t component_id, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec)','  uint16_t  PackR"
-	  "awRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec)','  char"
-	  "  sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart)','  vo"
-	  "id  TxN_Data_OverU1(uint16_t N)'},1,17);s.File6={ '  void  mavlinkInit(void)'};s.File7=reshape({ '  void  updateRaw"
-	  "ADCData(int16_t* adcData)','  void  updateAirData(float* airData)','  void  updateLoadData(uint8_t load, uint16_t m"
-	  "vPower)','  void  updateAttitude(float * attitudeData)','  void  getGSLocation(float* altLatLon)','  void  updateTi"
-	  "meStamp(uint32_t timeSt)','  void  updatePosition(float * posData)','  void  updatePilotConsole(uint16_t * pilData)"
-	  "','  void  updateDiagnosticFl(float* diagFl)','  void  updateDiagnosticSh(int16_t* diagSh)','  void  updateBias(flo"
-	  "at * biasData)','  void  updateSensorData(float* sens)','  uint8_t  isFixValid(void)','  void  updateSensorDiag(flo"
-	  "at* diag)'},1,14);s.File8=reshape({ '  void  gpsInit(void)','  void  gpsParse(uint8_t* dataStream)','  void  update"
-	  "Status(uint8_t* completeMessage)','  void  updatePositionData(uint8_t* completeMessage)','  void  updateVelocityDat"
-	  "a(uint8_t* completeMessage)','  void  updateTimeData(uint8_t* completeMessage)','  void  getGpsMainData(float* data"
-	  ")','  uint32_t  CRC32Value(int32_t i)','  uint32_t  CalculateBlockCRC32(uint32_t ulCount, uint8_t *ucBuffer)','  ui"
-	  "nt16_t  charsToUint16(uint8_t* data)','  uint32_t  charsToUint32(uint8_t* data)','  float  charsToFloat(uint8_t* da"
-	  "ta)','  double  charsToDouble(uint8_t* data)'},1,13);s.File9=reshape({ '  void  hilRead(unsigned char* hilChunk)','"
-	  "  void  hil_getRawRead(short * rawData)','  void  hil_getVned(float* vned)','  void  hil_getEuler(float* euler)',' "
-	  " void  hil_getRates(float* pqr)','  void  hil_getXYZ(float* xyz)',' unsigned int  hil_getTs(void)','  void  protDec"
-	  "odeHil(uint8_t* dataIn)'},1,8);s.File10=reshape({ '  void  cubeInit(void)','  void  getCubeData(short * cubeData)',"
-	  "'  void  updateCubeData(void)','  int16_t  averageData(int16_t* theData, uint8_t count)',' unsigned short  write2Cu"
-	  "be(unsigned short data2Send)','  void  __attribute__((interrupt, no_auto_psv)) _T5Interrupt(void)','  short  conver"
-	  "t14BitToShort(short wordData)','  short  convert12BitToShort(short wordData)',' unsigned char  isCube16405(void)'},"
-	  "1,9);"
+	  "awRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec)','  uint"
+	  "16_t  PackVFR_HUD(uint8_t system_id, uint8_t component_id, mavlink_vfr_hud_t mlVfr_hud ,uint32_t time_usec)','  cha"
+	  "r  sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart)','  v"
+	  "oid  TxN_Data_OverU1(uint16_t N)'},1,18);s.File6={ '  void  mavlinkInit(void)'};s.File7=reshape({ '  void  updateRa"
+	  "wADCData(int16_t* adcData)','  void  updateAirData(float* airData)','  void  updateLoadData(uint8_t load, uint16_t "
+	  "mvPower)','  void  updateAttitude(float * attitudeData)','  void  getGSLocation(float* altLatLon)','  void  updateT"
+	  "imeStamp(uint32_t timeSt)','  void  updatePosition(float * posData)','  void  updatePilotConsole(uint16_t * pilData"
+	  ")','  void  updateDiagnosticFl(float* diagFl)','  void  updateDiagnosticSh(int16_t* diagSh)','  void  updateBias(fl"
+	  "oat * biasData)','  void  updateSensorData(float* sens)','  uint8_t  isFixValid(void)','  void  updateSensorDiag(fl"
+	  "oat* diag)'},1,14);s.File8=reshape({ '  void  gpsInit(void)','  void  gpsParse(uint8_t* dataStream)','  void  updat"
+	  "eStatus(uint8_t* completeMessage)','  void  updatePositionData(uint8_t* completeMessage)','  void  updateVelocityDa"
+	  "ta(uint8_t* completeMessage)','  void  updateTimeData(uint8_t* completeMessage)','  void  getGpsMainData(float* dat"
+	  "a)','  uint32_t  CRC32Value(int32_t i)','  uint32_t  CalculateBlockCRC32(uint32_t ulCount, uint8_t *ucBuffer)','  u"
+	  "int16_t  charsToUint16(uint8_t* data)','  uint32_t  charsToUint32(uint8_t* data)','  float  charsToFloat(uint8_t* d"
+	  "ata)','  double  charsToDouble(uint8_t* data)'},1,13);s.File9=reshape({ '  void  hilRead(unsigned char* hilChunk)',"
+	  "'  void  hil_getRawRead(short * rawData)','  void  hil_getVned(float* vned)','  void  hil_getEuler(float* euler)','"
+	  "  void  hil_getRates(float* pqr)','  void  hil_getXYZ(float* xyz)',' unsigned int  hil_getTs(void)','  void  protDe"
+	  "codeHil(uint8_t* dataIn)'},1,8);s.File10=reshape({ '  void  cubeInit(void)','  void  getCubeData(short * cubeData)'"
+	  ",'  void  updateCubeData(void)','  int16_t  averageData(int16_t* theData, uint8_t count)',' unsigned short  write2C"
+	  "ube(unsigned short data2Send)','  void  __attribute__((interrupt, no_auto_psv)) _T5Interrupt(void)','  short  conve"
+	  "rt14BitToShort(short wordData)','  short  convert12BitToShort(short wordData)',' unsigned char  isCube16405(void)'}"
+	  ",1,9);"
 	  ORDERING		  "None"
 	  SampleTime		  "-1"
 	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -4066,7 +4108,7 @@ Model {
       SourceType	      ""
       PICREF		      "33EP512MU810"
       TIMESTEP_REF	      "Timer  ( 0.01s + [-0.0045714%] ==> 0.0099995s )"
-      BUSYFLAG		      "Dynamic Options"
+      BUSYFLAG		      "A6 / Pin[91]"
       BUSYFLAG_TXT	      "A6 / Pin[91]"
       PWRTEN		      "PWRT enabled"
       BOREN		      "Disable"
@@ -4270,7 +4312,7 @@ Model {
       "= [-1 -1];MCHP.UART.port_ATx = [-1 -1];MCHP.UART.port_RTS = [32767  32767  32767  32767     -1     -1];MCHP.UART"
       ".port_CTS = [32767  32767  32767  32767     -1     -1];MCHP.UART.reg_UxMODE = [48127  48127  48127  48127     -1"
       "     -1];MCHP.UART.reg_UxSTA = [61439  61439  61439  61439     -1     -1];"
-      MCHP_CRC		      "-1163509"
+      MCHP_CRC		      "-1202061"
       BTMODE		      "Device is in Single Boot (legacy) mode"
       RES1		      "Not used"
       PLLSS		      "PLL is fed by the Primary oscillator"
@@ -4522,35 +4564,35 @@ Model {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		20
+		$ObjectID		21
 		$ClassName		"Simulink.Mask"
 		Display			"droots(zval,pval,kval)\nport_label('input',1,'3D')\n"
 		Array {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  4
 		  Object {
-		    $ObjectID		    21
+		    $ObjectID		    22
 		    Type		    "edit"
 		    Name		    "zval"
 		    Prompt		    "Zeros"
 		    Value		    "[]"
 		  }
 		  Object {
-		    $ObjectID		    22
+		    $ObjectID		    23
 		    Type		    "edit"
 		    Name		    "pval"
 		    Prompt		    "Poles"
 		    Value		    "[0]"
 		  }
 		  Object {
-		    $ObjectID		    23
+		    $ObjectID		    24
 		    Type		    "edit"
 		    Name		    "kval"
 		    Prompt		    "Gains"
 		    Value		    "1"
 		  }
 		  Object {
-		    $ObjectID		    24
+		    $ObjectID		    25
 		    Type		    "edit"
 		    Name		    "TSample"
 		    Prompt		    "Sample Time"
@@ -4628,7 +4670,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    25
+		    $ObjectID		    26
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -4644,28 +4686,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    26
+		    $ObjectID		    27
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    27
+		    $ObjectID		    28
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    28
+		    $ObjectID		    29
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    29
+		    $ObjectID		    30
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -4673,14 +4715,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    30
+		    $ObjectID		    31
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    31
+		    $ObjectID		    32
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -4699,7 +4741,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    32
+		    $ObjectID		    33
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -4779,7 +4821,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    33
+		    $ObjectID		    34
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -4795,28 +4837,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    34
+		    $ObjectID		    35
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    35
+		    $ObjectID		    36
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    36
+		    $ObjectID		    37
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    37
+		    $ObjectID		    38
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -4824,14 +4866,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    38
+		    $ObjectID		    39
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    39
+		    $ObjectID		    40
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -4850,7 +4892,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    40
+		    $ObjectID		    41
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -4930,7 +4972,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    41
+		    $ObjectID		    42
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -4946,28 +4988,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    42
+		    $ObjectID		    43
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    43
+		    $ObjectID		    44
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    44
+		    $ObjectID		    45
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    45
+		    $ObjectID		    46
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -4975,14 +5017,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    46
+		    $ObjectID		    47
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    47
+		    $ObjectID		    48
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -5001,7 +5043,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    48
+		    $ObjectID		    49
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -8632,20 +8674,20 @@ Model {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		49
+		$ObjectID		50
 		$ClassName		"Simulink.Mask"
 		Array {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    50
+		    $ObjectID		    51
 		    Type		    "edit"
 		    Name		    "Re"
 		    Prompt		    "Enter equatorial radius, m"
 		    Value		    "6378137"
 		  }
 		  Object {
-		    $ObjectID		    51
+		    $ObjectID		    52
 		    Type		    "edit"
 		    Name		    "Rp"
 		    Prompt		    "Enter polar radius,m"
@@ -9638,11 +9680,11 @@ Model {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    52
+	    $ObjectID		    53
 	    $ClassName		    "Simulink.Mask"
 	    Object {
 	      $PropName		      "Parameters"
-	      $ObjectID		      53
+	      $ObjectID		      54
 	      $ClassName	      "Simulink.MaskParameter"
 	      Type		      "edit"
 	      Name		      "T"
@@ -10175,7 +10217,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    54
+	    $ObjectID		    55
 	    $ClassName		    "Simulink.Mask"
 	    Description		    "This block provides transformation of the Geodetic coordinates \nto the LTP coorinate system. T"
 	    "he block uses two consecutive transformations\n(Geodetic -> ECEF ->LTP).\nGeodetic coordinates of the LTP origin "
@@ -10262,7 +10304,7 @@ Model {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		55
+		$ObjectID		56
 		$ClassName		"Simulink.Mask"
 		Display			"plot(0,0,100,100,[45,40,35,40,40],[85,95,85,95,40],[85,95,85,95,40],[35,40,45,40,40],[60,40,10,20,10,14],"
 		"[70,40,10,13,10,20],[56,45],[70,70],[60,60],[50,60],[60,60],[30,40],[50,60],[20,20],[30,40],[20,20],[45,55],[35,25],"
@@ -10398,7 +10440,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    56
+		    $ObjectID		    57
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Vector Transformation"
 		    Description		    "Vector Transformation"
@@ -10809,20 +10851,20 @@ Model {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		57
+		$ObjectID		58
 		$ClassName		"Simulink.Mask"
 		Array {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    58
+		    $ObjectID		    59
 		    Type		    "edit"
 		    Name		    "Re"
 		    Prompt		    "Enter equatorial radius, m"
 		    Value		    "6378137"
 		  }
 		  Object {
-		    $ObjectID		    59
+		    $ObjectID		    60
 		    Type		    "edit"
 		    Name		    "Rp"
 		    Prompt		    "Enter polar radius,m"
@@ -12217,7 +12259,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    60
+		    $ObjectID		    61
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -12230,14 +12272,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    61
+		    $ObjectID		    62
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "baroCutoff"
 		    }
 		    Object {
-		    $ObjectID		    62
+		    $ObjectID		    63
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -12551,35 +12593,35 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    63
+		    $ObjectID		    64
 		    $ClassName		    "Simulink.Mask"
 		    Display		    "droots(zval,pval,kval)\nport_label('input',1,'3D')\n"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    64
+		    $ObjectID		    65
 		    Type		    "edit"
 		    Name		    "zval"
 		    Prompt		    "Zeros"
 		    Value		    "[]"
 		    }
 		    Object {
-		    $ObjectID		    65
+		    $ObjectID		    66
 		    Type		    "edit"
 		    Name		    "pval"
 		    Prompt		    "Poles"
 		    Value		    "-1/accBiasRateLimit"
 		    }
 		    Object {
-		    $ObjectID		    66
+		    $ObjectID		    67
 		    Type		    "edit"
 		    Name		    "kval"
 		    Prompt		    "Gains"
 		    Value		    "1"
 		    }
 		    Object {
-		    $ObjectID		    67
+		    $ObjectID		    68
 		    Type		    "edit"
 		    Name		    "TSample"
 		    Prompt		    "Sample Time"
@@ -12657,7 +12699,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    68
+		    $ObjectID		    69
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -12673,28 +12715,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    69
+		    $ObjectID		    70
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    70
+		    $ObjectID		    71
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    71
+		    $ObjectID		    72
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    72
+		    $ObjectID		    73
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -12702,14 +12744,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    73
+		    $ObjectID		    74
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    74
+		    $ObjectID		    75
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -12728,7 +12770,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    75
+		    $ObjectID		    76
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -12808,7 +12850,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    76
+		    $ObjectID		    77
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -12824,28 +12866,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    77
+		    $ObjectID		    78
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    78
+		    $ObjectID		    79
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    79
+		    $ObjectID		    80
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    80
+		    $ObjectID		    81
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -12853,14 +12895,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    81
+		    $ObjectID		    82
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    82
+		    $ObjectID		    83
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -12879,7 +12921,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    83
+		    $ObjectID		    84
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -12959,7 +13001,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    84
+		    $ObjectID		    85
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -12975,28 +13017,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    85
+		    $ObjectID		    86
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    86
+		    $ObjectID		    87
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    87
+		    $ObjectID		    88
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    88
+		    $ObjectID		    89
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -13004,14 +13046,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    89
+		    $ObjectID		    90
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    90
+		    $ObjectID		    91
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -13030,7 +13072,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    91
+		    $ObjectID		    92
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -13338,20 +13380,20 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    92
+		    $ObjectID		    93
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    93
+		    $ObjectID		    94
 		    Type		    "edit"
 		    Name		    "omega"
 		    Prompt		    "Cutoff Freq (rad/sec)"
 		    Value		    "xCutoff"
 		    }
 		    Object {
-		    $ObjectID		    94
+		    $ObjectID		    95
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -13406,35 +13448,35 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    95
+		    $ObjectID		    96
 		    $ClassName		    "Simulink.Mask"
 		    Display		    "droots(zval,pval,kval)\nport_label('input',1,'1D')\n"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    96
+		    $ObjectID		    97
 		    Type		    "edit"
 		    Name		    "zval"
 		    Prompt		    "Zeros"
 		    Value		    "[]"
 		    }
 		    Object {
-		    $ObjectID		    97
+		    $ObjectID		    98
 		    Type		    "edit"
 		    Name		    "pval"
 		    Prompt		    "Poles"
 		    Value		    "[0]"
 		    }
 		    Object {
-		    $ObjectID		    98
+		    $ObjectID		    99
 		    Type		    "edit"
 		    Name		    "kval"
 		    Prompt		    "Gains"
 		    Value		    "1"
 		    }
 		    Object {
-		    $ObjectID		    99
+		    $ObjectID		    100
 		    Type		    "edit"
 		    Name		    "TSample"
 		    Prompt		    "Sample Time"
@@ -13499,7 +13541,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    100
+		    $ObjectID		    101
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -13515,28 +13557,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    101
+		    $ObjectID		    102
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    102
+		    $ObjectID		    103
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    103
+		    $ObjectID		    104
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    104
+		    $ObjectID		    105
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -13544,14 +13586,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    105
+		    $ObjectID		    106
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    106
+		    $ObjectID		    107
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -13570,7 +13612,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    107
+		    $ObjectID		    108
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -13806,20 +13848,20 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    108
+		    $ObjectID		    109
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    109
+		    $ObjectID		    110
 		    Type		    "edit"
 		    Name		    "omega"
 		    Prompt		    "Cutoff Freq (rad/sec)"
 		    Value		    "yCutoff"
 		    }
 		    Object {
-		    $ObjectID		    110
+		    $ObjectID		    111
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -13874,35 +13916,35 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    111
+		    $ObjectID		    112
 		    $ClassName		    "Simulink.Mask"
 		    Display		    "droots(zval,pval,kval)\nport_label('input',1,'1D')\n"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    112
+		    $ObjectID		    113
 		    Type		    "edit"
 		    Name		    "zval"
 		    Prompt		    "Zeros"
 		    Value		    "[]"
 		    }
 		    Object {
-		    $ObjectID		    113
+		    $ObjectID		    114
 		    Type		    "edit"
 		    Name		    "pval"
 		    Prompt		    "Poles"
 		    Value		    "[0]"
 		    }
 		    Object {
-		    $ObjectID		    114
+		    $ObjectID		    115
 		    Type		    "edit"
 		    Name		    "kval"
 		    Prompt		    "Gains"
 		    Value		    "1"
 		    }
 		    Object {
-		    $ObjectID		    115
+		    $ObjectID		    116
 		    Type		    "edit"
 		    Name		    "TSample"
 		    Prompt		    "Sample Time"
@@ -13967,7 +14009,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    116
+		    $ObjectID		    117
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -13983,28 +14025,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    117
+		    $ObjectID		    118
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    118
+		    $ObjectID		    119
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    119
+		    $ObjectID		    120
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    120
+		    $ObjectID		    121
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -14012,14 +14054,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    121
+		    $ObjectID		    122
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    122
+		    $ObjectID		    123
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -14038,7 +14080,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    123
+		    $ObjectID		    124
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -14274,20 +14316,20 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    124
+		    $ObjectID		    125
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    125
+		    $ObjectID		    126
 		    Type		    "edit"
 		    Name		    "omega"
 		    Prompt		    "Cutoff Freq (rad/sec)"
 		    Value		    "vzCutoff"
 		    }
 		    Object {
-		    $ObjectID		    126
+		    $ObjectID		    127
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -14333,35 +14375,35 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    127
+		    $ObjectID		    128
 		    $ClassName		    "Simulink.Mask"
 		    Display		    "droots(zval,pval,kval)\nport_label('input',1,'1D')\n"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    128
+		    $ObjectID		    129
 		    Type		    "edit"
 		    Name		    "zval"
 		    Prompt		    "Zeros"
 		    Value		    "[]"
 		    }
 		    Object {
-		    $ObjectID		    129
+		    $ObjectID		    130
 		    Type		    "edit"
 		    Name		    "pval"
 		    Prompt		    "Poles"
 		    Value		    "[0]"
 		    }
 		    Object {
-		    $ObjectID		    130
+		    $ObjectID		    131
 		    Type		    "edit"
 		    Name		    "kval"
 		    Prompt		    "Gains"
 		    Value		    "1"
 		    }
 		    Object {
-		    $ObjectID		    131
+		    $ObjectID		    132
 		    Type		    "edit"
 		    Name		    "TSample"
 		    Prompt		    "Sample Time"
@@ -14426,7 +14468,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    132
+		    $ObjectID		    133
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -14442,28 +14484,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    133
+		    $ObjectID		    134
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    134
+		    $ObjectID		    135
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    135
+		    $ObjectID		    136
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    136
+		    $ObjectID		    137
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -14471,14 +14513,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    137
+		    $ObjectID		    138
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    138
+		    $ObjectID		    139
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -14497,7 +14539,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    139
+		    $ObjectID		    140
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -17779,7 +17821,7 @@ Model {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		140
+		$ObjectID		141
 		$ClassName		"Simulink.Mask"
 		Description		"Produces Altitude in meters from Barometric Pressure in Pascals. Altitude is valid from MSL to 6000 ft"
 		".\n\nThe method implemented here was developed by Ren Curry"
@@ -17787,14 +17829,14 @@ Model {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    141
+		    $ObjectID		    142
 		    Type		    "edit"
 		    Name		    "baseTemp"
 		    Prompt		    "Base Station Temperature (K)"
 		    Value		    "baseTemp"
 		  }
 		  Object {
-		    $ObjectID		    142
+		    $ObjectID		    143
 		    Type		    "edit"
 		    Name		    "LapseRate"
 		    Prompt		    "Lapse Rate (C/ft)"
@@ -18437,7 +18479,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    143
+		    $ObjectID		    144
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -18453,28 +18495,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    144
+		    $ObjectID		    145
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "[]"
 		    }
 		    Object {
-		    $ObjectID		    145
+		    $ObjectID		    146
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "[-3]"
 		    }
 		    Object {
-		    $ObjectID		    146
+		    $ObjectID		    147
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "3"
 		    }
 		    Object {
-		    $ObjectID		    147
+		    $ObjectID		    148
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -18482,14 +18524,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    148
+		    $ObjectID		    149
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    ".01"
 		    }
 		    Object {
-		    $ObjectID		    149
+		    $ObjectID		    150
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -18508,7 +18550,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    150
+		    $ObjectID		    151
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -22667,8 +22709,8 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Read MPU600 and HMC5883"
-	Location		[-1688, 62, 8, 1088]
-	Open			off
+	Location		[-7, 0, 1372, 740]
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -24076,7 +24118,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    151
+		    $ObjectID		    152
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -24089,14 +24131,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    152
+		    $ObjectID		    153
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "mainSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    153
+		    $ObjectID		    154
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -24880,7 +24922,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    154
+		    $ObjectID		    155
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -24893,14 +24935,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    155
+		    $ObjectID		    156
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "mainSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    156
+		    $ObjectID		    157
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -25684,7 +25726,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    157
+		    $ObjectID		    158
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -25697,14 +25739,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    158
+		    $ObjectID		    159
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "mainSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    159
+		    $ObjectID		    160
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -29690,7 +29732,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    160
+		    $ObjectID		    161
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "Produces Altitude in meters from Barometric Pressure in Pascals. Altitude is valid from MSL to"
 		    " 6000 ft.\n\nThe method implemented here was developed by Ren Curry"
@@ -29698,14 +29740,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    161
+		    $ObjectID		    162
 		    Type		    "edit"
 		    Name		    "baseTemp"
 		    Prompt		    "Base Station Temperature (K)"
 		    Value		    "baseTemp"
 		    }
 		    Object {
-		    $ObjectID		    162
+		    $ObjectID		    163
 		    Type		    "edit"
 		    Name		    "LapseRate"
 		    Prompt		    "Lapse Rate (C/ft)"
@@ -30439,7 +30481,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    163
+		    $ObjectID		    164
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -30455,28 +30497,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    164
+		    $ObjectID		    165
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "[]"
 		    }
 		    Object {
-		    $ObjectID		    165
+		    $ObjectID		    166
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "[-3]"
 		    }
 		    Object {
-		    $ObjectID		    166
+		    $ObjectID		    167
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "3"
 		    }
 		    Object {
-		    $ObjectID		    167
+		    $ObjectID		    168
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -30484,14 +30526,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    168
+		    $ObjectID		    169
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    ".01"
 		    }
 		    Object {
-		    $ObjectID		    169
+		    $ObjectID		    170
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -30510,7 +30552,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    170
+		    $ObjectID		    171
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -30919,21 +30961,21 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    171
+		    $ObjectID		    172
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "Convert Analog readings to units"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    172
+		    $ObjectID		    173
 		    Type		    "edit"
 		    Name		    "bias"
 		    Prompt		    "Initial Bias"
 		    Value		    "baroOffset"
 		    }
 		    Object {
-		    $ObjectID		    173
+		    $ObjectID		    174
 		    Type		    "edit"
 		    Name		    "gains"
 		    Prompt		    "Initial Gains"
@@ -31178,21 +31220,21 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    174
+		    $ObjectID		    175
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "Convert Analog readings to units"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    175
+		    $ObjectID		    176
 		    Type		    "edit"
 		    Name		    "bias"
 		    Prompt		    "Initial Bias"
 		    Value		    "pitotOffset"
 		    }
 		    Object {
-		    $ObjectID		    176
+		    $ObjectID		    177
 		    Type		    "edit"
 		    Name		    "gains"
 		    Prompt		    "Initial Gains"
@@ -31328,21 +31370,21 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    177
+		    $ObjectID		    178
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "Convert Analog readings to units"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    178
+		    $ObjectID		    179
 		    Type		    "edit"
 		    Name		    "bias"
 		    Prompt		    "Initial Bias"
 		    Value		    "powerOffset"
 		    }
 		    Object {
-		    $ObjectID		    179
+		    $ObjectID		    180
 		    Type		    "edit"
 		    Name		    "gains"
 		    Prompt		    "Initial Gains"
@@ -31553,7 +31595,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    180
+		    $ObjectID		    181
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "This block implements a temperature compensation. It implmements the following equation:\n\nM_"
 		    "tc = M_raw - K_t(T - T_avg)"
@@ -31561,14 +31603,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    181
+		    $ObjectID		    182
 		    Type		    "edit"
 		    Name		    "alpha"
 		    Prompt		    "Tempearature Coeficient (K_t)"
 		    Value		    "pitTGain2"
 		    }
 		    Object {
-		    $ObjectID		    182
+		    $ObjectID		    183
 		    Type		    "edit"
 		    Name		    "tempMean"
 		    Prompt		    "Calibration Temperature Mean (T_avg)"
@@ -31751,7 +31793,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    183
+		    $ObjectID		    184
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "This block implements a temperature compensation. It implmements the following equation:\n\nM_"
 		    "tc = M_raw - K_t(T - T_avg)"
@@ -31759,14 +31801,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    184
+		    $ObjectID		    185
 		    Type		    "edit"
 		    Name		    "alpha"
 		    Prompt		    "Tempearature Coeficient (K_t)"
 		    Value		    "pitTGain1"
 		    }
 		    Object {
-		    $ObjectID		    185
+		    $ObjectID		    186
 		    Type		    "edit"
 		    Name		    "tempMean"
 		    Prompt		    "Calibration Temperature Mean (T_avg)"
@@ -32182,7 +32224,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    186
+		    $ObjectID		    187
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "This block implements a temperature compensation. It implmements the following equation:\n\nM_"
 		    "tc = M_raw - K_t(T - T_avg)"
@@ -32190,14 +32232,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    187
+		    $ObjectID		    188
 		    Type		    "edit"
 		    Name		    "alpha"
 		    Prompt		    "Tempearature Coeficient (K_t)"
 		    Value		    "barTGain2"
 		    }
 		    Object {
-		    $ObjectID		    188
+		    $ObjectID		    189
 		    Type		    "edit"
 		    Name		    "tempMean"
 		    Prompt		    "Calibration Temperature Mean (T_avg)"
@@ -32418,7 +32460,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    189
+		    $ObjectID		    190
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "This block implements a temperature compensation. It implmements the following equation:\n\nM_"
 		    "tc = M_raw - K_t(T - T_avg)"
@@ -32426,14 +32468,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    190
+		    $ObjectID		    191
 		    Type		    "edit"
 		    Name		    "alpha"
 		    Prompt		    "Tempearature Coeficient (K_t)"
 		    Value		    "barTGain1"
 		    }
 		    Object {
-		    $ObjectID		    191
+		    $ObjectID		    192
 		    Type		    "edit"
 		    Name		    "tempMean"
 		    Prompt		    "Calibration Temperature Mean (T_avg)"
@@ -32737,21 +32779,21 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    192
+		    $ObjectID		    193
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "Convert Analog readings to units"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    193
+		    $ObjectID		    194
 		    Type		    "edit"
 		    Name		    "bias"
 		    Prompt		    "Initial Bias"
 		    Value		    "tempOffset"
 		    }
 		    Object {
-		    $ObjectID		    194
+		    $ObjectID		    195
 		    Type		    "edit"
 		    Name		    "gains"
 		    Prompt		    "Initial Gains"
@@ -32887,7 +32929,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    195
+		    $ObjectID		    196
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -32900,14 +32942,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    196
+		    $ObjectID		    197
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "lowRateSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    197
+		    $ObjectID		    198
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -33146,7 +33188,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    198
+		    $ObjectID		    199
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -33159,14 +33201,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    199
+		    $ObjectID		    200
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "lowRateSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    200
+		    $ObjectID		    201
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -33405,7 +33447,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    201
+		    $ObjectID		    202
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -33418,14 +33460,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    202
+		    $ObjectID		    203
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "pressureSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    203
+		    $ObjectID		    204
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -33664,7 +33706,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    204
+		    $ObjectID		    205
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -33677,14 +33719,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    205
+		    $ObjectID		    206
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "pressureSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    206
+		    $ObjectID		    207
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -35846,21 +35888,21 @@ Model {
       SourceBlock	      "MCHP_Blockset/BUS UART/UART Configuration"
       SourceType	      "Configuration for UART peripheral"
       UART_REF		      "1"
-      BAUD_Choice	      "Dynamic Options"
+      BAUD_Choice	      "   57600         [-0.06%]"
       BAUD_Choice_TXT	      "   57600         [-0.06%]"
-      BAUD_Choice_IR	      "Dynamic Options"
+      BAUD_Choice_IR	      "   57600         [-0.06%]"
       BAUD_Choice_IR_TXT      "[]"
       BAUD_Custom	      "115200"
       IRDA		      off
       ALT_IO		      on
-      PIN_RX		      "Dynamic Options"
+      PIN_RX		      "A0 / P16 / Pin[17]"
       PIN_RX_TXT	      "A0 / P16 / Pin[17]"
-      PIN_TX		      "Dynamic Options"
+      PIN_TX		      "F3 / P99 / Pin[51]"
       PIN_TX_TXT	      "F3 / P99 / Pin[51]"
       FlowControl	      "None"
-      PIN_CTS		      "Dynamic Options"
+      PIN_CTS		      "A0 / P16 / Pin[17]"
       PIN_CTS_TXT	      "A0 / P16 / Pin[17]"
-      PIN_RTS		      "Dynamic Options"
+      PIN_RTS		      "D0 / P64 / Pin[72]"
       PIN_RTS_TXT	      "D0 / P64 / Pin[72]"
       MCHP_PORT		      "{UART1  Tx}{U1TX}3:1:P99;"
       MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -35876,9 +35918,9 @@ Model {
       RX_INT_WHEN	      "receive 1 character"
       RX_CIRCULAR_SIZE	      "128"
       InitSequence_chkbox     on
-      BAUD_Choice_InitSeq     "Dynamic Options"
+      BAUD_Choice_InitSeq     "     110         [-0.00%]"
       BAUD_Choice_InitSeq_TXT "     110         [-0.00%]"
-      BAUD_Choice_IR_InitSeq  "Dynamic Options"
+      BAUD_Choice_IR_InitSeq  "     110         [-0.00%]"
       BAUD_Choice_IR_InitSeq_TXT "0"
       BAUD_Custom_InitSeq     "0"
       InitSequence	      "'Hello World'"
@@ -35894,21 +35936,21 @@ Model {
       SourceBlock	      "MCHP_Blockset/BUS UART/UART Configuration"
       SourceType	      "Configuration for UART peripheral"
       UART_REF		      "4"
-      BAUD_Choice	      "Dynamic Options"
+      BAUD_Choice	      "   38400         [-0.06%]"
       BAUD_Choice_TXT	      "   38400         [-0.06%]"
-      BAUD_Choice_IR	      "Dynamic Options"
+      BAUD_Choice_IR	      "   38400         [-0.06%]"
       BAUD_Choice_IR_TXT      "[]"
       BAUD_Custom	      "115200"
       IRDA		      off
       ALT_IO		      on
-      PIN_RX		      "Dynamic Options"
+      PIN_RX		      "A0 / P16 / Pin[17]"
       PIN_RX_TXT	      "A0 / P16 / Pin[17]"
-      PIN_TX		      "Dynamic Options"
+      PIN_TX		      "E5 / P85 / Pin[3]"
       PIN_TX_TXT	      "E5 / P85 / Pin[3]"
       FlowControl	      "None"
-      PIN_CTS		      "Dynamic Options"
+      PIN_CTS		      "A0 / P16 / Pin[17]"
       PIN_CTS_TXT	      "A0 / P16 / Pin[17]"
-      PIN_RTS		      "Dynamic Options"
+      PIN_RTS		      "D0 / P64 / Pin[72]"
       PIN_RTS_TXT	      "D0 / P64 / Pin[72]"
       MCHP_PORT		      "{UART4  Tx}{U4TX}3:1:P85;"
       MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -35924,9 +35966,9 @@ Model {
       RX_INT_WHEN	      "receive 1 character"
       RX_CIRCULAR_SIZE	      "128"
       InitSequence_chkbox     off
-      BAUD_Choice_InitSeq     "Dynamic Options"
+      BAUD_Choice_InitSeq     "     110         [-0.00%]"
       BAUD_Choice_InitSeq_TXT "     110         [-0.00%]"
-      BAUD_Choice_IR_InitSeq  "Dynamic Options"
+      BAUD_Choice_IR_InitSeq  "     110         [-0.00%]"
       BAUD_Choice_IR_InitSeq_TXT "0"
       BAUD_Custom_InitSeq     "0"
       InitSequence	      "'Hello World'"

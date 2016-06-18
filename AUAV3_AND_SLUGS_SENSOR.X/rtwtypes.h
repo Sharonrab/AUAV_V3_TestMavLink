@@ -19,11 +19,11 @@
  *
  * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.
  *
- * Model version                        : 1.219
+ * Model version                        : 1.223
  * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Fri Apr 29 16:39:44 2016
+ * Real-Time Workshop file generated on : Fri Jun 17 19:05:27 2016
  * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Fri Apr 29 16:39:46 2016
+ * C source code generated on           : Fri Jun 17 19:05:28 2016
  */
 
 #ifndef __RTWTYPES_H__

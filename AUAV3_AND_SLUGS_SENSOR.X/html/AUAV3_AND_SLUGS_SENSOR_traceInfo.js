@@ -541,6 +541,8 @@ function RTW_rtwnameSIDMap() {
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:1221"] = {rtwname: "<Root>/mlRawServo"};
 	this.rtwnameHashMap["<Root>/mlSysStatus"] = {sid: "AUAV3_AND_SLUGS_SENSOR:388"};
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:388"] = {rtwname: "<Root>/mlSysStatus"};
+	this.rtwnameHashMap["<Root>/mlVfr_hud"] = {sid: "AUAV3_AND_SLUGS_SENSOR:1238"};
+	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:1238"] = {rtwname: "<Root>/mlVfr_hud"};
 	this.rtwnameHashMap["<Root>/myMux Fun2"] = {sid: "AUAV3_AND_SLUGS_SENSOR:1209"};
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:1209"] = {rtwname: "<Root>/myMux Fun2"};
 	this.rtwnameHashMap["<Root>/myMux Fun3"] = {sid: "AUAV3_AND_SLUGS_SENSOR:1210"};
@@ -593,6 +595,8 @@ function RTW_rtwnameSIDMap() {
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:1224"] = {rtwname: "<S4>/Get Raw RC"};
 	this.rtwnameHashMap["<S4>/Get RawGpsInt"] = {sid: "AUAV3_AND_SLUGS_SENSOR:120"};
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:120"] = {rtwname: "<S4>/Get RawGpsInt"};
+	this.rtwnameHashMap["<S4>/Get VfrHud"] = {sid: "AUAV3_AND_SLUGS_SENSOR:1241"};
+	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:1241"] = {rtwname: "<S4>/Get VfrHud"};
 	this.rtwnameHashMap["<S4>/Get mlAirData"] = {sid: "AUAV3_AND_SLUGS_SENSOR:393"};
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:393"] = {rtwname: "<S4>/Get mlAirData"};
 	this.rtwnameHashMap["<S4>/Get mlSysStatus"] = {sid: "AUAV3_AND_SLUGS_SENSOR:397"};
@@ -605,6 +609,8 @@ function RTW_rtwnameSIDMap() {
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:392"] = {rtwname: "<S4>/Get time2"};
 	this.rtwnameHashMap["<S4>/Get time3"] = {sid: "AUAV3_AND_SLUGS_SENSOR:1225"};
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:1225"] = {rtwname: "<S4>/Get time3"};
+	this.rtwnameHashMap["<S4>/Get time4"] = {sid: "AUAV3_AND_SLUGS_SENSOR:1242"};
+	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:1242"] = {rtwname: "<S4>/Get time4"};
 	this.rtwnameHashMap["<S4>/PackGpsRawInt"] = {sid: "AUAV3_AND_SLUGS_SENSOR:123"};
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:123"] = {rtwname: "<S4>/PackGpsRawInt"};
 	this.rtwnameHashMap["<S4>/PackHeartBeat"] = {sid: "AUAV3_AND_SLUGS_SENSOR:109"};
@@ -613,6 +619,8 @@ function RTW_rtwnameSIDMap() {
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:108"] = {rtwname: "<S4>/PackRawIMU"};
 	this.rtwnameHashMap["<S4>/PackRawRC"] = {sid: "AUAV3_AND_SLUGS_SENSOR:1226"};
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:1226"] = {rtwname: "<S4>/PackRawRC"};
+	this.rtwnameHashMap["<S4>/PackRawRC1"] = {sid: "AUAV3_AND_SLUGS_SENSOR:1240"};
+	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:1240"] = {rtwname: "<S4>/PackRawRC1"};
 	this.rtwnameHashMap["<S4>/PackScaledPressure"] = {sid: "AUAV3_AND_SLUGS_SENSOR:390"};
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:390"] = {rtwname: "<S4>/PackScaledPressure"};
 	this.rtwnameHashMap["<S4>/PackSysStatus"] = {sid: "AUAV3_AND_SLUGS_SENSOR:395"};
@@ -639,6 +647,8 @@ function RTW_rtwnameSIDMap() {
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:459"] = {rtwname: "<S4>/TX_N_Data6"};
 	this.rtwnameHashMap["<S4>/TX_N_Data7"] = {sid: "AUAV3_AND_SLUGS_SENSOR:1227"};
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:1227"] = {rtwname: "<S4>/TX_N_Data7"};
+	this.rtwnameHashMap["<S4>/TX_N_Data8"] = {sid: "AUAV3_AND_SLUGS_SENSOR:1239"};
+	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:1239"] = {rtwname: "<S4>/TX_N_Data8"};
 	this.rtwnameHashMap["<S5>/EmptySubsystem"] = {sid: "AUAV3_AND_SLUGS_SENSOR:66:1"};
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:66:1"] = {rtwname: "<S5>/EmptySubsystem"};
 	this.rtwnameHashMap["<S6>/A_sens(m//s^2)"] = {sid: "AUAV3_AND_SLUGS_SENSOR:869"};

@@ -19,11 +19,11 @@
  *
  * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.
  *
- * Model version                        : 1.219
+ * Model version                        : 1.223
  * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Fri Apr 29 16:39:44 2016
+ * Real-Time Workshop file generated on : Fri Jun 17 19:05:27 2016
  * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Fri Apr 29 16:39:46 2016
+ * C source code generated on           : Fri Jun 17 19:05:28 2016
  */
 
 #ifndef RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_private_h_
@@ -95,7 +95,6 @@ union
     unsigned int task8 : 1;
     unsigned int task9 : 1;
     unsigned int task10 : 1;
-    unsigned int task11 : 1;
   } b;
 
   unsigned int val;
@@ -217,6 +216,13 @@ extern uint16_t PackRawRC(uint8_t system_id, uint8_t component_id,
 extern void TxN_Data_OverU1(uint16_t N);
 
 /* C Function Call declare function as extern */
+extern uint16_t PackVFR_HUD(uint8_t system_id, uint8_t component_id,
+  mavlink_vfr_hud_t mlVfr_hud ,uint32_t time_usec);
+
+/* C Function Call declare function as extern */
+extern void TxN_Data_OverU1(uint16_t N);
+
+/* C Function Call declare function as extern */
 extern void gpsUbloxParse(void);
 extern void mul_wide_u32(uint32_T in0, uint32_T in1, uint32_T *ptrOutBitsHi,
   uint32_T *ptrOutBitsLo);
@@ -240,6 +246,7 @@ extern void uMultiWordShr(const uint32_T u1[], int16_T n1, uint16_T n2, uint32_T
   y[], int16_T n);
 extern void uMultiWordMul(const uint32_T u1[], int16_T n1, const uint32_T u2[],
   int16_T n2, uint32_T y[], int16_T n);
+extern void AUA_EnabledSubsystem_Start(rtB_EnabledSubsystem_AUAV3_AN_T *localB);
 extern void AUAV3_AND_EnabledSubsystem(boolean_T rtu_Enable, real32_T rtu_In1,
   rtB_EnabledSubsystem_AUAV3_AN_T *localB);
 extern void EnablesDisablestheCom_Init(rtDW_EnablesDisablestheComput_T *localDW);
@@ -262,7 +269,6 @@ extern void AUAV3_AND_SLUGS_SENSOR_step7(void);
 extern void AUAV3_AND_SLUGS_SENSOR_step8(void);
 extern void AUAV3_AND_SLUGS_SENSOR_step9(void);
 extern void AUAV3_AND_SLUGS_SENSOR_step10(void);
-extern void AUAV3_AND_SLUGS_SENSOR_step11(void);
 
 #endif                                 /* RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_private_h_ */
 

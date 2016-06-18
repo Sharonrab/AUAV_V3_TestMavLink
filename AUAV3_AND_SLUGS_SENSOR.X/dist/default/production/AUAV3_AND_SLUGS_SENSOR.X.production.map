@@ -279,16 +279,16 @@ Program Memory  [Origin = 0x200, Length = 0x55600]
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200              0x3f60          0x5f10  (24336)
-.const                      0x4160               0x346           0x4e9  (1257)
-.text                       0x44a6              0x4304          0x6486  (25734)
-.dinit                      0x87aa               0x234           0x34e  (846)
-.text                       0x89de               0x7ea           0xbdf  (3039)
-.init.delay32               0x91c8                0x1c            0x2a  (42)
-.text                       0x91e4                0x12            0x1b  (27)
-.shared.dinit               0x91f6                 0x2             0x3  (3)
+.text                        0x200              0x3f02          0x5e83  (24195)
+.const                      0x4102               0x346           0x4e9  (1257)
+.text                       0x4448              0x4454          0x667e  (26238)
+.dinit                      0x889c               0x234           0x34e  (846)
+.text                       0x8ad0               0x7ea           0xbdf  (3039)
+.init.delay32               0x92ba                0x1c            0x2a  (42)
+.text                       0x92d6                0x12            0x1b  (27)
+.shared.dinit               0x92e8                 0x2             0x3  (3)
 
-                 Total program memory used (bytes):         0xd7f4  (55284) 10%
+                 Total program memory used (bytes):         0xd95f  (55647) 10%
 
 
 Ivt Memory  [Origin = 0x4, Length = 0x1fc]
@@ -296,8 +296,8 @@ Ivt Memory  [Origin = 0x4, Length = 0x1fc]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .ivt._IC1Interrupt            0x16                 0x2             0x3  (3)
-.ivt._T1Interrupt             0x1a                 0x2             0x3  (3)
 .ivt._IC2Interrupt            0x1e                 0x2             0x3  (3)
+.ivt._T2Interrupt             0x22                 0x2             0x3  (3)
 .ivt._SPI1Interrupt           0x28                 0x2             0x3  (3)
 .ivt._U1RXInterrupt           0x2a                 0x2             0x3  (3)
 .ivt._U1TXInterrupt           0x2c                 0x2             0x3  (3)
@@ -323,18 +323,18 @@ Data Memory  [Origin = 0x1000, Length = 0xd000]
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
 .nbss                       0x1000                   0             0xa  (10)
-.bss                        0x100a                   0          0x1728  (5928)
-.data                       0x2732                   0           0x160  (352)
-.bss                        0x2892                   0           0x13c  (316)
-.data                       0x29ce                   0            0xca  (202)
-.bss                        0x2a98                   0           0x30a  (778)
-.data                       0x2da2                   0            0x26  (38)
-.bss                        0x2dc8                   0            0x1c  (28)
-.data                       0x2de4                   0            0x18  (24)
-.bss                        0x2dfc                   0            0x38  (56)
-.data                       0x2e34                   0             0x4  (4)
+.bss                        0x100a                   0          0x173c  (5948)
+.data                       0x2746                   0           0x160  (352)
+.bss                        0x28a6                   0           0x13c  (316)
+.data                       0x29e2                   0            0xca  (202)
+.bss                        0x2aac                   0           0x30a  (778)
+.data                       0x2db6                   0            0x26  (38)
+.bss                        0x2ddc                   0            0x34  (52)
+.data                       0x2e10                   0            0x16  (22)
+.bss                        0x2e26                   0            0x20  (32)
+.data                       0x2e46                   0             0x4  (4)
 
-                 Total data memory used (bytes):         0x1e38  (7736) 14%
+                 Total data memory used (bytes):         0x1e4a  (7754) 14%
 
 
 Dynamic Memory Usage
@@ -342,9 +342,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                       0x2e38                              0x51c8  (20936)
+stack                       0x2e4a                              0x51b6  (20918)
 
-                 Maximum dynamic memory (bytes):         0x51c8  (20936)
+                 Maximum dynamic memory (bytes):         0x51b6  (20918)
 
 
 External Symbols in Data Memory (by address):
@@ -367,156 +367,156 @@ External Symbols in Data Memory (by address):
                     0x15ba                  _mlWpAck
                     0x15be                  _mlParamInterface
                     0x211a                  _AUAV3_AND_SLUGS_SENSOR_B
-                    0x2338                  _AUAV3_AND_SLUGS_SENSOR_DWork
-                    0x249a                  _mlGpsData
-                    0x24b8                  _mlSysStatus
-                    0x24d8                  _mlAirData
-                    0x24e6                  _mlRawPressureData
-                    0x24f6                  _MPU_T
-                    0x24f8                  _AUAV3_AND_SLUGS_SENSOR_M_
-                    0x2528                  _uartBuffer
-                    0x252a                  _com4Buffer
-                    0x2732                  __powers_
-                    0x27e2                  __npowers_
-                    0x2892                  _mlCpuLoadData
-                    0x2896                  _mlSensorBiasData
-                    0x28ae                  _mlDiagnosticData
-                    0x28c0                  _mlPilotConsoleData
-                    0x28d6                  _mlRawImuData
-                    0x28f0                  _mlAttitudeData
-                    0x290c                  _mlLocalPositionData
-                    0x2928                  _mlFilteredData
-                    0x293e                  _mlBoot
-                    0x2942                  _mlGpsDateTime
-                    0x294e                  _mlGSLocationFloat
-                    0x295a                  _mlGpsStatus
-                    0x2966                  _mlNovatelStatus
-                    0x2974                  _mlSensorDiag
-                    0x2980                  _mlCommandAck
-                    0x2984                  _mlPwmCommands
-                    0x299a                  _mlStatustext
-                    0x29cd                  _sendCommandAcknowledgement
-                    0x2c14                  _MCHP_UART1_Tx
-                    0x2c98                  _MCHP_UART4_Tx
-                    0x2d66                  _MCHP_I2C2_State
-                    0x2d68                  _MCHP_I2C22_Request
-                    0x2d6a                  _MCHP_I2C23_Request
-                    0x2d6c                  _MCHP_I2C21_Request
-                    0x2d6e                  _MCHP_I2C24_Request
-                    0x2d70                  _MCHP_I2C25_Request
-                    0x2d72                  _MCHP_I2C2_Queue
-                    0x2d82                  _I2C22_Buff8
-                    0x2d84                  _I2C23_Buff8
-                    0x2d86                  _I2C21_Buff8
-                    0x2d9c                  _I2C24_Buff8
-                    0x2da2                  __iob
-                    0x2dc6                  __Files
-                    0x2dc8                  _MCHP_SPI1_State
-                    0x2dca                  _MCHP_SPI12_Request
-                    0x2dcb                  _MCHP_SPI11_Request
-                    0x2dcc                  _MCHP_SPI1_Queue
-                    0x2dd6                  _SPI11_Buff16
-                    0x2dfc                  _rtInf
-                    0x2e00                  _rtMinusInf
-                    0x2e04                  _rtNaN
-                    0x2e08                  _rtInfF
-                    0x2e0c                  _rtMinusInfF
-                    0x2e10                  _rtNaNF
-                    0x2e14                  _MCHP_ic1up
-                    0x2e16                  _MCHP_ic2up
-                    0x2e18                  _MCHP_ic3up
-                    0x2e1a                  _MCHP_ic4up
-                    0x2e1c                  _MCHP_ic5up
-                    0x2e28                  _MCHP_MCU_Overload
-                    0x2e2e                  __outdone
-                    0x2e2f                  __sibuf
-                    0x2e31                  __sobuf
-                    0x2e36                  ___C30_UART
+                    0x2352                  _AUAV3_AND_SLUGS_SENSOR_DWork
+                    0x24c8                  _mlGpsData
+                    0x24e6                  _mlSysStatus
+                    0x2506                  _mlAirData
+                    0x2514                  _mlRawPressureData
+                    0x2524                  _MPU_T
+                    0x2526                  _AUAV3_AND_SLUGS_SENSOR_M_
+                    0x253c                  _uartBuffer
+                    0x253e                  _com4Buffer
+                    0x2746                  __powers_
+                    0x27f6                  __npowers_
+                    0x28a6                  _mlCpuLoadData
+                    0x28aa                  _mlSensorBiasData
+                    0x28c2                  _mlDiagnosticData
+                    0x28d4                  _mlPilotConsoleData
+                    0x28ea                  _mlRawImuData
+                    0x2904                  _mlAttitudeData
+                    0x2920                  _mlLocalPositionData
+                    0x293c                  _mlFilteredData
+                    0x2952                  _mlBoot
+                    0x2956                  _mlGpsDateTime
+                    0x2962                  _mlGSLocationFloat
+                    0x296e                  _mlGpsStatus
+                    0x297a                  _mlNovatelStatus
+                    0x2988                  _mlSensorDiag
+                    0x2994                  _mlCommandAck
+                    0x2998                  _mlPwmCommands
+                    0x29ae                  _mlStatustext
+                    0x29e1                  _sendCommandAcknowledgement
+                    0x2c28                  _MCHP_UART1_Tx
+                    0x2cac                  _MCHP_UART4_Tx
+                    0x2d7a                  _MCHP_I2C2_State
+                    0x2d7c                  _MCHP_I2C22_Request
+                    0x2d7e                  _MCHP_I2C23_Request
+                    0x2d80                  _MCHP_I2C21_Request
+                    0x2d82                  _MCHP_I2C24_Request
+                    0x2d84                  _MCHP_I2C25_Request
+                    0x2d86                  _MCHP_I2C2_Queue
+                    0x2d96                  _I2C22_Buff8
+                    0x2d98                  _I2C23_Buff8
+                    0x2d9a                  _I2C21_Buff8
+                    0x2db0                  _I2C24_Buff8
+                    0x2db6                  __iob
+                    0x2dda                  __Files
+                    0x2ddc                  _MCHP_SPI1_State
+                    0x2dde                  _MCHP_SPI12_Request
+                    0x2ddf                  _MCHP_SPI11_Request
+                    0x2de0                  _MCHP_SPI1_Queue
+                    0x2dea                  _SPI11_Buff16
+                    0x2df8                  _rtInf
+                    0x2dfc                  _rtMinusInf
+                    0x2e00                  _rtNaN
+                    0x2e04                  _rtInfF
+                    0x2e08                  _rtMinusInfF
+                    0x2e0c                  _rtNaNF
+                    0x2e26                  _MCHP_ic1up
+                    0x2e28                  _MCHP_ic2up
+                    0x2e2a                  _MCHP_ic3up
+                    0x2e2c                  _MCHP_ic4up
+                    0x2e2e                  _MCHP_ic5up
+                    0x2e3a                  _MCHP_MCU_Overload
+                    0x2e40                  __outdone
+                    0x2e41                  __sibuf
+                    0x2e43                  __sobuf
+                    0x2e48                  ___C30_UART
 
 External Symbols in Data Memory (by name):
 
                     0x211a                  _AUAV3_AND_SLUGS_SENSOR_B
-                    0x2338                  _AUAV3_AND_SLUGS_SENSOR_DWork
-                    0x24f8                  _AUAV3_AND_SLUGS_SENSOR_M_
+                    0x2352                  _AUAV3_AND_SLUGS_SENSOR_DWork
+                    0x2526                  _AUAV3_AND_SLUGS_SENSOR_M_
                     0x1002                  _BusyFlagRecursion
                     0x131b                  _DatafromGSmavlink
-                    0x2d86                  _I2C21_Buff8
-                    0x2d82                  _I2C22_Buff8
-                    0x2d84                  _I2C23_Buff8
-                    0x2d9c                  _I2C24_Buff8
-                    0x2d6c                  _MCHP_I2C21_Request
-                    0x2d68                  _MCHP_I2C22_Request
-                    0x2d6a                  _MCHP_I2C23_Request
-                    0x2d6e                  _MCHP_I2C24_Request
-                    0x2d70                  _MCHP_I2C25_Request
-                    0x2d72                  _MCHP_I2C2_Queue
-                    0x2d66                  _MCHP_I2C2_State
+                    0x2d9a                  _I2C21_Buff8
+                    0x2d96                  _I2C22_Buff8
+                    0x2d98                  _I2C23_Buff8
+                    0x2db0                  _I2C24_Buff8
+                    0x2d80                  _MCHP_I2C21_Request
+                    0x2d7c                  _MCHP_I2C22_Request
+                    0x2d7e                  _MCHP_I2C23_Request
+                    0x2d82                  _MCHP_I2C24_Request
+                    0x2d84                  _MCHP_I2C25_Request
+                    0x2d86                  _MCHP_I2C2_Queue
+                    0x2d7a                  _MCHP_I2C2_State
                     0x1006                  _MCHP_MCULoadPreviousTimerValue
                     0x1004                  _MCHP_MCULoadResult
-                    0x2e28                  _MCHP_MCU_Overload
-                    0x2dcb                  _MCHP_SPI11_Request
-                    0x2dca                  _MCHP_SPI12_Request
-                    0x2dcc                  _MCHP_SPI1_Queue
-                    0x2dc8                  _MCHP_SPI1_State
-                    0x2c14                  _MCHP_UART1_Tx
-                    0x2c98                  _MCHP_UART4_Tx
-                    0x2e14                  _MCHP_ic1up
-                    0x2e16                  _MCHP_ic2up
-                    0x2e18                  _MCHP_ic3up
-                    0x2e1a                  _MCHP_ic4up
-                    0x2e1c                  _MCHP_ic5up
-                    0x24f6                  _MPU_T
-                    0x2dd6                  _SPI11_Buff16
+                    0x2e3a                  _MCHP_MCU_Overload
+                    0x2ddf                  _MCHP_SPI11_Request
+                    0x2dde                  _MCHP_SPI12_Request
+                    0x2de0                  _MCHP_SPI1_Queue
+                    0x2ddc                  _MCHP_SPI1_State
+                    0x2c28                  _MCHP_UART1_Tx
+                    0x2cac                  _MCHP_UART4_Tx
+                    0x2e26                  _MCHP_ic1up
+                    0x2e28                  _MCHP_ic2up
+                    0x2e2a                  _MCHP_ic3up
+                    0x2e2c                  _MCHP_ic4up
+                    0x2e2e                  _MCHP_ic5up
+                    0x2524                  _MPU_T
+                    0x2dea                  _SPI11_Buff16
                     0x1214                  _UartOutBuff
-                    0x2dc6                  __Files
-                    0x2e36                  ___C30_UART
-                    0x2da2                  __iob
-                    0x27e2                  __npowers_
-                    0x2e2e                  __outdone
-                    0x2732                  __powers_
-                    0x2e2f                  __sibuf
-                    0x2e31                  __sobuf
-                    0x252a                  _com4Buffer
+                    0x2dda                  __Files
+                    0x2e48                  ___C30_UART
+                    0x2db6                  __iob
+                    0x27f6                  __npowers_
+                    0x2e40                  __outdone
+                    0x2746                  __powers_
+                    0x2e41                  __sibuf
+                    0x2e43                  __sobuf
+                    0x253e                  _com4Buffer
                     0x100c                  _comMavlinkBuffer
                     0x1000                  _mcuFlagRecursion
-                    0x24d8                  _mlAirData
-                    0x28f0                  _mlAttitudeData
-                    0x293e                  _mlBoot
-                    0x2980                  _mlCommandAck
-                    0x2892                  _mlCpuLoadData
-                    0x28ae                  _mlDiagnosticData
-                    0x2928                  _mlFilteredData
+                    0x2506                  _mlAirData
+                    0x2904                  _mlAttitudeData
+                    0x2952                  _mlBoot
+                    0x2994                  _mlCommandAck
+                    0x28a6                  _mlCpuLoadData
+                    0x28c2                  _mlDiagnosticData
+                    0x293c                  _mlFilteredData
                     0x15ac                  _mlGSLocation
-                    0x294e                  _mlGSLocationFloat
-                    0x249a                  _mlGpsData
-                    0x2942                  _mlGpsDateTime
-                    0x295a                  _mlGpsStatus
+                    0x2962                  _mlGSLocationFloat
+                    0x24c8                  _mlGpsData
+                    0x2956                  _mlGpsDateTime
+                    0x296e                  _mlGpsStatus
                     0x1472                  _mlHeartbeat
-                    0x290c                  _mlLocalPositionData
-                    0x2966                  _mlNovatelStatus
+                    0x2920                  _mlLocalPositionData
+                    0x297a                  _mlNovatelStatus
                     0x15be                  _mlParamInterface
                     0x13e6                  _mlPending
-                    0x28c0                  _mlPilotConsoleData
-                    0x2984                  _mlPwmCommands
-                    0x28d6                  _mlRawImuData
-                    0x24e6                  _mlRawPressureData
-                    0x2896                  _mlSensorBiasData
-                    0x2974                  _mlSensorDiag
+                    0x28d4                  _mlPilotConsoleData
+                    0x2998                  _mlPwmCommands
+                    0x28ea                  _mlRawImuData
+                    0x2514                  _mlRawPressureData
+                    0x28aa                  _mlSensorBiasData
+                    0x2988                  _mlSensorDiag
                     0x1586                  _mlSingleWp
-                    0x299a                  _mlStatustext
-                    0x24b8                  _mlSysStatus
+                    0x29ae                  _mlStatustext
+                    0x24e6                  _mlSysStatus
                     0x15ba                  _mlWpAck
                     0x147c                  _mlWpCount
                     0x1480                  _mlWpRequest
                     0x1484                  _mlWpValues
-                    0x2dfc                  _rtInf
-                    0x2e08                  _rtInfF
-                    0x2e00                  _rtMinusInf
-                    0x2e0c                  _rtMinusInfF
-                    0x2e04                  _rtNaN
-                    0x2e10                  _rtNaNF
-                    0x29cd                  _sendCommandAcknowledgement
-                    0x2528                  _uartBuffer
+                    0x2df8                  _rtInf
+                    0x2e04                  _rtInfF
+                    0x2dfc                  _rtMinusInf
+                    0x2e08                  _rtMinusInfF
+                    0x2e00                  _rtNaN
+                    0x2e0c                  _rtNaNF
+                    0x29e1                  _sendCommandAcknowledgement
+                    0x253c                  _uartBuffer
                     0x100a                  _uartMavlinkInBuffer
 
 External Symbols in Program Memory (by address):
@@ -525,533 +525,535 @@ External Symbols in Program Memory (by address):
                   0x00022c                  __psv_init
                   0x000238                  __data_init
                   0x000238                  __data_init_extended
-                  0x0002e0                  __T1Interrupt
-                  0x000728                  _main
-                  0x0007f8                  __MI2C2Interrupt
-                  0x00100a                  __IC1Interrupt
-                  0x00104c                  __IC2Interrupt
-                  0x00108e                  __IC3Interrupt
-                  0x0010d0                  __IC4Interrupt
-                  0x001112                  __IC5Interrupt
-                  0x001154                  __SPI1Interrupt
-                  0x00130a                  __U1TXInterrupt
-                  0x001366                  __U4TXInterrupt
-                  0x0013c2                  __DefaultInterrupt
-                  0x0013c6                  _isspace
-                  0x001432                  _BusyUART2
-                  0x00143c                  _putsUART2
-                  0x001464                  _acosf
-                  0x001468                  ___subsf3
-                  0x00146a                  ___addsf3
-                  0x001524                  __asinacosf
-                  0x0015f2                  _asinf
-                  0x0015f6                  _atan2f
-                  0x001630                  _atanf
-                  0x0016fa                  _cosf
-                  0x0016fe                  ___divsf3
-                  0x001782                  _expf
-                  0x001846                  ___eqsf2
-                  0x001846                  ___lesf2
-                  0x001846                  ___ltsf2
-                  0x00184a                  ___gesf2
-                  0x00184a                  ___gtsf2
-                  0x00184e                  ___fixsfsi
-                  0x001890                  ___fixunssfsi
-                  0x0018c6                  ___floatsisf
-                  0x0018cc                  ___floatunsisf
-                  0x0018d0                  _floorf
-                  0x0018e0                  _fmodf
-                  0x0018e4                  __fmodrem
-                  0x001982                  ___nesf2
-                  0x001986                  __fpack
-                  0x0019d2                  __funpack
-                  0x0019fc                  __funpack2
-                  0x001a0c                  __fPropagateNaN
-                  0x001a1e                  __fbopExit
-                  0x001a26                  __fbopReturnNaN
-                  0x001a2c                  _ldexpf
-                  0x001a70                  ___mulsf3
-                  0x001ad8                  _powf
-                  0x001c9e                  __sincosf
-                  0x001d70                  _sinf
-                  0x001d74                  _sqrtf
-                  0x001dde                  _tanf
-                  0x001e98                  ___truncdfsf2
-                  0x001eee                  ___udivsi3
-                  0x001f0e                  ___umodsi3
-                  0x001f14                  __frexpf
-                  0x001f2e                  __dunpack
-                  0x001f7c                  __dunpack2
-                  0x001f9e                  __dreturnNaN
-                  0x001fa4                  __dunpack2exit
-                  0x001fae                  __fchop
-                  0x001ffc                  __fcompare
-                  0x002032                  ___floatdisf
-                  0x002052                  ___floatundisf
-                  0x0020b0                  _logf
-                  0x00215e                  __dPropagateNaN
-                  0x00217a                  _strtof
-                  0x00233e                  _strtod
-                  0x002340                  _atof
-                  0x002344                  _atoi
-                  0x002382                  _memcpy
-                  0x002390                  _strchr
-                  0x0023a4                  _strlen
-                  0x0023b0                  _vsprintf
-                  0x002568                  _vfprintf
-                  0x0039b2                  ___adddf3
-                  0x003aac                  ___ledf2
-                  0x003aac                  ___ltdf2
-                  0x003aac                  ___eqdf2
-                  0x003ab6                  ___gtdf2
-                  0x003ab6                  ___gedf2
-                  0x003ac0                  ___divdf3
-                  0x003b74                  ___nedf2
-                  0x003b7e                  __dpack
-                  0x003bd6                  ___extendsfdf2
-                  0x003c14                  ___fixunsdfdi
-                  0x003c76                  ___fixunsdfsi
-                  0x003cc2                  ___floatundidf
-                  0x003d18                  ___floatunsidf
-                  0x003d1c                  _frexpl
-                  0x003d1c                  _frexp
-                  0x003d56                  ___muldf3
-                  0x003e40                  ___subdf3
-                  0x003e44                  ___mulsi3
-                  0x003e44                  ___mulp32peds3
-                  0x003e44                  ___mulp32eds3
-                  0x003e9c                  ___udivmoddi3
-                  0x003f82                  ___udivdi3
-                  0x003f90                  ___umoddi3
-                  0x003f98                  ___divdi3
-                  0x003ff8                  ___moddi3
-                  0x004054                  ___muldi3
-                  0x0040a6                  __dcompare
-                  0x0040f8                  __dtype
-                  0x00411c                  ___umuldi3
-                  0x004428                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_scaled_pressure_t
-                  0x004436                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_gps_raw_int_t
-                  0x004454                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_raw_pressure_t
-                  0x004464                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_sys_status_t
-                  0x004484                  _AUAV3_AND_SLUGS_SENSOR_M
-                  0x004492                  _AUAV3_AND_SLUGS_SENSOR_ConstP
-                  0x0044a6                  _mul_wide_u32
-                  0x004500                  _mul_u32_u32_u32_sr15
-                  0x004524                  _mul_wide_s32
-                  0x00460a                  _mul_u32_s32_s32_sat
-                  0x00463a                  _mul_wide_su32
-                  0x0046fc                  _mul_s32_s32_u32_sr16
-                  0x004716                  _div_u32_round
-                  0x00476a                  _mul_u32_u32_u32_sr11_round
-                  0x00479a                  _div_repeat_u32_round
-                  0x004818                  _mul_u32_s32_u32_sr15
-                  0x00483c                  _mul_s32_s32_s32_sr28
-                  0x004860                  _mul_s32_s32_s32_sr23
-                  0x004884                  _div_s16s32_round
-                  0x004912                  _MultiWord2uLong
-                  0x00491a                  _uMultiWordShr
-                  0x004a0a                  _uMultiWordMul
-                  0x004bba                  _AUAV3_AND_EnabledSubsystem
-                  0x004bc2                  _EnablesDisablestheCom_Init
-                  0x004bce                  _EnablesDisablestheComputat
-                  0x004c18                  _EmbeddedMATLABFunctio_Init
-                  0x004c1e                  _AUA_EmbeddedMATLABFunction
-                  0x004cdc                  _A_EmbeddedMATLABFunction_i
-                  0x004d10                  _AUAV3_AND_SLUGS_SENSOR_step0
-                  0x004d4a                  _AUAV3_AND_SLUGS_SENSOR_step1
-                  0x005bc0                  _AUAV3_AND_SLUGS_SENSOR_step2
-                  0x005ce6                  _AUAV3_AND_SLUGS_SENSOR_step3
-                  0x005cfc                  _AUAV3_AND_SLUGS_SENSOR_step4
-                  0x005d12                  _AUAV3_AND_SLUGS_SENSOR_step5
-                  0x005d50                  _AUAV3_AND_SLUGS_SENSOR_step6
-                  0x005d88                  _AUAV3_AND_SLUGS_SENSOR_step7
-                  0x005dba                  _AUAV3_AND_SLUGS_SENSOR_step8
-                  0x005dc8                  _AUAV3_AND_SLUGS_SENSOR_step9
-                  0x005dd6                  _AUAV3_AND_SLUGS_SENSOR_step10
-                  0x005dec                  _AUAV3_AND_SLUGS_SENSOR_step11
-                  0x005e60                  _AUAV3_AND_SLUGS_SENSOR_step
-                  0x005e9c                  _AUAV3_AND_SLUGS_SENSOR_initialize
-                  0x0060b8                  _uartMavlinkBufferInit
-                  0x0060d2                  __U1RXInterrupt
-                  0x006116                  _isFinite
-                  0x00615a                  _InitParameterInterface
-                  0x0061f2                  _protDecodeMavlink
-                  0x00687c                  _MissionInterfaceResponse
-                  0x006e8a                  _ParameterInterfaceResponse
-                  0x00714c                  _PackHeartBeat
-                  0x007312                  _PackTextMsg
-                  0x0073dc                  _PackRawIMU
-                  0x0074a6                  _PackGpsRawInt
-                  0x007582                  _PackScaledPressure
-                  0x007644                  _PackSysStatus
-                  0x007726                  _PackRawServo
-                  0x0077ec                  _PackRawRC
-                  0x0078b4                  _sendQGCDebugMessage
-                  0x00796a                  _TxN_Data_OverU1
-                  0x0079ae                  _hex2char
-                  0x0079de                  _degMinToDeg
-                  0x007a10                  _gpSmbl
-                  0x007a60                  _myTokenizer
-                  0x007ac2                  _parseRMC
-                  0x007c48                  _parseGGA
-                  0x007ddc                  _getChecksum
-                  0x007e08                  _gpsUbloxSeparate
-                  0x007ef4                  _gpsUbloxParse
-                  0x007f38                  _getGpsUbloxMainData
-                  0x007fa6                  _gpsInit
-                  0x007faa                  _updateStatus
-                  0x007fc2                  _getGpsMainData
-                  0x00802e                  _CRC32Value
-                  0x0080ea                  _CalculateBlockCRC32
-                  0x008128                  _charsToUint16
-                  0x008132                  _charsToUint32
-                  0x008148                  _updateTimeData
-                  0x008196                  _charsToFloat
-                  0x0081ae                  _charsToDouble
-                  0x0081e8                  _updateVelocityData
-                  0x008232                  _updatePositionData
-                  0x0082d4                  _gpsParse
-                  0x008460                  _hilRead
-                  0x008462                  _hil_getRawRead
-                  0x008498                  _hil_getVned
-                  0x0084b0                  _hil_getEuler
-                  0x0084c8                  _hil_getRates
-                  0x0084e0                  _hil_getXYZ
-                  0x0084f8                  _hil_getTs
-                  0x0084fc                  _protDecodeHil
-                  0x0089de                  _cubeInit
-                  0x0089e0                  _averageData
-                  0x008a06                  _updateCubeData
-                  0x008a66                  _write2Cube
-                  0x008a68                  _convert14BitToShort
-                  0x008a7a                  __T5Interrupt
-                  0x008b2c                  _getCubeData
-                  0x008bf2                  _convert12BitToShort
-                  0x008c04                  _isCube16405
-                  0x008c06                  _updateRawADCData
-                  0x008c18                  _updateAirData
-                  0x008c3a                  _updateLoadData
-                  0x008c42                  _updateAttitude
-                  0x008c72                  _getGSLocation
-                  0x008ca8                  _updateTimeStamp
-                  0x008cbc                  _updatePosition
-                  0x008cec                  _updatePilotConsole
-                  0x008d02                  _updateDiagnosticFl
-                  0x008d1a                  _updateDiagnosticSh
-                  0x008d28                  _updateBias
-                  0x008d58                  _updateSensorData
-                  0x008de8                  _isFixValid
-                  0x008df6                  _updateSensorDiag
-                  0x008e22                  _newCircBuffer
-                  0x008e42                  _freeCircBuffer
-                  0x008e4e                  _getLength
-                  0x008e6a                  _readHead
-                  0x008e76                  _readTail
-                  0x008e82                  _peak
-                  0x008ea2                  _readFront
-                  0x008ed0                  _writeBack
-                  0x008f06                  _makeEmpty
-                  0x008f2a                  _myAtan2
-                  0x008f38                  _myPow
-                  0x008f46                  _mySqrt
-                  0x008f54                  _myAbs
-                  0x008f60                  _myAtan
-                  0x008f6e                  _myAsin
-                  0x008f7c                  _mySin
-                  0x008f8a                  _myCos
-                  0x008f98                  _myTan
-                  0x008fa6                  _myAcos
-                  0x008fb4                  _myExp
-                  0x008fc2                  _hugeDelay
-                  0x008fdc                  _smallDelay
-                  0x008fe6                  _tinyDelay
-                  0x008ff0                  _hasMode
-                  0x008ffa                  _printToUart2
-                  0x00901e                  _rt_InitInfAndNaN
-                  0x009050                  _rtIsInf
-                  0x00907c                  _rtIsInfF
-                  0x0090a8                  _rtIsNaN
-                  0x0090be                  _rtIsNaNF
-                  0x0090d4                  _mavlinkInit
-                  0x009150                  _uartBufferInit
-                  0x00916e                  __U4RXInterrupt
-                  0x0091a0                  _getGPSRawData
-                  0x0091a2                  _isGPSNovatel
-                  0x0091a4                  _rtGetInfF
-                  0x0091aa                  _rtGetInf
-                  0x0091b6                  _rtGetMinusInfF
-                  0x0091bc                  _rtGetMinusInf
-                  0x0091c8                  ___delay32
-                  0x0091e4                  _rtGetNaNF
-                  0x0091ea                  _rtGetNaN
+                  0x0002e0                  __T2Interrupt
+                  0x0006c2                  _main
+                  0x00079a                  __MI2C2Interrupt
+                  0x000fac                  __IC1Interrupt
+                  0x000fee                  __IC2Interrupt
+                  0x001030                  __IC3Interrupt
+                  0x001072                  __IC4Interrupt
+                  0x0010b4                  __IC5Interrupt
+                  0x0010f6                  __SPI1Interrupt
+                  0x0012ac                  __U1TXInterrupt
+                  0x001308                  __U4TXInterrupt
+                  0x001364                  __DefaultInterrupt
+                  0x001368                  _isspace
+                  0x0013d4                  _BusyUART2
+                  0x0013de                  _putsUART2
+                  0x001406                  _acosf
+                  0x00140a                  ___subsf3
+                  0x00140c                  ___addsf3
+                  0x0014c6                  __asinacosf
+                  0x001594                  _asinf
+                  0x001598                  _atan2f
+                  0x0015d2                  _atanf
+                  0x00169c                  _cosf
+                  0x0016a0                  ___divsf3
+                  0x001724                  _expf
+                  0x0017e8                  ___lesf2
+                  0x0017e8                  ___ltsf2
+                  0x0017e8                  ___eqsf2
+                  0x0017ec                  ___gtsf2
+                  0x0017ec                  ___gesf2
+                  0x0017f0                  ___fixsfsi
+                  0x001832                  ___fixunssfsi
+                  0x001868                  ___floatsisf
+                  0x00186e                  ___floatunsisf
+                  0x001872                  _floorf
+                  0x001882                  _fmodf
+                  0x001886                  __fmodrem
+                  0x001924                  ___nesf2
+                  0x001928                  __fpack
+                  0x001974                  __funpack
+                  0x00199e                  __funpack2
+                  0x0019ae                  __fPropagateNaN
+                  0x0019c0                  __fbopExit
+                  0x0019c8                  __fbopReturnNaN
+                  0x0019ce                  _ldexpf
+                  0x001a12                  ___mulsf3
+                  0x001a7a                  _powf
+                  0x001c40                  __sincosf
+                  0x001d12                  _sinf
+                  0x001d16                  _sqrtf
+                  0x001d80                  _tanf
+                  0x001e3a                  ___truncdfsf2
+                  0x001e90                  ___udivsi3
+                  0x001eb0                  ___umodsi3
+                  0x001eb6                  __frexpf
+                  0x001ed0                  __dunpack
+                  0x001f1e                  __dunpack2
+                  0x001f40                  __dreturnNaN
+                  0x001f46                  __dunpack2exit
+                  0x001f50                  __fchop
+                  0x001f9e                  __fcompare
+                  0x001fd4                  ___floatdisf
+                  0x001ff4                  ___floatundisf
+                  0x002052                  _logf
+                  0x002100                  __dPropagateNaN
+                  0x00211c                  _strtof
+                  0x0022e0                  _strtod
+                  0x0022e2                  _atof
+                  0x0022e6                  _atoi
+                  0x002324                  _memcpy
+                  0x002332                  _strchr
+                  0x002346                  _strlen
+                  0x002352                  _vsprintf
+                  0x00250a                  _vfprintf
+                  0x003954                  ___adddf3
+                  0x003a4e                  ___ledf2
+                  0x003a4e                  ___ltdf2
+                  0x003a4e                  ___eqdf2
+                  0x003a58                  ___gtdf2
+                  0x003a58                  ___gedf2
+                  0x003a62                  ___divdf3
+                  0x003b16                  ___nedf2
+                  0x003b20                  __dpack
+                  0x003b78                  ___extendsfdf2
+                  0x003bb6                  ___fixunsdfdi
+                  0x003c18                  ___fixunsdfsi
+                  0x003c64                  ___floatundidf
+                  0x003cba                  ___floatunsidf
+                  0x003cbe                  _frexp
+                  0x003cbe                  _frexpl
+                  0x003cf8                  ___muldf3
+                  0x003de2                  ___subdf3
+                  0x003de6                  ___mulsi3
+                  0x003de6                  ___mulp32eds3
+                  0x003de6                  ___mulp32peds3
+                  0x003e3e                  ___udivmoddi3
+                  0x003f24                  ___udivdi3
+                  0x003f32                  ___umoddi3
+                  0x003f3a                  ___divdi3
+                  0x003f9a                  ___moddi3
+                  0x003ff6                  ___muldi3
+                  0x004048                  __dcompare
+                  0x00409a                  __dtype
+                  0x0040be                  ___umuldi3
+                  0x0043ca                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_scaled_pressure_t
+                  0x0043d8                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_gps_raw_int_t
+                  0x0043f6                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_raw_pressure_t
+                  0x004406                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_sys_status_t
+                  0x004426                  _AUAV3_AND_SLUGS_SENSOR_M
+                  0x004434                  _AUAV3_AND_SLUGS_SENSOR_ConstP
+                  0x004448                  _mul_wide_u32
+                  0x0044a2                  _mul_u32_u32_u32_sr15
+                  0x0044c6                  _mul_wide_s32
+                  0x0045ac                  _mul_u32_s32_s32_sat
+                  0x0045dc                  _mul_wide_su32
+                  0x00469e                  _mul_s32_s32_u32_sr16
+                  0x0046b8                  _div_u32_round
+                  0x00470c                  _mul_u32_u32_u32_sr11_round
+                  0x00473c                  _div_repeat_u32_round
+                  0x0047ba                  _mul_u32_s32_u32_sr15
+                  0x0047de                  _mul_s32_s32_s32_sr28
+                  0x004802                  _mul_s32_s32_s32_sr23
+                  0x004826                  _div_s16s32_round
+                  0x0048b4                  _MultiWord2uLong
+                  0x0048bc                  _uMultiWordShr
+                  0x0049ac                  _uMultiWordMul
+                  0x004b5c                  _AUA_EnabledSubsystem_Start
+                  0x004b64                  _AUAV3_AND_EnabledSubsystem
+                  0x004b6c                  _EnablesDisablestheCom_Init
+                  0x004b78                  _EnablesDisablestheComputat
+                  0x004bc2                  _EmbeddedMATLABFunctio_Init
+                  0x004bc8                  _AUA_EmbeddedMATLABFunction
+                  0x004c86                  _A_EmbeddedMATLABFunction_i
+                  0x004cba                  _AUAV3_AND_SLUGS_SENSOR_step0
+                  0x005bae                  _AUAV3_AND_SLUGS_SENSOR_step1
+                  0x005d04                  _AUAV3_AND_SLUGS_SENSOR_step2
+                  0x005d1a                  _AUAV3_AND_SLUGS_SENSOR_step3
+                  0x005d30                  _AUAV3_AND_SLUGS_SENSOR_step4
+                  0x005d6e                  _AUAV3_AND_SLUGS_SENSOR_step5
+                  0x005da6                  _AUAV3_AND_SLUGS_SENSOR_step6
+                  0x005dd8                  _AUAV3_AND_SLUGS_SENSOR_step7
+                  0x005de6                  _AUAV3_AND_SLUGS_SENSOR_step8
+                  0x005df4                  _AUAV3_AND_SLUGS_SENSOR_step9
+                  0x005e0a                  _AUAV3_AND_SLUGS_SENSOR_step10
+                  0x005e7e                  _AUAV3_AND_SLUGS_SENSOR_step
+                  0x005eb6                  _AUAV3_AND_SLUGS_SENSOR_initialize
+                  0x0060e6                  _uartMavlinkBufferInit
+                  0x006100                  __U1RXInterrupt
+                  0x006144                  _isFinite
+                  0x006188                  _InitParameterInterface
+                  0x006220                  _protDecodeMavlink
+                  0x0068aa                  _MissionInterfaceResponse
+                  0x006eb8                  _ParameterInterfaceResponse
+                  0x00717a                  _PackHeartBeat
+                  0x007340                  _PackTextMsg
+                  0x00740a                  _PackRawIMU
+                  0x0074d4                  _PackGpsRawInt
+                  0x0075b0                  _PackScaledPressure
+                  0x007672                  _PackSysStatus
+                  0x007754                  _PackRawServo
+                  0x00781a                  _PackRawRC
+                  0x0078e2                  _PackVFR_HUD
+                  0x0079a6                  _sendQGCDebugMessage
+                  0x007a5c                  _TxN_Data_OverU1
+                  0x007aa0                  _hex2char
+                  0x007ad0                  _degMinToDeg
+                  0x007b02                  _gpSmbl
+                  0x007b52                  _myTokenizer
+                  0x007bb4                  _parseRMC
+                  0x007d3a                  _parseGGA
+                  0x007ece                  _getChecksum
+                  0x007efa                  _gpsUbloxSeparate
+                  0x007fe6                  _gpsUbloxParse
+                  0x00802a                  _getGpsUbloxMainData
+                  0x008098                  _gpsInit
+                  0x00809c                  _updateStatus
+                  0x0080b4                  _getGpsMainData
+                  0x008120                  _CRC32Value
+                  0x0081dc                  _CalculateBlockCRC32
+                  0x00821a                  _charsToUint16
+                  0x008224                  _charsToUint32
+                  0x00823a                  _updateTimeData
+                  0x008288                  _charsToFloat
+                  0x0082a0                  _charsToDouble
+                  0x0082da                  _updateVelocityData
+                  0x008324                  _updatePositionData
+                  0x0083c6                  _gpsParse
+                  0x008552                  _hilRead
+                  0x008554                  _hil_getRawRead
+                  0x00858a                  _hil_getVned
+                  0x0085a2                  _hil_getEuler
+                  0x0085ba                  _hil_getRates
+                  0x0085d2                  _hil_getXYZ
+                  0x0085ea                  _hil_getTs
+                  0x0085ee                  _protDecodeHil
+                  0x008ad0                  _cubeInit
+                  0x008ad2                  _averageData
+                  0x008af8                  _updateCubeData
+                  0x008b58                  _write2Cube
+                  0x008b5a                  _convert14BitToShort
+                  0x008b6c                  __T5Interrupt
+                  0x008c1e                  _getCubeData
+                  0x008ce4                  _convert12BitToShort
+                  0x008cf6                  _isCube16405
+                  0x008cf8                  _updateRawADCData
+                  0x008d0a                  _updateAirData
+                  0x008d2c                  _updateLoadData
+                  0x008d34                  _updateAttitude
+                  0x008d64                  _getGSLocation
+                  0x008d9a                  _updateTimeStamp
+                  0x008dae                  _updatePosition
+                  0x008dde                  _updatePilotConsole
+                  0x008df4                  _updateDiagnosticFl
+                  0x008e0c                  _updateDiagnosticSh
+                  0x008e1a                  _updateBias
+                  0x008e4a                  _updateSensorData
+                  0x008eda                  _isFixValid
+                  0x008ee8                  _updateSensorDiag
+                  0x008f14                  _newCircBuffer
+                  0x008f34                  _freeCircBuffer
+                  0x008f40                  _getLength
+                  0x008f5c                  _readHead
+                  0x008f68                  _readTail
+                  0x008f74                  _peak
+                  0x008f94                  _readFront
+                  0x008fc2                  _writeBack
+                  0x008ff8                  _makeEmpty
+                  0x00901c                  _myAtan2
+                  0x00902a                  _myPow
+                  0x009038                  _mySqrt
+                  0x009046                  _myAbs
+                  0x009052                  _myAtan
+                  0x009060                  _myAsin
+                  0x00906e                  _mySin
+                  0x00907c                  _myCos
+                  0x00908a                  _myTan
+                  0x009098                  _myAcos
+                  0x0090a6                  _myExp
+                  0x0090b4                  _hugeDelay
+                  0x0090ce                  _smallDelay
+                  0x0090d8                  _tinyDelay
+                  0x0090e2                  _hasMode
+                  0x0090ec                  _printToUart2
+                  0x009110                  _rt_InitInfAndNaN
+                  0x009142                  _rtIsInf
+                  0x00916e                  _rtIsInfF
+                  0x00919a                  _rtIsNaN
+                  0x0091b0                  _rtIsNaNF
+                  0x0091c6                  _mavlinkInit
+                  0x009242                  _uartBufferInit
+                  0x009260                  __U4RXInterrupt
+                  0x009292                  _getGPSRawData
+                  0x009294                  _isGPSNovatel
+                  0x009296                  _rtGetInfF
+                  0x00929c                  _rtGetInf
+                  0x0092a8                  _rtGetMinusInfF
+                  0x0092ae                  _rtGetMinusInf
+                  0x0092ba                  ___delay32
+                  0x0092d6                  _rtGetNaNF
+                  0x0092dc                  _rtGetNaN
                   0xf80004                  __FGS.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x004bba                  _AUAV3_AND_EnabledSubsystem
-                  0x004492                  _AUAV3_AND_SLUGS_SENSOR_ConstP
-                  0x004484                  _AUAV3_AND_SLUGS_SENSOR_M
-                  0x005e9c                  _AUAV3_AND_SLUGS_SENSOR_initialize
-                  0x004436                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_gps_raw_int_t
-                  0x004454                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_raw_pressure_t
-                  0x004428                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_scaled_pressure_t
-                  0x004464                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_sys_status_t
-                  0x005e60                  _AUAV3_AND_SLUGS_SENSOR_step
-                  0x004d10                  _AUAV3_AND_SLUGS_SENSOR_step0
-                  0x004d4a                  _AUAV3_AND_SLUGS_SENSOR_step1
-                  0x005dd6                  _AUAV3_AND_SLUGS_SENSOR_step10
-                  0x005dec                  _AUAV3_AND_SLUGS_SENSOR_step11
-                  0x005bc0                  _AUAV3_AND_SLUGS_SENSOR_step2
-                  0x005ce6                  _AUAV3_AND_SLUGS_SENSOR_step3
-                  0x005cfc                  _AUAV3_AND_SLUGS_SENSOR_step4
-                  0x005d12                  _AUAV3_AND_SLUGS_SENSOR_step5
-                  0x005d50                  _AUAV3_AND_SLUGS_SENSOR_step6
-                  0x005d88                  _AUAV3_AND_SLUGS_SENSOR_step7
-                  0x005dba                  _AUAV3_AND_SLUGS_SENSOR_step8
-                  0x005dc8                  _AUAV3_AND_SLUGS_SENSOR_step9
-                  0x004c1e                  _AUA_EmbeddedMATLABFunction
-                  0x004cdc                  _A_EmbeddedMATLABFunction_i
-                  0x001432                  _BusyUART2
-                  0x00802e                  _CRC32Value
-                  0x0080ea                  _CalculateBlockCRC32
-                  0x004c18                  _EmbeddedMATLABFunctio_Init
-                  0x004bc2                  _EnablesDisablestheCom_Init
-                  0x004bce                  _EnablesDisablestheComputat
-                  0x00615a                  _InitParameterInterface
-                  0x00687c                  _MissionInterfaceResponse
-                  0x004912                  _MultiWord2uLong
-                  0x0074a6                  _PackGpsRawInt
-                  0x00714c                  _PackHeartBeat
-                  0x0073dc                  _PackRawIMU
-                  0x0077ec                  _PackRawRC
-                  0x007726                  _PackRawServo
-                  0x007582                  _PackScaledPressure
-                  0x007644                  _PackSysStatus
-                  0x007312                  _PackTextMsg
-                  0x006e8a                  _ParameterInterfaceResponse
-                  0x00796a                  _TxN_Data_OverU1
-                  0x0013c2                  __DefaultInterrupt
+                  0x004b64                  _AUAV3_AND_EnabledSubsystem
+                  0x004434                  _AUAV3_AND_SLUGS_SENSOR_ConstP
+                  0x004426                  _AUAV3_AND_SLUGS_SENSOR_M
+                  0x005eb6                  _AUAV3_AND_SLUGS_SENSOR_initialize
+                  0x0043d8                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_gps_raw_int_t
+                  0x0043f6                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_raw_pressure_t
+                  0x0043ca                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_scaled_pressure_t
+                  0x004406                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_sys_status_t
+                  0x005e7e                  _AUAV3_AND_SLUGS_SENSOR_step
+                  0x004cba                  _AUAV3_AND_SLUGS_SENSOR_step0
+                  0x005bae                  _AUAV3_AND_SLUGS_SENSOR_step1
+                  0x005e0a                  _AUAV3_AND_SLUGS_SENSOR_step10
+                  0x005d04                  _AUAV3_AND_SLUGS_SENSOR_step2
+                  0x005d1a                  _AUAV3_AND_SLUGS_SENSOR_step3
+                  0x005d30                  _AUAV3_AND_SLUGS_SENSOR_step4
+                  0x005d6e                  _AUAV3_AND_SLUGS_SENSOR_step5
+                  0x005da6                  _AUAV3_AND_SLUGS_SENSOR_step6
+                  0x005dd8                  _AUAV3_AND_SLUGS_SENSOR_step7
+                  0x005de6                  _AUAV3_AND_SLUGS_SENSOR_step8
+                  0x005df4                  _AUAV3_AND_SLUGS_SENSOR_step9
+                  0x004bc8                  _AUA_EmbeddedMATLABFunction
+                  0x004b5c                  _AUA_EnabledSubsystem_Start
+                  0x004c86                  _A_EmbeddedMATLABFunction_i
+                  0x0013d4                  _BusyUART2
+                  0x008120                  _CRC32Value
+                  0x0081dc                  _CalculateBlockCRC32
+                  0x004bc2                  _EmbeddedMATLABFunctio_Init
+                  0x004b6c                  _EnablesDisablestheCom_Init
+                  0x004b78                  _EnablesDisablestheComputat
+                  0x006188                  _InitParameterInterface
+                  0x0068aa                  _MissionInterfaceResponse
+                  0x0048b4                  _MultiWord2uLong
+                  0x0074d4                  _PackGpsRawInt
+                  0x00717a                  _PackHeartBeat
+                  0x00740a                  _PackRawIMU
+                  0x00781a                  _PackRawRC
+                  0x007754                  _PackRawServo
+                  0x0075b0                  _PackScaledPressure
+                  0x007672                  _PackSysStatus
+                  0x007340                  _PackTextMsg
+                  0x0078e2                  _PackVFR_HUD
+                  0x006eb8                  _ParameterInterfaceResponse
+                  0x007a5c                  _TxN_Data_OverU1
+                  0x001364                  __DefaultInterrupt
                   0xf80004                  __FGS.sec
-                  0x00100a                  __IC1Interrupt
-                  0x00104c                  __IC2Interrupt
-                  0x00108e                  __IC3Interrupt
-                  0x0010d0                  __IC4Interrupt
-                  0x001112                  __IC5Interrupt
-                  0x0007f8                  __MI2C2Interrupt
-                  0x001154                  __SPI1Interrupt
-                  0x0002e0                  __T1Interrupt
-                  0x008a7a                  __T5Interrupt
-                  0x0060d2                  __U1RXInterrupt
-                  0x00130a                  __U1TXInterrupt
-                  0x00916e                  __U4RXInterrupt
-                  0x001366                  __U4TXInterrupt
-                  0x0039b2                  ___adddf3
-                  0x00146a                  ___addsf3
-                  0x0091c8                  ___delay32
-                  0x003ac0                  ___divdf3
-                  0x003f98                  ___divdi3
-                  0x0016fe                  ___divsf3
-                  0x003aac                  ___eqdf2
-                  0x001846                  ___eqsf2
-                  0x003bd6                  ___extendsfdf2
-                  0x00184e                  ___fixsfsi
-                  0x003c14                  ___fixunsdfdi
-                  0x003c76                  ___fixunsdfsi
-                  0x001890                  ___fixunssfsi
-                  0x002032                  ___floatdisf
-                  0x0018c6                  ___floatsisf
-                  0x003cc2                  ___floatundidf
-                  0x002052                  ___floatundisf
-                  0x003d18                  ___floatunsidf
-                  0x0018cc                  ___floatunsisf
-                  0x003ab6                  ___gedf2
-                  0x00184a                  ___gesf2
-                  0x003ab6                  ___gtdf2
-                  0x00184a                  ___gtsf2
-                  0x003aac                  ___ledf2
-                  0x001846                  ___lesf2
-                  0x003aac                  ___ltdf2
-                  0x001846                  ___ltsf2
-                  0x003ff8                  ___moddi3
-                  0x003d56                  ___muldf3
-                  0x004054                  ___muldi3
-                  0x003e44                  ___mulp32eds3
-                  0x003e44                  ___mulp32peds3
-                  0x001a70                  ___mulsf3
-                  0x003e44                  ___mulsi3
-                  0x003b74                  ___nedf2
-                  0x001982                  ___nesf2
-                  0x003e40                  ___subdf3
-                  0x001468                  ___subsf3
-                  0x001e98                  ___truncdfsf2
-                  0x003f82                  ___udivdi3
-                  0x003e9c                  ___udivmoddi3
-                  0x001eee                  ___udivsi3
-                  0x003f90                  ___umoddi3
-                  0x001f0e                  ___umodsi3
-                  0x00411c                  ___umuldi3
-                  0x001524                  __asinacosf
-                  0x00215e                  __dPropagateNaN
+                  0x000fac                  __IC1Interrupt
+                  0x000fee                  __IC2Interrupt
+                  0x001030                  __IC3Interrupt
+                  0x001072                  __IC4Interrupt
+                  0x0010b4                  __IC5Interrupt
+                  0x00079a                  __MI2C2Interrupt
+                  0x0010f6                  __SPI1Interrupt
+                  0x0002e0                  __T2Interrupt
+                  0x008b6c                  __T5Interrupt
+                  0x006100                  __U1RXInterrupt
+                  0x0012ac                  __U1TXInterrupt
+                  0x009260                  __U4RXInterrupt
+                  0x001308                  __U4TXInterrupt
+                  0x003954                  ___adddf3
+                  0x00140c                  ___addsf3
+                  0x0092ba                  ___delay32
+                  0x003a62                  ___divdf3
+                  0x003f3a                  ___divdi3
+                  0x0016a0                  ___divsf3
+                  0x003a4e                  ___eqdf2
+                  0x0017e8                  ___eqsf2
+                  0x003b78                  ___extendsfdf2
+                  0x0017f0                  ___fixsfsi
+                  0x003bb6                  ___fixunsdfdi
+                  0x003c18                  ___fixunsdfsi
+                  0x001832                  ___fixunssfsi
+                  0x001fd4                  ___floatdisf
+                  0x001868                  ___floatsisf
+                  0x003c64                  ___floatundidf
+                  0x001ff4                  ___floatundisf
+                  0x003cba                  ___floatunsidf
+                  0x00186e                  ___floatunsisf
+                  0x003a58                  ___gedf2
+                  0x0017ec                  ___gesf2
+                  0x003a58                  ___gtdf2
+                  0x0017ec                  ___gtsf2
+                  0x003a4e                  ___ledf2
+                  0x0017e8                  ___lesf2
+                  0x003a4e                  ___ltdf2
+                  0x0017e8                  ___ltsf2
+                  0x003f9a                  ___moddi3
+                  0x003cf8                  ___muldf3
+                  0x003ff6                  ___muldi3
+                  0x003de6                  ___mulp32eds3
+                  0x003de6                  ___mulp32peds3
+                  0x001a12                  ___mulsf3
+                  0x003de6                  ___mulsi3
+                  0x003b16                  ___nedf2
+                  0x001924                  ___nesf2
+                  0x003de2                  ___subdf3
+                  0x00140a                  ___subsf3
+                  0x001e3a                  ___truncdfsf2
+                  0x003f24                  ___udivdi3
+                  0x003e3e                  ___udivmoddi3
+                  0x001e90                  ___udivsi3
+                  0x003f32                  ___umoddi3
+                  0x001eb0                  ___umodsi3
+                  0x0040be                  ___umuldi3
+                  0x0014c6                  __asinacosf
+                  0x002100                  __dPropagateNaN
                   0x000238                  __data_init
                   0x000238                  __data_init_extended
-                  0x0040a6                  __dcompare
-                  0x003b7e                  __dpack
-                  0x001f9e                  __dreturnNaN
-                  0x0040f8                  __dtype
-                  0x001f2e                  __dunpack
-                  0x001f7c                  __dunpack2
-                  0x001fa4                  __dunpack2exit
-                  0x001a0c                  __fPropagateNaN
-                  0x001a1e                  __fbopExit
-                  0x001a26                  __fbopReturnNaN
-                  0x001fae                  __fchop
-                  0x001ffc                  __fcompare
-                  0x0018e4                  __fmodrem
-                  0x001986                  __fpack
-                  0x001f14                  __frexpf
-                  0x0019d2                  __funpack
-                  0x0019fc                  __funpack2
+                  0x004048                  __dcompare
+                  0x003b20                  __dpack
+                  0x001f40                  __dreturnNaN
+                  0x00409a                  __dtype
+                  0x001ed0                  __dunpack
+                  0x001f1e                  __dunpack2
+                  0x001f46                  __dunpack2exit
+                  0x0019ae                  __fPropagateNaN
+                  0x0019c0                  __fbopExit
+                  0x0019c8                  __fbopReturnNaN
+                  0x001f50                  __fchop
+                  0x001f9e                  __fcompare
+                  0x001886                  __fmodrem
+                  0x001928                  __fpack
+                  0x001eb6                  __frexpf
+                  0x001974                  __funpack
+                  0x00199e                  __funpack2
                   0x00022c                  __psv_init
                   0x000200                  __resetPRI
-                  0x001c9e                  __sincosf
-                  0x001464                  _acosf
-                  0x0015f2                  _asinf
-                  0x0015f6                  _atan2f
-                  0x001630                  _atanf
-                  0x002340                  _atof
-                  0x002344                  _atoi
-                  0x0089e0                  _averageData
-                  0x0081ae                  _charsToDouble
-                  0x008196                  _charsToFloat
-                  0x008128                  _charsToUint16
-                  0x008132                  _charsToUint32
-                  0x008bf2                  _convert12BitToShort
-                  0x008a68                  _convert14BitToShort
-                  0x0016fa                  _cosf
-                  0x0089de                  _cubeInit
-                  0x0079de                  _degMinToDeg
-                  0x00479a                  _div_repeat_u32_round
-                  0x004884                  _div_s16s32_round
-                  0x004716                  _div_u32_round
-                  0x001782                  _expf
-                  0x0018d0                  _floorf
-                  0x0018e0                  _fmodf
-                  0x008e42                  _freeCircBuffer
-                  0x003d1c                  _frexp
-                  0x003d1c                  _frexpl
-                  0x007ddc                  _getChecksum
-                  0x008b2c                  _getCubeData
-                  0x0091a0                  _getGPSRawData
-                  0x008c72                  _getGSLocation
-                  0x007fc2                  _getGpsMainData
-                  0x007f38                  _getGpsUbloxMainData
-                  0x008e4e                  _getLength
-                  0x007a10                  _gpSmbl
-                  0x007fa6                  _gpsInit
-                  0x0082d4                  _gpsParse
-                  0x007ef4                  _gpsUbloxParse
-                  0x007e08                  _gpsUbloxSeparate
-                  0x008ff0                  _hasMode
-                  0x0079ae                  _hex2char
-                  0x008460                  _hilRead
-                  0x0084b0                  _hil_getEuler
-                  0x0084c8                  _hil_getRates
-                  0x008462                  _hil_getRawRead
-                  0x0084f8                  _hil_getTs
-                  0x008498                  _hil_getVned
-                  0x0084e0                  _hil_getXYZ
-                  0x008fc2                  _hugeDelay
-                  0x008c04                  _isCube16405
-                  0x006116                  _isFinite
-                  0x008de8                  _isFixValid
-                  0x0091a2                  _isGPSNovatel
-                  0x0013c6                  _isspace
-                  0x001a2c                  _ldexpf
-                  0x0020b0                  _logf
-                  0x000728                  _main
-                  0x008f06                  _makeEmpty
-                  0x0090d4                  _mavlinkInit
-                  0x002382                  _memcpy
-                  0x004860                  _mul_s32_s32_s32_sr23
-                  0x00483c                  _mul_s32_s32_s32_sr28
-                  0x0046fc                  _mul_s32_s32_u32_sr16
-                  0x00460a                  _mul_u32_s32_s32_sat
-                  0x004818                  _mul_u32_s32_u32_sr15
-                  0x00476a                  _mul_u32_u32_u32_sr11_round
-                  0x004500                  _mul_u32_u32_u32_sr15
-                  0x004524                  _mul_wide_s32
-                  0x00463a                  _mul_wide_su32
-                  0x0044a6                  _mul_wide_u32
-                  0x008f54                  _myAbs
-                  0x008fa6                  _myAcos
-                  0x008f6e                  _myAsin
-                  0x008f60                  _myAtan
-                  0x008f2a                  _myAtan2
-                  0x008f8a                  _myCos
-                  0x008fb4                  _myExp
-                  0x008f38                  _myPow
-                  0x008f7c                  _mySin
-                  0x008f46                  _mySqrt
-                  0x008f98                  _myTan
-                  0x007a60                  _myTokenizer
-                  0x008e22                  _newCircBuffer
-                  0x007c48                  _parseGGA
-                  0x007ac2                  _parseRMC
-                  0x008e82                  _peak
-                  0x001ad8                  _powf
-                  0x008ffa                  _printToUart2
-                  0x0084fc                  _protDecodeHil
-                  0x0061f2                  _protDecodeMavlink
-                  0x00143c                  _putsUART2
-                  0x008ea2                  _readFront
-                  0x008e6a                  _readHead
-                  0x008e76                  _readTail
-                  0x0091aa                  _rtGetInf
-                  0x0091a4                  _rtGetInfF
-                  0x0091bc                  _rtGetMinusInf
-                  0x0091b6                  _rtGetMinusInfF
-                  0x0091ea                  _rtGetNaN
-                  0x0091e4                  _rtGetNaNF
-                  0x009050                  _rtIsInf
-                  0x00907c                  _rtIsInfF
-                  0x0090a8                  _rtIsNaN
-                  0x0090be                  _rtIsNaNF
-                  0x00901e                  _rt_InitInfAndNaN
-                  0x0078b4                  _sendQGCDebugMessage
-                  0x001d70                  _sinf
-                  0x008fdc                  _smallDelay
-                  0x001d74                  _sqrtf
-                  0x002390                  _strchr
-                  0x0023a4                  _strlen
-                  0x00233e                  _strtod
-                  0x00217a                  _strtof
-                  0x001dde                  _tanf
-                  0x008fe6                  _tinyDelay
-                  0x004a0a                  _uMultiWordMul
-                  0x00491a                  _uMultiWordShr
-                  0x009150                  _uartBufferInit
-                  0x0060b8                  _uartMavlinkBufferInit
-                  0x008c18                  _updateAirData
-                  0x008c42                  _updateAttitude
-                  0x008d28                  _updateBias
-                  0x008a06                  _updateCubeData
-                  0x008d02                  _updateDiagnosticFl
-                  0x008d1a                  _updateDiagnosticSh
-                  0x008c3a                  _updateLoadData
-                  0x008cec                  _updatePilotConsole
-                  0x008cbc                  _updatePosition
-                  0x008232                  _updatePositionData
-                  0x008c06                  _updateRawADCData
-                  0x008d58                  _updateSensorData
-                  0x008df6                  _updateSensorDiag
-                  0x007faa                  _updateStatus
-                  0x008148                  _updateTimeData
-                  0x008ca8                  _updateTimeStamp
-                  0x0081e8                  _updateVelocityData
-                  0x002568                  _vfprintf
-                  0x0023b0                  _vsprintf
-                  0x008a66                  _write2Cube
-                  0x008ed0                  _writeBack
+                  0x001c40                  __sincosf
+                  0x001406                  _acosf
+                  0x001594                  _asinf
+                  0x001598                  _atan2f
+                  0x0015d2                  _atanf
+                  0x0022e2                  _atof
+                  0x0022e6                  _atoi
+                  0x008ad2                  _averageData
+                  0x0082a0                  _charsToDouble
+                  0x008288                  _charsToFloat
+                  0x00821a                  _charsToUint16
+                  0x008224                  _charsToUint32
+                  0x008ce4                  _convert12BitToShort
+                  0x008b5a                  _convert14BitToShort
+                  0x00169c                  _cosf
+                  0x008ad0                  _cubeInit
+                  0x007ad0                  _degMinToDeg
+                  0x00473c                  _div_repeat_u32_round
+                  0x004826                  _div_s16s32_round
+                  0x0046b8                  _div_u32_round
+                  0x001724                  _expf
+                  0x001872                  _floorf
+                  0x001882                  _fmodf
+                  0x008f34                  _freeCircBuffer
+                  0x003cbe                  _frexp
+                  0x003cbe                  _frexpl
+                  0x007ece                  _getChecksum
+                  0x008c1e                  _getCubeData
+                  0x009292                  _getGPSRawData
+                  0x008d64                  _getGSLocation
+                  0x0080b4                  _getGpsMainData
+                  0x00802a                  _getGpsUbloxMainData
+                  0x008f40                  _getLength
+                  0x007b02                  _gpSmbl
+                  0x008098                  _gpsInit
+                  0x0083c6                  _gpsParse
+                  0x007fe6                  _gpsUbloxParse
+                  0x007efa                  _gpsUbloxSeparate
+                  0x0090e2                  _hasMode
+                  0x007aa0                  _hex2char
+                  0x008552                  _hilRead
+                  0x0085a2                  _hil_getEuler
+                  0x0085ba                  _hil_getRates
+                  0x008554                  _hil_getRawRead
+                  0x0085ea                  _hil_getTs
+                  0x00858a                  _hil_getVned
+                  0x0085d2                  _hil_getXYZ
+                  0x0090b4                  _hugeDelay
+                  0x008cf6                  _isCube16405
+                  0x006144                  _isFinite
+                  0x008eda                  _isFixValid
+                  0x009294                  _isGPSNovatel
+                  0x001368                  _isspace
+                  0x0019ce                  _ldexpf
+                  0x002052                  _logf
+                  0x0006c2                  _main
+                  0x008ff8                  _makeEmpty
+                  0x0091c6                  _mavlinkInit
+                  0x002324                  _memcpy
+                  0x004802                  _mul_s32_s32_s32_sr23
+                  0x0047de                  _mul_s32_s32_s32_sr28
+                  0x00469e                  _mul_s32_s32_u32_sr16
+                  0x0045ac                  _mul_u32_s32_s32_sat
+                  0x0047ba                  _mul_u32_s32_u32_sr15
+                  0x00470c                  _mul_u32_u32_u32_sr11_round
+                  0x0044a2                  _mul_u32_u32_u32_sr15
+                  0x0044c6                  _mul_wide_s32
+                  0x0045dc                  _mul_wide_su32
+                  0x004448                  _mul_wide_u32
+                  0x009046                  _myAbs
+                  0x009098                  _myAcos
+                  0x009060                  _myAsin
+                  0x009052                  _myAtan
+                  0x00901c                  _myAtan2
+                  0x00907c                  _myCos
+                  0x0090a6                  _myExp
+                  0x00902a                  _myPow
+                  0x00906e                  _mySin
+                  0x009038                  _mySqrt
+                  0x00908a                  _myTan
+                  0x007b52                  _myTokenizer
+                  0x008f14                  _newCircBuffer
+                  0x007d3a                  _parseGGA
+                  0x007bb4                  _parseRMC
+                  0x008f74                  _peak
+                  0x001a7a                  _powf
+                  0x0090ec                  _printToUart2
+                  0x0085ee                  _protDecodeHil
+                  0x006220                  _protDecodeMavlink
+                  0x0013de                  _putsUART2
+                  0x008f94                  _readFront
+                  0x008f5c                  _readHead
+                  0x008f68                  _readTail
+                  0x00929c                  _rtGetInf
+                  0x009296                  _rtGetInfF
+                  0x0092ae                  _rtGetMinusInf
+                  0x0092a8                  _rtGetMinusInfF
+                  0x0092dc                  _rtGetNaN
+                  0x0092d6                  _rtGetNaNF
+                  0x009142                  _rtIsInf
+                  0x00916e                  _rtIsInfF
+                  0x00919a                  _rtIsNaN
+                  0x0091b0                  _rtIsNaNF
+                  0x009110                  _rt_InitInfAndNaN
+                  0x0079a6                  _sendQGCDebugMessage
+                  0x001d12                  _sinf
+                  0x0090ce                  _smallDelay
+                  0x001d16                  _sqrtf
+                  0x002332                  _strchr
+                  0x002346                  _strlen
+                  0x0022e0                  _strtod
+                  0x00211c                  _strtof
+                  0x001d80                  _tanf
+                  0x0090d8                  _tinyDelay
+                  0x0049ac                  _uMultiWordMul
+                  0x0048bc                  _uMultiWordShr
+                  0x009242                  _uartBufferInit
+                  0x0060e6                  _uartMavlinkBufferInit
+                  0x008d0a                  _updateAirData
+                  0x008d34                  _updateAttitude
+                  0x008e1a                  _updateBias
+                  0x008af8                  _updateCubeData
+                  0x008df4                  _updateDiagnosticFl
+                  0x008e0c                  _updateDiagnosticSh
+                  0x008d2c                  _updateLoadData
+                  0x008dde                  _updatePilotConsole
+                  0x008dae                  _updatePosition
+                  0x008324                  _updatePositionData
+                  0x008cf8                  _updateRawADCData
+                  0x008e4a                  _updateSensorData
+                  0x008ee8                  _updateSensorDiag
+                  0x00809c                  _updateStatus
+                  0x00823a                  _updateTimeData
+                  0x008d9a                  _updateTimeStamp
+                  0x0082da                  _updateVelocityData
+                  0x00250a                  _vfprintf
+                  0x002352                  _vsprintf
+                  0x008b58                  _write2Cube
+                  0x008fc2                  _writeBack
 
 Memory Configuration
 
@@ -1129,7 +1131,7 @@ LOAD c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200       0x3f60
+.text             0x000200       0x3f02
  *(.init)
  .init            0x000200         0x38 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libpic30-elf.a(crt0_extendedep.o)
                   0x000200                  __resetPRI
@@ -1141,243 +1143,243 @@ LOAD c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002e0        0x518 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
-                  0x0002e0                  __T1Interrupt
-                  0x000728                  _main
- .isr.text        0x0007f8        0x812 build/default/production/MCHP_I2C2_Interrupt.o
-                  0x0007f8                  __MI2C2Interrupt
- .isr.text        0x00100a        0x14a build/default/production/MCHP_IC_Interrupt.o
-                  0x00100a                  __IC1Interrupt
-                  0x00104c                  __IC2Interrupt
-                  0x00108e                  __IC3Interrupt
-                  0x0010d0                  __IC4Interrupt
-                  0x001112                  __IC5Interrupt
- .isr.text        0x001154        0x1b6 build/default/production/MCHP_SPI1_Interrupt.o
-                  0x001154                  __SPI1Interrupt
- .isr.text        0x00130a         0x5c build/default/production/MCHP_UART1_Interrupt.o
-                  0x00130a                  __U1TXInterrupt
- .isr.text        0x001366         0x5c build/default/production/MCHP_UART4_Interrupt.o
-                  0x001366                  __U4TXInterrupt
- .isr             0x0013c2          0x4 default_isr
-                  0x0013c2                  __DefaultInterrupt
+ .isr.text        0x0002e0        0x4ba build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
+                  0x0002e0                  __T2Interrupt
+                  0x0006c2                  _main
+ .isr.text        0x00079a        0x812 build/default/production/MCHP_I2C2_Interrupt.o
+                  0x00079a                  __MI2C2Interrupt
+ .isr.text        0x000fac        0x14a build/default/production/MCHP_IC_Interrupt.o
+                  0x000fac                  __IC1Interrupt
+                  0x000fee                  __IC2Interrupt
+                  0x001030                  __IC3Interrupt
+                  0x001072                  __IC4Interrupt
+                  0x0010b4                  __IC5Interrupt
+ .isr.text        0x0010f6        0x1b6 build/default/production/MCHP_SPI1_Interrupt.o
+                  0x0010f6                  __SPI1Interrupt
+ .isr.text        0x0012ac         0x5c build/default/production/MCHP_UART1_Interrupt.o
+                  0x0012ac                  __U1TXInterrupt
+ .isr.text        0x001308         0x5c build/default/production/MCHP_UART4_Interrupt.o
+                  0x001308                  __U4TXInterrupt
+ .isr             0x001364          0x4 default_isr
+                  0x001364                  __DefaultInterrupt
  *(.libc)
- .libc            0x0013c6         0x10 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(isspace.epeso)
-                  0x0013c6                  _isspace
- .libc            0x0013d6         0x5c c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.a(writeep.Leo)
-                  0x0013d6                  _write
+ .libc            0x001368         0x10 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(isspace.epeso)
+                  0x001368                  _isspace
+ .libc            0x001378         0x5c c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.a(writeep.Leo)
+                  0x001378                  _write
  *(.libm)
  *(.libdsp)
  *(.lib*)
- .libperi         0x001432          0xa C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\dsPIC33E\libp33EP512MU810-elf.a(BusyUART2.o)
-                  0x001432                  _BusyUART2
- .libperi         0x00143c         0x28 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\dsPIC33E\libp33EP512MU810-elf.a(putsUART2.o)
-                  0x00143c                  _putsUART2
- .libm.acosf      0x001464          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(acosf.epeo)
-                  0x001464                  _acosf
- .libm.subsf3     0x001468         0xbc C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(addsf3.epeo)
-                  0x001468                  ___subsf3
-                  0x00146a                  ___addsf3
+ .libperi         0x0013d4          0xa C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\dsPIC33E\libp33EP512MU810-elf.a(BusyUART2.o)
+                  0x0013d4                  _BusyUART2
+ .libperi         0x0013de         0x28 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\dsPIC33E\libp33EP512MU810-elf.a(putsUART2.o)
+                  0x0013de                  _putsUART2
+ .libm.acosf      0x001406          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(acosf.epeo)
+                  0x001406                  _acosf
+ .libm.subsf3     0x00140a         0xbc C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(addsf3.epeo)
+                  0x00140a                  ___subsf3
+                  0x00140c                  ___addsf3
  .libm.asinacosf
-                  0x001524         0xce C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(asinacosf.epeo)
-                  0x001524                  __asinacosf
- .libm.asinf      0x0015f2          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(asinf.epeo)
-                  0x0015f2                  _asinf
- .libm.atanf      0x0015f6         0x3a C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(atan2f.epeo)
-                  0x0015f6                  _atan2f
- .libm.atanf      0x001630         0xca C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(atanf.epeo)
-                  0x001630                  _atanf
- .libm.cosf       0x0016fa          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(cosf.epeo)
-                  0x0016fa                  _cosf
- .libm.divfs3     0x0016fe         0x84 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(divsf3.epeo)
-                  0x0016fe                  ___divsf3
- .libm.expf       0x001782         0xc4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(expf.epeo)
-                  0x001782                  _expf
- .libm.eqsf2      0x001846          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(feqltle.epeo)
-                  0x001846                  ___eqsf2
-                  0x001846                  ___ltsf2
-                  0x001846                  ___lesf2
- .libm.gtsf2      0x00184a          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fgtge.epeo)
-                  0x00184a                  ___gesf2
-                  0x00184a                  ___gtsf2
- .libm.fixsfsi    0x00184e         0x42 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fixsfsi.epeo)
-                  0x00184e                  _(float, int, long long, short, float, short, int)
+                  0x0014c6         0xce C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(asinacosf.epeo)
+                  0x0014c6                  __asinacosf
+ .libm.asinf      0x001594          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(asinf.epeo)
+                  0x001594                  _asinf
+ .libm.atanf      0x001598         0x3a C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(atan2f.epeo)
+                  0x001598                  _atan2f
+ .libm.atanf      0x0015d2         0xca C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(atanf.epeo)
+                  0x0015d2                  _atanf
+ .libm.cosf       0x00169c          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(cosf.epeo)
+                  0x00169c                  _cosf
+ .libm.divfs3     0x0016a0         0x84 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(divsf3.epeo)
+                  0x0016a0                  ___divsf3
+ .libm.expf       0x001724         0xc4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(expf.epeo)
+                  0x001724                  _expf
+ .libm.eqsf2      0x0017e8          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(feqltle.epeo)
+                  0x0017e8                  ___eqsf2
+                  0x0017e8                  ___ltsf2
+                  0x0017e8                  ___lesf2
+ .libm.gtsf2      0x0017ec          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fgtge.epeo)
+                  0x0017ec                  ___gesf2
+                  0x0017ec                  ___gtsf2
+ .libm.fixsfsi    0x0017f0         0x42 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fixsfsi.epeo)
+                  0x0017f0                  _(float, int, long long, short, float, short, int)
  .libm.fixunssfsi
-                  0x001890         0x36 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fixunssfsi.epeo)
-                  0x001890                  ___fixunssfsi
+                  0x001832         0x36 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fixunssfsi.epeo)
+                  0x001832                  ___fixunssfsi
  .libm.floatsisf
-                  0x0018c6          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatsisf.epeo)
-                  0x0018c6                  ___floatsisf
+                  0x001868          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatsisf.epeo)
+                  0x001868                  ___floatsisf
  .libm.floatunsisf
-                  0x0018cc          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatunsisf.epeo)
-                  0x0018cc                  ___floatunsisf
- .libm.floorf     0x0018d0         0x10 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floorf.epeo)
-                  0x0018d0                  _floorf
- .libm.fmodf      0x0018e0          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fmodf.epeo)
-                  0x0018e0                  _fmodf
- .libm.fmodrem    0x0018e4         0x9e C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fmodrem.epeo)
-                  0x0018e4                  __fmodrem
- .libm.nesf2      0x001982          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fne.epeo)
-                  0x001982                  ___nesf2
- .libm.fpack      0x001986         0x4c C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fpack.epeo)
-                  0x001986                  __fpack
- .libm.funpack    0x0019d2         0x2a C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(funpack.epeo)
-                  0x0019d2                  __funpack
+                  0x00186e          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatunsisf.epeo)
+                  0x00186e                  ___floatunsisf
+ .libm.floorf     0x001872         0x10 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floorf.epeo)
+                  0x001872                  _floorf
+ .libm.fmodf      0x001882          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fmodf.epeo)
+                  0x001882                  _fmodf
+ .libm.fmodrem    0x001886         0x9e C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fmodrem.epeo)
+                  0x001886                  __fmodrem
+ .libm.nesf2      0x001924          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fne.epeo)
+                  0x001924                  ___nesf2
+ .libm.fpack      0x001928         0x4c C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fpack.epeo)
+                  0x001928                  __fpack
+ .libm.funpack    0x001974         0x2a C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(funpack.epeo)
+                  0x001974                  __funpack
  .libm.funpack2
-                  0x0019fc         0x10 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(funpack2.epeo)
-                  0x0019fc                  __funpack2
+                  0x00199e         0x10 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(funpack2.epeo)
+                  0x00199e                  __funpack2
  .libm.fPropagateNaN
-                  0x001a0c         0x12 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(futil.epeo)
-                  0x001a0c                  __fPropagateNaN
+                  0x0019ae         0x12 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(futil.epeo)
+                  0x0019ae                  __fPropagateNaN
  .libm.fbobExit
-                  0x001a1e          0x8 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(futil.epeo)
-                  0x001a1e                  __fbopExit
+                  0x0019c0          0x8 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(futil.epeo)
+                  0x0019c0                  __fbopExit
  .libm.fbopReturnNaN
-                  0x001a26          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(futil.epeo)
-                  0x001a26                  __fbopReturnNaN
- .libm.ldexpf     0x001a2c         0x44 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(ldexpf.epeo)
-                  0x001a2c                  _ldexpf
- .libm.mulsf3     0x001a70         0x68 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(mulsf3.epeo)
-                  0x001a70                  ___mulsf3
- .libm.powf       0x001ad8        0x1c6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(powf.epeo)
-                  0x001ad8                  _powf
- .libm.sincosf    0x001c9e         0xd2 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(sincosf.epeo)
-                  0x001c9e                  __sincosf
- .libm.sinf       0x001d70          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(sinf.epeo)
-                  0x001d70                  _sinf
- .libm.sqrtf      0x001d74         0x6a C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(sqrtf.epeo)
-                  0x001d74                  _sqrtf
- .libm.tanf       0x001dde         0xba C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(tanf.epeo)
-                  0x001dde                  _tanf
+                  0x0019c8          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(futil.epeo)
+                  0x0019c8                  __fbopReturnNaN
+ .libm.ldexpf     0x0019ce         0x44 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(ldexpf.epeo)
+                  0x0019ce                  _ldexpf
+ .libm.mulsf3     0x001a12         0x68 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(mulsf3.epeo)
+                  0x001a12                  ___mulsf3
+ .libm.powf       0x001a7a        0x1c6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(powf.epeo)
+                  0x001a7a                  _powf
+ .libm.sincosf    0x001c40         0xd2 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(sincosf.epeo)
+                  0x001c40                  __sincosf
+ .libm.sinf       0x001d12          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(sinf.epeo)
+                  0x001d12                  _sinf
+ .libm.sqrtf      0x001d16         0x6a C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(sqrtf.epeo)
+                  0x001d16                  _sqrtf
+ .libm.tanf       0x001d80         0xba C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(tanf.epeo)
+                  0x001d80                  _tanf
  .libm.truncdfsf2
-                  0x001e98         0x56 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(truncdfsf.epeo)
-                  0x001e98                  ___truncdfsf2
- .libm.udivsi3    0x001eee         0x20 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(udivsi3.epeo)
-                  0x001eee                  ___udivsi3
- .libm.umodsi3    0x001f0e          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(umodsi3.epeo)
-                  0x001f0e                  ___umodsi3
- .libm.frexpf     0x001f14         0x1a C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(_frexpf.epeo)
-                  0x001f14                  __frexpf
- .libm.dunpack    0x001f2e         0x4e C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(dunpack.epeo)
-                  0x001f2e                  __dunpack
+                  0x001e3a         0x56 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(truncdfsf.epeo)
+                  0x001e3a                  ___truncdfsf2
+ .libm.udivsi3    0x001e90         0x20 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(udivsi3.epeo)
+                  0x001e90                  ___udivsi3
+ .libm.umodsi3    0x001eb0          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(umodsi3.epeo)
+                  0x001eb0                  ___umodsi3
+ .libm.frexpf     0x001eb6         0x1a C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(_frexpf.epeo)
+                  0x001eb6                  __frexpf
+ .libm.dunpack    0x001ed0         0x4e C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(dunpack.epeo)
+                  0x001ed0                  __dunpack
  .libm.dunpack2
-                  0x001f7c         0x32 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(dunpack2.epeo)
-                  0x001f7c                  __dunpack2
-                  0x001f9e                  __dreturnNaN
-                  0x001fa4                  __dunpack2exit
- .libm.fchop      0x001fae         0x4e C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fchop.epeo)
-                  0x001fae                  __fchop
+                  0x001f1e         0x32 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(dunpack2.epeo)
+                  0x001f1e                  __dunpack2
+                  0x001f40                  __dreturnNaN
+                  0x001f46                  __dunpack2exit
+ .libm.fchop      0x001f50         0x4e C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fchop.epeo)
+                  0x001f50                  __fchop
  .libm.fcompare
-                  0x001ffc         0x36 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fcompare.epeo)
-                  0x001ffc                  __fcompare
+                  0x001f9e         0x36 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fcompare.epeo)
+                  0x001f9e                  __fcompare
  .libm.floatdisf
-                  0x002032         0x20 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatdisf.epeo)
-                  0x002032                  ___floatdisf
+                  0x001fd4         0x20 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatdisf.epeo)
+                  0x001fd4                  ___floatdisf
  .libm.floatundisf
-                  0x002052         0x5e C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatundisf.epeo)
-                  0x002052                  ___floatundisf
- .libm.logf       0x0020b0         0xae C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(logf.epeo)
-                  0x0020b0                  _logf
+                  0x001ff4         0x5e C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatundisf.epeo)
+                  0x001ff4                  ___floatundisf
+ .libm.logf       0x002052         0xae C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(logf.epeo)
+                  0x002052                  _logf
  .libm.dPropagateNaN
-                  0x00215e         0x1c C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(dpropagateNaN.epeo)
-                  0x00215e                  __dPropagateNaN
- .libc.strtof     0x00217a        0x1c4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(atof.epeo)
-                  0x00217a                  _strtof
- .libc.strtod     0x00233e          0x2 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(atof.epeo)
-                  0x00233e                  _strtod
- .libc.atof       0x002340          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(atof.epeo)
-                  0x002340                  _atof
- .libc.atoi       0x002344         0x3e C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(atoi.epeo)
-                  0x002344                  _atoi
- .libc.memcpy     0x002382          0xe C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(memcpy.epeo)
-                  0x002382                  _memcpy
- .libc.strchr     0x002390         0x14 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(strchr.epeo)
-                  0x002390                  _strchr
- .libc.strlen     0x0023a4          0xc C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(strlen.epeo)
-                  0x0023a4                  _strlen
+                  0x002100         0x1c C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(dpropagateNaN.epeo)
+                  0x002100                  __dPropagateNaN
+ .libc.strtof     0x00211c        0x1c4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(atof.epeo)
+                  0x00211c                  _strtof
+ .libc.strtod     0x0022e0          0x2 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(atof.epeo)
+                  0x0022e0                  _strtod
+ .libc.atof       0x0022e2          0x4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(atof.epeo)
+                  0x0022e2                  _atof
+ .libc.atoi       0x0022e6         0x3e C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(atoi.epeo)
+                  0x0022e6                  _atoi
+ .libc.memcpy     0x002324          0xe C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(memcpy.epeo)
+                  0x002324                  _memcpy
+ .libc.strchr     0x002332         0x14 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(strchr.epeo)
+                  0x002332                  _strchr
+ .libc.strlen     0x002346          0xc C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(strlen.epeo)
+                  0x002346                  _strlen
  .libc.vsprintf
-                  0x0023b0         0x28 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(vsprintf.epeo)
-                  0x0023b0                  _vsprintf
- .libc.fround     0x0023d8         0xba C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(doprnt.epeo)
- .libc.scale      0x002492         0xc4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(doprnt.epeo)
- .libc.sputc      0x002556         0x12 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(doprnt.epeo)
+                  0x002352         0x28 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(vsprintf.epeo)
+                  0x002352                  _vsprintf
+ .libc.fround     0x00237a         0xba C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(doprnt.epeo)
+ .libc.scale      0x002434         0xc4 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(doprnt.epeo)
+ .libc.sputc      0x0024f8         0x12 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(doprnt.epeo)
  .libc.vfprintf
-                  0x002568       0x1342 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(doprnt.epeo)
-                  0x002568                  _vfprintf
- .libc.fputc      0x0038aa         0x86 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(fputc.epeo)
-                  0x0038aa                  _fputc
- .libc._flsbuf    0x003930         0x7e C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(flsbuf.epeo)
-                  0x003930                  __flsbuf
- .libc.dowrite    0x0039ae          0x4 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.a(writeep.Leo)
- .libm.adddf3     0x0039b2         0xfa c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(adddf3.epeo)
-                  0x0039b2                  ___adddf3
- .libm.eqdf2      0x003aac          0xa c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(deqltle.epeo)
-                  0x003aac                  ___eqdf2
-                  0x003aac                  ___ltdf2
-                  0x003aac                  ___ledf2
- .libm.gtdf2      0x003ab6          0xa c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dgtge.epeo)
-                  0x003ab6                  ___gtdf2
-                  0x003ab6                  ___gedf2
- .libm.divdf3     0x003ac0         0xb4 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divdf3.epeo)
-                  0x003ac0                  ___divdf3
- .libm.nedf2      0x003b74          0xa c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dne.epeo)
-                  0x003b74                  ___nedf2
- .libm.dpack      0x003b7e         0x58 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dpack.epeo)
-                  0x003b7e                  __dpack
+                  0x00250a       0x1342 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(doprnt.epeo)
+                  0x00250a                  _vfprintf
+ .libc.fputc      0x00384c         0x86 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(fputc.epeo)
+                  0x00384c                  _fputc
+ .libc._flsbuf    0x0038d2         0x7e C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(flsbuf.epeo)
+                  0x0038d2                  __flsbuf
+ .libc.dowrite    0x003950          0x4 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.a(writeep.Leo)
+ .libm.adddf3     0x003954         0xfa c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(adddf3.epeo)
+                  0x003954                  ___adddf3
+ .libm.eqdf2      0x003a4e          0xa c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(deqltle.epeo)
+                  0x003a4e                  ___eqdf2
+                  0x003a4e                  ___ltdf2
+                  0x003a4e                  ___ledf2
+ .libm.gtdf2      0x003a58          0xa c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dgtge.epeo)
+                  0x003a58                  ___gtdf2
+                  0x003a58                  ___gedf2
+ .libm.divdf3     0x003a62         0xb4 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divdf3.epeo)
+                  0x003a62                  ___divdf3
+ .libm.nedf2      0x003b16          0xa c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dne.epeo)
+                  0x003b16                  ___nedf2
+ .libm.dpack      0x003b20         0x58 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dpack.epeo)
+                  0x003b20                  __dpack
  .libm.extendsfdf2
-                  0x003bd6         0x3e c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(extendsfdf.epeo)
-                  0x003bd6                  ___extendsfdf2
+                  0x003b78         0x3e c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(extendsfdf.epeo)
+                  0x003b78                  ___extendsfdf2
  .libm.fixunsdfdi
-                  0x003c14         0x62 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(fixunsdfdi.epeo)
-                  0x003c14                  ___fixunsdfdi
+                  0x003bb6         0x62 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(fixunsdfdi.epeo)
+                  0x003bb6                  ___fixunsdfdi
  .libm.fixunsdfsi
-                  0x003c76         0x4c c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(fixunsdfsi.epeo)
-                  0x003c76                  ___fixunsdfsi
+                  0x003c18         0x4c c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(fixunsdfsi.epeo)
+                  0x003c18                  ___fixunsdfsi
  .libm.floatundidf
-                  0x003cc2         0x56 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(floatundidf.epeo)
-                  0x003cc2                  ___floatundidf
+                  0x003c64         0x56 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(floatundidf.epeo)
+                  0x003c64                  ___floatundidf
  .libm.floatunsidf
-                  0x003d18          0x4 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(floatunsidf.epeo)
-                  0x003d18                  ___floatunsidf
- .libm.frexp      0x003d1c         0x3a c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(frexp.epeo)
-                  0x003d1c                  _frexp
-                  0x003d1c                  _frexpl
- .libm.muldf3     0x003d56         0xea c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(muldf3.epeo)
-                  0x003d56                  ___muldf3
- .libm.subdf3     0x003e40          0x4 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(subdf3.epeo)
-                  0x003e40                  ___subdf3
- .libm.mulsi3     0x003e44          0xc c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(mulsi3.epeo)
-                  0x003e44                  ___mulp32peds3
-                  0x003e44                  ___mulsi3
-                  0x003e44                  ___mulp32eds3
+                  0x003cba          0x4 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(floatunsidf.epeo)
+                  0x003cba                  ___floatunsidf
+ .libm.frexp      0x003cbe         0x3a c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(frexp.epeo)
+                  0x003cbe                  _frexp
+                  0x003cbe                  _frexpl
+ .libm.muldf3     0x003cf8         0xea c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(muldf3.epeo)
+                  0x003cf8                  ___muldf3
+ .libm.subdf3     0x003de2          0x4 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(subdf3.epeo)
+                  0x003de2                  ___subdf3
+ .libm.mulsi3     0x003de6          0xc c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(mulsi3.epeo)
+                  0x003de6                  ___mulp32peds3
+                  0x003de6                  ___mulsi3
+                  0x003de6                  ___mulp32eds3
  .libm.__PplusBdi
-                  0x003e50         0x26 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
+                  0x003df2         0x26 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
  .libm.__PminusBdi
-                  0x003e76         0x26 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
+                  0x003e18         0x26 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
  .libm.__udivmoddi3
-                  0x003e9c         0xe6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
-                  0x003e9c                  ___udivmoddi3
+                  0x003e3e         0xe6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
+                  0x003e3e                  ___udivmoddi3
  .libm.__udivdi3
-                  0x003f82          0xe c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
-                  0x003f82                  ___udivdi3
+                  0x003f24          0xe c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
+                  0x003f24                  ___udivdi3
  .libm.__umoddi3
-                  0x003f90          0x8 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
-                  0x003f90                  ___umoddi3
+                  0x003f32          0x8 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
+                  0x003f32                  ___umoddi3
  .libm.__divdi3
-                  0x003f98         0x60 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
-                  0x003f98                  ___divdi3
+                  0x003f3a         0x60 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
+                  0x003f3a                  ___divdi3
  .libm.__moddi3
-                  0x003ff8         0x5c c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
-                  0x003ff8                  ___moddi3
+                  0x003f9a         0x5c c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
+                  0x003f9a                  ___moddi3
  .libm.__muldi3
-                  0x004054         0x52 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(muldi3.epeo)
-                  0x004054                  ___muldi3
+                  0x003ff6         0x52 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(muldi3.epeo)
+                  0x003ff6                  ___muldi3
  .libm.dcompare
-                  0x0040a6         0x52 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dcompare.epeo)
-                  0x0040a6                  __dcompare
- .libm.dtype      0x0040f8         0x24 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dtype.epeo)
-                  0x0040f8                  __dtype
- .libm.umuldi3    0x00411c         0x44 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(umuldi3.epeo)
-                  0x00411c                  ___umuldi3
+                  0x004048         0x52 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dcompare.epeo)
+                  0x004048                  __dcompare
+ .libm.dtype      0x00409a         0x24 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dtype.epeo)
+                  0x00409a                  __dtype
+ .libm.umuldi3    0x0040be         0x44 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(umuldi3.epeo)
+                  0x0040be                  ___umuldi3
 
 usercode
  *(usercode)
@@ -1417,21 +1419,129 @@ __FUID0
 .comment
  *(.comment)
 
-.debug_info
+.debug_info       0x000000      0x193dc
  *(.debug_info)
+ .debug_info      0x000000       0x5ed0 build/default/production/AUAV3_AND_SLUGS_SENSOR.o
+ .debug_info      0x005ed0        0x496 build/default/production/AUAV3_AND_SLUGS_SENSOR_data.o
+ .debug_info      0x006366       0x16c5 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
+ .debug_info      0x007a2b        0x97d build/default/production/MCHP_I2C2_Interrupt.o
+ .debug_info      0x0083a8        0x611 build/default/production/MCHP_I2C2_Interrupt_data.o
+ .debug_info      0x0089b9       0x1348 build/default/production/MCHP_IC_Interrupt.o
+ .debug_info      0x009d01        0x6c6 build/default/production/MCHP_SPI1_Interrupt.o
+ .debug_info      0x00a3c7        0x534 build/default/production/MCHP_SPI1_Interrupt_data.o
+ .debug_info      0x00a8fb        0x97b build/default/production/MCHP_UART1_Interrupt.o
+ .debug_info      0x00b276        0x944 build/default/production/MCHP_UART4_Interrupt.o
+ .debug_info      0x00bbba       0x6c19 build/default/production/_ext/761100751/MavlinkComm.o
+ .debug_info      0x0127d3        0x7d8 build/default/production/_ext/761100751/adisCube16405.o
+ .debug_info      0x012fab        0x4e8 build/default/production/_ext/761100751/apUtils.o
+ .debug_info      0x013493        0x3a5 build/default/production/_ext/761100751/circBuffer.o
+ .debug_info      0x013838        0x97a build/default/production/_ext/761100751/gpsPort.o
+ .debug_info      0x0141b2        0x7ef build/default/production/_ext/761100751/gpsUblox.o
+ .debug_info      0x0149a1       0x1585 build/default/production/_ext/761100751/hil.o
+ .debug_info      0x015f26       0x12b6 build/default/production/_ext/761100751/mavlinkSensorMcu.o
+ .debug_info      0x0171dc        0xb9b build/default/production/_ext/761100751/novatel.o
+ .debug_info      0x017d77        0x2ae build/default/production/rtGetInf.o
+ .debug_info      0x018025        0x23e build/default/production/rtGetNaN.o
+ .debug_info      0x018263        0x34c build/default/production/rt_nonfinite.o
+ .debug_info      0x0185af        0xe2d build/default/production/_ext/761100751/updateSensorMcuState.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev
+.debug_abbrev     0x000000       0x1d1a
  *(.debug_abbrev)
+ .debug_abbrev    0x000000        0x336 build/default/production/AUAV3_AND_SLUGS_SENSOR.o
+ .debug_abbrev    0x000336         0x97 build/default/production/AUAV3_AND_SLUGS_SENSOR_data.o
+ .debug_abbrev    0x0003cd        0x1ad build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
+ .debug_abbrev    0x00057a        0x124 build/default/production/MCHP_I2C2_Interrupt.o
+ .debug_abbrev    0x00069e         0x99 build/default/production/MCHP_I2C2_Interrupt_data.o
+ .debug_abbrev    0x000737        0x125 build/default/production/MCHP_IC_Interrupt.o
+ .debug_abbrev    0x00085c        0x131 build/default/production/MCHP_SPI1_Interrupt.o
+ .debug_abbrev    0x00098d         0x99 build/default/production/MCHP_SPI1_Interrupt_data.o
+ .debug_abbrev    0x000a26        0x13c build/default/production/MCHP_UART1_Interrupt.o
+ .debug_abbrev    0x000b62        0x13c build/default/production/MCHP_UART4_Interrupt.o
+ .debug_abbrev    0x000c9e        0x388 build/default/production/_ext/761100751/MavlinkComm.o
+ .debug_abbrev    0x001026        0x1c5 build/default/production/_ext/761100751/adisCube16405.o
+ .debug_abbrev    0x0011eb         0xb3 build/default/production/_ext/761100751/apUtils.o
+ .debug_abbrev    0x00129e         0xde build/default/production/_ext/761100751/circBuffer.o
+ .debug_abbrev    0x00137c        0x15d build/default/production/_ext/761100751/gpsPort.o
+ .debug_abbrev    0x0014d9        0x15c build/default/production/_ext/761100751/gpsUblox.o
+ .debug_abbrev    0x001635        0x1ba build/default/production/_ext/761100751/hil.o
+ .debug_abbrev    0x0017ef         0xc4 build/default/production/_ext/761100751/mavlinkSensorMcu.o
+ .debug_abbrev    0x0018b3        0x178 build/default/production/_ext/761100751/novatel.o
+ .debug_abbrev    0x001a2b         0xbb build/default/production/rtGetInf.o
+ .debug_abbrev    0x001ae6         0xae build/default/production/rtGetNaN.o
+ .debug_abbrev    0x001b94         0xbe build/default/production/rt_nonfinite.o
+ .debug_abbrev    0x001c52         0xc8 build/default/production/_ext/761100751/updateSensorMcuState.o
 
-.debug_line
+.debug_line       0x000000       0x3007
  *(.debug_line)
+ .debug_line      0x000000        0x761 build/default/production/AUAV3_AND_SLUGS_SENSOR.o
+ .debug_line      0x000761         0x7e build/default/production/AUAV3_AND_SLUGS_SENSOR_data.o
+ .debug_line      0x0007df        0x1b3 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
+ .debug_line      0x000992        0x29f build/default/production/MCHP_I2C2_Interrupt.o
+ .debug_line      0x000c31         0x7b build/default/production/MCHP_I2C2_Interrupt_data.o
+ .debug_line      0x000cac        0x121 build/default/production/MCHP_IC_Interrupt.o
+ .debug_line      0x000dcd        0x147 build/default/production/MCHP_SPI1_Interrupt.o
+ .debug_line      0x000f14         0x7b build/default/production/MCHP_SPI1_Interrupt_data.o
+ .debug_line      0x000f8f         0xfd build/default/production/MCHP_UART1_Interrupt.o
+ .debug_line      0x00108c         0xfd build/default/production/MCHP_UART4_Interrupt.o
+ .debug_line      0x001189        0xc66 build/default/production/_ext/761100751/MavlinkComm.o
+ .debug_line      0x001def        0x15c build/default/production/_ext/761100751/adisCube16405.o
+ .debug_line      0x001f4b         0xc2 build/default/production/_ext/761100751/apUtils.o
+ .debug_line      0x00200d         0x9b build/default/production/_ext/761100751/circBuffer.o
+ .debug_line      0x0020a8         0xb3 build/default/production/_ext/761100751/gpsPort.o
+ .debug_line      0x00215b        0x1a0 build/default/production/_ext/761100751/gpsUblox.o
+ .debug_line      0x0022fb        0x364 build/default/production/_ext/761100751/hil.o
+ .debug_line      0x00265f        0x336 build/default/production/_ext/761100751/mavlinkSensorMcu.o
+ .debug_line      0x002995        0x235 build/default/production/_ext/761100751/novatel.o
+ .debug_line      0x002bca         0x9b build/default/production/rtGetInf.o
+ .debug_line      0x002c65         0x92 build/default/production/rtGetNaN.o
+ .debug_line      0x002cf7         0xa3 build/default/production/rt_nonfinite.o
+ .debug_line      0x002d9a        0x26d build/default/production/_ext/761100751/updateSensorMcuState.o
 
-.debug_frame
+.debug_frame      0x000000       0x12ea
  *(.debug_frame)
+ .debug_frame     0x000000        0x4d6 build/default/production/AUAV3_AND_SLUGS_SENSOR.o
+ .debug_frame     0x0004d6         0x66 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
+ .debug_frame     0x00053c         0x56 build/default/production/MCHP_I2C2_Interrupt.o
+ .debug_frame     0x000592         0xaa build/default/production/MCHP_IC_Interrupt.o
+ .debug_frame     0x00063c         0x56 build/default/production/MCHP_SPI1_Interrupt.o
+ .debug_frame     0x000692         0x4e build/default/production/MCHP_UART1_Interrupt.o
+ .debug_frame     0x0006e0         0x4e build/default/production/MCHP_UART4_Interrupt.o
+ .debug_frame     0x00072e        0x2ae build/default/production/_ext/761100751/MavlinkComm.o
+ .debug_frame     0x0009dc        0x100 build/default/production/_ext/761100751/adisCube16405.o
+ .debug_frame     0x000adc        0x120 build/default/production/_ext/761100751/apUtils.o
+ .debug_frame     0x000bfc         0xc2 build/default/production/_ext/761100751/circBuffer.o
+ .debug_frame     0x000cbe         0x78 build/default/production/_ext/761100751/gpsPort.o
+ .debug_frame     0x000d36        0x134 build/default/production/_ext/761100751/gpsUblox.o
+ .debug_frame     0x000e6a         0xc8 build/default/production/_ext/761100751/hil.o
+ .debug_frame     0x000f32         0x24 build/default/production/_ext/761100751/mavlinkSensorMcu.o
+ .debug_frame     0x000f56        0x15e build/default/production/_ext/761100751/novatel.o
+ .debug_frame     0x0010b4         0x54 build/default/production/rtGetInf.o
+ .debug_frame     0x001108         0x34 build/default/production/rtGetNaN.o
+ .debug_frame     0x00113c         0x9c build/default/production/rt_nonfinite.o
+ .debug_frame     0x0011d8        0x112 build/default/production/_ext/761100751/updateSensorMcuState.o
 
-.debug_str
+.debug_str        0x000000       0x128d
  *(.debug_str)
+ .debug_str       0x000000        0x6d8 build/default/production/AUAV3_AND_SLUGS_SENSOR.o
+ .debug_str       0x0006d8         0xa0 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
+ .debug_str       0x000778        0x105 build/default/production/MCHP_I2C2_Interrupt.o
+ .debug_str       0x00087d         0x13 build/default/production/MCHP_I2C2_Interrupt_data.o
+ .debug_str       0x000890         0xcc build/default/production/MCHP_IC_Interrupt.o
+ .debug_str       0x00095c         0x93 build/default/production/MCHP_SPI1_Interrupt.o
+ .debug_str       0x0009ef         0x13 build/default/production/MCHP_SPI1_Interrupt_data.o
+ .debug_str       0x000a02         0x4d build/default/production/MCHP_UART1_Interrupt.o
+ .debug_str       0x000a4f         0x4d build/default/production/MCHP_UART4_Interrupt.o
+ .debug_str       0x000a9c        0x416 build/default/production/_ext/761100751/MavlinkComm.o
+ .debug_str       0x000eb2         0x35 build/default/production/_ext/761100751/adisCube16405.o
+ .debug_str       0x000ee7         0x3c build/default/production/_ext/761100751/gpsPort.o
+ .debug_str       0x000f23         0x15 build/default/production/_ext/761100751/gpsUblox.o
+ .debug_str       0x000f38         0xa8 build/default/production/_ext/761100751/hil.o
+ .debug_str       0x000fe0        0x15e build/default/production/_ext/761100751/mavlinkSensorMcu.o
+ .debug_str       0x00113e         0x3f build/default/production/_ext/761100751/novatel.o
+ .debug_str       0x00117d          0xc build/default/production/rtGetInf.o
+ .debug_str       0x001189         0x1d build/default/production/rt_nonfinite.o
+ .debug_str       0x0011a6         0xe7 build/default/production/_ext/761100751/updateSensorMcuState.o
 
 .debug_loc
  *(.debug_loc)
@@ -1440,13 +1550,100 @@ __FUID0
  *(.debug_macinfo)
 
 .debug_pubnames
+                  0x000000       0x1480
  *(.debug_pubnames)
+ .debug_pubnames
+                  0x000000        0x596 build/default/production/AUAV3_AND_SLUGS_SENSOR.o
+ .debug_pubnames
+                  0x000596         0x34 build/default/production/AUAV3_AND_SLUGS_SENSOR_data.o
+ .debug_pubnames
+                  0x0005ca         0xee build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
+ .debug_pubnames
+                  0x0006b8         0x26 build/default/production/MCHP_I2C2_Interrupt.o
+ .debug_pubnames
+                  0x0006de         0xed build/default/production/MCHP_I2C2_Interrupt_data.o
+ .debug_pubnames
+                  0x0007cb         0xb7 build/default/production/MCHP_IC_Interrupt.o
+ .debug_pubnames
+                  0x000882         0x25 build/default/production/MCHP_SPI1_Interrupt.o
+ .debug_pubnames
+                  0x0008a7         0x79 build/default/production/MCHP_SPI1_Interrupt_data.o
+ .debug_pubnames
+                  0x000920         0x37 build/default/production/MCHP_UART1_Interrupt.o
+ .debug_pubnames
+                  0x000957         0x37 build/default/production/MCHP_UART4_Interrupt.o
+ .debug_pubnames
+                  0x00098e        0x25f build/default/production/_ext/761100751/MavlinkComm.o
+ .debug_pubnames
+                  0x000bed         0xb2 build/default/production/_ext/761100751/adisCube16405.o
+ .debug_pubnames
+                  0x000c9f         0xce build/default/production/_ext/761100751/apUtils.o
+ .debug_pubnames
+                  0x000d6d         0x92 build/default/production/_ext/761100751/circBuffer.o
+ .debug_pubnames
+                  0x000dff         0x79 build/default/production/_ext/761100751/gpsPort.o
+ .debug_pubnames
+                  0x000e78         0xb3 build/default/production/_ext/761100751/gpsUblox.o
+ .debug_pubnames
+                  0x000f2b         0x92 build/default/production/_ext/761100751/hil.o
+ .debug_pubnames
+                  0x000fbd        0x17f build/default/production/_ext/761100751/mavlinkSensorMcu.o
+ .debug_pubnames
+                  0x00113c         0xfe build/default/production/_ext/761100751/novatel.o
+ .debug_pubnames
+                  0x00123a         0x52 build/default/production/rtGetInf.o
+ .debug_pubnames
+                  0x00128c         0x2d build/default/production/rtGetNaN.o
+ .debug_pubnames
+                  0x0012b9         0xa2 build/default/production/rt_nonfinite.o
+ .debug_pubnames
+                  0x00135b        0x125 build/default/production/_ext/761100751/updateSensorMcuState.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges
+.debug_aranges    0x000000        0x1e0
  *(.debug_aranges)
+ .debug_aranges
+                  0x000000         0x18 build/default/production/AUAV3_AND_SLUGS_SENSOR.o
+ .debug_aranges
+                  0x000018         0x18 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
+ .debug_aranges
+                  0x000030         0x18 build/default/production/MCHP_I2C2_Interrupt.o
+ .debug_aranges
+                  0x000048         0x18 build/default/production/MCHP_IC_Interrupt.o
+ .debug_aranges
+                  0x000060         0x18 build/default/production/MCHP_SPI1_Interrupt.o
+ .debug_aranges
+                  0x000078         0x18 build/default/production/MCHP_UART1_Interrupt.o
+ .debug_aranges
+                  0x000090         0x18 build/default/production/MCHP_UART4_Interrupt.o
+ .debug_aranges
+                  0x0000a8         0x18 build/default/production/_ext/761100751/MavlinkComm.o
+ .debug_aranges
+                  0x0000c0         0x18 build/default/production/_ext/761100751/adisCube16405.o
+ .debug_aranges
+                  0x0000d8         0x18 build/default/production/_ext/761100751/apUtils.o
+ .debug_aranges
+                  0x0000f0         0x18 build/default/production/_ext/761100751/circBuffer.o
+ .debug_aranges
+                  0x000108         0x18 build/default/production/_ext/761100751/gpsPort.o
+ .debug_aranges
+                  0x000120         0x18 build/default/production/_ext/761100751/gpsUblox.o
+ .debug_aranges
+                  0x000138         0x18 build/default/production/_ext/761100751/hil.o
+ .debug_aranges
+                  0x000150         0x18 build/default/production/_ext/761100751/mavlinkSensorMcu.o
+ .debug_aranges
+                  0x000168         0x18 build/default/production/_ext/761100751/novatel.o
+ .debug_aranges
+                  0x000180         0x18 build/default/production/rtGetInf.o
+ .debug_aranges
+                  0x000198         0x18 build/default/production/rtGetNaN.o
+ .debug_aranges
+                  0x0001b0         0x18 build/default/production/rt_nonfinite.o
+ .debug_aranges
+                  0x0001c8         0x18 build/default/production/_ext/761100751/updateSensorMcuState.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -4137,216 +4334,265 @@ LOAD default_isr
 LOAD data_init
 LOAD shared_data_init
 
+.debug_pubtypes
+                  0x0001e0       0x24bf
+ .debug_pubtypes
+                  0x0001e0        0x7be build/default/production/AUAV3_AND_SLUGS_SENSOR.o
+ .debug_pubtypes
+                  0x00099e         0x59 build/default/production/AUAV3_AND_SLUGS_SENSOR_data.o
+ .debug_pubtypes
+                  0x0009f7        0x10e build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
+ .debug_pubtypes
+                  0x000b05         0xe5 build/default/production/MCHP_I2C2_Interrupt.o
+ .debug_pubtypes
+                  0x000bea         0x71 build/default/production/MCHP_I2C2_Interrupt_data.o
+ .debug_pubtypes
+                  0x000c5b        0x13f build/default/production/MCHP_IC_Interrupt.o
+ .debug_pubtypes
+                  0x000d9a         0xb4 build/default/production/MCHP_SPI1_Interrupt.o
+ .debug_pubtypes
+                  0x000e4e         0x73 build/default/production/MCHP_SPI1_Interrupt_data.o
+ .debug_pubtypes
+                  0x000ec1         0xd3 build/default/production/MCHP_UART1_Interrupt.o
+ .debug_pubtypes
+                  0x000f94         0xd3 build/default/production/MCHP_UART4_Interrupt.o
+ .debug_pubtypes
+                  0x001067        0x6c6 build/default/production/_ext/761100751/MavlinkComm.o
+ .debug_pubtypes
+                  0x00172d         0xc1 build/default/production/_ext/761100751/adisCube16405.o
+ .debug_pubtypes
+                  0x0017ee         0x33 build/default/production/_ext/761100751/apUtils.o
+ .debug_pubtypes
+                  0x001821         0x2b build/default/production/_ext/761100751/circBuffer.o
+ .debug_pubtypes
+                  0x00184c         0xa3 build/default/production/_ext/761100751/gpsPort.o
+ .debug_pubtypes
+                  0x0018ef         0x9f build/default/production/_ext/761100751/gpsUblox.o
+ .debug_pubtypes
+                  0x00198e        0x285 build/default/production/_ext/761100751/hil.o
+ .debug_pubtypes
+                  0x001c13        0x502 build/default/production/_ext/761100751/mavlinkSensorMcu.o
+ .debug_pubtypes
+                  0x002115        0x190 build/default/production/_ext/761100751/novatel.o
+ .debug_pubtypes
+                  0x0022a5         0x51 build/default/production/rtGetInf.o
+ .debug_pubtypes
+                  0x0022f6         0x51 build/default/production/rtGetNaN.o
+ .debug_pubtypes
+                  0x002347         0x43 build/default/production/rt_nonfinite.o
+ .debug_pubtypes
+                  0x00238a        0x315 build/default/production/_ext/761100751/updateSensorMcuState.o
+
 __c30_signature
-                  0x000000        0x270
+                  0x00269f        0x270
  __c30_signature
-                  0x000000          0x6 build/default/production/AUAV3_AND_SLUGS_SENSOR.o
+                  0x00269f          0x6 build/default/production/AUAV3_AND_SLUGS_SENSOR.o
  __c30_signature
-                  0x000006          0x6 build/default/production/AUAV3_AND_SLUGS_SENSOR_data.o
+                  0x0026a5          0x6 build/default/production/AUAV3_AND_SLUGS_SENSOR_data.o
  __c30_signature
-                  0x00000c          0x6 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
+                  0x0026ab          0x6 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
  __c30_signature
-                  0x000012          0x6 build/default/production/MCHP_I2C2_Interrupt.o
+                  0x0026b1          0x6 build/default/production/MCHP_I2C2_Interrupt.o
  __c30_signature
-                  0x000018          0x6 build/default/production/MCHP_I2C2_Interrupt_data.o
+                  0x0026b7          0x6 build/default/production/MCHP_I2C2_Interrupt_data.o
  __c30_signature
-                  0x00001e          0x6 build/default/production/MCHP_IC_Interrupt.o
+                  0x0026bd          0x6 build/default/production/MCHP_IC_Interrupt.o
  __c30_signature
-                  0x000024          0x6 build/default/production/MCHP_SPI1_Interrupt.o
+                  0x0026c3          0x6 build/default/production/MCHP_SPI1_Interrupt.o
  __c30_signature
-                  0x00002a          0x6 build/default/production/MCHP_SPI1_Interrupt_data.o
+                  0x0026c9          0x6 build/default/production/MCHP_SPI1_Interrupt_data.o
  __c30_signature
-                  0x000030          0x6 build/default/production/MCHP_UART1_Interrupt.o
+                  0x0026cf          0x6 build/default/production/MCHP_UART1_Interrupt.o
  __c30_signature
-                  0x000036          0x6 build/default/production/MCHP_UART4_Interrupt.o
+                  0x0026d5          0x6 build/default/production/MCHP_UART4_Interrupt.o
  __c30_signature
-                  0x00003c          0x6 build/default/production/_ext/761100751/MavlinkComm.o
+                  0x0026db          0x6 build/default/production/_ext/761100751/MavlinkComm.o
  __c30_signature
-                  0x000042          0x6 build/default/production/_ext/761100751/adisCube16405.o
+                  0x0026e1          0x6 build/default/production/_ext/761100751/adisCube16405.o
  __c30_signature
-                  0x000048          0x6 build/default/production/_ext/761100751/apUtils.o
+                  0x0026e7          0x6 build/default/production/_ext/761100751/apUtils.o
  __c30_signature
-                  0x00004e          0x6 build/default/production/_ext/761100751/circBuffer.o
+                  0x0026ed          0x6 build/default/production/_ext/761100751/circBuffer.o
  __c30_signature
-                  0x000054          0x6 build/default/production/_ext/761100751/gpsPort.o
+                  0x0026f3          0x6 build/default/production/_ext/761100751/gpsPort.o
  __c30_signature
-                  0x00005a          0x6 build/default/production/_ext/761100751/gpsUblox.o
+                  0x0026f9          0x6 build/default/production/_ext/761100751/gpsUblox.o
  __c30_signature
-                  0x000060          0x6 build/default/production/_ext/761100751/hil.o
+                  0x0026ff          0x6 build/default/production/_ext/761100751/hil.o
  __c30_signature
-                  0x000066          0x6 build/default/production/_ext/761100751/mavlinkSensorMcu.o
+                  0x002705          0x6 build/default/production/_ext/761100751/mavlinkSensorMcu.o
  __c30_signature
-                  0x00006c          0x6 build/default/production/_ext/761100751/novatel.o
+                  0x00270b          0x6 build/default/production/_ext/761100751/novatel.o
  __c30_signature
-                  0x000072          0x6 build/default/production/rtGetInf.o
+                  0x002711          0x6 build/default/production/rtGetInf.o
  __c30_signature
-                  0x000078          0x6 build/default/production/rtGetNaN.o
+                  0x002717          0x6 build/default/production/rtGetNaN.o
  __c30_signature
-                  0x00007e          0x6 build/default/production/rt_nonfinite.o
+                  0x00271d          0x6 build/default/production/rt_nonfinite.o
  __c30_signature
-                  0x000084          0x6 build/default/production/_ext/761100751/updateSensorMcuState.o
+                  0x002723          0x6 build/default/production/_ext/761100751/updateSensorMcuState.o
  __c30_signature
-                  0x00008a          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\dsPIC33E\libp33EP512MU810-elf.a(BusyUART2.o)
+                  0x002729          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\dsPIC33E\libp33EP512MU810-elf.a(BusyUART2.o)
  __c30_signature
-                  0x000090          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\dsPIC33E\libp33EP512MU810-elf.a(putsUART2.o)
+                  0x00272f          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\dsPIC33E\libp33EP512MU810-elf.a(putsUART2.o)
  __c30_signature
-                  0x000096          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libpic30-elf.a(crt0_extendedep.o)
+                  0x002735          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libpic30-elf.a(crt0_extendedep.o)
  __c30_signature
-                  0x00009c          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libpic30-elf.a(data_init_extendedep.o)
+                  0x00273b          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libpic30-elf.a(data_init_extendedep.o)
  __c30_signature
-                  0x0000a2          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libpic30-elf.a(delay32ep.eo)
+                  0x002741          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libpic30-elf.a(delay32ep.eo)
  __c30_signature
-                  0x0000a8          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(acosf.epeo)
+                  0x002747          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(acosf.epeo)
  __c30_signature
-                  0x0000ae          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(addsf3.epeo)
+                  0x00274d          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(addsf3.epeo)
  __c30_signature
-                  0x0000b4          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(asinacosf.epeo)
+                  0x002753          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(asinacosf.epeo)
  __c30_signature
-                  0x0000ba          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(asinf.epeo)
+                  0x002759          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(asinf.epeo)
  __c30_signature
-                  0x0000c0          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(atan2f.epeo)
+                  0x00275f          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(atan2f.epeo)
  __c30_signature
-                  0x0000c6          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(atanf.epeo)
+                  0x002765          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(atanf.epeo)
  __c30_signature
-                  0x0000cc          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(cosf.epeo)
+                  0x00276b          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(cosf.epeo)
  __c30_signature
-                  0x0000d2          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(divsf3.epeo)
+                  0x002771          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(divsf3.epeo)
  __c30_signature
-                  0x0000d8          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(errno.epeo)
+                  0x002777          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(errno.epeo)
  __c30_signature
-                  0x0000de          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(expf.epeo)
+                  0x00277d          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(expf.epeo)
  __c30_signature
-                  0x0000e4          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(feqltle.epeo)
+                  0x002783          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(feqltle.epeo)
  __c30_signature
-                  0x0000ea          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fgtge.epeo)
+                  0x002789          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fgtge.epeo)
  __c30_signature
-                  0x0000f0          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fixsfsi.epeo)
+                  0x00278f          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fixsfsi.epeo)
  __c30_signature
-                  0x0000f6          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fixunssfsi.epeo)
+                  0x002795          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fixunssfsi.epeo)
  __c30_signature
-                  0x0000fc          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatsisf.epeo)
+                  0x00279b          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatsisf.epeo)
  __c30_signature
-                  0x000102          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatunsisf.epeo)
+                  0x0027a1          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatunsisf.epeo)
  __c30_signature
-                  0x000108          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floorf.epeo)
+                  0x0027a7          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floorf.epeo)
  __c30_signature
-                  0x00010e          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fmodf.epeo)
+                  0x0027ad          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fmodf.epeo)
  __c30_signature
-                  0x000114          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fmodrem.epeo)
+                  0x0027b3          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fmodrem.epeo)
  __c30_signature
-                  0x00011a          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fne.epeo)
+                  0x0027b9          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fne.epeo)
  __c30_signature
-                  0x000120          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fpack.epeo)
+                  0x0027bf          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fpack.epeo)
  __c30_signature
-                  0x000126          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(funpack.epeo)
+                  0x0027c5          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(funpack.epeo)
  __c30_signature
-                  0x00012c          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(funpack2.epeo)
+                  0x0027cb          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(funpack2.epeo)
  __c30_signature
-                  0x000132          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(futil.epeo)
+                  0x0027d1          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(futil.epeo)
  __c30_signature
-                  0x000138          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(ldexpf.epeo)
+                  0x0027d7          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(ldexpf.epeo)
  __c30_signature
-                  0x00013e          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(mulsf3.epeo)
+                  0x0027dd          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(mulsf3.epeo)
  __c30_signature
-                  0x000144          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(powf.epeo)
+                  0x0027e3          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(powf.epeo)
  __c30_signature
-                  0x00014a          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(sincosf.epeo)
+                  0x0027e9          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(sincosf.epeo)
  __c30_signature
-                  0x000150          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(sinf.epeo)
+                  0x0027ef          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(sinf.epeo)
  __c30_signature
-                  0x000156          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(sqrtf.epeo)
+                  0x0027f5          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(sqrtf.epeo)
  __c30_signature
-                  0x00015c          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(tanf.epeo)
+                  0x0027fb          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(tanf.epeo)
  __c30_signature
-                  0x000162          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(truncdfsf.epeo)
+                  0x002801          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(truncdfsf.epeo)
  __c30_signature
-                  0x000168          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(udivsi3.epeo)
+                  0x002807          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(udivsi3.epeo)
  __c30_signature
-                  0x00016e          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(umodsi3.epeo)
+                  0x00280d          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(umodsi3.epeo)
  __c30_signature
-                  0x000174          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(_frexpf.epeo)
+                  0x002813          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(_frexpf.epeo)
  __c30_signature
-                  0x00017a          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(dunpack.epeo)
+                  0x002819          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(dunpack.epeo)
  __c30_signature
-                  0x000180          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(dunpack2.epeo)
+                  0x00281f          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(dunpack2.epeo)
  __c30_signature
-                  0x000186          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fchop.epeo)
+                  0x002825          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fchop.epeo)
  __c30_signature
-                  0x00018c          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fcompare.epeo)
+                  0x00282b          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(fcompare.epeo)
  __c30_signature
-                  0x000192          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatdisf.epeo)
+                  0x002831          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatdisf.epeo)
  __c30_signature
-                  0x000198          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatundisf.epeo)
+                  0x002837          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(floatundisf.epeo)
  __c30_signature
-                  0x00019e          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(logf.epeo)
+                  0x00283d          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(logf.epeo)
  __c30_signature
-                  0x0001a4          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(dpropagateNaN.epeo)
+                  0x002843          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(dpropagateNaN.epeo)
  __c30_signature
-                  0x0001aa          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(atof.epeo)
+                  0x002849          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(atof.epeo)
  __c30_signature
-                  0x0001b0          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(atoi.epeo)
+                  0x00284f          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(atoi.epeo)
  __c30_signature
-                  0x0001b6          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(memcpy.epeo)
+                  0x002855          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(memcpy.epeo)
  __c30_signature
-                  0x0001bc          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(strchr.epeo)
+                  0x00285b          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(strchr.epeo)
  __c30_signature
-                  0x0001c2          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(strlen.epeo)
+                  0x002861          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(strlen.epeo)
  __c30_signature
-                  0x0001c8          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(vsprintf.epeo)
+                  0x002867          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(vsprintf.epeo)
  __c30_signature
-                  0x0001ce          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(doprnt.epeo)
+                  0x00286d          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(doprnt.epeo)
  __c30_signature
-                  0x0001d4          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(fputc.epeo)
+                  0x002873          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(fputc.epeo)
  __c30_signature
-                  0x0001da          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(powers.epeo)
+                  0x002879          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(powers.epeo)
  __c30_signature
-                  0x0001e0          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(_iob.epeo)
+                  0x00287f          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(_iob.epeo)
  __c30_signature
-                  0x0001e6          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(flsbuf.epeo)
+                  0x002885          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(flsbuf.epeo)
  __c30_signature
-                  0x0001ec          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.a(writeep.Leo)
+                  0x00288b          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.a(writeep.Leo)
  __c30_signature
-                  0x0001f2          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.a(c30_uartep.Leo)
+                  0x002891          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.a(c30_uartep.Leo)
  __c30_signature
-                  0x0001f8          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(adddf3.epeo)
+                  0x002897          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(adddf3.epeo)
  __c30_signature
-                  0x0001fe          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(deqltle.epeo)
+                  0x00289d          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(deqltle.epeo)
  __c30_signature
-                  0x000204          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dgtge.epeo)
+                  0x0028a3          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dgtge.epeo)
  __c30_signature
-                  0x00020a          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divdf3.epeo)
+                  0x0028a9          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divdf3.epeo)
  __c30_signature
-                  0x000210          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dne.epeo)
+                  0x0028af          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dne.epeo)
  __c30_signature
-                  0x000216          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dpack.epeo)
+                  0x0028b5          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dpack.epeo)
  __c30_signature
-                  0x00021c          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(extendsfdf.epeo)
+                  0x0028bb          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(extendsfdf.epeo)
  __c30_signature
-                  0x000222          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(fixunsdfdi.epeo)
+                  0x0028c1          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(fixunsdfdi.epeo)
  __c30_signature
-                  0x000228          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(fixunsdfsi.epeo)
+                  0x0028c7          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(fixunsdfsi.epeo)
  __c30_signature
-                  0x00022e          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(floatundidf.epeo)
+                  0x0028cd          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(floatundidf.epeo)
  __c30_signature
-                  0x000234          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(floatunsidf.epeo)
+                  0x0028d3          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(floatunsidf.epeo)
  __c30_signature
-                  0x00023a          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(frexp.epeo)
+                  0x0028d9          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(frexp.epeo)
  __c30_signature
-                  0x000240          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(muldf3.epeo)
+                  0x0028df          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(muldf3.epeo)
  __c30_signature
-                  0x000246          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(subdf3.epeo)
+                  0x0028e5          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(subdf3.epeo)
  __c30_signature
-                  0x00024c          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(mulsi3.epeo)
+                  0x0028eb          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(mulsi3.epeo)
  __c30_signature
-                  0x000252          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
+                  0x0028f1          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
  __c30_signature
-                  0x000258          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(muldi3.epeo)
+                  0x0028f7          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(muldi3.epeo)
  __c30_signature
-                  0x00025e          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dcompare.epeo)
+                  0x0028fd          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dcompare.epeo)
  __c30_signature
-                  0x000264          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dtype.epeo)
+                  0x002903          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(dtype.epeo)
  __c30_signature
-                  0x00026a          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(umuldi3.epeo)
+                  0x002909          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(umuldi3.epeo)
 
 .nbss               0x1000          0xa
  .nbss              0x1000          0x8 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
@@ -4357,7 +4603,7 @@ __c30_signature
  .nbss              0x1008          0x2 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a(errno.epeo)
                     0x1008                  _errno
 
-.bss                0x100a       0x1728
+.bss                0x100a       0x173c
  .bss               0x100a        0xc98 build/default/production/_ext/761100751/MavlinkComm.o
                     0x100a                  _uartMavlinkInBuffer
                     0x100c                  _comMavlinkBuffer
@@ -4373,115 +4619,115 @@ __c30_signature
                     0x15ba                  _mlWpAck
                     0x15be                  _mlParamInterface
  .bss               0x1ca2        0x478 build/default/production/_ext/761100751/hil.o
- .bss               0x211a        0x40e build/default/production/AUAV3_AND_SLUGS_SENSOR.o
+ .bss               0x211a        0x422 build/default/production/AUAV3_AND_SLUGS_SENSOR.o
                     0x211a                  _AUAV3_AND_SLUGS_SENSOR_B
-                    0x2338                  _AUAV3_AND_SLUGS_SENSOR_DWork
-                    0x249a                  _mlGpsData
-                    0x24b8                  _mlSysStatus
-                    0x24d8                  _mlAirData
-                    0x24e6                  _mlRawPressureData
-                    0x24f6                  _MPU_T
-                    0x24f8                  _AUAV3_AND_SLUGS_SENSOR_M_
- .bss               0x2528        0x20a build/default/production/_ext/761100751/gpsPort.o
-                    0x2528                  _uartBuffer
-                    0x252a                  _com4Buffer
+                    0x2352                  _AUAV3_AND_SLUGS_SENSOR_DWork
+                    0x24c8                  _mlGpsData
+                    0x24e6                  _mlSysStatus
+                    0x2506                  _mlAirData
+                    0x2514                  _mlRawPressureData
+                    0x2524                  _MPU_T
+                    0x2526                  _AUAV3_AND_SLUGS_SENSOR_M_
+ .bss               0x253c        0x20a build/default/production/_ext/761100751/gpsPort.o
+                    0x253c                  _uartBuffer
+                    0x253e                  _com4Buffer
 
-.data               0x2732        0x160
- .data              0x2732        0x160 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(powers.epeo)
-                    0x2732                  __powers_
-                    0x27e2                  __npowers_
+.data               0x2746        0x160
+ .data              0x2746        0x160 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(powers.epeo)
+                    0x2746                  __powers_
+                    0x27f6                  __npowers_
 
-.bss                0x2892        0x13c
- .bss               0x2892        0x13c build/default/production/_ext/761100751/mavlinkSensorMcu.o
-                    0x2892                  _mlCpuLoadData
-                    0x2896                  _mlSensorBiasData
-                    0x28ae                  _mlDiagnosticData
-                    0x28c0                  _mlPilotConsoleData
-                    0x28d6                  _mlRawImuData
-                    0x28f0                  _mlAttitudeData
-                    0x290c                  _mlLocalPositionData
-                    0x2928                  _mlFilteredData
-                    0x293e                  _mlBoot
-                    0x2942                  _mlGpsDateTime
-                    0x294e                  _mlGSLocationFloat
-                    0x295a                  _mlGpsStatus
-                    0x2966                  _mlNovatelStatus
-                    0x2974                  _mlSensorDiag
-                    0x2980                  _mlCommandAck
-                    0x2984                  _mlPwmCommands
-                    0x299a                  _mlStatustext
-                    0x29cd                  _sendCommandAcknowledgement
+.bss                0x28a6        0x13c
+ .bss               0x28a6        0x13c build/default/production/_ext/761100751/mavlinkSensorMcu.o
+                    0x28a6                  _mlCpuLoadData
+                    0x28aa                  _mlSensorBiasData
+                    0x28c2                  _mlDiagnosticData
+                    0x28d4                  _mlPilotConsoleData
+                    0x28ea                  _mlRawImuData
+                    0x2904                  _mlAttitudeData
+                    0x2920                  _mlLocalPositionData
+                    0x293c                  _mlFilteredData
+                    0x2952                  _mlBoot
+                    0x2956                  _mlGpsDateTime
+                    0x2962                  _mlGSLocationFloat
+                    0x296e                  _mlGpsStatus
+                    0x297a                  _mlNovatelStatus
+                    0x2988                  _mlSensorDiag
+                    0x2994                  _mlCommandAck
+                    0x2998                  _mlPwmCommands
+                    0x29ae                  _mlStatustext
+                    0x29e1                  _sendCommandAcknowledgement
 
-.data               0x29ce         0xca
- .data              0x29ce         0xca C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(doprnt.epeo)
+.data               0x29e2         0xca
+ .data              0x29e2         0xca C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(doprnt.epeo)
 
-.bss                0x2a98        0x30a
- .bss               0x2a98         0xc0 build/default/production/_ext/761100751/novatel.o
- .bss               0x2b58         0xbc build/default/production/_ext/761100751/gpsUblox.o
- .bss               0x2c14         0x84 build/default/production/MCHP_UART1_Interrupt.o
-                    0x2c14                  _MCHP_UART1_Tx
- .bss               0x2c98         0x84 build/default/production/MCHP_UART4_Interrupt.o
-                    0x2c98                  _MCHP_UART4_Tx
- .bss               0x2d1c         0x4a build/default/production/_ext/761100751/adisCube16405.o
- .bss               0x2d66         0x3c build/default/production/MCHP_I2C2_Interrupt_data.o
-                    0x2d66                  _MCHP_I2C2_State
-                    0x2d68                  _MCHP_I2C22_Request
-                    0x2d6a                  _MCHP_I2C23_Request
-                    0x2d6c                  _MCHP_I2C21_Request
-                    0x2d6e                  _MCHP_I2C24_Request
-                    0x2d70                  _MCHP_I2C25_Request
-                    0x2d72                  _MCHP_I2C2_Queue
-                    0x2d82                  _I2C22_Buff8
-                    0x2d84                  _I2C23_Buff8
-                    0x2d86                  _I2C21_Buff8
-                    0x2d9c                  _I2C24_Buff8
+.bss                0x2aac        0x30a
+ .bss               0x2aac         0xc0 build/default/production/_ext/761100751/novatel.o
+ .bss               0x2b6c         0xbc build/default/production/_ext/761100751/gpsUblox.o
+ .bss               0x2c28         0x84 build/default/production/MCHP_UART1_Interrupt.o
+                    0x2c28                  _MCHP_UART1_Tx
+ .bss               0x2cac         0x84 build/default/production/MCHP_UART4_Interrupt.o
+                    0x2cac                  _MCHP_UART4_Tx
+ .bss               0x2d30         0x4a build/default/production/_ext/761100751/adisCube16405.o
+ .bss               0x2d7a         0x3c build/default/production/MCHP_I2C2_Interrupt_data.o
+                    0x2d7a                  _MCHP_I2C2_State
+                    0x2d7c                  _MCHP_I2C22_Request
+                    0x2d7e                  _MCHP_I2C23_Request
+                    0x2d80                  _MCHP_I2C21_Request
+                    0x2d82                  _MCHP_I2C24_Request
+                    0x2d84                  _MCHP_I2C25_Request
+                    0x2d86                  _MCHP_I2C2_Queue
+                    0x2d96                  _I2C22_Buff8
+                    0x2d98                  _I2C23_Buff8
+                    0x2d9a                  _I2C21_Buff8
+                    0x2db0                  _I2C24_Buff8
 
-.data               0x2da2         0x26
- .data              0x2da2         0x26 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(_iob.epeo)
-                    0x2da2                  __iob
-                    0x2dc6                  __Files
+.data               0x2db6         0x26
+ .data              0x2db6         0x26 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(_iob.epeo)
+                    0x2db6                  __iob
+                    0x2dda                  __Files
 
-.bss                0x2dc8         0x1c
- .bss               0x2dc8         0x1c build/default/production/MCHP_SPI1_Interrupt_data.o
-                    0x2dc8                  _MCHP_SPI1_State
-                    0x2dca                  _MCHP_SPI12_Request
-                    0x2dcb                  _MCHP_SPI11_Request
-                    0x2dcc                  _MCHP_SPI1_Queue
-                    0x2dd6                  _SPI11_Buff16
+.bss                0x2ddc         0x34
+ .bss               0x2ddc         0x1c build/default/production/MCHP_SPI1_Interrupt_data.o
+                    0x2ddc                  _MCHP_SPI1_State
+                    0x2dde                  _MCHP_SPI12_Request
+                    0x2ddf                  _MCHP_SPI11_Request
+                    0x2de0                  _MCHP_SPI1_Queue
+                    0x2dea                  _SPI11_Buff16
+ .bss               0x2df8         0x18 build/default/production/rt_nonfinite.o
+                    0x2df8                  _rtInf
+                    0x2dfc                  _rtMinusInf
+                    0x2e00                  _rtNaN
+                    0x2e04                  _rtInfF
+                    0x2e08                  _rtMinusInfF
+                    0x2e0c                  _rtNaNF
 
-.data               0x2de4         0x18
- .data              0x2de4         0x18 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
+.data               0x2e10         0x16
+ .data              0x2e10         0x16 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
 
-.bss                0x2dfc         0x38
- .bss               0x2dfc         0x18 build/default/production/rt_nonfinite.o
-                    0x2dfc                  _rtInf
-                    0x2e00                  _rtMinusInf
-                    0x2e04                  _rtNaN
-                    0x2e08                  _rtInfF
-                    0x2e0c                  _rtMinusInfF
-                    0x2e10                  _rtNaNF
- .bss               0x2e14         0x14 build/default/production/MCHP_IC_Interrupt.o
-                    0x2e14                  _MCHP_ic1up
-                    0x2e16                  _MCHP_ic2up
-                    0x2e18                  _MCHP_ic3up
-                    0x2e1a                  _MCHP_ic4up
-                    0x2e1c                  _MCHP_ic5up
- .bss               0x2e28          0x6 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
-                    0x2e28                  _MCHP_MCU_Overload
- .bss               0x2e2e          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(_iob.epeo)
-                    0x2e2e                  __outdone
-                    0x2e2f                  __sibuf
-                    0x2e31                  __sobuf
+.bss                0x2e26         0x20
+ .bss               0x2e26         0x14 build/default/production/MCHP_IC_Interrupt.o
+                    0x2e26                  _MCHP_ic1up
+                    0x2e28                  _MCHP_ic2up
+                    0x2e2a                  _MCHP_ic3up
+                    0x2e2c                  _MCHP_ic4up
+                    0x2e2e                  _MCHP_ic5up
+ .bss               0x2e3a          0x6 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
+                    0x2e3a                  _MCHP_MCU_Overload
+ .bss               0x2e40          0x6 C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a(_iob.epeo)
+                    0x2e40                  __outdone
+                    0x2e41                  __sibuf
+                    0x2e43                  __sobuf
 
-.data               0x2e34          0x4
- .data              0x2e34          0x2 build/default/production/_ext/761100751/gpsUblox.o
- .data              0x2e36          0x2 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.a(c30_uartep.Leo)
-                    0x2e36                  ___C30_UART
+.data               0x2e46          0x4
+ .data              0x2e46          0x2 build/default/production/_ext/761100751/gpsUblox.o
+ .data              0x2e48          0x2 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.a(c30_uartep.Leo)
+                    0x2e48                  ___C30_UART
 
-.ivt._T1Interrupt
-                  0x00001a          0x2
- .ivt._T1Interrupt
-                  0x00001a          0x2 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
+.ivt._T2Interrupt
+                  0x000022          0x2
+ .ivt._T2Interrupt
+                  0x000022          0x2 build/default/production/AUAV3_AND_SLUGS_SENSOR_main.o
 
 .ivt._MI2C2Interrupt
                   0x000078          0x2
@@ -4543,192 +4789,193 @@ __c30_signature
  .ivt._U4RXInterrupt
                   0x0000c4          0x2 build/default/production/_ext/761100751/gpsPort.o
 
-.const              0xc160        0x346 load address 0x004160  
- .const             0xc160        0x1c8 build/default/production/_ext/761100751/MavlinkComm.o
- .const             0xc328        0x100 build/default/production/_ext/761100751/hil.o
- .const             0xc428         0x6a build/default/production/AUAV3_AND_SLUGS_SENSOR.o
-                    0xc428                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_scaled_pressure_t
-                    0xc436                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_gps_raw_int_t
-                    0xc454                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_raw_pressure_t
-                    0xc464                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_sys_status_t
-                    0xc484                  _AUAV3_AND_SLUGS_SENSOR_M
- .const             0xc492         0x14 build/default/production/AUAV3_AND_SLUGS_SENSOR_data.o
-                    0xc492                  _AUAV3_AND_SLUGS_SENSOR_ConstP
+.const              0xc102        0x346 load address 0x004102  
+ .const             0xc102        0x1c8 build/default/production/_ext/761100751/MavlinkComm.o
+ .const             0xc2ca        0x100 build/default/production/_ext/761100751/hil.o
+ .const             0xc3ca         0x6a build/default/production/AUAV3_AND_SLUGS_SENSOR.o
+                    0xc3ca                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_scaled_pressure_t
+                    0xc3d8                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_gps_raw_int_t
+                    0xc3f6                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_raw_pressure_t
+                    0xc406                  _AUAV3_AND_SLUGS_SENSOR_rtZmavlink_sys_status_t
+                    0xc426                  _AUAV3_AND_SLUGS_SENSOR_M
+ .const             0xc434         0x14 build/default/production/AUAV3_AND_SLUGS_SENSOR_data.o
+                    0xc434                  _AUAV3_AND_SLUGS_SENSOR_ConstP
 
-.text             0x0044a6       0x4304
- .text            0x0044a6       0x1c12 build/default/production/AUAV3_AND_SLUGS_SENSOR.o
-                  0x0044a6                  _mul_wide_u32
-                  0x004500                  _mul_u32_u32_u32_sr15
-                  0x004524                  _mul_wide_s32
-                  0x00460a                  _mul_u32_s32_s32_sat
-                  0x00463a                  _mul_wide_su32
-                  0x0046fc                  _mul_s32_s32_u32_sr16
-                  0x004716                  _div_u32_round
-                  0x00476a                  _mul_u32_u32_u32_sr11_round
-                  0x00479a                  _div_repeat_u32_round
-                  0x004818                  _mul_u32_s32_u32_sr15
-                  0x00483c                  _mul_s32_s32_s32_sr28
-                  0x004860                  _mul_s32_s32_s32_sr23
-                  0x004884                  _div_s16s32_round
-                  0x004912                  _MultiWord2uLong
-                  0x00491a                  _uMultiWordShr
-                  0x004a0a                  _uMultiWordMul
-                  0x004bba                  _AUAV3_AND_EnabledSubsystem
-                  0x004bc2                  _EnablesDisablestheCom_Init
-                  0x004bce                  _EnablesDisablestheComputat
-                  0x004c18                  _EmbeddedMATLABFunctio_Init
-                  0x004c1e                  _AUA_EmbeddedMATLABFunction
-                  0x004cdc                  _A_EmbeddedMATLABFunction_i
-                  0x004d10                  _AUAV3_AND_SLUGS_SENSOR_step0
-                  0x004d4a                  _AUAV3_AND_SLUGS_SENSOR_step1
-                  0x005bc0                  _AUAV3_AND_SLUGS_SENSOR_step2
-                  0x005ce6                  _AUAV3_AND_SLUGS_SENSOR_step3
-                  0x005cfc                  _AUAV3_AND_SLUGS_SENSOR_step4
-                  0x005d12                  _AUAV3_AND_SLUGS_SENSOR_step5
-                  0x005d50                  _AUAV3_AND_SLUGS_SENSOR_step6
-                  0x005d88                  _AUAV3_AND_SLUGS_SENSOR_step7
-                  0x005dba                  _AUAV3_AND_SLUGS_SENSOR_step8
-                  0x005dc8                  _AUAV3_AND_SLUGS_SENSOR_step9
-                  0x005dd6                  _AUAV3_AND_SLUGS_SENSOR_step10
-                  0x005dec                  _AUAV3_AND_SLUGS_SENSOR_step11
-                  0x005e60                  _AUAV3_AND_SLUGS_SENSOR_step
-                  0x005e9c                  _AUAV3_AND_SLUGS_SENSOR_initialize
- .text            0x0060b8       0x18f6 build/default/production/_ext/761100751/MavlinkComm.o
-                  0x0060b8                  _uartMavlinkBufferInit
-                  0x0060d2                  __U1RXInterrupt
-                  0x006116                  _isFinite
-                  0x00615a                  _InitParameterInterface
-                  0x0061f2                  _protDecodeMavlink
-                  0x00687c                  _MissionInterfaceResponse
-                  0x006e8a                  _ParameterInterfaceResponse
-                  0x00714c                  _PackHeartBeat
-                  0x007312                  _PackTextMsg
-                  0x0073dc                  _PackRawIMU
-                  0x0074a6                  _PackGpsRawInt
-                  0x007582                  _PackScaledPressure
-                  0x007644                  _PackSysStatus
-                  0x007726                  _PackRawServo
-                  0x0077ec                  _PackRawRC
-                  0x0078b4                  _sendQGCDebugMessage
-                  0x00796a                  _TxN_Data_OverU1
- .text            0x0079ae        0x5f8 build/default/production/_ext/761100751/gpsUblox.o
-                  0x0079ae                  _hex2char
-                  0x0079de                  _degMinToDeg
-                  0x007a10                  _gpSmbl
-                  0x007a60                  _myTokenizer
-                  0x007ac2                  _parseRMC
-                  0x007c48                  _parseGGA
-                  0x007ddc                  _getChecksum
-                  0x007e08                  _gpsUbloxSeparate
-                  0x007ef4                  _gpsUbloxParse
-                  0x007f38                  _getGpsUbloxMainData
- .text            0x007fa6        0x4ba build/default/production/_ext/761100751/novatel.o
-                  0x007fa6                  _gpsInit
-                  0x007faa                  _updateStatus
-                  0x007fc2                  _getGpsMainData
-                  0x00802e                  _CRC32Value
-                  0x0080ea                  _CalculateBlockCRC32
-                  0x008128                  _charsToUint16
-                  0x008132                  _charsToUint32
-                  0x008148                  _updateTimeData
-                  0x008196                  _charsToFloat
-                  0x0081ae                  _charsToDouble
-                  0x0081e8                  _updateVelocityData
-                  0x008232                  _updatePositionData
-                  0x0082d4                  _gpsParse
- .text            0x008460        0x34a build/default/production/_ext/761100751/hil.o
-                  0x008460                  _hilRead
-                  0x008462                  _hil_getRawRead
-                  0x008498                  _hil_getVned
-                  0x0084b0                  _hil_getEuler
-                  0x0084c8                  _hil_getRates
-                  0x0084e0                  _hil_getXYZ
-                  0x0084f8                  _hil_getTs
-                  0x0084fc                  _protDecodeHil
+.text             0x004448       0x4454
+ .text            0x004448       0x1c9e build/default/production/AUAV3_AND_SLUGS_SENSOR.o
+                  0x004448                  _mul_wide_u32
+                  0x0044a2                  _mul_u32_u32_u32_sr15
+                  0x0044c6                  _mul_wide_s32
+                  0x0045ac                  _mul_u32_s32_s32_sat
+                  0x0045dc                  _mul_wide_su32
+                  0x00469e                  _mul_s32_s32_u32_sr16
+                  0x0046b8                  _div_u32_round
+                  0x00470c                  _mul_u32_u32_u32_sr11_round
+                  0x00473c                  _div_repeat_u32_round
+                  0x0047ba                  _mul_u32_s32_u32_sr15
+                  0x0047de                  _mul_s32_s32_s32_sr28
+                  0x004802                  _mul_s32_s32_s32_sr23
+                  0x004826                  _div_s16s32_round
+                  0x0048b4                  _MultiWord2uLong
+                  0x0048bc                  _uMultiWordShr
+                  0x0049ac                  _uMultiWordMul
+                  0x004b5c                  _AUA_EnabledSubsystem_Start
+                  0x004b64                  _AUAV3_AND_EnabledSubsystem
+                  0x004b6c                  _EnablesDisablestheCom_Init
+                  0x004b78                  _EnablesDisablestheComputat
+                  0x004bc2                  _EmbeddedMATLABFunctio_Init
+                  0x004bc8                  _AUA_EmbeddedMATLABFunction
+                  0x004c86                  _A_EmbeddedMATLABFunction_i
+                  0x004cba                  _AUAV3_AND_SLUGS_SENSOR_step0
+                  0x005bae                  _AUAV3_AND_SLUGS_SENSOR_step1
+                  0x005d04                  _AUAV3_AND_SLUGS_SENSOR_step2
+                  0x005d1a                  _AUAV3_AND_SLUGS_SENSOR_step3
+                  0x005d30                  _AUAV3_AND_SLUGS_SENSOR_step4
+                  0x005d6e                  _AUAV3_AND_SLUGS_SENSOR_step5
+                  0x005da6                  _AUAV3_AND_SLUGS_SENSOR_step6
+                  0x005dd8                  _AUAV3_AND_SLUGS_SENSOR_step7
+                  0x005de6                  _AUAV3_AND_SLUGS_SENSOR_step8
+                  0x005df4                  _AUAV3_AND_SLUGS_SENSOR_step9
+                  0x005e0a                  _AUAV3_AND_SLUGS_SENSOR_step10
+                  0x005e7e                  _AUAV3_AND_SLUGS_SENSOR_step
+                  0x005eb6                  _AUAV3_AND_SLUGS_SENSOR_initialize
+ .text            0x0060e6       0x19ba build/default/production/_ext/761100751/MavlinkComm.o
+                  0x0060e6                  _uartMavlinkBufferInit
+                  0x006100                  __U1RXInterrupt
+                  0x006144                  _isFinite
+                  0x006188                  _InitParameterInterface
+                  0x006220                  _protDecodeMavlink
+                  0x0068aa                  _MissionInterfaceResponse
+                  0x006eb8                  _ParameterInterfaceResponse
+                  0x00717a                  _PackHeartBeat
+                  0x007340                  _PackTextMsg
+                  0x00740a                  _PackRawIMU
+                  0x0074d4                  _PackGpsRawInt
+                  0x0075b0                  _PackScaledPressure
+                  0x007672                  _PackSysStatus
+                  0x007754                  _PackRawServo
+                  0x00781a                  _PackRawRC
+                  0x0078e2                  _PackVFR_HUD
+                  0x0079a6                  _sendQGCDebugMessage
+                  0x007a5c                  _TxN_Data_OverU1
+ .text            0x007aa0        0x5f8 build/default/production/_ext/761100751/gpsUblox.o
+                  0x007aa0                  _hex2char
+                  0x007ad0                  _degMinToDeg
+                  0x007b02                  _gpSmbl
+                  0x007b52                  _myTokenizer
+                  0x007bb4                  _parseRMC
+                  0x007d3a                  _parseGGA
+                  0x007ece                  _getChecksum
+                  0x007efa                  _gpsUbloxSeparate
+                  0x007fe6                  _gpsUbloxParse
+                  0x00802a                  _getGpsUbloxMainData
+ .text            0x008098        0x4ba build/default/production/_ext/761100751/novatel.o
+                  0x008098                  _gpsInit
+                  0x00809c                  _updateStatus
+                  0x0080b4                  _getGpsMainData
+                  0x008120                  _CRC32Value
+                  0x0081dc                  _CalculateBlockCRC32
+                  0x00821a                  _charsToUint16
+                  0x008224                  _charsToUint32
+                  0x00823a                  _updateTimeData
+                  0x008288                  _charsToFloat
+                  0x0082a0                  _charsToDouble
+                  0x0082da                  _updateVelocityData
+                  0x008324                  _updatePositionData
+                  0x0083c6                  _gpsParse
+ .text            0x008552        0x34a build/default/production/_ext/761100751/hil.o
+                  0x008552                  _hilRead
+                  0x008554                  _hil_getRawRead
+                  0x00858a                  _hil_getVned
+                  0x0085a2                  _hil_getEuler
+                  0x0085ba                  _hil_getRates
+                  0x0085d2                  _hil_getXYZ
+                  0x0085ea                  _hil_getTs
+                  0x0085ee                  _protDecodeHil
 
-.dinit            0x0087aa        0x234
- .dinit           0x0087aa        0x234 data_init
+.dinit            0x00889c        0x234
+ .dinit           0x00889c        0x234 data_init
 
-.text             0x0089de        0x7ea
- .text            0x0089de        0x228 build/default/production/_ext/761100751/adisCube16405.o
-                  0x0089de                  _cubeInit
-                  0x0089e0                  _averageData
-                  0x008a06                  _updateCubeData
-                  0x008a66                  _write2Cube
-                  0x008a68                  _convert14BitToShort
-                  0x008a7a                  __T5Interrupt
-                  0x008b2c                  _getCubeData
-                  0x008bf2                  _convert12BitToShort
-                  0x008c04                  _isCube16405
- .text            0x008c06        0x21c build/default/production/_ext/761100751/updateSensorMcuState.o
-                  0x008c06                  _updateRawADCData
-                  0x008c18                  _updateAirData
-                  0x008c3a                  _updateLoadData
-                  0x008c42                  _updateAttitude
-                  0x008c72                  _getGSLocation
-                  0x008ca8                  _updateTimeStamp
-                  0x008cbc                  _updatePosition
-                  0x008cec                  _updatePilotConsole
-                  0x008d02                  _updateDiagnosticFl
-                  0x008d1a                  _updateDiagnosticSh
-                  0x008d28                  _updateBias
-                  0x008d58                  _updateSensorData
-                  0x008de8                  _isFixValid
-                  0x008df6                  _updateSensorDiag
- .text            0x008e22        0x108 build/default/production/_ext/761100751/circBuffer.o
-                  0x008e22                  _newCircBuffer
-                  0x008e42                  _freeCircBuffer
-                  0x008e4e                  _getLength
-                  0x008e6a                  _readHead
-                  0x008e76                  _readTail
-                  0x008e82                  _peak
-                  0x008ea2                  _readFront
-                  0x008ed0                  _writeBack
-                  0x008f06                  _makeEmpty
- .text            0x008f2a         0xf4 build/default/production/_ext/761100751/apUtils.o
-                  0x008f2a                  _myAtan2
-                  0x008f38                  _myPow
-                  0x008f46                  _mySqrt
-                  0x008f54                  _myAbs
-                  0x008f60                  _myAtan
-                  0x008f6e                  _myAsin
-                  0x008f7c                  _mySin
-                  0x008f8a                  _myCos
-                  0x008f98                  _myTan
-                  0x008fa6                  _myAcos
-                  0x008fb4                  _myExp
-                  0x008fc2                  _hugeDelay
-                  0x008fdc                  _smallDelay
-                  0x008fe6                  _tinyDelay
-                  0x008ff0                  _hasMode
-                  0x008ffa                  _printToUart2
- .text            0x00901e         0xb6 build/default/production/rt_nonfinite.o
-                  0x00901e                  _rt_InitInfAndNaN
-                  0x009050                  _rtIsInf
-                  0x00907c                  _rtIsInfF
-                  0x0090a8                  _rtIsNaN
-                  0x0090be                  _rtIsNaNF
- .text            0x0090d4         0x7c build/default/production/_ext/761100751/mavlinkSensorMcu.o
-                  0x0090d4                  _mavlinkInit
- .text            0x009150         0x54 build/default/production/_ext/761100751/gpsPort.o
-                  0x009150                  _uartBufferInit
-                  0x00916e                  __U4RXInterrupt
-                  0x0091a0                  _getGPSRawData
-                  0x0091a2                  _isGPSNovatel
- .text            0x0091a4         0x24 build/default/production/rtGetInf.o
-                  0x0091a4                  _rtGetInfF
-                  0x0091aa                  _rtGetInf
-                  0x0091b6                  _rtGetMinusInfF
-                  0x0091bc                  _rtGetMinusInf
+.text             0x008ad0        0x7ea
+ .text            0x008ad0        0x228 build/default/production/_ext/761100751/adisCube16405.o
+                  0x008ad0                  _cubeInit
+                  0x008ad2                  _averageData
+                  0x008af8                  _updateCubeData
+                  0x008b58                  _write2Cube
+                  0x008b5a                  _convert14BitToShort
+                  0x008b6c                  __T5Interrupt
+                  0x008c1e                  _getCubeData
+                  0x008ce4                  _convert12BitToShort
+                  0x008cf6                  _isCube16405
+ .text            0x008cf8        0x21c build/default/production/_ext/761100751/updateSensorMcuState.o
+                  0x008cf8                  _updateRawADCData
+                  0x008d0a                  _updateAirData
+                  0x008d2c                  _updateLoadData
+                  0x008d34                  _updateAttitude
+                  0x008d64                  _getGSLocation
+                  0x008d9a                  _updateTimeStamp
+                  0x008dae                  _updatePosition
+                  0x008dde                  _updatePilotConsole
+                  0x008df4                  _updateDiagnosticFl
+                  0x008e0c                  _updateDiagnosticSh
+                  0x008e1a                  _updateBias
+                  0x008e4a                  _updateSensorData
+                  0x008eda                  _isFixValid
+                  0x008ee8                  _updateSensorDiag
+ .text            0x008f14        0x108 build/default/production/_ext/761100751/circBuffer.o
+                  0x008f14                  _newCircBuffer
+                  0x008f34                  _freeCircBuffer
+                  0x008f40                  _getLength
+                  0x008f5c                  _readHead
+                  0x008f68                  _readTail
+                  0x008f74                  _peak
+                  0x008f94                  _readFront
+                  0x008fc2                  _writeBack
+                  0x008ff8                  _makeEmpty
+ .text            0x00901c         0xf4 build/default/production/_ext/761100751/apUtils.o
+                  0x00901c                  _myAtan2
+                  0x00902a                  _myPow
+                  0x009038                  _mySqrt
+                  0x009046                  _myAbs
+                  0x009052                  _myAtan
+                  0x009060                  _myAsin
+                  0x00906e                  _mySin
+                  0x00907c                  _myCos
+                  0x00908a                  _myTan
+                  0x009098                  _myAcos
+                  0x0090a6                  _myExp
+                  0x0090b4                  _hugeDelay
+                  0x0090ce                  _smallDelay
+                  0x0090d8                  _tinyDelay
+                  0x0090e2                  _hasMode
+                  0x0090ec                  _printToUart2
+ .text            0x009110         0xb6 build/default/production/rt_nonfinite.o
+                  0x009110                  _rt_InitInfAndNaN
+                  0x009142                  _rtIsInf
+                  0x00916e                  _rtIsInfF
+                  0x00919a                  _rtIsNaN
+                  0x0091b0                  _rtIsNaNF
+ .text            0x0091c6         0x7c build/default/production/_ext/761100751/mavlinkSensorMcu.o
+                  0x0091c6                  _mavlinkInit
+ .text            0x009242         0x54 build/default/production/_ext/761100751/gpsPort.o
+                  0x009242                  _uartBufferInit
+                  0x009260                  __U4RXInterrupt
+                  0x009292                  _getGPSRawData
+                  0x009294                  _isGPSNovatel
+ .text            0x009296         0x24 build/default/production/rtGetInf.o
+                  0x009296                  _rtGetInfF
+                  0x00929c                  _rtGetInf
+                  0x0092a8                  _rtGetMinusInfF
+                  0x0092ae                  _rtGetMinusInf
 
-.init.delay32     0x0091c8         0x1c
- .init.delay32    0x0091c8         0x1c C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libpic30-elf.a(delay32ep.eo)
-                  0x0091c8                  ___delay32
+.init.delay32     0x0092ba         0x1c
+ .init.delay32    0x0092ba         0x1c C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libpic30-elf.a(delay32ep.eo)
+                  0x0092ba                  ___delay32
 
-.text             0x0091e4         0x12
- .text            0x0091e4         0x12 build/default/production/rtGetNaN.o
-                  0x0091e4                  _rtGetNaNF
-                  0x0091ea                  _rtGetNaN
+.text             0x0092d6         0x12
+ .text            0x0092d6         0x12 build/default/production/rtGetNaN.o
+                  0x0092d6                  _rtGetNaNF
+                  0x0092dc                  _rtGetNaN
 
-.shared.dinit     0x0091f6          0x2
- .shared.dinit    0x0091f6          0x2 shared_data_init
+.shared.dinit     0x0092e8          0x2
+ .shared.dinit    0x0092e8          0x2 shared_data_init

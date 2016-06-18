@@ -19,11 +19,11 @@
  *
  * Real-Time Workshop code generated for Simulink model AUAV3_AND_SLUGS_SENSOR.
  *
- * Model version                        : 1.219
+ * Model version                        : 1.223
  * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Fri Apr 29 16:39:44 2016
+ * Real-Time Workshop file generated on : Fri Jun 17 19:05:27 2016
  * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Fri Apr 29 16:39:46 2016
+ * C source code generated on           : Fri Jun 17 19:05:28 2016
  */
 
 #ifndef RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_h_
@@ -137,6 +137,7 @@ typedef struct {
   mavlink_sys_status_t GetmlSysStatus; /* '<S4>/Get mlSysStatus' */
   mavlink_raw_imu_t GetRawIMU;         /* '<S4>/Get Raw IMU' */
   mavlink_rc_channels_raw_t GetRawRC;  /* '<S4>/Get Raw RC' */
+  mavlink_vfr_hud_t GetVfrHud;         /* '<S4>/Get VfrHud' */
   mavlink_scaled_pressure_t GetmlAirData;/* '<S4>/Get mlAirData' */
   real32_T Merge;                      /* '<S190>/Merge' */
   real32_T Merge_k;                    /* '<S191>/Merge' */
@@ -153,6 +154,7 @@ typedef struct {
   uint32_T Gettime1;                   /* '<S4>/Get time1' */
   uint32_T Gettime2;                   /* '<S4>/Get time2' */
   uint32_T Gettime3;                   /* '<S4>/Get time3' */
+  uint32_T Gettime4;                   /* '<S4>/Get time4' */
   int16_T ReadtheCubeDataadisCube16405c1[10];/* '<S155>/Read the Cube Data [adisCube16405.c]1' */
   int16_T y_g[13];                     /* '<S155>/myMux Fun4' */
   int16_T y_b[4];                      /* '<S155>/myMux Fun' */
@@ -185,6 +187,7 @@ typedef struct {
   uint16_T ParamInterfaceResponse;     /* '<S4>/ParamInterfaceResponse' */
   uint16_T ParamInterfaceResponse1;    /* '<S4>/ParamInterfaceResponse1' */
   uint16_T PackRawRC;                  /* '<S4>/PackRawRC' */
+  uint16_T PackRawRC1;                 /* '<S4>/PackRawRC1' */
   uint16_T RateTransition5;            /* '<S124>/Rate Transition5' */
   uint16_T RateTransition6;            /* '<S124>/Rate Transition6' */
   uint16_T RateTransition7;            /* '<S124>/Rate Transition7' */
@@ -235,6 +238,7 @@ typedef struct {
   mavlink_raw_imu_t mlRawIMU;          /* '<Root>/mlRawIMU' */
   mavlink_rc_channels_raw_t mlRC_Commands;/* '<Root>/mlRawRC' */
   mavlink_servo_output_raw_t mlPwmCommands;/* '<Root>/mlRawServo' */
+  mavlink_vfr_hud_t mlVfr_hud;         /* '<Root>/mlVfr_hud' */
   real_T DiscreteZeroPole_DSTATE;      /* '<S204>/Discrete Zero-Pole' */
   real_T DiscreteZeroPole_DSTATE_n;    /* '<S136>/Discrete Zero-Pole' */
   real32_T IntegerDelay_DSTATE;        /* '<S202>/Integer Delay' */
@@ -282,8 +286,8 @@ struct tag_RTM_AUAV3_AND_SLUGS_SENSO_T {
    */
   struct {
     struct {
-      uint16_T TID[12];
-      uint16_T cLimit[12];
+      uint8_T TID[11];
+      uint8_T cLimit[11];
     } TaskCounters;
   } Timing;
 };
