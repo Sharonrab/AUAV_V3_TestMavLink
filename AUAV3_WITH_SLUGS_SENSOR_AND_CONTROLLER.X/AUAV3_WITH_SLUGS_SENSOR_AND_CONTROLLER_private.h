@@ -1,29 +1,18 @@
-/*--------------------------------------------------------------
- *   MPLAB Blockset v3.35 for Microchip dsPIC chip family.     *
- *   Generate .c and .h files from Simulink model              *
- *   and compile to .elf, .hex and .cof file that can be       *
- *   flashed into the microcontroller                          *
- *                                                             *
- *      The Microchip name PIC, dsPIC, and MPLAB are           *
- *      registered trademarks of Microchip Technology Inc.     *
- *      MATLAB, Simulink, and Real-Time Workshop are           *
- *      registered trademarks of The MathWorks, Inc.           *
- *                                                             *
- *  Blockset authors: L.Kerhuel, U.Kumar                       *
- *  Product Page:  http://www.microchip.com/SimulinkBlocks     *
- *          Forum: http://www.microchip.com/forums/f192.aspx   *
- *          Wiki:  http://microchip.wikidot.com/simulink:start *
- *--------------------------------------------------------------
+/*
+ * -------------------------------------------------------------------
+ * MPLAB 16-Bit Device Blocks for Simulink v3.38.
  *
+ *   Product Page:  http://www.microchip.com/SimulinkBlocks
+ *           Forum: http://www.microchip.com/forums/f192.aspx
+ *           Wiki:  http://microchip.wikidot.com/simulink:start
+ * -------------------------------------------------------------------
  * File: AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_private.h
  *
- * Real-Time Workshop code generated for Simulink model AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.
+ * Code generated for Simulink model 'AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER'.
  *
- * Model version                        : 1.275
- * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Tue May 17 18:16:41 2016
- * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Tue May 17 18:16:42 2016
+ * Model version                  : 1.287
+ * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
+ * C/C++ source code generated on : Tue Jun 21 17:57:00 2016
  */
 
 #ifndef RTW_HEADER_AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_private_h_
@@ -115,9 +104,6 @@ extern unsigned int volatile MCHP_I2C24_Request;
 extern volatile uint8_T I2C24_Buff8[6];
 extern unsigned int volatile MCHP_I2C25_Request;
 extern real32_T rt_atan2f_snf(real32_T u0, real32_T u1);
-
-/* C Function Call declare function as extern */
-extern uint8_T getNavMode();
 extern volatile uint16_T MCHP_ic1up;
 extern volatile uint16_T MCHP_ic2up;
 extern volatile uint16_T MCHP_ic3up;
@@ -133,16 +119,7 @@ extern uint16_T meanFilter5(uint8_T *u1);
 extern uint8_T isApManual(uint16_T u1);
 
 /* C Function Call declare function as extern */
-extern real32_T getDynamic();
-
-/* C Function Call declare function as extern */
-extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);
-
-/* C Function Call declare function as extern */
 extern uint8_T justEnabled(uint8_T u1, uint8_T u2);
-
-/* C Function Call declare function as extern */
-extern uint8_T isPassthrough();
 
 /* C Function Call declare function as extern */
 extern void getGSLocation(real32_T* y1);
@@ -181,31 +158,7 @@ extern void protDecodeHil(uint8_T* u1);
 extern void hil_getRawRead(uint8_T* y1);
 
 /* C Function Call declare function as extern */
-extern uint8_T getMaxWp();
-
-/* C Function Call declare function as extern */
-extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);
-
-/* C Function Call declare function as extern */
-extern uint8_T isWpFly();
-
-/* C Function Call declare function as extern */
 extern void getRTB(uint8_T* y1);
-
-/* C Function Call declare function as extern */
-extern void getMobileLocation(real32_T* y1);
-
-/* C Function Call declare function as extern */
-extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);
-
-/* C Function Call declare function as extern */
-extern uint8_T getNavMode();
-
-/* C Function Call declare function as extern */
-extern void getISRLocation(real32_T* y1);
-
-/* C Function Call declare function as extern */
-extern void getGSLocation(float* altLatLon);
 
 /* C Function Call declare function as extern */
 extern void setDiagnosticFloat(float * flValues);
@@ -268,61 +221,13 @@ extern float myAbs(float x);
 extern float myAtan(float x);
 
 /* C Function Call declare function as extern */
-extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);
-
-/* C Function Call declare function as extern */
-extern real32_T getParamIdx(uint8_T u1);
-
-/* C Function Call declare function as extern */
-extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);
-
-/* C Function Call declare function as extern */
 extern real32_T mySqrt(real32_T u1);
 
 /* C Function Call declare function as extern */
 extern real32_T mySqrt(real32_T u1);
-
-/* C Function Call declare function as extern */
-extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);
-
-/* C Function Call declare function as extern */
-extern real32_T getParamIdx(uint8_T u1);
-
-/* C Function Call declare function as extern */
-extern void setNavLong(real32_T* u1);
-
-/* C Function Call declare function as extern */
-extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);
-
-/* C Function Call declare function as extern */
-extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);
-
-/* C Function Call declare function as extern */
-extern void getRangeOfParams(uint8_T u1, uint8_T u2, real32_T* y1);
-
-/* C Function Call declare function as extern */
-extern void setNavLat(real32_T* u1);
 
 /* C Function Call declare function as extern */
 extern void getPassValues(uint8_T* pasVals);
-
-/* C Function Call declare function as extern */
-extern void updatePWM(uint16_T* u1);
-
-/* C Function Call declare function as extern */
-extern void updateEuler(real32_T* u1);
-
-/* C Function Call declare function as extern */
-extern void updatePQR(real32_T* u1);
-
-/* C Function Call declare function as extern */
-extern void updateVISensor(uint16_T* u1);
-
-/* C Function Call declare function as extern */
-extern void prepareTelemetryMavlink(uint8_T* y1);
-
-/* C Function Call declare function as extern */
-extern void send2GS(uint8_T* u1);
 extern volatile uint16_T MCHP_ic1up;
 extern volatile uint16_T MCHP_ic2up;
 extern volatile uint16_T MCHP_ic3up;
@@ -418,8 +323,6 @@ extern void AUA_EmbeddedMATLABFunction(real32_T rtu_u, real_T rtu_T, real_T
   rtDW_EmbeddedMATLABFunction_A_T *localDW);
 extern void AUAV3_WITH_SLUG_negprotect(real32_T rtu_val,
   rtB_negprotect_AUAV3_WITH_SLU_T *localB);
-extern void AUAV3_WITH_SLUGS_myMuxFun1(real32_T rtu_u1, real32_T rtu_u2,
-  real32_T rtu_u3, rtB_myMuxFun1_AUAV3_WITH_SLUG_T *localB);
 extern void AUAV3_WITH_SL_negprotect_d(real32_T rtu_val,
   rtB_negprotect_AUAV3_WITH_S_h_T *localB);
 extern void A_EmbeddedMATLABFunction_g(const real32_T rtu_x[3],
@@ -432,8 +335,8 @@ extern void AUAV3_WITH_SL_SelectNTerms(const real32_T rtu_T[3],
   rtB_SelectNTerms_AUAV3_WITH_S_T *localB);
 extern void AUAV3_WITH_SLU_negprotect3(real32_T rtu_val,
   rtB_negprotect3_AUAV3_WITH_SL_T *localB);
-extern void AUAV3_WITH_SLU_myMuxFun1_h(real_T rtu_u1, real_T rtu_u2, real_T
-  rtu_u3, rtB_myMuxFun1_AUAV3_WITH_SL_h_T *localB);
+extern void AUAV3_WITH_SLUGS_myMuxFun1(real_T rtu_u1, real_T rtu_u2, real_T
+  rtu_u3, rtB_myMuxFun1_AUAV3_WITH_SLUG_T *localB);
 extern void AUAV3_WITH_S_AxisRotZeroR3(const real32_T rtu_In1[7], real32_T
   *rty_1, real32_T *rty_2, real32_T *rty_3);
 extern void AUAV3_WITH__AxisRotDefault(const real32_T rtu_In1[7], real32_T
@@ -473,23 +376,11 @@ extern void AUAV3_WITH_BufferICChannel(uint16_T rtu_latest,
   *localDW);
 extern void AUAV3_WITH_SLU_myMuxFun1_c(uint16_T rtu_u1, uint16_T rtu_u2,
   uint16_T rtu_u3, uint16_T rtu_u4, uint16_T rty_y[4]);
-extern void AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step0(void);
-extern void AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step1(void);
-extern void AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step2(void);
-extern void AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step3(void);
-extern void AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step4(void);
-extern void AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step5(void);
-extern void AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step6(void);
-extern void AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step7(void);
-extern void AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step8(void);
-extern void AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step9(void);
-extern void AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step10(void);
-extern void AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step11(void);
-extern void AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step12(void);
 
 #endif                                 /* RTW_HEADER_AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_private_h_ */
 
-/* File trailer for Real-Time Workshop generated code.
+/*
+ * File trailer for generated code.
  *
  * [EOF]
  */

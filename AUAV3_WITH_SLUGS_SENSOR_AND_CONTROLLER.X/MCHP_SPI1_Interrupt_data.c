@@ -3,6 +3,7 @@
 #include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.h"
 #include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_private.h"
 
+/* SPI - Interrupt: <Root>/BUS SPI Initialize MPU 6000 Once at Startup */
 volatile uint16_T MCHP_SPI1_State = 0;
 boolean_T volatile MCHP_SPI12_Request = 0;
 

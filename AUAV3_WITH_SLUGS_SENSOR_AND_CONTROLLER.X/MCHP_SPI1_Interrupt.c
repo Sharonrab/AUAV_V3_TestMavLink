@@ -27,19 +27,14 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
       break;
 
      case 1:                           /* Start a new SPI Sequence */
-      /* Toggle pin */
       LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
 
       /* Delay */
       __delay32(700000);               /* Delay  */
-
-      /* Toggle pin */
       LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
 
       /* Write only Sequence */
       SPI1BUF = 0x6B80;
-
-      /* Toggle pin */
       MCHP_SPI1_State++;
       break;
 
@@ -48,15 +43,11 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
 
       /* Delay */
       __delay32(4200000);              /* Delay  */
-
-      /* Toggle pin */
       LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
 
       /* Write only Sequence */
       tmp = SPI1BUF;
       SPI1BUF = 0x6B01;
-
-      /* Toggle pin */
       MCHP_SPI1_State++;
       break;
 
@@ -65,15 +56,11 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
 
       /* Delay */
       __delay32(700000);               /* Delay  */
-
-      /* Toggle pin */
       LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
 
       /* Write only Sequence */
       tmp = SPI1BUF;
       SPI1BUF = 0x6A10;
-
-      /* Toggle pin */
       MCHP_SPI1_State++;
       break;
 
@@ -82,15 +69,11 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
 
       /* Delay */
       __delay32(700000);               /* Delay  */
-
-      /* Toggle pin */
       LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
 
       /* Write only Sequence */
       tmp = SPI1BUF;
       SPI1BUF = 0x1904;
-
-      /* Toggle pin */
       MCHP_SPI1_State++;
       break;
 
@@ -99,15 +82,11 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
 
       /* Delay */
       __delay32(700000);               /* Delay  */
-
-      /* Toggle pin */
       LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
 
       /* Write only Sequence */
       tmp = SPI1BUF;
       SPI1BUF = 0x1A03;
-
-      /* Toggle pin */
       MCHP_SPI1_State++;
       break;
 
@@ -116,15 +95,11 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
 
       /* Delay */
       __delay32(700000);               /* Delay  */
-
-      /* Toggle pin */
       LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
 
       /* Write only Sequence */
       tmp = SPI1BUF;
       SPI1BUF = 0x1B08;
-
-      /* Toggle pin */
       MCHP_SPI1_State++;
       break;
 
@@ -137,7 +112,6 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
       break;
 
      case 8:                           /* Start a new SPI Sequence */
-      /* Toggle pin */
       LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
 
       /* Write only Sequence */
@@ -159,7 +133,6 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
       break;
 
      case 9:
-      /* Toggle pin */
       LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
       tmp = SPI1BUF;
       SPI11_Buff16[0] = SPI1BUF;

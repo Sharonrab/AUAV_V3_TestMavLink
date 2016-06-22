@@ -31,10 +31,10 @@ MAKEFILE                = AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.mk
 MATLAB_ROOT             = C:/Program Files/MATLAB/MATLAB Production Server/R2015a
 ALT_MATLAB_ROOT         = C:/PROGRA~1/MATLAB/MATLAB~1/R2015a
 MASTER_ANCHOR_DIR       = 
-START_DIR               = C:/Users/sharon/Documents/GitHub/AUAV_V3_TestMavLink
+START_DIR               = C:/Research/AUAV_V3_TestMavLink
 S_FUNCTIONS             = 
 S_FUNCTIONS_LIB         = 
-NUMST                   = 13
+NUMST                   = 12
 NCSTATES                = 0
 COMPUTER                = PCWIN64
 BUILDARGS               =  GENERATE_ASAP2=0 HOST_PLATFORM="PC" MCHP_AUTO_FLASH=0 MCHP_MULTITHREAD_COMPILATION=0 ISPROTECTINGMODEL=NOTPROTECTING
@@ -87,12 +87,12 @@ endif
 AssemblyListing = 1
 ProduceHexOutput = 0
 
-GCC1    = pic30-gcc.exe
-AR1     = pic30-ar
-BIN2HEX = pic30-bin2hex 	
-OBJDUMP = pic30-objdump
+GCC1    = xc16-gcc.exe
+AR1     = xc16-ar
+BIN2HEX = xc16-bin2hex 	
+OBJDUMP = xc16-objdump
 
-GCCPATH	= C:\PROGRA~2\MICROC~1\mplabc30\v3.31\bin
+GCCPATH	= C:/PROGRA~2/MICROC~1/xc16/v1.26/bin
 ifeq ($(strip $(GCCPATH)),)
 	CC   = $(GCC1)  
 	CPP  = $(GCC1) 
@@ -116,11 +116,11 @@ endif
 EXTMODE_DATA_UPLOAD = 0
 OMF   	        = elf
 
-OPTIM_GCC 		=  -O3 -fschedule-insns -fschedule-insns2
-LDFLAGS 		= -t,--report-mem,-Map=info.map,-cref
-LINKER_SCRIPT 	= "C:\PROGRA~2\MICROC~1\mplabc30\v3.31\support\dsPIC33E\gld\P33EP5~3.GLD"
-PIC_LIB 		= C:\PROGRA~2\MICROC~1\mplabc30\v3.31\lib\dsPIC33E\libp33EP512MU810-elf.a C:\PROGRA~2\MICROC~1\mplabc30\v3.31\lib\libpic30-elf.a C:\PROGRA~2\MICROC~1\mplabc30\v3.31\lib\libm-elf.a C:\PROGRA~2\MICROC~1\mplabc30\v3.31\lib\libc-elf.a C:\PROGRA~2\MICROC~1\mplabc30\v3.31\lib\libq-elf.a C:\PROGRA~2\MICROC~1\mplabc30\v3.31\lib\libq-dsp-elf.a
-PIC_INCLUDES 	= -IC:\PROGRA~2\MICROC~1\mplabc30\v3.31\include -IC:\PROGRA~2\MICROC~1\mplabc30\v3.31\support\dsPIC33E\h -IC:\PROGRA~2\MICROC~1\mplabc30\v3.31\support\generic\h -IC:\PROGRA~2\MICROC~1\mplabc30\v3.31\support\PERIPH~2
+OPTIM_GCC 		=  -O3
+LDFLAGS 		= -t,--report-mem,-Map=info.map,-cref,--memorysummary,memoryfile.xml
+LINKER_SCRIPT 	= "C:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/gld/P35C90~1.GLD"
+PIC_LIB 		= C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libpic30-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libm-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libc-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libq-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libq-dsp-elf.a 
+PIC_INCLUDES 	= -IC:/PROGRA~2/MICROC~1/xc16/v1.26/include -IC:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/h -IC:/PROGRA~2/MICROC~1/xc16/v1.26/support/generic/h
 PIC_REF 		= 33EP512MU810
 
 #-- always add one space just before -Xlinker solve possible ambiguity while using -Wl flag. Solve problem when LDFLAGS starts with -Xlinker (old style)

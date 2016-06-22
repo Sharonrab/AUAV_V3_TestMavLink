@@ -1,6 +1,7 @@
 #include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.h"
 #include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_private.h"
 
+/* I2C - Interrupt: <S12>/BUS I2C Initialize BMP180 Read T°, Convert P @ 100Hz */
 /* Implement I2C 2 Interrupts */
 void __attribute__((__interrupt__,__auto_psv__)) _MI2C2Interrupt(void) /* MI2C2 ISR */
 {

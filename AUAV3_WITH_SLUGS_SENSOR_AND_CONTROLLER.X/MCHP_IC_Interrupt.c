@@ -1,6 +1,7 @@
 #include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.h"
 #include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_private.h"
 
+/* Input Capture - Data-Interrupt: <S15>/Input Capture RC Receiver1 */
 volatile uint16_T MCHP_ic1up;
 volatile uint16_T MCHP_ic2up;
 volatile uint16_T MCHP_ic3up;
