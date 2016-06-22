@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.288"
+    ComputedModelVersion    "1.289"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -34,7 +34,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-7.0, 0.0, 974.0, 1047.0]
+      Location		      [-7.0, 0.0, 1294.0, 1047.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -49,7 +49,7 @@ Model {
 	$PropName		"ExplorerBarInfo"
 	$ObjectID		4
 	$ClassName		"Simulink.ExplorerBarInfo"
-	Visible			[1]
+	Visible			[0]
       }
       Object {
 	$PropName		"EditorsInfo"
@@ -58,9 +58,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[924.0, 872.0]
-	ZoomFactor		[1.25]
-	Offset			[1020.313636363636, 1169.169155844153]
+	Extents			[1244.0, 902.0]
+	ZoomFactor		[1.0]
+	Offset			[-698.31634579086358, 63.408776896942072]
       }
     }
   }
@@ -68,11 +68,11 @@ Model {
   Creator		  "M91449"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "Marcello G"
+  LastModifiedBy	  "Marcello"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Jun 21 19:05:47 2016"
-  RTWModifiedTimeStamp	  388435704
-  ModelVersionFormat	  "1.%<AutoIncrement:288>"
+  LastModifiedDate	  "Wed Jun 22 16:31:03 2016"
+  RTWModifiedTimeStamp	  388509168
+  ModelVersionFormat	  "1.%<AutoIncrement:289>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  on
@@ -968,8 +968,8 @@ Model {
       }
       Name		      "Configuration"
       ExtraOptions	      "-aGenerateTraceInfo=0 -aIgnoreTestpoints=0 "
-      CurrentDlgPage	      "Code Generation/dsPIC Options"
-      ConfigPrmDlgPosition     [ -1303, 280, -336, 1019 ] 
+      CurrentDlgPage	      "Code Generation/Custom Code"
+      ConfigPrmDlgPosition     [ 63, 240, 1159, 1018 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -1546,7 +1546,7 @@ Model {
   }
   System {
     Name		    "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER"
-    Location		    [-7, 0, 967, 1047]
+    Location		    [-7, 0, 1287, 1047]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    266
@@ -1558,7 +1558,7 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "125"
+    ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "2728"
     Block {

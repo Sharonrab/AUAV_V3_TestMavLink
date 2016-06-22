@@ -208,7 +208,8 @@ extern "C" {
     extern mavlink_mission_ack_t mlWpAck; // 	..	**
     extern mavlink_mission_count_t mlWpCount; // 	..	**
     extern mavlink_sys_status_t mlSystemStatus; //	--	==
-    extern struct pi_struct mlParamInterface;
+    //extern struct pi_struct mlParamInterface;
+    extern pi_struct mlParamInterface;
     extern mavlink_slugs_camera_order_t mlCameraOrder;
     extern mavlink_rtb_t mlRTB;
     extern mavlink_slugs_mobile_location_t mlMobileLocation;

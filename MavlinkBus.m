@@ -661,7 +661,7 @@ elems(2) = Simulink.BusElement;
 elems(2).Name = 'param_name';
 elems(2).Dimensions = [PAR_PARAM_COUNT SLUGS_PARAM_NAME_LENGTH];
 elems(2).DimensionsMode = 'Fixed';
-elems(2).DataType = 'single';
+elems(2).DataType = 'uint8';
 elems(2).SampleTime = -1;
 elems(2).Complexity = 'real';
 elems(2).SamplingMode = 'Sample based';
@@ -671,10 +671,10 @@ elems(2).Max = [];
 pi_struct = Simulink.Bus;
 pi_struct.Description = sprintf('Parameter interface');
 pi_struct.DataScope = 'Imported';
-pi_struct.HeaderFile = 'mavlinkControlMcu.h'; 
+pi_struct.HeaderFile = 'MavlinkComm.h'; 
 pi_struct.Alignment = -1;
 pi_struct.Elements = elems;
-assignin('base', 'pi_struct', pi_struct)
+assignin('base','pi_struct', pi_struct)
 clear PAR_PARAM_COUNT;
 clear SLUGS_PARAM_NAME_LENGTH; 
 
@@ -1665,14 +1665,15 @@ elems(3).Max = [];
 mavlink_coordinate_float_t = Simulink.Bus;
 mavlink_coordinate_float_t.Description = sprintf('mavlink_coordinate_float');
 mavlink_coordinate_float_t.DataScope = 'Imported';
-mavlink_coordinate_float_t.HeaderFile = 'mavlink.h'; 
+mavlink_coordinate_float_t.HeaderFile = 'mavlinkSensorMcu.h'; 
+%mavlink_coordinate_float_t.HeaderFile = 'mavlink.h'; 
 mavlink_coordinate_float_t.Alignment = -1;
 mavlink_coordinate_float_t.Elements = elems;
 assignin('base', 'mavlink_coordinate_float_t', mavlink_coordinate_float_t)
 
 clear elems;
 
-%% Bus object: mlParamInterface
+% %% Bus object: mlParamInterface
 % clear elems;
 % 
 % elems(1) = Simulink.BusElement;

@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER'.
  *
- * Model version                  : 1.287
+ * Model version                  : 1.288
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Tue Jun 21 17:57:00 2016
+ * C/C++ source code generated on : Wed Jun 22 16:14:13 2016
  */
 
 #ifndef RTW_HEADER_AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_h_
@@ -882,8 +882,7 @@ extern const mavlink_slugs_mobile_location_t
   AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_rtZmavlink_slugs_mobile_location_t;/* mavlink_slugs_mobile_location_t ground */
 extern const mavlink_slugs_navigation_t
   AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_rtZmavlink_slugs_navigation_t;/* mavlink_slugs_navigation_t ground */
-extern const pi_struct 
-  AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_rtZpi_struct;/* pi_struct ground */
+extern const pi_struct AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_rtZpi_struct;/* pi_struct ground */
 extern const mavlink_raw_pressure_t
   AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_rtZmavlink_raw_pressure_t;/* mavlink_raw_pressure_t ground */
 extern const mavlink_servo_output_raw_t
