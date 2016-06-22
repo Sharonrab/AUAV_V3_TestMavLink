@@ -21,9 +21,9 @@
  *
  * Model version                        : 1.223
  * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Fri Jun 17 19:05:27 2016
+ * Real-Time Workshop file generated on : Mon Jun 20 13:12:00 2016
  * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Fri Jun 17 19:05:28 2016
+ * C source code generated on           : Mon Jun 20 13:12:01 2016
  */
 
 #define MCHP_isMainFile
@@ -46,6 +46,7 @@ union{
     unsigned int task8 : 1;
     unsigned int task9 : 1;
     unsigned int task10 : 1;
+    unsigned int task11 : 1;
   } b;
 
   unsigned int val;
@@ -80,6 +81,7 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt(void)
       unsigned int Flags8 : 1;
       unsigned int Flags9 : 1;
       unsigned int Flags10 : 1;
+      unsigned int Flags11 : 1;
     } static volatile Overrun;
 
     struct {
@@ -94,9 +96,10 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt(void)
       unsigned int Flags8 : 1;
       unsigned int Flags9 : 1;
       unsigned int Flags10 : 1;
+      unsigned int Flags11 : 1;
     } static volatile event;
 
-    static int_T taskCounter[11] = { 0, 0, 0, 0, 0, 18, 16, 14, 12, 0, 0 };
+    static int_T taskCounter[12] = { 0, 0, 0, 0, 0, 18, 16, 14, 12, 0, 0, 0 };
 
     _T2IF = 0;                         /* Re-enable interrupt */
 
@@ -175,6 +178,13 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt(void)
       }
     }
 
+    if (taskCounter[11] == 0) {        /* task dropped on overload */
+      event.Flags11 = 1U;
+      if (Overrun.Flags11) {
+        MCHP_MCU_Overload.b.task11 = 1U;/* Set overload bit for tid 11 */
+      }
+    }
+
     /* Update task internal counters */
     taskCounter[1]++;
     if (taskCounter[1] == 2) {
@@ -224,6 +234,11 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt(void)
     taskCounter[10]++;
     if (taskCounter[10] == 50) {
       taskCounter[10]= 0;
+    }
+
+    taskCounter[11]++;
+    if (taskCounter[11] == 100) {
+      taskCounter[11]= 0;
     }
 
     /* Step the model for base rate */
@@ -481,6 +496,29 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt(void)
       } while (event.Flags10);
 
       Overrun.Flags10 = 0U;
+    }
+
+    /* Handle Task 11 */
+    if (Overrun.Flags11) {
+      asm("DEC _BusyFlagRecursion");   /* ensure atomic operation for BusyFlagRecursion--; */
+      asm("DEC _mcuFlagRecursion");    /* ensure atomic	mcuFlagRecursion--; The value cannot reach 0 here, do not stop the timer */
+      return;                          /* Priority to higher rate steps interrupted */
+    }
+
+    if (event.Flags11) {
+      Overrun.Flags11 = 1;
+      do {
+        /* Start profiling task 11 */
+        event.Flags11 = 0U;
+        AUAV3_AND_SLUGS_SENSOR_step(11);
+
+        /* Get model outputs here */
+        ;                              /* Execute task tid 11 */
+
+        /* Stop profiling task 11 */
+      } while (event.Flags11);
+
+      Overrun.Flags11 = 0U;
     }
 
     _IPL1 = 1;

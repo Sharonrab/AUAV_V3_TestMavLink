@@ -21,9 +21,9 @@
  *
  * Model version                        : 1.223
  * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Fri Jun 17 19:05:27 2016
+ * Real-Time Workshop file generated on : Mon Jun 20 13:12:00 2016
  * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Fri Jun 17 19:05:28 2016
+ * C source code generated on           : Mon Jun 20 13:12:01 2016
  */
 
 #include "AUAV3_AND_SLUGS_SENSOR.h"
@@ -678,7 +678,6 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
   real_T rtb_DataTypeConversion_i;
   real_T rtb_DiscreteZeroPole;
   real_T rtb_DiscreteZeroPole_d;
-  boolean_T rtb_EnableHILfromControlMCU1;
   uint16_T rtb_Sum1_n;
   int16_T rtb_DataTypeConversion1_h;
   uint16_T rtb_BitwiseOperator_i;
@@ -686,8 +685,6 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
   uint32_T rtb_B4;
   real32_T rtb_DataTypeConversion2_h;
   real32_T rtb_Sum1;
-  boolean_T rtb_LogicalOperator_o;
-  int16_T rtb_Switch_j[13];
   uint8_T rtb_Compare;
   real32_T rtb_u001maxDynPress;
   real32_T rtb_Sum_e;
@@ -1297,229 +1294,182 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
    */
   AUAV3_AND_SLUGS_SENSOR_DWork.Output_DSTATE++;
 
-  /* S-Function (MCHP_Digital_Input): '<S9>/Enable HIL from  Control MCU1' */
-
-  /* MCHP_Digital_Input Block: <S9>/Enable HIL from  Control MCU1/Output */
-  rtb_EnableHILfromControlMCU1 = PORTDbits.RD2;/* Read pin D2 */
-
-  /* Outputs for Enabled SubSystem: '<S9>/Raw HIL  Readings' incorporates:
-   *  EnablePort: '<S151>/Enable'
-   */
-  if (rtb_EnableHILfromControlMCU1) {
-    /* S-Function (MCHP_C_function_Call): '<S151>/Data from HIL [hil.c]2' */
-    hilRead(
-            &AUAV3_AND_SLUGS_SENSOR_B.DatafromHILhilc2[0]
-            );
-
-    /* S-Function (MCHP_C_function_Call): '<S151>/HIL Messages  Parser//Decoder [hil.c]1' */
-    protDecodeHil(
-                  &AUAV3_AND_SLUGS_SENSOR_B.DatafromHILhilc2[0]
-                  );
-
-    /* S-Function (MCHP_C_function_Call): '<S151>/HIL Raw Readings [hil.c]1' */
-    hil_getRawRead(
-                   &AUAV3_AND_SLUGS_SENSOR_B.HILMessagesParserDecoderhilc1[0]
-                   );
-  }
-
-  /* End of Outputs for SubSystem: '<S9>/Raw HIL  Readings' */
-
-  /* Logic: '<S152>/Logical Operator' */
-  rtb_LogicalOperator_o = !rtb_EnableHILfromControlMCU1;
-
   /* Outputs for Enabled SubSystem: '<S152>/If no HIL then Read all the Sensors' incorporates:
    *  EnablePort: '<S155>/Enable'
    */
-  if (rtb_LogicalOperator_o) {
-    /* MATLAB Function: '<S155>/Embedded MATLAB Function' incorporates:
-     *  Constant: '<S155>/Constant'
-     */
-    A_EmbeddedMATLABFunction_i(AUAV3_AND_SLUGS_SENSOR_ConstP.pooled5,
-      &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_i);
+  /* MATLAB Function: '<S155>/Embedded MATLAB Function' incorporates:
+   *  Constant: '<S155>/Constant'
+   */
+  A_EmbeddedMATLABFunction_i(AUAV3_AND_SLUGS_SENSOR_ConstP.pooled5,
+    &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_i);
 
-    /* DataTypeConversion: '<S155>/Data Type Conversion' */
-    tmp = floor(AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_i.y);
-    if (rtIsNaN(tmp) || rtIsInf(tmp)) {
-      tmp = 0.0;
-    } else {
-      tmp = fmod(tmp, 65536.0);
-    }
-
-    rtb_DataTypeConversion1_h = tmp < 0.0 ? -(int16_T)(uint16_T)-tmp : (int16_T)
-      (uint16_T)tmp;
-
-    /* End of DataTypeConversion: '<S155>/Data Type Conversion' */
-
-    /* MATLAB Function: '<S155>/Embedded MATLAB Function1' incorporates:
-     *  Constant: '<S155>/Constant1'
-     */
-    A_EmbeddedMATLABFunction_i(AUAV3_AND_SLUGS_SENSOR_ConstP.pooled5,
-      &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction1_m);
-
-    /* DataTypeConversion: '<S155>/Data Type Conversion1' */
-    tmp = floor(AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction1_m.y);
-    if (rtIsNaN(tmp) || rtIsInf(tmp)) {
-      tmp = 0.0;
-    } else {
-      tmp = fmod(tmp, 65536.0);
-    }
-
-    rtb_DataTypeConversion1_ck = tmp < 0.0 ? -(int16_T)(uint16_T)-tmp : (int16_T)
-      (uint16_T)tmp;
-
-    /* End of DataTypeConversion: '<S155>/Data Type Conversion1' */
-
-    /* MATLAB Function: '<S155>/Embedded MATLAB Function2' incorporates:
-     *  Constant: '<S155>/Constant2'
-     */
-    A_EmbeddedMATLABFunction_i(AUAV3_AND_SLUGS_SENSOR_ConstP.pooled5,
-      &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction2_db);
-
-    /* DataTypeConversion: '<S155>/Data Type Conversion2' */
-    tmp = floor(AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction2_db.y);
-    if (rtIsNaN(tmp) || rtIsInf(tmp)) {
-      tmp = 0.0;
-    } else {
-      tmp = fmod(tmp, 65536.0);
-    }
-
-    rtb_DataTypeConversion2_bc = tmp < 0.0 ? -(int16_T)(uint16_T)-tmp : (int16_T)
-      (uint16_T)tmp;
-
-    /* End of DataTypeConversion: '<S155>/Data Type Conversion2' */
-
-    /* MATLAB Function: '<S155>/Embedded MATLAB Function3' incorporates:
-     *  Constant: '<S155>/Constant3'
-     */
-    A_EmbeddedMATLABFunction_i(AUAV3_AND_SLUGS_SENSOR_ConstP.pooled5,
-      &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction3);
-
-    /* DataTypeConversion: '<S155>/Data Type Conversion3' */
-    tmp = floor(AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction3.y);
-    if (rtIsNaN(tmp) || rtIsInf(tmp)) {
-      tmp = 0.0;
-    } else {
-      tmp = fmod(tmp, 65536.0);
-    }
-
-    rtb_DataTypeConversion3_j = tmp < 0.0 ? -(int16_T)(uint16_T)-tmp : (int16_T)
-      (uint16_T)tmp;
-
-    /* End of DataTypeConversion: '<S155>/Data Type Conversion3' */
-
-    /* MATLAB Function: '<S155>/myMux Fun' */
-    /* MATLAB Function 'Sensor Data/Sensor Suite/If no HIL then Read all the Sensors/myMux Fun': '<S184>:1' */
-    /*  This block supports an embeddable subset of the MATLAB language. */
-    /*  See the help menu for details.  */
-    /* '<S184>:1:5' y = [u1(1); u2(1); u3(1); u4(1)]; */
-    AUAV3_AND_SLUGS_SENSOR_B.y_b[0] = rtb_DataTypeConversion1_h;
-    AUAV3_AND_SLUGS_SENSOR_B.y_b[1] = rtb_DataTypeConversion1_ck;
-    AUAV3_AND_SLUGS_SENSOR_B.y_b[2] = rtb_DataTypeConversion2_bc;
-    AUAV3_AND_SLUGS_SENSOR_B.y_b[3] = rtb_DataTypeConversion3_j;
-
-    /* S-Function (MCHP_C_function_Call): '<S155>/Update State AP ADC Data [updateSensorMcuState.c]1' */
-    updateRawADCData(
-                     &AUAV3_AND_SLUGS_SENSOR_B.y_b[0]
-                     );
-
-    /* S-Function (MCHP_C_function_Call): '<S155>/Read the Cube Data [adisCube16405.c]1' */
-    getCubeData(
-                &AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[0]
-                );
-
-    /* MATLAB Function: '<S155>/myMux Fun4' */
-    /* MATLAB Function 'Sensor Data/Sensor Suite/If no HIL then Read all the Sensors/myMux Fun4': '<S185>:1' */
-    /*  This block supports an embeddable subset of the MATLAB language. */
-    /*  See the help menu for details.  */
-    /* '<S185>:1:5' y = [u1(1); u2(1); u3(1); u4(1); u5(1); u6(1); u7(1); u8(1); u9(1); u10(1); u11(1); u12(1); u13(1)]; */
-    AUAV3_AND_SLUGS_SENSOR_B.y_g[0] =
-      AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[0];
-    AUAV3_AND_SLUGS_SENSOR_B.y_g[1] =
-      AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[1];
-    AUAV3_AND_SLUGS_SENSOR_B.y_g[2] =
-      AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[2];
-    AUAV3_AND_SLUGS_SENSOR_B.y_g[3] =
-      AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[3];
-    AUAV3_AND_SLUGS_SENSOR_B.y_g[4] =
-      AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[4];
-    AUAV3_AND_SLUGS_SENSOR_B.y_g[5] =
-      AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[5];
-    AUAV3_AND_SLUGS_SENSOR_B.y_g[6] =
-      AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[6];
-    AUAV3_AND_SLUGS_SENSOR_B.y_g[7] =
-      AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[7];
-    AUAV3_AND_SLUGS_SENSOR_B.y_g[8] =
-      AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[8];
-    AUAV3_AND_SLUGS_SENSOR_B.y_g[9] = rtb_DataTypeConversion1_h;
-    AUAV3_AND_SLUGS_SENSOR_B.y_g[10] = rtb_DataTypeConversion1_ck;
-    AUAV3_AND_SLUGS_SENSOR_B.y_g[11] = rtb_DataTypeConversion2_bc;
-    AUAV3_AND_SLUGS_SENSOR_B.y_g[12] = rtb_DataTypeConversion3_j;
-
-    /* S-Function (MCHP_C_function_Call): '<S155>/Is the GPS Novatel or Ublox? [gpsPort.c]1' */
-    AUAV3_AND_SLUGS_SENSOR_B.IstheGPSNovatelorUbloxgpsPortc1 = isGPSNovatel(
-      );
-
-    /* Outputs for Enabled SubSystem: '<S155>/if GPS is Novatel' incorporates:
-     *  EnablePort: '<S182>/Enable'
-     */
-    if (AUAV3_AND_SLUGS_SENSOR_B.IstheGPSNovatelorUbloxgpsPortc1 > 0) {
-      /* S-Function (MCHP_C_function_Call): '<S182>/Produce the GPS Main Data and update the AP State (lat lon hei cog sog) [gps.c//novatel.c]2' */
-      getGpsMainData(
-                     &AUAV3_AND_SLUGS_SENSOR_B.ProducetheGPSMainDataandupdat_c[0]
-                     );
-
-      /* S-Function (MCHP_C_function_Call): '<S182>/Read the Raw Data from GPS [gpsPort.c]2' */
-      getGPSRawData(
-                    &AUAV3_AND_SLUGS_SENSOR_B.ReadtheRawDatafromGPSgpsPortc2
-                    );
-
-      /* S-Function (MCHP_C_function_Call): '<S182>/Parse the GPS RAW Data [gps.c//novatel.c]2' */
-      gpsParse(
-               &AUAV3_AND_SLUGS_SENSOR_B.ReadtheRawDatafromGPSgpsPortc2
-               );
-    }
-
-    /* End of Outputs for SubSystem: '<S155>/if GPS is Novatel' */
-
-    /* Outputs for Enabled SubSystem: '<S155>/if GPS is Ublox' incorporates:
-     *  EnablePort: '<S183>/Enable'
-     */
-    /* Logic: '<S155>/Logical Operator' */
-    if (!(AUAV3_AND_SLUGS_SENSOR_B.IstheGPSNovatelorUbloxgpsPortc1 != 0)) {
-      /* S-Function (MCHP_C_function_Call): '<S183>/Produce the GPS Main Data and update the AP State (lat lon hei cog sog) [gpsUblox.c]1' */
-      getGpsUbloxMainData(
-                          &AUAV3_AND_SLUGS_SENSOR_B.ProducetheGPSMainDataandupdatet
-                          [0]
-                          );
-    }
-
-    /* End of Logic: '<S155>/Logical Operator' */
-    /* End of Outputs for SubSystem: '<S155>/if GPS is Ublox' */
+  /* DataTypeConversion: '<S155>/Data Type Conversion' */
+  tmp = floor(AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_i.y);
+  if (rtIsNaN(tmp) || rtIsInf(tmp)) {
+    tmp = 0.0;
+  } else {
+    tmp = fmod(tmp, 65536.0);
   }
 
+  rtb_DataTypeConversion1_h = tmp < 0.0 ? -(int16_T)(uint16_T)-tmp : (int16_T)
+    (uint16_T)tmp;
+
+  /* End of DataTypeConversion: '<S155>/Data Type Conversion' */
+
+  /* MATLAB Function: '<S155>/Embedded MATLAB Function1' incorporates:
+   *  Constant: '<S155>/Constant1'
+   */
+  A_EmbeddedMATLABFunction_i(AUAV3_AND_SLUGS_SENSOR_ConstP.pooled5,
+    &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction1_m);
+
+  /* DataTypeConversion: '<S155>/Data Type Conversion1' */
+  tmp = floor(AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction1_m.y);
+  if (rtIsNaN(tmp) || rtIsInf(tmp)) {
+    tmp = 0.0;
+  } else {
+    tmp = fmod(tmp, 65536.0);
+  }
+
+  rtb_DataTypeConversion1_ck = tmp < 0.0 ? -(int16_T)(uint16_T)-tmp : (int16_T)
+    (uint16_T)tmp;
+
+  /* End of DataTypeConversion: '<S155>/Data Type Conversion1' */
+
+  /* MATLAB Function: '<S155>/Embedded MATLAB Function2' incorporates:
+   *  Constant: '<S155>/Constant2'
+   */
+  A_EmbeddedMATLABFunction_i(AUAV3_AND_SLUGS_SENSOR_ConstP.pooled5,
+    &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction2_db);
+
+  /* DataTypeConversion: '<S155>/Data Type Conversion2' */
+  tmp = floor(AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction2_db.y);
+  if (rtIsNaN(tmp) || rtIsInf(tmp)) {
+    tmp = 0.0;
+  } else {
+    tmp = fmod(tmp, 65536.0);
+  }
+
+  rtb_DataTypeConversion2_bc = tmp < 0.0 ? -(int16_T)(uint16_T)-tmp : (int16_T)
+    (uint16_T)tmp;
+
+  /* End of DataTypeConversion: '<S155>/Data Type Conversion2' */
+
+  /* MATLAB Function: '<S155>/Embedded MATLAB Function3' incorporates:
+   *  Constant: '<S155>/Constant3'
+   */
+  A_EmbeddedMATLABFunction_i(AUAV3_AND_SLUGS_SENSOR_ConstP.pooled5,
+    &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction3);
+
+  /* DataTypeConversion: '<S155>/Data Type Conversion3' */
+  tmp = floor(AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction3.y);
+  if (rtIsNaN(tmp) || rtIsInf(tmp)) {
+    tmp = 0.0;
+  } else {
+    tmp = fmod(tmp, 65536.0);
+  }
+
+  rtb_DataTypeConversion3_j = tmp < 0.0 ? -(int16_T)(uint16_T)-tmp : (int16_T)
+    (uint16_T)tmp;
+
+  /* End of DataTypeConversion: '<S155>/Data Type Conversion3' */
+
+  /* MATLAB Function: '<S155>/myMux Fun' */
+  /* MATLAB Function 'Sensor Data/Sensor Suite/If no HIL then Read all the Sensors/myMux Fun': '<S184>:1' */
+  /*  This block supports an embeddable subset of the MATLAB language. */
+  /*  See the help menu for details.  */
+  /* '<S184>:1:5' y = [u1(1); u2(1); u3(1); u4(1)]; */
+  AUAV3_AND_SLUGS_SENSOR_B.y_b[0] = rtb_DataTypeConversion1_h;
+  AUAV3_AND_SLUGS_SENSOR_B.y_b[1] = rtb_DataTypeConversion1_ck;
+  AUAV3_AND_SLUGS_SENSOR_B.y_b[2] = rtb_DataTypeConversion2_bc;
+  AUAV3_AND_SLUGS_SENSOR_B.y_b[3] = rtb_DataTypeConversion3_j;
+
+  /* S-Function (MCHP_C_function_Call): '<S155>/Update State AP ADC Data [updateSensorMcuState.c]1' */
+  updateRawADCData(
+                   &AUAV3_AND_SLUGS_SENSOR_B.y_b[0]
+                   );
+
+  /* S-Function (MCHP_C_function_Call): '<S155>/Read the Cube Data [adisCube16405.c]1' */
+  getCubeData(
+              &AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[0]
+              );
+
+  /* MATLAB Function: '<S155>/myMux Fun4' */
+  /* MATLAB Function 'Sensor Data/Sensor Suite/If no HIL then Read all the Sensors/myMux Fun4': '<S185>:1' */
+  /*  This block supports an embeddable subset of the MATLAB language. */
+  /*  See the help menu for details.  */
+  /* '<S185>:1:5' y = [u1(1); u2(1); u3(1); u4(1); u5(1); u6(1); u7(1); u8(1); u9(1); u10(1); u11(1); u12(1); u13(1)]; */
+  AUAV3_AND_SLUGS_SENSOR_B.y_g[0] =
+    AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[0];
+  AUAV3_AND_SLUGS_SENSOR_B.y_g[1] =
+    AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[1];
+  AUAV3_AND_SLUGS_SENSOR_B.y_g[2] =
+    AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[2];
+  AUAV3_AND_SLUGS_SENSOR_B.y_g[3] =
+    AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[3];
+  AUAV3_AND_SLUGS_SENSOR_B.y_g[4] =
+    AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[4];
+  AUAV3_AND_SLUGS_SENSOR_B.y_g[5] =
+    AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[5];
+  AUAV3_AND_SLUGS_SENSOR_B.y_g[6] =
+    AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[6];
+  AUAV3_AND_SLUGS_SENSOR_B.y_g[7] =
+    AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[7];
+  AUAV3_AND_SLUGS_SENSOR_B.y_g[8] =
+    AUAV3_AND_SLUGS_SENSOR_B.ReadtheCubeDataadisCube16405c1[8];
+  AUAV3_AND_SLUGS_SENSOR_B.y_g[9] = rtb_DataTypeConversion1_h;
+  AUAV3_AND_SLUGS_SENSOR_B.y_g[10] = rtb_DataTypeConversion1_ck;
+  AUAV3_AND_SLUGS_SENSOR_B.y_g[11] = rtb_DataTypeConversion2_bc;
+  AUAV3_AND_SLUGS_SENSOR_B.y_g[12] = rtb_DataTypeConversion3_j;
+
+  /* S-Function (MCHP_C_function_Call): '<S155>/Is the GPS Novatel or Ublox? [gpsPort.c]1' */
+  AUAV3_AND_SLUGS_SENSOR_B.IstheGPSNovatelorUbloxgpsPortc1 = isGPSNovatel(
+    );
+
+  /* Outputs for Enabled SubSystem: '<S155>/if GPS is Novatel' incorporates:
+   *  EnablePort: '<S182>/Enable'
+   */
+  if (AUAV3_AND_SLUGS_SENSOR_B.IstheGPSNovatelorUbloxgpsPortc1 > 0) {
+    /* S-Function (MCHP_C_function_Call): '<S182>/Produce the GPS Main Data and update the AP State (lat lon hei cog sog) [gps.c//novatel.c]2' */
+    getGpsMainData(
+                   &AUAV3_AND_SLUGS_SENSOR_B.ProducetheGPSMainDataandupdat_c[0]
+                   );
+
+    /* S-Function (MCHP_C_function_Call): '<S182>/Read the Raw Data from GPS [gpsPort.c]2' */
+    getGPSRawData(
+                  &AUAV3_AND_SLUGS_SENSOR_B.ReadtheRawDatafromGPSgpsPortc2
+                  );
+
+    /* S-Function (MCHP_C_function_Call): '<S182>/Parse the GPS RAW Data [gps.c//novatel.c]2' */
+    gpsParse(
+             &AUAV3_AND_SLUGS_SENSOR_B.ReadtheRawDatafromGPSgpsPortc2
+             );
+  }
+
+  /* End of Outputs for SubSystem: '<S155>/if GPS is Novatel' */
+
+  /* Outputs for Enabled SubSystem: '<S155>/if GPS is Ublox' incorporates:
+   *  EnablePort: '<S183>/Enable'
+   */
+  /* Logic: '<S155>/Logical Operator' */
+  if (!(AUAV3_AND_SLUGS_SENSOR_B.IstheGPSNovatelorUbloxgpsPortc1 != 0)) {
+    /* S-Function (MCHP_C_function_Call): '<S183>/Produce the GPS Main Data and update the AP State (lat lon hei cog sog) [gpsUblox.c]1' */
+    getGpsUbloxMainData(
+                        &AUAV3_AND_SLUGS_SENSOR_B.ProducetheGPSMainDataandupdatet
+                        [0]
+                        );
+  }
+
+  /* End of Logic: '<S155>/Logical Operator' */
+  /* End of Outputs for SubSystem: '<S155>/if GPS is Ublox' */
   /* End of Outputs for SubSystem: '<S152>/If no HIL then Read all the Sensors' */
-
-  /* Switch: '<S152>/Switch' */
-  for (rtb_DataTypeConversion1_h = 0; rtb_DataTypeConversion1_h < 13;
-       rtb_DataTypeConversion1_h++) {
-    if (rtb_EnableHILfromControlMCU1) {
-      rtb_Switch_j[rtb_DataTypeConversion1_h] =
-        AUAV3_AND_SLUGS_SENSOR_B.HILRawReadingshilc1[rtb_DataTypeConversion1_h];
-    } else {
-      rtb_Switch_j[rtb_DataTypeConversion1_h] =
-        AUAV3_AND_SLUGS_SENSOR_B.y_g[rtb_DataTypeConversion1_h];
-    }
-  }
-
-  /* End of Switch: '<S152>/Switch' */
 
   /* MATLAB Function: '<S193>/Embedded MATLAB Function' incorporates:
    *  Constant: '<S193>/Constant'
    *  Constant: '<S193>/Constant1'
    *  DataTypeConversion: '<S157>/Data Type Conversion5'
    */
-  AUA_EmbeddedMATLABFunction((real_T)rtb_Switch_j[12], 0.01, 0.02,
-    &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction,
+  AUA_EmbeddedMATLABFunction((real_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[12], 0.01,
+    0.02, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction);
 
   /* Sum: '<S192>/Sum' incorporates:
@@ -1545,8 +1495,8 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
      *  Product: '<S206>/Divide1'
      *  Sum: '<S206>/Sum1'
      */
-    AUAV3_AND_SLUGS_SENSOR_B.Merge = (real32_T)rtb_Switch_j[10] -
-      (rtb_DataTypeConversion2_h - 293.053F) * -0.0950433F;
+    AUAV3_AND_SLUGS_SENSOR_B.Merge = (real32_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[10]
+      - (rtb_DataTypeConversion2_h - 293.053F) * -0.0950433F;
   }
 
   /* End of Logic: '<S190>/Logical Operator' */
@@ -1564,8 +1514,8 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S207>/Sum1'
      *  Sum: '<S207>/Sum2'
      */
-    AUAV3_AND_SLUGS_SENSOR_B.Merge = ((real32_T)rtb_Switch_j[10] -
-      (rtb_DataTypeConversion2_h - -202.93F) * -0.0552923F) + -41.0F;
+    AUAV3_AND_SLUGS_SENSOR_B.Merge = ((real32_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[10]
+      - (rtb_DataTypeConversion2_h - -202.93F) * -0.0552923F) + -41.0F;
   }
 
   /* End of Outputs for SubSystem: '<S190>/Lo Temp Compensation' */
@@ -1617,8 +1567,8 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S209>/Sum1'
      *  Sum: '<S209>/Sum2'
      */
-    AUAV3_AND_SLUGS_SENSOR_B.Merge_k = ((real32_T)rtb_Switch_j[9] -
-      (rtb_DataTypeConversion2_h - 347.23F) * 0.0207608F) + -6.0F;
+    AUAV3_AND_SLUGS_SENSOR_B.Merge_k = ((real32_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[9]
+      - (rtb_DataTypeConversion2_h - 347.23F) * 0.0207608F) + -6.0F;
   }
 
   /* End of Logic: '<S191>/Logical Operator' */
@@ -1634,8 +1584,8 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
      *  Product: '<S210>/Divide1'
      *  Sum: '<S210>/Sum1'
      */
-    AUAV3_AND_SLUGS_SENSOR_B.Merge_k = (real32_T)rtb_Switch_j[9] -
-      (rtb_DataTypeConversion2_h - -161.3F) * -0.0102663F;
+    AUAV3_AND_SLUGS_SENSOR_B.Merge_k = (real32_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[9]
+      - (rtb_DataTypeConversion2_h - -161.3F) * -0.0102663F;
   }
 
   /* End of Outputs for SubSystem: '<S191>/Lo Temp Compensation' */
@@ -1661,23 +1611,21 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
   /* Outputs for Enabled SubSystem: '<S152>/If no HIL then update Air Data' incorporates:
    *  EnablePort: '<S156>/Enable'
    */
+  /* Inport: '<S156>/AirData' incorporates:
+   *  MATLAB Function: '<S152>/myMux Fun'
+   */
   /* MATLAB Function 'Sensor Data/Sensor Suite/myMux Fun': '<S158>:1' */
   /*  This block supports an embeddable subset of the MATLAB language. */
   /*  See the help menu for details.  */
   /* '<S158>:1:5' y = [u1(1); u2(1); u3(1)]; */
-  if (rtb_LogicalOperator_o) {
-    /* Inport: '<S156>/AirData' incorporates:
-     *  MATLAB Function: '<S152>/myMux Fun'
-     */
-    AUAV3_AND_SLUGS_SENSOR_B.AirData[0] = rtb_u001maxDynPress;
-    AUAV3_AND_SLUGS_SENSOR_B.AirData[1] = rtb_Sum_e;
-    AUAV3_AND_SLUGS_SENSOR_B.AirData[2] = rtb_DataTypeConversion2_h;
+  AUAV3_AND_SLUGS_SENSOR_B.AirData[0] = rtb_u001maxDynPress;
+  AUAV3_AND_SLUGS_SENSOR_B.AirData[1] = rtb_Sum_e;
+  AUAV3_AND_SLUGS_SENSOR_B.AirData[2] = rtb_DataTypeConversion2_h;
 
-    /* S-Function (MCHP_C_function_Call): '<S156>/Update the Air Calibrated Data [updateSensorMcuState.c]1' */
-    updateAirData(
-                  &AUAV3_AND_SLUGS_SENSOR_B.AirData[0]
-                  );
-  }
+  /* S-Function (MCHP_C_function_Call): '<S156>/Update the Air Calibrated Data [updateSensorMcuState.c]1' */
+  updateAirData(
+                &AUAV3_AND_SLUGS_SENSOR_B.AirData[0]
+                );
 
   /* End of Outputs for SubSystem: '<S152>/If no HIL then update Air Data' */
 
@@ -1731,8 +1679,8 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
    *  Constant: '<S194>/Constant1'
    *  DataTypeConversion: '<S157>/Data Type Conversion6'
    */
-  AUA_EmbeddedMATLABFunction((real_T)rtb_Switch_j[11], 0.01, 0.02,
-    &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_j,
+  AUA_EmbeddedMATLABFunction((real_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[11], 0.01,
+    0.02, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_j,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction_j);
 
   /* DataTypeConversion: '<S157>/Data Type Conversion8' incorporates:
@@ -1770,8 +1718,8 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
    *  Gain: '<S163>/[ -1 -1 -1]'
    *  Product: '<S153>/Divide'
    */
-  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[1] *
-    0.000872664619F), 0.01, 40.0,
+  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[1]
+    * 0.000872664619F), 0.01, 40.0,
     &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_p,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction_p);
 
@@ -1783,8 +1731,8 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
    *  Gain: '<S163>/[ -1 -1 -1]'
    *  Product: '<S153>/Divide'
    */
-  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[0] *
-    0.000872664619F), 0.01, 40.0,
+  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[0]
+    * 0.000872664619F), 0.01, 40.0,
     &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction1,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction1);
 
@@ -1796,8 +1744,8 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
    *  Gain: '<S163>/[ -1 -1 -1]'
    *  Product: '<S153>/Divide'
    */
-  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[2] *
-    0.000872664619F), 0.01, 40.0,
+  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[2]
+    * 0.000872664619F), 0.01, 40.0,
     &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction2,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction2);
 
@@ -1808,8 +1756,9 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
    *  DataTypeConversion: '<S153>/Data Type Conversion1'
    *  Product: '<S153>/Divide1'
    */
-  AUA_EmbeddedMATLABFunction((real_T)((real32_T)rtb_Switch_j[4] * 0.0326839499F),
-    0.01, 40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_ph,
+  AUA_EmbeddedMATLABFunction((real_T)((real32_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[4] *
+    0.0326839499F), 0.01, 40.0,
+    &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_ph,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction_ph);
 
   /* MATLAB Function: '<S161>/Embedded MATLAB Function1' incorporates:
@@ -1819,8 +1768,9 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
    *  DataTypeConversion: '<S153>/Data Type Conversion1'
    *  Product: '<S153>/Divide1'
    */
-  AUA_EmbeddedMATLABFunction((real_T)((real32_T)rtb_Switch_j[3] * 0.0326839499F),
-    0.01, 40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction1_h,
+  AUA_EmbeddedMATLABFunction((real_T)((real32_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[3] *
+    0.0326839499F), 0.01, 40.0,
+    &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction1_h,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction1_h);
 
   /* MATLAB Function: '<S161>/Embedded MATLAB Function2' incorporates:
@@ -1830,8 +1780,9 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
    *  DataTypeConversion: '<S153>/Data Type Conversion1'
    *  Product: '<S153>/Divide1'
    */
-  AUA_EmbeddedMATLABFunction((real_T)((real32_T)rtb_Switch_j[5] * 0.0326839499F),
-    0.01, 40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction2_d,
+  AUA_EmbeddedMATLABFunction((real_T)((real32_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[5] *
+    0.0326839499F), 0.01, 40.0,
+    &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction2_d,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction2_d);
 
   /* MATLAB Function: '<S162>/Embedded MATLAB Function' incorporates:
@@ -1842,8 +1793,8 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
    *  Gain: '<S165>/[ -1 -1 -1]'
    *  Product: '<S153>/Divide2'
    */
-  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[7] * 0.5F), 0.01,
-    40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_d,
+  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[7]
+    * 0.5F), 0.01, 40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction_d,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction_d);
 
   /* MATLAB Function: '<S162>/Embedded MATLAB Function1' incorporates:
@@ -1854,8 +1805,8 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
    *  Gain: '<S165>/[ -1 -1 -1]'
    *  Product: '<S153>/Divide2'
    */
-  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[6] * 0.5F), 0.01,
-    40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction1_d,
+  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[6]
+    * 0.5F), 0.01, 40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction1_d,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction1_d);
 
   /* MATLAB Function: '<S162>/Embedded MATLAB Function2' incorporates:
@@ -1866,8 +1817,8 @@ void AUAV3_AND_SLUGS_SENSOR_step0(void) /* Sample time: [0.01s, 0.0s] */
    *  Gain: '<S165>/[ -1 -1 -1]'
    *  Product: '<S153>/Divide2'
    */
-  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)rtb_Switch_j[8] * 0.5F), 0.01,
-    40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction2_f,
+  AUA_EmbeddedMATLABFunction((real_T)-((real32_T)AUAV3_AND_SLUGS_SENSOR_B.y_g[8]
+    * 0.5F), 0.01, 40.0, &AUAV3_AND_SLUGS_SENSOR_B.sf_EmbeddedMATLABFunction2_f,
     &AUAV3_AND_SLUGS_SENSOR_DWork.sf_EmbeddedMATLABFunction2_f);
 
   /* MATLAB Function: '<S186>/Enables//Disables the Computation of  initial Baro Bias' */
@@ -2214,26 +2165,6 @@ void AUAV3_AND_SLUGS_SENSOR_step3(void) /* Sample time: [0.1s, 0.0s] */
 /* Model step function for TID4 */
 void AUAV3_AND_SLUGS_SENSOR_step4(void) /* Sample time: [0.2s, 0.0s] */
 {
-  /* DataStoreRead: '<S4>/Get RawGpsInt' */
-  AUAV3_AND_SLUGS_SENSOR_B.GetRawGpsInt = mlGpsData;
-
-  /* DataStoreRead: '<S4>/Get time1' */
-  AUAV3_AND_SLUGS_SENSOR_B.Gettime1 =
-    AUAV3_AND_SLUGS_SENSOR_DWork.time_since_boot_usec;
-
-  /* S-Function (MCHP_C_function_Call): '<S4>/PackGpsRawInt' */
-  AUAV3_AND_SLUGS_SENSOR_B.PackGpsRawInt = PackGpsRawInt(
-    ((uint8_T)101U)
-    , ((uint8_T)1U)
-    , AUAV3_AND_SLUGS_SENSOR_B.GetRawGpsInt
-    , AUAV3_AND_SLUGS_SENSOR_B.Gettime1
-    );
-
-  /* S-Function (MCHP_C_function_Call): '<S4>/TX_N_Data2' */
-  TxN_Data_OverU1(
-                  AUAV3_AND_SLUGS_SENSOR_B.PackGpsRawInt
-                  );
-
   /* S-Function (MCHP_C_function_Call): '<Root>/ gpsUbloxParse' */
   gpsUbloxParse(
                 );
@@ -2387,6 +2318,30 @@ void AUAV3_AND_SLUGS_SENSOR_step10(void) /* Sample time: [0.5s, 0.0s] */
     MCHP_I2C25_Request++;
 }
 
+/* Model step function for TID11 */
+void AUAV3_AND_SLUGS_SENSOR_step11(void) /* Sample time: [1.0s, 0.0s] */
+{
+  /* DataStoreRead: '<S4>/Get RawGpsInt' */
+  AUAV3_AND_SLUGS_SENSOR_B.GetRawGpsInt = mlGpsData;
+
+  /* DataStoreRead: '<S4>/Get time1' */
+  AUAV3_AND_SLUGS_SENSOR_B.Gettime1 =
+    AUAV3_AND_SLUGS_SENSOR_DWork.time_since_boot_usec;
+
+  /* S-Function (MCHP_C_function_Call): '<S4>/PackGpsRawInt' */
+  AUAV3_AND_SLUGS_SENSOR_B.PackGpsRawInt = PackGpsRawInt(
+    ((uint8_T)101U)
+    , ((uint8_T)1U)
+    , AUAV3_AND_SLUGS_SENSOR_B.GetRawGpsInt
+    , AUAV3_AND_SLUGS_SENSOR_B.Gettime1
+    );
+
+  /* S-Function (MCHP_C_function_Call): '<S4>/TX_N_Data2' */
+  TxN_Data_OverU1(
+                  AUAV3_AND_SLUGS_SENSOR_B.PackGpsRawInt
+                  );
+}
+
 /* Model step wrapper function for compatibility with a static main program */
 void AUAV3_AND_SLUGS_SENSOR_step(int_T tid)
 {
@@ -2433,6 +2388,10 @@ void AUAV3_AND_SLUGS_SENSOR_step(int_T tid)
 
    case 10 :
     AUAV3_AND_SLUGS_SENSOR_step10();
+    break;
+
+   case 11 :
+    AUAV3_AND_SLUGS_SENSOR_step11();
     break;
 
    default :

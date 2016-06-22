@@ -21,9 +21,9 @@
  *
  * Model version                        : 1.223
  * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Fri Jun 17 19:05:27 2016
+ * Real-Time Workshop file generated on : Mon Jun 20 13:12:00 2016
  * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Fri Jun 17 19:05:28 2016
+ * C source code generated on           : Mon Jun 20 13:12:01 2016
  */
 
 #ifndef RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_private_h_
@@ -95,6 +95,7 @@ union
     unsigned int task8 : 1;
     unsigned int task9 : 1;
     unsigned int task10 : 1;
+    unsigned int task11 : 1;
   } b;
 
   unsigned int val;
@@ -269,6 +270,7 @@ extern void AUAV3_AND_SLUGS_SENSOR_step7(void);
 extern void AUAV3_AND_SLUGS_SENSOR_step8(void);
 extern void AUAV3_AND_SLUGS_SENSOR_step9(void);
 extern void AUAV3_AND_SLUGS_SENSOR_step10(void);
+extern void AUAV3_AND_SLUGS_SENSOR_step11(void);
 
 #endif                                 /* RTW_HEADER_AUAV3_AND_SLUGS_SENSOR_private_h_ */
 

@@ -34,7 +34,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-7.0, 0.0, 1379.0, 740.0]
+      Location		      [-1688.0, 54.0, 1696.0, 1026.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -53,24 +53,51 @@ Model {
       }
       Array {
 	Type			"Simulink.EditorInfo"
-	Dimension		2
+	Dimension		5
 	Object {
 	  $ObjectID		  5
 	  IsActive		  [1]
-	  ViewObjType		  "SimulinkTopLevel"
-	  LoadSaveID		  "0"
-	  Extents		  [1136.0, 592.0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "868"
+	  Extents		  [1453.0, 878.0]
 	  ZoomFactor		  [1.0]
-	  Offset		  [-91.049996316433067, 374.99999999999989]
+	  Offset		  [0.0, 0.0]
 	}
 	Object {
 	  $ObjectID		  6
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "424"
-	  Extents		  [1136.0, 592.0]
+	  Extents		  [1128.0, 551.0]
 	  ZoomFactor		  [1.0]
 	  Offset		  [0.0, 0.0]
+	}
+	Object {
+	  $ObjectID		  7
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "422"
+	  Extents		  [1453.0, 878.0]
+	  ZoomFactor		  [1.25]
+	  Offset		  [-1.5000000000009095, 703.99166666666736]
+	}
+	Object {
+	  $ObjectID		  8
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "423"
+	  Extents		  [1128.0, 551.0]
+	  ZoomFactor		  [1.0]
+	  Offset		  [0.0, 325.0]
+	}
+	Object {
+	  $ObjectID		  9
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "452"
+	  Extents		  [1453.0, 878.0]
+	  ZoomFactor		  [1.0]
+	  Offset		  [0.0, 11.0]
 	}
 	PropName		"EditorsInfo"
       }
@@ -83,7 +110,7 @@ Model {
   LastModifiedBy	  "sharon"
   ModifiedDateFormat	  "%<Auto>"
   LastModifiedDate	  "Fri Jun 17 18:54:06 2016"
-  RTWModifiedTimeStamp	  388090917
+  RTWModifiedTimeStamp	  388426185
   ModelVersionFormat	  "1.%<AutoIncrement:223>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
@@ -125,7 +152,7 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    7
+    $ObjectID		    10
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "AUAV3_AND_SLUGS_SENSOR"
     Array {
@@ -189,13 +216,13 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      8
+      $ObjectID		      11
       Version		      "1.15.0"
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
-	  $ObjectID		  9
+	  $ObjectID		  12
 	  Version		  "1.15.0"
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
@@ -230,7 +257,7 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  10
+	  $ObjectID		  13
 	  Version		  "1.15.0"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -263,7 +290,7 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  11
+	  $ObjectID		  14
 	  Version		  "1.15.0"
 	  BlockReduction	  on
 	  BooleanDataType	  on
@@ -307,7 +334,7 @@ Model {
 	  AccelVerboseBuild	  off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  12
+	  $ObjectID		  15
 	  Version		  "1.15.0"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -396,7 +423,7 @@ Model {
 	  IntegerSaturationMsg	  "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  13
+	  $ObjectID		  16
 	  Version		  "1.15.0"
 	  Array {
 	    Type		    "Cell"
@@ -453,7 +480,7 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  14
+	  $ObjectID		  17
 	  Version		  "1.15.0"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -468,7 +495,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  15
+	  $ObjectID		  18
 	  Version		  "1.15.0"
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -481,7 +508,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  16
+	  $ObjectID		  19
 	  Version		  "1.15.0"
 	  Array {
 	    Type		    "Cell"
@@ -547,7 +574,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      17
+	      $ObjectID		      20
 	      Version		      "1.15.0"
 	      ForceParamTrailComments off
 	      GenerateComments	      on
@@ -590,7 +617,7 @@ Model {
 	    }
 	    Simulink.STFCustomTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      18
+	      $ObjectID		      21
 	      Version		      "1.15.0"
 	      Array {
 		Type			"Cell"
@@ -658,7 +685,7 @@ Model {
 		Dimension		1
 		Simulink.ERTTargetCC {
 		  $BackupClass		  "Simulink.TargetCC"
-		  $ObjectID		  19
+		  $ObjectID		  22
 		  Version		  "1.15.0"
 		  Array {
 		    Type		    "Cell"
@@ -939,16 +966,18 @@ Model {
 		"'),0,0);s(10).Value=reshape([0.25 0],1,2);s(10).Description='Discrete 10';s(10).ColorRGBValue=reshape([1 0.5 0],1,3)"
 		";s(10).Annotation='D10';s(10).OwnerBlock=reshape(MCHP_Fun.Hex2num('[]'),0,0);s(11).Value=reshape([0.5 0],1,2);s(11)."
 		"Description='Discrete 11';s(11).ColorRGBValue=reshape([1 0.5 0],1,3);s(11).Annotation='D11';s(11).OwnerBlock=reshape"
-		"(MCHP_Fun.Hex2num('[]'),0,0);s(12).Value=reshape([Inf 0],1,2);s(12).Description='Constant';s(12).ColorRGBValue=resha"
-		"pe([1 0.26 0.82],1,3);s(12).Annotation='Inf';s(12).OwnerBlock=reshape(MCHP_Fun.Hex2num('[]'),0,0);s(13).Value=reshap"
-		"e(MCHP_Fun.Hex2num('[]'),0,0);s(13).Description='Hybrid';s(13).ColorRGBValue=reshape([0.91 0.82 0.32],1,3);s(13).Ann"
-		"otation='H';s(13).OwnerBlock=reshape(MCHP_Fun.Hex2num('[]'),0,0);"
+		"(MCHP_Fun.Hex2num('[]'),0,0);s(12).Value=reshape([1 0],1,2);s(12).Description='Discrete 12';s(12).ColorRGBValue=resh"
+		"ape([1 0.5 0],1,3);s(12).Annotation='D12';s(12).OwnerBlock=reshape(MCHP_Fun.Hex2num('[]'),0,0);s(13).Value=reshape(["
+		"Inf 0],1,2);s(13).Description='Constant';s(13).ColorRGBValue=reshape([1 0.26 0.82],1,3);s(13).Annotation='Inf';s(13)"
+		".OwnerBlock=reshape(MCHP_Fun.Hex2num('[]'),0,0);s(14).Value=reshape(MCHP_Fun.Hex2num('[]'),0,0);s(14).Description='H"
+		"ybrid';s(14).ColorRGBValue=reshape([0.91 0.82 0.32],1,3);s(14).Annotation='H';s(14).OwnerBlock=reshape(MCHP_Fun.Hex2"
+		"num('[]'),0,0);"
 	      }
 	      CustomProperty {
 		DataType		"string"
 		Name			"RTWGenSettings_txt"
-		Value			"s.UART_TX_IMPLEMENTATION='[2  0  0  2]';s.UART_RX_IMPLEMENTATION='[0  0  0  0]';s.UART_TX_DMACHANNEL='[2  0"
-		"  0  0]';s.RefMasterBlk='AUAV3_AND_SLUGS_SENSOR/Microchip Master AUAV V3 Board Busy Flag on D2 (RA6)';s.ChipIdN='[33"
+		Value			"s.UART_TX_IMPLEMENTATION='[2  0  0  2]';s.UART_RX_IMPLEMENTATION='[0  0  0  0]';s.UART_TX_DMACHANNEL='[0  0"
+		"  0  2]';s.RefMasterBlk='AUAV3_AND_SLUGS_SENSOR/Microchip Master AUAV V3 Board Busy Flag on D2 (RA6)';s.ChipIdN='[33"
 		"  512  810]';s.ChipIdL1='EP';s.ChipIdL2='MU';s.ChipIdL3='';s.arch3='33E';s.ChipId='33EP512MU810';s.ChipRAM='53248';s"
 		".ChipRAM_XBegin='4096';s.ChipRAM_dma='[53248  57344]';s.FuseConfigTxt='_FGS( GSSK_OFF ) ;_FOSCSEL( FNOSC_PRI ) ;_FOS"
 		"C( POSCMD_XT & OSCIOFNC_ON & FCKSM_CSECME ) ;_FWDT( FWDTEN_OFF ) ;_FPOR( BOREN_OFF & ALTI2C2_ON ) ;_FICD( ICS_PGD3 &"
@@ -977,18 +1006,18 @@ Model {
       }
       Name		      "Configuration"
       ExtraOptions	      "-aGenerateTraceInfo=0 -aIgnoreTestpoints=0 "
-      CurrentDlgPage	      "Code Generation/dsPIC Options"
+      CurrentDlgPage	      "Code Generation/Custom Code"
       ConfigPrmDlgPosition     [ -1303, 280, -336, 1019 ] 
     }
     PropName		    "ConfigurationSets"
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    8
+    $ObjectID		    11
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    20
+    $ObjectID		    23
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -1499,8 +1528,8 @@ Model {
   }
   System {
     Name		    "AUAV3_AND_SLUGS_SENSOR"
-    Location		    [-7, 0, 1372, 740]
-    Open		    on
+    Location		    [-1688, 54, 8, 1080]
+    Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    266
     ScreenColor		    "white"
@@ -1511,9 +1540,9 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "100"
+    ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1242"
+    SIDHighWatermark	    "1243"
     Block {
       BlockType		      Reference
       Name		      " gpsUbloxParse"
@@ -1525,61 +1554,61 @@ Model {
       SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
       SourceType	      "C Function Call"
       ParseFilesChkbx	      on
-      ListFunctions1	      "Custom Function"
+      ListFunctions1	      "     void gpsUbloxParse(void)"
       Function1		      "void gpsUbloxParse(void)"
       AddHeaderDeclaration    on
       Function1Type	      "when block is updated (default)"
       FctReturnBlockOut	      on
-      DataCollected	      "s.chksm=reshape({ '360325-Apr-2016 19:19:45','638502-Mar-2016 19:06:13','219625-Apr-2016 19"
-      ":38:33','1593925-Apr-2016 19:41:14','3269025-Apr-2016 19:26:32','294625-Apr-2016 19:38:33','556001-Oct-2014 14:0"
-      "5:42','963201-Apr-2016 12:47:40','358819-Apr-2016 01:35:18','985925-Apr-2016 19:19:45','57818-Apr-2016 13:17:15'"
-      ",'476125-Apr-2016 19:38:34'},1,12);s.File1=reshape({ '  float  myAtan2(float num, float denom)','  float  myPow("
-      "float x, float toTheN)','  float  mySqrt(float x)','  float  myAbs(float x)','  float  myAtan(float x)','  float"
-      "  myAsin(float x)','  float  mySin(float x)','  float  myCos(float x)','  float  myTan(float x)','  float  myAco"
-      "s(float x)','  float  myExp(float x)','  void  hugeDelay(void)','  void  smallDelay(void)','  void  tinyDelay(vo"
-      "id)','  void  printToUart2(const char *fmt, ...)'},1,15);s.File2=reshape({ '  void  newCircBuffer(CBRef cB)','  "
-      "void  freeCircBuffer(CBRef* cB)','  void  freeCircBuffer(CBRef* cB)',' unsigned int  getLength(CBRef cB)','  int"
-      "  readHead(CBRef cB)','  int  readTail(CBRef cB)',' unsigned char  peak(CBRef cB)',' unsigned char  readFront(CB"
-      "Ref cB)',' unsigned char  writeBack(CBRef cB, unsigned char data)','  void  makeEmpty(CBRef cB)','  void  printC"
-      "ircBuf(CBRef cB)'},1,11);s.File3=reshape({ '  void  uartBufferInit(void)','  void  __attribute__((__interrupt__,"
-      " no_auto_psv)) _U4RXInterrupt(void)','  void  getGPSRawData(unsigned char* gpsBuffer)',' unsigned char  isGPSNov"
-      "atel(void)'},1,4);s.File4=reshape({ '  char  hex2char(char halfhex)','  float  degMinToDeg(unsigned char degrees"
-      ", float minutes)',' unsigned char  gpsUbloxSeparate(unsigned char* outStream)','  void  gpsUbloxParse(void)','  "
-      "void  getGpsUbloxMainData(float* data)','  char  gpSmbl(char symbl)',' unsigned char  myTokenizer(char* stringTo"
-      "Tokenize, char token, char * returnToken)','  void  parseRMC(unsigned char* stream)','  void  parseGGA(unsigned "
-      "char* stream)',' unsigned char  getChecksum(unsigned char* sentence, unsigned char size)'},1,10);s.File5=reshape"
-      "({ '  void  uartMavlinkBufferInit(void)','  void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void"
-      ")','  uint8_t  isFinite(float s)','  void  InitParameterInterface(void)','  void  protDecodeMavlink(void)','  ui"
-      "nt16_t  MissionInterfaceResponse(uint8_t system_id, uint8_t component_id)','  uint16_t  ParameterInterfaceRespon"
-      "se(uint8_t system_id, uint8_t component_id)','  uint16_t  PackHeartBeat(uint8_t system_id, uint8_t component_id)"
-      "','  uint16_t  PackTextMsg(uint8_t system_id, uint8_t component_id)','  uint16_t  PackRawIMU(uint8_t system_id, "
-      "uint8_t component_id, mavlink_raw_imu_t mlRawIMUData ,uint32_t time_usec)','  uint16_t  PackGpsRawInt(uint8_t sy"
-      "stem_id, uint8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec)','  uint16_t  PackScal"
-      "edPressure(uint8_t system_id, uint8_t component_id, mavlink_scaled_pressure_t mlAirData ,uint32_t time_usec)',' "
-      " uint16_t  PackSysStatus(uint8_t system_id, uint8_t component_id, mavlink_sys_status_t mlSysStatus)','  char  se"
-      "ndQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart)','  voi"
-      "d  TxN_Data_OverU1(uint16_t N)'},1,15);s.File6={ '  void  mavlinkInit(void)'};s.File7=reshape({ '  void  updateR"
-      "awADCData(int16_t* adcData)','  void  updateAirData(float* airData)','  void  updateLoadData(uint8_t load, uint1"
-      "6_t mvPower)','  void  updateAttitude(float * attitudeData)','  void  getGSLocation(float* altLatLon)','  void  "
-      "updateTimeStamp(uint32_t timeSt)','  void  updatePosition(float * posData)','  void  updatePilotConsole(uint16_t"
-      " * pilData)','  void  updateDiagnosticFl(float* diagFl)','  void  updateDiagnosticSh(int16_t* diagSh)','  void  "
-      "updateBias(float * biasData)','  void  updateSensorData(float* sens)','  uint8_t  isFixValid(void)','  void  upd"
-      "ateSensorDiag(float* diag)'},1,14);s.File8=reshape({ '  void  gpsInit(void)','  void  gpsParse(uint8_t* dataStre"
-      "am)','  void  updateStatus(uint8_t* completeMessage)','  void  updatePositionData(uint8_t* completeMessage)','  "
-      "void  updateVelocityData(uint8_t* completeMessage)','  void  updateTimeData(uint8_t* completeMessage)','  void  "
-      "getGpsMainData(float* data)','  uint32_t  CRC32Value(int32_t i)','  uint32_t  CalculateBlockCRC32(uint32_t ulCou"
-      "nt, uint8_t *ucBuffer)','  uint16_t  charsToUint16(uint8_t* data)','  uint32_t  charsToUint32(uint8_t* data)',' "
-      " float  charsToFloat(uint8_t* data)','  double  charsToDouble(uint8_t* data)'},1,13);s.File9=reshape({ '  void  "
-      "hilRead(unsigned char* hilChunk)','  void  hil_getRawRead(short * rawData)','  void  hil_getVned(float* vned)','"
-      "  void  hil_getEuler(float* euler)','  void  hil_getRates(float* pqr)','  void  hil_getXYZ(float* xyz)',' unsign"
-      "ed int  hil_getTs(void)','  void  protDecodeHil(uint8_t* dataIn)'},1,8);s.File10=reshape({ '  void  cubeInit(voi"
-      "d)','  void  getCubeData(short * cubeData)','  void  updateCubeData(void)','  int16_t  averageData(int16_t* theD"
-      "ata, uint8_t count)',' unsigned short  write2Cube(unsigned short data2Send)','  void  __attribute__((interrupt, "
-      "no_auto_psv)) _T5Interrupt(void)','  short  convert14BitToShort(short wordData)','  short  convert12BitToShort(s"
-      "hort wordData)',' unsigned char  isCube16405(void)'},1,9);s.File11={};s.File12=reshape({ '  void  uartMavlinkBuf"
-      "ferInit(void)','  uint16_t  PackRawIMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t mlRawIMUData ,"
-      "uint32_t time_usec)','  char  sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesTo"
-      "Add, char positionStart)'},1,3);"
+      DataCollected	      "s.chksm=reshape({ '360317-Jun-2016 15:34:16','638503-Feb-2015 20:58:10','219617-Jun-2016 15"
+      ":34:16','1593917-Jun-2016 15:34:16','3558217-Jun-2016 19:12:32','294417-Jun-2016 15:34:16','556017-Jun-2016 15:3"
+      "4:16','963217-Jun-2016 15:34:16','358817-Jun-2016 15:34:16','985917-Jun-2016 15:34:16'},1,10);s.File1=reshape({ "
+      "'  float  myAtan2(float num, float denom)','  float  myPow(float x, float toTheN)','  float  mySqrt(float x)',' "
+      " float  myAbs(float x)','  float  myAtan(float x)','  float  myAsin(float x)','  float  mySin(float x)','  float"
+      "  myCos(float x)','  float  myTan(float x)','  float  myAcos(float x)','  float  myExp(float x)','  void  hugeDe"
+      "lay(void)','  void  smallDelay(void)','  void  tinyDelay(void)','  void  printToUart2(const char *fmt, ...)'},1,"
+      "15);s.File2=reshape({ '  void  newCircBuffer(CBRef cB)','  void  freeCircBuffer(CBRef* cB)','  void  freeCircBuf"
+      "fer(CBRef* cB)',' unsigned int  getLength(CBRef cB)','  int  readHead(CBRef cB)','  int  readTail(CBRef cB)',' u"
+      "nsigned char  peak(CBRef cB)',' unsigned char  readFront(CBRef cB)',' unsigned char  writeBack(CBRef cB, unsigne"
+      "d char data)','  void  makeEmpty(CBRef cB)','  void  printCircBuf(CBRef cB)'},1,11);s.File3=reshape({ '  void  u"
+      "artBufferInit(void)','  void  __attribute__((__interrupt__, no_auto_psv)) _U4RXInterrupt(void)','  void  getGPSR"
+      "awData(unsigned char* gpsBuffer)',' unsigned char  isGPSNovatel(void)'},1,4);s.File4=reshape({ '  char  hex2char"
+      "(char halfhex)','  float  degMinToDeg(unsigned char degrees, float minutes)',' unsigned char  gpsUbloxSeparate(u"
+      "nsigned char* outStream)','  void  gpsUbloxParse(void)','  void  getGpsUbloxMainData(float* data)','  char  gpSm"
+      "bl(char symbl)',' unsigned char  myTokenizer(char* stringToTokenize, char token, char * returnToken)','  void  p"
+      "arseRMC(unsigned char* stream)','  void  parseGGA(unsigned char* stream)',' unsigned char  getChecksum(unsigned "
+      "char* sentence, unsigned char size)'},1,10);s.File5=reshape({ '  void  uartMavlinkBufferInit(void)','  void __at"
+      "tribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void)','  uint8_t  isFinite(float s)','  void  InitParame"
+      "terInterface(void)','  void  protDecodeMavlink(void)','  uint16_t  MissionInterfaceResponse(uint8_t system_id, u"
+      "int8_t component_id)','  uint16_t  ParameterInterfaceResponse(uint8_t system_id, uint8_t component_id)','  uint1"
+      "6_t  PackHeartBeat(uint8_t system_id, uint8_t component_id)','  uint16_t  PackTextMsg(uint8_t system_id, uint8_t"
+      " component_id)','  uint16_t  PackRawIMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t mlRawIMUData "
+      ",uint32_t time_usec)','  uint16_t  PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_int_t "
+      "mlRawGpsDataInt ,uint32_t time_usec)','  uint16_t  PackScaledPressure(uint8_t system_id, uint8_t component_id, m"
+      "avlink_scaled_pressure_t mlAirData ,uint32_t time_usec)','  uint16_t  PackSysStatus(uint8_t system_id, uint8_t c"
+      "omponent_id, mavlink_sys_status_t mlSysStatus)','  uint16_t  PackRawServo(uint8_t system_id, uint8_t component_i"
+      "d, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec)','  uint16_t  PackRawRC(uint8_t system_id, uint"
+      "8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec)','  uint16_t  PackVFR_HUD(uint8_t"
+      " system_id, uint8_t component_id, mavlink_vfr_hud_t mlVfr_hud ,uint32_t time_usec)','  char  sendQGCDebugMessage"
+      "(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart)','  void  TxN_Data_OverU"
+      "1(uint16_t N)'},1,18);s.File6={ '  void  mavlinkInit(void)'};s.File7=reshape({ '  void  updateRawADCData(int16_t"
+      "* adcData)','  void  updateAirData(float* airData)','  void  updateLoadData(uint8_t load, uint16_t mvPower)','  "
+      "void  updateAttitude(float * attitudeData)','  void  getGSLocation(float* altLatLon)','  void  updateTimeStamp(u"
+      "int32_t timeSt)','  void  updatePosition(float * posData)','  void  updatePilotConsole(uint16_t * pilData)','  v"
+      "oid  updateDiagnosticFl(float* diagFl)','  void  updateDiagnosticSh(int16_t* diagSh)','  void  updateBias(float "
+      "* biasData)','  void  updateSensorData(float* sens)','  uint8_t  isFixValid(void)','  void  updateSensorDiag(flo"
+      "at* diag)'},1,14);s.File8=reshape({ '  void  gpsInit(void)','  void  gpsParse(uint8_t* dataStream)','  void  upd"
+      "ateStatus(uint8_t* completeMessage)','  void  updatePositionData(uint8_t* completeMessage)','  void  updateVeloc"
+      "ityData(uint8_t* completeMessage)','  void  updateTimeData(uint8_t* completeMessage)','  void  getGpsMainData(fl"
+      "oat* data)','  uint32_t  CRC32Value(int32_t i)','  uint32_t  CalculateBlockCRC32(uint32_t ulCount, uint8_t *ucBu"
+      "ffer)','  uint16_t  charsToUint16(uint8_t* data)','  uint32_t  charsToUint32(uint8_t* data)','  float  charsToFl"
+      "oat(uint8_t* data)','  double  charsToDouble(uint8_t* data)'},1,13);s.File9=reshape({ '  void  hilRead(unsigned "
+      "char* hilChunk)','  void  hil_getRawRead(short * rawData)','  void  hil_getVned(float* vned)','  void  hil_getEu"
+      "ler(float* euler)','  void  hil_getRates(float* pqr)','  void  hil_getXYZ(float* xyz)',' unsigned int  hil_getTs"
+      "(void)','  void  protDecodeHil(uint8_t* dataIn)'},1,8);s.File10=reshape({ '  void  cubeInit(void)','  void  getC"
+      "ubeData(short * cubeData)','  void  updateCubeData(void)','  int16_t  averageData(int16_t* theData, uint8_t coun"
+      "t)',' unsigned short  write2Cube(unsigned short data2Send)','  void  __attribute__((interrupt, no_auto_psv)) _T5"
+      "Interrupt(void)','  short  convert14BitToShort(short wordData)','  short  convert12BitToShort(short wordData)','"
+      " unsigned char  isCube16405(void)'},1,9);"
       ORDERING		      "None"
       SampleTime	      "0.2"
       MCHP_MASTERLINK	      "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -1801,7 +1830,7 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Control Surface Input"
-	Location		[-1688, 62, 8, 1088]
+	Location		[-1688, 54, 8, 1080]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1835,7 +1864,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "Convert to\nMicroseconds "
-	    Location		    [-1688, 62, 8, 1088]
+	    Location		    [-1688, 54, 8, 1080]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1921,37 +1950,37 @@ Model {
 	  IntPriority		  "6"
 	  Channel		  "[1     2     3     4     5]"
 	  Channel_OLD		  "[1  2  3  4  5]"
-	  PIN_IC1		  "Dynamic Options"
+	  PIN_IC1		  "D0 / P64 / Pin[72]"
 	  PIN_IC1_TXT		  "D0 / P64 / Pin[72]"
-	  PIN_IC2		  "Dynamic Options"
+	  PIN_IC2		  "D8 / P72 / Pin[68]"
 	  PIN_IC2_TXT		  "D8 / P72 / Pin[68]"
-	  PIN_IC3		  "Dynamic Options"
+	  PIN_IC3		  "D11 / P75 / Pin[71]"
 	  PIN_IC3_TXT		  "D11 / P75 / Pin[71]"
-	  PIN_IC4		  "Dynamic Options"
+	  PIN_IC4		  "A15 / P31 / Pin[67]"
 	  PIN_IC4_TXT		  "A15 / P31 / Pin[67]"
-	  PIN_IC5		  "Dynamic Options"
+	  PIN_IC5		  "A0 / P16 / Pin[17]"
 	  PIN_IC5_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC6		  "Dynamic Options"
+	  PIN_IC6		  "A0 / P16 / Pin[17]"
 	  PIN_IC6_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC7		  "Dynamic Options"
+	  PIN_IC7		  "A0 / P16 / Pin[17]"
 	  PIN_IC7_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC8		  "Dynamic Options"
+	  PIN_IC8		  "A0 / P16 / Pin[17]"
 	  PIN_IC8_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC9		  "Dynamic Options"
+	  PIN_IC9		  "A0 / P16 / Pin[17]"
 	  PIN_IC9_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC10		  "Dynamic Options"
+	  PIN_IC10		  "A0 / P16 / Pin[17]"
 	  PIN_IC10_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC11		  "Dynamic Options"
+	  PIN_IC11		  "A0 / P16 / Pin[17]"
 	  PIN_IC11_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC12		  "Dynamic Options"
+	  PIN_IC12		  "A0 / P16 / Pin[17]"
 	  PIN_IC12_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC13		  "Dynamic Options"
+	  PIN_IC13		  "A0 / P16 / Pin[17]"
 	  PIN_IC13_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC14		  "Dynamic Options"
+	  PIN_IC14		  "A0 / P16 / Pin[17]"
 	  PIN_IC14_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC15		  "Dynamic Options"
+	  PIN_IC15		  "A0 / P16 / Pin[17]"
 	  PIN_IC15_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC16		  "Dynamic Options"
+	  PIN_IC16		  "A0 / P16 / Pin[17]"
 	  PIN_IC16_TXT		  "A0 / P16 / Pin[17]"
 	  Channel_UP_Down_Periode "[1     1     1     1     1]"
 	  MaxChannel		  "[0.003   0.003   0.003   0.003   0.003]"
@@ -2311,7 +2340,7 @@ Model {
       LibraryVersion	      "3.37"
       SourceBlock	      "MCHP_Blockset/Digital IO/Digital Output\nWrite"
       SourceType	      "Output driver for Digital Output Pins"
-      PORT		      "Dynamic Options"
+      PORT		      "B   [ 0 : 15 ]"
       PORT_TXT		      "B   [ 0 : 15 ]"
       PIN		      "[2]"
       PACK		      off
@@ -2758,8 +2787,8 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"MavlinkTX"
-	Location		[-7, 0, 1372, 740]
-	Open			off
+	Location		[-1688, 54, 8, 1080]
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2770,12 +2799,12 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"80"
+	ZoomFactor		"125"
 	Block {
 	  BlockType		  Constant
 	  Name			  "COMP_ID"
 	  SID			  "79"
-	  Position		  [265, 60, 295, 90]
+	  Position		  [310, 60, 340, 90]
 	  ZOrder		  -4
 	  OutDataTypeStr	  "uint8"
 	}
@@ -2784,7 +2813,7 @@ Model {
 	  Name			  "Get Raw IMU"
 	  SID			  "89"
 	  Ports			  [0, 1]
-	  Position		  [160, 107, 245, 133]
+	  Position		  [205, 107, 290, 133]
 	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlRawIMU"
@@ -2795,7 +2824,7 @@ Model {
 	  Name			  "Get Raw RC"
 	  SID			  "1224"
 	  Ports			  [0, 1]
-	  Position		  [155, 1037, 280, 1063]
+	  Position		  [60, 1087, 185, 1113]
 	  ZOrder		  4
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlRC_Commands"
@@ -2806,9 +2835,10 @@ Model {
 	  Name			  "Get RawGpsInt"
 	  SID			  "120"
 	  Ports			  [0, 1]
-	  Position		  [330, 363, 405, 387]
+	  Position		  [215, 343, 290, 367]
 	  ZOrder		  -5
 	  BackgroundColor	  "orange"
+	  DialogController	  "Simulink.DDGSource"
 	  DataStoreName		  "mlGpsData"
 	}
 	Block {
@@ -2816,7 +2846,7 @@ Model {
 	  Name			  "Get VfrHud"
 	  SID			  "1241"
 	  Ports			  [0, 1]
-	  Position		  [20, 1202, 145, 1228]
+	  Position		  [70, 1307, 195, 1333]
 	  ZOrder		  8
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlVfr_hud"
@@ -2827,7 +2857,7 @@ Model {
 	  Name			  "Get mlAirData"
 	  SID			  "393"
 	  Ports			  [0, 1]
-	  Position		  [185, 473, 260, 497]
+	  Position		  [90, 503, 165, 527]
 	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlAirData"
@@ -2838,7 +2868,7 @@ Model {
 	  Name			  "Get mlSysStatus"
 	  SID			  "397"
 	  Ports			  [0, 1]
-	  Position		  [175, 638, 250, 662]
+	  Position		  [20, 643, 95, 667]
 	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlSysStatus"
@@ -2849,7 +2879,7 @@ Model {
 	  Name			  "Get time"
 	  SID			  "81"
 	  Ports			  [0, 1]
-	  Position		  [165, 177, 315, 203]
+	  Position		  [210, 177, 360, 203]
 	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
@@ -2860,7 +2890,7 @@ Model {
 	  Name			  "Get time1"
 	  SID			  "126"
 	  Ports			  [0, 1]
-	  Position		  [175, 387, 325, 413]
+	  Position		  [220, 387, 370, 413]
 	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
@@ -2871,7 +2901,7 @@ Model {
 	  Name			  "Get time2"
 	  SID			  "392"
 	  Ports			  [0, 1]
-	  Position		  [175, 522, 325, 548]
+	  Position		  [90, 542, 240, 568]
 	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
@@ -2882,7 +2912,7 @@ Model {
 	  Name			  "Get time3"
 	  SID			  "1225"
 	  Ports			  [0, 1]
-	  Position		  [160, 1107, 310, 1133]
+	  Position		  [90, 1132, 240, 1158]
 	  ZOrder		  3
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
@@ -2893,7 +2923,7 @@ Model {
 	  Name			  "Get time4"
 	  SID			  "1242"
 	  Ports			  [0, 1]
-	  Position		  [25, 1272, 175, 1298]
+	  Position		  [70, 1352, 220, 1378]
 	  ZOrder		  7
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
@@ -2904,67 +2934,23 @@ Model {
 	  Name			  "PackGpsRawInt"
 	  SID			  "123"
 	  Ports			  [4, 1]
-	  Position		  [460, 313, 620, 412]
+	  Position		  [505, 313, 665, 427]
 	  ZOrder		  -12
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
-	  ListFunctions1	  "Custom Function"
+	  ListFunctions1	  "     uint16_t PackGpsRawInt(uint8_t system_id; uint8_t component_id; mavlink_gps_raw_int_t mlRawG"
+	  "psDataInt ;uint32_t time_usec)"
 	  Function1		  "uint16_t PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt"
 	  " ,uint32_t time_usec)"
 	  AddHeaderDeclaration	  on
 	  Function1Type		  "when block is updated (default)"
 	  Fct1BlockIn		  "system_id  , component_id  , mlRawGpsDataInt  , time_usec"
 	  FctReturnBlockOut	  on
-	  DataCollected		  "s.chksm=reshape({ '638503-Feb-2015 20:58:09','200703-Feb-2015 20:58:09','1582103-Feb-2015 20:58:0"
-	  "9','3237209-Jun-2015 23:33:04'},1,4);s.File1=reshape({ '  void  newCircBuffer(CBRef cB)','  void  freeCircBuffer(CB"
-	  "Ref* cB)','  void  freeCircBuffer(CBRef* cB)',' unsigned int  getLength(CBRef cB)','  int  readHead(CBRef cB)','  i"
-	  "nt  readTail(CBRef cB)',' unsigned char  peak(CBRef cB)',' unsigned char  readFront(CBRef cB)',' unsigned char  wri"
-	  "teBack(CBRef cB, unsigned char data)','  void  makeEmpty(CBRef cB)','  void  printCircBuf(CBRef cB)'},1,11);s.File2"
-	  "=reshape({ '  void  uartBufferInit(void)','  void  __attribute__((__interrupt__, no_auto_psv)) _U4RXInterrupt(void)"
-	  "'},1,2);s.File3=reshape({ '  char  hex2char(char halfhex)','  float  degMinToDeg(unsigned char degrees, float minut"
-	  "es)',' unsigned char  gpsUbloxSeparate(unsigned char* outStream)','  void  gpsUbloxParse(void)','  void  getGpsUblo"
-	  "xMainData(float* data)','  char  gpSmbl(char symbl)',' unsigned char  myTokenizer(char* stringToTokenize, char toke"
-	  "n, char * returnToken)','  void  parseRMC(unsigned char* stream)','  void  parseGGA(unsigned char* stream)',' unsig"
-	  "ned char  getChecksum(unsigned char* sentence, unsigned char size)'},1,10);s.File4=reshape({ '  void  uartMavlinkBu"
-	  "fferInit(void)','  void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void)','  uint8_t  isFinite(floa"
-	  "t s)','  void  InitParameterInterface(void)','  void  protDecodeMavlink(void)','  uint16_t  MissionInterfaceRespons"
-	  "e(uint8_t system_id, uint8_t component_id)','  uint16_t  ParameterInterfaceResponse(uint8_t system_id, uint8_t comp"
-	  "onent_id)','  uint16_t  PackHeartBeat(uint8_t system_id, uint8_t component_id)','  uint16_t  PackTextMsg(uint8_t sy"
-	  "stem_id, uint8_t component_id)','  uint16_t  PackRawIMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t "
-	  "mlRawIMUData ,uint32_t time_usec)','  uint16_t  PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_"
-	  "raw_int_t mlRawGpsDataInt ,uint32_t time_usec)','  uint16_t  PackScaledPressure(uint8_t system_id, uint8_t componen"
-	  "t_id, mavlink_scaled_pressure_t mlAirData ,uint32_t time_usec)','  uint16_t  PackSysStatus(uint8_t system_id, uint8"
-	  "_t component_id, mavlink_sys_status_t mlSysStatus)','  char  sendQGCDebugMessage(const char * dbgMessage, char seve"
-	  "rity, unsigned char* bytesToAdd, char positionStart)','  void  TxN_Data_OverU1(uint16_t N)'},1,15);"
-	  ORDERING		  "None"
-	  SampleTime		  "0.2"
-	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
-	  PinDigitalInput	  "[]"
-	  PinDigitalOutput	  "[]   "
-	  PinAnalogInput	  "[]"
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "PackHeartBeat"
-	  SID			  "109"
-	  Ports			  [2, 1]
-	  Position		  [460, 191, 620, 289]
-	  ZOrder		  -13
-	  LibraryVersion	  "3.37"
-	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
-	  SourceType		  "C Function Call"
-	  ParseFilesChkbx	  on
-	  ListFunctions1	  "Custom Function"
-	  Function1		  "uint16_t PackHeartBeat(uint8_t system_id, uint8_t component_id)"
-	  AddHeaderDeclaration	  on
-	  Function1Type		  "when block is updated (default)"
-	  Fct1BlockIn		  "system_id  , component_id"
-	  FctReturnBlockOut	  on
-	  DataCollected		  "s.chksm=reshape({ '360328-Apr-2016 15:40:12','638503-Feb-2015 20:58:10','219628-Apr-2016 15:40:12"
-	  "','1593928-Apr-2016 15:40:12','3277828-Apr-2016 15:40:12','294428-Apr-2016 15:40:12','556028-Apr-2016 15:40:12','96"
-	  "3228-Apr-2016 15:40:12','358828-Apr-2016 15:40:12','985928-Apr-2016 15:40:12'},1,10);s.File1=reshape({ '  float  my"
+	  DataCollected		  "s.chksm=reshape({ '360317-Jun-2016 15:34:16','638503-Feb-2015 20:58:10','219617-Jun-2016 15:34:16"
+	  "','1593917-Jun-2016 15:34:16','3561720-Jun-2016 13:52:29','294417-Jun-2016 15:34:16','556017-Jun-2016 15:34:16','96"
+	  "3217-Jun-2016 15:34:16','358817-Jun-2016 15:34:16','985917-Jun-2016 15:34:16'},1,10);s.File1=reshape({ '  float  my"
 	  "Atan2(float num, float denom)','  float  myPow(float x, float toTheN)','  float  mySqrt(float x)','  float  myAbs(f"
 	  "loat x)','  float  myAtan(float x)','  float  myAsin(float x)','  float  mySin(float x)','  float  myCos(float x)',"
 	  "'  float  myTan(float x)','  float  myAcos(float x)','  float  myExp(float x)','  void  hugeDelay(void)','  void  s"
@@ -2987,26 +2973,103 @@ Model {
 	  "mponent_id, mavlink_raw_imu_t mlRawIMUData ,uint32_t time_usec)','  uint16_t  PackGpsRawInt(uint8_t system_id, uint"
 	  "8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec)','  uint16_t  PackScaledPressure(uint8"
 	  "_t system_id, uint8_t component_id, mavlink_scaled_pressure_t mlAirData ,uint32_t time_usec)','  uint16_t  PackSysS"
-	  "tatus(uint8_t system_id, uint8_t component_id, mavlink_sys_status_t mlSysStatus)','  char  sendQGCDebugMessage(cons"
-	  "t char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart)','  void  TxN_Data_OverU1(uint16"
-	  "_t N)'},1,15);s.File6={ '  void  mavlinkInit(void)'};s.File7=reshape({ '  void  updateRawADCData(int16_t* adcData)'"
-	  ",'  void  updateAirData(float* airData)','  void  updateLoadData(uint8_t load, uint16_t mvPower)','  void  updateAt"
-	  "titude(float * attitudeData)','  void  getGSLocation(float* altLatLon)','  void  updateTimeStamp(uint32_t timeSt)',"
-	  "'  void  updatePosition(float * posData)','  void  updatePilotConsole(uint16_t * pilData)','  void  updateDiagnosti"
-	  "cFl(float* diagFl)','  void  updateDiagnosticSh(int16_t* diagSh)','  void  updateBias(float * biasData)','  void  u"
-	  "pdateSensorData(float* sens)','  uint8_t  isFixValid(void)','  void  updateSensorDiag(float* diag)'},1,14);s.File8="
-	  "reshape({ '  void  gpsInit(void)','  void  gpsParse(uint8_t* dataStream)','  void  updateStatus(uint8_t* completeMe"
-	  "ssage)','  void  updatePositionData(uint8_t* completeMessage)','  void  updateVelocityData(uint8_t* completeMessage"
-	  ")','  void  updateTimeData(uint8_t* completeMessage)','  void  getGpsMainData(float* data)','  uint32_t  CRC32Value"
-	  "(int32_t i)','  uint32_t  CalculateBlockCRC32(uint32_t ulCount, uint8_t *ucBuffer)','  uint16_t  charsToUint16(uint"
-	  "8_t* data)','  uint32_t  charsToUint32(uint8_t* data)','  float  charsToFloat(uint8_t* data)','  double  charsToDou"
-	  "ble(uint8_t* data)'},1,13);s.File9=reshape({ '  void  hilRead(unsigned char* hilChunk)','  void  hil_getRawRead(sho"
-	  "rt * rawData)','  void  hil_getVned(float* vned)','  void  hil_getEuler(float* euler)','  void  hil_getRates(float*"
-	  " pqr)','  void  hil_getXYZ(float* xyz)',' unsigned int  hil_getTs(void)','  void  protDecodeHil(uint8_t* dataIn)'},"
-	  "1,8);s.File10=reshape({ '  void  cubeInit(void)','  void  getCubeData(short * cubeData)','  void  updateCubeData(vo"
-	  "id)','  int16_t  averageData(int16_t* theData, uint8_t count)',' unsigned short  write2Cube(unsigned short data2Sen"
-	  "d)','  void  __attribute__((interrupt, no_auto_psv)) _T5Interrupt(void)','  short  convert14BitToShort(short wordDa"
-	  "ta)','  short  convert12BitToShort(short wordData)',' unsigned char  isCube16405(void)'},1,9);"
+	  "tatus(uint8_t system_id, uint8_t component_id, mavlink_sys_status_t mlSysStatus)','  uint16_t  PackRawServo(uint8_t"
+	  " system_id, uint8_t component_id, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec)','  uint16_t  PackR"
+	  "awRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec)','  uint"
+	  "16_t  PackVFR_HUD(uint8_t system_id, uint8_t component_id, mavlink_vfr_hud_t mlVfr_hud ,uint32_t time_usec)','  cha"
+	  "r  sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart)','  v"
+	  "oid  TxN_Data_OverU1(uint16_t N)'},1,18);s.File6={ '  void  mavlinkInit(void)'};s.File7=reshape({ '  void  updateRa"
+	  "wADCData(int16_t* adcData)','  void  updateAirData(float* airData)','  void  updateLoadData(uint8_t load, uint16_t "
+	  "mvPower)','  void  updateAttitude(float * attitudeData)','  void  getGSLocation(float* altLatLon)','  void  updateT"
+	  "imeStamp(uint32_t timeSt)','  void  updatePosition(float * posData)','  void  updatePilotConsole(uint16_t * pilData"
+	  ")','  void  updateDiagnosticFl(float* diagFl)','  void  updateDiagnosticSh(int16_t* diagSh)','  void  updateBias(fl"
+	  "oat * biasData)','  void  updateSensorData(float* sens)','  uint8_t  isFixValid(void)','  void  updateSensorDiag(fl"
+	  "oat* diag)'},1,14);s.File8=reshape({ '  void  gpsInit(void)','  void  gpsParse(uint8_t* dataStream)','  void  updat"
+	  "eStatus(uint8_t* completeMessage)','  void  updatePositionData(uint8_t* completeMessage)','  void  updateVelocityDa"
+	  "ta(uint8_t* completeMessage)','  void  updateTimeData(uint8_t* completeMessage)','  void  getGpsMainData(float* dat"
+	  "a)','  uint32_t  CRC32Value(int32_t i)','  uint32_t  CalculateBlockCRC32(uint32_t ulCount, uint8_t *ucBuffer)','  u"
+	  "int16_t  charsToUint16(uint8_t* data)','  uint32_t  charsToUint32(uint8_t* data)','  float  charsToFloat(uint8_t* d"
+	  "ata)','  double  charsToDouble(uint8_t* data)'},1,13);s.File9=reshape({ '  void  hilRead(unsigned char* hilChunk)',"
+	  "'  void  hil_getRawRead(short * rawData)','  void  hil_getVned(float* vned)','  void  hil_getEuler(float* euler)','"
+	  "  void  hil_getRates(float* pqr)','  void  hil_getXYZ(float* xyz)',' unsigned int  hil_getTs(void)','  void  protDe"
+	  "codeHil(uint8_t* dataIn)'},1,8);s.File10=reshape({ '  void  cubeInit(void)','  void  getCubeData(short * cubeData)'"
+	  ",'  void  updateCubeData(void)','  int16_t  averageData(int16_t* theData, uint8_t count)',' unsigned short  write2C"
+	  "ube(unsigned short data2Send)','  void  __attribute__((interrupt, no_auto_psv)) _T5Interrupt(void)','  short  conve"
+	  "rt14BitToShort(short wordData)','  short  convert12BitToShort(short wordData)',' unsigned char  isCube16405(void)'}"
+	  ",1,9);"
+	  ORDERING		  "None"
+	  SampleTime		  "1"
+	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
+	  PinDigitalInput	  "[]"
+	  PinDigitalOutput	  "[]   "
+	  PinAnalogInput	  "[]"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PackHeartBeat"
+	  SID			  "109"
+	  Ports			  [2, 1]
+	  Position		  [505, 191, 665, 289]
+	  ZOrder		  -13
+	  LibraryVersion	  "3.37"
+	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
+	  SourceType		  "C Function Call"
+	  ParseFilesChkbx	  on
+	  ListFunctions1	  "     uint16_t PackHeartBeat(uint8_t system_id; uint8_t component_id)"
+	  Function1		  "uint16_t PackHeartBeat(uint8_t system_id, uint8_t component_id)"
+	  AddHeaderDeclaration	  on
+	  Function1Type		  "when block is updated (default)"
+	  Fct1BlockIn		  "system_id  , component_id"
+	  FctReturnBlockOut	  on
+	  DataCollected		  "s.chksm=reshape({ '360317-Jun-2016 15:34:16','638503-Feb-2015 20:58:10','219617-Jun-2016 15:34:16"
+	  "','1593917-Jun-2016 15:34:16','3558217-Jun-2016 19:12:32','294417-Jun-2016 15:34:16','556017-Jun-2016 15:34:16','96"
+	  "3217-Jun-2016 15:34:16','358817-Jun-2016 15:34:16','985917-Jun-2016 15:34:16'},1,10);s.File1=reshape({ '  float  my"
+	  "Atan2(float num, float denom)','  float  myPow(float x, float toTheN)','  float  mySqrt(float x)','  float  myAbs(f"
+	  "loat x)','  float  myAtan(float x)','  float  myAsin(float x)','  float  mySin(float x)','  float  myCos(float x)',"
+	  "'  float  myTan(float x)','  float  myAcos(float x)','  float  myExp(float x)','  void  hugeDelay(void)','  void  s"
+	  "mallDelay(void)','  void  tinyDelay(void)','  void  printToUart2(const char *fmt, ...)'},1,15);s.File2=reshape({ ' "
+	  " void  newCircBuffer(CBRef cB)','  void  freeCircBuffer(CBRef* cB)','  void  freeCircBuffer(CBRef* cB)',' unsigned "
+	  "int  getLength(CBRef cB)','  int  readHead(CBRef cB)','  int  readTail(CBRef cB)',' unsigned char  peak(CBRef cB)',"
+	  "' unsigned char  readFront(CBRef cB)',' unsigned char  writeBack(CBRef cB, unsigned char data)','  void  makeEmpty("
+	  "CBRef cB)','  void  printCircBuf(CBRef cB)'},1,11);s.File3=reshape({ '  void  uartBufferInit(void)','  void  __attr"
+	  "ibute__((__interrupt__, no_auto_psv)) _U4RXInterrupt(void)','  void  getGPSRawData(unsigned char* gpsBuffer)',' uns"
+	  "igned char  isGPSNovatel(void)'},1,4);s.File4=reshape({ '  char  hex2char(char halfhex)','  float  degMinToDeg(unsi"
+	  "gned char degrees, float minutes)',' unsigned char  gpsUbloxSeparate(unsigned char* outStream)','  void  gpsUbloxPa"
+	  "rse(void)','  void  getGpsUbloxMainData(float* data)','  char  gpSmbl(char symbl)',' unsigned char  myTokenizer(cha"
+	  "r* stringToTokenize, char token, char * returnToken)','  void  parseRMC(unsigned char* stream)','  void  parseGGA(u"
+	  "nsigned char* stream)',' unsigned char  getChecksum(unsigned char* sentence, unsigned char size)'},1,10);s.File5=re"
+	  "shape({ '  void  uartMavlinkBufferInit(void)','  void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(vo"
+	  "id)','  uint8_t  isFinite(float s)','  void  InitParameterInterface(void)','  void  protDecodeMavlink(void)','  uin"
+	  "t16_t  MissionInterfaceResponse(uint8_t system_id, uint8_t component_id)','  uint16_t  ParameterInterfaceResponse(u"
+	  "int8_t system_id, uint8_t component_id)','  uint16_t  PackHeartBeat(uint8_t system_id, uint8_t component_id)','  ui"
+	  "nt16_t  PackTextMsg(uint8_t system_id, uint8_t component_id)','  uint16_t  PackRawIMU(uint8_t system_id, uint8_t co"
+	  "mponent_id, mavlink_raw_imu_t mlRawIMUData ,uint32_t time_usec)','  uint16_t  PackGpsRawInt(uint8_t system_id, uint"
+	  "8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec)','  uint16_t  PackScaledPressure(uint8"
+	  "_t system_id, uint8_t component_id, mavlink_scaled_pressure_t mlAirData ,uint32_t time_usec)','  uint16_t  PackSysS"
+	  "tatus(uint8_t system_id, uint8_t component_id, mavlink_sys_status_t mlSysStatus)','  uint16_t  PackRawServo(uint8_t"
+	  " system_id, uint8_t component_id, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec)','  uint16_t  PackR"
+	  "awRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec)','  uint"
+	  "16_t  PackVFR_HUD(uint8_t system_id, uint8_t component_id, mavlink_vfr_hud_t mlVfr_hud ,uint32_t time_usec)','  cha"
+	  "r  sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart)','  v"
+	  "oid  TxN_Data_OverU1(uint16_t N)'},1,18);s.File6={ '  void  mavlinkInit(void)'};s.File7=reshape({ '  void  updateRa"
+	  "wADCData(int16_t* adcData)','  void  updateAirData(float* airData)','  void  updateLoadData(uint8_t load, uint16_t "
+	  "mvPower)','  void  updateAttitude(float * attitudeData)','  void  getGSLocation(float* altLatLon)','  void  updateT"
+	  "imeStamp(uint32_t timeSt)','  void  updatePosition(float * posData)','  void  updatePilotConsole(uint16_t * pilData"
+	  ")','  void  updateDiagnosticFl(float* diagFl)','  void  updateDiagnosticSh(int16_t* diagSh)','  void  updateBias(fl"
+	  "oat * biasData)','  void  updateSensorData(float* sens)','  uint8_t  isFixValid(void)','  void  updateSensorDiag(fl"
+	  "oat* diag)'},1,14);s.File8=reshape({ '  void  gpsInit(void)','  void  gpsParse(uint8_t* dataStream)','  void  updat"
+	  "eStatus(uint8_t* completeMessage)','  void  updatePositionData(uint8_t* completeMessage)','  void  updateVelocityDa"
+	  "ta(uint8_t* completeMessage)','  void  updateTimeData(uint8_t* completeMessage)','  void  getGpsMainData(float* dat"
+	  "a)','  uint32_t  CRC32Value(int32_t i)','  uint32_t  CalculateBlockCRC32(uint32_t ulCount, uint8_t *ucBuffer)','  u"
+	  "int16_t  charsToUint16(uint8_t* data)','  uint32_t  charsToUint32(uint8_t* data)','  float  charsToFloat(uint8_t* d"
+	  "ata)','  double  charsToDouble(uint8_t* data)'},1,13);s.File9=reshape({ '  void  hilRead(unsigned char* hilChunk)',"
+	  "'  void  hil_getRawRead(short * rawData)','  void  hil_getVned(float* vned)','  void  hil_getEuler(float* euler)','"
+	  "  void  hil_getRates(float* pqr)','  void  hil_getXYZ(float* xyz)',' unsigned int  hil_getTs(void)','  void  protDe"
+	  "codeHil(uint8_t* dataIn)'},1,8);s.File10=reshape({ '  void  cubeInit(void)','  void  getCubeData(short * cubeData)'"
+	  ",'  void  updateCubeData(void)','  int16_t  averageData(int16_t* theData, uint8_t count)',' unsigned short  write2C"
+	  "ube(unsigned short data2Send)','  void  __attribute__((interrupt, no_auto_psv)) _T5Interrupt(void)','  short  conve"
+	  "rt14BitToShort(short wordData)','  short  convert12BitToShort(short wordData)',' unsigned char  isCube16405(void)'}"
+	  ",1,9);"
 	  ORDERING		  "None"
 	  SampleTime		  "0.5"
 	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -3019,7 +3082,7 @@ Model {
 	  Name			  "PackRawIMU"
 	  SID			  "108"
 	  Ports			  [4, 1]
-	  Position		  [460, 33, 620, 172]
+	  Position		  [505, 33, 665, 172]
 	  ZOrder		  -14
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -3089,7 +3152,7 @@ Model {
 	  Name			  "PackRawRC"
 	  SID			  "1226"
 	  Ports			  [4, 1]
-	  Position		  [455, 963, 615, 1102]
+	  Position		  [500, 1018, 660, 1157]
 	  ZOrder		  2
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -3162,7 +3225,7 @@ Model {
 	  Name			  "PackRawRC1"
 	  SID			  "1240"
 	  Ports			  [4, 1]
-	  Position		  [450, 1132, 620, 1313]
+	  Position		  [495, 1187, 665, 1368]
 	  ZOrder		  6
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -3237,7 +3300,7 @@ Model {
 	  Name			  "PackScaledPressure"
 	  SID			  "390"
 	  Ports			  [4, 1]
-	  Position		  [460, 446, 620, 549]
+	  Position		  [505, 448, 665, 562]
 	  ZOrder		  -15
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -3307,7 +3370,7 @@ Model {
 	  Name			  "PackSysStatus"
 	  SID			  "395"
 	  Ports			  [3, 1]
-	  Position		  [460, 577, 620, 673]
+	  Position		  [505, 577, 665, 673]
 	  ZOrder		  -16
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -3352,39 +3415,67 @@ Model {
 	  Name			  "ParamInterfaceResponse"
 	  SID			  "430"
 	  Ports			  [2, 1]
-	  Position		  [460, 691, 620, 789]
+	  Position		  [505, 691, 665, 829]
 	  ZOrder		  -17
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
-	  ListFunctions1	  "Custom Function"
+	  ListFunctions1	  "     uint16_t ParameterInterfaceResponse(uint8_t system_id; uint8_t component_id)"
 	  Function1		  "uint16_t ParameterInterfaceResponse(uint8_t system_id, uint8_t component_id)"
 	  AddHeaderDeclaration	  on
 	  Function1Type		  "when block is updated (default)"
 	  Fct1BlockIn		  "system_id  , component_id"
 	  FctReturnBlockOut	  on
-	  DataCollected		  "s.chksm=reshape({ '638503-Feb-2015 20:58:09','200703-Feb-2015 20:58:09','1582103-Feb-2015 20:58:0"
-	  "9','3237209-Jun-2015 23:33:04'},1,4);s.File1=reshape({ '  void  newCircBuffer(CBRef cB)','  void  freeCircBuffer(CB"
-	  "Ref* cB)','  void  freeCircBuffer(CBRef* cB)',' unsigned int  getLength(CBRef cB)','  int  readHead(CBRef cB)','  i"
-	  "nt  readTail(CBRef cB)',' unsigned char  peak(CBRef cB)',' unsigned char  readFront(CBRef cB)',' unsigned char  wri"
-	  "teBack(CBRef cB, unsigned char data)','  void  makeEmpty(CBRef cB)','  void  printCircBuf(CBRef cB)'},1,11);s.File2"
-	  "=reshape({ '  void  uartBufferInit(void)','  void  __attribute__((__interrupt__, no_auto_psv)) _U4RXInterrupt(void)"
-	  "'},1,2);s.File3=reshape({ '  char  hex2char(char halfhex)','  float  degMinToDeg(unsigned char degrees, float minut"
-	  "es)',' unsigned char  gpsUbloxSeparate(unsigned char* outStream)','  void  gpsUbloxParse(void)','  void  getGpsUblo"
-	  "xMainData(float* data)','  char  gpSmbl(char symbl)',' unsigned char  myTokenizer(char* stringToTokenize, char toke"
-	  "n, char * returnToken)','  void  parseRMC(unsigned char* stream)','  void  parseGGA(unsigned char* stream)',' unsig"
-	  "ned char  getChecksum(unsigned char* sentence, unsigned char size)'},1,10);s.File4=reshape({ '  void  uartMavlinkBu"
-	  "fferInit(void)','  void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void)','  uint8_t  isFinite(floa"
-	  "t s)','  void  InitParameterInterface(void)','  void  protDecodeMavlink(void)','  uint16_t  MissionInterfaceRespons"
-	  "e(uint8_t system_id, uint8_t component_id)','  uint16_t  ParameterInterfaceResponse(uint8_t system_id, uint8_t comp"
-	  "onent_id)','  uint16_t  PackHeartBeat(uint8_t system_id, uint8_t component_id)','  uint16_t  PackTextMsg(uint8_t sy"
-	  "stem_id, uint8_t component_id)','  uint16_t  PackRawIMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t "
-	  "mlRawIMUData ,uint32_t time_usec)','  uint16_t  PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_"
-	  "raw_int_t mlRawGpsDataInt ,uint32_t time_usec)','  uint16_t  PackScaledPressure(uint8_t system_id, uint8_t componen"
-	  "t_id, mavlink_scaled_pressure_t mlAirData ,uint32_t time_usec)','  uint16_t  PackSysStatus(uint8_t system_id, uint8"
-	  "_t component_id, mavlink_sys_status_t mlSysStatus)','  char  sendQGCDebugMessage(const char * dbgMessage, char seve"
-	  "rity, unsigned char* bytesToAdd, char positionStart)','  void  TxN_Data_OverU1(uint16_t N)'},1,15);"
+	  DataCollected		  "s.chksm=reshape({ '360317-Jun-2016 15:34:16','638503-Feb-2015 20:58:10','219617-Jun-2016 15:34:16"
+	  "','1593917-Jun-2016 15:34:16','3558217-Jun-2016 19:12:32','294417-Jun-2016 15:34:16','556017-Jun-2016 15:34:16','96"
+	  "3217-Jun-2016 15:34:16','358817-Jun-2016 15:34:16','985917-Jun-2016 15:34:16'},1,10);s.File1=reshape({ '  float  my"
+	  "Atan2(float num, float denom)','  float  myPow(float x, float toTheN)','  float  mySqrt(float x)','  float  myAbs(f"
+	  "loat x)','  float  myAtan(float x)','  float  myAsin(float x)','  float  mySin(float x)','  float  myCos(float x)',"
+	  "'  float  myTan(float x)','  float  myAcos(float x)','  float  myExp(float x)','  void  hugeDelay(void)','  void  s"
+	  "mallDelay(void)','  void  tinyDelay(void)','  void  printToUart2(const char *fmt, ...)'},1,15);s.File2=reshape({ ' "
+	  " void  newCircBuffer(CBRef cB)','  void  freeCircBuffer(CBRef* cB)','  void  freeCircBuffer(CBRef* cB)',' unsigned "
+	  "int  getLength(CBRef cB)','  int  readHead(CBRef cB)','  int  readTail(CBRef cB)',' unsigned char  peak(CBRef cB)',"
+	  "' unsigned char  readFront(CBRef cB)',' unsigned char  writeBack(CBRef cB, unsigned char data)','  void  makeEmpty("
+	  "CBRef cB)','  void  printCircBuf(CBRef cB)'},1,11);s.File3=reshape({ '  void  uartBufferInit(void)','  void  __attr"
+	  "ibute__((__interrupt__, no_auto_psv)) _U4RXInterrupt(void)','  void  getGPSRawData(unsigned char* gpsBuffer)',' uns"
+	  "igned char  isGPSNovatel(void)'},1,4);s.File4=reshape({ '  char  hex2char(char halfhex)','  float  degMinToDeg(unsi"
+	  "gned char degrees, float minutes)',' unsigned char  gpsUbloxSeparate(unsigned char* outStream)','  void  gpsUbloxPa"
+	  "rse(void)','  void  getGpsUbloxMainData(float* data)','  char  gpSmbl(char symbl)',' unsigned char  myTokenizer(cha"
+	  "r* stringToTokenize, char token, char * returnToken)','  void  parseRMC(unsigned char* stream)','  void  parseGGA(u"
+	  "nsigned char* stream)',' unsigned char  getChecksum(unsigned char* sentence, unsigned char size)'},1,10);s.File5=re"
+	  "shape({ '  void  uartMavlinkBufferInit(void)','  void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(vo"
+	  "id)','  uint8_t  isFinite(float s)','  void  InitParameterInterface(void)','  void  protDecodeMavlink(void)','  uin"
+	  "t16_t  MissionInterfaceResponse(uint8_t system_id, uint8_t component_id)','  uint16_t  ParameterInterfaceResponse(u"
+	  "int8_t system_id, uint8_t component_id)','  uint16_t  PackHeartBeat(uint8_t system_id, uint8_t component_id)','  ui"
+	  "nt16_t  PackTextMsg(uint8_t system_id, uint8_t component_id)','  uint16_t  PackRawIMU(uint8_t system_id, uint8_t co"
+	  "mponent_id, mavlink_raw_imu_t mlRawIMUData ,uint32_t time_usec)','  uint16_t  PackGpsRawInt(uint8_t system_id, uint"
+	  "8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec)','  uint16_t  PackScaledPressure(uint8"
+	  "_t system_id, uint8_t component_id, mavlink_scaled_pressure_t mlAirData ,uint32_t time_usec)','  uint16_t  PackSysS"
+	  "tatus(uint8_t system_id, uint8_t component_id, mavlink_sys_status_t mlSysStatus)','  uint16_t  PackRawServo(uint8_t"
+	  " system_id, uint8_t component_id, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec)','  uint16_t  PackR"
+	  "awRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec)','  uint"
+	  "16_t  PackVFR_HUD(uint8_t system_id, uint8_t component_id, mavlink_vfr_hud_t mlVfr_hud ,uint32_t time_usec)','  cha"
+	  "r  sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart)','  v"
+	  "oid  TxN_Data_OverU1(uint16_t N)'},1,18);s.File6={ '  void  mavlinkInit(void)'};s.File7=reshape({ '  void  updateRa"
+	  "wADCData(int16_t* adcData)','  void  updateAirData(float* airData)','  void  updateLoadData(uint8_t load, uint16_t "
+	  "mvPower)','  void  updateAttitude(float * attitudeData)','  void  getGSLocation(float* altLatLon)','  void  updateT"
+	  "imeStamp(uint32_t timeSt)','  void  updatePosition(float * posData)','  void  updatePilotConsole(uint16_t * pilData"
+	  ")','  void  updateDiagnosticFl(float* diagFl)','  void  updateDiagnosticSh(int16_t* diagSh)','  void  updateBias(fl"
+	  "oat * biasData)','  void  updateSensorData(float* sens)','  uint8_t  isFixValid(void)','  void  updateSensorDiag(fl"
+	  "oat* diag)'},1,14);s.File8=reshape({ '  void  gpsInit(void)','  void  gpsParse(uint8_t* dataStream)','  void  updat"
+	  "eStatus(uint8_t* completeMessage)','  void  updatePositionData(uint8_t* completeMessage)','  void  updateVelocityDa"
+	  "ta(uint8_t* completeMessage)','  void  updateTimeData(uint8_t* completeMessage)','  void  getGpsMainData(float* dat"
+	  "a)','  uint32_t  CRC32Value(int32_t i)','  uint32_t  CalculateBlockCRC32(uint32_t ulCount, uint8_t *ucBuffer)','  u"
+	  "int16_t  charsToUint16(uint8_t* data)','  uint32_t  charsToUint32(uint8_t* data)','  float  charsToFloat(uint8_t* d"
+	  "ata)','  double  charsToDouble(uint8_t* data)'},1,13);s.File9=reshape({ '  void  hilRead(unsigned char* hilChunk)',"
+	  "'  void  hil_getRawRead(short * rawData)','  void  hil_getVned(float* vned)','  void  hil_getEuler(float* euler)','"
+	  "  void  hil_getRates(float* pqr)','  void  hil_getXYZ(float* xyz)',' unsigned int  hil_getTs(void)','  void  protDe"
+	  "codeHil(uint8_t* dataIn)'},1,8);s.File10=reshape({ '  void  cubeInit(void)','  void  getCubeData(short * cubeData)'"
+	  ",'  void  updateCubeData(void)','  int16_t  averageData(int16_t* theData, uint8_t count)',' unsigned short  write2C"
+	  "ube(unsigned short data2Send)','  void  __attribute__((interrupt, no_auto_psv)) _T5Interrupt(void)','  short  conve"
+	  "rt14BitToShort(short wordData)','  short  convert12BitToShort(short wordData)',' unsigned char  isCube16405(void)'}"
+	  ",1,9);"
 	  ORDERING		  "None"
 	  SampleTime		  "[0.2 0.06]"
 	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -3397,19 +3488,67 @@ Model {
 	  Name			  "ParamInterfaceResponse1"
 	  SID			  "458"
 	  Ports			  [2, 1]
-	  Position		  [460, 816, 620, 929]
+	  Position		  [485, 850, 660, 1005]
 	  ZOrder		  -18
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
-	  ListFunctions1	  "Custom Function"
+	  ListFunctions1	  "     uint16_t MissionInterfaceResponse(uint8_t system_id; uint8_t component_id)"
 	  Function1		  "uint16_t MissionInterfaceResponse(uint8_t system_id, uint8_t component_id)"
 	  AddHeaderDeclaration	  on
 	  Function1Type		  "when block is updated (default)"
 	  Fct1BlockIn		  "system_id  , component_id"
 	  FctReturnBlockOut	  on
-	  DataCollected		  "0"
+	  DataCollected		  "s.chksm=reshape({ '360317-Jun-2016 15:34:16','638503-Feb-2015 20:58:10','219617-Jun-2016 15:34:16"
+	  "','1593917-Jun-2016 15:34:16','3558217-Jun-2016 19:12:32','294417-Jun-2016 15:34:16','556017-Jun-2016 15:34:16','96"
+	  "3217-Jun-2016 15:34:16','358817-Jun-2016 15:34:16','985917-Jun-2016 15:34:16'},1,10);s.File1=reshape({ '  float  my"
+	  "Atan2(float num, float denom)','  float  myPow(float x, float toTheN)','  float  mySqrt(float x)','  float  myAbs(f"
+	  "loat x)','  float  myAtan(float x)','  float  myAsin(float x)','  float  mySin(float x)','  float  myCos(float x)',"
+	  "'  float  myTan(float x)','  float  myAcos(float x)','  float  myExp(float x)','  void  hugeDelay(void)','  void  s"
+	  "mallDelay(void)','  void  tinyDelay(void)','  void  printToUart2(const char *fmt, ...)'},1,15);s.File2=reshape({ ' "
+	  " void  newCircBuffer(CBRef cB)','  void  freeCircBuffer(CBRef* cB)','  void  freeCircBuffer(CBRef* cB)',' unsigned "
+	  "int  getLength(CBRef cB)','  int  readHead(CBRef cB)','  int  readTail(CBRef cB)',' unsigned char  peak(CBRef cB)',"
+	  "' unsigned char  readFront(CBRef cB)',' unsigned char  writeBack(CBRef cB, unsigned char data)','  void  makeEmpty("
+	  "CBRef cB)','  void  printCircBuf(CBRef cB)'},1,11);s.File3=reshape({ '  void  uartBufferInit(void)','  void  __attr"
+	  "ibute__((__interrupt__, no_auto_psv)) _U4RXInterrupt(void)','  void  getGPSRawData(unsigned char* gpsBuffer)',' uns"
+	  "igned char  isGPSNovatel(void)'},1,4);s.File4=reshape({ '  char  hex2char(char halfhex)','  float  degMinToDeg(unsi"
+	  "gned char degrees, float minutes)',' unsigned char  gpsUbloxSeparate(unsigned char* outStream)','  void  gpsUbloxPa"
+	  "rse(void)','  void  getGpsUbloxMainData(float* data)','  char  gpSmbl(char symbl)',' unsigned char  myTokenizer(cha"
+	  "r* stringToTokenize, char token, char * returnToken)','  void  parseRMC(unsigned char* stream)','  void  parseGGA(u"
+	  "nsigned char* stream)',' unsigned char  getChecksum(unsigned char* sentence, unsigned char size)'},1,10);s.File5=re"
+	  "shape({ '  void  uartMavlinkBufferInit(void)','  void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(vo"
+	  "id)','  uint8_t  isFinite(float s)','  void  InitParameterInterface(void)','  void  protDecodeMavlink(void)','  uin"
+	  "t16_t  MissionInterfaceResponse(uint8_t system_id, uint8_t component_id)','  uint16_t  ParameterInterfaceResponse(u"
+	  "int8_t system_id, uint8_t component_id)','  uint16_t  PackHeartBeat(uint8_t system_id, uint8_t component_id)','  ui"
+	  "nt16_t  PackTextMsg(uint8_t system_id, uint8_t component_id)','  uint16_t  PackRawIMU(uint8_t system_id, uint8_t co"
+	  "mponent_id, mavlink_raw_imu_t mlRawIMUData ,uint32_t time_usec)','  uint16_t  PackGpsRawInt(uint8_t system_id, uint"
+	  "8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec)','  uint16_t  PackScaledPressure(uint8"
+	  "_t system_id, uint8_t component_id, mavlink_scaled_pressure_t mlAirData ,uint32_t time_usec)','  uint16_t  PackSysS"
+	  "tatus(uint8_t system_id, uint8_t component_id, mavlink_sys_status_t mlSysStatus)','  uint16_t  PackRawServo(uint8_t"
+	  " system_id, uint8_t component_id, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec)','  uint16_t  PackR"
+	  "awRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec)','  uint"
+	  "16_t  PackVFR_HUD(uint8_t system_id, uint8_t component_id, mavlink_vfr_hud_t mlVfr_hud ,uint32_t time_usec)','  cha"
+	  "r  sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart)','  v"
+	  "oid  TxN_Data_OverU1(uint16_t N)'},1,18);s.File6={ '  void  mavlinkInit(void)'};s.File7=reshape({ '  void  updateRa"
+	  "wADCData(int16_t* adcData)','  void  updateAirData(float* airData)','  void  updateLoadData(uint8_t load, uint16_t "
+	  "mvPower)','  void  updateAttitude(float * attitudeData)','  void  getGSLocation(float* altLatLon)','  void  updateT"
+	  "imeStamp(uint32_t timeSt)','  void  updatePosition(float * posData)','  void  updatePilotConsole(uint16_t * pilData"
+	  ")','  void  updateDiagnosticFl(float* diagFl)','  void  updateDiagnosticSh(int16_t* diagSh)','  void  updateBias(fl"
+	  "oat * biasData)','  void  updateSensorData(float* sens)','  uint8_t  isFixValid(void)','  void  updateSensorDiag(fl"
+	  "oat* diag)'},1,14);s.File8=reshape({ '  void  gpsInit(void)','  void  gpsParse(uint8_t* dataStream)','  void  updat"
+	  "eStatus(uint8_t* completeMessage)','  void  updatePositionData(uint8_t* completeMessage)','  void  updateVelocityDa"
+	  "ta(uint8_t* completeMessage)','  void  updateTimeData(uint8_t* completeMessage)','  void  getGpsMainData(float* dat"
+	  "a)','  uint32_t  CRC32Value(int32_t i)','  uint32_t  CalculateBlockCRC32(uint32_t ulCount, uint8_t *ucBuffer)','  u"
+	  "int16_t  charsToUint16(uint8_t* data)','  uint32_t  charsToUint32(uint8_t* data)','  float  charsToFloat(uint8_t* d"
+	  "ata)','  double  charsToDouble(uint8_t* data)'},1,13);s.File9=reshape({ '  void  hilRead(unsigned char* hilChunk)',"
+	  "'  void  hil_getRawRead(short * rawData)','  void  hil_getVned(float* vned)','  void  hil_getEuler(float* euler)','"
+	  "  void  hil_getRates(float* pqr)','  void  hil_getXYZ(float* xyz)',' unsigned int  hil_getTs(void)','  void  protDe"
+	  "codeHil(uint8_t* dataIn)'},1,8);s.File10=reshape({ '  void  cubeInit(void)','  void  getCubeData(short * cubeData)'"
+	  ",'  void  updateCubeData(void)','  int16_t  averageData(int16_t* theData, uint8_t count)',' unsigned short  write2C"
+	  "ube(unsigned short data2Send)','  void  __attribute__((interrupt, no_auto_psv)) _T5Interrupt(void)','  short  conve"
+	  "rt14BitToShort(short wordData)','  short  convert12BitToShort(short wordData)',' unsigned char  isCube16405(void)'}"
+	  ",1,9);"
 	  ORDERING		  "None"
 	  SampleTime		  "[0.2 0.08]"
 	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -3421,7 +3560,7 @@ Model {
 	  BlockType		  Constant
 	  Name			  "SYS_ID"
 	  SID			  "78"
-	  Position		  [200, 25, 230, 55]
+	  Position		  [245, 25, 275, 55]
 	  ZOrder		  -4
 	  Value			  "101"
 	  OutDataTypeStr	  "uint8"
@@ -3431,7 +3570,7 @@ Model {
 	  Name			  "TX_N_Data"
 	  SID			  "115"
 	  Ports			  [1]
-	  Position		  [665, 27, 825, 163]
+	  Position		  [710, 27, 870, 163]
 	  ZOrder		  -20
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -3460,7 +3599,7 @@ Model {
 	  Name			  "TX_N_Data1"
 	  SID			  "116"
 	  Ports			  [1]
-	  Position		  [665, 191, 825, 289]
+	  Position		  [710, 191, 870, 289]
 	  ZOrder		  -21
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -3489,23 +3628,67 @@ Model {
 	  Name			  "TX_N_Data2"
 	  SID			  "124"
 	  Ports			  [1]
-	  Position		  [665, 316, 825, 414]
+	  Position		  [710, 316, 870, 414]
 	  ZOrder		  -22
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
-	  ListFunctions1	  "Custom Function"
+	  ListFunctions1	  "     void TxN_Data_OverU1(uint16_t N)"
 	  Function1		  "void TxN_Data_OverU1(uint16_t N)"
 	  AddHeaderDeclaration	  on
 	  Function1Type		  "when block is updated (default)"
 	  Fct1BlockIn		  "N"
 	  FctReturnBlockOut	  on
-	  DataCollected		  "s.chksm={ '452509-Jan-2015 23:52:22'};s.File1=reshape({ '  uint16_t  PackHeartBeat(uint8_t system"
-	  "_id, uint8_t component_id)','  uint16_t  PackTextMsg(uint8_t system_id, uint8_t component_id)','  uint16_t  PackRaw"
-	  "IMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t mlRawIMUData ,uint32_t time_usec)','  char  sendQGCD"
-	  "ebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart)','  uint8_t  Get"
-	  "CharAtBuffIdx(int32_t idx)','  void  TxN_Data_OverU1(uint16_t N)'},1,6);"
+	  DataCollected		  "s.chksm=reshape({ '360317-Jun-2016 15:34:16','638503-Feb-2015 20:58:10','219617-Jun-2016 15:34:16"
+	  "','1593917-Jun-2016 15:34:16','3561720-Jun-2016 13:52:29','294417-Jun-2016 15:34:16','556017-Jun-2016 15:34:16','96"
+	  "3217-Jun-2016 15:34:16','358817-Jun-2016 15:34:16','985917-Jun-2016 15:34:16'},1,10);s.File1=reshape({ '  float  my"
+	  "Atan2(float num, float denom)','  float  myPow(float x, float toTheN)','  float  mySqrt(float x)','  float  myAbs(f"
+	  "loat x)','  float  myAtan(float x)','  float  myAsin(float x)','  float  mySin(float x)','  float  myCos(float x)',"
+	  "'  float  myTan(float x)','  float  myAcos(float x)','  float  myExp(float x)','  void  hugeDelay(void)','  void  s"
+	  "mallDelay(void)','  void  tinyDelay(void)','  void  printToUart2(const char *fmt, ...)'},1,15);s.File2=reshape({ ' "
+	  " void  newCircBuffer(CBRef cB)','  void  freeCircBuffer(CBRef* cB)','  void  freeCircBuffer(CBRef* cB)',' unsigned "
+	  "int  getLength(CBRef cB)','  int  readHead(CBRef cB)','  int  readTail(CBRef cB)',' unsigned char  peak(CBRef cB)',"
+	  "' unsigned char  readFront(CBRef cB)',' unsigned char  writeBack(CBRef cB, unsigned char data)','  void  makeEmpty("
+	  "CBRef cB)','  void  printCircBuf(CBRef cB)'},1,11);s.File3=reshape({ '  void  uartBufferInit(void)','  void  __attr"
+	  "ibute__((__interrupt__, no_auto_psv)) _U4RXInterrupt(void)','  void  getGPSRawData(unsigned char* gpsBuffer)',' uns"
+	  "igned char  isGPSNovatel(void)'},1,4);s.File4=reshape({ '  char  hex2char(char halfhex)','  float  degMinToDeg(unsi"
+	  "gned char degrees, float minutes)',' unsigned char  gpsUbloxSeparate(unsigned char* outStream)','  void  gpsUbloxPa"
+	  "rse(void)','  void  getGpsUbloxMainData(float* data)','  char  gpSmbl(char symbl)',' unsigned char  myTokenizer(cha"
+	  "r* stringToTokenize, char token, char * returnToken)','  void  parseRMC(unsigned char* stream)','  void  parseGGA(u"
+	  "nsigned char* stream)',' unsigned char  getChecksum(unsigned char* sentence, unsigned char size)'},1,10);s.File5=re"
+	  "shape({ '  void  uartMavlinkBufferInit(void)','  void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(vo"
+	  "id)','  uint8_t  isFinite(float s)','  void  InitParameterInterface(void)','  void  protDecodeMavlink(void)','  uin"
+	  "t16_t  MissionInterfaceResponse(uint8_t system_id, uint8_t component_id)','  uint16_t  ParameterInterfaceResponse(u"
+	  "int8_t system_id, uint8_t component_id)','  uint16_t  PackHeartBeat(uint8_t system_id, uint8_t component_id)','  ui"
+	  "nt16_t  PackTextMsg(uint8_t system_id, uint8_t component_id)','  uint16_t  PackRawIMU(uint8_t system_id, uint8_t co"
+	  "mponent_id, mavlink_raw_imu_t mlRawIMUData ,uint32_t time_usec)','  uint16_t  PackGpsRawInt(uint8_t system_id, uint"
+	  "8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec)','  uint16_t  PackScaledPressure(uint8"
+	  "_t system_id, uint8_t component_id, mavlink_scaled_pressure_t mlAirData ,uint32_t time_usec)','  uint16_t  PackSysS"
+	  "tatus(uint8_t system_id, uint8_t component_id, mavlink_sys_status_t mlSysStatus)','  uint16_t  PackRawServo(uint8_t"
+	  " system_id, uint8_t component_id, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec)','  uint16_t  PackR"
+	  "awRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec)','  uint"
+	  "16_t  PackVFR_HUD(uint8_t system_id, uint8_t component_id, mavlink_vfr_hud_t mlVfr_hud ,uint32_t time_usec)','  cha"
+	  "r  sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart)','  v"
+	  "oid  TxN_Data_OverU1(uint16_t N)'},1,18);s.File6={ '  void  mavlinkInit(void)'};s.File7=reshape({ '  void  updateRa"
+	  "wADCData(int16_t* adcData)','  void  updateAirData(float* airData)','  void  updateLoadData(uint8_t load, uint16_t "
+	  "mvPower)','  void  updateAttitude(float * attitudeData)','  void  getGSLocation(float* altLatLon)','  void  updateT"
+	  "imeStamp(uint32_t timeSt)','  void  updatePosition(float * posData)','  void  updatePilotConsole(uint16_t * pilData"
+	  ")','  void  updateDiagnosticFl(float* diagFl)','  void  updateDiagnosticSh(int16_t* diagSh)','  void  updateBias(fl"
+	  "oat * biasData)','  void  updateSensorData(float* sens)','  uint8_t  isFixValid(void)','  void  updateSensorDiag(fl"
+	  "oat* diag)'},1,14);s.File8=reshape({ '  void  gpsInit(void)','  void  gpsParse(uint8_t* dataStream)','  void  updat"
+	  "eStatus(uint8_t* completeMessage)','  void  updatePositionData(uint8_t* completeMessage)','  void  updateVelocityDa"
+	  "ta(uint8_t* completeMessage)','  void  updateTimeData(uint8_t* completeMessage)','  void  getGpsMainData(float* dat"
+	  "a)','  uint32_t  CRC32Value(int32_t i)','  uint32_t  CalculateBlockCRC32(uint32_t ulCount, uint8_t *ucBuffer)','  u"
+	  "int16_t  charsToUint16(uint8_t* data)','  uint32_t  charsToUint32(uint8_t* data)','  float  charsToFloat(uint8_t* d"
+	  "ata)','  double  charsToDouble(uint8_t* data)'},1,13);s.File9=reshape({ '  void  hilRead(unsigned char* hilChunk)',"
+	  "'  void  hil_getRawRead(short * rawData)','  void  hil_getVned(float* vned)','  void  hil_getEuler(float* euler)','"
+	  "  void  hil_getRates(float* pqr)','  void  hil_getXYZ(float* xyz)',' unsigned int  hil_getTs(void)','  void  protDe"
+	  "codeHil(uint8_t* dataIn)'},1,8);s.File10=reshape({ '  void  cubeInit(void)','  void  getCubeData(short * cubeData)'"
+	  ",'  void  updateCubeData(void)','  int16_t  averageData(int16_t* theData, uint8_t count)',' unsigned short  write2C"
+	  "ube(unsigned short data2Send)','  void  __attribute__((interrupt, no_auto_psv)) _T5Interrupt(void)','  short  conve"
+	  "rt14BitToShort(short wordData)','  short  convert12BitToShort(short wordData)',' unsigned char  isCube16405(void)'}"
+	  ",1,9);"
 	  ORDERING		  "None"
 	  SampleTime		  "-1"
 	  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -3518,7 +3701,7 @@ Model {
 	  Name			  "TX_N_Data3"
 	  SID			  "391"
 	  Ports			  [1]
-	  Position		  [665, 441, 825, 539]
+	  Position		  [710, 451, 870, 549]
 	  ZOrder		  -23
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -3547,7 +3730,7 @@ Model {
 	  Name			  "TX_N_Data4"
 	  SID			  "396"
 	  Ports			  [1]
-	  Position		  [665, 571, 825, 669]
+	  Position		  [725, 576, 885, 674]
 	  ZOrder		  -24
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -3576,7 +3759,7 @@ Model {
 	  Name			  "TX_N_Data5"
 	  SID			  "431"
 	  Ports			  [1]
-	  Position		  [665, 691, 825, 789]
+	  Position		  [725, 716, 885, 814]
 	  ZOrder		  -25
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -3605,7 +3788,7 @@ Model {
 	  Name			  "TX_N_Data6"
 	  SID			  "459"
 	  Ports			  [1]
-	  Position		  [665, 831, 825, 929]
+	  Position		  [715, 886, 875, 984]
 	  ZOrder		  -26
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -3634,7 +3817,7 @@ Model {
 	  Name			  "TX_N_Data7"
 	  SID			  "1227"
 	  Ports			  [1]
-	  Position		  [665, 967, 825, 1103]
+	  Position		  [720, 1022, 880, 1158]
 	  ZOrder		  1
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -3706,7 +3889,7 @@ Model {
 	  Name			  "TX_N_Data8"
 	  SID			  "1239"
 	  Ports			  [1]
-	  Position		  [675, 1137, 835, 1273]
+	  Position		  [720, 1212, 880, 1348]
 	  ZOrder		  5
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
@@ -3778,7 +3961,6 @@ Model {
 	  ZOrder		  1
 	  SrcBlock		  "Get mlSysStatus"
 	  SrcPort		  1
-	  Points		  [0, 5]
 	  DstBlock		  "PackSysStatus"
 	  DstPort		  3
 	}
@@ -3786,7 +3968,6 @@ Model {
 	  ZOrder		  2
 	  SrcBlock		  "PackSysStatus"
 	  SrcPort		  1
-	  Points		  [0, -20]
 	  DstBlock		  "TX_N_Data4"
 	  DstPort		  1
 	}
@@ -3794,6 +3975,7 @@ Model {
 	  ZOrder		  3
 	  SrcBlock		  "Get time2"
 	  SrcPort		  1
+	  Points		  [70, 0; 0, -5]
 	  DstBlock		  "PackScaledPressure"
 	  DstPort		  4
 	}
@@ -3801,6 +3983,7 @@ Model {
 	  ZOrder		  4
 	  SrcBlock		  "Get mlAirData"
 	  SrcPort		  1
+	  Points		  [108, 0; 0, 5]
 	  DstBlock		  "PackScaledPressure"
 	  DstPort		  3
 	}
@@ -3808,7 +3991,7 @@ Model {
 	  ZOrder		  5
 	  SrcBlock		  "PackScaledPressure"
 	  SrcPort		  1
-	  Points		  [0, -10]
+	  Points		  [25, 0]
 	  DstBlock		  "TX_N_Data3"
 	  DstPort		  1
 	}
@@ -3816,6 +3999,7 @@ Model {
 	  ZOrder		  6
 	  SrcBlock		  "Get time1"
 	  SrcPort		  1
+	  Points		  [115, 0]
 	  DstBlock		  "PackGpsRawInt"
 	  DstPort		  4
 	}
@@ -3823,6 +4007,7 @@ Model {
 	  ZOrder		  7
 	  SrcBlock		  "Get RawGpsInt"
 	  SrcPort		  1
+	  Points		  [45, 0; 0, 18; 150, 0]
 	  DstBlock		  "PackGpsRawInt"
 	  DstPort		  3
 	}
@@ -3830,6 +4015,7 @@ Model {
 	  ZOrder		  8
 	  SrcBlock		  "PackGpsRawInt"
 	  SrcPort		  1
+	  Points		  [25, 0]
 	  DstBlock		  "TX_N_Data2"
 	  DstPort		  1
 	}
@@ -3883,7 +4069,7 @@ Model {
 	    }
 	    Branch {
 	      ZOrder		      17
-	      Points		      [0, 85]
+	      Points		      [0, 90]
 	      Branch {
 		ZOrder			18
 		DstBlock		"PackGpsRawInt"
@@ -3891,9 +4077,10 @@ Model {
 	      }
 	      Branch {
 		ZOrder			19
-		Points			[0, 125]
+		Points			[0, 120]
 		Branch {
 		  ZOrder		  20
+		  Points		  [100, 10]
 		  DstBlock		  "PackScaledPressure"
 		  DstPort		  2
 		}
@@ -3907,7 +4094,7 @@ Model {
 		  }
 		  Branch {
 		    ZOrder		    23
-		    Points		    [0, 150]
+		    Points		    [0, 180]
 		    Branch {
 		    ZOrder		    24
 		    DstBlock		    "ParamInterfaceResponse"
@@ -3915,10 +4102,10 @@ Model {
 		    }
 		    Branch {
 		    ZOrder		    25
-		    Points		    [0, 135]
+		    Points		    [0, 170]
 		    Branch {
 		    ZOrder		    52
-		    Points		    [0, 115; 2, 0]
+		    Points		    [0, 50; 2, 0; 0, 55]
 		    Branch {
 		    ZOrder		    82
 		    Points		    [0, 185]
@@ -3988,7 +4175,7 @@ Model {
 		  }
 		  Branch {
 		    ZOrder		    35
-		    Points		    [0, 130]
+		    Points		    [0, 140]
 		    Branch {
 		    ZOrder		    36
 		    DstBlock		    "ParamInterfaceResponse"
@@ -3996,10 +4183,10 @@ Model {
 		    }
 		    Branch {
 		    ZOrder		    37
-		    Points		    [0, 130]
+		    Points		    [0, 165]
 		    Branch {
 		    ZOrder		    49
-		    Points		    [0, 135]
+		    Points		    [0, 145]
 		    Branch {
 		    ZOrder		    79
 		    Points		    [0, 175]
@@ -4028,6 +4215,7 @@ Model {
 	  ZOrder		  39
 	  SrcBlock		  "ParamInterfaceResponse"
 	  SrcPort		  1
+	  Points		  [40, 0]
 	  DstBlock		  "TX_N_Data5"
 	  DstPort		  1
 	}
@@ -4035,7 +4223,7 @@ Model {
 	  ZOrder		  40
 	  SrcBlock		  "ParamInterfaceResponse1"
 	  SrcPort		  1
-	  Points		  [25, 0]
+	  Points		  [35, 0]
 	  DstBlock		  "TX_N_Data6"
 	  DstPort		  1
 	}
@@ -4050,7 +4238,7 @@ Model {
 	  ZOrder		  46
 	  SrcBlock		  "Get time3"
 	  SrcPort		  1
-	  Points		  [0, -35]
+	  Points		  [240, 0]
 	  DstBlock		  "PackRawRC"
 	  DstPort		  4
 	}
@@ -4058,6 +4246,7 @@ Model {
 	  ZOrder		  47
 	  SrcBlock		  "Get Raw RC"
 	  SrcPort		  1
+	  Points		  [184, 0; 0, 5]
 	  DstBlock		  "PackRawRC"
 	  DstPort		  3
 	}
@@ -4065,7 +4254,7 @@ Model {
 	  ZOrder		  77
 	  SrcBlock		  "Get time4"
 	  SrcPort		  1
-	  Points		  [133, 0; 0, 5]
+	  Points		  [133, 0; 0, -20]
 	  DstBlock		  "PackRawRC1"
 	  DstPort		  4
 	}
@@ -4073,7 +4262,7 @@ Model {
 	  ZOrder		  76
 	  SrcBlock		  "Get VfrHud"
 	  SrcPort		  1
-	  Points		  [148, 0; 0, 30]
+	  Points		  [227, 0; 0, -20]
 	  DstBlock		  "PackRawRC1"
 	  DstPort		  3
 	}
@@ -4081,13 +4270,12 @@ Model {
 	  ZOrder		  83
 	  SrcBlock		  "PackRawRC1"
 	  SrcPort		  1
-	  Points		  [23, 0; 0, -20]
 	  DstBlock		  "TX_N_Data8"
 	  DstPort		  1
 	}
 	Annotation {
 	  SID			  "1217"
-	  Position		  [593, 525, 595, 540]
+	  Position		  [638, 525, 640, 540]
 	  InternalMargins	  [0, 0, 0, 0]
 	  FixedHeight		  off
 	  FixedWidth		  off
@@ -4407,8 +4595,8 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Position and Attitude Filter"
-	Location		[326, 52, 1247, 875]
-	Open			off
+	Location		[-1688, 54, 8, 1080]
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -4564,35 +4752,35 @@ Model {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		21
+		$ObjectID		24
 		$ClassName		"Simulink.Mask"
 		Display			"droots(zval,pval,kval)\nport_label('input',1,'3D')\n"
 		Array {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  4
 		  Object {
-		    $ObjectID		    22
+		    $ObjectID		    25
 		    Type		    "edit"
 		    Name		    "zval"
 		    Prompt		    "Zeros"
 		    Value		    "[]"
 		  }
 		  Object {
-		    $ObjectID		    23
+		    $ObjectID		    26
 		    Type		    "edit"
 		    Name		    "pval"
 		    Prompt		    "Poles"
 		    Value		    "[0]"
 		  }
 		  Object {
-		    $ObjectID		    24
+		    $ObjectID		    27
 		    Type		    "edit"
 		    Name		    "kval"
 		    Prompt		    "Gains"
 		    Value		    "1"
 		  }
 		  Object {
-		    $ObjectID		    25
+		    $ObjectID		    28
 		    Type		    "edit"
 		    Name		    "TSample"
 		    Prompt		    "Sample Time"
@@ -4670,7 +4858,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    26
+		    $ObjectID		    29
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -4686,28 +4874,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    27
+		    $ObjectID		    30
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    28
+		    $ObjectID		    31
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    29
+		    $ObjectID		    32
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    30
+		    $ObjectID		    33
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -4715,14 +4903,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    31
+		    $ObjectID		    34
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    32
+		    $ObjectID		    35
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -4741,7 +4929,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    33
+		    $ObjectID		    36
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -4821,7 +5009,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    34
+		    $ObjectID		    37
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -4837,28 +5025,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    35
+		    $ObjectID		    38
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    36
+		    $ObjectID		    39
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    37
+		    $ObjectID		    40
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    38
+		    $ObjectID		    41
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -4866,14 +5054,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    39
+		    $ObjectID		    42
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    40
+		    $ObjectID		    43
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -4892,7 +5080,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    41
+		    $ObjectID		    44
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -4972,7 +5160,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    42
+		    $ObjectID		    45
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -4988,28 +5176,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    43
+		    $ObjectID		    46
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    44
+		    $ObjectID		    47
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    45
+		    $ObjectID		    48
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    46
+		    $ObjectID		    49
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -5017,14 +5205,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    47
+		    $ObjectID		    50
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    48
+		    $ObjectID		    51
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -5043,7 +5231,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    49
+		    $ObjectID		    52
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -8674,20 +8862,20 @@ Model {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		50
+		$ObjectID		53
 		$ClassName		"Simulink.Mask"
 		Array {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    51
+		    $ObjectID		    54
 		    Type		    "edit"
 		    Name		    "Re"
 		    Prompt		    "Enter equatorial radius, m"
 		    Value		    "6378137"
 		  }
 		  Object {
-		    $ObjectID		    52
+		    $ObjectID		    55
 		    Type		    "edit"
 		    Name		    "Rp"
 		    Prompt		    "Enter polar radius,m"
@@ -9554,7 +9742,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "Enabled\nSubsystem"
-	    Location		    [16, 61, 1601, 1022]
+	    Location		    [-1688, 54, 8, 1080]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -9680,11 +9868,11 @@ Model {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    53
+	    $ObjectID		    56
 	    $ClassName		    "Simulink.Mask"
 	    Object {
 	      $PropName		      "Parameters"
-	      $ObjectID		      54
+	      $ObjectID		      57
 	      $ClassName	      "Simulink.MaskParameter"
 	      Type		      "edit"
 	      Name		      "T"
@@ -10217,7 +10405,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    55
+	    $ObjectID		    58
 	    $ClassName		    "Simulink.Mask"
 	    Description		    "This block provides transformation of the Geodetic coordinates \nto the LTP coorinate system. T"
 	    "he block uses two consecutive transformations\n(Geodetic -> ECEF ->LTP).\nGeodetic coordinates of the LTP origin "
@@ -10304,7 +10492,7 @@ Model {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		56
+		$ObjectID		59
 		$ClassName		"Simulink.Mask"
 		Display			"plot(0,0,100,100,[45,40,35,40,40],[85,95,85,95,40],[85,95,85,95,40],[35,40,45,40,40],[60,40,10,20,10,14],"
 		"[70,40,10,13,10,20],[56,45],[70,70],[60,60],[50,60],[60,60],[30,40],[50,60],[20,20],[30,40],[20,20],[45,55],[35,25],"
@@ -10440,7 +10628,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    57
+		    $ObjectID		    60
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Vector Transformation"
 		    Description		    "Vector Transformation"
@@ -10851,20 +11039,20 @@ Model {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		58
+		$ObjectID		61
 		$ClassName		"Simulink.Mask"
 		Array {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    59
+		    $ObjectID		    62
 		    Type		    "edit"
 		    Name		    "Re"
 		    Prompt		    "Enter equatorial radius, m"
 		    Value		    "6378137"
 		  }
 		  Object {
-		    $ObjectID		    60
+		    $ObjectID		    63
 		    Type		    "edit"
 		    Name		    "Rp"
 		    Prompt		    "Enter polar radius,m"
@@ -12259,7 +12447,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    61
+		    $ObjectID		    64
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -12272,14 +12460,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    62
+		    $ObjectID		    65
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "baroCutoff"
 		    }
 		    Object {
-		    $ObjectID		    63
+		    $ObjectID		    66
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -12593,35 +12781,35 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    64
+		    $ObjectID		    67
 		    $ClassName		    "Simulink.Mask"
 		    Display		    "droots(zval,pval,kval)\nport_label('input',1,'3D')\n"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    65
+		    $ObjectID		    68
 		    Type		    "edit"
 		    Name		    "zval"
 		    Prompt		    "Zeros"
 		    Value		    "[]"
 		    }
 		    Object {
-		    $ObjectID		    66
+		    $ObjectID		    69
 		    Type		    "edit"
 		    Name		    "pval"
 		    Prompt		    "Poles"
 		    Value		    "-1/accBiasRateLimit"
 		    }
 		    Object {
-		    $ObjectID		    67
+		    $ObjectID		    70
 		    Type		    "edit"
 		    Name		    "kval"
 		    Prompt		    "Gains"
 		    Value		    "1"
 		    }
 		    Object {
-		    $ObjectID		    68
+		    $ObjectID		    71
 		    Type		    "edit"
 		    Name		    "TSample"
 		    Prompt		    "Sample Time"
@@ -12699,7 +12887,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    69
+		    $ObjectID		    72
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -12715,28 +12903,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    70
+		    $ObjectID		    73
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    71
+		    $ObjectID		    74
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    72
+		    $ObjectID		    75
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    73
+		    $ObjectID		    76
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -12744,14 +12932,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    74
+		    $ObjectID		    77
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    75
+		    $ObjectID		    78
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -12770,7 +12958,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    76
+		    $ObjectID		    79
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -12850,7 +13038,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    77
+		    $ObjectID		    80
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -12866,28 +13054,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    78
+		    $ObjectID		    81
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    79
+		    $ObjectID		    82
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    80
+		    $ObjectID		    83
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    81
+		    $ObjectID		    84
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -12895,14 +13083,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    82
+		    $ObjectID		    85
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    83
+		    $ObjectID		    86
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -12921,7 +13109,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    84
+		    $ObjectID		    87
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -13001,7 +13189,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    85
+		    $ObjectID		    88
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -13017,28 +13205,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    86
+		    $ObjectID		    89
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    87
+		    $ObjectID		    90
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    88
+		    $ObjectID		    91
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    89
+		    $ObjectID		    92
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -13046,14 +13234,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    90
+		    $ObjectID		    93
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    91
+		    $ObjectID		    94
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -13072,7 +13260,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    92
+		    $ObjectID		    95
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -13380,20 +13568,20 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    93
+		    $ObjectID		    96
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    94
+		    $ObjectID		    97
 		    Type		    "edit"
 		    Name		    "omega"
 		    Prompt		    "Cutoff Freq (rad/sec)"
 		    Value		    "xCutoff"
 		    }
 		    Object {
-		    $ObjectID		    95
+		    $ObjectID		    98
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -13448,35 +13636,35 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    96
+		    $ObjectID		    99
 		    $ClassName		    "Simulink.Mask"
 		    Display		    "droots(zval,pval,kval)\nport_label('input',1,'1D')\n"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    97
+		    $ObjectID		    100
 		    Type		    "edit"
 		    Name		    "zval"
 		    Prompt		    "Zeros"
 		    Value		    "[]"
 		    }
 		    Object {
-		    $ObjectID		    98
+		    $ObjectID		    101
 		    Type		    "edit"
 		    Name		    "pval"
 		    Prompt		    "Poles"
 		    Value		    "[0]"
 		    }
 		    Object {
-		    $ObjectID		    99
+		    $ObjectID		    102
 		    Type		    "edit"
 		    Name		    "kval"
 		    Prompt		    "Gains"
 		    Value		    "1"
 		    }
 		    Object {
-		    $ObjectID		    100
+		    $ObjectID		    103
 		    Type		    "edit"
 		    Name		    "TSample"
 		    Prompt		    "Sample Time"
@@ -13541,7 +13729,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    101
+		    $ObjectID		    104
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -13557,28 +13745,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    102
+		    $ObjectID		    105
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    103
+		    $ObjectID		    106
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    104
+		    $ObjectID		    107
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    105
+		    $ObjectID		    108
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -13586,14 +13774,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    106
+		    $ObjectID		    109
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    107
+		    $ObjectID		    110
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -13612,7 +13800,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    108
+		    $ObjectID		    111
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -13848,20 +14036,20 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    109
+		    $ObjectID		    112
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    110
+		    $ObjectID		    113
 		    Type		    "edit"
 		    Name		    "omega"
 		    Prompt		    "Cutoff Freq (rad/sec)"
 		    Value		    "yCutoff"
 		    }
 		    Object {
-		    $ObjectID		    111
+		    $ObjectID		    114
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -13916,35 +14104,35 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    112
+		    $ObjectID		    115
 		    $ClassName		    "Simulink.Mask"
 		    Display		    "droots(zval,pval,kval)\nport_label('input',1,'1D')\n"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    113
+		    $ObjectID		    116
 		    Type		    "edit"
 		    Name		    "zval"
 		    Prompt		    "Zeros"
 		    Value		    "[]"
 		    }
 		    Object {
-		    $ObjectID		    114
+		    $ObjectID		    117
 		    Type		    "edit"
 		    Name		    "pval"
 		    Prompt		    "Poles"
 		    Value		    "[0]"
 		    }
 		    Object {
-		    $ObjectID		    115
+		    $ObjectID		    118
 		    Type		    "edit"
 		    Name		    "kval"
 		    Prompt		    "Gains"
 		    Value		    "1"
 		    }
 		    Object {
-		    $ObjectID		    116
+		    $ObjectID		    119
 		    Type		    "edit"
 		    Name		    "TSample"
 		    Prompt		    "Sample Time"
@@ -14009,7 +14197,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    117
+		    $ObjectID		    120
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -14025,28 +14213,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    118
+		    $ObjectID		    121
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    119
+		    $ObjectID		    122
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    120
+		    $ObjectID		    123
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    121
+		    $ObjectID		    124
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -14054,14 +14242,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    122
+		    $ObjectID		    125
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    123
+		    $ObjectID		    126
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -14080,7 +14268,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    124
+		    $ObjectID		    127
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -14316,20 +14504,20 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    125
+		    $ObjectID		    128
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    126
+		    $ObjectID		    129
 		    Type		    "edit"
 		    Name		    "omega"
 		    Prompt		    "Cutoff Freq (rad/sec)"
 		    Value		    "vzCutoff"
 		    }
 		    Object {
-		    $ObjectID		    127
+		    $ObjectID		    130
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -14375,35 +14563,35 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    128
+		    $ObjectID		    131
 		    $ClassName		    "Simulink.Mask"
 		    Display		    "droots(zval,pval,kval)\nport_label('input',1,'1D')\n"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    129
+		    $ObjectID		    132
 		    Type		    "edit"
 		    Name		    "zval"
 		    Prompt		    "Zeros"
 		    Value		    "[]"
 		    }
 		    Object {
-		    $ObjectID		    130
+		    $ObjectID		    133
 		    Type		    "edit"
 		    Name		    "pval"
 		    Prompt		    "Poles"
 		    Value		    "[0]"
 		    }
 		    Object {
-		    $ObjectID		    131
+		    $ObjectID		    134
 		    Type		    "edit"
 		    Name		    "kval"
 		    Prompt		    "Gains"
 		    Value		    "1"
 		    }
 		    Object {
-		    $ObjectID		    132
+		    $ObjectID		    135
 		    Type		    "edit"
 		    Name		    "TSample"
 		    Prompt		    "Sample Time"
@@ -14468,7 +14656,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    133
+		    $ObjectID		    136
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -14484,28 +14672,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    134
+		    $ObjectID		    137
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "zval"
 		    }
 		    Object {
-		    $ObjectID		    135
+		    $ObjectID		    138
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "pval"
 		    }
 		    Object {
-		    $ObjectID		    136
+		    $ObjectID		    139
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "kval"
 		    }
 		    Object {
-		    $ObjectID		    137
+		    $ObjectID		    140
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -14513,14 +14701,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    138
+		    $ObjectID		    141
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    "TSample"
 		    }
 		    Object {
-		    $ObjectID		    139
+		    $ObjectID		    142
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -14539,7 +14727,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    140
+		    $ObjectID		    143
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -16143,18 +16331,17 @@ Model {
 	  ZOrder		  5
 	  SrcBlock		  "Position Filter"
 	  SrcPort		  3
-	  Points		  [40, 0; 0, -45]
+	  Points		  [40, 0; 0, -40]
 	  Branch {
-	    ZOrder		    6
-	    Points		    [0, 5]
-	    DstBlock		    "Accel Bias\n(m/s)"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    7
-	    Points		    [0, -245]
+	    ZOrder		    44
+	    Points		    [0, -250]
 	    DstBlock		    "Attitude\nComplimentary\nFilter COG"
 	    DstPort		    5
+	  }
+	  Branch {
+	    ZOrder		    6
+	    DstBlock		    "Accel Bias\n(m/s)"
+	    DstPort		    1
 	  }
 	}
 	Line {
@@ -16430,8 +16617,8 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Read Barometer BMP180"
-	Location		[172, 52, 1373, 868]
-	Open			off
+	Location		[-7, 36, 1364, 735]
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -17821,7 +18008,7 @@ Model {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		141
+		$ObjectID		144
 		$ClassName		"Simulink.Mask"
 		Description		"Produces Altitude in meters from Barometric Pressure in Pascals. Altitude is valid from MSL to 6000 ft"
 		".\n\nThe method implemented here was developed by Ren Curry"
@@ -17829,14 +18016,14 @@ Model {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    142
+		    $ObjectID		    145
 		    Type		    "edit"
 		    Name		    "baseTemp"
 		    Prompt		    "Base Station Temperature (K)"
 		    Value		    "baseTemp"
 		  }
 		  Object {
-		    $ObjectID		    143
+		    $ObjectID		    146
 		    Type		    "edit"
 		    Name		    "LapseRate"
 		    Prompt		    "Lapse Rate (C/ft)"
@@ -18479,7 +18666,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    144
+		    $ObjectID		    147
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -18495,28 +18682,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    145
+		    $ObjectID		    148
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "[]"
 		    }
 		    Object {
-		    $ObjectID		    146
+		    $ObjectID		    149
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "[-3]"
 		    }
 		    Object {
-		    $ObjectID		    147
+		    $ObjectID		    150
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "3"
 		    }
 		    Object {
-		    $ObjectID		    148
+		    $ObjectID		    151
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -18524,14 +18711,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    149
+		    $ObjectID		    152
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    ".01"
 		    }
 		    Object {
-		    $ObjectID		    150
+		    $ObjectID		    153
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -18550,7 +18737,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    151
+		    $ObjectID		    154
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -22236,7 +22423,7 @@ Model {
 	  }
 	  System {
 	    Name		    "Pack1"
-	    Location		    [16, 52, 2045, 1700]
+	    Location		    [-7, 36, 1364, 735]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -22433,6 +22620,7 @@ Model {
 	  Position		  [1000, 318, 1090, 367]
 	  ZOrder		  -6
 	  BackgroundColor	  "orange"
+	  DialogController	  "Simulink.DDGSource"
 	  DataStoreName		  "mlAirData"
 	  DataStoreElements	  "mlAirData.temperature#mlAirData.press_abs"
 	}
@@ -22709,7 +22897,7 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Read MPU600 and HMC5883"
-	Location		[-7, 0, 1372, 740]
+	Location		[-7, 36, 1364, 735]
 	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -23687,7 +23875,7 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Sensor Data"
-	Location		[-1688, 62, 8, 1088]
+	Location		[-1688, 54, 8, 1080]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -23700,6 +23888,14 @@ Model {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant"
+	  SID			  "1243"
+	  Position		  [45, 220, 75, 250]
+	  ZOrder		  1
+	  Value			  "0"
+	}
 	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion"
@@ -23720,10 +23916,11 @@ Model {
 	  Position		  [45, 272, 130, 308]
 	  ZOrder		  -2
 	  BackgroundColor	  "gray"
+	  Commented		  "on"
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/Digital IO/Digital Input"
 	  SourceType		  "Input driver for Digital Input Pins"
-	  PORT			  "Dynamic Options"
+	  PORT			  "D   [ 0 : 15 ]"
 	  PORT_TXT		  "D   [ 0 : 15 ]"
 	  PIN			  "[2]"
 	  PACK			  off
@@ -23743,7 +23940,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "Raw HIL \nReadings"
-	    Location		    [263, 52, 1041, 667]
+	    Location		    [-7, 0, 1364, 735]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    283
@@ -24024,7 +24221,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "Sensor Suite"
-	    Location		    [180, 52, 1365, 835]
+	    Location		    [-7, 36, 1364, 735]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -24066,7 +24263,7 @@ Model {
 	      RequestExecContextInheritance off
 	      System {
 		Name			"ADIS16405\nSignal Cond "
-		Location		[179, 52, 1220, 852]
+		Location		[-7, 36, 1364, 735]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	361
@@ -24118,7 +24315,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    152
+		    $ObjectID		    155
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -24131,14 +24328,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    153
+		    $ObjectID		    156
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "mainSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    154
+		    $ObjectID		    157
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -24922,7 +25119,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    155
+		    $ObjectID		    158
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -24935,14 +25132,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    156
+		    $ObjectID		    159
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "mainSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    157
+		    $ObjectID		    160
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -25726,7 +25923,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    158
+		    $ObjectID		    161
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -25739,14 +25936,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    159
+		    $ObjectID		    162
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "mainSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    160
+		    $ObjectID		    163
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -26665,7 +26862,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "Rotate Cube Axis"
-		    Location		    [728, 331, 1049, 667]
+		    Location		    [-7, 36, 1364, 735]
 		    Open		    off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
@@ -27492,7 +27689,7 @@ Model {
 	      RequestExecContextInheritance off
 	      System {
 		Name			"If no HIL then\nRead all the\nSensors"
-		Location		[172, 52, 1319, 868]
+		Location		[-7, 36, 1364, 735]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	238
@@ -28247,7 +28444,6 @@ Model {
 		  Function1Type		  "when block is updated (default)"
 		  FctReturnBlockOut	  off
 		  Fct1BlockOut		  "y1[10]"
-		  DataCollected		  "0"
 		  ORDERING		  "None"
 		  SampleTime		  ".01"
 		  MCHP_MASTERLINK	  "AUAV3_AND_SLUGS_SENSOR/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -29637,7 +29833,7 @@ Model {
 	      RequestExecContextInheritance off
 	      System {
 		Name			"Low Pass Filtering,Temperature\nCompensation and Calibration"
-		Location		[76, 52, 1261, 892]
+		Location		[-7, 36, 1364, 735]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	272
@@ -29732,7 +29928,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    161
+		    $ObjectID		    164
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "Produces Altitude in meters from Barometric Pressure in Pascals. Altitude is valid from MSL to"
 		    " 6000 ft.\n\nThe method implemented here was developed by Ren Curry"
@@ -29740,14 +29936,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    162
+		    $ObjectID		    165
 		    Type		    "edit"
 		    Name		    "baseTemp"
 		    Prompt		    "Base Station Temperature (K)"
 		    Value		    "baseTemp"
 		    }
 		    Object {
-		    $ObjectID		    163
+		    $ObjectID		    166
 		    Type		    "edit"
 		    Name		    "LapseRate"
 		    Prompt		    "Lapse Rate (C/ft)"
@@ -30481,7 +30677,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    164
+		    $ObjectID		    167
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "DiscretizedZeroPole"
 		    Description		    "Continuous mask uses c2d to transform parameters onto the Discrete Zero-Pole block inside."
@@ -30497,28 +30693,28 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    7
 		    Object {
-		    $ObjectID		    165
+		    $ObjectID		    168
 		    Type		    "edit"
 		    Name		    "Zeros"
 		    Prompt		    "Zeros (enter in s-main:)"
 		    Value		    "[]"
 		    }
 		    Object {
-		    $ObjectID		    166
+		    $ObjectID		    169
 		    Type		    "edit"
 		    Name		    "Poles"
 		    Prompt		    "Poles (enter in s-domain:)"
 		    Value		    "[-3]"
 		    }
 		    Object {
-		    $ObjectID		    167
+		    $ObjectID		    170
 		    Type		    "edit"
 		    Name		    "Gain"
 		    Prompt		    "Gain (enter in s-domain:)"
 		    Value		    "3"
 		    }
 		    Object {
-		    $ObjectID		    168
+		    $ObjectID		    171
 		    Type		    "edit"
 		    Name		    "AbsTol"
 		    Prompt		    "Absolute tolerance:"
@@ -30526,14 +30722,14 @@ Model {
 		    Evaluate		    "off"
 		    }
 		    Object {
-		    $ObjectID		    169
+		    $ObjectID		    172
 		    Type		    "edit"
 		    Name		    "SampleTime"
 		    Prompt		    "Sample time:"
 		    Value		    ".01"
 		    }
 		    Object {
-		    $ObjectID		    170
+		    $ObjectID		    173
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -30552,7 +30748,7 @@ Model {
 		    Callback		    "hidecrit"
 		    }
 		    Object {
-		    $ObjectID		    171
+		    $ObjectID		    174
 		    Type		    "edit"
 		    Name		    "Wc"
 		    Prompt		    "Critical Frequency (Hz):"
@@ -30961,21 +31157,21 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    172
+		    $ObjectID		    175
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "Convert Analog readings to units"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    173
+		    $ObjectID		    176
 		    Type		    "edit"
 		    Name		    "bias"
 		    Prompt		    "Initial Bias"
 		    Value		    "baroOffset"
 		    }
 		    Object {
-		    $ObjectID		    174
+		    $ObjectID		    177
 		    Type		    "edit"
 		    Name		    "gains"
 		    Prompt		    "Initial Gains"
@@ -31220,21 +31416,21 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    175
+		    $ObjectID		    178
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "Convert Analog readings to units"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    176
+		    $ObjectID		    179
 		    Type		    "edit"
 		    Name		    "bias"
 		    Prompt		    "Initial Bias"
 		    Value		    "pitotOffset"
 		    }
 		    Object {
-		    $ObjectID		    177
+		    $ObjectID		    180
 		    Type		    "edit"
 		    Name		    "gains"
 		    Prompt		    "Initial Gains"
@@ -31370,21 +31566,21 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    178
+		    $ObjectID		    181
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "Convert Analog readings to units"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    179
+		    $ObjectID		    182
 		    Type		    "edit"
 		    Name		    "bias"
 		    Prompt		    "Initial Bias"
 		    Value		    "powerOffset"
 		    }
 		    Object {
-		    $ObjectID		    180
+		    $ObjectID		    183
 		    Type		    "edit"
 		    Name		    "gains"
 		    Prompt		    "Initial Gains"
@@ -31595,7 +31791,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    181
+		    $ObjectID		    184
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "This block implements a temperature compensation. It implmements the following equation:\n\nM_"
 		    "tc = M_raw - K_t(T - T_avg)"
@@ -31603,14 +31799,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    182
+		    $ObjectID		    185
 		    Type		    "edit"
 		    Name		    "alpha"
 		    Prompt		    "Tempearature Coeficient (K_t)"
 		    Value		    "pitTGain2"
 		    }
 		    Object {
-		    $ObjectID		    183
+		    $ObjectID		    186
 		    Type		    "edit"
 		    Name		    "tempMean"
 		    Prompt		    "Calibration Temperature Mean (T_avg)"
@@ -31793,7 +31989,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    184
+		    $ObjectID		    187
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "This block implements a temperature compensation. It implmements the following equation:\n\nM_"
 		    "tc = M_raw - K_t(T - T_avg)"
@@ -31801,14 +31997,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    185
+		    $ObjectID		    188
 		    Type		    "edit"
 		    Name		    "alpha"
 		    Prompt		    "Tempearature Coeficient (K_t)"
 		    Value		    "pitTGain1"
 		    }
 		    Object {
-		    $ObjectID		    186
+		    $ObjectID		    189
 		    Type		    "edit"
 		    Name		    "tempMean"
 		    Prompt		    "Calibration Temperature Mean (T_avg)"
@@ -32167,7 +32363,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "Temp Compensate Baro"
-		    Location		    [16, 52, 1238, 1154]
+		    Location		    [-7, 36, 1364, 735]
 		    Open		    off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
@@ -32224,7 +32420,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    187
+		    $ObjectID		    190
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "This block implements a temperature compensation. It implmements the following equation:\n\nM_"
 		    "tc = M_raw - K_t(T - T_avg)"
@@ -32232,14 +32428,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    188
+		    $ObjectID		    191
 		    Type		    "edit"
 		    Name		    "alpha"
 		    Prompt		    "Tempearature Coeficient (K_t)"
 		    Value		    "barTGain2"
 		    }
 		    Object {
-		    $ObjectID		    189
+		    $ObjectID		    192
 		    Type		    "edit"
 		    Name		    "tempMean"
 		    Prompt		    "Calibration Temperature Mean (T_avg)"
@@ -32460,7 +32656,7 @@ Model {
 		    RequestExecContextInheritance off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    190
+		    $ObjectID		    193
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "This block implements a temperature compensation. It implmements the following equation:\n\nM_"
 		    "tc = M_raw - K_t(T - T_avg)"
@@ -32468,14 +32664,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    191
+		    $ObjectID		    194
 		    Type		    "edit"
 		    Name		    "alpha"
 		    Prompt		    "Tempearature Coeficient (K_t)"
 		    Value		    "barTGain1"
 		    }
 		    Object {
-		    $ObjectID		    192
+		    $ObjectID		    195
 		    Type		    "edit"
 		    Name		    "tempMean"
 		    Prompt		    "Calibration Temperature Mean (T_avg)"
@@ -32779,21 +32975,21 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    193
+		    $ObjectID		    196
 		    $ClassName		    "Simulink.Mask"
 		    Description		    "Convert Analog readings to units"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    194
+		    $ObjectID		    197
 		    Type		    "edit"
 		    Name		    "bias"
 		    Prompt		    "Initial Bias"
 		    Value		    "tempOffset"
 		    }
 		    Object {
-		    $ObjectID		    195
+		    $ObjectID		    198
 		    Type		    "edit"
 		    Name		    "gains"
 		    Prompt		    "Initial Gains"
@@ -32929,7 +33125,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    196
+		    $ObjectID		    199
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -32942,14 +33138,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    197
+		    $ObjectID		    200
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "lowRateSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    198
+		    $ObjectID		    201
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -33188,7 +33384,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    199
+		    $ObjectID		    202
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -33201,14 +33397,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    200
+		    $ObjectID		    203
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "lowRateSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    201
+		    $ObjectID		    204
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -33447,7 +33643,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    202
+		    $ObjectID		    205
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -33460,14 +33656,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    203
+		    $ObjectID		    206
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "pressureSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    204
+		    $ObjectID		    207
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -33706,7 +33902,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    205
+		    $ObjectID		    208
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Tustin1stOrderLowpassAutoInitialCondition"
 		    Description		    "Takes a 3db rolloff frequency (in Hz, NOT radians/s) and a sample time. Performs a symbolic Tu"
@@ -33719,14 +33915,14 @@ Model {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    2
 		    Object {
-		    $ObjectID		    206
+		    $ObjectID		    209
 		    Type		    "edit"
 		    Name		    "f"
 		    Prompt		    "Lowpass Frequency"
 		    Value		    "pressureSensorCutoff"
 		    }
 		    Object {
-		    $ObjectID		    207
+		    $ObjectID		    210
 		    Type		    "edit"
 		    Name		    "T"
 		    Prompt		    "Sample Time"
@@ -35003,35 +35199,6 @@ Model {
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  2
-	  SrcBlock		  "Enable HIL from \nControl MCU1"
-	  SrcPort		  1
-	  Points		  [0, 5; 40, 0]
-	  Branch {
-	    ZOrder		    3
-	    Points		    [0, -105]
-	    Branch {
-	      ZOrder		      4
-	      Labels		      [1, 0]
-	      Points		      [80, 0]
-	      DstBlock		      "Raw HIL \nReadings"
-	      DstPort		      enable
-	    }
-	    Branch {
-	      ZOrder		      5
-	      Points		      [0, -55]
-	      DstBlock		      "Sensor Suite"
-	      DstPort		      1
-	    }
-	  }
-	  Branch {
-	    ZOrder		    6
-	    Points		    [0, 80]
-	    DstBlock		    "Data Type Conversion"
-	    DstPort		    1
-	  }
-	}
-	Line {
 	  ZOrder		  7
 	  SrcBlock		  "Data Type Conversion"
 	  SrcPort		  1
@@ -35073,6 +35240,33 @@ Model {
 	  DstBlock		  "GPS"
 	  DstPort		  1
 	}
+	Line {
+	  ZOrder		  15
+	  SrcBlock		  "Constant"
+	  SrcPort		  1
+	  Points		  [100, 0]
+	  Branch {
+	    ZOrder		    21
+	    Points		    [0, -115; 75, 0]
+	    Branch {
+	      ZOrder		      20
+	      Points		      [65, 0]
+	      DstBlock		      "Sensor Suite"
+	      DstPort		      1
+	    }
+	    Branch {
+	      ZOrder		      19
+	      DstBlock		      "Raw HIL \nReadings"
+	      DstPort		      enable
+	    }
+	  }
+	  Branch {
+	    ZOrder		    17
+	    Points		    [0, 140]
+	    DstBlock		    "Data Type Conversion"
+	    DstPort		    1
+	  }
+	}
       }
     }
     Block {
@@ -35087,8 +35281,8 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Servo In Out"
-	Location		[-1688, 62, 8, 1088]
-	Open			off
+	Location		[-1688, 54, 8, 1080]
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -35271,37 +35465,37 @@ Model {
 	  IntPriority		  "7"
 	  Channel		  "[1     2     3     4     5]"
 	  Channel_OLD		  "[1  2  3  4  5]"
-	  PIN_IC1		  "Dynamic Options"
+	  PIN_IC1		  "D0 / P64 / Pin[72]"
 	  PIN_IC1_TXT		  "D0 / P64 / Pin[72]"
-	  PIN_IC2		  "Dynamic Options"
+	  PIN_IC2		  "D8 / P72 / Pin[68]"
 	  PIN_IC2_TXT		  "D8 / P72 / Pin[68]"
-	  PIN_IC3		  "Dynamic Options"
+	  PIN_IC3		  "D11 / P75 / Pin[71]"
 	  PIN_IC3_TXT		  "D11 / P75 / Pin[71]"
-	  PIN_IC4		  "Dynamic Options"
+	  PIN_IC4		  "A15 / P31 / Pin[67]"
 	  PIN_IC4_TXT		  "A15 / P31 / Pin[67]"
-	  PIN_IC5		  "Dynamic Options"
+	  PIN_IC5		  "A5 / P21 / Pin[61]"
 	  PIN_IC5_TXT		  "A5 / P21 / Pin[61]"
-	  PIN_IC6		  "Dynamic Options"
+	  PIN_IC6		  "A4 / P20 / Pin[60]"
 	  PIN_IC6_TXT		  "A4 / P20 / Pin[60]"
-	  PIN_IC7		  "Dynamic Options"
+	  PIN_IC7		  "A0 / P16 / Pin[17]"
 	  PIN_IC7_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC8		  "Dynamic Options"
+	  PIN_IC8		  "A0 / P16 / Pin[17]"
 	  PIN_IC8_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC9		  "Dynamic Options"
+	  PIN_IC9		  "A0 / P16 / Pin[17]"
 	  PIN_IC9_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC10		  "Dynamic Options"
+	  PIN_IC10		  "A0 / P16 / Pin[17]"
 	  PIN_IC10_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC11		  "Dynamic Options"
+	  PIN_IC11		  "A0 / P16 / Pin[17]"
 	  PIN_IC11_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC12		  "Dynamic Options"
+	  PIN_IC12		  "A0 / P16 / Pin[17]"
 	  PIN_IC12_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC13		  "Dynamic Options"
+	  PIN_IC13		  "A0 / P16 / Pin[17]"
 	  PIN_IC13_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC14		  "Dynamic Options"
+	  PIN_IC14		  "A0 / P16 / Pin[17]"
 	  PIN_IC14_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC15		  "Dynamic Options"
+	  PIN_IC15		  "A0 / P16 / Pin[17]"
 	  PIN_IC15_TXT		  "A0 / P16 / Pin[17]"
-	  PIN_IC16		  "Dynamic Options"
+	  PIN_IC16		  "A0 / P16 / Pin[17]"
 	  PIN_IC16_TXT		  "A0 / P16 / Pin[17]"
 	  Channel_UP_Down_Periode "[1     1     1     1     1]"
 	  MaxChannel		  "[0.003   0.003   0.003   0.003   0.003]"
@@ -35910,7 +36104,7 @@ Model {
       TX_IMPLEMENTATION	      "Circular Buffer"
       TX_INT_PRIORITY	      "1"
       TX_INT_WHEN	      "is empty & last char is sent"
-      TX_CIRCULAR_SIZE	      "128"
+      TX_CIRCULAR_SIZE	      "256"
       TX_DMA_CHANNEL	      "0   (Lowest Priority)"
       TX_DMA_SIZE	      "[]"
       RX_IMPLEMENTATION	      "Do not implement Rx"
@@ -40990,7 +41184,10 @@ Stateflow {
     firstTransition	    208
     firstJunction	    207
     viewObj		    203
+    visible		    1
     machine		    1
+    subviewS {
+    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -41018,7 +41215,7 @@ Stateflow {
       isEML		      1
       script		      "function y = averageADC(u)\n% This block supports an embeddable subset of the MATLAB language.\n%"
       " See the help menu for details. \n\ny = (u(1)+ u(2) + u(3) + u(4) + u(5))*0.20;"
-      editorLayout	      "100 M4x1[146 214 671 364]"
+      editorLayout	      "100 M4x1[10 5 700 500]"
       fimathString	      "fimath(...\n'RoundMode', 'floor',...\n'OverflowMode', 'wrap',...\n'ProductMode', 'KeepLSB', "
       "'ProductWordLength', 32,...\n'SumMode', 'KeepLSB', 'SumWordLength', 32,...\n'CastBeforeSum', true)"
       emlDefaultFimath	      FimathUserSpecified
@@ -41087,7 +41284,7 @@ Stateflow {
     midPoint		    [23.5747 24.9468]
     chart		    203
     linkNode		    [203 0 0]
-    dataLimits		    [23.575 23.575 14.625 34.575]
+    dataLimits		    [21.175 25.975 14.625 42.575]
     subviewer		    203
     drawStyle		    SMART
     slide {

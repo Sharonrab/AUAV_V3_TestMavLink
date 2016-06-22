@@ -781,6 +781,8 @@ function RTW_rtwnameSIDMap() {
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:133"] = {rtwname: "<S8>/Update MPU_T"};
 	this.rtwnameHashMap["<S8>/Update Raw IMU DATA"] = {sid: "AUAV3_AND_SLUGS_SENSOR:74"};
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:74"] = {rtwname: "<S8>/Update Raw IMU DATA"};
+	this.rtwnameHashMap["<S9>/Constant"] = {sid: "AUAV3_AND_SLUGS_SENSOR:1243"};
+	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:1243"] = {rtwname: "<S9>/Constant"};
 	this.rtwnameHashMap["<S9>/Data Type Conversion"] = {sid: "AUAV3_AND_SLUGS_SENSOR:482"};
 	this.sidHashMap["AUAV3_AND_SLUGS_SENSOR:482"] = {rtwname: "<S9>/Data Type Conversion"};
 	this.rtwnameHashMap["<S9>/Enable HIL from  Control MCU1"] = {sid: "AUAV3_AND_SLUGS_SENSOR:837"};

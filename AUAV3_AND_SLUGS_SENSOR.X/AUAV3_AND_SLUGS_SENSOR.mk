@@ -34,7 +34,7 @@ MASTER_ANCHOR_DIR       =
 START_DIR               = C:/Users/sharon/Documents/GitHub/AUAV_V3_TestMavLink
 S_FUNCTIONS             = 
 S_FUNCTIONS_LIB         = 
-NUMST                   = 11
+NUMST                   = 12
 NCSTATES                = 0
 COMPUTER                = PCWIN64
 BUILDARGS               =  GENERATE_ASAP2=0 HOST_PLATFORM="PC" MCHP_AUTO_FLASH=0 MCHP_MULTITHREAD_COMPILATION=1 ISPROTECTINGMODEL=NOTPROTECTING

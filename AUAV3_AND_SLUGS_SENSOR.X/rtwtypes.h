@@ -21,9 +21,9 @@
  *
  * Model version                        : 1.223
  * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Fri Jun 17 19:05:27 2016
+ * Real-Time Workshop file generated on : Mon Jun 20 13:12:00 2016
  * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Fri Jun 17 19:05:28 2016
+ * C source code generated on           : Mon Jun 20 13:12:01 2016
  */
 
 #ifndef __RTWTYPES_H__
