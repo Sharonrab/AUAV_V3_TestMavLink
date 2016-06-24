@@ -34,6 +34,7 @@ THE SOFTWARE.
 #include "mavlinkControlMcu.h"
 #include "apUtils.h"
 //#include <p33fxxxx.h>
+#include <p33EP512MU810.h>
 #include <string.h>
 
 #include "DEE.h"

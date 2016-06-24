@@ -6,7 +6,8 @@
 
 #include "mavlinkControlMcu.h"
 
-#include <p33fxxxx.h>
+//#include <p33fxxxx.h>
+#include <p33EP512MU810.h>
 #include <uart.h>
 
 #include "inttypes.h"

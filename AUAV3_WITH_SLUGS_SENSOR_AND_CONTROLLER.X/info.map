@@ -257,14 +257,14 @@ section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200              0x4b5c          0x710a  (28938)
 .const                      0x4d5c               0x9ee           0xee5  (3813)
-.text                       0x574a              0xacd8         0x10344  (66372)
-.dinit                     0x10422               0x2e4           0x456  (1110)
-.text                      0x10706               0x958           0xe04  (3588)
-.init.delay32              0x1105e                0x1c            0x2a  (42)
-.text                      0x1107a                0x1e            0x2d  (45)
-.shared.dinit              0x11098                 0x2             0x3  (3)
+.text                       0x574a              0xaca2         0x102f3  (66291)
+.dinit                     0x103ec               0x2e4           0x456  (1110)
+.text                      0x106d0               0x958           0xe04  (3588)
+.init.delay32              0x11028                0x1c            0x2a  (42)
+.text                      0x11044                0x1e            0x2d  (45)
+.shared.dinit              0x11062                 0x2             0x3  (3)
 
-                 Total program memory used (bytes):        0x195e7  (103911) 19%
+                 Total program memory used (bytes):        0x19596  (103830) 19%
 
 
 Ivt Memory  [Origin = 0x4, Length = 0x1fc]
@@ -734,191 +734,191 @@ External Symbols in Program Memory (by address):
                   0x006512                  _AUAV3_WITH_BufferICChannel
                   0x00653a                  _AUAV3_WITH_SLU_myMuxFun1_c
                   0x006544                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step0
-                  0x00c43a                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step1
-                  0x00c472                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step2
-                  0x00c488                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step3
-                  0x00c49e                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step4
-                  0x00c4dc                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step5
-                  0x00c514                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step6
-                  0x00c546                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step7
-                  0x00c556                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step8
-                  0x00c566                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step9
-                  0x00c57c                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step10
-                  0x00c5f0                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step11
-                  0x00c5f2                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_initialize
-                  0x00d79c                  _uart2Init
-                  0x00d818                  _gsRead
-                  0x00d850                  _copyBufferToDMA1
-                  0x00d874                  _send2GS
-                  0x00d8ba                  __DMA1Interrupt
-                  0x00d8be                  __U2RXInterrupt
-                  0x00d8ec                  __U2ErrInterrupt
-                  0x00d8fa                  _clearWaypointsFrom
-                  0x00d996                  _addMessageToSpiOut
-                  0x00d9ae                  _sendTelemetryMavlink
-                  0x00e340                  _prepareTelemetryMavlink
-                  0x00e906                  _uartMavlinkBufferInit
-                  0x00e922                  __U1RXInterrupt
-                  0x00e966                  _isFinite
-                  0x00e9aa                  _InitParameterInterface
-                  0x00ea42                  _protDecodeMavlink
-                  0x00eda0                  _MissionInterfaceResponse
-                  0x00ef1e                  _ParameterInterfaceResponse
-                  0x00f01e                  _PackHeartBeat
-                  0x00f048                  _PackTextMsg
-                  0x00f080                  _PackRawIMU
-                  0x00f0c4                  _PackGpsRawInt
-                  0x00f10e                  _PackScaledPressure
-                  0x00f150                  _PackSysStatus
-                  0x00f1a2                  _sendQGCDebugMessage
-                  0x00f1be                  _TxN_Data_OverU1
-                  0x00f202                  _hex2char
-                  0x00f232                  _degMinToDeg
-                  0x00f25c                  _gpSmbl
-                  0x00f2ac                  _myTokenizer
-                  0x00f30e                  _parseRMC
-                  0x00f494                  _parseGGA
-                  0x00f628                  _getChecksum
-                  0x00f654                  _gpsUbloxSeparate
-                  0x00f740                  _gpsUbloxParse
-                  0x00f784                  _getGpsUbloxMainData
-                  0x00f7f0                  _getMidLevelCommands
-                  0x00f808                  _isApManual
-                  0x00f830                  _getParamIdx
-                  0x00f83c                  _getRangeOfParams
-                  0x00f85e                  _getDynamic
-                  0x00f864                  _getAttitude
-                  0x00f894                  _getXYZ
-                  0x00f8ac                  _getVned
-                  0x00f8c4                  _getMaxWp
-                  0x00f8ca                  _isWpFly
-                  0x00f8ec                  _isPassthrough
-                  0x00f90e                  _setDiagnosticFloat
-                  0x00f926                  _setDiagnosticShort
-                  0x00f934                  _getWP
-                  0x00f95c                  _setLogFloat1
-                  0x00f974                  _setLogFloat2
-                  0x00f98c                  _getApControlType
-                  0x00f990                  _getPassValues
-                  0x00f9ac                  _setCurrentCommands
-                  0x00f9c0                  _getCurrentGPSPos
-                  0x00fa02                  _setNavLong
-                  0x00fa28                  _setNavLat
-                  0x00fa40                  _setNavNav
-                  0x00fa84                  _getAccels
-                  0x00fac6                  _getAccBias
-                  0x00fade                  _getRTB
-                  0x00fb3c                  _getMobileLocation
-                  0x00fb4c                  _getNavMode
-                  0x00fb50                  _getISRLocation
-                  0x00fb68                  _getISRCameraOption1
-                  0x00fb6e                  _justEnabled
-                  0x00fb9e                  _quickSort
-                  0x00fc64                  _meanFilter5
-                  0x00fc74                  _gpsInit
-                  0x00fc7a                  _updateStatus
-                  0x00fc92                  _getGpsMainData
-                  0x00fcfc                  _CRC32Value
-                  0x00fd1e                  _CalculateBlockCRC32
-                  0x00fd58                  _charsToUint16
-                  0x00fd62                  _charsToUint32
-                  0x00fd82                  _updateTimeData
-                  0x00fdda                  _charsToFloat
-                  0x00fdfa                  _charsToDouble
-                  0x00fe42                  _updateVelocityData
-                  0x00fe92                  _updatePositionData
-                  0x00ff3c                  _gpsParse
-                  0x0102d8                  _hilRead
-                  0x0102da                  _hil_getRawRead
-                  0x010310                  _hil_getVned
-                  0x010328                  _hil_getEuler
-                  0x010340                  _hil_getRates
-                  0x010358                  _hil_getXYZ
-                  0x010370                  _hil_getTs
-                  0x010374                  _protDecodeHil
-                  0x010706                  _cubeInit
-                  0x010708                  _averageData
-                  0x01072e                  _updateCubeData
-                  0x01078e                  _write2Cube
-                  0x010792                  _convert14BitToShort
-                  0x0107a4                  __T5Interrupt
-                  0x010856                  _getCubeData
-                  0x01091c                  _convert12BitToShort
-                  0x01092e                  _isCube16405
-                  0x010932                  _updateRawADCData
-                  0x010944                  _updateAirData
-                  0x010966                  _updateLoadData
-                  0x01096e                  _updateAttitude
-                  0x01099e                  _getGSLocation
-                  0x0109d4                  _updateTimeStamp
-                  0x0109e6                  _updatePosition
-                  0x010a16                  _updatePilotConsole
-                  0x010a2c                  _updateDiagnosticFl
-                  0x010a44                  _updateDiagnosticSh
-                  0x010a52                  _updateBias
-                  0x010a82                  _updateSensorData
-                  0x010b12                  _isFixValid
-                  0x010b20                  _updateSensorDiag
-                  0x010b4e                  _populateParameterInterface
-                  0x010c86                  _newCircBuffer
-                  0x010ca6                  _freeCircBuffer
-                  0x010cb2                  _getLength
-                  0x010cce                  _readHead
-                  0x010cda                  _readTail
-                  0x010ce6                  _peak
-                  0x010d06                  _readFront
-                  0x010d34                  _writeBack
-                  0x010d6a                  _makeEmpty
-                  0x010d8e                  _rt_InitInfAndNaN
-                  0x010dc0                  _rtIsInf
-                  0x010dec                  _rtIsInfF
-                  0x010e18                  _rtIsNaN
-                  0x010e2e                  _rtIsNaNF
-                  0x010e44                  _updatePWM
-                  0x010e5e                  _updatePWMTrim
-                  0x010e7e                  _updateLoad
-                  0x010e8a                  _updateEuler
-                  0x010eaa                  _updatePQR
-                  0x010ec2                  _getHilOnOff
-                  0x010ece                  _getLightsOnOff
-                  0x010ed4                  _getLightsDayNight
-                  0x010eda                  _updateVISensor
-                  0x010ee4                  _updatePTZ
-                  0x010ef4                  _myAtan2
-                  0x010efa                  _myPow
-                  0x010f00                  _mySqrt
-                  0x010f06                  _myAbs
-                  0x010f0a                  _myAtan
-                  0x010f10                  _myAsin
-                  0x010f16                  _mySin
-                  0x010f1c                  _myCos
-                  0x010f22                  _myTan
-                  0x010f28                  _myAcos
-                  0x010f2e                  _myExp
-                  0x010f34                  _hugeDelay
-                  0x010f4e                  _smallDelay
-                  0x010f58                  _tinyDelay
-                  0x010f62                  _hasMode
-                  0x010f6c                  _printToUart2
-                  0x010f90                  _mavlinkInit
-                  0x011006                  _uartBufferInit
-                  0x011026                  __U4RXInterrupt
-                  0x011058                  _getGPSRawData
-                  0x01105a                  _isGPSNovatel
-                  0x01105e                  ___delay32
-                  0x01107a                  _rtGetInfF
-                  0x011080                  _rtGetInf
-                  0x011084                  _rtGetMinusInfF
-                  0x01108a                  _rtGetMinusInf
-                  0x01108e                  _rtGetNaNF
-                  0x011094                  _rtGetNaN
+                  0x00c404                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step1
+                  0x00c43c                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step2
+                  0x00c452                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step3
+                  0x00c468                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step4
+                  0x00c4a6                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step5
+                  0x00c4de                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step6
+                  0x00c510                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step7
+                  0x00c520                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step8
+                  0x00c530                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step9
+                  0x00c546                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step10
+                  0x00c5ba                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step11
+                  0x00c5bc                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_initialize
+                  0x00d766                  _uart2Init
+                  0x00d7e2                  _gsRead
+                  0x00d81a                  _copyBufferToDMA1
+                  0x00d83e                  _send2GS
+                  0x00d884                  __DMA1Interrupt
+                  0x00d888                  __U2RXInterrupt
+                  0x00d8b6                  __U2ErrInterrupt
+                  0x00d8c4                  _clearWaypointsFrom
+                  0x00d960                  _addMessageToSpiOut
+                  0x00d978                  _sendTelemetryMavlink
+                  0x00e30a                  _prepareTelemetryMavlink
+                  0x00e8d0                  _uartMavlinkBufferInit
+                  0x00e8ec                  __U1RXInterrupt
+                  0x00e930                  _isFinite
+                  0x00e974                  _InitParameterInterface
+                  0x00ea0c                  _protDecodeMavlink
+                  0x00ed6a                  _MissionInterfaceResponse
+                  0x00eee8                  _ParameterInterfaceResponse
+                  0x00efe8                  _PackHeartBeat
+                  0x00f012                  _PackTextMsg
+                  0x00f04a                  _PackRawIMU
+                  0x00f08e                  _PackGpsRawInt
+                  0x00f0d8                  _PackScaledPressure
+                  0x00f11a                  _PackSysStatus
+                  0x00f16c                  _sendQGCDebugMessage
+                  0x00f188                  _TxN_Data_OverU1
+                  0x00f1cc                  _hex2char
+                  0x00f1fc                  _degMinToDeg
+                  0x00f226                  _gpSmbl
+                  0x00f276                  _myTokenizer
+                  0x00f2d8                  _parseRMC
+                  0x00f45e                  _parseGGA
+                  0x00f5f2                  _getChecksum
+                  0x00f61e                  _gpsUbloxSeparate
+                  0x00f70a                  _gpsUbloxParse
+                  0x00f74e                  _getGpsUbloxMainData
+                  0x00f7ba                  _getMidLevelCommands
+                  0x00f7d2                  _isApManual
+                  0x00f7fa                  _getParamIdx
+                  0x00f806                  _getRangeOfParams
+                  0x00f828                  _getDynamic
+                  0x00f82e                  _getAttitude
+                  0x00f85e                  _getXYZ
+                  0x00f876                  _getVned
+                  0x00f88e                  _getMaxWp
+                  0x00f894                  _isWpFly
+                  0x00f8b6                  _isPassthrough
+                  0x00f8d8                  _setDiagnosticFloat
+                  0x00f8f0                  _setDiagnosticShort
+                  0x00f8fe                  _getWP
+                  0x00f926                  _setLogFloat1
+                  0x00f93e                  _setLogFloat2
+                  0x00f956                  _getApControlType
+                  0x00f95a                  _getPassValues
+                  0x00f976                  _setCurrentCommands
+                  0x00f98a                  _getCurrentGPSPos
+                  0x00f9cc                  _setNavLong
+                  0x00f9f2                  _setNavLat
+                  0x00fa0a                  _setNavNav
+                  0x00fa4e                  _getAccels
+                  0x00fa90                  _getAccBias
+                  0x00faa8                  _getRTB
+                  0x00fb06                  _getMobileLocation
+                  0x00fb16                  _getNavMode
+                  0x00fb1a                  _getISRLocation
+                  0x00fb32                  _getISRCameraOption1
+                  0x00fb38                  _justEnabled
+                  0x00fb68                  _quickSort
+                  0x00fc2e                  _meanFilter5
+                  0x00fc3e                  _gpsInit
+                  0x00fc44                  _updateStatus
+                  0x00fc5c                  _getGpsMainData
+                  0x00fcc6                  _CRC32Value
+                  0x00fce8                  _CalculateBlockCRC32
+                  0x00fd22                  _charsToUint16
+                  0x00fd2c                  _charsToUint32
+                  0x00fd4c                  _updateTimeData
+                  0x00fda4                  _charsToFloat
+                  0x00fdc4                  _charsToDouble
+                  0x00fe0c                  _updateVelocityData
+                  0x00fe5c                  _updatePositionData
+                  0x00ff06                  _gpsParse
+                  0x0102a2                  _hilRead
+                  0x0102a4                  _hil_getRawRead
+                  0x0102da                  _hil_getVned
+                  0x0102f2                  _hil_getEuler
+                  0x01030a                  _hil_getRates
+                  0x010322                  _hil_getXYZ
+                  0x01033a                  _hil_getTs
+                  0x01033e                  _protDecodeHil
+                  0x0106d0                  _cubeInit
+                  0x0106d2                  _averageData
+                  0x0106f8                  _updateCubeData
+                  0x010758                  _write2Cube
+                  0x01075c                  _convert14BitToShort
+                  0x01076e                  __T5Interrupt
+                  0x010820                  _getCubeData
+                  0x0108e6                  _convert12BitToShort
+                  0x0108f8                  _isCube16405
+                  0x0108fc                  _updateRawADCData
+                  0x01090e                  _updateAirData
+                  0x010930                  _updateLoadData
+                  0x010938                  _updateAttitude
+                  0x010968                  _getGSLocation
+                  0x01099e                  _updateTimeStamp
+                  0x0109b0                  _updatePosition
+                  0x0109e0                  _updatePilotConsole
+                  0x0109f6                  _updateDiagnosticFl
+                  0x010a0e                  _updateDiagnosticSh
+                  0x010a1c                  _updateBias
+                  0x010a4c                  _updateSensorData
+                  0x010adc                  _isFixValid
+                  0x010aea                  _updateSensorDiag
+                  0x010b18                  _populateParameterInterface
+                  0x010c50                  _newCircBuffer
+                  0x010c70                  _freeCircBuffer
+                  0x010c7c                  _getLength
+                  0x010c98                  _readHead
+                  0x010ca4                  _readTail
+                  0x010cb0                  _peak
+                  0x010cd0                  _readFront
+                  0x010cfe                  _writeBack
+                  0x010d34                  _makeEmpty
+                  0x010d58                  _rt_InitInfAndNaN
+                  0x010d8a                  _rtIsInf
+                  0x010db6                  _rtIsInfF
+                  0x010de2                  _rtIsNaN
+                  0x010df8                  _rtIsNaNF
+                  0x010e0e                  _updatePWM
+                  0x010e28                  _updatePWMTrim
+                  0x010e48                  _updateLoad
+                  0x010e54                  _updateEuler
+                  0x010e74                  _updatePQR
+                  0x010e8c                  _getHilOnOff
+                  0x010e98                  _getLightsOnOff
+                  0x010e9e                  _getLightsDayNight
+                  0x010ea4                  _updateVISensor
+                  0x010eae                  _updatePTZ
+                  0x010ebe                  _myAtan2
+                  0x010ec4                  _myPow
+                  0x010eca                  _mySqrt
+                  0x010ed0                  _myAbs
+                  0x010ed4                  _myAtan
+                  0x010eda                  _myAsin
+                  0x010ee0                  _mySin
+                  0x010ee6                  _myCos
+                  0x010eec                  _myTan
+                  0x010ef2                  _myAcos
+                  0x010ef8                  _myExp
+                  0x010efe                  _hugeDelay
+                  0x010f18                  _smallDelay
+                  0x010f22                  _tinyDelay
+                  0x010f2c                  _hasMode
+                  0x010f36                  _printToUart2
+                  0x010f5a                  _mavlinkInit
+                  0x010fd0                  _uartBufferInit
+                  0x010ff0                  __U4RXInterrupt
+                  0x011022                  _getGPSRawData
+                  0x011024                  _isGPSNovatel
+                  0x011028                  ___delay32
+                  0x011044                  _rtGetInfF
+                  0x01104a                  _rtGetInf
+                  0x01104e                  _rtGetMinusInfF
+                  0x011054                  _rtGetMinusInf
+                  0x011058                  _rtGetNaNF
+                  0x01105e                  _rtGetNaN
                   0xf80004                  __FGS.sec
 
 External Symbols in Program Memory (by name):
 
                   0x006500                  _AUAV3_BufferICChannel_Init
                   0x006512                  _AUAV3_WITH_BufferICChannel
-                  0x00c5f2                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_initialize
+                  0x00c5bc                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_initialize
                   0x004d6a                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_rtZmavlink_attitude_t
                   0x004d86                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_rtZmavlink_coordinate_float_t
                   0x004d92                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_rtZmavlink_gps_raw_int_t
@@ -935,17 +935,17 @@ External Symbols in Program Memory (by name):
                   0x0050b4                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_rtZmavlink_volt_sensor_t
                   0x004e02                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_rtZpi_struct
                   0x006544                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step0
-                  0x00c43a                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step1
-                  0x00c57c                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step10
-                  0x00c5f0                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step11
-                  0x00c472                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step2
-                  0x00c488                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step3
-                  0x00c49e                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step4
-                  0x00c4dc                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step5
-                  0x00c514                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step6
-                  0x00c546                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step7
-                  0x00c556                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step8
-                  0x00c566                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step9
+                  0x00c404                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step1
+                  0x00c546                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step10
+                  0x00c5ba                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step11
+                  0x00c43c                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step2
+                  0x00c452                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step3
+                  0x00c468                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step4
+                  0x00c4a6                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step5
+                  0x00c4de                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step6
+                  0x00c510                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step7
+                  0x00c520                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step8
+                  0x00c530                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step9
                   0x0051bc                  _AUAV3_WITH_SLUGS_SENSOR_AND__M
                   0x0056dc                  _AUAV3_WITH_SLUGS_SENSOR__ConstP
                   0x006050                  _AUAV3_WITH_SLUGS_ZerooutZ1
@@ -972,25 +972,25 @@ External Symbols in Program Memory (by name):
                   0x00627c                  _A_EmbeddedMATLABFunction_h
                   0x006420                  _A_EmbeddedMATLABFunction_n
                   0x0064cc                  _A_EmbeddedMATLABFunction_o
-                  0x00fcfc                  _CRC32Value
-                  0x00fd1e                  _CalculateBlockCRC32
+                  0x00fcc6                  _CRC32Value
+                  0x00fce8                  _CalculateBlockCRC32
                   0x00641a                  _EmbeddedMATLABFunct_i_Init
                   0x0062c8                  _EmbeddedMATLABFunct_o_Init
                   0x005f16                  _EmbeddedMATLABFunctio_Init
                   0x006386                  _EnablesDisablestheCom_Init
                   0x006392                  _EnablesDisablestheComputat
-                  0x00e9aa                  _InitParameterInterface
-                  0x00eda0                  _MissionInterfaceResponse
+                  0x00e974                  _InitParameterInterface
+                  0x00ed6a                  _MissionInterfaceResponse
                   0x005c3c                  _MultiWord2uLong
-                  0x00f0c4                  _PackGpsRawInt
-                  0x00f01e                  _PackHeartBeat
-                  0x00f080                  _PackRawIMU
-                  0x00f10e                  _PackScaledPressure
-                  0x00f150                  _PackSysStatus
-                  0x00f048                  _PackTextMsg
-                  0x00ef1e                  _ParameterInterfaceResponse
-                  0x00f1be                  _TxN_Data_OverU1
-                  0x00d8ba                  __DMA1Interrupt
+                  0x00f08e                  _PackGpsRawInt
+                  0x00efe8                  _PackHeartBeat
+                  0x00f04a                  _PackRawIMU
+                  0x00f0d8                  _PackScaledPressure
+                  0x00f11a                  _PackSysStatus
+                  0x00f012                  _PackTextMsg
+                  0x00eee8                  _ParameterInterfaceResponse
+                  0x00f188                  _TxN_Data_OverU1
+                  0x00d884                  __DMA1Interrupt
                   0x001296                  __DefaultInterrupt
                   0xf80004                  __FGS.sec
                   0x000f0a                  __IC1Interrupt
@@ -1002,16 +1002,16 @@ External Symbols in Program Memory (by name):
                   0x000706                  __MI2C2Interrupt
                   0x00104e                  __SPI1Interrupt
                   0x0002e0                  __T2Interrupt
-                  0x0107a4                  __T5Interrupt
-                  0x00e922                  __U1RXInterrupt
+                  0x01076e                  __T5Interrupt
+                  0x00e8ec                  __U1RXInterrupt
                   0x0011f6                  __U1TXInterrupt
-                  0x00d8ec                  __U2ErrInterrupt
-                  0x00d8be                  __U2RXInterrupt
-                  0x011026                  __U4RXInterrupt
+                  0x00d8b6                  __U2ErrInterrupt
+                  0x00d888                  __U2RXInterrupt
+                  0x010ff0                  __U4RXInterrupt
                   0x001246                  __U4TXInterrupt
                   0x0045ae                  ___adddf3
                   0x00130c                  ___addsf3
-                  0x01105e                  ___delay32
+                  0x011028                  ___delay32
                   0x0046bc                  ___divdf3
                   0x004b94                  ___divdi3
                   0x0015a0                  ___divsf3
@@ -1081,93 +1081,93 @@ External Symbols in Program Memory (by name):
                   0x0022aa                  __sprintf_cdfFnopsuxX
                   0x002466                  __vfprintf_cdfFnopsuxX
                   0x001306                  _acosf
-                  0x00d996                  _addMessageToSpiOut
+                  0x00d960                  _addMessageToSpiOut
                   0x001494                  _asinf
                   0x001498                  _atan2f
                   0x0014d2                  _atanf
                   0x0021e2                  _atof
                   0x0021e6                  _atoi
-                  0x010708                  _averageData
-                  0x00fdfa                  _charsToDouble
-                  0x00fdda                  _charsToFloat
-                  0x00fd58                  _charsToUint16
-                  0x00fd62                  _charsToUint32
-                  0x00d8fa                  _clearWaypointsFrom
-                  0x01091c                  _convert12BitToShort
-                  0x010792                  _convert14BitToShort
-                  0x00d850                  _copyBufferToDMA1
+                  0x0106d2                  _averageData
+                  0x00fdc4                  _charsToDouble
+                  0x00fda4                  _charsToFloat
+                  0x00fd22                  _charsToUint16
+                  0x00fd2c                  _charsToUint32
+                  0x00d8c4                  _clearWaypointsFrom
+                  0x0108e6                  _convert12BitToShort
+                  0x01075c                  _convert14BitToShort
+                  0x00d81a                  _copyBufferToDMA1
                   0x00159c                  _cosf
-                  0x010706                  _cubeInit
-                  0x00f232                  _degMinToDeg
+                  0x0106d0                  _cubeInit
+                  0x00f1fc                  _degMinToDeg
                   0x005adc                  _div_repeat_u32_round
                   0x005bb8                  _div_s16s32_round
                   0x005a66                  _div_u32_round
                   0x001624                  _expf
                   0x001772                  _floorf
                   0x001782                  _fmodf
-                  0x010ca6                  _freeCircBuffer
+                  0x010c70                  _freeCircBuffer
                   0x004918                  _frexp
                   0x004918                  _frexpl
-                  0x00fac6                  _getAccBias
-                  0x00fa84                  _getAccels
-                  0x00f98c                  _getApControlType
-                  0x00f864                  _getAttitude
-                  0x00f628                  _getChecksum
-                  0x010856                  _getCubeData
-                  0x00f9c0                  _getCurrentGPSPos
-                  0x00f85e                  _getDynamic
-                  0x011058                  _getGPSRawData
-                  0x01099e                  _getGSLocation
-                  0x00fc92                  _getGpsMainData
-                  0x00f784                  _getGpsUbloxMainData
-                  0x010ec2                  _getHilOnOff
-                  0x00fb68                  _getISRCameraOption1
-                  0x00fb50                  _getISRLocation
-                  0x010cb2                  _getLength
-                  0x010ed4                  _getLightsDayNight
-                  0x010ece                  _getLightsOnOff
-                  0x00f8c4                  _getMaxWp
-                  0x00f7f0                  _getMidLevelCommands
-                  0x00fb3c                  _getMobileLocation
-                  0x00fb4c                  _getNavMode
-                  0x00f830                  _getParamIdx
-                  0x00f990                  _getPassValues
-                  0x00fade                  _getRTB
-                  0x00f83c                  _getRangeOfParams
-                  0x00f8ac                  _getVned
-                  0x00f934                  _getWP
-                  0x00f894                  _getXYZ
-                  0x00f25c                  _gpSmbl
-                  0x00fc74                  _gpsInit
-                  0x00ff3c                  _gpsParse
-                  0x00f740                  _gpsUbloxParse
-                  0x00f654                  _gpsUbloxSeparate
-                  0x00d818                  _gsRead
-                  0x010f62                  _hasMode
-                  0x00f202                  _hex2char
-                  0x0102d8                  _hilRead
-                  0x010328                  _hil_getEuler
-                  0x010340                  _hil_getRates
-                  0x0102da                  _hil_getRawRead
-                  0x010370                  _hil_getTs
-                  0x010310                  _hil_getVned
-                  0x010358                  _hil_getXYZ
-                  0x010f34                  _hugeDelay
-                  0x00f808                  _isApManual
-                  0x01092e                  _isCube16405
-                  0x00e966                  _isFinite
-                  0x010b12                  _isFixValid
-                  0x01105a                  _isGPSNovatel
-                  0x00f8ec                  _isPassthrough
-                  0x00f8ca                  _isWpFly
+                  0x00fa90                  _getAccBias
+                  0x00fa4e                  _getAccels
+                  0x00f956                  _getApControlType
+                  0x00f82e                  _getAttitude
+                  0x00f5f2                  _getChecksum
+                  0x010820                  _getCubeData
+                  0x00f98a                  _getCurrentGPSPos
+                  0x00f828                  _getDynamic
+                  0x011022                  _getGPSRawData
+                  0x010968                  _getGSLocation
+                  0x00fc5c                  _getGpsMainData
+                  0x00f74e                  _getGpsUbloxMainData
+                  0x010e8c                  _getHilOnOff
+                  0x00fb32                  _getISRCameraOption1
+                  0x00fb1a                  _getISRLocation
+                  0x010c7c                  _getLength
+                  0x010e9e                  _getLightsDayNight
+                  0x010e98                  _getLightsOnOff
+                  0x00f88e                  _getMaxWp
+                  0x00f7ba                  _getMidLevelCommands
+                  0x00fb06                  _getMobileLocation
+                  0x00fb16                  _getNavMode
+                  0x00f7fa                  _getParamIdx
+                  0x00f95a                  _getPassValues
+                  0x00faa8                  _getRTB
+                  0x00f806                  _getRangeOfParams
+                  0x00f876                  _getVned
+                  0x00f8fe                  _getWP
+                  0x00f85e                  _getXYZ
+                  0x00f226                  _gpSmbl
+                  0x00fc3e                  _gpsInit
+                  0x00ff06                  _gpsParse
+                  0x00f70a                  _gpsUbloxParse
+                  0x00f61e                  _gpsUbloxSeparate
+                  0x00d7e2                  _gsRead
+                  0x010f2c                  _hasMode
+                  0x00f1cc                  _hex2char
+                  0x0102a2                  _hilRead
+                  0x0102f2                  _hil_getEuler
+                  0x01030a                  _hil_getRates
+                  0x0102a4                  _hil_getRawRead
+                  0x01033a                  _hil_getTs
+                  0x0102da                  _hil_getVned
+                  0x010322                  _hil_getXYZ
+                  0x010efe                  _hugeDelay
+                  0x00f7d2                  _isApManual
+                  0x0108f8                  _isCube16405
+                  0x00e930                  _isFinite
+                  0x010adc                  _isFixValid
+                  0x011024                  _isGPSNovatel
+                  0x00f8b6                  _isPassthrough
+                  0x00f894                  _isWpFly
                   0x00129a                  _isspace
-                  0x00fb6e                  _justEnabled
+                  0x00fb38                  _justEnabled
                   0x0018ce                  _ldexpf
                   0x001f52                  _logf
                   0x000624                  _main
-                  0x010d6a                  _makeEmpty
-                  0x010f90                  _mavlinkInit
-                  0x00fc64                  _meanFilter5
+                  0x010d34                  _makeEmpty
+                  0x010f5a                  _mavlinkInit
+                  0x00fc2e                  _meanFilter5
                   0x002224                  _memcpy
                   0x002232                  _memset
                   0x005b94                  _mul_s32_s32_s32_sr23
@@ -1180,57 +1180,57 @@ External Symbols in Program Memory (by name):
                   0x00580e                  _mul_wide_s32
                   0x005954                  _mul_wide_su32
                   0x00574a                  _mul_wide_u32
-                  0x010f06                  _myAbs
-                  0x010f28                  _myAcos
-                  0x010f10                  _myAsin
-                  0x010f0a                  _myAtan
-                  0x010ef4                  _myAtan2
-                  0x010f1c                  _myCos
-                  0x010f2e                  _myExp
-                  0x010efa                  _myPow
-                  0x010f16                  _mySin
-                  0x010f00                  _mySqrt
-                  0x010f22                  _myTan
-                  0x00f2ac                  _myTokenizer
-                  0x010c86                  _newCircBuffer
-                  0x00f494                  _parseGGA
-                  0x00f30e                  _parseRMC
-                  0x010ce6                  _peak
-                  0x010b4e                  _populateParameterInterface
+                  0x010ed0                  _myAbs
+                  0x010ef2                  _myAcos
+                  0x010eda                  _myAsin
+                  0x010ed4                  _myAtan
+                  0x010ebe                  _myAtan2
+                  0x010ee6                  _myCos
+                  0x010ef8                  _myExp
+                  0x010ec4                  _myPow
+                  0x010ee0                  _mySin
+                  0x010eca                  _mySqrt
+                  0x010eec                  _myTan
+                  0x00f276                  _myTokenizer
+                  0x010c50                  _newCircBuffer
+                  0x00f45e                  _parseGGA
+                  0x00f2d8                  _parseRMC
+                  0x010cb0                  _peak
+                  0x010b18                  _populateParameterInterface
                   0x00197a                  _powf
-                  0x00e340                  _prepareTelemetryMavlink
-                  0x010f6c                  _printToUart2
-                  0x010374                  _protDecodeHil
-                  0x00ea42                  _protDecodeMavlink
-                  0x00fb9e                  _quickSort
-                  0x010d06                  _readFront
-                  0x010cce                  _readHead
-                  0x010cda                  _readTail
-                  0x011080                  _rtGetInf
-                  0x01107a                  _rtGetInfF
-                  0x01108a                  _rtGetMinusInf
-                  0x011084                  _rtGetMinusInfF
-                  0x011094                  _rtGetNaN
-                  0x01108e                  _rtGetNaNF
-                  0x010dc0                  _rtIsInf
-                  0x010dec                  _rtIsInfF
-                  0x010e18                  _rtIsNaN
-                  0x010e2e                  _rtIsNaNF
-                  0x010d8e                  _rt_InitInfAndNaN
+                  0x00e30a                  _prepareTelemetryMavlink
+                  0x010f36                  _printToUart2
+                  0x01033e                  _protDecodeHil
+                  0x00ea0c                  _protDecodeMavlink
+                  0x00fb68                  _quickSort
+                  0x010cd0                  _readFront
+                  0x010c98                  _readHead
+                  0x010ca4                  _readTail
+                  0x01104a                  _rtGetInf
+                  0x011044                  _rtGetInfF
+                  0x011054                  _rtGetMinusInf
+                  0x01104e                  _rtGetMinusInfF
+                  0x01105e                  _rtGetNaN
+                  0x011058                  _rtGetNaNF
+                  0x010d8a                  _rtIsInf
+                  0x010db6                  _rtIsInfF
+                  0x010de2                  _rtIsNaN
+                  0x010df8                  _rtIsNaNF
+                  0x010d58                  _rt_InitInfAndNaN
                   0x0060f4                  _rt_atan2f_snf
-                  0x00d874                  _send2GS
-                  0x00f1a2                  _sendQGCDebugMessage
-                  0x00d9ae                  _sendTelemetryMavlink
-                  0x00f9ac                  _setCurrentCommands
-                  0x00f90e                  _setDiagnosticFloat
-                  0x00f926                  _setDiagnosticShort
-                  0x00f95c                  _setLogFloat1
-                  0x00f974                  _setLogFloat2
-                  0x00fa28                  _setNavLat
-                  0x00fa02                  _setNavLong
-                  0x00fa40                  _setNavNav
+                  0x00d83e                  _send2GS
+                  0x00f16c                  _sendQGCDebugMessage
+                  0x00d978                  _sendTelemetryMavlink
+                  0x00f976                  _setCurrentCommands
+                  0x00f8d8                  _setDiagnosticFloat
+                  0x00f8f0                  _setDiagnosticShort
+                  0x00f926                  _setLogFloat1
+                  0x00f93e                  _setLogFloat2
+                  0x00f9f2                  _setNavLat
+                  0x00f9cc                  _setNavLong
+                  0x00fa0a                  _setNavNav
                   0x001c12                  _sinf
-                  0x010f4e                  _smallDelay
+                  0x010f18                  _smallDelay
                   0x001c16                  _sqrtf
                   0x002240                  _strchr
                   0x002254                  _strlen
@@ -1238,40 +1238,40 @@ External Symbols in Program Memory (by name):
                   0x0021e0                  _strtod
                   0x00201c                  _strtof
                   0x001c80                  _tanf
-                  0x010f58                  _tinyDelay
+                  0x010f22                  _tinyDelay
                   0x005d30                  _uMultiWordMul
                   0x005c40                  _uMultiWordShr
-                  0x00d79c                  _uart2Init
-                  0x011006                  _uartBufferInit
-                  0x00e906                  _uartMavlinkBufferInit
-                  0x010944                  _updateAirData
-                  0x01096e                  _updateAttitude
-                  0x010a52                  _updateBias
-                  0x01072e                  _updateCubeData
-                  0x010a2c                  _updateDiagnosticFl
-                  0x010a44                  _updateDiagnosticSh
-                  0x010e8a                  _updateEuler
-                  0x010e7e                  _updateLoad
-                  0x010966                  _updateLoadData
-                  0x010eaa                  _updatePQR
-                  0x010ee4                  _updatePTZ
-                  0x010e44                  _updatePWM
-                  0x010e5e                  _updatePWMTrim
-                  0x010a16                  _updatePilotConsole
-                  0x0109e6                  _updatePosition
-                  0x00fe92                  _updatePositionData
-                  0x010932                  _updateRawADCData
-                  0x010a82                  _updateSensorData
-                  0x010b20                  _updateSensorDiag
-                  0x00fc7a                  _updateStatus
-                  0x00fd82                  _updateTimeData
-                  0x0109d4                  _updateTimeStamp
-                  0x010eda                  _updateVISensor
-                  0x00fe42                  _updateVelocityData
+                  0x00d766                  _uart2Init
+                  0x010fd0                  _uartBufferInit
+                  0x00e8d0                  _uartMavlinkBufferInit
+                  0x01090e                  _updateAirData
+                  0x010938                  _updateAttitude
+                  0x010a1c                  _updateBias
+                  0x0106f8                  _updateCubeData
+                  0x0109f6                  _updateDiagnosticFl
+                  0x010a0e                  _updateDiagnosticSh
+                  0x010e54                  _updateEuler
+                  0x010e48                  _updateLoad
+                  0x010930                  _updateLoadData
+                  0x010e74                  _updatePQR
+                  0x010eae                  _updatePTZ
+                  0x010e0e                  _updatePWM
+                  0x010e28                  _updatePWMTrim
+                  0x0109e0                  _updatePilotConsole
+                  0x0109b0                  _updatePosition
+                  0x00fe5c                  _updatePositionData
+                  0x0108fc                  _updateRawADCData
+                  0x010a4c                  _updateSensorData
+                  0x010aea                  _updateSensorDiag
+                  0x00fc44                  _updateStatus
+                  0x00fd4c                  _updateTimeData
+                  0x01099e                  _updateTimeStamp
+                  0x010ea4                  _updateVISensor
+                  0x00fe0c                  _updateVelocityData
                   0x003164                  _vfprintf
                   0x002282                  _vsprintf
-                  0x01078e                  _write2Cube
-                  0x010d34                  _writeBack
+                  0x010758                  _write2Cube
+                  0x010cfe                  _writeBack
 
 Memory Configuration
 
@@ -4867,8 +4867,8 @@ __c30_signature
                     0xd6dc                  _AUAV3_WITH_SLUGS_SENSOR__ConstP
  .const             0xd718         0x32 navSupport.o
 
-.text             0x00574a       0xacd8
- .text            0x00574a       0x7396 AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.o
+.text             0x00574a       0xaca2
+ .text            0x00574a       0x7360 AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.o
                   0x00574a                  _mul_wide_u32
                   0x0057ea                  _mul_u32_u32_u32_sr15
                   0x00580e                  _mul_wide_s32
@@ -4918,214 +4918,214 @@ __c30_signature
                   0x006512                  _AUAV3_WITH_BufferICChannel
                   0x00653a                  _AUAV3_WITH_SLU_myMuxFun1_c
                   0x006544                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step0
-                  0x00c43a                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step1
-                  0x00c472                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step2
-                  0x00c488                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step3
-                  0x00c49e                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step4
-                  0x00c4dc                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step5
-                  0x00c514                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step6
-                  0x00c546                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step7
-                  0x00c556                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step8
-                  0x00c566                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step9
-                  0x00c57c                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step10
-                  0x00c5f0                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step11
-                  0x00c5f2                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_initialize
- .text            0x00cae0       0x1864 mavlinkCommsControlMcu.o
-                  0x00d79c                  _uart2Init
-                  0x00d818                  _gsRead
-                  0x00d850                  _copyBufferToDMA1
-                  0x00d874                  _send2GS
-                  0x00d8ba                  __DMA1Interrupt
-                  0x00d8be                  __U2RXInterrupt
-                  0x00d8ec                  __U2ErrInterrupt
-                  0x00d8fa                  _clearWaypointsFrom
-                  0x00d996                  _addMessageToSpiOut
-                  0x00d9ae                  _sendTelemetryMavlink
-                  0x00e340                  _prepareTelemetryMavlink
- .text            0x00e344        0xebe MavlinkComm.o
-                  0x00e906                  _uartMavlinkBufferInit
-                  0x00e922                  __U1RXInterrupt
-                  0x00e966                  _isFinite
-                  0x00e9aa                  _InitParameterInterface
-                  0x00ea42                  _protDecodeMavlink
-                  0x00eda0                  _MissionInterfaceResponse
-                  0x00ef1e                  _ParameterInterfaceResponse
-                  0x00f01e                  _PackHeartBeat
-                  0x00f048                  _PackTextMsg
-                  0x00f080                  _PackRawIMU
-                  0x00f0c4                  _PackGpsRawInt
-                  0x00f10e                  _PackScaledPressure
-                  0x00f150                  _PackSysStatus
-                  0x00f1a2                  _sendQGCDebugMessage
-                  0x00f1be                  _TxN_Data_OverU1
- .text            0x00f202        0x5ee gpsUblox.o
-                  0x00f202                  _hex2char
-                  0x00f232                  _degMinToDeg
-                  0x00f25c                  _gpSmbl
-                  0x00f2ac                  _myTokenizer
-                  0x00f30e                  _parseRMC
-                  0x00f494                  _parseGGA
-                  0x00f628                  _getChecksum
-                  0x00f654                  _gpsUbloxSeparate
-                  0x00f740                  _gpsUbloxParse
-                  0x00f784                  _getGpsUbloxMainData
- .text            0x00f7f0        0x484 navSupport.o
-                  0x00f7f0                  _getMidLevelCommands
-                  0x00f808                  _isApManual
-                  0x00f830                  _getParamIdx
-                  0x00f83c                  _getRangeOfParams
-                  0x00f85e                  _getDynamic
-                  0x00f864                  _getAttitude
-                  0x00f894                  _getXYZ
-                  0x00f8ac                  _getVned
-                  0x00f8c4                  _getMaxWp
-                  0x00f8ca                  _isWpFly
-                  0x00f8ec                  _isPassthrough
-                  0x00f90e                  _setDiagnosticFloat
-                  0x00f926                  _setDiagnosticShort
-                  0x00f934                  _getWP
-                  0x00f95c                  _setLogFloat1
-                  0x00f974                  _setLogFloat2
-                  0x00f98c                  _getApControlType
-                  0x00f990                  _getPassValues
-                  0x00f9ac                  _setCurrentCommands
-                  0x00f9c0                  _getCurrentGPSPos
-                  0x00fa02                  _setNavLong
-                  0x00fa28                  _setNavLat
-                  0x00fa40                  _setNavNav
-                  0x00fa84                  _getAccels
-                  0x00fac6                  _getAccBias
-                  0x00fade                  _getRTB
-                  0x00fb3c                  _getMobileLocation
-                  0x00fb4c                  _getNavMode
-                  0x00fb50                  _getISRLocation
-                  0x00fb68                  _getISRCameraOption1
-                  0x00fb6e                  _justEnabled
-                  0x00fb9e                  _quickSort
-                  0x00fc64                  _meanFilter5
- .text            0x00fc74        0x454 novatel.o
-                  0x00fc74                  _gpsInit
-                  0x00fc7a                  _updateStatus
-                  0x00fc92                  _getGpsMainData
-                  0x00fcfc                  _CRC32Value
-                  0x00fd1e                  _CalculateBlockCRC32
-                  0x00fd58                  _charsToUint16
-                  0x00fd62                  _charsToUint32
-                  0x00fd82                  _updateTimeData
-                  0x00fdda                  _charsToFloat
-                  0x00fdfa                  _charsToDouble
-                  0x00fe42                  _updateVelocityData
-                  0x00fe92                  _updatePositionData
-                  0x00ff3c                  _gpsParse
- .text            0x0100c8        0x35a hil.o
-                  0x0102d8                  _hilRead
-                  0x0102da                  _hil_getRawRead
-                  0x010310                  _hil_getVned
-                  0x010328                  _hil_getEuler
-                  0x010340                  _hil_getRates
-                  0x010358                  _hil_getXYZ
-                  0x010370                  _hil_getTs
-                  0x010374                  _protDecodeHil
+                  0x00c404                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step1
+                  0x00c43c                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step2
+                  0x00c452                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step3
+                  0x00c468                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step4
+                  0x00c4a6                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step5
+                  0x00c4de                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step6
+                  0x00c510                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step7
+                  0x00c520                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step8
+                  0x00c530                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step9
+                  0x00c546                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step10
+                  0x00c5ba                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_step11
+                  0x00c5bc                  _AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_initialize
+ .text            0x00caaa       0x1864 mavlinkCommsControlMcu.o
+                  0x00d766                  _uart2Init
+                  0x00d7e2                  _gsRead
+                  0x00d81a                  _copyBufferToDMA1
+                  0x00d83e                  _send2GS
+                  0x00d884                  __DMA1Interrupt
+                  0x00d888                  __U2RXInterrupt
+                  0x00d8b6                  __U2ErrInterrupt
+                  0x00d8c4                  _clearWaypointsFrom
+                  0x00d960                  _addMessageToSpiOut
+                  0x00d978                  _sendTelemetryMavlink
+                  0x00e30a                  _prepareTelemetryMavlink
+ .text            0x00e30e        0xebe MavlinkComm.o
+                  0x00e8d0                  _uartMavlinkBufferInit
+                  0x00e8ec                  __U1RXInterrupt
+                  0x00e930                  _isFinite
+                  0x00e974                  _InitParameterInterface
+                  0x00ea0c                  _protDecodeMavlink
+                  0x00ed6a                  _MissionInterfaceResponse
+                  0x00eee8                  _ParameterInterfaceResponse
+                  0x00efe8                  _PackHeartBeat
+                  0x00f012                  _PackTextMsg
+                  0x00f04a                  _PackRawIMU
+                  0x00f08e                  _PackGpsRawInt
+                  0x00f0d8                  _PackScaledPressure
+                  0x00f11a                  _PackSysStatus
+                  0x00f16c                  _sendQGCDebugMessage
+                  0x00f188                  _TxN_Data_OverU1
+ .text            0x00f1cc        0x5ee gpsUblox.o
+                  0x00f1cc                  _hex2char
+                  0x00f1fc                  _degMinToDeg
+                  0x00f226                  _gpSmbl
+                  0x00f276                  _myTokenizer
+                  0x00f2d8                  _parseRMC
+                  0x00f45e                  _parseGGA
+                  0x00f5f2                  _getChecksum
+                  0x00f61e                  _gpsUbloxSeparate
+                  0x00f70a                  _gpsUbloxParse
+                  0x00f74e                  _getGpsUbloxMainData
+ .text            0x00f7ba        0x484 navSupport.o
+                  0x00f7ba                  _getMidLevelCommands
+                  0x00f7d2                  _isApManual
+                  0x00f7fa                  _getParamIdx
+                  0x00f806                  _getRangeOfParams
+                  0x00f828                  _getDynamic
+                  0x00f82e                  _getAttitude
+                  0x00f85e                  _getXYZ
+                  0x00f876                  _getVned
+                  0x00f88e                  _getMaxWp
+                  0x00f894                  _isWpFly
+                  0x00f8b6                  _isPassthrough
+                  0x00f8d8                  _setDiagnosticFloat
+                  0x00f8f0                  _setDiagnosticShort
+                  0x00f8fe                  _getWP
+                  0x00f926                  _setLogFloat1
+                  0x00f93e                  _setLogFloat2
+                  0x00f956                  _getApControlType
+                  0x00f95a                  _getPassValues
+                  0x00f976                  _setCurrentCommands
+                  0x00f98a                  _getCurrentGPSPos
+                  0x00f9cc                  _setNavLong
+                  0x00f9f2                  _setNavLat
+                  0x00fa0a                  _setNavNav
+                  0x00fa4e                  _getAccels
+                  0x00fa90                  _getAccBias
+                  0x00faa8                  _getRTB
+                  0x00fb06                  _getMobileLocation
+                  0x00fb16                  _getNavMode
+                  0x00fb1a                  _getISRLocation
+                  0x00fb32                  _getISRCameraOption1
+                  0x00fb38                  _justEnabled
+                  0x00fb68                  _quickSort
+                  0x00fc2e                  _meanFilter5
+ .text            0x00fc3e        0x454 novatel.o
+                  0x00fc3e                  _gpsInit
+                  0x00fc44                  _updateStatus
+                  0x00fc5c                  _getGpsMainData
+                  0x00fcc6                  _CRC32Value
+                  0x00fce8                  _CalculateBlockCRC32
+                  0x00fd22                  _charsToUint16
+                  0x00fd2c                  _charsToUint32
+                  0x00fd4c                  _updateTimeData
+                  0x00fda4                  _charsToFloat
+                  0x00fdc4                  _charsToDouble
+                  0x00fe0c                  _updateVelocityData
+                  0x00fe5c                  _updatePositionData
+                  0x00ff06                  _gpsParse
+ .text            0x010092        0x35a hil.o
+                  0x0102a2                  _hilRead
+                  0x0102a4                  _hil_getRawRead
+                  0x0102da                  _hil_getVned
+                  0x0102f2                  _hil_getEuler
+                  0x01030a                  _hil_getRates
+                  0x010322                  _hil_getXYZ
+                  0x01033a                  _hil_getTs
+                  0x01033e                  _protDecodeHil
 
-.dinit            0x010422        0x2e4
- .dinit           0x010422        0x2e4 data_init
+.dinit            0x0103ec        0x2e4
+ .dinit           0x0103ec        0x2e4 data_init
 
-.text             0x010706        0x958
- .text            0x010706        0x22c adisCube16405.o
-                  0x010706                  _cubeInit
-                  0x010708                  _averageData
-                  0x01072e                  _updateCubeData
-                  0x01078e                  _write2Cube
-                  0x010792                  _convert14BitToShort
-                  0x0107a4                  __T5Interrupt
-                  0x010856                  _getCubeData
-                  0x01091c                  _convert12BitToShort
-                  0x01092e                  _isCube16405
- .text            0x010932        0x21c updateSensorMcuState.o
-                  0x010932                  _updateRawADCData
-                  0x010944                  _updateAirData
-                  0x010966                  _updateLoadData
-                  0x01096e                  _updateAttitude
-                  0x01099e                  _getGSLocation
-                  0x0109d4                  _updateTimeStamp
-                  0x0109e6                  _updatePosition
-                  0x010a16                  _updatePilotConsole
-                  0x010a2c                  _updateDiagnosticFl
-                  0x010a44                  _updateDiagnosticSh
-                  0x010a52                  _updateBias
-                  0x010a82                  _updateSensorData
-                  0x010b12                  _isFixValid
-                  0x010b20                  _updateSensorDiag
- .text            0x010b4e        0x138 mavlinkControlMcu.o
-                  0x010b4e                  _populateParameterInterface
- .text            0x010c86        0x108 circBuffer.o
-                  0x010c86                  _newCircBuffer
-                  0x010ca6                  _freeCircBuffer
-                  0x010cb2                  _getLength
-                  0x010cce                  _readHead
-                  0x010cda                  _readTail
-                  0x010ce6                  _peak
-                  0x010d06                  _readFront
-                  0x010d34                  _writeBack
-                  0x010d6a                  _makeEmpty
- .text            0x010d8e         0xb6 rt_nonfinite.o
-                  0x010d8e                  _rt_InitInfAndNaN
-                  0x010dc0                  _rtIsInf
-                  0x010dec                  _rtIsInfF
-                  0x010e18                  _rtIsNaN
-                  0x010e2e                  _rtIsNaNF
- .text            0x010e44         0xb0 updateControlMcuState.o
-                  0x010e44                  _updatePWM
-                  0x010e5e                  _updatePWMTrim
-                  0x010e7e                  _updateLoad
-                  0x010e8a                  _updateEuler
-                  0x010eaa                  _updatePQR
-                  0x010ec2                  _getHilOnOff
-                  0x010ece                  _getLightsOnOff
-                  0x010ed4                  _getLightsDayNight
-                  0x010eda                  _updateVISensor
-                  0x010ee4                  _updatePTZ
- .text            0x010ef4         0x9c apUtils.o
-                  0x010ef4                  _myAtan2
-                  0x010efa                  _myPow
-                  0x010f00                  _mySqrt
-                  0x010f06                  _myAbs
-                  0x010f0a                  _myAtan
-                  0x010f10                  _myAsin
-                  0x010f16                  _mySin
-                  0x010f1c                  _myCos
-                  0x010f22                  _myTan
-                  0x010f28                  _myAcos
-                  0x010f2e                  _myExp
-                  0x010f34                  _hugeDelay
-                  0x010f4e                  _smallDelay
-                  0x010f58                  _tinyDelay
-                  0x010f62                  _hasMode
-                  0x010f6c                  _printToUart2
- .text            0x010f90         0x76 mavlinkSensorMcu.o
-                  0x010f90                  _mavlinkInit
- .text            0x011006         0x58 gpsPort.o
-                  0x011006                  _uartBufferInit
-                  0x011026                  __U4RXInterrupt
-                  0x011058                  _getGPSRawData
-                  0x01105a                  _isGPSNovatel
+.text             0x0106d0        0x958
+ .text            0x0106d0        0x22c adisCube16405.o
+                  0x0106d0                  _cubeInit
+                  0x0106d2                  _averageData
+                  0x0106f8                  _updateCubeData
+                  0x010758                  _write2Cube
+                  0x01075c                  _convert14BitToShort
+                  0x01076e                  __T5Interrupt
+                  0x010820                  _getCubeData
+                  0x0108e6                  _convert12BitToShort
+                  0x0108f8                  _isCube16405
+ .text            0x0108fc        0x21c updateSensorMcuState.o
+                  0x0108fc                  _updateRawADCData
+                  0x01090e                  _updateAirData
+                  0x010930                  _updateLoadData
+                  0x010938                  _updateAttitude
+                  0x010968                  _getGSLocation
+                  0x01099e                  _updateTimeStamp
+                  0x0109b0                  _updatePosition
+                  0x0109e0                  _updatePilotConsole
+                  0x0109f6                  _updateDiagnosticFl
+                  0x010a0e                  _updateDiagnosticSh
+                  0x010a1c                  _updateBias
+                  0x010a4c                  _updateSensorData
+                  0x010adc                  _isFixValid
+                  0x010aea                  _updateSensorDiag
+ .text            0x010b18        0x138 mavlinkControlMcu.o
+                  0x010b18                  _populateParameterInterface
+ .text            0x010c50        0x108 circBuffer.o
+                  0x010c50                  _newCircBuffer
+                  0x010c70                  _freeCircBuffer
+                  0x010c7c                  _getLength
+                  0x010c98                  _readHead
+                  0x010ca4                  _readTail
+                  0x010cb0                  _peak
+                  0x010cd0                  _readFront
+                  0x010cfe                  _writeBack
+                  0x010d34                  _makeEmpty
+ .text            0x010d58         0xb6 rt_nonfinite.o
+                  0x010d58                  _rt_InitInfAndNaN
+                  0x010d8a                  _rtIsInf
+                  0x010db6                  _rtIsInfF
+                  0x010de2                  _rtIsNaN
+                  0x010df8                  _rtIsNaNF
+ .text            0x010e0e         0xb0 updateControlMcuState.o
+                  0x010e0e                  _updatePWM
+                  0x010e28                  _updatePWMTrim
+                  0x010e48                  _updateLoad
+                  0x010e54                  _updateEuler
+                  0x010e74                  _updatePQR
+                  0x010e8c                  _getHilOnOff
+                  0x010e98                  _getLightsOnOff
+                  0x010e9e                  _getLightsDayNight
+                  0x010ea4                  _updateVISensor
+                  0x010eae                  _updatePTZ
+ .text            0x010ebe         0x9c apUtils.o
+                  0x010ebe                  _myAtan2
+                  0x010ec4                  _myPow
+                  0x010eca                  _mySqrt
+                  0x010ed0                  _myAbs
+                  0x010ed4                  _myAtan
+                  0x010eda                  _myAsin
+                  0x010ee0                  _mySin
+                  0x010ee6                  _myCos
+                  0x010eec                  _myTan
+                  0x010ef2                  _myAcos
+                  0x010ef8                  _myExp
+                  0x010efe                  _hugeDelay
+                  0x010f18                  _smallDelay
+                  0x010f22                  _tinyDelay
+                  0x010f2c                  _hasMode
+                  0x010f36                  _printToUart2
+ .text            0x010f5a         0x76 mavlinkSensorMcu.o
+                  0x010f5a                  _mavlinkInit
+ .text            0x010fd0         0x58 gpsPort.o
+                  0x010fd0                  _uartBufferInit
+                  0x010ff0                  __U4RXInterrupt
+                  0x011022                  _getGPSRawData
+                  0x011024                  _isGPSNovatel
 
-.init.delay32     0x01105e         0x1c
- .init.delay32    0x01105e         0x1c C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libpic30-elf.a(delay32ep.eo)
-                  0x01105e                  ___delay32
+.init.delay32     0x011028         0x1c
+ .init.delay32    0x011028         0x1c C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libpic30-elf.a(delay32ep.eo)
+                  0x011028                  ___delay32
 
-.text             0x01107a         0x1e
- .text            0x01107a         0x14 rtGetInf.o
-                  0x01107a                  _rtGetInfF
-                  0x011080                  _rtGetInf
-                  0x011084                  _rtGetMinusInfF
-                  0x01108a                  _rtGetMinusInf
- .text            0x01108e          0xa rtGetNaN.o
-                  0x01108e                  _rtGetNaNF
-                  0x011094                  _rtGetNaN
+.text             0x011044         0x1e
+ .text            0x011044         0x14 rtGetInf.o
+                  0x011044                  _rtGetInfF
+                  0x01104a                  _rtGetInf
+                  0x01104e                  _rtGetMinusInfF
+                  0x011054                  _rtGetMinusInf
+ .text            0x011058          0xa rtGetNaN.o
+                  0x011058                  _rtGetNaNF
+                  0x01105e                  _rtGetNaN
 
-.shared.dinit     0x011098          0x2
- .shared.dinit    0x011098          0x2 shared_data_init
+.shared.dinit     0x011062          0x2
+ .shared.dinit    0x011062          0x2 shared_data_init
 
 Cross Reference Table
 

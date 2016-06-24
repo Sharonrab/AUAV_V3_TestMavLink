@@ -29,7 +29,8 @@ THE SOFTWARE.
        extern "C"{
 #endif
 
-#include <p33fxxxx.h>
+//#include <p33fxxxx.h>
+#include <p33EP512MU810.h>
 #include <i2c.h>
 #include <uart.h>
 

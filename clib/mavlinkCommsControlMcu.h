@@ -11,7 +11,8 @@ extern "C" {
 #include "apUtils.h"
 #include "eepLoader.h"
 
-//#include <p33fxxxx.h>   
+//#include <p33fxxxx.h>
+#include <p33EP512MU810.h>   
 #include <string.h>    
 #include <stdio.h>	
 

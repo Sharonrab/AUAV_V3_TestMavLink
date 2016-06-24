@@ -65,7 +65,8 @@
 ************************************************************************/
 
 #if defined (__dsPIC33F__)
-    #include <p33Fxxxx.h>
+    //#include <p33Fxxxx.h>
+    #include <p33EP512MU810.h>
 #elif defined (__PIC24H__)
     #include <p24Hxxxx.h>
 #elif defined (__PIC24F__)

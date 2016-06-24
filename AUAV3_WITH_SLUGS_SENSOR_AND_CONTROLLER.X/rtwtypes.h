@@ -12,7 +12,7 @@
  *
  * Model version                  : 1.289
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Thu Jun 23 23:55:56 2016
+ * C/C++ source code generated on : Fri Jun 24 00:20:50 2016
  */
 
 #ifndef __RTWTYPES_H__

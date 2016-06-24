@@ -32,7 +32,8 @@ THE SOFTWARE.
        	
 #include "apDefinitions.h"
 #include "circBuffer.h"
-#include <p33fxxxx.h>
+//#include <p33fxxxx.h>
+#include <p33EP512MU810.h>
 #include <spi.h>
 #include "gpsPort.h"
 #include "ipcScheduler.h"  

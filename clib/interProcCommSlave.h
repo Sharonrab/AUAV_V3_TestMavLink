@@ -32,7 +32,8 @@ THE SOFTWARE.
 #include "apUtils.h"
 #include "FCBEX1000.h"
 
-#include <p33fxxxx.h>
+//#include <p33fxxxx.h>
+#include <p33EP512MU810.h>
 #include <spi.h>
 
 #include <stdlib.h>

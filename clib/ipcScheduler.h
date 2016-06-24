@@ -23,7 +23,8 @@
 #include "apUtils.h"
 #include "mavlinkSensorMcu.h"
 #include <string.h>
-#include <p33fxxxx.h>
+//#include <p33fxxxx.h>
+#include <p33EP512MU810.h>
 #include <uart.h>
 
 // Expose this buffer so the HIL can read it when it needs to
