@@ -37,7 +37,7 @@ S_FUNCTIONS_LIB         =
 NUMST                   = 12
 NCSTATES                = 0
 COMPUTER                = PCWIN64
-BUILDARGS               =  GENERATE_ASAP2=0 HOST_PLATFORM="PC" MCHP_AUTO_FLASH=0 MCHP_MULTITHREAD_COMPILATION=0 ISPROTECTINGMODEL=NOTPROTECTING
+BUILDARGS               =  GENERATE_ASAP2=0 HOST_PLATFORM="PC" MCHP_AUTO_FLASH=0 MCHP_MULTITHREAD_COMPILATION=1 ISPROTECTINGMODEL=NOTPROTECTING
 MULTITASKING            = 1
 INTEGER_CODE            = 0
 MAT_FILE                = 0
@@ -116,7 +116,7 @@ endif
 EXTMODE_DATA_UPLOAD = 0
 OMF   	        = elf
 
-OPTIM_GCC 		=  -O3
+OPTIM_GCC 		=  -O1 -mlarge-code -mlarge-data -mlarge-scalar
 LDFLAGS 		= -t,--report-mem,-Map=info.map,-cref,--memorysummary,memoryfile.xml
 LINKER_SCRIPT 	= "C:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/gld/P35C90~1.GLD"
 PIC_LIB 		= C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libpic30-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libm-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libc-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libq-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libq-dsp-elf.a 

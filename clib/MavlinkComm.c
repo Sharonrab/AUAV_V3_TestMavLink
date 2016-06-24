@@ -11,12 +11,12 @@ mavlink_pending_requests_t mlPending;
 mavlink_heartbeat_t mlHeartbeat;
 mavlink_mission_count_t mlWpCount;
 mavlink_mission_request_t mlWpRequest;
-mavlink_mission_item_values_t mlWpValues; //defined in MavlinkComm.h
+//mavlink_mission_item_values_t mlWpValues; //defined in MavlinkComm.h
 mavlink_mission_item_t mlSingleWp;
 mavlink_set_gps_global_origin_t mlGSLocation;
 mavlink_mission_ack_t mlWpAck;
 
-struct pi_struct mlParamInterface;
+//struct pi_struct mlParamInterface;
 
 void uartMavlinkBufferInit (void){
   _U1RXIP = 1;                         /* Rx Interrupt priority set to 1 */

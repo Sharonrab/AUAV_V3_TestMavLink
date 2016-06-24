@@ -28,7 +28,7 @@ extern "C" {
     extern mavlink_scaled_imu_t mlFilteredData; //
     extern mavlink_boot_t mlBoot; //
     extern mavlink_gps_date_time_t mlGpsDateTime;
-    extern mavlink_coordinate_float_t mlGSLocationFloat;
+    //extern mavlink_coordinate_float_t mlGSLocationFloat;
 #if USE_NMEA
     extern mavlink_status_gps_t mlGpsStatus;
 #endif

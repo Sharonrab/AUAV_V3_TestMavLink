@@ -190,12 +190,12 @@ extern "C" {
     extern mavlink_gps_date_time_t mlGpsDateTime; // 	..
 
     extern mavlink_heartbeat_t mlHeartbeat; // 	..	==
-    extern mavlink_heartbeat_t mlHeartbeatLocal; // 	..	==
+    //extern mavlink_heartbeat_t mlHeartbeatLocal; // 	..	==
     extern mavlink_mid_lvl_cmds_t mlMidLevelCommands; // 	..	**
     extern mavlink_servo_output_raw_t mlPwmCommands; // 	--	==
-    extern mavlink_mission_item_values_t mlWpValues; // 	..	**	defined in mavlinkControlMcu.h
+    //extern mavlink_mission_item_values_t mlWpValues; // 	..	**	defined in mavlinkControlMcu.h
     extern mavlink_mission_item_t mlSingleWp; // 	^^	^^
-    extern mavlink_slugs_navigation_t mlNavigation; // 	--  ==		
+    //extern mavlink_slugs_navigation_t mlNavigation; // 	--  ==		
     extern mavlink_data_log_t mlDataLog; // 	--	==
     extern mavlink_ctrl_srfc_pt_t mlPassthrough; // 	..	**
     extern mavlink_attitude_t mlAttitudeRotated; // 	--	==
@@ -209,16 +209,16 @@ extern "C" {
     extern mavlink_mission_count_t mlWpCount; // 	..	**
     extern mavlink_sys_status_t mlSystemStatus; //	--	==
     //extern struct pi_struct mlParamInterface;
-    extern pi_struct mlParamInterface;
+    //extern pi_struct mlParamInterface;
     extern mavlink_slugs_camera_order_t mlCameraOrder;
     extern mavlink_rtb_t mlRTB;
     extern mavlink_slugs_mobile_location_t mlMobileLocation;
-    extern mavlink_isr_location_t mlISR;
+    //extern mavlink_isr_location_t mlISR;
     extern mavlink_turn_light_t mlLights;
     extern mavlink_statustext_t mlStatustext;
     extern mavlink_slugs_configuration_camera_t mlCameraConfig;
     extern mavlink_ptz_status_t mlPtzStatus;
-    extern mavlink_volt_sensor_t mlVISensor;
+    //extern mavlink_volt_sensor_t mlVISensor;
 #if USE_NMEA
     extern mavlink_status_gps_t mlGpsStatus;
 #else 
@@ -227,7 +227,7 @@ extern "C" {
     extern mavlink_sensor_diag_t mlSensorDiag;
     
     // SPI
-    extern mavlink_set_gps_global_origin_t mlGSLocation;
+    //extern mavlink_set_gps_global_origin_t mlGSLocation;
 
     //extern gps_float_struct mlGpsFloat;
 

@@ -61,7 +61,10 @@ CBRef uartBufferIn;
 struct CircBuffer com1BufferOut;
 CBRef uartBufferOut;
 
-unsigned int BufferB[MAXSEND] __attribute__((space(dma))) = {0};
+//unsigned int BufferB[MAXSEND] __attribute__((space(dma))) = {0};
+// ds33EP512 DMA controller has access to all available memory
+unsigned int BufferB[MAXSEND] __attribute__((far)) = {0};
+
 
 char sw_debug;
 char sw_temp[50];

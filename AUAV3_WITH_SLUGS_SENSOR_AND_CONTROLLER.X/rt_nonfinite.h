@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER'.
  *
- * Model version                  : 1.288
+ * Model version                  : 1.289
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Wed Jun 22 16:14:13 2016
+ * C/C++ source code generated on : Thu Jun 23 23:32:38 2016
  */
 
 #ifndef RTW_HEADER_rt_nonfinite_h_

@@ -1,5 +1,6 @@
 #include "MavlinkComm.h"
 #include "mavlinkControlMcu.h"
+#include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_types.h"
 
 //mavlink_raw_imu_t mlRawImuData;
 //mavlink_gps_raw_int_t mlGpsData;
@@ -16,13 +17,13 @@
 //mavlink_gps_date_time_t mlGpsDateTime;
 
 //mavlink_heartbeat_t mlHeartbeat;
-mavlink_heartbeat_t mlHeartbeatLocal;
+//mavlink_heartbeat_t mlHeartbeatLocal;
 //mavlink_mid_lvl_cmds_t mlMidLevelCommands;
 mavlink_set_mode_t mlApMode;
 //mavlink_servo_output_raw_t mlPwmCommands;
 //mavlink_mission_item_values_t mlWpValues; //defined in mavlinkControlMcu.h
 //mavlink_mission_item_t mlSingleWp;
-mavlink_slugs_navigation_t mlNavigation;
+//mavlink_slugs_navigation_t mlNavigation;
 mavlink_data_log_t mlDataLog;
 mavlink_ctrl_srfc_pt_t mlPassthrough;
 mavlink_attitude_t mlAttitudeRotated;
@@ -39,12 +40,12 @@ mavlink_command_long_t mlCommand;
 mavlink_sys_status_t mlSystemStatus;
 mavlink_slugs_camera_order_t mlCameraOrder;
 //mavlink_slugs_rtb_t mlRTB; // moved to custom structure for migration to command_long
-mavlink_slugs_mobile_location_t mlMobileLocation;
-mavlink_isr_location_t mlISR;
+//mavlink_slugs_mobile_location_t mlMobileLocation;
+//mavlink_isr_location_t mlISR;
 mavlink_turn_light_t mlLights;
 mavlink_slugs_configuration_camera_t mlCameraConfig;
 mavlink_ptz_status_t mlPtzStatus;
-mavlink_volt_sensor_t mlVISensor;
+//mavlink_volt_sensor_t mlVISensor;
 #if USE_NMEA
 //mavlink_status_gps_t mlGpsStatus;
 #else 
@@ -52,7 +53,9 @@ mavlink_novatel_diag_t mlNovatelStatus;
 #endif
 //mavlink_sensor_diag_t mlSensorDiag;
 
+//Referencing the global declared in "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_types.h"
 //struct pi_struct mlParamInterface;
+//pi_struct mlParamInterface;
 
 //struct gps_float_struct mlGpsFloat; // float
 
@@ -161,6 +164,7 @@ uint32_t lastNavigationMode;
 
 // }
 
+/* TODO: Commented out for compilation, need to potentially initialize these PARAM values in the model.
 void populateParameterInterface(void)
 {
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_P], "PID_AIRSPD_P");
@@ -206,10 +210,10 @@ void populateParameterInterface(void)
     strcpy(mlParamInterface.param_name[PAR_CAM_X], "CAM_LOC_X");
     strcpy(mlParamInterface.param_name[PAR_CAM_Z], "CAM_LOC_Z");
 
-    /*
-    strcpy(mlParamInterface.param_name[PAR_RATE_TELEMETRY], "RATE_TELEMETRY");
-     */
+    
+    //strcpy(mlParamInterface.param_name[PAR_RATE_TELEMETRY], "RATE_TELEMETRY");
+     
 
 
-}
+} */
 

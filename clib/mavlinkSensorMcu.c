@@ -22,7 +22,7 @@ mavlink_rc_channels_raw_t mlPilotConsoleData;
 mavlink_scaled_imu_t mlFilteredData;
 mavlink_boot_t mlBoot;
 mavlink_gps_date_time_t mlGpsDateTime;
-mavlink_coordinate_float_t mlGSLocationFloat;
+//mavlink_coordinate_float_t mlGSLocationFloat;
 #if USE_NMEA
 mavlink_status_gps_t mlGpsStatus;
 #endif
@@ -59,7 +59,7 @@ void mavlinkInit(void) {
     memset(&mlFilteredData, 0, sizeof (mavlink_scaled_imu_t));
     memset(&mlBoot, 0, sizeof (mavlink_boot_t));
     memset(&mlGpsDateTime, 0, sizeof (mavlink_gps_date_time_t));
-    memset(&mlGSLocationFloat, 0, sizeof (mavlink_coordinate_float_t));
+    //memset(&mlGSLocationFloat, 0, sizeof (mavlink_coordinate_float_t));
 #if USE_NMEA
     memset(&mlGpsStatus, 0, sizeof(mavlink_status_gps_t));
 #else 
