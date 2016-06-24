@@ -1,6 +1,6 @@
 #include "MavlinkComm.h"
 #include "mavlinkControlMcu.h"
-#include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER_types.h"
+#include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.h"
 
 //mavlink_raw_imu_t mlRawImuData;
 //mavlink_gps_raw_int_t mlGpsData;
@@ -164,7 +164,7 @@ uint32_t lastNavigationMode;
 
 // }
 
-/* TODO: Commented out for compilation, need to potentially initialize these PARAM values in the model.
+// TODO: Commented out for compilation, need to potentially initialize these PARAM values in the model.
 void populateParameterInterface(void)
 {
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_P], "PID_AIRSPD_P");
@@ -215,5 +215,5 @@ void populateParameterInterface(void)
      
 
 
-} */
+}
 
