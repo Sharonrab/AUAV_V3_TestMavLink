@@ -14,6 +14,7 @@
 
 //#include "../../libUDB/libUDB.h"
 #include "libUDB.h"
+#include "libdcm.h"
 //#include "../../libUDB/magnetometer.h"
 //#include "../../libUDB/heartbeat.h"
 #include "heartbeat.h"
@@ -26,6 +27,44 @@
 #define SIL_WINDOWS_INCS
 #include <Windows.h>
 #include <Time.h>
+
+////////////////////////////////////////////////////////////////////////////////
+// Use variable data width in HILSIM for output channels
+//  This is used to support NUM_OUTPUTS > 8
+// NOTE: Must have correct version of HILSIM to support this
+#define USE_VARIABLE_HILSIM_CHANNELS    0
+union dcm_fbts_word dcm_flags;
+
+// gyro rotation vector:
+fractional omegagyro[] = { 0, 0, 0 };
+static fractional omega[] = { 0, 0, 0 };
+
+#if (HILSIM == 1)
+#if (USE_VARIABLE_HILSIM_CHANNELS != 1)
+uint8_t SIMservoOutputs[] = {
+	0xFF, 0xEE, //sync
+	0x03, 0x04, //S1
+	0x05, 0x06, //S2
+	0x07, 0x08, //S3
+	0x09, 0x0A, //S4
+	0x0B, 0x0C, //S5
+	0x0D, 0x0E, //S6
+	0x0F, 0x10, //S7
+	0x11, 0x12, //S8
+	0x13, 0x14  //checksum
+};
+#define HILSIM_NUM_SERVOS 8
+#else
+#define HILSIM_NUM_SERVOS NUM_OUTPUTS
+uint8_t SIMservoOutputs[(NUM_OUTPUTS * 2) + 5] = {
+	0xFE, 0xEF, // sync
+	0x00        // output count
+				// Two checksum on the end
+};
+#endif // USE_VARIABLE_HILSIM_CHANNELS
+
+void send_HILSIM_outputs(void);
+#endif // HILSIM
 
 struct timezone
 {
@@ -236,6 +275,9 @@ void udb_run(void)
 			//udb_heartbeat_40hz_callback(); // Run at 40Hz
 			//udb_heartbeat_callback(); // Run at HEARTBEAT_HZ
 
+#if (HILSIM == 1)
+			send_HILSIM_outputs();
+#endif
 			sil_ui_update();
 
 //			if (udb_heartbeat_counter % 80 == 0)
@@ -251,6 +293,62 @@ void udb_run(void)
 		process_queued_events();
 //	}
 }
+
+
+#if (HILSIM == 1)
+
+void send_HILSIM_outputs(void)
+{
+	// Setup outputs for HILSIM
+	int16_t i;
+	uint8_t CK_A = 0;
+	uint8_t CK_B = 0;
+	union intbb TempBB;
+
+#if (USE_VARIABLE_HILSIM_CHANNELS != 1)
+	for (i = 1; i <= NUM_OUTPUTS; i++)
+	{
+		TempBB.BB = udb_pwOut[i];
+		SIMservoOutputs[2 * i] = TempBB._.B1;
+		SIMservoOutputs[(2 * i) + 1] = TempBB._.B0;
+	}
+
+	for (i = 2; i < HILSIM_NUM_SERVOS * 2 + 2; i++)
+	{
+		CK_A += SIMservoOutputs[i];
+		CK_B += CK_A;
+	}
+	SIMservoOutputs[i] = CK_A;
+	SIMservoOutputs[i + 1] = CK_B;
+
+	// Send HILSIM outputs
+	gpsoutbin(HILSIM_NUM_SERVOS * 2 + 4, SIMservoOutputs);
+#else
+	for (i = 1; i <= NUM_OUTPUTS; i++)
+	{
+		TempBB.BB = udb_pwOut[i];
+		SIMservoOutputs[(2 * i) + 1] = TempBB._.B1;
+		SIMservoOutputs[(2 * i) + 2] = TempBB._.B0;
+	}
+
+	SIMservoOutputs[2] = NUM_OUTPUTS;
+
+	// Calcualte checksum
+	for (i = 3; i < (NUM_OUTPUTS * 2) + 3; i++)
+	{
+		CK_A += SIMservoOutputs[i];
+		CK_B += CK_A;
+	}
+	SIMservoOutputs[i] = CK_A;
+	SIMservoOutputs[i + 1] = CK_B;
+
+	// Send HILSIM outputs
+	gpsoutbin((HILSIM_NUM_SERVOS * 2) + 5, SIMservoOutputs);
+#endif // USE_VARIABLE_HILSIM_CHANNELS
+}
+
+#endif // HILSIM
+
 
 void udb_background_trigger(background_callback callback)
 {

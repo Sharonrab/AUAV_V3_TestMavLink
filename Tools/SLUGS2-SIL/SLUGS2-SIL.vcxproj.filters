@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\HILSIM_XPlane\UDBSocketWin.c" />
+    <ClCompile Include="flt2frct.c" />
+    <ClCompile Include="frct2flt.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="SIL-24LC256.c" />
+    <ClCompile Include="SIL-dsp.c" />
+    <ClCompile Include="SIL-eeprom.c" />
+    <ClCompile Include="SIL-events.c" />
+    <ClCompile Include="SIL-filesystem.c" />
+    <ClCompile Include="SIL-I2C1.c" />
+    <ClCompile Include="SIL-serial.c" />
+    <ClCompile Include="SIL-udb.c" />
+    <ClCompile Include="SIL-ui-mp-term.c" />
+    <ClCompile Include="clib\MavlinkComm.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\gpsUblox.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\circBuffer.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="external\gpsParseUBX.c">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="external\gpsParseCommon.c">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="external\mathlibNAV.c">
+      <Filter>external</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="clib">
+      <UniqueIdentifier>{aa9f8c95-3a88-4650-b238-0113681ab995}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external">
+      <UniqueIdentifier>{132a45b6-fcbe-4894-a9cd-28ca84cf26ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{68a39a6d-d3a9-44b3-abeb-4aaf5c349b72}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -17,7 +17,7 @@
 #include <Time.h>
 
 #include "../HILSIM_XPlane/UDBSocket.h"
-#include "options.h"
+//#include "options.h"
 #include "SIL-config.h"
 
 UDBSocket stdioSocket;
@@ -97,7 +97,15 @@ int main(int argc, char** argv)
 	}
 
 	stdioSocket = UDBSocket_init(UDBSocketStandardInOut, 0, NULL, NULL, 0);
-	transportSocket = UDBSocket_init(socketType, udpPort, udpHost, serialPort, serialBaud);
+	//transportSocket = UDBSocket_init(socketType, udpPort, udpHost, serialPort, serialBaud);
+	transportSocket = UDBSocket_init((SILSIM_GPS_RUN_AS_SERVER) ?
+					   UDBSocketUDPServer :
+					   UDBSocketUDPClient,
+					   SILSIM_GPS_PORT,
+					   SILSIM_GPS_HOST,
+					   NULL,
+					   0);
+
 	if (!transportSocket) {
 		printf("ERROR: UDBSocket_init failed: %s\n", UDBSocketLastErrorMessage());
 		exit(1);

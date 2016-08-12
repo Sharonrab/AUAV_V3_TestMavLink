@@ -118,7 +118,7 @@ void protDecodeMavlink(void) {
     // increment the age of heartbeat
     mlPending.heartbeatAge++;
 
-    for (i = 0; i <= tmpLen; i++) {
+    for (i = 0; i < tmpLen; i++) {
         // Try to get a new message
        if (mavlink_parse_char(commChannel, readFront(uartMavlinkInBuffer), &msg, &status)) {
                     // Handle message

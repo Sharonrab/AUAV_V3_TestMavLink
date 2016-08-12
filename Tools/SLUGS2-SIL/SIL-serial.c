@@ -29,11 +29,17 @@ int32_t serialRate = 0;
 #define BUFLEN 512
 
 struct CircBuffer com4Buffer;
-CBRef uartBuffer;
+extern CBRef uartBuffer;
+extern CBRef uartMavlinkInBuffer;
 
-const uint8_t* gps_out_buffer = 0;
-int16_t gps_out_buffer_length = 0;
-int16_t gps_out_index = 0;
+//const uint8_t* gps_out_buffer = 0;
+//int16_t gps_out_buffer_length = 0;
+//int16_t gps_out_index = 0;
+
+extern uint8_t* gps_out_buffer;
+extern int16_t gps_out_buffer_length;
+extern int16_t gps_out_index;
+
 
 #define	SERIAL_BUFFER_SIZE  MAVLINK_MAX_PACKET_LEN
 
@@ -117,13 +123,14 @@ void uartBufferInit(void)
 	newCircBuffer(uartBuffer);
 }
 // Got a character from the GPS
-void udb_gps_callback_received_byte(uint8_t rxchar)
-{
-	//bin_out(rxchar);      // binary out to the debugging USART
-	//(*msg_parse)(rxchar);   // parse the input byte
-	writeBack(uartBuffer, (unsigned char)rxchar);
-
-}
+//void udb_gps_callback_received_byte(uint8_t rxchar)
+//{
+//	//bin_out(rxchar);      // binary out to the debugging USART
+//	//(*msg_parse)(rxchar);   // parse the input byte
+//	writeBack(uartBuffer, (unsigned char)rxchar);
+//	gpsUbloxParse();
+//
+//}
 // MAIN MATRIXPILOT MAVLINK CODE FOR RECEIVING COMMANDS FROM THE GROUND CONTROL STATION
 //
 
@@ -134,6 +141,8 @@ mavlink_status_t r_mavlink_status;
 void udb_serial_callback_received_byte(uint8_t rxchar)
 {
 	//	DPRINT("%u \r\n", rxchar);
+	writeBack(uartMavlinkInBuffer, (unsigned char)rxchar);
+	protDecodeMavlink();
 
 	//if (mavlink_parse_char(0, rxchar, &msg[mavlink_message_index], &r_mavlink_status))
 	//{
@@ -149,30 +158,30 @@ void udb_serial_callback_received_byte(uint8_t rxchar)
 	//}
 }
 
-void gpsoutbin(int16_t length, const uint8_t msg[]) // output a binary message to the GPS
-{
-	gps_out_buffer = 0; // clear the buffer pointer first, for safety, in case we're interrupted
-	gps_out_index = 0;
-	gps_out_buffer_length = length;
-	gps_out_buffer = (uint8_t*)msg;
+//void gpsoutbin(int16_t length, const uint8_t msg[]) // output a binary message to the GPS
+//{
+//	gps_out_buffer = 0; // clear the buffer pointer first, for safety, in case we're interrupted
+//	gps_out_index = 0;
+//	gps_out_buffer_length = length;
+//	gps_out_buffer = (uint8_t*)msg;
+//
+//	udb_gps_start_sending_data();
+//}
 
-	udb_gps_start_sending_data();
-}
-
-int16_t udb_gps_callback_get_byte_to_send(void)
-{
-	if (gps_out_buffer != 0 && gps_out_index < gps_out_buffer_length)
-	{
-		// We have a byte to send
-		return (uint8_t)(gps_out_buffer[gps_out_index++]);
-	}
-	else
-	{
-		// No byte to send, so clear the link to the buffer
-		gps_out_buffer = 0;
-	}
-	return -1;
-}
+//int16_t udb_gps_callback_get_byte_to_send(void)
+//{
+//	if (gps_out_buffer != 0 && gps_out_index < gps_out_buffer_length)
+//	{
+//		// We have a byte to send
+//		return (uint8_t)(gps_out_buffer[gps_out_index++]);
+//	}
+//	else
+//	{
+//		// No byte to send, so clear the link to the buffer
+//		gps_out_buffer = 0;
+//	}
+//	return -1;
+//}
 
 int16_t udb_serial_callback_get_byte_to_send(void)
 {

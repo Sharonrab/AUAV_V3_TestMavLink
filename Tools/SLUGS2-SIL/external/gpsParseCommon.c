@@ -22,10 +22,23 @@
 #include "libDCM_internal.h"
 #include "gpsParseCommon.h"
 //#include "estAltitude.h"
-//#include "mathlibNAV.h"
+#include "mathlibNAV.h"
 //#include "rmat.h"
 //#include "../libUDB/interrupt.h"
 #include <string.h>
+
+#include "udbTypes.h"
+
+// gravity, as measured in plane coordinate system
+fractional gplane[] = { 0, 0, GRAVITY };
+int16_t aero_force[] = { 0 , 0 , -GRAVITY };
+
+// horizontal velocity over ground, as measured by GPS (Vz = 0)
+fractional dirOverGndHGPS[] = { 0, RMAX, 0 };
+
+// horizontal direction over ground, as indicated by Rmatrix
+fractional dirOverGndHrmat[] = { 0, RMAX, 0 };
+
 
 
 // GPS modules global variables
@@ -157,6 +170,7 @@ void udb_gps_callback_received_byte(uint8_t rxchar)
 	(*msg_parse)(rxchar);   // parse the input byte
 }
 
+
 boolean gps_nav_capable_check_set(void)
 {
 	if (gps_data_age < GPS_DATA_MAX_AGE) gps_data_age++;
@@ -193,6 +207,9 @@ static void udb_background_callback_triggered(void)
 	struct relative2D velocity_thru_air;
 	int16_t velocity_thru_airz;
 
+#ifdef SLUGS2
+	fractional rmat[] = { RMAX, 0, 0, 0, RMAX, 0, 0, 0, RMAX };
+#endif
 	// compute horizontal projection of air velocity,
 	// taking into account the angle of attack.
 	longaccum.WW = ( __builtin_mulss( rmat[2] , angleOfAttack ) ) << 2 ;
@@ -205,9 +222,11 @@ static void udb_background_callback_triggered(void)
 	{
 		gps_commit_data();
 
-		gps_data_age = 0;
 
+		gps_data_age = 0;
+#ifndef SLUGS2
 		dcm_callback_gps_location_updated();
+#endif
 
 #ifdef USE_EXTENDED_NAV
 		location[1] = ((lat_gps.WW - lat_origin.WW)/90); // in meters, range is about 20 miles
@@ -217,6 +236,7 @@ static void udb_background_callback_triggered(void)
 		accum_nav.WW = ((lat_gps.WW - lat_origin.WW)/90); // in meters, range is about 20 miles
 		location[1] = accum_nav._.W0;
 		accum_nav.WW = long_scale((lon_gps.WW - lon_origin.WW)/90, cos_lat);
+
 		location[0] = accum_nav._.W0;
 #ifdef USE_PRESSURE_ALT
 #warning "using pressure altitude instead of GPS altitude"
@@ -268,13 +288,11 @@ static void udb_background_callback_triggered(void)
 
 		GPSvelocity.z = climb_gps.BB + climb_rate_delta;
 		climb_rate_previous = climb_gps.BB;
-
 		accum_velocity.WW = (__builtin_mulss(cosine(actual_dir), ground_velocity_magnitudeXY) << 2) + 0x00008000;
 		GPSvelocity.x = accum_velocity._.W1;
-
 		accum_velocity.WW = (__builtin_mulss(sine(actual_dir), ground_velocity_magnitudeXY) << 2) + 0x00008000;
-		GPSvelocity.y = accum_velocity._.W1;
 
+		GPSvelocity.y = accum_velocity._.W1;
 		rotate_2D(&location_deltaXY, cog_delta); // this is a key step to account for rotation effects!!
 
 		GPSlocation.x = location[0] + location_deltaXY.x;
@@ -285,9 +303,15 @@ static void udb_background_callback_triggered(void)
 		location_previous[1] = location[1];
 		location_previous[2] = location[2];
 
+#ifndef SLUGS2
 		velocity_thru_air.y = GPSvelocity.y - estimatedWind[1];
 		velocity_thru_air.x = GPSvelocity.x - estimatedWind[0];
 		velocity_thru_airz  = GPSvelocity.z - estimatedWind[2];
+#else
+		velocity_thru_air.y = GPSvelocity.y ;
+		velocity_thru_air.x = GPSvelocity.x ;
+		velocity_thru_airz = GPSvelocity.z ;
+#endif
 
 #if (HILSIM == 1)
 		air_speed_3DGPS = hilsim_airspeed.BB; // use Xplane as a pitot
@@ -296,6 +320,7 @@ static void udb_background_callback_triggered(void)
 #endif
 
 		calculated_heading  = rect_to_polar(&velocity_thru_air);
+
 		// veclocity_thru_air.x becomes XY air speed as a by product of CORDIC routine in rect_to_polar()
 		air_speed_magnitudeXY = velocity_thru_air.x; // in cm / sec
 
@@ -308,10 +333,12 @@ static void udb_background_callback_triggered(void)
 #endif
 
 		velocity_previous = air_speed_3DGPS;
+#ifndef SLUGS2
 
 		estimateWind();
 		estAltitude();
 		estYawDrift();
+#endif
 		dcm_flags._.yaw_req = 1;       // request yaw drift correction
 		dcm_flags._.reckon_req = 1;    // request dead reckoning correction
 		dcm_flags._.rollpitch_req = 1;
