@@ -185,9 +185,11 @@ void udb_serial_callback_received_byte(uint8_t rxchar)
 
 int16_t udb_serial_callback_get_byte_to_send(void)
 {
+
 	if (sb_index < end_index && sb_index < SERIAL_BUFFER_SIZE) // ensure never end up racing thru memory.
 	{
 		uint8_t txchar = serial_buffer[sb_index++];
+		
 		return txchar;
 	}
 	else
@@ -195,6 +197,47 @@ int16_t udb_serial_callback_get_byte_to_send(void)
 		serial_interrupt_stopped = 1;
 	}
 	return -1;
+}
+
+int16_t mavlink_serial_send(mavlink_channel_t UNUSED(chan), const uint8_t buf[], uint16_t len) // RobD
+																							   // Note: Channel Number, chan, is currently ignored.
+{
+	int16_t start_index;
+	int16_t remaining;
+
+#if (USE_TELELOG == 1)
+	//printf("calling log_telemetry with %u bytes\r\n", len);
+	log_telemetry(buf, len);
+#endif // USE_TELELOG
+
+	// Note at the moment, all channels lead to the one serial port
+	if (serial_interrupt_stopped == 1)
+	{
+		sb_index = 0;
+		end_index = 0;
+	}
+	start_index = end_index;
+	remaining = SERIAL_BUFFER_SIZE - start_index;
+
+	//	printf("%u\r\n", remaining);
+
+	if (len > remaining)
+	{
+		// Chuck away the entire packet, as sending partial packet
+		// will break MAVLink CRC checks, and so receiver will throw it away anyway.
+		return (-1);
+	}
+	if (remaining > 1)
+	{
+		memcpy(&serial_buffer[start_index], buf, len);
+		end_index = start_index + len;
+	}
+	if (serial_interrupt_stopped == 1)
+	{
+		serial_interrupt_stopped = 0;
+		udb_serial_start_sending_data();
+	}
+	return (1);
 }
 
 #endif // (WIN == 1 || NIX == 1)

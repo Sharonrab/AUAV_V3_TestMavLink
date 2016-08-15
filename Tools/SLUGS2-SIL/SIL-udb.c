@@ -20,7 +20,10 @@
 #include "heartbeat.h"
 
 #include "SIL-config.h"
+#include "mavlink.h"
 
+mavlink_gps_raw_int_t mlGpsData;       /* '<Root>/mlGpsData' */
+extern uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
 
 #ifdef WIN
 
@@ -240,6 +243,7 @@ void udb_run(void)
 {
 	uint16_t currentTime;
 	static uint16_t nextHeartbeatTime;
+	uint16_t wrote = 0;
 
 	if (!initialised)
 	{
@@ -286,10 +290,25 @@ void udb_run(void)
 				writeEEPROMFileIfNeeded(); // Run at 0.5Hz
 			}
 
+			if (udb_heartbeat_counter % (HEARTBEAT_HZ / 40) == 0)
+			{
+				wrote = PackHeartBeat(/*system_id*/101, /*component_id*/1); // Run at 1Hz
+				mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)wrote);
+			}
+
+			if (udb_heartbeat_counter % (HEARTBEAT_HZ / 10) == 0)
+			{
+			
+				wrote = PackGpsRawInt(/*system_id*/101, /*component_id*/1, mlGpsData, currentTime); // Run at 1Hz
+				mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)wrote);
+			}
+
 			udb_heartbeat_counter++;
-			nextHeartbeatTime = nextHeartbeatTime + UDB_STEP_TIME;
-			if (nextHeartbeatTime > UDB_WRAP_TIME) nextHeartbeatTime -= UDB_WRAP_TIME;
+			
 		}
+		//SLUGS2
+		nextHeartbeatTime = nextHeartbeatTime + UDB_STEP_TIME;
+		if (nextHeartbeatTime > UDB_WRAP_TIME) nextHeartbeatTime -= UDB_WRAP_TIME;
 		process_queued_events();
 //	}
 }

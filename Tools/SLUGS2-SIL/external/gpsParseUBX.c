@@ -26,11 +26,13 @@
 
 #include "udbTypes.h"
 #include "libUDB.h"
+#include "../mavLink/include/common/mavlink.h"
 
 extern fractional gplane[];
 extern int16_t aero_force[];
 extern fractional dirOverGndHGPS[];         //  horizontal velocity over ground, as measured by GPS (Vz = 0 )
 extern fractional dirOverGndHrmat[];        //  horizontal direction over ground, as indicated by Rmatrix
+extern mavlink_gps_raw_int_t mlGpsData;
 
 #if (GPS_TYPE == GPS_UBX_2HZ || GPS_TYPE == GPS_UBX_4HZ || GPS_TYPE == GPS_ALL)
 
@@ -818,16 +820,22 @@ void gps_commit_data(void)
 	week_no         = week_no_;
 	tow             = tow_;
 	lat_gps         = lat_gps_;
+	mlGpsData.lat = lat_gps.WW;
 	lon_gps         = lon_gps_;
-	alt_sl_gps.WW   = alt_sl_gps_.WW / 10;          // SIRF provides altMSL in cm, UBX provides it in mm
+	mlGpsData.lon = lon_gps_.WW;
+	alt_sl_gps.WW   = alt_sl_gps.WW;          // SIRF provides altMSL in cm, UBX provides it in mm
+	mlGpsData.alt = alt_sl_gps.WW;
 	sog_gps.BB      = sog_gps_._.W0;                // SIRF uses 2 byte SOG, UBX provides 4 bytes
+	mlGpsData.vel = sog_gps.BB;
 #if (HILSIM == 1)
 	hilsim_airspeed.BB       = as_sim_._.W0;                 // provided by HILSIM, simulated airspeed
 #endif
 	cog_gps.BB      = (uint16_t)(cog_gps_.WW / 1000);// SIRF uses 2 byte COG, 10^-2 deg, UBX provides 4 bytes, 10^-5 deg
-
+	mlGpsData.cog = cog_gps.BB;
 	climb_gps.BB    = - climb_gps_._.W0;            // SIRF uses 2 byte climb rate, UBX provides 4 bytes
 	hdop            = (uint8_t)(hdop_.BB / 20);     // SIRF scales HDOP by 5, UBX by 10^-2
+	mlGpsData.eph = hdop;
+	mlGpsData.epv = 65535;
 	// SIRF provides position in m, UBX provides cm
 //	xpg.WW          = xpg_.WW / 100;
 //	ypg.WW          = ypg_.WW / 100;
@@ -840,6 +848,8 @@ void gps_commit_data(void)
 //	mode1           = mode1_;
 //	mode2           = mode2_;
 	svs             = svs_;
+	mlGpsData.satellites_visible = svs;
+	mlGpsData.fix_type = nav_valid_;
 
 #if (HILSIM == 1 && MAG_YAW_DRIFT == 1)
 	HILSIM_MagData(udb_magnetometer_callback); // run the magnetometer computations

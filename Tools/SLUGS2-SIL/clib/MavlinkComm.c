@@ -14,7 +14,7 @@
 //#include "AUAV_V3_TestMavlink.h"
 #include "rtwtypes.h"
 
-uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
+uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN ];
 struct CircBuffer comMavlinkBuffer;
 CBRef uartMavlinkInBuffer;
 uint8_T DatafromGSmavlink[MAXINLEN+2];
