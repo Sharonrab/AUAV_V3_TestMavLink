@@ -287,9 +287,9 @@ void udb_run(void)
 //			if (udb_heartbeat_counter % 80 == 0)
 			if (udb_heartbeat_counter % (2 * HEARTBEAT_HZ) == 0)
 			{
-				writeEEPROMFileIfNeeded(); // Run at 0.5Hz
+				//writeEEPROMFileIfNeeded(); // Run at 0.5Hz
 			}
-
+			//SLUGS2
 			if (udb_heartbeat_counter % (HEARTBEAT_HZ / 40) == 0)
 			{
 				wrote = PackHeartBeat(/*system_id*/101, /*component_id*/1); // Run at 1Hz
@@ -298,17 +298,22 @@ void udb_run(void)
 
 			if (udb_heartbeat_counter % (HEARTBEAT_HZ / 10) == 0)
 			{
-			
+
 				wrote = PackGpsRawInt(/*system_id*/101, /*component_id*/1, mlGpsData, currentTime); // Run at 1Hz
 				mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)wrote);
 			}
+			
 
 			udb_heartbeat_counter++;
-			
+			nextHeartbeatTime = nextHeartbeatTime + UDB_STEP_TIME;
+			if (nextHeartbeatTime > UDB_WRAP_TIME) nextHeartbeatTime -= UDB_WRAP_TIME;
 		}
+		
+
 		//SLUGS2
-		nextHeartbeatTime = nextHeartbeatTime + UDB_STEP_TIME;
-		if (nextHeartbeatTime > UDB_WRAP_TIME) nextHeartbeatTime -= UDB_WRAP_TIME;
+		if (wrote>0)
+			Sync_SendSerial();
+
 		process_queued_events();
 //	}
 }
