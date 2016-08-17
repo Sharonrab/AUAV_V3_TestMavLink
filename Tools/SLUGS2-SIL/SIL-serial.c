@@ -232,21 +232,21 @@ int16_t mavlink_serial_send(mavlink_channel_t UNUSED(chan), const uint8_t buf[],
 		memcpy(&serial_buffer[start_index], buf, len);
 		end_index = start_index + len;
 	}
-#ifndef SLUGS2
 	if (serial_interrupt_stopped == 1)
 	{
 		serial_interrupt_stopped = 0;
+#ifndef SLUGS2
 		udb_serial_start_sending_data();
-	}
 #endif
+
+	}
 	return (1);
 }
 #ifdef SLUGS2
 void Sync_SendSerial(void)
 {
-	if (serial_interrupt_stopped == 1)
+	if (serial_interrupt_stopped == 0)
 	{
-		serial_interrupt_stopped = 0;
 		udb_serial_start_sending_data();
 	}
 

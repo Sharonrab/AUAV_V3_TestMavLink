@@ -15,25 +15,35 @@
  *          Wiki:  http://microchip.wikidot.com/simulink:start *
  *--------------------------------------------------------------
  *
- * File: AUAV_V3_TestMavLink_types.h
+ * File: LEDs_Driver.h
  *
- * Real-Time Workshop code generated for Simulink model AUAV_V3_TestMavLink.
+ * Real-Time Workshop code generated for Simulink model AUAV_V3_TestSensors.
  *
- * Model version                        : 1.7
+ * Model version                        : 1.138
  * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Fri May 06 13:10:25 2016
+ * Real-Time Workshop file generated on : Mon Aug 15 18:59:16 2016
  * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Fri May 06 13:10:26 2016
+ * C source code generated on           : Mon Aug 15 18:59:19 2016
  */
 
-#ifndef RTW_HEADER_AUAV_V3_TestMavLink_types_h_
-#define RTW_HEADER_AUAV_V3_TestMavLink_types_h_
-#include "mavlink.h"
+#ifndef RTW_HEADER_LEDs_Driver_h_
+#define RTW_HEADER_LEDs_Driver_h_
+#ifndef AUAV_V3_TestSensors_COMMON_INCLUDES_
+# define AUAV_V3_TestSensors_COMMON_INCLUDES_
+#include "rtwtypes.h"
+#endif                                 /* AUAV_V3_TestSensors_COMMON_INCLUDES_ */
 
-/* Forward declaration for rtModel */
-typedef struct tag_RTM_AUAV_V3_TestMavLink_T RT_MODEL_AUAV_V3_TestMavLink_T;
+#include "AUAV_V3_TestSensors_types.h"
 
-#endif                                 /* RTW_HEADER_AUAV_V3_TestMavLink_types_h_ */
+/* Shared type includes */
+#include "multiword_types.h"
+
+extern void AUAV_V3_TestSe_LEDs_DriverTID2(void);
+extern void AUAV_V3_TestSe_LEDs_DriverTID3(void);
+extern void AUAV_V3_TestSe_LEDs_DriverTID9(void);
+extern void AUAV_V3_TestSe_LEDs_DriverTID10(void);
+
+#endif                                 /* RTW_HEADER_LEDs_Driver_h_ */
 
 /* File trailer for Real-Time Workshop generated code.
  *

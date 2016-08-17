@@ -1,6 +1,7 @@
+
 #include "MavlinkComm.h"
 #include "circBuffer.h"
-#include "gpsPort.h"
+
 #include <stdio.h>
 #ifdef UNIT_TEST
 #include "AUAV_V3_TestMavLink.h"
@@ -28,16 +29,17 @@ mavlink_mission_ack_t mlWpAck;
 struct pi_struct mlParamInterface;
 
 void uartMavlinkBufferInit (void){
+#if (WIN != 1)
   _U1RXIP = 1;                         /* Rx Interrupt priority set to 1 */
   _U1RXIF = 0;
   _U1RXIE = 1;                         /* Enable Interrupt */
   /* Configure Remappables Pins */
    RPINR18 = 0x62;
-
+#endif
   uartMavlinkInBuffer = (struct CircBuffer*) &comMavlinkBuffer;
   newCircBuffer(uartMavlinkInBuffer);
 }
-
+#if (WIN != 1)
 void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void)
 {
   //
@@ -58,11 +60,11 @@ void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void)
     IFS0bits.U1RXIF = 0;
 
 }
-
- uint8_t isFinite(float s) {
-//  By IEEE 754 rule, 2*Inf equals Inf
-   return ((s == s) && ((s == 0) || (s != 2*s)));
- }
+#endif
+uint8_t isFinite(float s) {
+  // By IEEE 754 rule, 2*Inf equals Inf
+  return ((s == s) && ((s == 0) || (s != 2*s)));
+}
 
 void InitParameterInterface(void)
 {
@@ -114,7 +116,7 @@ void protDecodeMavlink(void) {
     // increment the age of heartbeat
     mlPending.heartbeatAge++;
 
-    for (i = 0; i <= tmpLen; i++) {
+    for (i = 0; i < tmpLen; i++) {
         // Try to get a new message
        if (mavlink_parse_char(commChannel, readFront(uartMavlinkInBuffer), &msg, &status)) {
                     // Handle message
@@ -799,9 +801,11 @@ char sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* 
 //    return(UartOutBuff[idx]);
 //}
 /* Declare UART1 Tx Circular Buffer Structure */
+
 extern MCHP_UART1_TxStr MCHP_UART1_Tx;
 
 void TxN_Data_OverU1(uint16_t N){
+#if (WIN != 1)//SLUGS2 SIL
   uint16_T i;
   for (i = 0U; i < N; i++) {
     uint16_T Tmp;
@@ -814,4 +818,8 @@ void TxN_Data_OverU1(uint16_t N){
     }
   }
   _U1TXIF = U1STAbits.TRMT;
+#else
+	mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)N);
+
+#endif
 }

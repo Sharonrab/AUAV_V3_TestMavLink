@@ -33,7 +33,7 @@ mavlink_sensor_diag_t mlSensorDiag;
 // via SPI
 //mavlink_set_gps_global_origin_t mlGSLocation;
 mavlink_command_ack_t mlCommandAck;
-mavlink_servo_output_raw_t mlPwmCommands;
+extern mavlink_servo_output_raw_t mlPwmCommands;
 
 // Debug
 mavlink_statustext_t mlStatustext;

@@ -38,23 +38,24 @@ THE SOFTWARE.
 // Code by: Mariano I. Lizarraga
 // First Revision: Aug 21 2008 @ 21:15
 // ==============================================================
+//#ifdef UNIT_TEST
+//#include "UnitTest.h"
+//#else
+//#include "AUAV3_AND_SLUGS_SENSOR.h"
+//#endif
 
-//#include "AUAV3_defines.h"
-
-//#include "rtwtypes.h"
-//#include "AUAV_V3_TestMavLink.h"
+#include "..\mavlink\include\slugs\mavlink.h"
 #include "gpsUblox.h"
 #include "circBuffer.h"
-#include "libUDB.h"
-
-#include "../mavLink/include/common/mavlink.h"
-
-
 
 // this function converts one hex ascii character to decimal
 // used for the checksum comparison
 // Kindly contributed by: Bryant Mairs
+#ifdef WIN
 CBRef uartBuffer;
+#else
+extern CBRef uartBuffer;
+#endif
 extern mavlink_gps_raw_int_t mlGpsData;
 
 char hex2char(char halfhex) {

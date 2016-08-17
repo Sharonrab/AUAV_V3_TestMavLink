@@ -32,9 +32,30 @@
     <ClCompile Include="external\mathlibNAV.c">
       <Filter>external</Filter>
     </ClCompile>
+    <ClCompile Include="model\Mavlink_TX_Adapter.c">
+      <Filter>Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="model\rtwtypes.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Mavlink_TX_Adapter.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\auav_v3_testsensors.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\AUAV_V3_TestSensors_private.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\AUAV_V3_TestSensors_types.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\multiword_types.h">
+      <Filter>Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="clib">

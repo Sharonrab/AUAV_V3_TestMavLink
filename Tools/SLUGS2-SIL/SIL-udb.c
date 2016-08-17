@@ -292,15 +292,28 @@ void udb_run(void)
 			//SLUGS2
 			if (udb_heartbeat_counter % (HEARTBEAT_HZ / 40) == 0)
 			{
-				wrote = PackHeartBeat(/*system_id*/101, /*component_id*/1); // Run at 1Hz
-				mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)wrote);
+				//wrote = PackHeartBeat(/*system_id*/101, /*component_id*/1); // Run at 1Hz
+				//mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)wrote);
+
+				/* Outputs for Atomic SubSystem: '<Root>/Mavlink_TX_Adapter' */
+				AUAV_V3_Mavlink_TX_AdapterTID10();
+
+				/* End of Outputs for SubSystem: '<Root>/Mavlink_TX_Adapter' */
 			}
 
 			if (udb_heartbeat_counter % (HEARTBEAT_HZ / 10) == 0)
 			{
 
-				wrote = PackGpsRawInt(/*system_id*/101, /*component_id*/1, mlGpsData, currentTime); // Run at 1Hz
-				mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)wrote);
+				//wrote = PackGpsRawInt(/*system_id*/101, /*component_id*/1, mlGpsData, currentTime); // Run at 1Hz
+				//mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)wrote);
+
+				AUAV_V3_Mavlink_TX_AdapterTID4();
+			}
+
+			if (udb_heartbeat_counter % (HEARTBEAT_HZ / 5) == 0)
+			{
+								
+				AUAV_V3_Mavlink_TX_AdapterTID1();
 			}
 			
 
@@ -311,7 +324,7 @@ void udb_run(void)
 		
 
 		//SLUGS2
-		if (wrote>0)
+		//if (wrote>0)
 			Sync_SendSerial();
 
 		process_queued_events();

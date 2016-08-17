@@ -1,20 +1,19 @@
-//#include "AUAV3_defines.h"
-#include "libUDB.h"
-
-//#include "mavlink.h"
-#include "../mavLink/include/common/mavlink.h"
 
 #include "MavlinkComm.h"
 #include "circBuffer.h"
-//#include "rtwtypes.h"
 
-#include "inttypes.h"
-//#include "gpsPort.h"
 #include <stdio.h>
-//#include "AUAV_V3_TestMavlink.h"
-#include "rtwtypes.h"
+#ifdef UNIT_TEST
+#include "AUAV_V3_TestMavLink.h"
 
-uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN ];
+#elif defined  SENSORS_UNIT_TEST
+#include "AUAV_V3_TestSensors.h"
+#else
+#include "AUAV3_AND_SLUGS_SENSOR.h"
+
+#endif
+
+uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
 struct CircBuffer comMavlinkBuffer;
 CBRef uartMavlinkInBuffer;
 uint8_T DatafromGSmavlink[MAXINLEN+2];
@@ -28,7 +27,6 @@ mavlink_set_gps_global_origin_t mlGSLocation;
 mavlink_mission_ack_t mlWpAck;
 
 struct pi_struct mlParamInterface;
-
 
 void uartMavlinkBufferInit (void){
 #if (WIN != 1)
@@ -99,7 +97,7 @@ void protDecodeMavlink(void) {
     mavlink_param_set_t set;
     mavlink_message_t msg;
     mavlink_status_t status;
-    uint8_t* dataIn;
+   // uint8_t* dataIn;
     // fix the data length so if the interrupt adds data
     // during execution of this block, it will be read
     // until the next gsRead
@@ -746,6 +744,42 @@ uint16_t PackSysStatus(uint8_t system_id, uint8_t component_id, mavlink_sys_stat
                    mlSysStatus.errors_count1, mlSysStatus.errors_count2, mlSysStatus.errors_count3, mlSysStatus.errors_count4);
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
 }
+uint16_t PackRawServo(uint8_t system_id, uint8_t component_id, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_servo_output_raw_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlPwmCommands.port, mlPwmCommands.servo1_raw, mlPwmCommands.servo2_raw, mlPwmCommands.servo3_raw, mlPwmCommands.servo4_raw, mlPwmCommands.servo5_raw, mlPwmCommands.servo6_raw, mlPwmCommands.servo7_raw, mlPwmCommands.servo8_raw );
+  return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
+
+uint16_t PackRawRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_rc_channels_raw_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlRC_Commands.port, mlRC_Commands.chan1_raw, mlRC_Commands.chan2_raw, mlRC_Commands.chan3_raw, mlRC_Commands.chan4_raw, mlRC_Commands.chan5_raw, mlRC_Commands.chan6_raw, mlRC_Commands.chan7_raw, mlRC_Commands.chan8_raw,mlRC_Commands.rssi );
+  return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
+
+uint16_t PackVFR_HUD(uint8_t system_id, uint8_t component_id, mavlink_vfr_hud_t mlVfr_hud ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_vfr_hud_pack(mavlink_system.sysid, mavlink_system.compid, &msg , mlVfr_hud.airspeed, mlVfr_hud.groundspeed, mlVfr_hud.heading, mlVfr_hud.throttle, mlVfr_hud.alt, mlVfr_hud.climb );
+                                                                                
+  return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
 
 char sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart) {
     mavlink_message_t msg;
@@ -767,10 +801,11 @@ char sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* 
 //    return(UartOutBuff[idx]);
 //}
 /* Declare UART1 Tx Circular Buffer Structure */
-#if (WIN != 1)
+
 extern MCHP_UART1_TxStr MCHP_UART1_Tx;
 
 void TxN_Data_OverU1(uint16_t N){
+#if (WIN != 1)//SLUGS2 SIL
   uint16_T i;
   for (i = 0U; i < N; i++) {
     uint16_T Tmp;
@@ -783,5 +818,8 @@ void TxN_Data_OverU1(uint16_t N){
     }
   }
   _U1TXIF = U1STAbits.TRMT;
-}
+#else
+	mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)N);
+
 #endif
+}

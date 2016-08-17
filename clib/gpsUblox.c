@@ -51,7 +51,11 @@ THE SOFTWARE.
 // this function converts one hex ascii character to decimal
 // used for the checksum comparison
 // Kindly contributed by: Bryant Mairs
+#ifdef WIN
+CBRef uartBuffer;
+#else
 extern CBRef uartBuffer;
+#endif
 extern mavlink_gps_raw_int_t mlGpsData;
 
 char hex2char(char halfhex) {

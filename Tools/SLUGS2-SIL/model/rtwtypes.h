@@ -17,13 +17,13 @@
  *
  * File: rtwtypes.h
  *
- * Real-Time Workshop code generated for Simulink model AUAV_V3_TestMavLink.
+ * Real-Time Workshop code generated for Simulink model AUAV_V3_TestSensors.
  *
- * Model version                        : 1.7
+ * Model version                        : 1.138
  * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Fri May 06 13:10:25 2016
+ * Real-Time Workshop file generated on : Mon Aug 15 17:25:56 2016
  * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Fri May 06 13:10:26 2016
+ * C source code generated on           : Mon Aug 15 17:25:58 2016
  */
 
 #ifndef __RTWTYPES_H__
