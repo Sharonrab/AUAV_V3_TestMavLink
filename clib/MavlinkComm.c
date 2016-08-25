@@ -9,7 +9,7 @@
 #elif defined  SENSORS_UNIT_TEST
 #include "AUAV_V3_TestSensors.h"
 #else
-#include "AUAV3_AND_SLUGS_SENSOR.h"
+#include "AUAV_V3_TestSensors.h"
 
 #endif
 

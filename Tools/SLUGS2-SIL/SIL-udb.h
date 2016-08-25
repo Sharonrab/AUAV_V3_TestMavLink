@@ -69,6 +69,8 @@ uint16_t get_reset_flags(void);
 void sil_reset(void);
 
 uint16_t get_current_milliseconds(void);
+uint64_t get_current_microseconds(void);
+
 void sleep_milliseconds(uint16_t ms);
 
 

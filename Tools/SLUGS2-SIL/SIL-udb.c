@@ -22,6 +22,9 @@
 #include "SIL-config.h"
 #include "mavlink.h"
 
+/* Include model header file for global data */
+#include "AUAV_V3_TestSensors.h"
+
 mavlink_gps_raw_int_t mlGpsData;       /* '<Root>/mlGpsData' */
 extern uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
 
@@ -244,6 +247,7 @@ void udb_run(void)
 	uint16_t currentTime;
 	static uint16_t nextHeartbeatTime;
 	uint16_t wrote = 0;
+	
 
 	if (!initialised)
 	{
@@ -264,10 +268,16 @@ void udb_run(void)
 
 		currentTime = get_current_milliseconds();
 
+		AUAV_V3_TestSensors_DWork.time_since_boot_usec = get_current_microseconds();
+
+
 		if (currentTime >= nextHeartbeatTime &&
 		    !(nextHeartbeatTime <= UDB_STEP_TIME && 
 		    currentTime >= UDB_WRAP_TIME-UDB_STEP_TIME))
 		{
+			
+
+			
 			udb_callback_read_sensors();
 
 			udb_flags._.radio_on = (sil_radio_on && 
@@ -297,6 +307,8 @@ void udb_run(void)
 
 				/* Outputs for Atomic SubSystem: '<Root>/Mavlink_TX_Adapter' */
 				AUAV_V3_Mavlink_TX_AdapterTID10();
+				
+				AUAV_V3_Mavlink_TX_AdapterTID5();
 
 				/* End of Outputs for SubSystem: '<Root>/Mavlink_TX_Adapter' */
 			}
@@ -461,6 +473,17 @@ uint16_t get_current_milliseconds(void)
 
 	gettimeofday(&tv,&tz);
 	return tv.tv_usec / 1000;
+}
+
+// time functions
+uint64_t get_current_microseconds(void)
+{
+	// *nix / mac implementation
+	struct timeval tv;
+	struct timezone tz;
+
+	gettimeofday(&tv, &tz);
+	return tv.tv_usec ;
 }
 
 void sleep_milliseconds(uint16_t ms)
