@@ -95,10 +95,10 @@ void uartMavlinkBufferInit (void);
     PAR_PARAM_COUNT // Always at the end, do not assign value
   };
   
-  struct pi_struct {
+  typedef struct pi_struct {
     float param[PAR_PARAM_COUNT];
     char param_name[PAR_PARAM_COUNT][PARAM_NAME_LENGTH];
-  };
+  } pi_struct;
 
    typedef struct mavlink_pending_requests_t {
         // requests

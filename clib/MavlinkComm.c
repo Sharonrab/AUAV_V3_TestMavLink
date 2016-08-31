@@ -4,7 +4,8 @@
 
 #include <stdio.h>
 #ifdef UNIT_TEST
-#include "AUAV_V3_TestMavLink.h"
+//#include "AUAV_V3_TestMavLink.h"
+#include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.h"
 
 #elif defined  SENSORS_UNIT_TEST
 #include "AUAV_V3_TestSensors.h"
@@ -21,12 +22,12 @@ mavlink_pending_requests_t mlPending;
 mavlink_heartbeat_t mlHeartbeat;
 mavlink_mission_count_t mlWpCount;
 mavlink_mission_request_t mlWpRequest;
-mavlink_mission_item_values_t mlWpValues; //defined in MavlinkComm.h
+//mavlink_mission_item_values_t mlWpValues; //defined in MavlinkComm.h
 mavlink_mission_item_t mlSingleWp;
 mavlink_set_gps_global_origin_t mlGSLocation;
 mavlink_mission_ack_t mlWpAck;
 
-struct pi_struct mlParamInterface;
+//pi_struct mlParamInterface;
 
 void uartMavlinkBufferInit (void){
 #if (WIN != 1)
