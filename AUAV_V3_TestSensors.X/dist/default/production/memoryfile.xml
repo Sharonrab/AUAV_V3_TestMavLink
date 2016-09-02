@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/AUAV_V3_TestSensors.X.production.elf">
+  <executable name="AUAV_V3_TestSensors.elf">
     <memory name="data">
       <units>bytes</units>
       <length>53248</length>
-      <used>5002</used>
-      <free>48246</free>
+      <used>10090</used>
+      <free>43158</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
       <length>524544</length>
-      <used>30018</used>
-      <free>494526</free>
+      <used>89367</used>
+      <free>435177</free>
     </memory>
   </executable>
 </project>

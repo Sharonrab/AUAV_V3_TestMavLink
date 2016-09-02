@@ -15,18 +15,20 @@
 #--------------------------------------------------------------
 #------------------------ Macros read by make_rtw ------------------------------
 MAKECMD 			 = "C:/Program Files/MATLAB/MATLAB Production Server/R2015a/bin/win64/gmake"
-HOST             = ANY
+HOST             = PC
+#HOST 			 = ANY
 BUILD            = yes
-BUILD_SUCCESS    = *** Created
+BUILD_SUCCESS    = +++ Created
 SYS_TARGET_FILE  = MCHP_dsPIC_stf.tlc
 MAKEFILE_FILESEP = /
 #---------------------- Tokens expanded by make_rtw ----------------------------
 #
-# The following tokens, when wrapped with "|>" and "<|" are expanded by the 
+# The following tokens, when wrapped with "|>" and "<|" are expanded by the
 # Real-Time Workshop build procedure.
-#   
+#
 MODEL                   = AUAV_V3_TestSensors
-MODULES                 = AUAV_V3_TestSensors_main.c MCHP_I2C2_Interrupt.c MCHP_I2C2_Interrupt_data.c MCHP_IC_Interrupt.c MCHP_SPI1_Interrupt.c MCHP_SPI1_Interrupt_data.c MCHP_UART1_Interrupt.c MCHP_UART4_Interrupt.c MavlinkComm.c adisCube16405.c apUtils.c circBuffer.c gpsPort.c gpsUblox.c hil.c mavlinkSensorMcu.c novatel.c updateSensorMcuState.c 
+MODULES                 = AUAV_V3_TestSensors_data.c AUAV_V3_TestSensors_main.c Barometer_Driver.c IMU_Mag_Driver.c LEDs_Driver.c MCHP_I2C2_Interrupt.c MCHP_I2C2_Interrupt_data.c MCHP_SPI1_Interrupt.c MCHP_SPI1_Interrupt_data.c MCHP_UART1_Interrupt.c MCHP_UART4_Interrupt.c MavlinkComm.c Mavlink_TX_Adapter.c Position_and_Attitude_Filter.c Sensor_Data_Adapter.c adisCube16405.c apUtils.c circBuffer.c gpsPort.c gpsUblox.c hil.c mavlinkCommsControlMcu.c mavlinkControlMcu.c mavlinkSensorMcu.c navSupport.c novatel.c rtGetInf.c rtGetNaN.c rt_nonfinite.c rt_sys_AUAV_V3_TestSensors_2.c rt_sys_AUAV_V3_TestSensors_3.c updateControlMcuState.c updateSensorMcuState.c 
+#MODULES_OBJ		    = AUAV_V3_TestSensors_data.obj AUAV_V3_TestSensors_main.obj Barometer_Driver.obj IMU_Mag_Driver.obj LEDs_Driver.obj MCHP_I2C2_Interrupt.obj MCHP_I2C2_Interrupt_data.obj MCHP_SPI1_Interrupt.obj MCHP_SPI1_Interrupt_data.obj MCHP_UART1_Interrupt.obj MCHP_UART4_Interrupt.obj MavlinkComm.obj Mavlink_TX_Adapter.obj Position_and_Attitude_Filter.obj Sensor_Data_Adapter.obj adisCube16405.obj apUtils.obj circBuffer.obj gpsPort.obj gpsUblox.obj hil.obj mavlinkCommsControlMcu.obj mavlinkControlMcu.obj mavlinkSensorMcu.obj navSupport.obj novatel.obj rtGetInf.obj rtGetNaN.obj rt_nonfinite.obj rt_sys_AUAV_V3_TestSensors_2.obj rt_sys_AUAV_V3_TestSensors_3.obj updateControlMcuState.obj updateSensorMcuState.obj 
 MAKEFILE                = AUAV_V3_TestSensors.mk
 MATLAB_ROOT             = C:/Program Files/MATLAB/MATLAB Production Server/R2015a
 ALT_MATLAB_ROOT         = C:/PROGRA~1/MATLAB/MATLAB~1/R2015a
@@ -34,10 +36,10 @@ MASTER_ANCHOR_DIR       =
 START_DIR               = C:/Users/sharon/Documents/GitHub/AUAV_V3_TestMavLink
 S_FUNCTIONS             = 
 S_FUNCTIONS_LIB         = 
-NUMST                   = 11
+NUMST                   = 12
 NCSTATES                = 0
 COMPUTER                = PCWIN64
-BUILDARGS               =  GENERATE_ASAP2=0 HOST_PLATFORM="PC" MCHP_AUTO_FLASH=1 MCHP_MULTITHREAD_COMPILATION=0 ISPROTECTINGMODEL=NOTPROTECTING
+BUILDARGS               =  GENERATE_ASAP2=0 MCHP_AUTO_FLASH=1 MCHP_MULTITHREAD_COMPILATION=1 ISPROTECTINGMODEL=NOTPROTECTING
 MULTITASKING            = 1
 INTEGER_CODE            = 0
 MAT_FILE                = 0
@@ -89,17 +91,17 @@ ProduceHexOutput = 1
 
 GCC1    = xc16-gcc.exe
 AR1     = xc16-ar
-BIN2HEX = xc16-bin2hex 	
+BIN2HEX = xc16-bin2hex
 OBJDUMP = xc16-objdump
 
-GCCPATH	= C:\PROGRA~2\MICROC~1\xc16\v1.26\bin
+GCCPATH	= C:/PROGRA~2/MICROC~1/xc16/v1.26/bin
 ifeq ($(strip $(GCCPATH)),)
-	CC   = $(GCC1)  
-	CPP  = $(GCC1) 
-	LD   = $(GCC1) 
+	CC   = $(GCC1)
+	CPP  = $(GCC1)
+	LD   = $(GCC1)
 	AR   = $(AR1) -r -omf=$(OMF)
 else
-	AR   = $(GCCPATH)/(AR1) 
+	AR   = $(GCCPATH)/(AR1)
 	CC   = "$(GCCPATH)/$(GCC1)"
 	CPP  = "$(GCCPATH)/$(GCC1)"
 	LD   = "$(GCCPATH)/$(GCC1)"
@@ -116,11 +118,11 @@ endif
 EXTMODE_DATA_UPLOAD = 0
 OMF   	        = elf
 
-OPTIM_GCC 		=  -O3 -mlarge-data -mlarge-scalar -fschedule-insns -fschedule-insns2
-LDFLAGS 		= -t,--report-mem,-Map=info.map,-cref
-LINKER_SCRIPT 	= "C:\PROGRA~2\MICROC~1\xc16\v1.26\support\dsPIC33E\gld\P35C90~1.GLD"
-PIC_LIB 		= C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\dsPIC33E\libp33EP512MU810-elf.a C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libpic30-elf.a C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libm-elf.a C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libc-elf.a C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libq-elf.a C:\PROGRA~2\MICROC~1\xc16\v1.26\lib\libq-dsp-elf.a
-PIC_INCLUDES 	= -IC:\PROGRA~2\MICROC~1\xc16\v1.26\include -IC:\PROGRA~2\MICROC~1\xc16\v1.26\support\dsPIC33E\h -IC:\PROGRA~2\MICROC~1\xc16\v1.26\support\generic\h -IC:\PROGRA~2\MICROC~1\xc16\v1.26\support\PERIPH~2
+OPTIM_GCC 		=  -O3 -mlarge-data -mlarge-scalar
+LDFLAGS 		= -t,--report-mem,-Map=info.map,-cref,--memorysummary,memoryfile.xml
+LINKER_SCRIPT 	= "C:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/gld/P35C90~1.GLD"
+PIC_LIB 		= C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/dsPIC33E/libp33EP512MU810-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libpic30-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libm-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libc-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libq-elf.a C:/PROGRA~2/MICROC~1/xc16/v1.26/lib/libq-dsp-elf.a 
+PIC_INCLUDES 	= -IC:/PROGRA~2/MICROC~1/xc16/v1.26/include -IC:/PROGRA~2/MICROC~1/xc16/v1.26/support/dsPIC33E/h -IC:/PROGRA~2/MICROC~1/xc16/v1.26/support/generic/h
 PIC_REF 		= 33EP512MU810
 
 #-- always add one space just before -Xlinker solve possible ambiguity while using -Wl flag. Solve problem when LDFLAGS starts with -Xlinker (old style)
@@ -131,7 +133,7 @@ MCPU  			   = -mcpu=$(PIC_REF)
 PROGRAM_FILE_EXT   = .$(subst coff,cof,$(OMF))
 
 T_LINKER_SCRIPT = -omf=$(OMF) -Wl,--script=$(LINKER_SCRIPT)
-												
+
 LDLIBPIC = $(PIC_LIB)
 
 
@@ -154,7 +156,7 @@ ifeq ($(EXT_MODE),1)
 	ifeq ($(MULTITASKING),1)
 		LDFLAGS += -Wl,--wrap,_SetParam
 	endif
-	
+
 	CC_OPTS += -DEXT_MODE=1 -DMODEL=$(MODEL) -DNUMST=$(NUMST)  -DEXTMODE_DISABLEPRINTF=1 -DEXTMODE_DISABLE_ARGS_PROCESSING=1
 	ifeq ($(EXTMODE_DATA_UPLOAD),0)
 		CC_OPTS 		+= -DEXTMODE_DISABLESIGNALMONITORING=1
@@ -164,9 +166,9 @@ ifeq ($(EXT_MODE),1)
 
 	#external mode sources
 	EXT_SRC  = ext_svr.c updown.c ext_work.c rtiostream_interface.c
-  
+
 	# static memory management (optional)
-	ifeq ($(EXTMODE_STATIC),1) 
+	ifeq ($(EXTMODE_STATIC),1)
 	  EXT_SRC += mem_mgr.c
 	  CC_OPTS +=  -DEXTMODE_STATIC=1 -DEXTMODE_STATIC_SIZE=$(EXTMODE_STATIC_SIZE)
 	endif
@@ -177,9 +179,9 @@ endif
 
 
 
-# Keep following line, help the Matlab programming tool to find the programmer. 												
+# Keep following line, help the Matlab programming tool to find the programmer.
 # Additional info : PICREF{33EP512MU810} PROGRAMMER{PICkit3 S.No : BUR102554963}
-												
+
 #------------------------------ Include Path -----------------------------------
 #
 MATLAB_INCLUDES = \
@@ -189,19 +191,23 @@ MATLAB_INCLUDES = \
 	-I$(MATLAB_ROOT)/rtw/c/src \
 	-I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common
 
-# Additional includes 
+# Additional includes
 #
 ADD_INCLUDES = \
 	-I$(START_DIR)/AUAV_V3_TestSensors.X \
 	-I$(START_DIR) \
 	-I$(START_DIR)/mavlink/include/slugs \
 	-I$(START_DIR)/clib \
+	-I$(MATLAB_ROOT)/toolbox/dsp/include \
+	-I$(MATLAB_ROOT)/toolbox/dsp/extern/src/export/include/src \
+	-I$(MATLAB_ROOT)/toolbox/dsp/extern/src/export/include \
+	-I$(MATLAB_ROOT)/toolbox/shared/dsp/vision/matlab/include \
 
 
 
 SHARED_INCLUDES =
 ifneq ($(SHARED_SRC_DIR),)
-SHARED_INCLUDES = -I$(SHARED_SRC_DIR) 
+SHARED_INCLUDES = -I$(SHARED_SRC_DIR)
 endif
 
 INCLUDES = -I. -I$(RELATIVE_PATH_TO_ANCHOR) $(MATLAB_INCLUDES) $(ADD_INCLUDES) \
@@ -209,7 +215,7 @@ INCLUDES = -I. -I$(RELATIVE_PATH_TO_ANCHOR) $(MATLAB_INCLUDES) $(ADD_INCLUDES) \
            $(SHARED_INCLUDES)
 
 #-------------------------------- C Flags --------------------------------------
-# General User Options 
+# General User Options
 
 # New : to support Continuous States ? find in "Upgrading from V3.2.1 or V3.2"
 CPP_REQ_DEFINES = -DMODEL=$(MODEL) -DNUMST=$(NUMST) -DNCSTATES=$(NCSTATES) \
@@ -219,7 +225,7 @@ CPP_REQ_DEFINES = -DMODEL=$(MODEL) -DNUMST=$(NUMST) -DNCSTATES=$(NCSTATES) \
 		  -DCLASSIC_INTERFACE=$(CLASSIC_INTERFACE)\
 		  -DADD_MDL_NAME_TO_GLOBALS=$(ADD_MDL_NAME_TO_GLOBALS)
 
-CFLAGS    =$(CC_OPTS)  $(INCLUDES) 
+CFLAGS    =$(CC_OPTS)  $(INCLUDES)
 CPPFLAGS = $(CC_OPTS)  $(INCLUDES)
 
 LIBS =
@@ -248,12 +254,12 @@ else
 	# Building executable for real-time deployment
 	BUILD_MODE=real_time
 	# remove MODELLIB from linker
-	# MODELLIB =	
+	# MODELLIB =
 	PRODUCT = $(MODEL)$(PROGRAM_FILE_EXT)
 	BUILD_PRODUCT_TYPE = executable
 endif
 else
-# Building executable for deployment as PIL application (non-real-time 
+# Building executable for deployment as PIL application (non-real-time
 # simulation)
 BUILD_MODE=pil_application
 PRODUCT = $(MODEL)$(PROGRAM_FILE_EXT)
@@ -268,8 +274,24 @@ endif
 
 #----------------------------- Source Files ------------------------------------
 
+# add assembly source file from root folder, generated by Code Replacement Library and others
+#ASM_OPTIM_SRCS = 
+#
+#ASM_OPTIM_SRCS += $(wildcard $(START_DIR)/AUAV_V3_TestSensors.X/*.s) 
+#ASM_OPTIM_SRCS += $(wildcard $(START_DIR)/*.s) 
+#ASM_OPTIM_SRCS += $(wildcard $(START_DIR)/mavlink/include/slugs/*.s) 
+#ASM_OPTIM_SRCS += $(wildcard $(START_DIR)/clib/*.s) 
+#ASM_OPTIM_SRCS += $(wildcard $(MATLAB_ROOT)/toolbox/dsp/include/*.s) 
+#ASM_OPTIM_SRCS += $(wildcard $(MATLAB_ROOT)/toolbox/dsp/extern/src/export/include/src/*.s) 
+#ASM_OPTIM_SRCS += $(wildcard $(MATLAB_ROOT)/toolbox/dsp/extern/src/export/include/*.s) 
+#ASM_OPTIM_SRCS += $(wildcard $(MATLAB_ROOT)/toolbox/shared/dsp/vision/matlab/include/*.s) 
+
+#ASM_OPTIM_SRCS = $(wildcard *.s)
+#    # for instrumented code
+#ASM_OPTIM_SRCS = $(wildcard ../*.s) 
 
 SRCS = $(S_FUNCTIONS)
+#SRCS += $(ASM_OPTIM_SRCS)
 
 ifeq ($(BUILD_MODE), pil_prebuild)
   SRCS += $(MODULES) $(MODEL).$(TARGET_LANG_EXT) $(EXT_SRC)
@@ -331,7 +353,7 @@ $(SHARED_LIB) : $(SHARED_OBJS)
 
 ##-------------------------- Support for building modules ----------------------
 ifeq ($(BUILD_MODE), pil_prebuild)
-$(PRODUCT) : $(OBJS) $(SHARED_LIB)	
+$(PRODUCT) : $(OBJS) $(SHARED_LIB)
 	@echo ### BUILD_MODE $(BUILD_MODE)
 	@echo ### Created $(PRODUCT)
 endif
@@ -341,39 +363,39 @@ ifeq ($(BUILD_MODE), model_reference)
 $(PRODUCT) : $(OBJS) $(SHARED_LIB) $(LIBS)
 	@echo ### BUILD_MODE $(BUILD_MODE)
 	@echo ### Creating library ...
-	$(AR) $(PRODUCT) $(OBJS) 
-	@echo "$(BUILD_SUCCESS) $(BUILD_PRODUCT_TYPE): $@"	
-endif		
-		
+	$(AR) $(PRODUCT) $(OBJS)
+	@echo "$(BUILD_SUCCESS) $(BUILD_PRODUCT_TYPE): $@"
+endif
+
 
 ifeq ($(BUILD_MODE), pil_application)
 $(PRODUCT) : $(PREBUILT_OBJS) $(OBJS) $(MODELLIB) $(MODELREF_LINK_LIBS) $(SHARED_LIB) $(LIBS)
 	@echo ### BUILD_MODE $(BUILD_MODE)
-	$(LD) $(MCPU) $^ $(LDLIBPIC) -o $(MODEL)$(PROGRAM_FILE_EXT) $(T_LINKER_SCRIPT),$(LDFLAGS)	 		
+	$(LD) $(MCPU) $^ $(LDLIBPIC) -o $(MODEL)$(PROGRAM_FILE_EXT) $(T_LINKER_SCRIPT),$(LDFLAGS)
 	@echo "$(BUILD_SUCCESS) $(BUILD_PRODUCT_TYPE): $@  [$(PIC_REF)]"
 ifeq ($(ProduceHexOutput),1)
 	$(GCCPATH)/$(BIN2HEX) -omf=$(OMF) $(PRODUCT)
-	@echo "*** Converted $(MODEL)$(PROGRAM_FILE_EXT) to $(MODEL).hex"	
+	@echo "+++ Converted $(MODEL)$(PROGRAM_FILE_EXT) to $(MODEL).hex"
 endif
 ifeq ($(AssemblyListing),1)
 	$(GCCPATH)/$(OBJDUMP) -omf=$(OMF) -S -f -Msymbolic $(PRODUCT) > $(MODEL).lst
-		@echo "*** Created Assembly list file $(MODEL).lst"	
+		@echo "+++ Created Assembly list file $(MODEL).lst"
 endif
 endif
-	
+
 ifeq ($(BUILD_MODE), real_time)
 #$(MODEL)$(PROGRAM_FILE_EXT) : $(OBJS) $(MODELREF_LINK_LIBS) $(SHARED_LIB) $(LIBS)
 $(PRODUCT) : $(OBJS) $(MODELREF_LINK_LIBS) $(SHARED_LIB) $(LIBS)
 	@echo ### BUILD_MODE $(BUILD_MODE)
-	$(LD) $(MCPU) $(LINK_OBJS) $(MODELREF_LINK_LIBS) $(SHARED_LIB) $(LIBS) $(SYSLIBS) $(LDLIBPIC) -o $(MODEL)$(PROGRAM_FILE_EXT) $(T_LINKER_SCRIPT),$(LDFLAGS)	 		
+	$(LD) $(MCPU) $(LINK_OBJS) $(MODELREF_LINK_LIBS) $(SHARED_LIB) $(LIBS) $(SYSLIBS) $(LDLIBPIC) -o $(MODEL)$(PROGRAM_FILE_EXT) $(T_LINKER_SCRIPT),$(LDFLAGS)
 	@echo $(BUILD_SUCCESS) $(BUILD_PRODUCT_TYPE): $@
 ifeq ($(ProduceHexOutput),1)
 	$(GCCPATH)/$(BIN2HEX) -omf=$(OMF) $(PRODUCT)
-	@echo "*** Converted $(PRODUCT) to $(MODEL).hex"	
+	@echo "+++ Converted $(PRODUCT) to $(MODEL).hex"
 endif
 ifeq ($(AssemblyListing),1)
 	$(GCCPATH)/$(OBJDUMP) -omf=$(OMF) -S -f -Msymbolic $(PRODUCT) > $(MODEL).lst
-		@echo "*** Created Assembly list file $(MODEL).lst"	
+		@echo "+++ Created Assembly list file $(MODEL).lst"
 endif
 endif
 
@@ -391,10 +413,10 @@ ifeq (,$(wildcard $(MODEL).elf))		# if file exist
 else
 	$(DEL) $(MODEL).elf
 endif
-endif		
+endif
 
 ifeq ($(ProduceHexOutput),0)
-ifeq (,$(wilcard $(MODEL).hex))	# if file exist
+ifeq (,$(wildcard $(MODEL).hex))	# if file exist
 else
 	$(DEL) $(MODEL).hex
 endif
@@ -403,7 +425,7 @@ endif
 ifeq ($(AssemblyListing),0)
 ifeq (,$(wildcard $(MODEL).lst))		# if file exist
 else
-	$(DEL) $(RELATIVE_PATH_TO_ANCHOR)\$(MODEL).lst
+	$(DEL) $(MODEL).lst
 endif
 endif
 
@@ -419,7 +441,7 @@ mem_mgr.o : $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/mem_mgr.c
 %$(OBJ_EXT) : $(RELATIVE_PATH_TO_ANCHOR)/%.cpp
 	@echo Compiling: $<
 	$(CC) -c $(CPPFLAGS) $< $(CCOUTPUTFLAG) $@
-	
+
 %$(OBJ_EXT) : $(RELATIVE_PATH_TO_ANCHOR)/%.s
 	@echo Compiling: $<
 	$(CC) -c -mcpu=$(PIC_REF) $< -Wa,-g $(CCOUTPUTFLAG) $@
@@ -435,7 +457,7 @@ mem_mgr.o : $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/mem_mgr.c
 %$(OBJ_EXT) : %.s
 	@echo Compiling: $<
 	$(CC) -c -mcpu=$(PIC_REF) $< -Wa,-g $(CCOUTPUTFLAG) $@
-	
+
 %$(OBJ_EXT) : $(START_DIR)/clib/%.c
 	@echo Compiling: $<
 	$(CC) -c $(CFLAGS) $< $(CCOUTPUTFLAG) $@

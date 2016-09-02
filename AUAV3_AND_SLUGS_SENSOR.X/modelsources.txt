@@ -1,1 +1,0 @@
-   AUAV3_AND_SLUGS_SENSOR.c 
