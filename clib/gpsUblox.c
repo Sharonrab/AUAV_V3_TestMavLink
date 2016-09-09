@@ -151,9 +151,11 @@ unsigned char gpsUbloxSeparate(unsigned char* outStream) {
 
         // finally compute the type of message
         chksumHeader = getChecksum(outBuf, 6);
-
+        //gpsDebugMsg(getLength(uartBuffer));
         // based on the obtained header checksum set the type
         switch (chksumHeader) {
+                        
+
             case GGACS:
                 outStream[0] = GGAID;
                 break;
@@ -174,7 +176,7 @@ void gpsUbloxParse(void) {
     unsigned char bufferLen = 11;
 
     memset(inStream, 0, MSIZE);
-
+       
     while (bufferLen > 10) {
         bufferLen = gpsUbloxSeparate(inStream);
 
@@ -495,4 +497,13 @@ unsigned char getChecksum(unsigned char* sentence, unsigned char size) {
     }
     // Return the checksum 
     return checkSum;
+}
+
+void gpsDebugMsg(unsigned char buf)
+{
+  uint16_t msg_length = PackTextMsg(101,1,buf);
+
+  TxN_Data_OverU1(
+                  msg_length
+                  );
 }

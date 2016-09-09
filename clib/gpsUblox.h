@@ -35,7 +35,7 @@ THE SOFTWARE.
 #include <string.h>
     // GPS Circular Buffers
     // ====================
-#define MSIZE			180
+#define MSIZE			512
 
 #define TOKEN_SIZE	15
 
@@ -85,6 +85,7 @@ char gpSmbl (char symbl);
 void parseRMC (unsigned char* stream);
 void parseGGA (unsigned char* stream);
 unsigned char getChecksum (unsigned char* sentence, unsigned char size);
+void gpsDebugMsg(unsigned char buf);
 
 
 #ifdef __cplusplus

@@ -23,7 +23,7 @@ struct CircBuffer com4Buffer;
 CBRef uartBuffer;
     // GPS Circular Buffers
     // ====================
-#define MSIZE			180
+//#define MSIZE			180
 // UART and Buffer initialization
 
 void uartBufferInit(void) {

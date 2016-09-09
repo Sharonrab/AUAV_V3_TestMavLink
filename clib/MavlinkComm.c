@@ -4,8 +4,8 @@
 
 #include <stdio.h>
 #ifdef UNIT_TEST
-//#include "AUAV_V3_TestMavLink.h"
-#include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.h"
+#include "AUAV_V3_TestMavLink.h"
+//#include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.h"
 
 #elif defined  SENSORS_UNIT_TEST
 #include "AUAV_V3_TestSensors.h"
@@ -648,9 +648,9 @@ uint16_t PackHeartBeat(uint8_t system_id, uint8_t component_id){
   uint8_t system_type = MAV_TYPE_FIXED_WING;
   uint8_t autopilot_type = MAV_AUTOPILOT_GENERIC;
 
-  uint8_t system_mode = MAV_MODE_PREFLIGHT; ///< Booting up
-  uint32_t custom_mode = 0;                 ///< Custom mode, can be defined by user/adopter
-  uint8_t system_state = MAV_STATE_STANDBY; ///< System ready for flight
+  uint8_t system_mode = mlHeartbeatLocal.base_mode; ///< Booting up
+  uint32_t custom_mode = mlHeartbeatLocal.custom_mode;                 ///< Custom mode, can be defined by user/adopter
+  uint8_t system_state = mlHeartbeatLocal.system_status; ///< System ready for flight
   mavlink_message_t msg;
   uint16_t bytes2Send = 0;
   //////////////////////////////////////////////////////////////////////////
@@ -673,14 +673,14 @@ uint16_t PackHeartBeat(uint8_t system_id, uint8_t component_id){
   return(bytes2Send);
 }
 
-uint16_t PackTextMsg(uint8_t system_id, uint8_t component_id){
+uint16_t PackTextMsg(uint8_t system_id, uint8_t component_id, unsigned char buf){
   mavlink_message_t msg;
   mavlink_system_t mavlink_system;
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
   char vr_message[50];
   memset(vr_message, 0, sizeof (vr_message));
-  sprintf(vr_message, "Hello World");
+  sprintf(vr_message, "buffer %d",buf);
   mavlink_msg_statustext_pack(mavlink_system.sysid,
   mavlink_system.compid,
   &msg,
