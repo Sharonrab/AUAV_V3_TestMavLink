@@ -1696,41 +1696,41 @@ void send2GS(unsigned char* protData) {
 
 // Interrupts
 
-void __attribute__((interrupt, no_auto_psv)) _DMA1Interrupt(void) {
-    // Clear the DMA1 Interrupt Flag;
-    IFS0bits.DMA1IF = 0;
-}
-
-void __attribute__((__interrupt__, no_auto_psv)) _U2RXInterrupt(void) {
-
-    // Read the buffer while it has data
-    // and add it to the circular buffer
-    while (U2STAbits.URXDA == 1) {
-        writeBack(uartBufferIn, (unsigned char) U2RXREG);
-    }
-
-    // If there was an overun error clear it and continue
-    if (U2STAbits.OERR == 1) {
-        U2STAbits.OERR = 0;
-    }
-
-    // clear the interrupt
-    IFS1bits.U2RXIF = 0;
-
-}
-
-void __attribute__((interrupt, no_auto_psv)) _U2ErrInterrupt(void) {
-
-    // If there was an overun error clear it and continue
-    if (U2STAbits.OERR == 1) {
-        U2STAbits.OERR = 0;
-    }
-
-    // If there was an overun error clear it and continue
-    if (IFS4bits.U2EIF == 1) {
-        IFS4bits.U2EIF = 0; // Clear the UART2 Error Interrupt Flag
-    }
-}
+//void __attribute__((interrupt, no_auto_psv)) _DMA1Interrupt(void) {
+//    // Clear the DMA1 Interrupt Flag;
+//    IFS0bits.DMA1IF = 0;
+//}
+//
+//void __attribute__((__interrupt__, no_auto_psv)) _U2RXInterrupt(void) {
+//
+//    // Read the buffer while it has data
+//    // and add it to the circular buffer
+//    while (U2STAbits.URXDA == 1) {
+//        writeBack(uartBufferIn, (unsigned char) U2RXREG);
+//    }
+//
+//    // If there was an overun error clear it and continue
+//    if (U2STAbits.OERR == 1) {
+//        U2STAbits.OERR = 0;
+//    }
+//
+//    // clear the interrupt
+//    IFS1bits.U2RXIF = 0;
+//
+//}
+//
+//void __attribute__((interrupt, no_auto_psv)) _U2ErrInterrupt(void) {
+//
+//    // If there was an overun error clear it and continue
+//    if (U2STAbits.OERR == 1) {
+//        U2STAbits.OERR = 0;
+//    }
+//
+//    // If there was an overun error clear it and continue
+//    if (IFS4bits.U2EIF == 1) {
+//        IFS4bits.U2EIF = 0; // Clear the UART2 Error Interrupt Flag
+//    }
+//}
 
 // char sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart) {
     // mavlink_message_t msg;

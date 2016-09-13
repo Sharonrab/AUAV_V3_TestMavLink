@@ -29,12 +29,23 @@ CBRef uartBuffer;
 void uartBufferInit(void) {
 
      /* Configure Pins as Analog or Digital */
-    ANSELE = 0xFF83;
+    //ANSELE = 0xFF83;
 
     /* Configure Remappables Pins */
-    RPINR28 = 0x56;
+    RPINR28 = 0x56;//86
+   	//RPINR19bits.U2RXR = 86 ;
+
+    // UART mapping:
+    
+//RPINR28 = 0x56;//assign pin 86 to UART4 Receive
+    // UART mapping:
+    
+    //RPINR18bits.U1RXR = 98 ;
+    //    RPOR6bits.RP85R = 0b011101 ;//RPn tied to UART4 Transmit
+    //    RPOR8bits.RP99R = 0b000001 ;//RPn tied to UART1 Transmit
+    
     /* Configure UART4 Rx Interruption */
-    _U4RXIP = 1;                         /* Rx Interrupt priority set to 1 */
+    _U4RXIP = 5;                         /* Rx Interrupt priority set to 1 */
     _U4RXIF = 0;
     _U4RXIE = 1;                         /* Enable Interrupt */
     uartBuffer = (struct CircBuffer*) &com4Buffer;

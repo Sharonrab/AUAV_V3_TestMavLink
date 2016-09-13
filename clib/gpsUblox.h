@@ -78,7 +78,7 @@ enum GPS_FIX {
 
 char hex2char (char halfhex);
 unsigned char gpsUbloxSeparate (unsigned char* outStream);
-void gpsUbloxParse (void);
+void gpsUbloxParse (unsigned long time_since_boot_usec);
 void getGpsUbloxMainData (float* data);
 float degMinToDeg (unsigned char degrees, float minutes);
 char gpSmbl (char symbl);

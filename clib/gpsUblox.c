@@ -151,7 +151,7 @@ unsigned char gpsUbloxSeparate(unsigned char* outStream) {
 
         // finally compute the type of message
         chksumHeader = getChecksum(outBuf, 6);
-        //gpsDebugMsg(getLength(uartBuffer));
+        gpsDebugMsg(getLength(uartBuffer));
         // based on the obtained header checksum set the type
         switch (chksumHeader) {
                         
@@ -170,25 +170,29 @@ unsigned char gpsUbloxSeparate(unsigned char* outStream) {
     return tmpLen;
 }
 
-void gpsUbloxParse(void) {
+void gpsUbloxParse(unsigned long time_since_boot_usec) {
 
     unsigned char inStream[MSIZE];
     unsigned char bufferLen = 11;
 
     memset(inStream, 0, MSIZE);
-       
+    
+    //gpsDebugMsg(getLength(bufferLen));
+    
     while (bufferLen > 10) {
         bufferLen = gpsUbloxSeparate(inStream);
-
+        
         // if the sentence is valid
         if (inStream[MSIZE - 1] == 1) {
             // parse the data according to the header
             switch (inStream[0]) {
                 case RMCID:
                     parseRMC(inStream);
+                    mlGpsData.time_usec = time_since_boot_usec;
                     break;
                 case GGAID:
                     parseGGA(inStream);
+                    mlGpsData.time_usec = time_since_boot_usec;
                     break;
             }
         }
@@ -199,7 +203,7 @@ void gpsUbloxParse(void) {
 }
 
 void getGpsUbloxMainData(float* data) {
-    gpsUbloxParse();
+    gpsUbloxParse(9999);
     data[0] = INT32_1E7_TO_FLOAT(mlGpsData.lat);
     data[1] = INT32_1E7_TO_FLOAT(mlGpsData.lon);
     data[2] = INT32_1E3_TO_FLOAT(mlGpsData.alt);
