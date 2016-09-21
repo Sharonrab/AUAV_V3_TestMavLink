@@ -14,7 +14,6 @@ extern "C" {
         float alt;
     } mavlink_coordinate_float_t;
 
-
     extern mavlink_gps_raw_int_t mlGpsData; //
     extern mavlink_cpu_load_t mlCpuLoadData; //
     extern mavlink_scaled_pressure_t mlAirData; //

@@ -4,7 +4,7 @@ T = 0.01;
 apSampleTime = 0.01;
 
 derivativesConstant = 5;
-
+%PAR_HIL =1;
 %%%%%
 % the vars below are not used in the code they belong to InnereOuter sim
 % BUT you need to have them in order for the code generator to work

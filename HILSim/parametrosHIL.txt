@@ -1,0 +1,34 @@
+# Onboard parameters for system VANT 201
+#
+# MAV ID  COMPONENT ID  PARAM NAME  VALUE (FLOAT)
+201	1	CAM_LOC_X	                        0
+201	1	CAM_LOC_Z	                        0
+201	1	CONFIG_PITCH_RC	                        0
+201	1	CONFIG_ROLL_R C	                        0
+201	1	CONFIG_YAW_R  N	                        0
+201	1	L1_GAMMA	                        0
+201	1	L1_M	                        0
+201	1	L1_OMEGA	                        0
+201	1	L1_ON_OFF	                        0
+201	1	NAV_ISR_FACT	                        5
+201	1	NAV_L2_BASE	                        5
+201	1	NAV_PRETURN_K	                        5
+201	1	NAV_SSCOMP_ON	                        0
+201	1	PID_AIRSPD_D	            0.20000000298
+201	1	PID_AIRSPD_I	         0.00700000021607
+201	1	PID_AIRSPD_P	           0.949999988079
+201	1	PID_HE2PITC_I	                        0
+201	1	PID_HE2PITC_P	          0.0450000017881
+201	1	PID_HERR_FF	           -0.10000000149
+201	1	PID_PIT_DT_FF	            0.34999999404
+201	1	PID_PIT_FO_D	         -0.0599999986589
+201	1	PID_PIT_FO_I	        -0.00499999988824
+201	1	PID_PIT_FO_P	           -0.20000000298
+201	1	PID_RMIX_ON	                        0
+201	1	PID_RMIX_P	                        0
+201	1	PID_ROLL_CO_D	          0.0599999986589
+201	1	PID_ROLL_CO_I	         0.00999999977648
+201	1	PID_ROLL_CO_P	           0.649999976158
+201	1	PID_YAW_DA_D	                        0
+201	1	PID_YAW_DA_I	                        0
+201	1	PID_YAW_DA_P	         0.00999999977648

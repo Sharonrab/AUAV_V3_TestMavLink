@@ -170,7 +170,7 @@ unsigned char gpsUbloxSeparate(unsigned char* outStream) {
     return tmpLen;
 }
 
-void gpsUbloxParse(unsigned long time_since_boot_usec) {
+void gpsUbloxParse(void) {
 
     unsigned char inStream[MSIZE];
     unsigned char bufferLen = 11;
@@ -188,11 +188,9 @@ void gpsUbloxParse(unsigned long time_since_boot_usec) {
             switch (inStream[0]) {
                 case RMCID:
                     parseRMC(inStream);
-                    mlGpsData.time_usec = time_since_boot_usec;
                     break;
                 case GGAID:
                     parseGGA(inStream);
-                    mlGpsData.time_usec = time_since_boot_usec;
                     break;
             }
         }
@@ -203,7 +201,7 @@ void gpsUbloxParse(unsigned long time_since_boot_usec) {
 }
 
 void getGpsUbloxMainData(float* data) {
-    gpsUbloxParse(9999);
+    gpsUbloxParse();
     data[0] = INT32_1E7_TO_FLOAT(mlGpsData.lat);
     data[1] = INT32_1E7_TO_FLOAT(mlGpsData.lon);
     data[2] = INT32_1E3_TO_FLOAT(mlGpsData.alt);

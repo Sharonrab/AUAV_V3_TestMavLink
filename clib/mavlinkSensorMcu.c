@@ -9,7 +9,7 @@
 BOOL sendCommandAcknowledgement; // used for IPC of command acks to control MCU
 
 
-mavlink_raw_imu_t mlRawImuData;
+//mavlink_raw_imu_t mlRawImuData;
 //mavlink_gps_raw_int_t mlGpsData;
 mavlink_cpu_load_t mlCpuLoadData;
 //mavlink_scaled_pressure_t mlAirData;

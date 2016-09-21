@@ -1681,16 +1681,16 @@ void send2GS(unsigned char* protData) {
 
     // if the interrupt catched up with the circularBuffer
     // and new data was added then turn on the DMA 
-    if (!(DMA1CONbits.CHEN) && (bufLen > 0)) {
-        // Configure the bytes to send
-        DMA1CNT = bufLen <= (MAXSEND - 1) ? bufLen - 1 : MAXSEND - 1;
-        // copy the buffer to the DMA channel outgoing buffer
-        copyBufferToDMA1((unsigned char) DMA1CNT + 1);
-        // Enable the DMA
-        DMA1CONbits.CHEN = 1;
-        // Init the transmission
-        DMA1REQbits.FORCE = 1;
-    }
+//    if (!(DMA1CONbits.CHEN) && (bufLen > 0)) {
+//        // Configure the bytes to send
+//        DMA1CNT = bufLen <= (MAXSEND - 1) ? bufLen - 1 : MAXSEND - 1;
+//        // copy the buffer to the DMA channel outgoing buffer
+//        copyBufferToDMA1((unsigned char) DMA1CNT + 1);
+//        // Enable the DMA
+//        DMA1CONbits.CHEN = 1;
+//        // Init the transmission
+//        DMA1REQbits.FORCE = 1;
+//    }
 
 }
 

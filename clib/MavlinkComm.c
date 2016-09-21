@@ -15,6 +15,8 @@
 #endif
 
 uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
+uint8_t Uart4OutBuff[MAVLINK_MAX_PACKET_LEN];
+
 struct CircBuffer comMavlinkBuffer;
 CBRef uartMavlinkInBuffer;
 uint8_T DatafromGSmavlink[MAXINLEN+2];
@@ -702,7 +704,7 @@ uint16_t PackRawIMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t m
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
 }
 
-uint16_t PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt /*,uint32_t time_usec*/){
+uint16_t PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec){
   mavlink_system_t mavlink_system;
 
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
@@ -710,7 +712,7 @@ uint16_t PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_
   //////////////////////////////////////////////////////////////////////////
   mavlink_message_t msg;
   memset(&msg, 0, sizeof (mavlink_message_t));
-  mavlink_msg_gps_raw_int_pack(mavlink_system.sysid, mavlink_system.compid, &msg , mlRawGpsDataInt.time_usec ,mlRawGpsDataInt.fix_type, mlRawGpsDataInt.lat,
+  mavlink_msg_gps_raw_int_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec ,mlRawGpsDataInt.fix_type, mlRawGpsDataInt.lat,
           mlRawGpsDataInt.lon, mlRawGpsDataInt.alt, mlRawGpsDataInt.eph, mlRawGpsDataInt.epv, mlRawGpsDataInt.vel,
           mlRawGpsDataInt.cog, mlRawGpsDataInt.satellites_visible);
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
@@ -755,6 +757,18 @@ uint16_t PackRawServo(uint8_t system_id, uint8_t component_id, mavlink_servo_out
   memset(&msg, 0, sizeof (mavlink_message_t));
   mavlink_msg_servo_output_raw_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlPwmCommands.port, mlPwmCommands.servo1_raw, mlPwmCommands.servo2_raw, mlPwmCommands.servo3_raw, mlPwmCommands.servo4_raw, mlPwmCommands.servo5_raw, mlPwmCommands.servo6_raw, mlPwmCommands.servo7_raw, mlPwmCommands.servo8_raw );
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
+
+uint16_t HIL_PackRawServo(uint8_t system_id, uint8_t component_id, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_servo_output_raw_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlPwmCommands.port, mlPwmCommands.servo1_raw, mlPwmCommands.servo2_raw, mlPwmCommands.servo3_raw, mlPwmCommands.servo4_raw, mlPwmCommands.servo5_raw, mlPwmCommands.servo6_raw, mlPwmCommands.servo7_raw, mlPwmCommands.servo8_raw );
+  return( mavlink_msg_to_send_buffer(Uart4OutBuff, &msg));
 }
 
 uint16_t PackRawRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec){
@@ -819,6 +833,27 @@ void TxN_Data_OverU1(uint16_t N){
     }
   }
   _U1TXIF = U1STAbits.TRMT;
+#else
+	mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)N);
+
+#endif
+}
+extern MCHP_UART4_TxStr MCHP_UART4_Tx;
+
+void TxN_Data_OverU4(uint16_t N){
+#if (WIN != 1)//SLUGS2 SIL
+  uint16_T i;
+  for (i = 0U; i < N; i++) {
+    uint16_T Tmp;
+    Tmp = ~(MCHP_UART4_Tx.tail - MCHP_UART4_Tx.head);
+    Tmp = Tmp & (Tx_BUFF_SIZE_Uart4 - 1);/* Modulo Buffer Size */
+    if (Tmp != 0) {
+      MCHP_UART4_Tx.buffer[MCHP_UART4_Tx.tail] = Uart4OutBuff[i];
+      MCHP_UART4_Tx.tail = (MCHP_UART4_Tx.tail + 1) & (Tx_BUFF_SIZE_Uart4 - 1);
+      Tmp--;
+    }
+  }
+  _U4TXIF = U4STAbits.TRMT;
 #else
 	mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)N);
 

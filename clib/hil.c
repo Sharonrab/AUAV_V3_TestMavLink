@@ -1,11 +1,13 @@
 #include "hil.h"
+extern CBRef uartBuffer;
 
 void hilRead(unsigned char* hilChunk) {
 
     // fix the data length so if the interrupt adds data
     // during execution of this block, it will be read
     // until the next hilRead
-   /*  unsigned char tmpLen = getLength(uartBufferIn), i = 0;
+     //unsigned char tmpLen = getLength(uartBufferIn), i = 0;
+        unsigned char tmpLen = getLength(uartBuffer), i = 0;
 
     // if the buffer has more data than the max size, set it to max,
     // otherwise set it to the length
@@ -13,8 +15,10 @@ void hilRead(unsigned char* hilChunk) {
 
     // read the data 
     for (i = 1; i <= hilChunk[0]; i += 1) {
-        hilChunk[i] = readFront(uartBufferIn);
-    } */
+//        hilChunk[i] = readFront(uartBufferIn);
+        hilChunk[i] = readFront(uartBuffer);
+
+    } 
 }
 
 void hil_getRawRead(short * rawData) {
