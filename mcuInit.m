@@ -23,7 +23,8 @@ run .\apConfiguration\Rascal_Var.m
 
 run .\apConfiguration\Environment.m
 %run .\apConfiguration\pwmConversionsVANT01.m
-run .\apConfiguration\AM_Mentor_PwmConversions.m
+%run .\apConfiguration\AM_Mentor_PwmConversions.m
+run .\apConfiguration\AUAV3_PwmConversions.m
 run .\apConfiguration\limits.m
 run .\apConfiguration\baroInit.m
 run .\apConfiguration\sensorInit.m

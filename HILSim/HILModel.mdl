@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.754"
+    ComputedModelVersion    "1.781"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -22,16 +22,16 @@ Model {
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
   CloseFcn		  "rtwprivate ssgencode ModelCloseRequest AttitudeComplementary"
-  InitFcn		  "clc\nhilInit"
+  InitFcn		  "clc\nhilInit\nlaunchBridgeClient"
   Created		  "Wed Jul 02 09:38:16 2008"
   Creator		  "ASL_Lab"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "sharon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Sep 21 09:00:19 2016"
-  RTWModifiedTimeStamp	  396179182
-  ModelVersionFormat	  "1.%<AutoIncrement:754>"
+  LastModifiedDate	  "Thu Sep 29 17:30:40 2016"
+  RTWModifiedTimeStamp	  397068856
+  ModelVersionFormat	  "1.%<AutoIncrement:781>"
   ConfigurationManager	  "None"
   SampleTimeColors	  on
   SampleTimeAnnotations	  off
@@ -573,8 +573,8 @@ Model {
 	PropName		"Components"
       }
       Name		      "Configuration"
-      CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 280, 135, 1160, 765 ] 
+      CurrentDlgPage	      "Data Import//Export"
+      ConfigPrmDlgPosition     [ 272, 104, 1168, 773 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -1066,7 +1066,7 @@ Model {
   }
   System {
     Name		    "HILModel"
-    Location		    [2, 75, 1347, 707]
+    Location		    [3, 85, 1344, 706]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1080,13 +1080,13 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1175"
+    SIDHighWatermark	    "1179"
     Block {
       BlockType		      SubSystem
       Name		      "6DOF Model"
       SID		      "1"
       Ports		      [7, 7]
-      Position		      [395, 55, 510, 535]
+      Position		      [400, 55, 515, 535]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -1441,7 +1441,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Plant"
-	    Location		    [0, 83, 1424, 925]
+	    Location		    [2, 83, 1347, 715]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2098,7 +2098,7 @@ Model {
 		  MaskHideContents	  off
 		  System {
 		    Name		    "[V1,2,3,W1,2,3]"
-		    Location		    [317, 414, 1264, 872]
+		    Location		    [238, 190, 1185, 648]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -3651,7 +3651,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"Engine Model"
-		Location		[289, 732, 1238, 1007]
+		Location		[312, 251, 1261, 526]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -3704,7 +3704,7 @@ Model {
 		  MaskHideContents	  off
 		  System {
 		    Name		    "Get To1"
-		    Location		    [9, 80, 1022, 389]
+		    Location		    [9, 83, 1022, 392]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -4093,7 +4093,7 @@ Model {
 	      Name		      "Forces and Moments"
 	      SID		      "181"
 	      Ports		      [10, 5]
-	      Position		      [160, 322, 270, 563]
+	      Position		      [155, 322, 265, 563]
 	      MinAlgLoopOccurrences   off
 	      PropExecContextOutsideSubsystem off
 	      RTWSystemCode	      "Auto"
@@ -4103,7 +4103,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"Forces and Moments"
-		Location		[156, 239, 1058, 622]
+		Location		[78, 132, 1097, 515]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -4588,7 +4588,7 @@ Model {
 		  Name			  "Body Frame F & M"
 		  SID			  "215"
 		  Ports			  [10, 2]
-		  Position		  [585, 74, 675, 241]
+		  Position		  [590, 74, 680, 241]
 		  NamePlacement		  "alternate"
 		  MinAlgLoopOccurrences	  off
 		  PropExecContextOutsideSubsystem off
@@ -5565,12 +5565,22 @@ Model {
 		    Ports		    [1]
 		    Position		    [450, 99, 480, 131]
 		    Floating		    off
-		    Location		    [188, 365, 1404, 860]
+		    Location		    [-1327, 253, -111, 748]
 		    Open		    off
 		    NumInputPorts	    "1"
 		    List {
 		    ListType		    AxesTitles
 		    axes1		    "%<SignalLabel>"
+		    }
+		    List {
+		    ListType		    ScopeGraphics
+		    FigureColor		    "[0.5 0.5 0.5]"
+		    AxesColor		    "[0 0 0]"
+		    AxesTickColor	    "[1 1 1]"
+		    LineColors		    "[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
+		    LineStyles		    "-|-|-|-|-|-"
+		    LineWidths		    "[0.5 0.5 0.5 0.5 0.5 0.5]"
+		    MarkerStyles	    "none|none|none|none|none|none"
 		    }
 		    YMin		    "-450"
 		    YMax		    "200"
@@ -5586,12 +5596,22 @@ Model {
 		    Ports		    [1]
 		    Position		    [445, 179, 475, 211]
 		    Floating		    off
-		    Location		    [188, 365, 512, 604]
+		    Location		    [-865, 542, -541, 781]
 		    Open		    off
 		    NumInputPorts	    "1"
 		    List {
 		    ListType		    AxesTitles
 		    axes1		    "%<SignalLabel>"
+		    }
+		    List {
+		    ListType		    ScopeGraphics
+		    FigureColor		    "[0.5 0.5 0.5]"
+		    AxesColor		    "[0 0 0]"
+		    AxesTickColor	    "[1 1 1]"
+		    LineColors		    "[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
+		    LineStyles		    "-|-|-|-|-|-"
+		    LineWidths		    "[0.5 0.5 0.5 0.5 0.5 0.5]"
+		    MarkerStyles	    "none|none|none|none|none|none"
 		    }
 		    YMin		    "-450"
 		    YMax		    "200"
@@ -5715,7 +5735,7 @@ Model {
 		    MaskHideContents	    off
 		    System {
 		    Name		    "Wind frame F& M"
-		    Location		    [962, 107, 1778, 618]
+		    Location		    [513, 171, 1329, 682]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -9368,7 +9388,7 @@ Model {
 		    }
 		    System {
 		    Name		    "Cm"
-		    Location		    [1155, 86, 1950, 1129]
+		    Location		    [341, 104, 1136, 1104]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -10534,6 +10554,36 @@ Model {
 		  }
 		}
 		Block {
+		  BlockType		  Display
+		  Name			  "Display1"
+		  SID			  "1176"
+		  Ports			  [1]
+		  Position		  [780, 13, 920, 87]
+		  Format		  "long"
+		  Decimation		  "1"
+		  Lockdown		  off
+		}
+		Block {
+		  BlockType		  Display
+		  Name			  "Display2"
+		  SID			  "1177"
+		  Ports			  [1]
+		  Position		  [800, 248, 940, 322]
+		  Format		  "long"
+		  Decimation		  "1"
+		  Lockdown		  off
+		}
+		Block {
+		  BlockType		  Display
+		  Name			  "Display3"
+		  SID			  "1178"
+		  Ports			  [1]
+		  Position		  [175, 198, 315, 272]
+		  Format		  "long"
+		  Decimation		  "1"
+		  Lockdown		  off
+		}
+		Block {
 		  BlockType		  SubSystem
 		  Name			  "Get Grav Force in Body"
 		  SID			  "528"
@@ -10913,9 +10963,9 @@ Model {
 		}
 		Block {
 		  BlockType		  Constant
-		  Name			  "Gravitational Force"
-		  SID			  "549"
-		  Position		  [380, 307, 495, 333]
+		  Name			  "Gravitational Force1"
+		  SID			  "1179"
+		  Position		  [365, 307, 480, 333]
 		  BackgroundColor	  "green"
 		  Value			  "[0 0 mass*ISA_g]"
 		  VectorParams1D	  off
@@ -11390,15 +11440,23 @@ Model {
 		Line {
 		  SrcBlock		  "Euler"
 		  SrcPort		  1
-		  Points		  [85, 0]
+		  Points		  [15, 0]
 		  Branch {
+		    Points		    [70, 0]
+		    Branch {
 		    Points		    [0, -20]
 		    DstBlock		    "NED(u)2b"
 		    DstPort		    2
-		  }
-		  Branch {
+		    }
+		    Branch {
 		    Points		    [0, 165]
 		    DstBlock		    "Get Grav Force in Body"
+		    DstPort		    1
+		    }
+		  }
+		  Branch {
+		    Points		    [0, 100]
+		    DstBlock		    "Display3"
 		    DstPort		    1
 		  }
 		}
@@ -11426,12 +11484,19 @@ Model {
 		Line {
 		  SrcBlock		  "Body Frame F & M"
 		  SrcPort		  2
-		  Points		  [0, -10]
-		  DstBlock		  "Moments"
-		  DstPort		  1
+		  Points		  [0, -10; 75, 0]
+		  Branch {
+		    DstBlock		    "Moments"
+		    DstPort		    1
+		  }
+		  Branch {
+		    Points		    [0, 95]
+		    DstBlock		    "Display2"
+		    DstPort		    1
+		  }
 		}
 		Line {
-		  SrcBlock		  "Gravitational Force"
+		  SrcBlock		  "Gravitational Force1"
 		  SrcPort		  1
 		  DstBlock		  "Get Grav Force in Body"
 		  DstPort		  2
@@ -11439,8 +11504,16 @@ Model {
 		Line {
 		  SrcBlock		  "Body Frame F & M"
 		  SrcPort		  1
-		  DstBlock		  "Sum"
-		  DstPort		  1
+		  Points		  [15, 0]
+		  Branch {
+		    DstBlock		    "Sum"
+		    DstPort		    1
+		  }
+		  Branch {
+		    Points		    [0, -65]
+		    DstBlock		    "Display1"
+		    DstPort		    1
+		  }
 		}
 		Line {
 		  SrcBlock		  "Sum"
@@ -11540,7 +11613,7 @@ Model {
 	      System {
 		Name			"Get GPS"
 		Location		[174, 83, 1017, 706]
-		Open			on
+		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -13012,7 +13085,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"Wrap Around\nPSI1"
-		Location		[174, 82, 935, 729]
+		Location		[174, 83, 935, 730]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -13701,7 +13774,7 @@ Model {
 	    Line {
 	      SrcBlock		      "Forces and Moments"
 	      SrcPort		      1
-	      Points		      [0, 0]
+	      Points		      [5, 0]
 	      Branch {
 		Points			[0, -40]
 		Branch {
@@ -13731,7 +13804,7 @@ Model {
 	    Line {
 	      SrcBlock		      "ISA Atmosphere & Winds"
 	      SrcPort		      2
-	      Points		      [-170, 0]
+	      Points		      [-175, 0]
 	      DstBlock		      "Forces and Moments"
 	      DstPort		      1
 	    }
@@ -13765,7 +13838,7 @@ Model {
 	    Line {
 	      SrcBlock		      "Forces and Moments"
 	      SrcPort		      4
-	      Points		      [175, 0]
+	      Points		      [180, 0]
 	      DstBlock		      "6-DOF EOM"
 	      DstPort		      2
 	    }
@@ -13841,7 +13914,7 @@ Model {
 		DstPort			1
 	      }
 	      Branch {
-		Points			[0, 150; -435, 0; 0, -65]
+		Points			[0, 150; -435, 0]
 		DstBlock		"Forces and Moments"
 		DstPort			10
 	      }
@@ -14082,7 +14155,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Split Ailerons\nAnd Introduce\nFailures"
-	    Location		    [2, 112, 507, 686]
+	    Location		    [2, 83, 1347, 715]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -15090,7 +15163,7 @@ Model {
 	  MaskValueString	  "[0.01 0.01 0.1]|SampleT|[132 564 987]"
 	  System {
 	    Name		    "Subsystem"
-	    Location		    [2, 78, 1542, 1030]
+	    Location		    [2, 75, 1347, 690]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -16664,7 +16737,7 @@ Model {
 	  MaskValueString	  "[0.0001 0.00003 0.0001]|SampleT|[132 564 987]"
 	  System {
 	    Name		    "Subsystem2"
-	    Location		    [2, 78, 1244, 1004]
+	    Location		    [2, 83, 1244, 1009]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -16835,7 +16908,7 @@ Model {
 	  "1 0.1 0.1]|[132 564 987]|cubeMagGain16405|SampleT"
 	  System {
 	    Name		    "Subsystem3"
-	    Location		    [2, 78, 1542, 1030]
+	    Location		    [2, 83, 1542, 1035]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -17147,15 +17220,15 @@ Model {
 		  Position		  [80, 26, 120, 64]
 		  InputPortWidth	  "3"
 		  IndexOptions		  "Index vector (dialog)"
-		  Indices		  "[2 1 3]"
+		  Indices		  "[1 2 3]"
 		  OutputSizes		  "1"
 		}
 		Block {
 		  BlockType		  Gain
-		  Name			  "[ -1 -1 -1]"
+		  Name			  "[ 1 -1 1]"
 		  SID			  "889"
 		  Position		  [155, 30, 185, 60]
-		  Gain			  "[-1 -1 -1]"
+		  Gain			  "[1 -1 1]"
 		  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
@@ -17170,7 +17243,7 @@ Model {
 		Line {
 		  SrcBlock		  "Selector"
 		  SrcPort		  1
-		  DstBlock		  "[ -1 -1 -1]"
+		  DstBlock		  "[ 1 -1 1]"
 		  DstPort		  1
 		}
 		Line {
@@ -17180,7 +17253,7 @@ Model {
 		  DstPort		  1
 		}
 		Line {
-		  SrcBlock		  "[ -1 -1 -1]"
+		  SrcBlock		  "[ 1 -1 1]"
 		  SrcPort		  1
 		  DstBlock		  "Rotated"
 		  DstPort		  1
@@ -17230,15 +17303,15 @@ Model {
 		  Position		  [80, 26, 120, 64]
 		  InputPortWidth	  "3"
 		  IndexOptions		  "Index vector (dialog)"
-		  Indices		  "[2 1 3]"
+		  Indices		  "[1 3 2]"
 		  OutputSizes		  "1"
 		}
 		Block {
 		  BlockType		  Gain
-		  Name			  "[ -1 -1 -1]"
+		  Name			  "[ 1 -1 -1]"
 		  SID			  "894"
 		  Position		  [155, 30, 185, 60]
-		  Gain			  "[-1 -1 -1]"
+		  Gain			  "[1 1 1]"
 		  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
@@ -17251,7 +17324,7 @@ Model {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  SrcBlock		  "[ -1 -1 -1]"
+		  SrcBlock		  "[ 1 -1 -1]"
 		  SrcPort		  1
 		  DstBlock		  "Rotated"
 		  DstPort		  1
@@ -17265,7 +17338,7 @@ Model {
 		Line {
 		  SrcBlock		  "Selector"
 		  SrcPort		  1
-		  DstBlock		  "[ -1 -1 -1]"
+		  DstBlock		  "[ 1 -1 -1]"
 		  DstPort		  1
 		}
 	      }
@@ -17313,15 +17386,15 @@ Model {
 		  Position		  [80, 26, 120, 64]
 		  InputPortWidth	  "3"
 		  IndexOptions		  "Index vector (dialog)"
-		  Indices		  "[2 1 3]"
+		  Indices		  "[1 2 3]"
 		  OutputSizes		  "1"
 		}
 		Block {
 		  BlockType		  Gain
-		  Name			  "[ -1 -1 -1]"
+		  Name			  "[ 1 -1 1]"
 		  SID			  "899"
 		  Position		  [155, 30, 185, 60]
-		  Gain			  "[-1 -1 -1]"
+		  Gain			  "[1 -1 1]"
 		  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
@@ -17334,7 +17407,7 @@ Model {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  SrcBlock		  "[ -1 -1 -1]"
+		  SrcBlock		  "[ 1 -1 1]"
 		  SrcPort		  1
 		  DstBlock		  "Rotated"
 		  DstPort		  1
@@ -17348,7 +17421,7 @@ Model {
 		Line {
 		  SrcBlock		  "Selector"
 		  SrcPort		  1
-		  DstBlock		  "[ -1 -1 -1]"
+		  DstBlock		  "[ 1 -1 1]"
 		  DstPort		  1
 		}
 	      }
@@ -18567,7 +18640,7 @@ Model {
       Ports		      [4]
       Position		      [800, 592, 830, 708]
       Floating		      off
-      Location		      [887, 57, 1349, 726]
+      Location		      [889, 57, 1351, 726]
       Open		      on
       NumInputPorts	      "4"
       ZoomMode		      "yonly"
@@ -18580,7 +18653,7 @@ Model {
       }
       List {
 	ListType		ScopeGraphics
-	FigureColor		"[0.5 0.5 0.5]"
+	FigureColor		"[0.501960784313725 0.501960784313725 0.501960784313725]"
 	AxesColor		"[0 0 0]"
 	AxesTickColor		"[1 1 1]"
 	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
@@ -18589,8 +18662,8 @@ Model {
 	MarkerStyles		"none|none|none|none|none|none"
       }
       TimeRange		      "70"
-      YMin		      "26.57~-35.3075~-59.2914~1.14761"
-      YMax		      "26.59~-35.28~-53.6446~1.26841"
+      YMin		      "-0.03~0.0547195~-0.12~0.68725"
+      YMax		      "0~0.0547195~-0.06~0.68875"
       DataFormat	      "StructureWithTime"
       MaxDataPoints	      "25000"
       SampleTime	      "0"
@@ -18625,7 +18698,7 @@ Model {
       MaskValueString	      "mPWMdt|bPWMdt"
       System {
 	Name			"Convert to Rad"
-	Location		[444, 587, 929, 750]
+	Location		[514, 218, 999, 381]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -19375,7 +19448,7 @@ Model {
       Name		      "From AP"
       SID		      "990"
       Ports		      [0, 9]
-      Position		      [15, 113, 80, 457]
+      Position		      [20, 113, 85, 457]
       BackgroundColor	      "darkGreen"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -19386,8 +19459,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"From AP"
-	Location		[7, 83, 966, 872]
-	Open			on
+	Location		[3, 83, 1361, 706]
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -19476,7 +19549,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Subsystem"
-	    Location		    [978, 468, 1283, 554]
+	    Location		    [530, 341, 835, 427]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -19511,7 +19584,7 @@ Model {
 	      Name		      "Gain"
 	      SID		      "1000"
 	      Position		      [80, 30, 110, 60]
-	      Gain		      "2.5"
+	      Gain		      "2"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -19560,8 +19633,8 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Subsystem1"
-	    Location		    [918, 85, 1845, 883]
-	    Open		    off
+	    Location		    [126, 83, 1053, 706]
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -19595,7 +19668,7 @@ Model {
 	      Name		      "Gain"
 	      SID		      "1005"
 	      Position		      [80, 30, 110, 60]
-	      Gain		      "2.5"
+	      Gain		      "2"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -19644,8 +19717,8 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Subsystem2"
-	    Location		    [918, 85, 1845, 883]
-	    Open		    off
+	    Location		    [120, 83, 1047, 706]
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -19679,7 +19752,7 @@ Model {
 	      Name		      "Gain"
 	      SID		      "1010"
 	      Position		      [80, 30, 110, 60]
-	      Gain		      "2.5"
+	      Gain		      "2"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -19728,8 +19801,8 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Subsystem3"
-	    Location		    [918, 85, 1845, 883]
-	    Open		    off
+	    Location		    [243, 83, 1170, 706]
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -19763,7 +19836,7 @@ Model {
 	      Name		      "Gain"
 	      SID		      "1015"
 	      Position		      [80, 30, 110, 60]
-	      Gain		      "2.5"
+	      Gain		      "2"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -20115,7 +20188,7 @@ Model {
       BlockType		      From
       Name		      "From10"
       SID		      "1029"
-      Position		      [605, 21, 655, 39]
+      Position		      [570, 20, 655, 40]
       BackgroundColor	      "cyan"
       ShowName		      off
       CloseFcn		      "tagdialog Close"
@@ -20189,7 +20262,7 @@ Model {
       BlockType		      From
       Name		      "From2"
       SID		      "1034"
-      Position		      [590, 316, 640, 334]
+      Position		      [560, 315, 640, 335]
       BackgroundColor	      "cyan"
       ShowName		      off
       CloseFcn		      "tagdialog Close"
@@ -20783,7 +20856,7 @@ Model {
       Ports		      [1]
       Position		      [395, 679, 425, 711]
       Floating		      off
-      Location		      [738, 612, 1382, 992]
+      Location		      [717, 382, 1361, 762]
       Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -20791,8 +20864,18 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      YMin		      "-0.01"
-      YMax		      "0.015"
+      List {
+	ListType		ScopeGraphics
+	FigureColor		"[0.5 0.5 0.5]"
+	AxesColor		"[0 0 0]"
+	AxesTickColor		"[1 1 1]"
+	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
+	LineStyles		"-|-|-|-|-|-"
+	LineWidths		"[0.5 0.5 0.5 0.5 0.5 0.5]"
+	MarkerStyles		"none|none|none|none|none|none"
+      }
+      YMin		      "-643"
+      YMax		      "-633"
       SaveName		      "ScopeData1"
       DataFormat	      "StructureWithTime"
       MaxDataPoints	      "25000"
@@ -20861,7 +20944,7 @@ Model {
       Position		      [255, 34, 285, 66]
       Floating		      off
       Location		      [205, 329, 1139, 470]
-      Open		      on
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -20893,8 +20976,8 @@ Model {
       Ports		      [4]
       Position		      [260, 313, 295, 397]
       Floating		      off
-      Location		      [401, 268, 1335, 409]
-      Open		      on
+      Location		      [438, 140, 1352, 590]
+      Open		      off
       NumInputPorts	      "4"
       ZoomMode		      "xonly"
       List {
@@ -20915,8 +20998,8 @@ Model {
 	MarkerStyles		"none|none|none|none|none|none"
       }
       TimeRange		      "60"
-      YMin		      "-2.61759~0.747717~-0.9875~-0.655426"
-      YMax		      "-2.36829~0.826424~-0.9855~-0.593004"
+      YMin		      "-0.0007~0.0002~0.0007~-0.0003"
+      YMax		      "0~0.001~0.0013~0.0003"
       SaveName		      "ScopeData3"
       DataFormat	      "StructureWithTime"
       LimitDataPoints	      off
@@ -20938,8 +21021,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"To AP"
-	Location		[3, 83, 1346, 706]
-	Open			off
+	Location		[1, 51, 1365, 727]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -21538,8 +21621,8 @@ Model {
 	  Name			  "Display2"
 	  SID			  "1145"
 	  Ports			  [1]
-	  Position		  [1130, 144, 1285, 666]
-	  Format		  "hex (Stored Integer)"
+	  Position		  [1135, 146, 1305, 1164]
+	  Format		  "decimal (Stored Integer)"
 	  Decimation		  "1"
 	  Lockdown		  off
 	}
@@ -21917,7 +22000,7 @@ Model {
 	    DstPort		    1
 	  }
 	  Branch {
-	    Points		    [0, -55]
+	    Points		    [0, 105; 260, 0]
 	    DstBlock		    "Display2"
 	    DstPort		    1
 	  }
@@ -21925,7 +22008,7 @@ Model {
 	Line {
 	  SrcBlock		  "GPS Pack"
 	  SrcPort		  1
-	  Points		  [90, 0]
+	  Points		  [70, 0; 0, 230]
 	  DstBlock		  "Mux"
 	  DstPort		  1
 	}
@@ -22701,20 +22784,21 @@ Model {
     Line {
       SrcBlock		      "From AP"
       SrcPort		      1
-      Points		      [20, 0]
+      Points		      [15, 0]
       DstBlock		      "Get Delay"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Convert to Rad"
       SrcPort		      1
-      Points		      [15, 0]
+      Points		      [0, 15; 15, 0]
       Branch {
+	Points			[10, 0]
 	DstBlock		"Goto6"
 	DstPort			1
       }
       Branch {
-	Points			[15, 0]
+	Points			[10, 0; 0, 145]
 	DstBlock		"Time\nDelay (s)1"
 	DstPort			1
       }
@@ -22891,6 +22975,8 @@ Stateflow {
     created		    "18-Sep-2008 12:14:47"
     isLibrary		    0
     firstTarget		    10
+    debug {
+    }
     sfVersion		    76014001.0002
   }
   chart {

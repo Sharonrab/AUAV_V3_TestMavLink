@@ -33,7 +33,7 @@ mavlink_mission_ack_t mlWpAck;
 
 void uartMavlinkBufferInit (void){
 #if (WIN != 1)
-  _U1RXIP = 1;                         /* Rx Interrupt priority set to 1 */
+  _U1RXIP = 5;                         /* Rx Interrupt priority set to 1 */
   _U1RXIF = 0;
   _U1RXIE = 1;                         /* Enable Interrupt */
   /* Configure Remappables Pins */
@@ -91,6 +91,11 @@ void InitParameterInterface(void)
     strcpy(mlParamInterface.param_name[PAR_PID_YAW_DAMP_P], "PID_YAW_DA_P");
     strcpy(mlParamInterface.param_name[PAR_PID_YAW_DAMP_I], "PID_YAW_DA_I");
     strcpy(mlParamInterface.param_name[PAR_PID_YAW_DAMP_D], "PID_YAW_DA_D");
+    
+    // Populate default mid-level commands
+    mlMidLevelCommands.hCommand = 120.0f; // altitude (m)
+    mlMidLevelCommands.uCommand = 16.0f; // airspeed (m/s)
+    mlMidLevelCommands.rCommand = 0.0f; // turn rate (radians/s)
 
 }
 
@@ -119,7 +124,7 @@ void protDecodeMavlink(void) {
     // increment the age of heartbeat
     mlPending.heartbeatAge++;
 
-    for (i = 0; i < tmpLen; i++) {
+    for (i = 0; i <= tmpLen; i++) {
         // Try to get a new message
        if (mavlink_parse_char(commChannel, readFront(uartMavlinkInBuffer), &msg, &status)) {
                     // Handle message
@@ -855,7 +860,7 @@ void TxN_Data_OverU4(uint16_t N){
   }
   _U4TXIF = U4STAbits.TRMT;
 #else
-	mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)N);
+	mavlink_serial_send(MAVLINK_COMM_0, &Uart4OutBuff[0], (uint16_t)N);
 
 #endif
 }

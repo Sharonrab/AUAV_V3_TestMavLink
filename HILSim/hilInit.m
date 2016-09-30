@@ -16,7 +16,7 @@ run ..\apConfiguration\gsLocation.m
 
 run ..\apConfiguration\Environment.m
 run ..\apConfiguration\failuresInit.m
-run ..\apConfiguration\AM_Mentor_PwmConversions.m
+run ..\apConfiguration\AUAV3_PwmConversions.m
 run ..\apConfiguration\limits.m
 run ..\apConfiguration\baroInit.m
 run ..\apConfiguration\sensorInit.m
