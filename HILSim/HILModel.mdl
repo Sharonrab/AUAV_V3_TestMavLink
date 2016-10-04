@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.781"
+    ComputedModelVersion    "1.785"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -29,9 +29,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "sharon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Sep 29 17:30:40 2016"
+  LastModifiedDate	  "Mon Oct 03 18:35:37 2016"
   RTWModifiedTimeStamp	  397068856
-  ModelVersionFormat	  "1.%<AutoIncrement:781>"
+  ModelVersionFormat	  "1.%<AutoIncrement:785>"
   ConfigurationManager	  "None"
   SampleTimeColors	  on
   SampleTimeAnnotations	  off
@@ -573,8 +573,8 @@ Model {
 	PropName		"Components"
       }
       Name		      "Configuration"
-      CurrentDlgPage	      "Data Import//Export"
-      ConfigPrmDlgPosition     [ 272, 104, 1168, 773 ] 
+      CurrentDlgPage	      "Solver"
+      ConfigPrmDlgPosition     [ 222, 15, 1144, 644 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -1066,7 +1066,7 @@ Model {
   }
   System {
     Name		    "HILModel"
-    Location		    [3, 85, 1344, 706]
+    Location		    [3, 85, 1334, 706]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1096,8 +1096,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"6DOF Model"
-	Location		[2, 83, 1347, 698]
-	Open			off
+	Location		[3, 85, 1344, 689]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1441,7 +1441,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Plant"
-	    Location		    [2, 83, 1347, 715]
+	    Location		    [3, 85, 1344, 706]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -4103,8 +4103,8 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"Forces and Moments"
-		Location		[78, 132, 1097, 515]
-		Open			off
+		Location		[43, 99, 1062, 482]
+		Open			on
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -4222,8 +4222,8 @@ Model {
 		  MaskHideContents	  off
 		  System {
 		    Name		    "Alpha/Beta"
-		    Location		    [204, 361, 908, 768]
-		    Open		    off
+		    Location		    [97, 115, 801, 522]
+		    Open		    on
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
@@ -16880,7 +16880,7 @@ Model {
 	  Name			  "Subsystem3"
 	  SID			  "860"
 	  Ports			  [4, 4]
-	  Position		  [735, 467, 850, 583]
+	  Position		  [735, 462, 850, 578]
 	  ShowName		  off
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -16904,8 +16904,8 @@ Model {
 	  MaskIconRotate	  "none"
 	  MaskPortRotate	  "default"
 	  MaskIconUnits		  "autoscale"
-	  MaskValueString	  "[0.1 0.1 0.1]|[132 564 987]|cubeAccelGain16405|[0.1 0.1 0.1]|[132 564 987]|cubeGyroGain16405|[0."
-	  "1 0.1 0.1]|[132 564 987]|cubeMagGain16405|SampleT"
+	  MaskValueString	  "[0.1 0.1 0.1]|[132 564 987]|(3.33e-3)*9.815*2|[0.1 0.1 0.1]|[132 564 987]|.05*pi/180*2|[0.1 0.1 "
+	  "0.1]|[132 564 987]|0|SampleT"
 	  System {
 	    Name		    "Subsystem3"
 	    Location		    [2, 83, 1542, 1035]
@@ -16977,7 +16977,7 @@ Model {
 	      Name		      "Add"
 	      SID		      "866"
 	      Ports		      [2, 1]
-	      Position		      [155, 62, 185, 93]
+	      Position		      [160, 62, 190, 93]
 	      InputSameDT	      off
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -17497,7 +17497,7 @@ Model {
 	    Line {
 	      SrcBlock		      "Add"
 	      SrcPort		      1
-	      Points		      [105, 0]
+	      Points		      [100, 0]
 	      DstBlock		      "Switch"
 	      DstPort		      1
 	    }
@@ -18448,45 +18448,49 @@ Model {
 	Line {
 	  SrcBlock		  "Plant"
 	  SrcPort		  15
-	  Points		  [75, 0; 0, -60]
+	  Points		  [75, 0; 0, -65]
 	  DstBlock		  "Subsystem3"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Plant"
 	  SrcPort		  16
-	  Points		  [85, 0; 0, -65]
+	  Points		  [85, 0; 0, -70]
 	  DstBlock		  "Subsystem3"
 	  DstPort		  2
 	}
 	Line {
 	  SrcBlock		  "Plant"
 	  SrcPort		  17
-	  Points		  [95, 0; 0, -70]
+	  Points		  [95, 0; 0, -75]
 	  DstBlock		  "Subsystem3"
 	  DstPort		  3
 	}
 	Line {
 	  SrcBlock		  "Subsystem3"
 	  SrcPort		  4
+	  Points		  [0, 5]
 	  DstBlock		  "Data Type Conversion1"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Subsystem3"
 	  SrcPort		  1
+	  Points		  [0, 5]
 	  DstBlock		  "Goto6"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Subsystem3"
 	  SrcPort		  2
+	  Points		  [0, 5]
 	  DstBlock		  "Goto5"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Subsystem3"
 	  SrcPort		  3
+	  Points		  [0, 5]
 	  DstBlock		  "Goto7"
 	  DstPort		  1
 	}
@@ -18640,7 +18644,7 @@ Model {
       Ports		      [4]
       Position		      [800, 592, 830, 708]
       Floating		      off
-      Location		      [889, 57, 1351, 726]
+      Location		      [893, 57, 1355, 726]
       Open		      on
       NumInputPorts	      "4"
       ZoomMode		      "yonly"
@@ -18662,8 +18666,8 @@ Model {
 	MarkerStyles		"none|none|none|none|none|none"
       }
       TimeRange		      "70"
-      YMin		      "-0.03~0.0547195~-0.12~0.68725"
-      YMax		      "0~0.0547195~-0.06~0.68875"
+      YMin		      "-0.115~-0.03~-0.12~-0.0054"
+      YMax		      "-0.055~0.015~-0.06~-0.004"
       DataFormat	      "StructureWithTime"
       MaxDataPoints	      "25000"
       SampleTime	      "0"
@@ -19633,8 +19637,8 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Subsystem1"
-	    Location		    [126, 83, 1053, 706]
-	    Open		    on
+	    Location		    [63, 83, 990, 706]
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -19717,8 +19721,8 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Subsystem2"
-	    Location		    [120, 83, 1047, 706]
-	    Open		    on
+	    Location		    [61, 83, 988, 706]
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -19801,7 +19805,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Subsystem3"
-	    Location		    [243, 83, 1170, 706]
+	    Location		    [114, 83, 1041, 706]
 	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -22975,8 +22979,6 @@ Stateflow {
     created		    "18-Sep-2008 12:14:47"
     isLibrary		    0
     firstTarget		    10
-    debug {
-    }
     sfVersion		    76014001.0002
   }
   chart {

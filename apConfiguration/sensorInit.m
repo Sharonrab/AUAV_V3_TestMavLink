@@ -4,9 +4,13 @@
 cubeGyroGain = .07326*pi/180;
 cubeAccelGain = (2.522e-3)*9.815;
 
-cubeGyroGain16405 = .05*pi/180;
-cubeAccelGain16405 = (3.33e-3)*9.815;
-cubeMagGain16405 = 0.5;
+%cubeGyroGain16405 = .05*pi/180; %rad/sec/LSB
+cubeGyroGain16405 = 1/65.5*pi/180; %rad/sec/LSB
+%cubeAccelGain16405 = (3.33e-3)*9.815; %g/LSB
+cubeAccelGain16405 = 1/16384 *9.815; %g/LSB
+
+%cubeMagGain16405 = 0.5;%mgauss/LSB
+cubeMagGain16405 = (1370+230)/2/1000;%mgauss/LSB
 
 
 % Temp Coefficients
