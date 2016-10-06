@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.785"
+    ComputedModelVersion    "1.789"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -29,9 +29,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "sharon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Oct 03 18:35:37 2016"
-  RTWModifiedTimeStamp	  397068856
-  ModelVersionFormat	  "1.%<AutoIncrement:785>"
+  LastModifiedDate	  "Wed Oct 05 16:55:32 2016"
+  RTWModifiedTimeStamp	  397492086
+  ModelVersionFormat	  "1.%<AutoIncrement:789>"
   ConfigurationManager	  "None"
   SampleTimeColors	  on
   SampleTimeAnnotations	  off
@@ -1080,13 +1080,13 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1179"
+    SIDHighWatermark	    "1196"
     Block {
       BlockType		      SubSystem
       Name		      "6DOF Model"
       SID		      "1"
       Ports		      [7, 7]
-      Position		      [400, 55, 515, 535]
+      Position		      [550, 50, 665, 530]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -1261,6 +1261,16 @@ Model {
 	  SID			  "18"
 	  Ports			  [1]
 	  Position		  [1430, 424, 1620, 516]
+	  Format		  "long"
+	  Decimation		  "1"
+	  Lockdown		  off
+	}
+	Block {
+	  BlockType		  Display
+	  Name			  "Display4"
+	  SID			  "1188"
+	  Ports			  [1]
+	  Position		  [795, 906, 985, 1144]
 	  Format		  "long"
 	  Decimation		  "1"
 	  Lockdown		  off
@@ -1441,7 +1451,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Plant"
-	    Location		    [3, 85, 1344, 706]
+	    Location		    [3, 83, 1346, 706]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1557,7 +1567,7 @@ Model {
 	      }
 	      System {
 		Name			"6-DOF EOM"
-		Location		[128, 275, 1351, 651]
+		Location		[129, 276, 1352, 652]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -2548,6 +2558,16 @@ Model {
 		    Outputs		    "[3;3]"
 		    }
 		    Block {
+		    BlockType		    Display
+		    Name		    "Display4"
+		    SID			    "1195"
+		    Ports		    [1]
+		    Position		    [780, 226, 940, 314]
+		    Format		    "long"
+		    Decimation		    "1"
+		    Lockdown		    off
+		    }
+		    Block {
 		    BlockType		    SubSystem
 		    Name		    "Get Grav Force in Body"
 		    SID			    "101"
@@ -3282,8 +3302,16 @@ Model {
 		    Line {
 		    SrcBlock		    "Selector3"
 		    SrcPort		    1
+		    Points		    [35, 0]
+		    Branch {
 		    DstBlock		    "Sum2"
 		    DstPort		    2
+		    }
+		    Branch {
+		    Points		    [0, 105]
+		    DstBlock		    "Display4"
+		    DstPort		    1
+		    }
 		    }
 		    Line {
 		    SrcBlock		    "Euler"
@@ -3632,6 +3660,25 @@ Model {
 	      SID		      "152"
 	      Ports		      [1]
 	      Position		      [430, 245, 520, 275]
+	      Decimation	      "1"
+	      Lockdown		      off
+	    }
+	    Block {
+	      BlockType		      Display
+	      Name		      "Display1"
+	      SID		      "1191"
+	      Ports		      [1]
+	      Position		      [295, 580, 385, 610]
+	      Decimation	      "1"
+	      Lockdown		      off
+	    }
+	    Block {
+	      BlockType		      Display
+	      Name		      "Display4"
+	      SID		      "1194"
+	      Ports		      [1]
+	      Position		      [895, 526, 1055, 614]
+	      Format		      "long"
 	      Decimation	      "1"
 	      Lockdown		      off
 	    }
@@ -4103,8 +4150,8 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"Forces and Moments"
-		Location		[43, 99, 1062, 482]
-		Open			on
+		Location		[358, 113, 1386, 624]
+		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -4223,7 +4270,7 @@ Model {
 		  System {
 		    Name		    "Alpha/Beta"
 		    Location		    [97, 115, 801, 522]
-		    Open		    on
+		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
@@ -8441,7 +8488,7 @@ Model {
 		    Name		    "Longitudinal Channel"
 		    SID			    "435"
 		    Ports		    [5, 1]
-		    Position		    [150, 310, 255, 380]
+		    Position		    [175, 305, 280, 375]
 		    MinAlgLoopOccurrences   off
 		    PropExecContextOutsideSubsystem off
 		    RTWSystemCode	    "Auto"
@@ -10253,7 +10300,7 @@ Model {
 		    Line {
 		    SrcBlock		    "Longitudinal Channel"
 		    SrcPort		    1
-		    Points		    [5, 0; 0, -130]
+		    Points		    [-20, 0; 0, -125]
 		    DstBlock		    "Bus\nCreator1"
 		    DstPort		    2
 		    }
@@ -10306,14 +10353,14 @@ Model {
 		    Line {
 		    SrcBlock		    "Deg2Rad"
 		    SrcPort		    1
-		    Points		    [0, 10]
+		    Points		    [0, 5]
 		    DstBlock		    "Longitudinal Channel"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "Deg2Rad2"
 		    SrcPort		    1
-		    Points		    [10, 0; 0, -25]
+		    Points		    [5, 0; 0, -30]
 		    DstBlock		    "Longitudinal Channel"
 		    DstPort		    2
 		    }
@@ -10362,7 +10409,7 @@ Model {
 		    Line {
 		    SrcBlock		    "Deg2Rad5"
 		    SrcPort		    1
-		    Points		    [10, 0; 0, -60]
+		    Points		    [10, 0; 0, -65]
 		    DstBlock		    "Longitudinal Channel"
 		    DstPort		    3
 		    }
@@ -10383,6 +10430,7 @@ Model {
 		    DstPort		    5
 		    }
 		    Branch {
+		    Points		    [40, 0]
 		    DstBlock		    "Longitudinal Channel"
 		    DstPort		    4
 		    }
@@ -10396,6 +10444,7 @@ Model {
 		    DstPort		    6
 		    }
 		    Branch {
+		    Points		    [35, 0]
 		    DstBlock		    "Longitudinal Channel"
 		    DstPort		    5
 		    }
@@ -10558,7 +10607,7 @@ Model {
 		  Name			  "Display1"
 		  SID			  "1176"
 		  Ports			  [1]
-		  Position		  [780, 13, 920, 87]
+		  Position		  [790, 13, 930, 87]
 		  Format		  "long"
 		  Decimation		  "1"
 		  Lockdown		  off
@@ -12667,7 +12716,7 @@ Model {
 	      MaskValueString	      "[ 27590.4 1999.5 30223.2]"
 	      System {
 		Name			"Magnetometer"
-		Location		[958, 590, 1420, 807]
+		Location		[787, 249, 1249, 466]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -13762,8 +13811,15 @@ Model {
 	    Line {
 	      SrcBlock		      "Forces and Moments"
 	      SrcPort		      5
-	      DstBlock		      "Dynamic (Pa)"
-	      DstPort		      1
+	      Points		      [10, 0]
+	      Branch {
+		DstBlock		"Dynamic (Pa)"
+		DstPort			1
+	      }
+	      Branch {
+		DstBlock		"Display1"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "ISA Atmosphere & Winds"
@@ -13954,11 +14010,6 @@ Model {
 	      SrcPort		      1
 	      Points		      [20, 0]
 	      Branch {
-		Labels			[0, 0]
-		DstBlock		"Magnetometer"
-		DstPort			1
-	      }
-	      Branch {
 		Points			[0, -35]
 		Branch {
 		  DstBlock		  "Euler"
@@ -13968,6 +14019,19 @@ Model {
 		  Points		  [0, -30; -200, 0; 0, -55; -105, 0; 0, -175]
 		  DstBlock		  "ISA Atmosphere & Winds"
 		  DstPort		  2
+		}
+	      }
+	      Branch {
+		Labels			[0, 0]
+		Points			[15, 0]
+		Branch {
+		  DstBlock		  "Magnetometer"
+		  DstPort		  1
+		}
+		Branch {
+		  Points		  [0, 140]
+		  DstBlock		  "Display4"
+		  DstPort		  1
 		}
 	      }
 	    }
@@ -16880,7 +16944,7 @@ Model {
 	  Name			  "Subsystem3"
 	  SID			  "860"
 	  Ports			  [4, 4]
-	  Position		  [735, 462, 850, 578]
+	  Position		  [735, 457, 850, 573]
 	  ShowName		  off
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -16904,12 +16968,12 @@ Model {
 	  MaskIconRotate	  "none"
 	  MaskPortRotate	  "default"
 	  MaskIconUnits		  "autoscale"
-	  MaskValueString	  "[0.1 0.1 0.1]|[132 564 987]|(3.33e-3)*9.815*2|[0.1 0.1 0.1]|[132 564 987]|.05*pi/180*2|[0.1 0.1 "
-	  "0.1]|[132 564 987]|0|SampleT"
+	  MaskValueString	  "[0.1 0.1 0.1]|[132 564 987]|1/16384*9.815|[0.1 0.1 0.1]|[132 564 987]|1/65.5*pi/180|[0.1 0.1 0.1"
+	  "]|[132 564 987]|(1370+230)/2/1000|SampleT"
 	  System {
 	    Name		    "Subsystem3"
 	    Location		    [2, 83, 1542, 1035]
-	    Open		    off
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -17031,6 +17095,56 @@ Model {
 	      OutDataTypeStr	      "int16"
 	      RndMeth		      "Floor"
 	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Display
+	      Name		      "Display1"
+	      SID		      "1185"
+	      Ports		      [1]
+	      Position		      [1015, 363, 1205, 467]
+	      Format		      "long"
+	      Decimation	      "1"
+	      Lockdown		      off
+	    }
+	    Block {
+	      BlockType		      Display
+	      Name		      "Display2"
+	      SID		      "1184"
+	      Ports		      [1]
+	      Position		      [970, 173, 1160, 277]
+	      Format		      "long"
+	      Decimation	      "1"
+	      Lockdown		      off
+	    }
+	    Block {
+	      BlockType		      Display
+	      Name		      "Display3"
+	      SID		      "1186"
+	      Ports		      [1]
+	      Position		      [985, 528, 1175, 632]
+	      Format		      "long"
+	      Decimation	      "1"
+	      Lockdown		      off
+	    }
+	    Block {
+	      BlockType		      Display
+	      Name		      "Display4"
+	      SID		      "1187"
+	      Ports		      [1]
+	      Position		      [525, 16, 685, 104]
+	      Format		      "long"
+	      Decimation	      "1"
+	      Lockdown		      off
+	    }
+	    Block {
+	      BlockType		      Display
+	      Name		      "Display5"
+	      SID		      "1193"
+	      Ports		      [1]
+	      Position		      [510, 306, 670, 394]
+	      Format		      "long"
+	      Decimation	      "1"
+	      Lockdown		      off
 	    }
 	    Block {
 	      BlockType		      Product
@@ -17193,7 +17307,7 @@ Model {
 	      System {
 		Name			"Rotate Cube Axis"
 		Location		[6, 83, 1298, 875]
-		Open			off
+		Open			on
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -17228,7 +17342,7 @@ Model {
 		  Name			  "[ 1 -1 1]"
 		  SID			  "889"
 		  Position		  [155, 30, 185, 60]
-		  Gain			  "[1 -1 1]"
+		  Gain			  "[-1 1 -1]"
 		  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
@@ -17394,7 +17508,7 @@ Model {
 		  Name			  "[ 1 -1 1]"
 		  SID			  "899"
 		  Position		  [155, 30, 185, 60]
-		  Gain			  "[1 -1 1]"
+		  Gain			  "[-1 1 -1]"
 		  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
@@ -17571,8 +17685,16 @@ Model {
 		DstPort			1
 	      }
 	      Branch {
-		DstBlock		"Divide"
-		DstPort			1
+		Points			[75, 0]
+		Branch {
+		  DstBlock		  "Divide"
+		  DstPort		  1
+		}
+		Branch {
+		  Points		  [0, 90]
+		  DstBlock		  "Display5"
+		  DstPort		  1
+		}
 	      }
 	    }
 	    Line {
@@ -17673,27 +17795,58 @@ Model {
 	    Line {
 	      SrcBlock		      "Reshape"
 	      SrcPort		      1
-	      Points		      [15, 0; 0, 20]
-	      DstBlock		      "Divide1"
-	      DstPort		      1
+	      Points		      [15, 0; 0, 20; 50, 0]
+	      Branch {
+		DstBlock		"Divide1"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, -60]
+		DstBlock		"Display4"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "Data Type Conversion3"
 	      SrcPort		      1
-	      DstBlock		      "Acccel (Raw)"
-	      DstPort		      1
+	      Points		      [30, 0]
+	      Branch {
+		DstBlock		"Acccel (Raw)"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 95]
+		DstBlock		"Display2"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "Data Type Conversion4"
 	      SrcPort		      1
-	      DstBlock		      "Gyro (Raw)  "
-	      DstPort		      1
+	      Points		      [15, 0]
+	      Branch {
+		DstBlock		"Gyro (Raw)  "
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 145]
+		DstBlock		"Display1"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "Data Type Conversion5"
 	      SrcPort		      1
-	      DstBlock		      "Mags (Raw)"
-	      DstPort		      1
+	      Points		      [20, 0]
+	      Branch {
+		DstBlock		"Mags (Raw)"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 145]
+		DstBlock		"Display3"
+		DstPort			1
+	      }
 	    }
 	  }
 	}
@@ -18448,57 +18601,65 @@ Model {
 	Line {
 	  SrcBlock		  "Plant"
 	  SrcPort		  15
-	  Points		  [75, 0; 0, -65]
+	  Points		  [75, 0; 0, -70]
 	  DstBlock		  "Subsystem3"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Plant"
 	  SrcPort		  16
-	  Points		  [85, 0; 0, -70]
+	  Points		  [85, 0; 0, -75]
 	  DstBlock		  "Subsystem3"
 	  DstPort		  2
 	}
 	Line {
 	  SrcBlock		  "Plant"
 	  SrcPort		  17
-	  Points		  [95, 0; 0, -75]
+	  Points		  [95, 0; 0, -80]
 	  DstBlock		  "Subsystem3"
 	  DstPort		  3
 	}
 	Line {
 	  SrcBlock		  "Subsystem3"
 	  SrcPort		  4
-	  Points		  [0, 5]
+	  Points		  [0, 10]
 	  DstBlock		  "Data Type Conversion1"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Subsystem3"
 	  SrcPort		  1
-	  Points		  [0, 5]
+	  Points		  [0, 10]
 	  DstBlock		  "Goto6"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Subsystem3"
 	  SrcPort		  2
-	  Points		  [0, 5]
+	  Points		  [0, 10]
 	  DstBlock		  "Goto5"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Subsystem3"
 	  SrcPort		  3
-	  Points		  [0, 5]
+	  Points		  [0, 10]
 	  DstBlock		  "Goto7"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Sensor Sim"
 	  SrcPort		  1
-	  DstBlock		  "Sensors"
-	  DstPort		  1
+	  Points		  [40, 0]
+	  Branch {
+	    DstBlock		    "Sensors"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 160]
+	    DstBlock		    "Display4"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "Data Type Conversion1"
@@ -18589,6 +18750,22 @@ Model {
     }
     Block {
       BlockType		      Constant
+      Name		      "Constant2"
+      SID		      "1196"
+      Position		      [210, 115, 240, 145]
+      ShowName		      off
+      Value		      "0"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant3"
+      SID		      "1181"
+      Position		      [330, 101, 375, 129]
+      ShowName		      off
+      Value		      "pi/180 "
+    }
+    Block {
+      BlockType		      Constant
       Name		      "Constant33"
       SID		      "937"
       Position		      [40, 570, 70, 600]
@@ -18625,7 +18802,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant4"
       SID		      "941"
-      Position		      [310, 350, 340, 380]
+      Position		      [460, 345, 490, 375]
       ShowName		      off
       Value		      "0"
     }
@@ -18636,6 +18813,14 @@ Model {
       Position		      [40, 760, 70, 790]
       ShowName		      off
       SampleTime	      "SampleT"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant6"
+      SID		      "1182"
+      Position		      [255, 110, 285, 140]
+      ShowName		      off
+      Value		      "0.4"
     }
     Block {
       BlockType		      Scope
@@ -18666,8 +18851,8 @@ Model {
 	MarkerStyles		"none|none|none|none|none|none"
       }
       TimeRange		      "70"
-      YMin		      "-0.115~-0.03~-0.12~-0.0054"
-      YMax		      "-0.055~0.015~-0.06~-0.004"
+      YMin		      "-6.36111e-015~-0.03~-0.12~-0.0054"
+      YMax		      "-6.36111e-015~0.015~-0.06~-0.004"
       DataFormat	      "StructureWithTime"
       MaxDataPoints	      "25000"
       SampleTime	      "0"
@@ -18980,7 +19165,7 @@ Model {
       Name		      "Convert to Rad3"
       SID		      "960"
       Ports		      [1, 1]
-      Position		      [125, 272, 210, 298]
+      Position		      [115, 272, 200, 298]
       NamePlacement	      "alternate"
       ShowName		      off
       MinAlgLoopOccurrences   off
@@ -19006,7 +19191,7 @@ Model {
       MaskValueString	      "mPWMde|bPWMde"
       System {
 	Name			"Convert to Rad3"
-	Location		[917, 78, 1880, 1107]
+	Location		[232, 129, 1195, 1129]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -19284,7 +19469,7 @@ Model {
       Name		      "Enabled\nSubsystem"
       SID		      "976"
       Ports		      [6, 6, 1]
-      Position		      [685, 48, 775, 402]
+      Position		      [835, 43, 925, 397]
       TreatAsAtomicUnit	      on
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -19464,7 +19649,7 @@ Model {
       System {
 	Name			"From AP"
 	Location		[3, 83, 1361, 706]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -19806,7 +19991,7 @@ Model {
 	  System {
 	    Name		    "Subsystem3"
 	    Location		    [114, 83, 1041, 706]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -20182,7 +20367,7 @@ Model {
       BlockType		      From
       Name		      "From1"
       SID		      "1028"
-      Position		      [590, 296, 640, 314]
+      Position		      [740, 291, 790, 309]
       BackgroundColor	      "cyan"
       ShowName		      off
       CloseFcn		      "tagdialog Close"
@@ -20192,7 +20377,7 @@ Model {
       BlockType		      From
       Name		      "From10"
       SID		      "1029"
-      Position		      [570, 20, 655, 40]
+      Position		      [720, 15, 805, 35]
       BackgroundColor	      "cyan"
       ShowName		      off
       CloseFcn		      "tagdialog Close"
@@ -20266,7 +20451,7 @@ Model {
       BlockType		      From
       Name		      "From2"
       SID		      "1034"
-      Position		      [560, 315, 640, 335]
+      Position		      [710, 310, 790, 330]
       BackgroundColor	      "cyan"
       ShowName		      off
       CloseFcn		      "tagdialog Close"
@@ -20276,7 +20461,7 @@ Model {
       BlockType		      From
       Name		      "From3"
       SID		      "1035"
-      Position		      [565, 231, 640, 249]
+      Position		      [715, 226, 790, 244]
       BackgroundColor	      "cyan"
       ShowName		      off
       CloseFcn		      "tagdialog Close"
@@ -20286,7 +20471,7 @@ Model {
       BlockType		      From
       Name		      "From4"
       SID		      "1036"
-      Position		      [560, 260, 640, 280]
+      Position		      [710, 255, 790, 275]
       BackgroundColor	      "cyan"
       ShowName		      off
       CloseFcn		      "tagdialog Close"
@@ -20296,7 +20481,7 @@ Model {
       BlockType		      From
       Name		      "From5"
       SID		      "1037"
-      Position		      [310, 286, 360, 304]
+      Position		      [460, 281, 510, 299]
       BackgroundColor	      "cyan"
       ShowName		      off
       CloseFcn		      "tagdialog Close"
@@ -20306,7 +20491,7 @@ Model {
       BlockType		      From
       Name		      "From6"
       SID		      "1038"
-      Position		      [315, 146, 365, 164]
+      Position		      [465, 141, 515, 159]
       BackgroundColor	      "cyan"
       ShowName		      off
       CloseFcn		      "tagdialog Close"
@@ -20316,7 +20501,7 @@ Model {
       BlockType		      From
       Name		      "From61"
       SID		      "1039"
-      Position		      [300, 426, 350, 444]
+      Position		      [450, 421, 500, 439]
       BackgroundColor	      "cyan"
       ShowName		      off
       CloseFcn		      "tagdialog Close"
@@ -20326,7 +20511,7 @@ Model {
       BlockType		      From
       Name		      "From67"
       SID		      "1040"
-      Position		      [300, 496, 350, 514]
+      Position		      [450, 491, 500, 509]
       BackgroundColor	      "cyan"
       ShowName		      off
       CloseFcn		      "tagdialog Close"
@@ -20336,7 +20521,7 @@ Model {
       BlockType		      From
       Name		      "From7"
       SID		      "1041"
-      Position		      [315, 216, 365, 234]
+      Position		      [465, 211, 515, 229]
       BackgroundColor	      "cyan"
       ShowName		      off
       CloseFcn		      "tagdialog Close"
@@ -20346,7 +20531,7 @@ Model {
       BlockType		      From
       Name		      "From8"
       SID		      "1042"
-      Position		      [315, 76, 365, 94]
+      Position		      [465, 71, 515, 89]
       BackgroundColor	      "cyan"
       ShowName		      off
       CloseFcn		      "tagdialog Close"
@@ -20367,7 +20552,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Get Delay"
-	Location		[236, 428, 853, 913]
+	Location		[335, 272, 952, 757]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -20675,7 +20860,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto1"
       SID		      "1061"
-      Position		      [520, 496, 570, 514]
+      Position		      [670, 491, 720, 509]
       BackgroundColor	      "magenta"
       ShowName		      off
       GotoTag		      "XYZ_true"
@@ -20685,7 +20870,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto10"
       SID		      "1062"
-      Position		      [710, 446, 760, 464]
+      Position		      [860, 441, 910, 459]
       BackgroundColor	      "magenta"
       ShowName		      off
       GotoTag		      "time_sync"
@@ -20705,7 +20890,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto12"
       SID		      "1064"
-      Position		      [255, 276, 305, 294]
+      Position		      [375, 281, 425, 299]
       BackgroundColor	      "magenta"
       ShowName		      off
       GotoTag		      "de_c"
@@ -20715,7 +20900,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto2"
       SID		      "1065"
-      Position		      [530, 355, 600, 375]
+      Position		      [680, 350, 750, 370]
       BackgroundColor	      "magenta"
       ShowName		      off
       GotoTag		      "Vned_true"
@@ -20725,7 +20910,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto4"
       SID		      "1066"
-      Position		      [525, 425, 595, 445]
+      Position		      [675, 420, 745, 440]
       BackgroundColor	      "magenta"
       ShowName		      off
       GotoTag		      "PQR_true"
@@ -20735,7 +20920,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto5"
       SID		      "1067"
-      Position		      [530, 285, 600, 305]
+      Position		      [680, 280, 750, 300]
       BackgroundColor	      "magenta"
       ShowName		      off
       GotoTag		      "Euler_true"
@@ -20765,7 +20950,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto6"
       SID		      "1070"
-      Position		      [255, 156, 305, 174]
+      Position		      [310, 156, 360, 174]
       BackgroundColor	      "magenta"
       ShowName		      off
       GotoTag		      "dt_c"
@@ -20775,7 +20960,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto7"
       SID		      "1071"
-      Position		      [255, 196, 305, 214]
+      Position		      [275, 196, 325, 214]
       BackgroundColor	      "magenta"
       ShowName		      off
       GotoTag		      "da_c"
@@ -20785,7 +20970,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto8"
       SID		      "1072"
-      Position		      [255, 236, 305, 254]
+      Position		      [385, 236, 435, 254]
       BackgroundColor	      "magenta"
       ShowName		      off
       GotoTag		      "dr_c"
@@ -20838,7 +21023,7 @@ Model {
       Name		      "Mux"
       SID		      "1076"
       Ports		      [2, 1]
-      Position		      [655, 227, 660, 283]
+      Position		      [805, 222, 810, 278]
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
@@ -20848,7 +21033,7 @@ Model {
       Name		      "Mux1"
       SID		      "1077"
       Ports		      [2, 1]
-      Position		      [655, 296, 660, 334]
+      Position		      [805, 291, 810, 329]
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
@@ -20905,7 +21090,7 @@ Model {
       Name		      "Sync Timing"
       SID		      "1080"
       Ports		      [0, 1]
-      Position		      [600, 360, 630, 390]
+      Position		      [750, 355, 780, 385]
       LibraryVersion	      "1.256"
       SourceBlock	      "simulink/Sources/Counter\nFree-Running"
       SourceType	      "Counter Free-Running"
@@ -20948,7 +21133,7 @@ Model {
       Position		      [255, 34, 285, 66]
       Floating		      off
       Location		      [205, 329, 1139, 470]
-      Open		      off
+      Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -20966,8 +21151,8 @@ Model {
 	MarkerStyles		"none|none|none|none|none|none"
       }
       TimeRange		      "6000"
-      YMin		      "0"
-      YMax		      "900"
+      YMin		      "67"
+      YMax		      "72"
       SaveName		      "ScopeData2"
       DataFormat	      "StructureWithTime"
       LimitDataPoints	      off
@@ -20978,10 +21163,10 @@ Model {
       Name		      "Time\nDelay (s)1"
       SID		      "1159"
       Ports		      [4]
-      Position		      [260, 313, 295, 397]
+      Position		      [280, 318, 315, 402]
       Floating		      off
-      Location		      [438, 140, 1352, 590]
-      Open		      off
+      Location		      [439, 140, 1353, 591]
+      Open		      on
       NumInputPorts	      "4"
       ZoomMode		      "xonly"
       List {
@@ -21001,9 +21186,9 @@ Model {
 	LineWidths		"[0.5 0.5 0.5 0.5 0.5 0.5]"
 	MarkerStyles		"none|none|none|none|none|none"
       }
-      TimeRange		      "60"
-      YMin		      "-0.0007~0.0002~0.0007~-0.0003"
-      YMax		      "0~0.001~0.0013~0.0003"
+      TimeRange		      "24"
+      YMin		      "0.532345~0.0002~-0.785398~-0.175"
+      YMax		      "0.532345~0.001~0.785398~0.175"
       SaveName		      "ScopeData3"
       DataFormat	      "StructureWithTime"
       LimitDataPoints	      off
@@ -21014,7 +21199,7 @@ Model {
       Name		      "To AP"
       SID		      "1086"
       Ports		      [6]
-      Position		      [825, 45, 910, 405]
+      Position		      [975, 40, 1060, 400]
       BackgroundColor	      "yellow"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -21025,8 +21210,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"To AP"
-	Location		[1, 51, 1365, 727]
-	Open			on
+	Location		[1, 83, 1365, 706]
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -21635,7 +21820,7 @@ Model {
 	  Name			  "Display3"
 	  SID			  "1146"
 	  Ports			  [1]
-	  Position		  [840, 618, 995, 842]
+	  Position		  [910, 1128, 1065, 1352]
 	  Format		  "long"
 	  Decimation		  "1"
 	  Lockdown		  off
@@ -21646,6 +21831,16 @@ Model {
 	  SID			  "1147"
 	  Ports			  [1]
 	  Position		  [910, 868, 1065, 1092]
+	  Format		  "long"
+	  Decimation		  "1"
+	  Lockdown		  off
+	}
+	Block {
+	  BlockType		  Display
+	  Name			  "Display5"
+	  SID			  "1192"
+	  Ports			  [1]
+	  Position		  [840, 623, 995, 847]
 	  Format		  "long"
 	  Decimation		  "1"
 	  Lockdown		  off
@@ -22090,8 +22285,16 @@ Model {
 	Line {
 	  SrcBlock		  "Rate Transition3"
 	  SrcPort		  1
-	  DstBlock		  "Demux3"
-	  DstPort		  1
+	  Points		  [5, 0]
+	  Branch {
+	    DstBlock		    "Demux3"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, -95; 695, 0]
+	    DstBlock		    "Display5"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "Demux3"
@@ -22174,7 +22377,7 @@ Model {
 	    DstPort		    1
 	  }
 	  Branch {
-	    Points		    [0, -335]
+	    Points		    [0, 175]
 	    DstBlock		    "Display3"
 	    DstPort		    1
 	  }
@@ -22793,32 +22996,17 @@ Model {
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Convert to Rad"
-      SrcPort		      1
-      Points		      [0, 15; 15, 0]
-      Branch {
-	Points			[10, 0]
-	DstBlock		"Goto6"
-	DstPort			1
-      }
-      Branch {
-	Points			[10, 0; 0, 145]
-	DstBlock		"Time\nDelay (s)1"
-	DstPort			1
-      }
-    }
-    Line {
       SrcBlock		      "Convert to Rad1"
       SrcPort		      1
       Points		      [5, 0]
       Branch {
-	DstBlock		"Goto7"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 140]
+	Points			[0, 145]
 	DstBlock		"Time\nDelay (s)1"
 	DstPort			2
+      }
+      Branch {
+	DstBlock		"Goto7"
+	DstPort			1
       }
     }
     Line {
@@ -22914,31 +23102,18 @@ Model {
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Convert to Rad4"
-      SrcPort		      1
-      Points		      [20, 0]
-      Branch {
-	DstBlock		"Goto8"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 120]
-	DstBlock		"Time\nDelay (s)1"
-	DstPort			3
-      }
-    }
-    Line {
       SrcBlock		      "Convert to Rad3"
       SrcPort		      1
-      Points		      [10, 0]
-      Branch {
-	DstBlock		"Goto12"
-	DstPort			1
-      }
+      Points		      [0, 5]
       Branch {
 	Points			[0, 100]
 	DstBlock		"Time\nDelay (s)1"
 	DstPort			4
+      }
+      Branch {
+	Points			[0, -5; 10, 0; 0, 5]
+	DstBlock		"Goto12"
+	DstPort			1
       }
     }
     Line {
@@ -22958,6 +23133,35 @@ Model {
       SrcPort		      9
       DstBlock		      "Terminator3"
       DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Convert to Rad"
+      SrcPort		      1
+      Points		      [20, 0]
+      Branch {
+	Points			[0, 165]
+	DstBlock		"Time\nDelay (s)1"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"Goto6"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Convert to Rad4"
+      SrcPort		      1
+      Points		      [30, 0; 0, 5]
+      Branch {
+	Points			[0, 120]
+	DstBlock		"Time\nDelay (s)1"
+	DstPort			3
+      }
+      Branch {
+	Points			[0, -5]
+	DstBlock		"Goto8"
+	DstPort			1
+      }
     }
     Annotation {
       Name		      "Disturbance and Noise  Control"
