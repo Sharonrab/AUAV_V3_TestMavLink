@@ -28,7 +28,7 @@ int32_t serialRate = 0;
 
 #define BUFLEN 512
 
-struct CircBuffer com4Buffer;
+extern struct CircBuffer com4Buffer;
 extern CBRef uartBuffer;
 extern CBRef uartMavlinkInBuffer;
 
@@ -116,12 +116,12 @@ void udb_serial_start_sending_data(void)
 		telemetrySocket = NULL;
 	}
 }
-void uartBufferInit(void) 
-{
-	
-	uartBuffer = (struct CircBuffer*) &com4Buffer;
-	newCircBuffer(uartBuffer);
-}
+//void uartBufferInit(void) 
+//{
+//	
+//	uartBuffer = (struct CircBuffer*) &com4Buffer;
+//	newCircBuffer(uartBuffer);
+//}
 // Got a character from the GPS
 //void udb_gps_callback_received_byte(uint8_t rxchar)
 //{

@@ -5,15 +5,18 @@
 #include <stdio.h>
 #ifdef UNIT_TEST
 #include "AUAV_V3_TestMavLink.h"
+//#include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.h"
 
 #elif defined  SENSORS_UNIT_TEST
 #include "AUAV_V3_TestSensors.h"
 #else
-#include "AUAV3_AND_SLUGS_SENSOR.h"
+#include "AUAV_V3_TestSensors.h"
 
 #endif
 
 uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
+uint8_t Uart4OutBuff[MAVLINK_MAX_PACKET_LEN];
+
 struct CircBuffer comMavlinkBuffer;
 CBRef uartMavlinkInBuffer;
 uint8_T DatafromGSmavlink[MAXINLEN+2];
@@ -21,16 +24,16 @@ mavlink_pending_requests_t mlPending;
 mavlink_heartbeat_t mlHeartbeat;
 mavlink_mission_count_t mlWpCount;
 mavlink_mission_request_t mlWpRequest;
-mavlink_mission_item_values_t mlWpValues; //defined in MavlinkComm.h
+//mavlink_mission_item_values_t mlWpValues; //defined in MavlinkComm.h
 mavlink_mission_item_t mlSingleWp;
 mavlink_set_gps_global_origin_t mlGSLocation;
 mavlink_mission_ack_t mlWpAck;
 
-struct pi_struct mlParamInterface;
+//pi_struct mlParamInterface;
 
 void uartMavlinkBufferInit (void){
 #if (WIN != 1)
-  _U1RXIP = 1;                         /* Rx Interrupt priority set to 1 */
+  _U1RXIP = 5;                         /* Rx Interrupt priority set to 1 */
   _U1RXIF = 0;
   _U1RXIE = 1;                         /* Enable Interrupt */
   /* Configure Remappables Pins */
@@ -88,6 +91,11 @@ void InitParameterInterface(void)
     strcpy(mlParamInterface.param_name[PAR_PID_YAW_DAMP_P], "PID_YAW_DA_P");
     strcpy(mlParamInterface.param_name[PAR_PID_YAW_DAMP_I], "PID_YAW_DA_I");
     strcpy(mlParamInterface.param_name[PAR_PID_YAW_DAMP_D], "PID_YAW_DA_D");
+    
+    // Populate default mid-level commands
+    mlMidLevelCommands.hCommand = 120.0f; // altitude (m)
+    mlMidLevelCommands.uCommand = 16.0f; // airspeed (m/s)
+    mlMidLevelCommands.rCommand = 0.0f; // turn rate (radians/s)
 
 }
 
@@ -116,7 +124,7 @@ void protDecodeMavlink(void) {
     // increment the age of heartbeat
     mlPending.heartbeatAge++;
 
-    for (i = 0; i < tmpLen; i++) {
+    for (i = 0; i <= tmpLen; i++) {
         // Try to get a new message
        if (mavlink_parse_char(commChannel, readFront(uartMavlinkInBuffer), &msg, &status)) {
                     // Handle message
@@ -647,9 +655,9 @@ uint16_t PackHeartBeat(uint8_t system_id, uint8_t component_id){
   uint8_t system_type = MAV_TYPE_FIXED_WING;
   uint8_t autopilot_type = MAV_AUTOPILOT_GENERIC;
 
-  uint8_t system_mode = MAV_MODE_PREFLIGHT; ///< Booting up
-  uint32_t custom_mode = 0;                 ///< Custom mode, can be defined by user/adopter
-  uint8_t system_state = MAV_STATE_STANDBY; ///< System ready for flight
+  uint8_t system_mode = mlHeartbeatLocal.base_mode; ///< Booting up
+  uint32_t custom_mode = mlHeartbeatLocal.custom_mode;                 ///< Custom mode, can be defined by user/adopter
+  uint8_t system_state = mlHeartbeatLocal.system_status; ///< System ready for flight
   mavlink_message_t msg;
   uint16_t bytes2Send = 0;
   //////////////////////////////////////////////////////////////////////////
@@ -672,14 +680,14 @@ uint16_t PackHeartBeat(uint8_t system_id, uint8_t component_id){
   return(bytes2Send);
 }
 
-uint16_t PackTextMsg(uint8_t system_id, uint8_t component_id){
+uint16_t PackTextMsg(uint8_t system_id, uint8_t component_id, unsigned char buf){
   mavlink_message_t msg;
   mavlink_system_t mavlink_system;
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
   char vr_message[50];
   memset(vr_message, 0, sizeof (vr_message));
-  sprintf(vr_message, "Hello World");
+  sprintf(vr_message, "buffer %d",buf);
   mavlink_msg_statustext_pack(mavlink_system.sysid,
   mavlink_system.compid,
   &msg,
@@ -700,6 +708,19 @@ uint16_t PackRawIMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t m
   mavlink_msg_raw_imu_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlRawIMUData.xacc , mlRawIMUData.yacc , mlRawIMUData.zacc , mlRawIMUData.xgyro , mlRawIMUData.ygyro , mlRawIMUData.zgyro , mlRawIMUData.xmag , mlRawIMUData.ymag , mlRawIMUData.zmag );
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
 }
+
+uint16_t PackRawAttitude(uint8_t system_id, uint8_t component_id, mavlink_attitude_t mlAttitudeData ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_attitude_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlAttitudeData.roll, mlAttitudeData.pitch, mlAttitudeData.yaw, mlAttitudeData.rollspeed, mlAttitudeData.pitchspeed, mlAttitudeData.yawspeed );
+  return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
+
 
 uint16_t PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec){
   mavlink_system_t mavlink_system;
@@ -754,6 +775,18 @@ uint16_t PackRawServo(uint8_t system_id, uint8_t component_id, mavlink_servo_out
   memset(&msg, 0, sizeof (mavlink_message_t));
   mavlink_msg_servo_output_raw_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlPwmCommands.port, mlPwmCommands.servo1_raw, mlPwmCommands.servo2_raw, mlPwmCommands.servo3_raw, mlPwmCommands.servo4_raw, mlPwmCommands.servo5_raw, mlPwmCommands.servo6_raw, mlPwmCommands.servo7_raw, mlPwmCommands.servo8_raw );
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
+
+uint16_t HIL_PackRawServo(uint8_t system_id, uint8_t component_id, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_servo_output_raw_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlPwmCommands.port, mlPwmCommands.servo1_raw, mlPwmCommands.servo2_raw, mlPwmCommands.servo3_raw, mlPwmCommands.servo4_raw, mlPwmCommands.servo5_raw, mlPwmCommands.servo6_raw, mlPwmCommands.servo7_raw, mlPwmCommands.servo8_raw );
+  return( mavlink_msg_to_send_buffer(Uart4OutBuff, &msg));
 }
 
 uint16_t PackRawRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec){
@@ -820,6 +853,27 @@ void TxN_Data_OverU1(uint16_t N){
   _U1TXIF = U1STAbits.TRMT;
 #else
 	mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)N);
+
+#endif
+}
+extern MCHP_UART4_TxStr MCHP_UART4_Tx;
+
+void TxN_Data_OverU4(uint16_t N){
+#if (WIN != 1)//SLUGS2 SIL
+  uint16_T i;
+  for (i = 0U; i < N; i++) {
+    uint16_T Tmp;
+    Tmp = ~(MCHP_UART4_Tx.tail - MCHP_UART4_Tx.head);
+    Tmp = Tmp & (Tx_BUFF_SIZE_Uart4 - 1);/* Modulo Buffer Size */
+    if (Tmp != 0) {
+      MCHP_UART4_Tx.buffer[MCHP_UART4_Tx.tail] = Uart4OutBuff[i];
+      MCHP_UART4_Tx.tail = (MCHP_UART4_Tx.tail + 1) & (Tx_BUFF_SIZE_Uart4 - 1);
+      Tmp--;
+    }
+  }
+  _U4TXIF = U4STAbits.TRMT;
+#else
+	mavlink_serial_send(MAVLINK_COMM_0, &Uart4OutBuff[0], (uint16_t)N);
 
 #endif
 }

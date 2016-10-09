@@ -35,6 +35,81 @@
     <ClCompile Include="model\Mavlink_TX_Adapter.c">
       <Filter>Model</Filter>
     </ClCompile>
+    <ClCompile Include="model\rt_nonfinite.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rtGetInf.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rtGetNaN.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Position_and_Attitude_Filter.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_18.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_2.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_3.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_22.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_75.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_76.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_77.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_86.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\apUtils.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\updateSensorMcuState.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\mavlinkSensorMcu.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="model\AUAV_V3_TestSensors_data.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\AUAV_V3_TestSensors.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\updateControlMcuState.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\mavlinkControlMcu.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Sensor_Data_Adapter.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\navSupport.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\hil.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\adisCube16405.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\gpsPort.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="model\AUAV_V3_TestSensors_main.c">
+      <Filter>Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />

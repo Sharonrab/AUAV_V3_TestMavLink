@@ -8,6 +8,7 @@
 
 #if (WIN == 1 || NIX == 1)
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -234,6 +235,9 @@ void udb_init(void)
 		                              SILSIM_SERIAL_RC_INPUT_DEVICE,
 		                              SILSIM_SERIAL_RC_INPUT_BAUD);
 	}
+
+	/* Initialize model */
+	AUAV_V3_TestSensors_initialize();
 }
 
 #define UDB_WRAP_TIME 1000
@@ -288,7 +292,7 @@ void udb_run(void)
 
 			//udb_heartbeat_40hz_callback(); // Run at 40Hz
 			//udb_heartbeat_callback(); // Run at HEARTBEAT_HZ
-
+			_T2Interrupt();
 #if (HILSIM == 1)
 			send_HILSIM_outputs();
 #endif
@@ -306,9 +310,9 @@ void udb_run(void)
 				//mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)wrote);
 
 				/* Outputs for Atomic SubSystem: '<Root>/Mavlink_TX_Adapter' */
-				AUAV_V3_Mavlink_TX_AdapterTID10();
+				//AUAV_V3_Mavlink_TX_AdapterTID9();
 				
-				AUAV_V3_Mavlink_TX_AdapterTID5();
+				//AUAV_V3_Mavlink_TX_AdapterTID5();
 
 				/* End of Outputs for SubSystem: '<Root>/Mavlink_TX_Adapter' */
 			}
@@ -319,13 +323,13 @@ void udb_run(void)
 				//wrote = PackGpsRawInt(/*system_id*/101, /*component_id*/1, mlGpsData, currentTime); // Run at 1Hz
 				//mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)wrote);
 
-				AUAV_V3_Mavlink_TX_AdapterTID4();
+				//AUAV_V3_Mavlink_TX_AdapterTID4();
 			}
 
 			if (udb_heartbeat_counter % (HEARTBEAT_HZ / 5) == 0)
 			{
 								
-				AUAV_V3_Mavlink_TX_AdapterTID1();
+				//AUAV_V3_Mavlink_TX_AdapterTID10();
 			}
 			
 

@@ -19,15 +19,16 @@
  *
  * Real-Time Workshop code generated for Simulink model AUAV_V3_TestSensors.
  *
- * Model version                        : 1.138
+ * Model version                        : 1.221
  * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Mon Aug 15 17:25:56 2016
+ * Real-Time Workshop file generated on : Sun Oct 09 00:06:23 2016
  * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Mon Aug 15 17:25:58 2016
+ * C source code generated on           : Sun Oct 09 00:06:26 2016
  */
 
 #ifndef RTW_HEADER_Mavlink_TX_Adapter_h_
 #define RTW_HEADER_Mavlink_TX_Adapter_h_
+#include <math.h>
 #ifndef AUAV_V3_TestSensors_COMMON_INCLUDES_
 # define AUAV_V3_TestSensors_COMMON_INCLUDES_
 #include "rtwtypes.h"
@@ -37,13 +38,16 @@
 
 /* Shared type includes */
 #include "multiword_types.h"
+#include "rt_nonfinite.h"
 
-extern void AUAV_V3_Mavlink_TX_AdapterTID1(void);
+extern void AUAV_V3_Mavlink_TX_AdapterTID0(void);
+extern void AUAV_V3_Mavlink_TX_AdapterTID2(void);
+extern void AUAV_V3_Mavlink_TX_AdapterTID3(void);
 extern void AUAV_V3_Mavlink_TX_AdapterTID4(void);
 extern void AUAV_V3_Mavlink_TX_AdapterTID5(void);
 extern void AUAV_V3_Mavlink_TX_AdapterTID6(void);
 extern void AUAV_V3_Mavlink_TX_AdapterTID7(void);
-extern void AUAV_V3_Mavlink_TX_AdapterTID8(void);
+extern void AUAV_V3_Mavlink_TX_AdapterTID9(void);
 extern void AUAV_V3_Mavlink_TX_AdapterTID10(void);
 
 #endif                                 /* RTW_HEADER_Mavlink_TX_Adapter_h_ */
