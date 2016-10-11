@@ -26,7 +26,7 @@
 /* Include model header file for global data */
 #include "AUAV_V3_TestSensors.h"
 
-mavlink_gps_raw_int_t mlGpsData;       /* '<Root>/mlGpsData' */
+//mavlink_gps_raw_int_t mlGpsData;       /* '<Root>/mlGpsData' */
 extern uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
 
 #ifdef WIN
@@ -129,6 +129,8 @@ inline int gettimeofday(struct timeval* p, void* tz /* IGNORED */)
 #include "SIL-ui.h"
 #include "SIL-events.h"
 #include "SIL-eeprom.h"
+/* Include model header file for global data */
+#include "AUAV_V3_TestSensors.h"
 
 uint16_t udb_heartbeat_counter;
 
@@ -297,6 +299,11 @@ void udb_run(void)
 			send_HILSIM_outputs();
 #endif
 			sil_ui_update();
+			mlPilotConsoleData.chan1_raw = udb_pwIn[0] ;
+			mlPilotConsoleData.chan2_raw = udb_pwIn[1];
+			mlPilotConsoleData.chan3_raw = udb_pwIn[2];
+			mlPilotConsoleData.chan4_raw = udb_pwIn[3];
+			mlPilotConsoleData.chan5_raw = udb_pwIn[4];
 
 //			if (udb_heartbeat_counter % 80 == 0)
 			if (udb_heartbeat_counter % (2 * HEARTBEAT_HZ) == 0)
@@ -359,8 +366,13 @@ void send_HILSIM_outputs(void)
 	union intbb TempBB;
 
 #if (USE_VARIABLE_HILSIM_CHANNELS != 1)
+	udb_pwOut[0] = mlPwmCommands.servo1_raw;
+	udb_pwOut[1] = mlPwmCommands.servo2_raw;
+	udb_pwOut[2] = mlPwmCommands.servo3_raw;
+	udb_pwOut[3] = mlPwmCommands.servo4_raw;
 	for (i = 1; i <= NUM_OUTPUTS; i++)
 	{
+		
 		TempBB.BB = udb_pwOut[i];
 		SIMservoOutputs[2 * i] = TempBB._.B1;
 		SIMservoOutputs[(2 * i) + 1] = TempBB._.B0;

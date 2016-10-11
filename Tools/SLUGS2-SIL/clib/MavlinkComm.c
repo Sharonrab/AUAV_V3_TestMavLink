@@ -873,7 +873,7 @@ void TxN_Data_OverU4(uint16_t N){
   }
   _U4TXIF = U4STAbits.TRMT;
 #else
-	mavlink_serial_send(MAVLINK_COMM_0, &Uart4OutBuff[0], (uint16_t)N);
+	//mavlink_serial_send(MAVLINK_COMM_0, &Uart4OutBuff[0], (uint16_t)N);
 
 #endif
 }

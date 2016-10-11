@@ -26,7 +26,9 @@
 
 #include "udbTypes.h"
 #include "libUDB.h"
-#include "../mavLink/include/common/mavlink.h"
+#include "mavlink.h"
+/* Include model header file for global data */
+#include "AUAV_V3_TestSensors.h"
 
 extern fractional gplane[];
 extern int16_t aero_force[];
@@ -865,6 +867,15 @@ void commit_bodyrate_data(void)
 	p_sim = p_sim_;
 	q_sim = q_sim_;
 	r_sim = r_sim_;
+	mlRawImuData.xgyro = p_sim_.BB;
+	mlRawImuData.ygyro = q_sim_.BB;
+	mlRawImuData.zgyro = r_sim_.BB;
+	mlRawImuData.xacc = g_a_x_sim_.BB;
+	mlRawImuData.yacc = g_a_y_sim_.BB;
+	mlRawImuData.zacc = g_a_z_sim_.BB;
+
+
+
 }
 
 void HILSIM_saturate( uint16_t size , int16_t vector[3] )

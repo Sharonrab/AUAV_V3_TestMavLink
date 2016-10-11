@@ -142,7 +142,7 @@ void udb_serial_callback_received_byte(uint8_t rxchar)
 {
 	//	DPRINT("%u \r\n", rxchar);
 	writeBack(uartMavlinkInBuffer, (unsigned char)rxchar);
-	protDecodeMavlink();
+	//protDecodeMavlink();
 
 	//if (mavlink_parse_char(0, rxchar, &msg[mavlink_message_index], &r_mavlink_status))
 	//{
