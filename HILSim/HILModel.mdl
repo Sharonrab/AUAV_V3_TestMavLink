@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.789"
+    ComputedModelVersion    "1.790"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -29,9 +29,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "sharon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Oct 05 16:55:32 2016"
+  LastModifiedDate	  "Thu Oct 06 12:44:28 2016"
   RTWModifiedTimeStamp	  397492086
-  ModelVersionFormat	  "1.%<AutoIncrement:789>"
+  ModelVersionFormat	  "1.%<AutoIncrement:790>"
   ConfigurationManager	  "None"
   SampleTimeColors	  on
   SampleTimeAnnotations	  off
@@ -16972,7 +16972,7 @@ Model {
 	  "]|[132 564 987]|(1370+230)/2/1000|SampleT"
 	  System {
 	    Name		    "Subsystem3"
-	    Location		    [2, 83, 1542, 1035]
+	    Location		    [3, 83, 1212, 689]
 	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -17306,7 +17306,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"Rotate Cube Axis"
-		Location		[6, 83, 1298, 875]
+		Location		[3, 83, 1295, 706]
 		Open			on
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -18829,7 +18829,7 @@ Model {
       Ports		      [4]
       Position		      [800, 592, 830, 708]
       Floating		      off
-      Location		      [893, 57, 1355, 726]
+      Location		      [895, 57, 1357, 726]
       Open		      on
       NumInputPorts	      "4"
       ZoomMode		      "yonly"
@@ -18851,8 +18851,8 @@ Model {
 	MarkerStyles		"none|none|none|none|none|none"
       }
       TimeRange		      "70"
-      YMin		      "-6.36111e-015~-0.03~-0.12~-0.0054"
-      YMax		      "-6.36111e-015~0.015~-0.06~-0.004"
+      YMin		      "-36.1983~53.9398~-0.12~-0.0054"
+      YMax		      "-36.1983~53.9398~-0.06~-0.004"
       DataFormat	      "StructureWithTime"
       MaxDataPoints	      "25000"
       SampleTime	      "0"
@@ -21132,7 +21132,7 @@ Model {
       Ports		      [1]
       Position		      [255, 34, 285, 66]
       Floating		      off
-      Location		      [205, 329, 1139, 470]
+      Location		      [207, 331, 1141, 472]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -21165,8 +21165,8 @@ Model {
       Ports		      [4]
       Position		      [280, 318, 315, 402]
       Floating		      off
-      Location		      [439, 140, 1353, 591]
-      Open		      on
+      Location		      [440, 141, 1354, 592]
+      Open		      off
       NumInputPorts	      "4"
       ZoomMode		      "xonly"
       List {
@@ -21187,8 +21187,8 @@ Model {
 	MarkerStyles		"none|none|none|none|none|none"
       }
       TimeRange		      "24"
-      YMin		      "0.532345~0.0002~-0.785398~-0.175"
-      YMax		      "0.532345~0.001~0.785398~0.175"
+      YMin		      "0.505728~-0.000477518~-0.785398~-0.175"
+      YMax		      "0.558962~-0.000477518~0.785398~0.175"
       SaveName		      "ScopeData3"
       DataFormat	      "StructureWithTime"
       LimitDataPoints	      off
@@ -21210,8 +21210,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"To AP"
-	Location		[1, 83, 1365, 706]
-	Open			off
+	Location		[3, 83, 1346, 706]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"

@@ -721,6 +721,17 @@ uint16_t PackRawAttitude(uint8_t system_id, uint8_t component_id, mavlink_attitu
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
 }
 
+uint16_t PackPosXYZ_Sol(uint8_t system_id, uint8_t component_id, mavlink_local_position_ned_t mlLocalPositionSol ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_local_position_ned_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec, mlLocalPositionSol.x, mlLocalPositionSol.y, mlLocalPositionSol.z, mlLocalPositionSol.vx, mlLocalPositionSol.vy, mlLocalPositionSol.vz);
+  return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
 
 uint16_t PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec){
   mavlink_system_t mavlink_system;
