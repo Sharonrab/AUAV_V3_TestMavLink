@@ -50,6 +50,8 @@
  *   Signed integer division rounds to: Zero
  *   Shift right on a signed integer as arithmetic shift: on
  *=======================================================================*/
+#ifndef SLUGS2
+
 
 /*=======================================================================*
  * Fixed width word size data types:                                     *
@@ -65,6 +67,18 @@ typedef long int32_T;
 typedef unsigned long uint32_T;
 typedef float real32_T;
 typedef double real64_T;
+#else
+typedef signed char        int8_T;
+typedef short              int16_T;
+typedef int                int32_T;
+typedef long long          int64_T;
+typedef unsigned char      uint8_T;
+typedef unsigned short     uint16_T;
+typedef unsigned int       uint32_T;
+typedef unsigned long long uint64_T;
+typedef float real32_T;
+typedef double real64_T;
+#endif // !SLUGS2
 
 /*===========================================================================*
  * Generic type definitions: real_T, time_T, boolean_T, int_T, uint_T,       *

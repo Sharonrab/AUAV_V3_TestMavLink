@@ -209,6 +209,14 @@ void getGpsUbloxMainData(float* data) {
     data[4] = UINT16_1E2_TO_FLOAT(mlGpsData.vel);
 }
 
+void getGpsUbloxData(float* data) {
+	data[0] = INT32_1E7_TO_FLOAT(mlGpsData.lat);
+	data[1] = INT32_1E7_TO_FLOAT(mlGpsData.lon);
+	data[2] = INT32_1E3_TO_FLOAT(mlGpsData.alt);
+	data[3] = UINT16_1E2_TO_FLOAT(mlGpsData.cog);
+	data[4] = UINT16_1E2_TO_FLOAT(mlGpsData.vel);
+}
+
 char gpSmbl(char symbl) {
     switch (symbl) {
         case 'N': return 1; /*North*/

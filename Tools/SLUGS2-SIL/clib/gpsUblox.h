@@ -81,6 +81,8 @@ unsigned char gpsUbloxSeparate (unsigned char* outStream);
 void gpsUbloxParse (void);
 void getGpsUbloxMainData (float* data);
 float degMinToDeg (unsigned char degrees, float minutes);
+void getGpsUbloxData(float* data);
+
 char gpSmbl (char symbl);
 void parseRMC (unsigned char* stream);
 void parseGGA (unsigned char* stream);

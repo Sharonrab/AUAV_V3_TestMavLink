@@ -422,8 +422,7 @@ void Position_and_Attitude_Filt(void)
     AUAV_V3_TestSensors_B.GettheGSLocationupdateSensorM_c[1];
 
   /* Gain: '<S548>/Deg2R' */
-  rtb_Sum_bf = 0.0174532924F *
-    AUAV_V3_TestSensors_B.ProducetheGPSMainDataandupdatet[0];
+  rtb_Sum_bf = 0.0174532924F * AUAV_V3_TestSensors_B.Switch1[0];
 
   /* Trigonometry: '<S548>/sin(phi)' */
   rtb_kxi = (real32_T)sin(rtb_Sum_bf);
@@ -450,14 +449,13 @@ void Position_and_Attitude_Filt(void)
   rtb_ixj = 6.378137E+6F / rtb_RhhcosphicoslambXe;
 
   /* Sum: '<S548>/Sum2' */
-  rtb_kxj = AUAV_V3_TestSensors_B.ProducetheGPSMainDataandupdatet[2] + rtb_ixj;
+  rtb_kxj = AUAV_V3_TestSensors_B.Switch1[2] + rtb_ixj;
 
   /* Trigonometry: '<S548>/cos(phi)' */
   rtb_Sum_bf = (real32_T)cos(rtb_Sum_bf);
 
   /* Gain: '<S548>/Deg2R1' */
-  rtb_ixk = 0.0174532924F *
-    AUAV_V3_TestSensors_B.ProducetheGPSMainDataandupdatet[1];
+  rtb_ixk = 0.0174532924F * AUAV_V3_TestSensors_B.Switch1[1];
 
   /* Product: '<S548>/(Rh+h)cos(phi)*cos(lamb)=Xe' incorporates:
    *  Trigonometry: '<S548>/cos(lamb)'
@@ -473,8 +471,7 @@ void Position_and_Attitude_Filt(void)
    *  Product: '<S548>/Rh(1-e^2)'
    *  Sum: '<S548>/Sum4'
    */
-  rtb_kxi *= 0.993305743F * rtb_ixj +
-    AUAV_V3_TestSensors_B.ProducetheGPSMainDataandupdatet[2];
+  rtb_kxi *= 0.993305743F * rtb_ixj + AUAV_V3_TestSensors_B.Switch1[2];
 
   /* Gain: '<S539>/Deg2R' */
   rtb_Sum_bf = 0.0174532924F *
@@ -535,13 +532,13 @@ void Position_and_Attitude_Filt(void)
     AUAV_V3_TestSensors_B.GettheGSLocationupdateSensorM_c[0];
 
   /* S-Function (MCHP_C_function_Call): '<S14>/Checks if FixType is 3 [updateSensorMCUState.c]1' */
-  AUAV_V3_TestSensors_B.ChecksifFixTypeis3updateSensorM = isFixValid(
+  AUAV_V3_TestSensors_B.ChecksifFixTypeis3updateSenso_p = isFixValid(
     );
 
   /* Outputs for Enabled SubSystem: '<S14>/Enabled Subsystem' incorporates:
    *  EnablePort: '<S481>/Enable'
    */
-  if (AUAV_V3_TestSensors_B.ChecksifFixTypeis3updateSensorM > 0) {
+  if (AUAV_V3_TestSensors_B.ChecksifFixTypeis3updateSenso_p > 0) {
     /* SignalConversion: '<S547>/TmpSignal ConversionAtProduct1Inport1' incorporates:
      *  Fcn: '<S550>/11'
      *  Fcn: '<S550>/12'
@@ -593,12 +590,10 @@ void Position_and_Attitude_Filt(void)
     /* End of Inport: '<S481>/In1' */
 
     /* Inport: '<S481>/In2' */
-    AUAV_V3_TestSensors_B.In2 =
-      AUAV_V3_TestSensors_B.ProducetheGPSMainDataandupdatet[3];
+    AUAV_V3_TestSensors_B.In2 = AUAV_V3_TestSensors_B.Switch1[3];
 
     /* Inport: '<S481>/In3' */
-    AUAV_V3_TestSensors_B.In3 =
-      AUAV_V3_TestSensors_B.ProducetheGPSMainDataandupdatet[4];
+    AUAV_V3_TestSensors_B.In3 = AUAV_V3_TestSensors_B.Switch1[4];
   }
 
   /* End of Outputs for SubSystem: '<S14>/Enabled Subsystem' */

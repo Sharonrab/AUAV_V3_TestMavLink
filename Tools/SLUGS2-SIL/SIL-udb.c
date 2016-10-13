@@ -277,9 +277,9 @@ void udb_run(void)
 		AUAV_V3_TestSensors_DWork.time_since_boot_usec = get_current_microseconds();
 
 
-		if (currentTime >= nextHeartbeatTime &&
+		if (1/*currentTime >= nextHeartbeatTime &&
 		    !(nextHeartbeatTime <= UDB_STEP_TIME && 
-		    currentTime >= UDB_WRAP_TIME-UDB_STEP_TIME))
+		    currentTime >= UDB_WRAP_TIME-UDB_STEP_TIME)*/)
 		{
 			
 
@@ -299,11 +299,11 @@ void udb_run(void)
 			send_HILSIM_outputs();
 #endif
 			sil_ui_update();
-			mlPilotConsoleData.chan1_raw = udb_pwIn[0] ;
-			mlPilotConsoleData.chan2_raw = udb_pwIn[1];
-			mlPilotConsoleData.chan3_raw = udb_pwIn[2];
-			mlPilotConsoleData.chan4_raw = udb_pwIn[3];
-			mlPilotConsoleData.chan5_raw = udb_pwIn[4];
+			mlPilotConsoleData.chan3_raw = udb_pwIn[THROTTLE_INPUT_CHANNEL] ;
+			mlPilotConsoleData.chan1_raw = udb_pwIn[AILERON_INPUT_CHANNEL];
+			mlPilotConsoleData.chan4_raw = udb_pwIn[RUDDER_INPUT_CHANNEL];
+			mlPilotConsoleData.chan2_raw = udb_pwIn[ELEVATOR_INPUT_CHANNEL];
+			mlPilotConsoleData.chan5_raw = udb_pwIn[MODE_SWITCH_INPUT_CHANNEL];
 
 //			if (udb_heartbeat_counter % 80 == 0)
 			if (udb_heartbeat_counter % (2 * HEARTBEAT_HZ) == 0)
@@ -366,10 +366,10 @@ void send_HILSIM_outputs(void)
 	union intbb TempBB;
 
 #if (USE_VARIABLE_HILSIM_CHANNELS != 1)
-	udb_pwOut[0] = mlPwmCommands.servo1_raw;
-	udb_pwOut[1] = mlPwmCommands.servo2_raw;
-	udb_pwOut[2] = mlPwmCommands.servo3_raw;
-	udb_pwOut[3] = mlPwmCommands.servo4_raw;
+	udb_pwOut[AILERON_OUTPUT_CHANNEL] = mlPwmCommands.servo2_raw * 10;//
+	udb_pwOut[THROTTLE_OUTPUT_CHANNEL] = mlPwmCommands.servo1_raw * 10;//
+	udb_pwOut[RUDDER_OUTPUT_CHANNEL] = mlPwmCommands.servo3_raw * 10;//
+	udb_pwOut[ELEVATOR_OUTPUT_CHANNEL] = mlPwmCommands.servo4_raw * 10;//
 	for (i = 1; i <= NUM_OUTPUTS; i++)
 	{
 		
@@ -608,6 +608,9 @@ void udb_callback_read_sensors(void)
 {
 	//read_gyros(); // record the average values for both DCM and for offset measurements
 	//read_accel();
+	HILSIM_set_gplane();
+	HILSIM_set_omegagyro();
+
 }
 
 #if (MAG_YAW_DRIFT == 1)
@@ -680,6 +683,44 @@ int16_t FindFirstBitFromLeft(int16_t val)
 		}
 	}
 	return i;
+}
+
+void init_servoPrepare(void) // initialize the PWM
+{
+	int16_t i;
+
+#if (USE_NV_MEMORY == 1)
+	if (udb_skip_flags.skip_radio_trim == 1)
+		return;
+#endif
+
+	for (i = 0; i <= NUM_INPUTS; i++)
+	{
+#if (FIXED_TRIMPOINT == 1)
+		udb_pwTrim[i] = udb_pwIn[i] = ((i == THROTTLE_INPUT_CHANNEL) ? THROTTLE_TRIMPOINT : CHANNEL_TRIMPOINT);
+#else
+		udb_pwIn[i] = udb_pwTrim[i] = ((i == THROTTLE_INPUT_CHANNEL) ? 0 : 3000);
+#endif
+	}
+
+	for (i = 0; i <= NUM_OUTPUTS; i++)
+	{
+#if (FIXED_TRIMPOINT == 1)
+		udb_pwOut[i] = ((i == THROTTLE_OUTPUT_CHANNEL) ? THROTTLE_TRIMPOINT : CHANNEL_TRIMPOINT);
+#else
+		udb_pwOut[i] = ((i == THROTTLE_OUTPUT_CHANNEL) ? 0 : 3000);
+#endif
+	}
+
+#if (NORADIO == 1)
+	udb_pwIn[MODE_SWITCH_INPUT_CHANNEL] = udb_pwTrim[MODE_SWITCH_INPUT_CHANNEL] = 4000;
+#endif
+
+	mlPilotConsoleData.chan3_raw = udb_pwIn[THROTTLE_INPUT_CHANNEL];
+	mlPilotConsoleData.chan1_raw = udb_pwIn[AILERON_INPUT_CHANNEL];
+	mlPilotConsoleData.chan4_raw = udb_pwIn[RUDDER_INPUT_CHANNEL];
+	mlPilotConsoleData.chan2_raw = udb_pwIn[ELEVATOR_INPUT_CHANNEL];
+	mlPilotConsoleData.chan5_raw = udb_pwIn[MODE_SWITCH_INPUT_CHANNEL];
 }
 
 #endif // (WIN == 1 || NIX == 1)

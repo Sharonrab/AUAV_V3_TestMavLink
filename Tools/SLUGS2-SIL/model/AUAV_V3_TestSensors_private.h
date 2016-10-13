@@ -252,7 +252,13 @@ extern void hil_getRawRead(short * y1);
 extern void getGpsUbloxMainData(real32_T* y1);
 
 /* C Function Call declare function as extern */
+extern void getGpsUbloxData(real32_T* y1);
+
+/* C Function Call declare function as extern */
 extern void getGSLocation(real32_T* y1);
+
+/* C Function Call declare function as extern */
+extern uint8_t isFixValid(void);
 extern volatile uint16_T MCHP_ic1up;
 extern volatile uint16_T MCHP_ic2up;
 extern volatile uint16_T MCHP_ic3up;

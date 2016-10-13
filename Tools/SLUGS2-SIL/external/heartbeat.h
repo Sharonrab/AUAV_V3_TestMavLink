@@ -24,7 +24,11 @@
 
 
 // number of heartbeats per second
+#ifdef SLUGS2
+#define HEARTBEAT_HZ 100
+#else
 #define HEARTBEAT_HZ 40
+#endif
 
 // number of servo updates per second
 #define SERVO_HZ 40
