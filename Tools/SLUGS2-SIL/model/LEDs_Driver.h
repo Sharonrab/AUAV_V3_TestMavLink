@@ -19,11 +19,11 @@
  *
  * Real-Time Workshop code generated for Simulink model AUAV_V3_TestSensors.
  *
- * Model version                        : 1.138
+ * Model version                        : 1.221
  * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Mon Aug 15 18:59:16 2016
+ * Real-Time Workshop file generated on : Sun Oct 09 00:06:23 2016
  * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Mon Aug 15 18:59:19 2016
+ * C source code generated on           : Sun Oct 09 00:06:26 2016
  */
 
 #ifndef RTW_HEADER_LEDs_Driver_h_
@@ -38,10 +38,10 @@
 /* Shared type includes */
 #include "multiword_types.h"
 
+extern void AUAV_V3_TestSe_LEDs_DriverTID1(void);
 extern void AUAV_V3_TestSe_LEDs_DriverTID2(void);
-extern void AUAV_V3_TestSe_LEDs_DriverTID3(void);
+extern void AUAV_V3_TestSe_LEDs_DriverTID8(void);
 extern void AUAV_V3_TestSe_LEDs_DriverTID9(void);
-extern void AUAV_V3_TestSe_LEDs_DriverTID10(void);
 
 #endif                                 /* RTW_HEADER_LEDs_Driver_h_ */
 

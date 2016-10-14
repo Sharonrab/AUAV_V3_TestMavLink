@@ -35,7 +35,7 @@ THE SOFTWARE.
 #include <string.h>
     // GPS Circular Buffers
     // ====================
-#define MSIZE			180
+#define MSIZE			512
 
 #define TOKEN_SIZE	15
 
@@ -81,10 +81,13 @@ unsigned char gpsUbloxSeparate (unsigned char* outStream);
 void gpsUbloxParse (void);
 void getGpsUbloxMainData (float* data);
 float degMinToDeg (unsigned char degrees, float minutes);
+void getGpsUbloxData(float* data);
+
 char gpSmbl (char symbl);
 void parseRMC (unsigned char* stream);
 void parseGGA (unsigned char* stream);
 unsigned char getChecksum (unsigned char* sentence, unsigned char size);
+void gpsDebugMsg(unsigned char buf);
 
 
 #ifdef __cplusplus

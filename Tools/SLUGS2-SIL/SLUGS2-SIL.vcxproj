@@ -98,7 +98,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Bixler2|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\Microchip\xc16\v1.26\support\generic\h\;C:\Program Files (x86)\Microchip\xc16\v1.26\support\dsPIC33E\h\;..\..\mavLink\include\common;.\model;.\clib;.\external;..\;.\;..\mavLink\include\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\mavlink\include\slugs; C:\Program Files (x86)\Microchip\xc16\v1.26\support\generic\h\;C:\Program Files (x86)\Microchip\xc16\v1.26\support\dsPIC33E\h\;..\..\mavLink\include\common;.\model;.\clib;.\external;..\;.\;..\mavLink\include\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_libq_h_;__LIBPIC30_H; SENSORS_UNIT_TEST;SLUGS2; MAVLINK_SYSID=2;WIN;WIN32;_DEBUG;_WINDOWS;_USRDLL;XPNETDATA_EXPORTS;IBM=1;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -147,16 +147,41 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\HILSIM_XPlane\UDBSocketWin.c" />
+    <ClCompile Include="clib\adisCube16405.c" />
+    <ClCompile Include="clib\apUtils.c" />
     <ClCompile Include="clib\circBuffer.c" />
+    <ClCompile Include="clib\gpsPort.c" />
     <ClCompile Include="clib\gpsUblox.c" />
+    <ClCompile Include="clib\hil.c" />
     <ClCompile Include="clib\MavlinkComm.c" />
+    <ClCompile Include="clib\mavlinkControlMcu.c" />
+    <ClCompile Include="clib\mavlinkSensorMcu.c" />
+    <ClCompile Include="clib\navSupport.c" />
+    <ClCompile Include="clib\updateControlMcuState.c" />
+    <ClCompile Include="clib\updateSensorMcuState.c" />
     <ClCompile Include="external\gpsParseCommon.c" />
     <ClCompile Include="external\gpsParseUBX.c" />
     <ClCompile Include="external\mathlibNAV.c" />
     <ClCompile Include="flt2frct.c" />
     <ClCompile Include="frct2flt.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="model\AUAV_V3_TestSensors.c" />
+    <ClCompile Include="model\AUAV_V3_TestSensors_data.c" />
+    <ClCompile Include="model\AUAV_V3_TestSensors_main.c" />
     <ClCompile Include="model\Mavlink_TX_Adapter.c" />
+    <ClCompile Include="model\Position_and_Attitude_Filter.c" />
+    <ClCompile Include="model\rtGetInf.c" />
+    <ClCompile Include="model\rtGetNaN.c" />
+    <ClCompile Include="model\rt_nonfinite.c" />
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_18.c" />
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_2.c" />
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_22.c" />
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_3.c" />
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_75.c" />
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_76.c" />
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_77.c" />
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_86.c" />
+    <ClCompile Include="model\Sensor_Data_Adapter.c" />
     <ClCompile Include="SIL-24LC256.c" />
     <ClCompile Include="SIL-dsp.c" />
     <ClCompile Include="SIL-eeprom.c" />

@@ -275,7 +275,7 @@
 // Often the Flap channel will be controlled by a 3-position switch.
 // These are the thresholds for the cutoffs between low and middle, and between middle and high.
 // Normal signals should fall within about 2000 - 4000.
-#define MODE_SWITCH_THRESHOLD_LOW           2600
+#define MODE_SWITCH_THRESHOLD_LOW           1500
 #define MODE_SWITCH_THRESHOLD_HIGH          3400
 
 // Setting MODE_SWITCH_TWO_POSITION to 1,  allows a two state mode switch on the transmitter to be used

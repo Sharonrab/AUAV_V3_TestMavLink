@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
+<<<<<<< HEAD
 VisualStudioVersion = 14.0.23107.0
+=======
+VisualStudioVersion = 14.0.25420.1
+>>>>>>> 9e34bb3825261102d882985e7ae064305171c845
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SLUGS2-SIL", "SLUGS2-SIL.vcxproj", "{A800F0C2-FF9A-4385-B4C5-9AECF7F9D5ED}"
 EndProject
@@ -33,12 +37,19 @@ Global
 		{0C9F0777-B304-4222-8DD8-96F254C91D37}.DebugBixler2|Win32.Build.0 = Bixler2|Win32
 		{0C9F0777-B304-4222-8DD8-96F254C91D37}.Release|Win32.ActiveCfg = Release|Win32
 		{0C9F0777-B304-4222-8DD8-96F254C91D37}.Release|Win32.Build.0 = Release|Win32
+<<<<<<< HEAD
 		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Bixler2|Win32.ActiveCfg = DebugBixler2|Win32
 		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Bixler2|Win32.Build.0 = DebugBixler2|Win32
 		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Debug|Win32.ActiveCfg = Debug|Win32
 		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Debug|Win32.Build.0 = Debug|Win32
 		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.DebugBixler2|Win32.ActiveCfg = DebugBixler2|Win32
 		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.DebugBixler2|Win32.Build.0 = DebugBixler2|Win32
+=======
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Bixler2|Win32.ActiveCfg = Bixler2|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Bixler2|Win32.Build.0 = Bixler2|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Debug|Win32.Build.0 = Debug|Win32
+>>>>>>> 9e34bb3825261102d882985e7ae064305171c845
 		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Release|Win32.ActiveCfg = Release|Win32
 		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection

@@ -210,12 +210,20 @@ void getGpsUbloxMainData(float* data) {
 }
 
 void getGpsUbloxData(float* data) {
+<<<<<<< HEAD
     
     data[0] = INT32_1E7_TO_FLOAT(mlGpsData.lat);
     data[1] = INT32_1E7_TO_FLOAT(mlGpsData.lon);
     data[2] = INT32_1E3_TO_FLOAT(mlGpsData.alt);
     data[3] = UINT16_1E2_TO_FLOAT(mlGpsData.cog);
     data[4] = UINT16_1E2_TO_FLOAT(mlGpsData.vel);
+=======
+	data[0] = INT32_1E7_TO_FLOAT(mlGpsData.lat);
+	data[1] = INT32_1E7_TO_FLOAT(mlGpsData.lon);
+	data[2] = INT32_1E3_TO_FLOAT(mlGpsData.alt);
+	data[3] = UINT16_1E2_TO_FLOAT(mlGpsData.cog);
+	data[4] = UINT16_1E2_TO_FLOAT(mlGpsData.vel);
+>>>>>>> 9e34bb3825261102d882985e7ae064305171c845
 }
 
 char gpSmbl(char symbl) {

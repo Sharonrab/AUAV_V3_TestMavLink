@@ -8,6 +8,7 @@
 
 #if (WIN == 1 || NIX == 1)
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -25,7 +26,7 @@
 /* Include model header file for global data */
 #include "AUAV_V3_TestSensors.h"
 
-mavlink_gps_raw_int_t mlGpsData;       /* '<Root>/mlGpsData' */
+//mavlink_gps_raw_int_t mlGpsData;       /* '<Root>/mlGpsData' */
 extern uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
 
 #ifdef WIN
@@ -128,6 +129,8 @@ inline int gettimeofday(struct timeval* p, void* tz /* IGNORED */)
 #include "SIL-ui.h"
 #include "SIL-events.h"
 #include "SIL-eeprom.h"
+/* Include model header file for global data */
+#include "AUAV_V3_TestSensors.h"
 
 uint16_t udb_heartbeat_counter;
 
@@ -234,6 +237,9 @@ void udb_init(void)
 		                              SILSIM_SERIAL_RC_INPUT_DEVICE,
 		                              SILSIM_SERIAL_RC_INPUT_BAUD);
 	}
+
+	/* Initialize model */
+	AUAV_V3_TestSensors_initialize();
 }
 
 #define UDB_WRAP_TIME 1000
@@ -271,9 +277,9 @@ void udb_run(void)
 		AUAV_V3_TestSensors_DWork.time_since_boot_usec = get_current_microseconds();
 
 
-		if (currentTime >= nextHeartbeatTime &&
+		if (1/*currentTime >= nextHeartbeatTime &&
 		    !(nextHeartbeatTime <= UDB_STEP_TIME && 
-		    currentTime >= UDB_WRAP_TIME-UDB_STEP_TIME))
+		    currentTime >= UDB_WRAP_TIME-UDB_STEP_TIME)*/)
 		{
 			
 
@@ -288,11 +294,16 @@ void udb_run(void)
 
 			//udb_heartbeat_40hz_callback(); // Run at 40Hz
 			//udb_heartbeat_callback(); // Run at HEARTBEAT_HZ
-
+			_T2Interrupt();
 #if (HILSIM == 1)
 			send_HILSIM_outputs();
 #endif
 			sil_ui_update();
+			mlPilotConsoleData.chan3_raw = udb_pwIn[THROTTLE_INPUT_CHANNEL] ;
+			mlPilotConsoleData.chan1_raw = udb_pwIn[AILERON_INPUT_CHANNEL];
+			mlPilotConsoleData.chan4_raw = udb_pwIn[RUDDER_INPUT_CHANNEL];
+			mlPilotConsoleData.chan2_raw = udb_pwIn[ELEVATOR_INPUT_CHANNEL];
+			mlPilotConsoleData.chan5_raw = udb_pwIn[MODE_SWITCH_INPUT_CHANNEL];
 
 //			if (udb_heartbeat_counter % 80 == 0)
 			if (udb_heartbeat_counter % (2 * HEARTBEAT_HZ) == 0)
@@ -306,9 +317,9 @@ void udb_run(void)
 				//mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)wrote);
 
 				/* Outputs for Atomic SubSystem: '<Root>/Mavlink_TX_Adapter' */
-				AUAV_V3_Mavlink_TX_AdapterTID10();
+				//AUAV_V3_Mavlink_TX_AdapterTID9();
 				
-				AUAV_V3_Mavlink_TX_AdapterTID5();
+				//AUAV_V3_Mavlink_TX_AdapterTID5();
 
 				/* End of Outputs for SubSystem: '<Root>/Mavlink_TX_Adapter' */
 			}
@@ -319,13 +330,13 @@ void udb_run(void)
 				//wrote = PackGpsRawInt(/*system_id*/101, /*component_id*/1, mlGpsData, currentTime); // Run at 1Hz
 				//mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)wrote);
 
-				AUAV_V3_Mavlink_TX_AdapterTID4();
+				//AUAV_V3_Mavlink_TX_AdapterTID4();
 			}
 
 			if (udb_heartbeat_counter % (HEARTBEAT_HZ / 5) == 0)
 			{
 								
-				AUAV_V3_Mavlink_TX_AdapterTID1();
+				//AUAV_V3_Mavlink_TX_AdapterTID10();
 			}
 			
 
@@ -356,8 +367,13 @@ void send_HILSIM_outputs(void)
 	union intbb TempBB;
 
 #if (USE_VARIABLE_HILSIM_CHANNELS != 1)
+	udb_pwOut[AILERON_OUTPUT_CHANNEL] = mlPwmCommands.servo2_raw * 10;//
+	udb_pwOut[THROTTLE_OUTPUT_CHANNEL] = mlPwmCommands.servo1_raw * 10;//
+	udb_pwOut[RUDDER_OUTPUT_CHANNEL] = mlPwmCommands.servo3_raw * 10;//
+	udb_pwOut[ELEVATOR_OUTPUT_CHANNEL] = mlPwmCommands.servo4_raw * 10;//
 	for (i = 1; i <= NUM_OUTPUTS; i++)
 	{
+		
 		TempBB.BB = udb_pwOut[i];
 		SIMservoOutputs[2 * i] = TempBB._.B1;
 		SIMservoOutputs[(2 * i) + 1] = TempBB._.B0;
@@ -593,6 +609,9 @@ void udb_callback_read_sensors(void)
 {
 	//read_gyros(); // record the average values for both DCM and for offset measurements
 	//read_accel();
+	HILSIM_set_gplane();
+	HILSIM_set_omegagyro();
+
 }
 
 #if (MAG_YAW_DRIFT == 1)
@@ -665,6 +684,44 @@ int16_t FindFirstBitFromLeft(int16_t val)
 		}
 	}
 	return i;
+}
+
+void init_servoPrepare(void) // initialize the PWM
+{
+	int16_t i;
+
+#if (USE_NV_MEMORY == 1)
+	if (udb_skip_flags.skip_radio_trim == 1)
+		return;
+#endif
+
+	for (i = 0; i <= NUM_INPUTS; i++)
+	{
+#if (FIXED_TRIMPOINT == 1)
+		udb_pwTrim[i] = udb_pwIn[i] = ((i == THROTTLE_INPUT_CHANNEL) ? THROTTLE_TRIMPOINT : CHANNEL_TRIMPOINT);
+#else
+		udb_pwIn[i] = udb_pwTrim[i] = ((i == THROTTLE_INPUT_CHANNEL) ? 0 : 3000);
+#endif
+	}
+
+	for (i = 0; i <= NUM_OUTPUTS; i++)
+	{
+#if (FIXED_TRIMPOINT == 1)
+		udb_pwOut[i] = ((i == THROTTLE_OUTPUT_CHANNEL) ? THROTTLE_TRIMPOINT : CHANNEL_TRIMPOINT);
+#else
+		udb_pwOut[i] = ((i == THROTTLE_OUTPUT_CHANNEL) ? 0 : 3000);
+#endif
+	}
+
+#if (NORADIO == 1)
+	udb_pwIn[MODE_SWITCH_INPUT_CHANNEL] = udb_pwTrim[MODE_SWITCH_INPUT_CHANNEL] = 4000;
+#endif
+
+	mlPilotConsoleData.chan3_raw = udb_pwIn[THROTTLE_INPUT_CHANNEL];
+	mlPilotConsoleData.chan1_raw = udb_pwIn[AILERON_INPUT_CHANNEL];
+	mlPilotConsoleData.chan4_raw = udb_pwIn[RUDDER_INPUT_CHANNEL];
+	mlPilotConsoleData.chan2_raw = udb_pwIn[ELEVATOR_INPUT_CHANNEL];
+	mlPilotConsoleData.chan5_raw = udb_pwIn[MODE_SWITCH_INPUT_CHANNEL];
 }
 
 #endif // (WIN == 1 || NIX == 1)
