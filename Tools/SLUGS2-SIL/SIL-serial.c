@@ -235,9 +235,9 @@ int16_t mavlink_serial_send(mavlink_channel_t UNUSED(chan), const uint8_t buf[],
 	if (serial_interrupt_stopped == 1)
 	{
 		serial_interrupt_stopped = 0;
-#ifndef SLUGS2
+//#ifndef SLUGS2
 		udb_serial_start_sending_data();
-#endif
+//#endif
 
 	}
 	return (1);
@@ -247,6 +247,7 @@ void Sync_SendSerial(void)
 {
 	if (serial_interrupt_stopped == 0)
 	{
+		protDecodeMavlink();
 		udb_serial_start_sending_data();
 	}
 
