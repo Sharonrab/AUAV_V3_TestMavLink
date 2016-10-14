@@ -906,9 +906,11 @@ void HILSIM_set_gplane(void)
 	aero_force[2] = - gplane[2] ;
 
 	mlRawImuData.xacc = -gplane[0]  * 16384 / GRAVITY;
-	mlRawImuData.yacc =  gplane[1]  * 16384 / GRAVITY;
+	mlRawImuData.yacc =  -gplane[1]  * 16384 / GRAVITY;
 	mlRawImuData.zacc = -gplane[2]  * 16384 / GRAVITY;
 }
+#define RADPERSEC ((int64_t)5632.0/SCALEGYRO)
+// one radian per second, in AtoD/2 units
 
 void HILSIM_set_omegagyro(void)
 {
@@ -916,9 +918,9 @@ void HILSIM_set_omegagyro(void)
 	omegagyro[1] = p_sim.BB;
 	omegagyro[2] = r_sim.BB;
 	HILSIM_saturate( 3, omegagyro ) ;
-	mlRawImuData.xgyro = 0;// -omegagyro[1] * 65.5;
-	mlRawImuData.ygyro = omegagyro[0] * 65.5;
-	mlRawImuData.zgyro = -omegagyro[2] * 65.5;
+	mlRawImuData.xgyro = -omegagyro[0] * 65.5 *180 / PI / RADPERSEC;
+	mlRawImuData.ygyro = -omegagyro[1] * 65.5 * 180 / PI / RADPERSEC;
+	mlRawImuData.zgyro = -omegagyro[2] * 65.5 * 180 / PI / RADPERSEC;
 	
 
 }
