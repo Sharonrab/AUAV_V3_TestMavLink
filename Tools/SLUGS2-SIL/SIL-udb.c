@@ -331,13 +331,14 @@ void udb_run(void)
 
 			udb_heartbeat_counter++;
 			nextHeartbeatTime = nextHeartbeatTime + UDB_STEP_TIME;
-			if (nextHeartbeatTime > UDB_WRAP_TIME) nextHeartbeatTime -= UDB_WRAP_TIME;
+			if (nextHeartbeatTime > UDB_WRAP_TIME) 
+				nextHeartbeatTime -= UDB_WRAP_TIME;
 		}
 		
 
 		//SLUGS2
 		//if (wrote>0)
-			Sync_SendSerial();
+			//Sync_SendSerial();
 
 		process_queued_events();
 //	}
