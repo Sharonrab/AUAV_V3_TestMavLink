@@ -825,7 +825,7 @@ void gps_commit_data(void)
 	mlGpsData.lat = lat_gps.WW;
 	lon_gps         = lon_gps_;
 	mlGpsData.lon = lon_gps_.WW;
-	alt_sl_gps.WW   = alt_sl_gps.WW;          // SIRF provides altMSL in cm, UBX provides it in mm
+	alt_sl_gps.WW   = alt_sl_gps_.WW;          // SIRF provides altMSL in cm, UBX provides it in mm
 	mlGpsData.alt = alt_sl_gps.WW;
 	sog_gps.BB      = sog_gps_._.W0;                // SIRF uses 2 byte SOG, UBX provides 4 bytes
 	mlGpsData.vel = sog_gps.BB;
