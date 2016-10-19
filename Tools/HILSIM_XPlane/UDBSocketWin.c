@@ -11,7 +11,7 @@
 #include "UDBSocket.h"
 
 #ifdef WIN32
-//#define snprintf _snprintf
+#define snprintf _snprintf
 #else
 #include <Windows.h> // don't include if building with Visual Studio
 #define _strdup strdup
@@ -314,7 +314,7 @@ int UDBSocket_read(UDBSocket socket, unsigned char* buffer, int bufferLength)
 			                                   (struct sockaddr*)&from, &fromLength);
 			int ierr = WSAGetLastError();
 			if (ierr == WSAEWOULDBLOCK) {  // currently no data available
-				Sleep(50);  // wait and try again		
+				Sleep(1);  // wait and try again		
 			}
 
 			if (received_bytes < 0)

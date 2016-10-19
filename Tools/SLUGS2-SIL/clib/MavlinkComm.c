@@ -72,26 +72,75 @@ uint8_t isFinite(float s) {
 void InitParameterInterface(void)
 {
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_P], "PID_AIRSPD_P");
+    mlParamInterface.param[PAR_PID_AIRSPEED_P] = 0.949999988079;
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_I], "PID_AIRSPD_I");
+    mlParamInterface.param[PAR_PID_AIRSPEED_I] = 0.00700000021607;
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_D], "PID_AIRSPD_D");
+    mlParamInterface.param[PAR_PID_AIRSPEED_D] = 0.20000000298;
 
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_P], "PID_PIT_FO_P");
+        mlParamInterface.param[PAR_PID_PITCH_FO_P] = -0.20000000298;
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_I], "PID_PIT_FO_I");
+        mlParamInterface.param[PAR_PID_PITCH_FO_I] = -0.00499999988824;   
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_D], "PID_PIT_FO_D");
+        mlParamInterface.param[PAR_PID_PITCH_FO_D] = -0.0599999986589;
 
     strcpy(mlParamInterface.param_name[PAR_PID_ROLL_CON_P], "PID_ROLL_CO_P");
+            mlParamInterface.param[PAR_PID_ROLL_CON_P] = 0.649999976158;
     strcpy(mlParamInterface.param_name[PAR_PID_ROLL_CON_I], "PID_ROLL_CO_I");
+            mlParamInterface.param[PAR_PID_ROLL_CON_I] = 0.00999999977648;
     strcpy(mlParamInterface.param_name[PAR_PID_ROLL_CON_D], "PID_ROLL_CO_D");
+            mlParamInterface.param[PAR_PID_ROLL_CON_D] = 0.0599999986589;
+
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_P], "PID_HE2PITC_P");
+                mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.0450000017881;
+
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_I], "PID_HE2PITC_I");
+                mlParamInterface.param[PAR_PID_HE_TO_PI_I] = 0;
 
     strcpy(mlParamInterface.param_name[PAR_PID_HEI_ERR_FF], "PID_HERR_FF");
+                mlParamInterface.param[PAR_PID_HEI_ERR_FF] = -0.10000000149;
+    strcpy(mlParamInterface.param_name[PAR_PID_PITC_DT_FF], "PID_PITC_DT_FF");
+                mlParamInterface.param[PAR_PID_PITC_DT_FF] = 0.34999999404;
 
     strcpy(mlParamInterface.param_name[PAR_PID_YAW_DAMP_P], "PID_YAW_DA_P");
+                    mlParamInterface.param[PAR_PID_YAW_DAMP_P] = 0.00999999977648;
+
     strcpy(mlParamInterface.param_name[PAR_PID_YAW_DAMP_I], "PID_YAW_DA_I");
+                    mlParamInterface.param[PAR_PID_YAW_DAMP_I] = 0;
+
     strcpy(mlParamInterface.param_name[PAR_PID_YAW_DAMP_D], "PID_YAW_DA_D");
-    
+                    mlParamInterface.param[PAR_PID_YAW_DAMP_D] = 0;
+
+ strcpy(mlParamInterface.param_name[PAR_NAV_L2_BASE], "NAV_L2_BASE");
+                    mlParamInterface.param[PAR_NAV_L2_BASE] =  5;
+strcpy(mlParamInterface.param_name[PAR_NAV_PRETURN_K], "NAV_PRETURN_K");
+                    mlParamInterface.param[PAR_NAV_PRETURN_K] = 5;	
+strcpy(mlParamInterface.param_name[PAR_NAV_SSCOMP_ON], "NAV_SSCOMP_ON");
+                    mlParamInterface.param[PAR_NAV_SSCOMP_ON] = 0;
+
+ strcpy(mlParamInterface.param_name[PAR_L1_OMEGA], "L1_OMEGA");
+                    mlParamInterface.param[PAR_L1_OMEGA] = 0;                   
+strcpy(mlParamInterface.param_name[PAR_L1_M], "L1_M");
+                    mlParamInterface.param[PAR_L1_M] = 0; 
+strcpy(mlParamInterface.param_name[PAR_L1_GAMMA], "L1_GAMMA");
+                    mlParamInterface.param[PAR_L1_GAMMA] = 0;
+strcpy(mlParamInterface.param_name[PAR_L1_ON_OFF], "L1_ON_OFF");
+                    mlParamInterface.param[PAR_L1_ON_OFF] = 0;
+strcpy(mlParamInterface.param_name[PAR_NAV_ISR_FAC], "NAV_ISR_FAC");
+                    mlParamInterface.param[PAR_NAV_ISR_FAC] = 5;
+strcpy(mlParamInterface.param_name[PAR_PID_RMIX_ON], "PID_RMIX_ON");
+                    mlParamInterface.param[PAR_PID_RMIX_ON] = 0;
+strcpy(mlParamInterface.param_name[PAR_PID_RMIX_P], "PID_RMIX_P");
+                    mlParamInterface.param[PAR_PID_RMIX_P] = 0; 
+                    
+strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
+    mlParamInterface.param[PAR_CONFIG_ROLL_R] = 0;
+    strcpy(mlParamInterface.param_name[PAR_CONFIG_PITCH_R], "CONFIG_PITCH_R");
+    mlParamInterface.param[PAR_CONFIG_PITCH_R] = 0;
+    strcpy(mlParamInterface.param_name[PAR_CONFIG_YAW_R], "CONFIG_YAW_R");
+    mlParamInterface.param[PAR_CONFIG_YAW_R] = 0;                    
     // Populate default mid-level commands
     mlMidLevelCommands.hCommand = 120.0f; // altitude (m)
     mlMidLevelCommands.uCommand = 16.0f; // airspeed (m/s)
@@ -721,6 +770,17 @@ uint16_t PackRawAttitude(uint8_t system_id, uint8_t component_id, mavlink_attitu
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
 }
 
+uint16_t PackPosXYZ_Sol(uint8_t system_id, uint8_t component_id, mavlink_local_position_ned_t mlLocalPositionSol ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_local_position_ned_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec, mlLocalPositionSol.x, mlLocalPositionSol.y, mlLocalPositionSol.z, mlLocalPositionSol.vx, mlLocalPositionSol.vy, mlLocalPositionSol.vz);
+  return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
 
 uint16_t PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec){
   mavlink_system_t mavlink_system;

@@ -1276,7 +1276,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
   /* DataTypeConversion: '<S655>/Data Type Conversion1' */
   for (i = 0; i < 7; i++) {
-    AUAV_V3_TestSensors_B.DataTypeConversion1_d[i] = (uint8_T)
+    AUAV_V3_TestSensors_B.DataTypeConversion1_d[i] = (uint16_T)
       AUAV_V3_TestSensors_B.sf_BufferFailsafeChannel.history[i];
   }
 

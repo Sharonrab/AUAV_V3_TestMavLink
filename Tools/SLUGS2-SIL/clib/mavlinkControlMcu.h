@@ -4,6 +4,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#ifdef SLUGS2
+#define inline __inline
+#endif
 #include "MavlinkComm.h"
 #include "mavlink.h"
 #include "apDefinitions.h"

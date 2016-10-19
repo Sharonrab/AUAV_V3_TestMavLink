@@ -4,9 +4,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include "mavlink.h"
 #include "apDefinitions.h"
+#include "mavlink.h"
+
 
     typedef struct _mavlink_coordinate_float_t {
         float lat;

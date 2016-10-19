@@ -43,8 +43,10 @@ THE SOFTWARE.
 //#else
 //#include "AUAV3_AND_SLUGS_SENSOR.h"
 //#endif
-
-#include "..\mavlink\include\slugs\mavlink.h"
+#ifdef SLUGS2
+#define inline __inline
+#endif
+#include "mavlink.h"
 #include "gpsUblox.h"
 #include "circBuffer.h"
 

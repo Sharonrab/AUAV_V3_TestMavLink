@@ -277,9 +277,9 @@ void udb_run(void)
 		AUAV_V3_TestSensors_DWork.time_since_boot_usec = get_current_microseconds();
 
 
-		if (1/*currentTime >= nextHeartbeatTime &&
+		if (currentTime >= nextHeartbeatTime &&
 		    !(nextHeartbeatTime <= UDB_STEP_TIME && 
-		    currentTime >= UDB_WRAP_TIME-UDB_STEP_TIME)*/)
+		    currentTime >= UDB_WRAP_TIME-UDB_STEP_TIME))
 		{
 			
 

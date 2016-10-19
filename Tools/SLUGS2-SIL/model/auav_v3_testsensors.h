@@ -78,6 +78,7 @@
 /* user code (top of header file) */
 #include "MavlinkComm.h"
 
+
 /* Block signals for system '<S174>/negprotect' */
 typedef struct {
   real32_T zpVal;                      /* '<S174>/negprotect' */
@@ -306,7 +307,7 @@ typedef struct {
   uint16_T InputCapture_o6;            /* '<S651>/Input Capture' */
   uint16_T InputCapture_o7;            /* '<S651>/Input Capture' */
   uint16_T InputCapture_o8;            /* '<S651>/Input Capture' */
-  uint8_T DataTypeConversion1_d[7];    /* '<S655>/Data Type Conversion1' */
+  uint16_T DataTypeConversion1_d[7];    /* '<S655>/Data Type Conversion1' */
   uint8_T ManualorAutonavSupportcupdated4;/* '<S19>/Manual or Auto? [navSupport.c] [updated 4.28.16]' */
   uint8_T DataTypeConversion1_h;       /* '<S666>/Data Type Conversion1' */
   uint8_T CFunctionCall;               /* '<S666>/C Function Call' */

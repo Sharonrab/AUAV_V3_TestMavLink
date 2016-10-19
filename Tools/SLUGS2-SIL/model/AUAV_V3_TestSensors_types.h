@@ -28,6 +28,9 @@
 
 #ifndef RTW_HEADER_AUAV_V3_TestSensors_types_h_
 #define RTW_HEADER_AUAV_V3_TestSensors_types_h_
+#ifdef SLUGS2
+#define inline __inline
+#endif
 #include "mavlink.h"
 #include "mavlinkSensorMcu.h"
 #include "MavlinkComm.h"

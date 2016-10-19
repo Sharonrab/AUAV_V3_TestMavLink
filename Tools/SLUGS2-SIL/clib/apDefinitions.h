@@ -38,7 +38,9 @@ First Revision: Aug 18 2008 @ 17:42
 extern "C" {
 #endif
 
-
+#ifdef SLUGS2
+#define inline __inline
+#endif
 //#include "stdint.h"
 #include "inttypes.h"
 

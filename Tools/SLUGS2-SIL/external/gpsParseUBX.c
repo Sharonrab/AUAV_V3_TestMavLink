@@ -897,15 +897,15 @@ void HILSIM_saturate( uint16_t size , int16_t vector[3] )
 
 void HILSIM_set_gplane(void)
 {
-	gplane[0] = g_a_x_sim.BB;
-	gplane[1] = g_a_y_sim.BB;
+	gplane[0] = g_a_y_sim.BB;
+	gplane[1] = g_a_x_sim.BB;
 	gplane[2] = g_a_z_sim.BB;
 	HILSIM_saturate( 3, gplane ) ;
 	aero_force[0] = - gplane[0] ;
 	aero_force[1] = - gplane[1] ;
 	aero_force[2] = - gplane[2] ;
 
-	mlRawImuData.xacc = -gplane[0]  * 16384 / GRAVITY;
+	mlRawImuData.xacc = gplane[0]  * 16384 / GRAVITY;
 	mlRawImuData.yacc =  -gplane[1]  * 16384 / GRAVITY;
 	mlRawImuData.zacc = -gplane[2]  * 16384 / GRAVITY;
 }
@@ -914,12 +914,12 @@ void HILSIM_set_gplane(void)
 
 void HILSIM_set_omegagyro(void)
 {
-	omegagyro[0] = q_sim.BB;
-	omegagyro[1] = p_sim.BB;
+	omegagyro[0] = p_sim.BB;
+	omegagyro[1] = q_sim.BB;
 	omegagyro[2] = r_sim.BB;
 	HILSIM_saturate( 3, omegagyro ) ;
-	mlRawImuData.xgyro = -omegagyro[0] * 65.5 *180 / PI / RADPERSEC;
-	mlRawImuData.ygyro = -omegagyro[1] * 65.5 * 180 / PI / RADPERSEC;
+	mlRawImuData.xgyro = omegagyro[1] * 65.5 *180 / PI / RADPERSEC;
+	mlRawImuData.ygyro = -omegagyro[0] * 65.5 * 180 / PI / RADPERSEC;
 	mlRawImuData.zgyro = -omegagyro[2] * 65.5 * 180 / PI / RADPERSEC;
 	
 
