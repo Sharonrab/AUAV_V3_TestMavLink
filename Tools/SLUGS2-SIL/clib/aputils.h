@@ -36,9 +36,11 @@ THE SOFTWARE.
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include "..\mavlink\include\slugs\mavlink.h"
+#include "mavlink.h"
+//#include "rtwtypes.h"
+
 #ifndef WIN
-#include <uart.h>
+//#include <uart.h>
 #endif
 // Uncomment if you want to use sensor
 // mcu diagnostic  data. Note that you can only
@@ -68,15 +70,17 @@ THE SOFTWARE.
 
 
 // Trig and Math Functions
-float myAtan2 (float num, float denom);
+		   
+
+		   float myAtan2 (float num, float denom);
 float myPow (float x, float toTheN);
 float mySqrt (float x);
 float myAbs (float x);
 float myAtan (float x);
 float myAsin (float x);
 float mySin (float x);
+float myTan(float x); 
 float myCos (float x);
-float myTan (float x);
 float myAcos (float x);
 float myExp (float x);
 uint8_t isFinite (float s);

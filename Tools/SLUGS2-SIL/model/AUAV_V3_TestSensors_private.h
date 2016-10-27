@@ -30,6 +30,7 @@
 #define RTW_HEADER_AUAV_V3_TestSensors_private_h_
 #include "rtwtypes.h"
 #include "multiword_types.h"
+#include "apUtils.h"
 
 /* Private macros used by the generated code to access rtModel */
 #ifndef rtmSetFirstInitCond
@@ -339,6 +340,9 @@ extern float myAbs(float x);
 
 /* C Function Call declare function as extern */
 extern float myAtan(float x);
+
+/* C Function Call declare function as extern */
+//extern float myTan(float x);
 
 /* C Function Call declare function as extern */
 extern void getPassValues(uint8_T* pasVals);

@@ -146,6 +146,21 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
     mlMidLevelCommands.uCommand = 16.0f; // airspeed (m/s)
     mlMidLevelCommands.rCommand = 0.0f; // turn rate (radians/s)
 
+	 // Initialize the system Status
+	 mlHeartbeatLocal.base_mode = MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
+	 mlHeartbeatLocal.custom_mode = SLUGS_MODE_MID_LEVEL;
+	 mlHeartbeatLocal.system_status = MAV_STATE_ACTIVE;
+	/* lastNavigationMode = mlHeartbeatLocal.custom_mode;
+	 mlSystemStatus.mode = MAV_MODE_MANUAL;
+	 mlSystemStatus.nav_mode = MAV_NAV_WAYPOINT;
+	 mlSystemStatus.status = MAV_STATE_ACTIVE;*/
+	 mlSystemStatus.load = 500;
+	 mlSystemStatus.voltage_battery = 0;
+	 mlCameraOrder.zoom = 1;
+
+	 mlBoot.version = 1;
+	 mlMobileLocation.latitude = 36.988506f ;
+	 mlMobileLocation.longitude = -122.055308f;
 }
 
 void protDecodeMavlink(void) {
@@ -455,32 +470,32 @@ uint16_t MissionInterfaceResponse(uint8_t system_id, uint8_t component_id){
   mavlink_message_t msg;
   uint16_t bytes2Send = 0;
   uint8_t CopyMsgToBuff = 0;
-//  char vr_message[50];
-//  if (mlPending.wpProtState == WP_PROT_TX_WP) { //SLUGS Nav DBG info
-//    memset(vr_message, 0, sizeof (vr_message));
-//    sprintf(vr_message, "%d: y =%2.2f x =%2.2f z =%2.2f o =%d  t =%d", mlPending.wpCurrentWpInTransaction, (double)mlWpValues.lat[mlPending.wpCurrentWpInTransaction],
-//        (double)mlWpValues.lon[mlPending.wpCurrentWpInTransaction],
-//        (double)mlWpValues.alt[mlPending.wpCurrentWpInTransaction],
-//        mlWpValues.orbit[mlPending.wpCurrentWpInTransaction],
-//        mlWpValues.type[mlPending.wpCurrentWpInTransaction]);
-//    bytes2Send += sendQGCDebugMessage(vr_message, 0, UartOutBuff, bytes2Send + 1);
-//  }
-//  if (mlPending.wpProtState == WP_PROT_GETTING_WP_IDLE) { //SLUGS Nav DBG info
-//      memset(vr_message, 0, sizeof (vr_message));
-//      sprintf(vr_message, "com = %d, tb =%2.2f ta = %2.2f", sw_intTemp, (double)fl_temp1, (double)fl_temp2);
-//      bytes2Send += sendQGCDebugMessage(vr_message, 0, UartOutBuff, bytes2Send + 1);
-//
-//  }
+  char vr_message[50];
+  if (mlPending.wpProtState == WP_PROT_TX_WP) { //SLUGS Nav DBG info
+    memset(vr_message, 0, sizeof (vr_message));
+    sprintf(vr_message, "%d: y =%2.2f x =%2.2f z =%2.2f o =%d  t =%d", mlPending.wpCurrentWpInTransaction, (double)mlWpValues.lat[mlPending.wpCurrentWpInTransaction],
+        (double)mlWpValues.lon[mlPending.wpCurrentWpInTransaction],
+        (double)mlWpValues.alt[mlPending.wpCurrentWpInTransaction],
+        mlWpValues.orbit[mlPending.wpCurrentWpInTransaction],
+        mlWpValues.type[mlPending.wpCurrentWpInTransaction]);
+    bytes2Send += sendQGCDebugMessage(vr_message, 0, UartOutBuff, bytes2Send + 1);
+  }
+  //if (mlPending.wpProtState == WP_PROT_GETTING_WP_IDLE) { //SLUGS Nav DBG info
+  //    memset(vr_message, 0, sizeof (vr_message));
+  //    sprintf(vr_message, "com = %d, tb =%2.2f ta = %2.2f", sw_intTemp, (double)fl_temp1, (double)fl_temp2);
+  //    bytes2Send += sendQGCDebugMessage(vr_message, 0, UartOutBuff, bytes2Send + 1);
+
+  //}
 
   // Current mission item (1 off indexing issue in qgc vs et)
-//  if (mlPending.wpSendCurrent) { --DBG TODO AM implement with nav implamntation
-//      memset(&msg, 0, sizeof (mavlink_message_t));
-//      mavlink_msg_mission_current_pack(system_id,
-//          component_id,
-//          &msg, ((uint16_t)mlNavigation.toWP) - 1);
-//      bytes2Send += mavlink_msg_to_send_buffer((UartOutBuff + 1 + bytes2Send), &msg);
-//      mlPending.wpSendCurrent = FALSE;
-//  }
+  if (mlPending.wpSendCurrent) { //--DBG TODO AM implement with nav implamntation
+      memset(&msg, 0, sizeof (mavlink_message_t));
+      mavlink_msg_mission_current_pack(system_id,
+          component_id,
+          &msg, ((uint16_t)mlNavigation.toWP) - 1);
+      bytes2Send += mavlink_msg_to_send_buffer((UartOutBuff + 1 + bytes2Send), &msg);
+      mlPending.wpSendCurrent = FALSE;
+  }
 
   // clear the msg
   memset(&msg, 0, sizeof (mavlink_message_t));
@@ -790,7 +805,7 @@ uint16_t PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_
   //////////////////////////////////////////////////////////////////////////
   mavlink_message_t msg;
   memset(&msg, 0, sizeof (mavlink_message_t));
-  mavlink_msg_gps_raw_int_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec ,mlRawGpsDataInt.fix_type, mlRawGpsDataInt.lat,
+  mavlink_msg_gps_raw_int_pack(mavlink_system.sysid, mavlink_system.compid, &msg , mlRawGpsDataInt.time_usec,mlRawGpsDataInt.fix_type, mlRawGpsDataInt.lat,
           mlRawGpsDataInt.lon, mlRawGpsDataInt.alt, mlRawGpsDataInt.eph, mlRawGpsDataInt.epv, mlRawGpsDataInt.vel,
           mlRawGpsDataInt.cog, mlRawGpsDataInt.satellites_visible);
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));

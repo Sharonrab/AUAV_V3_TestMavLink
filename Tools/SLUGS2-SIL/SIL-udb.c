@@ -8,6 +8,7 @@
 
 #if (WIN == 1 || NIX == 1)
 
+#include "apUtils.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -299,10 +300,10 @@ void udb_run(void)
 			send_HILSIM_outputs();
 #endif
 			sil_ui_update();
-			mlPilotConsoleData.chan3_raw = udb_pwIn[THROTTLE_INPUT_CHANNEL] ;
-			mlPilotConsoleData.chan1_raw = udb_pwIn[AILERON_INPUT_CHANNEL];
-			mlPilotConsoleData.chan4_raw = udb_pwIn[RUDDER_INPUT_CHANNEL];
-			mlPilotConsoleData.chan2_raw = udb_pwIn[ELEVATOR_INPUT_CHANNEL];
+			mlPilotConsoleData.chan3_raw = (udb_pwIn[THROTTLE_INPUT_CHANNEL]);// -1886.0) / 1484.0;
+			mlPilotConsoleData.chan1_raw = (udb_pwIn[AILERON_INPUT_CHANNEL]);// -2628.6666666666674) / -2792.21432160421;
+			mlPilotConsoleData.chan4_raw = (udb_pwIn[RUDDER_INPUT_CHANNEL]);// -2629.666666666667) / -2102.7551081301217;
+			mlPilotConsoleData.chan2_raw = (udb_pwIn[ELEVATOR_INPUT_CHANNEL]);// -2628.0000000000005) / 4159.6735926497768;
 			mlPilotConsoleData.chan5_raw = udb_pwIn[MODE_SWITCH_INPUT_CHANNEL];
 
 //			if (udb_heartbeat_counter % 80 == 0)
@@ -367,10 +368,10 @@ void send_HILSIM_outputs(void)
 	union intbb TempBB;
 
 #if (USE_VARIABLE_HILSIM_CHANNELS != 1)
-	udb_pwOut[AILERON_OUTPUT_CHANNEL] = mlPwmCommands.servo2_raw * 10;//
+	udb_pwOut[AILERON_OUTPUT_CHANNEL] = mlPwmCommands.servo2_raw *10 ;//
 	udb_pwOut[THROTTLE_OUTPUT_CHANNEL] = mlPwmCommands.servo1_raw * 10;//
 	udb_pwOut[RUDDER_OUTPUT_CHANNEL] = mlPwmCommands.servo3_raw * 10;//
-	udb_pwOut[ELEVATOR_OUTPUT_CHANNEL] = mlPwmCommands.servo4_raw * 10;//
+	udb_pwOut[ELEVATOR_OUTPUT_CHANNEL] = mlPwmCommands.servo4_raw * 10 ;//
 	for (i = 1; i <= NUM_OUTPUTS; i++)
 	{
 		
@@ -607,10 +608,19 @@ boolean handleUDBSockets(void)
 
 void udb_callback_read_sensors(void)
 {
+	float T, p, r, h;
 	//read_gyros(); // record the average values for both DCM and for offset measurements
 	//read_accel();
 	HILSIM_set_gplane();
 	HILSIM_set_omegagyro();
+	h = mlGpsData.alt / 1000;
+	T = 15.04 - .00649 * h;
+	p = 101.29 *myPow((T + 273.1) / 288.08,5.256) * 1000; //pascal
+	r = p / (.2869 * (T + 273.1));
+
+	mlRawPressureData.press_abs = (p - 9444.4) / 27.1270 ; //convert to static pressure in Pascal / baroScale
+	mlRawPressureData.press_diff1 = (1 / 2 * r * myPow(mlGpsData.vel, 2) +1005.9) / 1.0514 ;//pitotScale
+	mlRawPressureData.temperature = (T + 1605.3) / 1.5113;
 
 }
 

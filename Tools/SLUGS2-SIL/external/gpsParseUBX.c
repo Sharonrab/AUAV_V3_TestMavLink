@@ -821,6 +821,7 @@ void gps_commit_data(void)
 	//bin_out(0xFF);
 	week_no         = week_no_;
 	tow             = tow_;
+	mlGpsData.time_usec = tow.WW;
 	lat_gps         = lat_gps_;
 	mlGpsData.lat = lat_gps.WW;
 	lon_gps         = lon_gps_;
@@ -831,6 +832,7 @@ void gps_commit_data(void)
 	mlGpsData.vel = sog_gps.BB;
 #if (HILSIM == 1)
 	hilsim_airspeed.BB       = as_sim_._.W0;                 // provided by HILSIM, simulated airspeed
+	
 #endif
 	cog_gps.BB      = (uint16_t)(cog_gps_.WW / 1000);// SIRF uses 2 byte COG, 10^-2 deg, UBX provides 4 bytes, 10^-5 deg
 	mlGpsData.cog = cog_gps.BB;
@@ -904,10 +906,16 @@ void HILSIM_set_gplane(void)
 	aero_force[0] = - gplane[0] ;
 	aero_force[1] = - gplane[1] ;
 	aero_force[2] = - gplane[2] ;
+	//from X-Plane interface adapter:
+	// Accelerations are in m/s^2
+	// Divide by 9.8 to get g's
+	// Multiply by 5280 (constant from UDB code)
+	// Divide by SCALEACCEL (2.64 for red board)
+	// 1 / 9.8 * 5280 / 2.64 = 204.8
+	mlRawImuData.xacc = gplane[1]  / 204.8 * 16384 / 9.815;//[1] is 'drg_axil' from  X-PLane
+	mlRawImuData.yacc = -gplane[0] / 204.8 * 16384 / 9.815;//[0] is 'drg_side' from  X-PLane
+	mlRawImuData.zacc = gplane[2]  / 204.8 * 16384 / 9.815;//[2] is 'drg_nrml' from  X-PLane
 
-	mlRawImuData.xacc = gplane[0]  * 16384 / GRAVITY;
-	mlRawImuData.yacc =  -gplane[1]  * 16384 / GRAVITY;
-	mlRawImuData.zacc = -gplane[2]  * 16384 / GRAVITY;
 }
 #define RADPERSEC ((int64_t)5632.0/SCALEGYRO)
 // one radian per second, in AtoD/2 units
@@ -918,9 +926,15 @@ void HILSIM_set_omegagyro(void)
 	omegagyro[1] = q_sim.BB;
 	omegagyro[2] = r_sim.BB;
 	HILSIM_saturate( 3, omegagyro ) ;
-	mlRawImuData.xgyro = omegagyro[1] * 65.5 *180 / PI / RADPERSEC;
-	mlRawImuData.ygyro = -omegagyro[0] * 65.5 * 180 / PI / RADPERSEC;
-	mlRawImuData.zgyro = -omegagyro[2] * 65.5 * 180 / PI / RADPERSEC;
+	//I converted back to deg/sec since we have convertor inside the model to rad/sec
+	//also converting to the sensor scale 
+	// Angular rate
+	// multiply by 5632 (constant from UDB code)
+	// Divide by SCALEGYRO(3.0 for red board)
+	// 1 * 5632 / 3.0 = 1877.33
+	mlRawImuData.xgyro = -omegagyro[0] / 1877.33 * 65.5 / PI * 180 ;
+	mlRawImuData.ygyro = -omegagyro[1] / 1877.33 * 65.5 / PI * 180 ;// I put the negative sign since HILSIM interface to X-PLane convert from NED to UDB
+	mlRawImuData.zgyro = -omegagyro[2] / 1877.33 * 65.5 / PI * 180 ;
 	
 
 }

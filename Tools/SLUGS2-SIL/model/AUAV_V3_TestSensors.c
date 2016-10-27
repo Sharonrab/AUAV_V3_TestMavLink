@@ -1559,9 +1559,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     /* SignalConversion: '<S461>/Numerical Unity' incorporates:
      *  DataStoreRead: '<S458>/Get GS Location'
      */
-    AUAV_V3_TestSensors_B.NumericalUnity[0] = mlGSLocationFloat.lat;
-    AUAV_V3_TestSensors_B.NumericalUnity[1] = mlGSLocationFloat.lon;
-    AUAV_V3_TestSensors_B.NumericalUnity[2] = mlGSLocationFloat.alt;
+    AUAV_V3_TestSensors_B.NumericalUnity[0] = mlGSLocationFloat.lat * 0.0000001;
+    AUAV_V3_TestSensors_B.NumericalUnity[1] = mlGSLocationFloat.lon * 0.0000001;
+    AUAV_V3_TestSensors_B.NumericalUnity[2] = mlGSLocationFloat.alt * 0.001;
 
     /* Gain: '<S462>/Deg2R' */
     rtb_cosphi = 0.0174532924F * AUAV_V3_TestSensors_B.NumericalUnity[1];
@@ -4151,6 +4151,8 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   AUAV_V3_TestSensors_B.myCosapUtilscupdated5116 = myCos(
     AUAV_V3_TestSensors_B.u060
     );
+
+  AUAV_V3_TestSensors_B.myCosapUtilscupdated5116 = myTan(AUAV_V3_TestSensors_B.u060);
 
   /* Sum: '<S140>/Add4' incorporates:
    *  Constant: '<S140>/Constant2'

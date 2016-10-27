@@ -65,7 +65,7 @@ void getMidLevelCommands(float* commands) {
 
 unsigned char isApManual(uint16_t failsafe) {
     // Disable and toggle manual/guided mode depending on failsafe
-    if (failsafe < 300) {
+    if (failsafe > 400) {
         mlHeartbeatLocal.base_mode &= ~MAV_MODE_FLAG_AUTO_ENABLED;
         mlHeartbeatLocal.base_mode |= MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
     }

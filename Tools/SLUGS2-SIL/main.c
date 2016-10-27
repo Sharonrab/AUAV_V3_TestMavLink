@@ -59,7 +59,7 @@ static jmp_buf buf;
 /* Declare UART1 Tx Circular Buffer Structure */
 MCHP_UART1_TxStr MCHP_UART1_Tx;
 
-
+float unitTest;
 int mp_argc;
 char **mp_argv;
 int16_t angleOfAttack;
@@ -71,7 +71,7 @@ int main(int argc, char** argv)
 	// keep these values available for later
 	mp_argc = argc;
 	mp_argv = argv;
-
+	unitTest = myTan(0.1f);
 	//gps_init();     // this sets function pointers so i'm calling it early for now
 	udb_init();
 	//dcm_init();
