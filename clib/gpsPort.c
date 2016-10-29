@@ -15,25 +15,37 @@
 // Last Revision: Feb 25 2012 @ 12:38
 // ==============================================================
 #include <string.h>
+#include ".\rtwtypes.h"
 #include "gpsPort.h"
+#define  USE_NOVATEL_GPS 0
 
 struct CircBuffer com4Buffer;
 CBRef uartBuffer;
     // GPS Circular Buffers
     // ====================
-#define MSIZE			180
-
+//#define MSIZE			180
 // UART and Buffer initialization
 
 void uartBufferInit(void) {
 
      /* Configure Pins as Analog or Digital */
-    ANSELE = 0xFF83;
+    //ANSELE = 0xFF83;
 
     /* Configure Remappables Pins */
-    RPINR28 = 0x56;
+    RPINR28 = 0x56;//86
+   	//RPINR19bits.U2RXR = 86 ;
+
+    // UART mapping:
+    
+//RPINR28 = 0x56;//assign pin 86 to UART4 Receive
+    // UART mapping:
+    
+    //RPINR18bits.U1RXR = 98 ;
+    //    RPOR6bits.RP85R = 0b011101 ;//RPn tied to UART4 Transmit
+    //    RPOR8bits.RP99R = 0b000001 ;//RPn tied to UART1 Transmit
+    
     /* Configure UART4 Rx Interruption */
-    _U4RXIP = 1;                         /* Rx Interrupt priority set to 1 */
+    _U4RXIP = 5;                         /* Rx Interrupt priority set to 1 */
     _U4RXIF = 0;
     _U4RXIE = 1;                         /* Enable Interrupt */
     uartBuffer = (struct CircBuffer*) &com4Buffer;
@@ -57,6 +69,12 @@ void __attribute__((__interrupt__, no_auto_psv)) _U4RXInterrupt(void) {
 
     // clear the interrupt
     IFS5bits.U4RXIF = 0;
+}
+void getGPSRawData(unsigned char* gpsBuffer) {
+	
+}
+unsigned char isGPSNovatel (void){
+    return (unsigned char) USE_NOVATEL_GPS;
 }
 
 

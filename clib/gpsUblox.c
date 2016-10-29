@@ -38,14 +38,24 @@ THE SOFTWARE.
 // Code by: Mariano I. Lizarraga
 // First Revision: Aug 21 2008 @ 21:15
 // ==============================================================
-#include "AUAV_V3_TestMavLink.h"
+//#ifdef UNIT_TEST
+//#include "UnitTest.h"
+//#else
+//#include "AUAV3_AND_SLUGS_SENSOR.h"
+//#endif
+
+#include "..\mavlink\include\slugs\mavlink.h"
 #include "gpsUblox.h"
 #include "circBuffer.h"
 
 // this function converts one hex ascii character to decimal
 // used for the checksum comparison
 // Kindly contributed by: Bryant Mairs
+#ifdef WIN
+CBRef uartBuffer;
+#else
 extern CBRef uartBuffer;
+#endif
 extern mavlink_gps_raw_int_t mlGpsData;
 
 char hex2char(char halfhex) {
@@ -141,9 +151,11 @@ unsigned char gpsUbloxSeparate(unsigned char* outStream) {
 
         // finally compute the type of message
         chksumHeader = getChecksum(outBuf, 6);
-
+        gpsDebugMsg(getLength(uartBuffer));
         // based on the obtained header checksum set the type
         switch (chksumHeader) {
+                        
+
             case GGACS:
                 outStream[0] = GGAID;
                 break;
@@ -164,10 +176,12 @@ void gpsUbloxParse(void) {
     unsigned char bufferLen = 11;
 
     memset(inStream, 0, MSIZE);
-
+    
+    //gpsDebugMsg(getLength(bufferLen));
+    
     while (bufferLen > 10) {
         bufferLen = gpsUbloxSeparate(inStream);
-
+        
         // if the sentence is valid
         if (inStream[MSIZE - 1] == 1) {
             // parse the data according to the header
@@ -193,6 +207,23 @@ void getGpsUbloxMainData(float* data) {
     data[2] = INT32_1E3_TO_FLOAT(mlGpsData.alt);
     data[3] = UINT16_1E2_TO_FLOAT(mlGpsData.cog);
     data[4] = UINT16_1E2_TO_FLOAT(mlGpsData.vel);
+}
+
+void getGpsUbloxData(float* data) {
+<<<<<<< HEAD
+    
+    data[0] = INT32_1E7_TO_FLOAT(mlGpsData.lat);
+    data[1] = INT32_1E7_TO_FLOAT(mlGpsData.lon);
+    data[2] = INT32_1E3_TO_FLOAT(mlGpsData.alt);
+    data[3] = UINT16_1E2_TO_FLOAT(mlGpsData.cog);
+    data[4] = UINT16_1E2_TO_FLOAT(mlGpsData.vel);
+=======
+	data[0] = INT32_1E7_TO_FLOAT(mlGpsData.lat);
+	data[1] = INT32_1E7_TO_FLOAT(mlGpsData.lon);
+	data[2] = INT32_1E3_TO_FLOAT(mlGpsData.alt);
+	data[3] = UINT16_1E2_TO_FLOAT(mlGpsData.cog);
+	data[4] = UINT16_1E2_TO_FLOAT(mlGpsData.vel);
+>>>>>>> 9e34bb3825261102d882985e7ae064305171c845
 }
 
 char gpSmbl(char symbl) {
@@ -485,4 +516,13 @@ unsigned char getChecksum(unsigned char* sentence, unsigned char size) {
     }
     // Return the checksum 
     return checkSum;
+}
+
+void gpsDebugMsg(unsigned char buf)
+{
+  uint16_t msg_length = PackTextMsg(101,1,buf);
+
+  TxN_Data_OverU1(
+                  msg_length
+                  );
 }

@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.126"
+    ComputedModelVersion    "1.179"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -32,9 +32,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "sharon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Feb 22 16:36:34 2016"
-  RTWModifiedTimeStamp	  378640375
-  ModelVersionFormat	  "1.%<AutoIncrement:126>"
+  LastModifiedDate	  "Sat Apr 23 14:52:36 2016"
+  RTWModifiedTimeStamp	  383308637
+  ModelVersionFormat	  "1.%<AutoIncrement:179>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  on
@@ -405,12 +405,12 @@ Model {
 	    PropName		    "DisabledProps"
 	  }
 	  SystemTargetFile	  "MCHP_dsPIC_stf.tlc"
-	  GenCodeOnly		  on
+	  GenCodeOnly		  off
 	  MakeCommand		  "make_rtw"
 	  GenerateMakefile	  on
 	  TemplateMakefile	  "MCHP_dsPIC.tmf"
 	  Description		  "Microchip Embedded Target PIC24 dsPIC30 dsPIC33 (real-time)"
-	  GenerateReport	  off
+	  GenerateReport	  on
 	  SaveLog		  off
 	  RTWVerbose		  on
 	  RetainRTWFile		  off
@@ -425,11 +425,12 @@ Model {
 	  RTWUseLocalCustomCode	  off
 	  RTWUseSimCustomCode	  off
 	  CustomSourceCode	  "#include \"gpsPort.h\"\n#include \"MavlinkComm.h\""
-	  CustomInclude		  "mavlink\\include\\common\\\nclib\\"
-	  CustomSource		  "clib/circBuffer.c\nclib/gpsPort.c\nclib/gpsUblox.c\nclib/MavlinkComm.c"
+	  CustomInclude		  "mavlink\\include\\common\nclib\n"
+	  CustomSource		  ".\\clib\\circBuffer.c\n.\\clib\\gpsPort.c\n.\\clib\\gpsUblox.c\n.\\clib\\MavlinkComm.c\n.\\clib\\u"
+	  "pdateSensorMcuState.c\n.\\clib\\novatel.c"
 	  CustomInitializer	  "uartBufferInit();\nuartMavlinkBufferInit ();\nInitParameterInterface();"
-	  IncludeHyperlinkInReport off
-	  LaunchReport		  off
+	  IncludeHyperlinkInReport on
+	  LaunchReport		  on
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
 	  IncludeERTFirstTime	  off
@@ -727,26 +728,26 @@ Model {
 	      CustomProperty {
 		DataType		"string"
 		Name			"GCCPATH"
-		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\bin"
+		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\bin"
 	      }
 	      CustomProperty {
 		DataType		"string"
 		Name			"LINKER_SCRIPT"
-		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\support\\dsPIC33E\\gld\\P35C90~1.GLD"
+		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\support\\dsPIC33E\\gld\\P35C90~1.GLD"
 	      }
 	      CustomProperty {
 		DataType		"string"
 		Name			"PIC_LIB"
-		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\lib\\dsPIC33E\\libp33EP512MU810-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1"
-		".24\\lib\\libpic30-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\lib\\libm-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\l"
-		"ib\\libc-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\lib\\libq-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\lib\\libq-d"
+		Value			"C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\lib\\dsPIC33E\\libp33EP512MU810-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1"
+		".26\\lib\\libpic30-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\lib\\libm-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\l"
+		"ib\\libc-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\lib\\libq-elf.a C:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\lib\\libq-d"
 		"sp-elf.a"
 	      }
 	      CustomProperty {
 		DataType		"string"
 		Name			"PIC_INCLUDES"
-		Value			"-IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\include -IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\support\\dsPIC33E\\h "
-		"-IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\support\\generic\\h -IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.24\\support\\PERIPH~2"
+		Value			"-IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\include -IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\support\\dsPIC33E\\h "
+		"-IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\support\\generic\\h -IC:\\PROGRA~2\\MICROC~1\\xc16\\v1.26\\support\\PERIPH~2"
 	      }
 	      CustomProperty {
 		DataType		"string"
@@ -776,7 +777,7 @@ Model {
 	      CustomProperty {
 		DataType		"slbool"
 		Name			"MCHP_AUTO_FLASH"
-		Value			on
+		Value			off
 	      }
 	      CustomProperty {
 		DataType		"slbool"
@@ -846,7 +847,7 @@ Model {
 		"   -1     -1     -1     -1     -1     83     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -"
 		"1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1     -1]';s.CLKDIV='5';s"
 		".PLLFBD='243';s.SWITCH_OSC='16385';s.PLLRNG='-1';s.MASTER_BusyFlag='6';s.POWERSAVE='0';s.MIPS='70000000';s.AN_type2="
-		"'1';s.ADC_PingPong='1';s.NConversionTotal='2';s.NSampleTotal='2';"
+		"'1';s.ADC_PingPong='1';s.NConversionTotal='4';s.NSampleTotal='4';"
 	      }
 	      CustomProperty {
 		DataType		"slbool"
@@ -862,7 +863,7 @@ Model {
       Name		      "Configuration"
       ExtraOptions	      "-aGenerateTraceInfo=0 -aIgnoreTestpoints=0 "
       CurrentDlgPage	      "Code Generation/Custom Code"
-      ConfigPrmDlgPosition     [ 227, 18, 1140, 711 ] 
+      ConfigPrmDlgPosition     [ 344, 130, 1234, 681 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -1202,7 +1203,7 @@ Model {
   }
   System {
     Name		    "AUAV_V3_TestMavLink"
-    Location		    [334, 94, 1276, 611]
+    Location		    [293, 83, 1339, 722]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1216,7 +1217,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "459"
+    SIDHighWatermark	    "859"
     Block {
       BlockType		      Reference
       Name		      " gpsUbloxParse"
@@ -1232,14 +1233,7 @@ Model {
       AddHeaderDeclaration    on
       Function1Type	      "when block is updated (default)"
       FctReturnBlockOut	      on
-      DataCollected	      "s.chksm=reshape({ '1712811-Jan-2015 00:49:34','1687227-Jan-2015 00:07:03'},1,2);s.File1=res"
-      "hape({ '  void  decodeGPS(GPS* gps,unsigned char id,const char* buff, unsigned int buffPtr,unsigned int nbrField"
-      "s)','  GPS  UART_GPS_Decode(void)'},1,2);s.File2=reshape({ '  char  hex2char(char halfhex)','  float  degMinToDe"
-      "g(unsigned char degrees, float minutes)',' unsigned int  getLength(void)',' unsigned char  peak(void)',' unsigne"
-      "d char  readFront(void)',' unsigned char  gpsUbloxSeparate(unsigned char* outStream)','  void  gpsUbloxParse(voi"
-      "d)','  void  getGpsUbloxMainData(float* data)','  char  gpSmbl(char symbl)',' unsigned char  myTokenizer(char* s"
-      "tringToTokenize, char token, char * returnToken)','  void  parseRMC(unsigned char* stream)','  void  parseGGA(un"
-      "signed char* stream)',' unsigned char  getChecksum(unsigned char* sentence, unsigned char size)'},1,13);"
+      DataCollected	      "0"
       ORDERING		      "None"
       SampleTime	      "0.2"
       MCHP_MASTERLINK	      "AUAV_V3_TestMavLink/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -1386,9 +1380,9 @@ Model {
       LibraryVersion	      "3.37"
       SourceBlock	      "MCHP_Blockset/System Configuration/Compiler Options"
       SourceType	      ""
-      LATEST_CMPLR	      on
-      COMP_LIST		      "xc16 - v1.24"
-      COMP_LIST_TXT	      "xc16 - v1.24"
+      LATEST_CMPLR	      off
+      COMP_LIST		      "Dynamic Options"
+      COMP_LIST_TXT	      "xc16 - v1.26"
       USE_64BIT_DOUBLE	      off
       MCHP_MULTITHREAD_COMPILATION off
       MCHP_MASTERLINK	      "AUAV_V3_TestMavLink/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -1453,7 +1447,7 @@ Model {
       Name		      "Flashing LEDs\nDISCO"
       SID		      "75"
       Ports		      []
-      Position		      [905, 215, 1024, 279]
+      Position		      [420, 620, 539, 684]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -1674,7 +1668,7 @@ Model {
       Name		      "MCU Load"
       SID		      "425"
       Ports		      [0, 1]
-      Position		      [765, 642, 890, 718]
+      Position		      [415, 758, 490, 812]
       LibraryVersion	      "3.37"
       SourceBlock	      "MCHP_Blockset/Profiling/MCU Load"
       SourceType	      "MCU Load (Profile execution time)"
@@ -1715,7 +1709,7 @@ Model {
       Name		      "MavlinkTX"
       SID		      "422"
       Ports		      []
-      Position		      [795, 410, 1080, 566]
+      Position		      [440, 425, 541, 581]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -1725,7 +1719,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"MavlinkTX"
-	Location		[202, 82, 1331, 715]
+	Location		[227, 261, 1356, 631]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1916,7 +1910,7 @@ Model {
 	  Name			  "PackRawIMU"
 	  SID			  "108"
 	  Ports			  [4, 1]
-	  Position		  [320, 29, 480, 166]
+	  Position		  [320, 33, 480, 172]
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
@@ -1961,7 +1955,7 @@ Model {
 	  Name			  "PackScaledPressure"
 	  SID			  "390"
 	  Ports			  [4, 1]
-	  Position		  [320, 442, 480, 543]
+	  Position		  [320, 446, 480, 549]
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
@@ -2006,7 +2000,7 @@ Model {
 	  Name			  "PackSysStatus"
 	  SID			  "395"
 	  Ports			  [3, 1]
-	  Position		  [320, 573, 480, 667]
+	  Position		  [320, 577, 480, 673]
 	  LibraryVersion	  "3.37"
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
@@ -2346,7 +2340,7 @@ Model {
 	Line {
 	  SrcBlock		  "PackSysStatus"
 	  SrcPort		  1
-	  Points		  [0, -10]
+	  Points		  [0, -20]
 	  DstBlock		  "TX_N_Data4"
 	  DstPort		  1
 	}
@@ -2364,7 +2358,7 @@ Model {
 	Line {
 	  SrcBlock		  "PackScaledPressure"
 	  SrcPort		  1
-	  Points		  [0, -5]
+	  Points		  [0, -10]
 	  DstBlock		  "TX_N_Data3"
 	  DstPort		  1
 	}
@@ -2395,7 +2389,7 @@ Model {
 	Line {
 	  SrcBlock		  "PackRawIMU"
 	  SrcPort		  1
-	  Points		  [0, -5]
+	  Points		  [0, -10]
 	  DstBlock		  "TX_N_Data"
 	  DstPort		  1
 	}
@@ -2537,7 +2531,7 @@ Model {
       SourceType	      ""
       PICREF		      "33EP512MU810"
       TIMESTEP_REF	      "Timer  ( 0.0025s )"
-      BUSYFLAG		      "A6 / Pin[91]"
+      BUSYFLAG		      "Dynamic Options"
       BUSYFLAG_TXT	      "A6 / Pin[91]"
       PWRTEN		      "PWRT enabled"
       BOREN		      "Disable"
@@ -2741,7 +2735,7 @@ Model {
       "-1];MCHP.UART.port_ATx = [-1 -1];MCHP.UART.port_RTS = [32767  32767  32767  32767     -1     -1];MCHP.UART.port_"
       "CTS = [32767  32767  32767  32767     -1     -1];MCHP.UART.reg_UxMODE = [48127  48127  48127  48127     -1     -"
       "1];MCHP.UART.reg_UxSTA = [61439  61439  61439  61439     -1     -1];"
-      MCHP_CRC		      "-1158495"
+      MCHP_CRC		      "-1120916"
       BTMODE		      "Device is in Single Boot (legacy) mode"
       RES1		      "Not used"
       PLLSS		      "PLL is fed by the Primary oscillator"
@@ -2816,7 +2810,7 @@ Model {
       Name		      "Port Info"
       SID		      "61"
       Ports		      []
-      Position		      [1152, 137, 1316, 392]
+      Position		      [893, 190, 1054, 522]
       DropShadow	      on
       LibraryVersion	      "3.37"
       SourceBlock	      "MCHP_Blockset/System Info/Port Info"
@@ -2828,7 +2822,10 @@ Model {
       Name		      "Read Barometer BMP180"
       SID		      "423"
       Ports		      []
-      Position		      [246, 541, 522, 643]
+      Position		      [246, 535, 391, 643]
+      BackgroundColor	      "darkGreen"
+      FontName		      "Arial Narrow"
+      FontSize		      12
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -8567,7 +8564,7 @@ Model {
       Name		      "Read MPU600 and HMC5883"
       SID		      "424"
       Ports		      []
-      Position		      [245, 415, 521, 502]
+      Position		      [245, 423, 406, 502]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -9483,7 +9480,8 @@ Model {
       Name		      "Servo In Out"
       SID		      "452"
       Ports		      [0, 4]
-      Position		      [240, 786, 525, 969]
+      Position		      [35, 651, 130, 834]
+      BackgroundColor	      "orange"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -9493,7 +9491,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Servo In Out"
-	Location		[-18, 367, 1332, 720]
+	Location		[141, 260, 1287, 613]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -9828,11 +9826,11 @@ Model {
 	  PIN_OC16		  "Dynamic Options"
 	  PIN_OC16_TXT		  "D0 / P64 / Pin[72]"
 	  PIN_OCFA		  "Dynamic Options"
-	  PIN_OCFA_TXT		  "Dynamic Options"
+	  PIN_OCFA_TXT		  "A0 / P16 / Pin[17]"
 	  PIN_OCFB		  "Dynamic Options"
-	  PIN_OCFB_TXT		  "Dynamic Options"
+	  PIN_OCFB_TXT		  "A0 / P16 / Pin[17]"
 	  PIN_OCFC		  "Dynamic Options"
-	  PIN_OCFC_TXT		  "Dynamic Options"
+	  PIN_OCFC_TXT		  "A0 / P16 / Pin[17]"
 	  Channel_UP_Down_Periode "[5     5]"
 	  PulseTrig		  "Single pulse triggered by block execution"
 	  InputPeriod		  "are set to the Max time (constant below)"
@@ -10051,21 +10049,21 @@ Model {
       SourceBlock	      "MCHP_Blockset/BUS UART/UART Configuration"
       SourceType	      "Configuration for UART peripheral"
       UART_REF		      "1"
-      BAUD_Choice	      "   57600         [-0.06%]"
+      BAUD_Choice	      "Dynamic Options"
       BAUD_Choice_TXT	      "   57600         [-0.06%]"
-      BAUD_Choice_IR	      "   57600         [-0.06%]"
+      BAUD_Choice_IR	      "Dynamic Options"
       BAUD_Choice_IR_TXT      "[]"
       BAUD_Custom	      "115200"
       IRDA		      off
       ALT_IO		      on
-      PIN_RX		      "F2 / P98 / Pin[52]"
+      PIN_RX		      "Dynamic Options"
       PIN_RX_TXT	      "F2 / P98 / Pin[52]"
-      PIN_TX		      "F3 / P99 / Pin[51]"
+      PIN_TX		      "Dynamic Options"
       PIN_TX_TXT	      "F3 / P99 / Pin[51]"
       FlowControl	      "None"
-      PIN_CTS		      "A0 / P16 / Pin[17]"
+      PIN_CTS		      "Dynamic Options"
       PIN_CTS_TXT	      "A0 / P16 / Pin[17]"
-      PIN_RTS		      "D0 / P64 / Pin[72]"
+      PIN_RTS		      "Dynamic Options"
       PIN_RTS_TXT	      "D0 / P64 / Pin[72]"
       MCHP_PORT		      "{UART1  Tx}{U1TX}3:1:P99;"
       MCHP_MASTERLINK	      "AUAV_V3_TestMavLink/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -10081,9 +10079,9 @@ Model {
       RX_INT_WHEN	      "receive 1 character"
       RX_CIRCULAR_SIZE	      "128"
       InitSequence_chkbox     on
-      BAUD_Choice_InitSeq     "     110         [-0.00%]"
+      BAUD_Choice_InitSeq     "Dynamic Options"
       BAUD_Choice_InitSeq_TXT "     110         [-0.00%]"
-      BAUD_Choice_IR_InitSeq  "     110         [-0.00%]"
+      BAUD_Choice_IR_InitSeq  "Dynamic Options"
       BAUD_Choice_IR_InitSeq_TXT "0"
       BAUD_Custom_InitSeq     "0"
       InitSequence	      "'Hello World'"
@@ -10098,21 +10096,21 @@ Model {
       SourceBlock	      "MCHP_Blockset/BUS UART/UART Configuration"
       SourceType	      "Configuration for UART peripheral"
       UART_REF		      "4"
-      BAUD_Choice	      "   38400         [-0.06%]"
+      BAUD_Choice	      "Dynamic Options"
       BAUD_Choice_TXT	      "   38400         [-0.06%]"
-      BAUD_Choice_IR	      "   38400         [-0.06%]"
+      BAUD_Choice_IR	      "Dynamic Options"
       BAUD_Choice_IR_TXT      "[]"
       BAUD_Custom	      "115200"
       IRDA		      off
       ALT_IO		      on
-      PIN_RX		      "E6 / P86 / Pin[4]"
+      PIN_RX		      "Dynamic Options"
       PIN_RX_TXT	      "E6 / P86 / Pin[4]"
-      PIN_TX		      "E5 / P85 / Pin[3]"
+      PIN_TX		      "Dynamic Options"
       PIN_TX_TXT	      "E5 / P85 / Pin[3]"
       FlowControl	      "None"
-      PIN_CTS		      "A0 / P16 / Pin[17]"
+      PIN_CTS		      "Dynamic Options"
       PIN_CTS_TXT	      "A0 / P16 / Pin[17]"
-      PIN_RTS		      "D0 / P64 / Pin[72]"
+      PIN_RTS		      "Dynamic Options"
       PIN_RTS_TXT	      "D0 / P64 / Pin[72]"
       MCHP_PORT		      "{UART4  Tx}{U4TX}3:1:P85;"
       MCHP_MASTERLINK	      "AUAV_V3_TestMavLink/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -10128,9 +10126,9 @@ Model {
       RX_INT_WHEN	      "receive 1 character"
       RX_CIRCULAR_SIZE	      "128"
       InitSequence_chkbox     off
-      BAUD_Choice_InitSeq     "     110         [-0.00%]"
+      BAUD_Choice_InitSeq     "Dynamic Options"
       BAUD_Choice_InitSeq_TXT "     110         [-0.00%]"
-      BAUD_Choice_IR_InitSeq  "     110         [-0.00%]"
+      BAUD_Choice_IR_InitSeq  "Dynamic Options"
       BAUD_Choice_IR_InitSeq_TXT "0"
       BAUD_Custom_InitSeq     "0"
       InitSequence	      "'Hello World'"
@@ -10140,7 +10138,7 @@ Model {
       Name		      "Update SysStatus Load"
       SID		      "426"
       Ports		      [1]
-      Position		      [920, 655, 1010, 705]
+      Position		      [545, 760, 635, 810]
       ZOrder		      -6
       BackgroundColor	      "orange"
       DataStoreName	      "mlSysStatus"

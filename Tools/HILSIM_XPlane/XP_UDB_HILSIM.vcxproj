@@ -11,7 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
+<<<<<<< HEAD
+    <ProjectGuid>{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}</ProjectGuid>
+=======
     <ProjectGuid>{81C72BCE-FAF2-423A-B311-50BA1F7A010D}</ProjectGuid>
+>>>>>>> master
     <RootNamespace>XP-netdata</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
@@ -40,7 +44,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+<<<<<<< HEAD
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\User\Desktop\X-Plane 10 Demo\Resources\plugins\</OutDir>
+=======
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</OutDir>
+>>>>>>> master
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\</OutDir>

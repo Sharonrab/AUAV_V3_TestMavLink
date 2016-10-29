@@ -1,12 +1,26 @@
-#include "mavlink.h"
+
 #include "MavlinkComm.h"
 #include "circBuffer.h"
-#include "inttypes.h"
-#include "gpsPort.h"
+
 #include <stdio.h>
+<<<<<<< HEAD
+#ifdef UNIT_TEST
+#include "AUAV_V3_TestMavLink.h"
+//#include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.h"
+
+#elif defined  SENSORS_UNIT_TEST
+#include "AUAV_V3_TestSensors.h"
+#else
+#include "AUAV_V3_TestSensors.h"
+
+#endif
+=======
 #include "AUAV_V3_TestMavlink.h"
+>>>>>>> master
 
 uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
+uint8_t Uart4OutBuff[MAVLINK_MAX_PACKET_LEN];
+
 struct CircBuffer comMavlinkBuffer;
 CBRef uartMavlinkInBuffer;
 uint8_T DatafromGSmavlink[MAXINLEN+2];
@@ -14,24 +28,25 @@ mavlink_pending_requests_t mlPending;
 mavlink_heartbeat_t mlHeartbeat;
 mavlink_mission_count_t mlWpCount;
 mavlink_mission_request_t mlWpRequest;
-mavlink_mission_item_values_t mlWpValues; //defined in MavlinkComm.h
+//mavlink_mission_item_values_t mlWpValues; //defined in MavlinkComm.h
 mavlink_mission_item_t mlSingleWp;
 mavlink_set_gps_global_origin_t mlGSLocation;
 mavlink_mission_ack_t mlWpAck;
 
-struct pi_struct mlParamInterface;
+//pi_struct mlParamInterface;
 
 void uartMavlinkBufferInit (void){
-  _U1RXIP = 1;                         /* Rx Interrupt priority set to 1 */
+#if (WIN != 1)
+  _U1RXIP = 5;                         /* Rx Interrupt priority set to 1 */
   _U1RXIF = 0;
   _U1RXIE = 1;                         /* Enable Interrupt */
   /* Configure Remappables Pins */
    RPINR18 = 0x62;
-
+#endif
   uartMavlinkInBuffer = (struct CircBuffer*) &comMavlinkBuffer;
   newCircBuffer(uartMavlinkInBuffer);
 }
-
+#if (WIN != 1)
 void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void)
 {
   //
@@ -52,7 +67,7 @@ void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void)
     IFS0bits.U1RXIF = 0;
 
 }
-
+#endif
 uint8_t isFinite(float s) {
   // By IEEE 754 rule, 2*Inf equals Inf
   return ((s == s) && ((s == 0) || (s != 2*s)));
@@ -61,25 +76,79 @@ uint8_t isFinite(float s) {
 void InitParameterInterface(void)
 {
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_P], "PID_AIRSPD_P");
+    mlParamInterface.param[PAR_PID_AIRSPEED_P] = 0.949999988079;
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_I], "PID_AIRSPD_I");
+    mlParamInterface.param[PAR_PID_AIRSPEED_I] = 0.00700000021607;
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_D], "PID_AIRSPD_D");
+    mlParamInterface.param[PAR_PID_AIRSPEED_D] = 0.20000000298;
 
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_P], "PID_PIT_FO_P");
+        mlParamInterface.param[PAR_PID_PITCH_FO_P] = -0.20000000298;
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_I], "PID_PIT_FO_I");
+        mlParamInterface.param[PAR_PID_PITCH_FO_I] = -0.00499999988824;   
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_D], "PID_PIT_FO_D");
+        mlParamInterface.param[PAR_PID_PITCH_FO_D] = -0.0599999986589;
 
     strcpy(mlParamInterface.param_name[PAR_PID_ROLL_CON_P], "PID_ROLL_CO_P");
+            mlParamInterface.param[PAR_PID_ROLL_CON_P] = 0.649999976158;
     strcpy(mlParamInterface.param_name[PAR_PID_ROLL_CON_I], "PID_ROLL_CO_I");
+            mlParamInterface.param[PAR_PID_ROLL_CON_I] = 0.00999999977648;
     strcpy(mlParamInterface.param_name[PAR_PID_ROLL_CON_D], "PID_ROLL_CO_D");
+            mlParamInterface.param[PAR_PID_ROLL_CON_D] = 0.0599999986589;
+
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_P], "PID_HE2PITC_P");
+                mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.0450000017881;
+
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_I], "PID_HE2PITC_I");
+                mlParamInterface.param[PAR_PID_HE_TO_PI_I] = 0;
 
     strcpy(mlParamInterface.param_name[PAR_PID_HEI_ERR_FF], "PID_HERR_FF");
+                mlParamInterface.param[PAR_PID_HEI_ERR_FF] = -0.10000000149;
+    strcpy(mlParamInterface.param_name[PAR_PID_PITC_DT_FF], "PID_PITC_DT_FF");
+                mlParamInterface.param[PAR_PID_PITC_DT_FF] = 0.34999999404;
 
     strcpy(mlParamInterface.param_name[PAR_PID_YAW_DAMP_P], "PID_YAW_DA_P");
+                    mlParamInterface.param[PAR_PID_YAW_DAMP_P] = 0.00999999977648;
+
     strcpy(mlParamInterface.param_name[PAR_PID_YAW_DAMP_I], "PID_YAW_DA_I");
+                    mlParamInterface.param[PAR_PID_YAW_DAMP_I] = 0;
+
     strcpy(mlParamInterface.param_name[PAR_PID_YAW_DAMP_D], "PID_YAW_DA_D");
+                    mlParamInterface.param[PAR_PID_YAW_DAMP_D] = 0;
+
+ strcpy(mlParamInterface.param_name[PAR_NAV_L2_BASE], "NAV_L2_BASE");
+                    mlParamInterface.param[PAR_NAV_L2_BASE] =  5;
+strcpy(mlParamInterface.param_name[PAR_NAV_PRETURN_K], "NAV_PRETURN_K");
+                    mlParamInterface.param[PAR_NAV_PRETURN_K] = 5;	
+strcpy(mlParamInterface.param_name[PAR_NAV_SSCOMP_ON], "NAV_SSCOMP_ON");
+                    mlParamInterface.param[PAR_NAV_SSCOMP_ON] = 0;
+
+ strcpy(mlParamInterface.param_name[PAR_L1_OMEGA], "L1_OMEGA");
+                    mlParamInterface.param[PAR_L1_OMEGA] = 0;                   
+strcpy(mlParamInterface.param_name[PAR_L1_M], "L1_M");
+                    mlParamInterface.param[PAR_L1_M] = 0; 
+strcpy(mlParamInterface.param_name[PAR_L1_GAMMA], "L1_GAMMA");
+                    mlParamInterface.param[PAR_L1_GAMMA] = 0;
+strcpy(mlParamInterface.param_name[PAR_L1_ON_OFF], "L1_ON_OFF");
+                    mlParamInterface.param[PAR_L1_ON_OFF] = 0;
+strcpy(mlParamInterface.param_name[PAR_NAV_ISR_FAC], "NAV_ISR_FAC");
+                    mlParamInterface.param[PAR_NAV_ISR_FAC] = 5;
+strcpy(mlParamInterface.param_name[PAR_PID_RMIX_ON], "PID_RMIX_ON");
+                    mlParamInterface.param[PAR_PID_RMIX_ON] = 0;
+strcpy(mlParamInterface.param_name[PAR_PID_RMIX_P], "PID_RMIX_P");
+                    mlParamInterface.param[PAR_PID_RMIX_P] = 0; 
+                    
+strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
+    mlParamInterface.param[PAR_CONFIG_ROLL_R] = 0;
+    strcpy(mlParamInterface.param_name[PAR_CONFIG_PITCH_R], "CONFIG_PITCH_R");
+    mlParamInterface.param[PAR_CONFIG_PITCH_R] = 0;
+    strcpy(mlParamInterface.param_name[PAR_CONFIG_YAW_R], "CONFIG_YAW_R");
+    mlParamInterface.param[PAR_CONFIG_YAW_R] = 0;                    
+    // Populate default mid-level commands
+    mlMidLevelCommands.hCommand = 120.0f; // altitude (m)
+    mlMidLevelCommands.uCommand = 16.0f; // airspeed (m/s)
+    mlMidLevelCommands.rCommand = 0.0f; // turn rate (radians/s)
 
 }
 
@@ -89,7 +158,7 @@ void protDecodeMavlink(void) {
     mavlink_param_set_t set;
     mavlink_message_t msg;
     mavlink_status_t status;
-    uint8_t* dataIn;
+   // uint8_t* dataIn;
     // fix the data length so if the interrupt adds data
     // during execution of this block, it will be read
     // until the next gsRead
@@ -639,9 +708,9 @@ uint16_t PackHeartBeat(uint8_t system_id, uint8_t component_id){
   uint8_t system_type = MAV_TYPE_FIXED_WING;
   uint8_t autopilot_type = MAV_AUTOPILOT_GENERIC;
 
-  uint8_t system_mode = MAV_MODE_PREFLIGHT; ///< Booting up
-  uint32_t custom_mode = 0;                 ///< Custom mode, can be defined by user/adopter
-  uint8_t system_state = MAV_STATE_STANDBY; ///< System ready for flight
+  uint8_t system_mode = mlHeartbeatLocal.base_mode; ///< Booting up
+  uint32_t custom_mode = mlHeartbeatLocal.custom_mode;                 ///< Custom mode, can be defined by user/adopter
+  uint8_t system_state = mlHeartbeatLocal.system_status; ///< System ready for flight
   mavlink_message_t msg;
   uint16_t bytes2Send = 0;
   //////////////////////////////////////////////////////////////////////////
@@ -664,14 +733,14 @@ uint16_t PackHeartBeat(uint8_t system_id, uint8_t component_id){
   return(bytes2Send);
 }
 
-uint16_t PackTextMsg(uint8_t system_id, uint8_t component_id){
+uint16_t PackTextMsg(uint8_t system_id, uint8_t component_id, unsigned char buf){
   mavlink_message_t msg;
   mavlink_system_t mavlink_system;
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
   char vr_message[50];
   memset(vr_message, 0, sizeof (vr_message));
-  sprintf(vr_message, "Hello World");
+  sprintf(vr_message, "buffer %d",buf);
   mavlink_msg_statustext_pack(mavlink_system.sysid,
   mavlink_system.compid,
   &msg,
@@ -690,6 +759,30 @@ uint16_t PackRawIMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t m
   mavlink_message_t msg;
   memset(&msg, 0, sizeof (mavlink_message_t));
   mavlink_msg_raw_imu_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlRawIMUData.xacc , mlRawIMUData.yacc , mlRawIMUData.zacc , mlRawIMUData.xgyro , mlRawIMUData.ygyro , mlRawIMUData.zgyro , mlRawIMUData.xmag , mlRawIMUData.ymag , mlRawIMUData.zmag );
+  return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
+
+uint16_t PackRawAttitude(uint8_t system_id, uint8_t component_id, mavlink_attitude_t mlAttitudeData ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_attitude_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlAttitudeData.roll, mlAttitudeData.pitch, mlAttitudeData.yaw, mlAttitudeData.rollspeed, mlAttitudeData.pitchspeed, mlAttitudeData.yawspeed );
+  return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
+
+uint16_t PackPosXYZ_Sol(uint8_t system_id, uint8_t component_id, mavlink_local_position_ned_t mlLocalPositionSol ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_local_position_ned_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec, mlLocalPositionSol.x, mlLocalPositionSol.y, mlLocalPositionSol.z, mlLocalPositionSol.vx, mlLocalPositionSol.vy, mlLocalPositionSol.vz);
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
 }
 
@@ -736,6 +829,54 @@ uint16_t PackSysStatus(uint8_t system_id, uint8_t component_id, mavlink_sys_stat
                    mlSysStatus.errors_count1, mlSysStatus.errors_count2, mlSysStatus.errors_count3, mlSysStatus.errors_count4);
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
 }
+uint16_t PackRawServo(uint8_t system_id, uint8_t component_id, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_servo_output_raw_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlPwmCommands.port, mlPwmCommands.servo1_raw, mlPwmCommands.servo2_raw, mlPwmCommands.servo3_raw, mlPwmCommands.servo4_raw, mlPwmCommands.servo5_raw, mlPwmCommands.servo6_raw, mlPwmCommands.servo7_raw, mlPwmCommands.servo8_raw );
+  return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
+
+uint16_t HIL_PackRawServo(uint8_t system_id, uint8_t component_id, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_servo_output_raw_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlPwmCommands.port, mlPwmCommands.servo1_raw, mlPwmCommands.servo2_raw, mlPwmCommands.servo3_raw, mlPwmCommands.servo4_raw, mlPwmCommands.servo5_raw, mlPwmCommands.servo6_raw, mlPwmCommands.servo7_raw, mlPwmCommands.servo8_raw );
+  return( mavlink_msg_to_send_buffer(Uart4OutBuff, &msg));
+}
+
+uint16_t PackRawRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_rc_channels_raw_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlRC_Commands.port, mlRC_Commands.chan1_raw, mlRC_Commands.chan2_raw, mlRC_Commands.chan3_raw, mlRC_Commands.chan4_raw, mlRC_Commands.chan5_raw, mlRC_Commands.chan6_raw, mlRC_Commands.chan7_raw, mlRC_Commands.chan8_raw,mlRC_Commands.rssi );
+  return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
+
+uint16_t PackVFR_HUD(uint8_t system_id, uint8_t component_id, mavlink_vfr_hud_t mlVfr_hud ,uint32_t time_usec){
+  mavlink_system_t mavlink_system;
+
+  mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+  mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+  //////////////////////////////////////////////////////////////////////////
+  mavlink_message_t msg;
+  memset(&msg, 0, sizeof (mavlink_message_t));
+  mavlink_msg_vfr_hud_pack(mavlink_system.sysid, mavlink_system.compid, &msg , mlVfr_hud.airspeed, mlVfr_hud.groundspeed, mlVfr_hud.heading, mlVfr_hud.throttle, mlVfr_hud.alt, mlVfr_hud.climb );
+                                                                                
+  return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
 
 char sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart) {
     mavlink_message_t msg;
@@ -757,9 +898,11 @@ char sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* 
 //    return(UartOutBuff[idx]);
 //}
 /* Declare UART1 Tx Circular Buffer Structure */
+
 extern MCHP_UART1_TxStr MCHP_UART1_Tx;
 
 void TxN_Data_OverU1(uint16_t N){
+#if (WIN != 1)//SLUGS2 SIL
   uint16_T i;
   for (i = 0U; i < N; i++) {
     uint16_T Tmp;
@@ -772,4 +915,29 @@ void TxN_Data_OverU1(uint16_t N){
     }
   }
   _U1TXIF = U1STAbits.TRMT;
+#else
+	mavlink_serial_send(MAVLINK_COMM_0, &UartOutBuff[0], (uint16_t)N);
+
+#endif
+}
+extern MCHP_UART4_TxStr MCHP_UART4_Tx;
+
+void TxN_Data_OverU4(uint16_t N){
+#if (WIN != 1)//SLUGS2 SIL
+  uint16_T i;
+  for (i = 0U; i < N; i++) {
+    uint16_T Tmp;
+    Tmp = ~(MCHP_UART4_Tx.tail - MCHP_UART4_Tx.head);
+    Tmp = Tmp & (Tx_BUFF_SIZE_Uart4 - 1);/* Modulo Buffer Size */
+    if (Tmp != 0) {
+      MCHP_UART4_Tx.buffer[MCHP_UART4_Tx.tail] = Uart4OutBuff[i];
+      MCHP_UART4_Tx.tail = (MCHP_UART4_Tx.tail + 1) & (Tx_BUFF_SIZE_Uart4 - 1);
+      Tmp--;
+    }
+  }
+  _U4TXIF = U4STAbits.TRMT;
+#else
+	mavlink_serial_send(MAVLINK_COMM_0, &Uart4OutBuff[0], (uint16_t)N);
+
+#endif
 }
