@@ -101,7 +101,7 @@ UDBSocket UDBSocket_init(UDBSocketType type, uint16_t UDP_port, char* UDP_host, 
 			newSocket->si_other.sin_port = htons(newSocket->UDP_port);
 			newSocket->si_other.sin_addr.S_un.S_addr = inet_addr(UDP_host);
 
-			UDBSocket_write(newSocket, (unsigned char*)"", 0); // Initiate connection
+			UDBSocket_write(newSocket, (unsigned char*)"Hello", 6); // Initiate connection
 			break;
 		}
 		case UDBSocketUDPServer:
