@@ -1,13 +1,25 @@
 Model {
   Name			  "AUAV_V3_TestMavLink"
+<<<<<<< HEAD
   Version		  8.5
+=======
+  Version		  7.6
+>>>>>>> master
   MdlSubVersion		  0
   SavedCharacterEncoding  "windows-1252"
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
+<<<<<<< HEAD
     ComputedModelVersion    "1.132"
+=======
+<<<<<<< HEAD
+    ComputedModelVersion    "1.127"
+=======
+    ComputedModelVersion    "1.132"
+>>>>>>> origin/master
+>>>>>>> master
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,7 +35,6 @@ Model {
   DataTypeOverrideAppliesTo "AllNumericTypes"
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
-  FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
   Object {
     $PropName		    "BdWindowsInfo"
@@ -68,11 +79,23 @@ Model {
   Creator		  "M91449"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "sharon"
+  LastModifiedBy	  "User"
   ModifiedDateFormat	  "%<Auto>"
+<<<<<<< HEAD
   LastModifiedDate	  "Fri Apr 29 11:52:03 2016"
   RTWModifiedTimeStamp	  383757658
   ModelVersionFormat	  "1.%<AutoIncrement:132>"
+=======
+<<<<<<< HEAD
+  LastModifiedDate	  "Thu Apr 07 22:48:26 2016"
+  RTWModifiedTimeStamp	  381968384
+  ModelVersionFormat	  "1.%<AutoIncrement:127>"
+=======
+  LastModifiedDate	  "Wed Apr 27 17:56:46 2016"
+  RTWModifiedTimeStamp	  383680219
+  ModelVersionFormat	  "1.%<AutoIncrement:132>"
+>>>>>>> origin/master
+>>>>>>> master
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  on
@@ -80,7 +103,6 @@ Model {
   WideLines		  off
   ShowLineDimensions	  off
   ShowPortDataTypes	  off
-  ShowDesignRanges	  off
   ShowLoopsOnError	  on
   IgnoreBidirectionalLines off
   ShowStorageClass	  off
@@ -177,14 +199,24 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
+<<<<<<< HEAD
       $ObjectID		      7
       Version		      "1.15.0"
+=======
+      $ObjectID		      1
+      Version		      "1.10.0"
+>>>>>>> master
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
+<<<<<<< HEAD
 	  $ObjectID		  8
 	  Version		  "1.15.0"
+=======
+	  $ObjectID		  2
+	  Version		  "1.10.0"
+>>>>>>> master
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
 	  AbsTol		  "auto"
@@ -218,8 +250,13 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
+<<<<<<< HEAD
 	  $ObjectID		  9
 	  Version		  "1.15.0"
+=======
+	  $ObjectID		  3
+	  Version		  "1.10.0"
+>>>>>>> master
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -231,7 +268,6 @@ Model {
 	  SaveFinalState	  off
 	  SaveCompleteFinalSimState off
 	  SaveFormat		  "Array"
-	  SignalLoggingSaveFormat "ModelDataLogs"
 	  SaveOutput		  on
 	  SaveState		  off
 	  SignalLogging		  on
@@ -251,15 +287,24 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
+<<<<<<< HEAD
 	  $ObjectID		  10
 	  Version		  "1.15.0"
+=======
+	  $ObjectID		  4
+	  Version		  "1.10.0"
+>>>>>>> master
 	  BlockReduction	  on
 	  BooleanDataType	  on
 	  ConditionallyExecuteInputs on
 	  InlineParams		  on
+<<<<<<< HEAD
 	  UseDivisionForNetSlopeComputation "off"
 	  UseFloatMulNetSlope	  off
 	  DefaultUnderspecifiedDataType	"double"
+=======
+	  UseIntDivNetSlope	  off
+>>>>>>> master
 	  UseSpecifiedMinMax	  off
 	  InlineInvariantSignals  on
 	  OptimizeBlockIOStorage  on
@@ -295,8 +340,13 @@ Model {
 	  AccelVerboseBuild	  off
 	}
 	Simulink.DebuggingCC {
+<<<<<<< HEAD
 	  $ObjectID		  11
 	  Version		  "1.15.0"
+=======
+	  $ObjectID		  5
+	  Version		  "1.10.0"
+>>>>>>> master
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -351,7 +401,10 @@ Model {
 	  UnconnectedOutputMsg	  "warning"
 	  UnconnectedLineMsg	  "warning"
 	  SFcnCompatibilityMsg	  "none"
+<<<<<<< HEAD
 	  FrameProcessingCompatibilityMsg "error"
+=======
+>>>>>>> master
 	  UniqueDataStoreMsg	  "none"
 	  BusObjectLabelMismatch  "warning"
 	  RootOutportRequireBusObject "warning"
@@ -366,7 +419,6 @@ Model {
 	  ModelReferenceExtraNoncontSigs "error"
 	  StateNameClashWarn	  "none"
 	  SimStateInterfaceChecksumMismatchMsg "warning"
-	  SimStateOlderReleaseMsg "error"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -377,6 +429,7 @@ Model {
 	  SFInvalidInputDataAccessInChartInitDiag "warning"
 	  SFNoUnconditionalDefaultTransitionDiag "warning"
 	  SFTransitionOutsideNaturalParentDiag "warning"
+<<<<<<< HEAD
 	  SFUnconditionalTransitionShadowingDiag "warning"
 	  SFUndirectedBroadcastEventsDiag "warning"
 	  SFTransitionActionBeforeConditionDiag	"warning"
@@ -386,6 +439,12 @@ Model {
 	Simulink.HardwareCC {
 	  $ObjectID		  12
 	  Version		  "1.15.0"
+=======
+	}
+	Simulink.HardwareCC {
+	  $ObjectID		  6
+	  Version		  "1.10.0"
+>>>>>>> master
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    12
@@ -441,8 +500,13 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
+<<<<<<< HEAD
 	  $ObjectID		  13
 	  Version		  "1.15.0"
+=======
+	  $ObjectID		  7
+	  Version		  "1.10.0"
+>>>>>>> master
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
@@ -456,8 +520,14 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
+<<<<<<< HEAD
 	  $ObjectID		  14
 	  Version		  "1.15.0"
+=======
+	  $ObjectID		  8
+	  Version		  "1.10.0"
+	  SFSimEnableDebug	  on
+>>>>>>> master
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
 	  SimCtrlC		  on
@@ -469,8 +539,13 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
+<<<<<<< HEAD
 	  $ObjectID		  15
 	  Version		  "1.15.0"
+=======
+	  $ObjectID		  9
+	  Version		  "1.10.0"
+>>>>>>> master
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -522,20 +597,31 @@ Model {
 	  GenerateTraceReportSl	  off
 	  GenerateTraceReportSf	  off
 	  GenerateTraceReportEml  off
+<<<<<<< HEAD
 	  GenerateWebview	  off
 	  GenerateCodeMetricsReport off
 	  GenerateCodeReplacementReport	off
 	  GenerateMissedCodeReplacementReport off
 	  RTWCompilerOptimization "off"
 	  RTWCustomCompilerOptimizations ""
+=======
+	  GenerateCodeInfo	  off
+	  GenerateSLWebview	  off
+	  RTWCompilerOptimization "Off"
+>>>>>>> master
 	  CheckMdlBeforeBuild	  "Off"
 	  SharedConstantsCachingThreshold 1024
 	  Array {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
+<<<<<<< HEAD
 	      $ObjectID		      16
 	      Version		      "1.15.0"
+=======
+	      $ObjectID		      10
+	      Version		      "1.10.0"
+>>>>>>> master
 	      ForceParamTrailComments off
 	      GenerateComments	      on
 	      CommentStyle	      "Auto"
@@ -577,8 +663,13 @@ Model {
 	    }
 	    Simulink.STFCustomTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
+<<<<<<< HEAD
 	      $ObjectID		      17
 	      Version		      "1.15.0"
+=======
+	      $ObjectID		      11
+	      Version		      "1.10.0"
+>>>>>>> master
 	      Array {
 		Type			"Cell"
 		Dimension		8
@@ -600,6 +691,10 @@ Model {
 	      CodeReplacementLibrary  "None"
 	      UtilityFuncGeneration   "Auto"
 	      ERTMultiwordTypeDef     "System defined"
+<<<<<<< HEAD
+=======
+	      ERTCodeCoverageTool     "None"
+>>>>>>> master
 	      ERTMultiwordLength      256
 	      MultiwordLength	      2048
 	      GenerateFullHeader      on
@@ -609,7 +704,6 @@ Model {
 	      ModelReferenceCompliant on
 	      ParMdlRefBuildCompliant off
 	      CompOptLevelCompliant   off
-	      ConcurrentExecutionCompliant off
 	      IncludeMdlTerminateFcn  off
 	      GeneratePreprocessorConditionals "Use local settings"
 	      CombineOutputUpdateFcns on
@@ -645,8 +739,13 @@ Model {
 		Dimension		1
 		Simulink.ERTTargetCC {
 		  $BackupClass		  "Simulink.TargetCC"
+<<<<<<< HEAD
 		  $ObjectID		  18
 		  Version		  "1.15.0"
+=======
+		  $ObjectID		  12
+		  Version		  "1.10.0"
+>>>>>>> master
 		  Array {
 		    Type		    "Cell"
 		    Dimension		    13
@@ -673,6 +772,10 @@ Model {
 		  CodeReplacementLibrary  "None"
 		  UtilityFuncGeneration	  "Auto"
 		  ERTMultiwordTypeDef	  "System defined"
+<<<<<<< HEAD
+=======
+		  ERTCodeCoverageTool	  "None"
+>>>>>>> master
 		  ERTMultiwordLength	  256
 		  MultiwordLength	  2048
 		  GenerateFullHeader	  on
@@ -682,7 +785,6 @@ Model {
 		  ModelReferenceCompliant on
 		  ParMdlRefBuildCompliant off
 		  CompOptLevelCompliant	  off
-		  ConcurrentExecutionCompliant off
 		  IncludeMdlTerminateFcn  off
 		  GeneratePreprocessorConditionals "Use local settings"
 		  CombineOutputUpdateFcns on
@@ -708,9 +810,14 @@ Model {
 		  ModelStepFunctionPrototypeControlCompliant off
 		  CPPClassGenCompliant	  off
 		  AutosarCompliant	  off
+<<<<<<< HEAD
 		  GRTInterface		  off
 		  GenerateAllocFcn	  off
 		  GenerateSharedConstants on
+=======
+		  GenerateErtSFunction	  off
+		  CreateSILPILBlock	  "None"
+>>>>>>> master
 		  GenerateASAP2		  off
 		  ExtMode		  off
 		  ExtModeTransport	  0
@@ -727,13 +834,17 @@ Model {
 		  RTWCAPISignals	  off
 		  RTWCAPIParams		  off
 		  RTWCAPIStates		  off
-		  RTWCAPIRootIO		  off
 		  ERTSrcFileBannerTemplate "MCHP_dsPIC_code_template.cgt"
 		  ERTHdrFileBannerTemplate "MCHP_dsPIC_code_template.cgt"
 		  ERTDataSrcFileTemplate  "MCHP_dsPIC_code_template.cgt"
 		  ERTDataHdrFileTemplate  "MCHP_dsPIC_code_template.cgt"
 		  ERTCustomFileTemplate	  "MCHP_main.tlc"
+<<<<<<< HEAD
 		  EnableDataOwnership	  off
+=======
+		  CoverageDialogOpen	  "off"
+		  ModuleNamingRule	  "Unspecified"
+>>>>>>> master
 		  SignalDisplayLevel	  10
 		  ParamTuneLevel	  10
 		  GlobalDataDefinition	  "Auto"
@@ -745,10 +856,13 @@ Model {
 		  PreserveIfCondition	  off
 		  ConvertIfToSwitch	  off
 		  PreserveExternInFcnDecls on
+<<<<<<< HEAD
 		  SuppressUnreachableDefaultCases off
 		  EnableSignedLeftShifts  on
 		  IndentStyle		  "K&R"
 		  IndentSize		  "2"
+=======
+>>>>>>> master
 		  EnableUserReplacementTypes off
 		  Array {
 		    Type		    "Struct"
@@ -787,7 +901,10 @@ Model {
 		  MemSecDataParameters	  "Default"
 		  MemSecFuncInitTerm	  "Default"
 		  MemSecFuncExecute	  "Default"
+<<<<<<< HEAD
 		  MemSecFuncSharedUtil	  "Default"
+=======
+>>>>>>> master
 		}
 		PropName		"Components"
 	      }
@@ -967,8 +1084,18 @@ Model {
       }
       Name		      "Configuration"
       ExtraOptions	      "-aGenerateTraceInfo=0 -aIgnoreTestpoints=0 "
+<<<<<<< HEAD
       CurrentDlgPage	      "Code Generation/dsPIC Options"
       ConfigPrmDlgPosition     [ -1303, 280, -336, 1019 ] 
+=======
+<<<<<<< HEAD
+      CurrentDlgPage	      "Real-Time Workshop/Custom Code"
+      ConfigPrmDlgPosition    " [ 227, 18, 1198, 812 ] "
+=======
+      CurrentDlgPage	      "Code Generation/dsPIC Options"
+      ConfigPrmDlgPosition     [ 238, 77, 1297, 628 ] 
+>>>>>>> origin/master
+>>>>>>> master
     }
     PropName		    "ConfigurationSets"
   }
@@ -1040,12 +1167,8 @@ Model {
   BlockParameterDefaults {
     Block {
       BlockType		      ArithShift
-      BitShiftNumberSource    "Dialog"
-      BitShiftNumber	      "0"
-      BinPtShiftNumber	      "0"
-      BitShiftDirection	      "Bidirectional"
-      DiagnosticForOORShift   "None"
-      CheckOORBitShift	      off
+      nBitShiftRight	      "0"
+      nBinPtShiftRight	      "0"
     }
     Block {
       BlockType		      Bias
@@ -1081,7 +1204,6 @@ Model {
       OutDataTypeStr	      "Inherit: auto"
       LockScale		      off
       SignalType	      "auto"
-      Dimensions	      "-1"
       DataLogging	      off
       DataLoggingLimitDataPoints off
       DataLoggingMaxPoints    "5000"
@@ -1111,6 +1233,7 @@ Model {
       SampleTime	      "-1"
     }
     Block {
+<<<<<<< HEAD
       BlockType		      Delay
       DelayLengthSource	      "Dialog"
       DelayLength	      "2"
@@ -1129,6 +1252,8 @@ Model {
       CodeGenStateStorageClass "Auto"
     }
     Block {
+=======
+>>>>>>> master
       BlockType		      Demux
       Outputs		      "4"
       DisplayOption	      "none"
@@ -1149,12 +1274,6 @@ Model {
       PropagateVarSize	      "Only when enabling"
       ShowOutputPort	      off
       ZeroCross		      on
-      PortDimensions	      "1"
-      SampleTime	      "-1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "double"
-      Interpolate	      on
     }
     Block {
       BlockType		      Gain
@@ -1177,7 +1296,6 @@ Model {
     Block {
       BlockType		      Inport
       Port		      "1"
-      OutputFunctionCall      off
       OutMin		      "[]"
       OutMax		      "[]"
       OutDataTypeStr	      "Inherit: auto"
@@ -1258,7 +1376,7 @@ Model {
       OutPortSampleTime	      "-1"
     }
     Block {
-      BlockType		      S-Function
+      BlockType		      "S-Function"
       FunctionName	      "system"
       SFunctionModules	      "''"
       PortCounts	      "[]"
@@ -1304,9 +1422,12 @@ Model {
       DataTypeOverride	      "UseLocalSettings"
       DataTypeOverrideAppliesTo	"AllNumericTypes"
       MinMaxOverflowLogging   "UseLocalSettings"
+<<<<<<< HEAD
       Opaque		      off
       MaskHideContents	      off
       SFBlockType	      "NONE"
+=======
+>>>>>>> master
       Variant		      off
       GeneratePreprocessorConditionals off
       ContentPreviewEnabled   off
@@ -1349,8 +1470,13 @@ Model {
   }
   System {
     Name		    "AUAV_V3_TestMavLink"
+<<<<<<< HEAD
     Location		    [-1688, 54, 8, 1080]
     Open		    off
+=======
+    Location		    [-1311, 183, -184, 782]
+    Open		    on
+>>>>>>> master
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -1372,6 +1498,19 @@ Model {
       Position		      [245, 332, 405, 388]
       ZOrder		      -1
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	InputBlockIdxFct	"[]"
+	OutputBlockIdxFct	"[]"
+	FctType			"1"
+	FctName			"gpsUbloxParse"
+	FctParam_PtrSize	"[0  0  0  0  0  0  0  0  0  0]"
+	FctOutput		"0"
+	FctOutput_PtrSize	"[0  0  0  0  0  0  0  0  0  0]"
+	AddHeaderDeclaration	"1"
+	FctDeclarationName	"extern  void   gpsUbloxParse(void)"
+	FctParamValue		"[0]"
+      }
       SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
       SourceType	      "C Function Call"
       ParseFilesChkbx	      on
@@ -1403,6 +1542,19 @@ Model {
       Position		      [430, 332, 590, 388]
       ZOrder		      -2
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	InputBlockIdxFct	"[]"
+	OutputBlockIdxFct	"[]"
+	FctType			"1"
+	FctName			"protDecodeMavlink"
+	FctParam_PtrSize	"[0  0  0  0  0  0  0  0  0  0]"
+	FctOutput		"0"
+	FctOutput_PtrSize	"[0  0  0  0  0  0  0  0  0  0]"
+	AddHeaderDeclaration	"0"
+	FctDeclarationName	"extern  void   protDecodeMavlink(void)"
+	FctParamValue		"[0]"
+      }
       SourceBlock	      "MCHP_Blockset/User Functions/C Function Call"
       SourceType	      "C Function Call"
       ParseFilesChkbx	      on
@@ -1448,6 +1600,25 @@ Model {
       Position		      [822, 102, 892, 132]
       ZOrder		      -3
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	PIN_SCL			"2"
+	PIN_SDA			"3"
+	I2CSequence		"[-1      33536      400000   399771.5591       165        -1        -1        -1        -1        -1   "
+	"     1        -1        -1        -1        -1        -1        -1        -1        -1        -1        32        0  "
+	"      0        60        -1        -1        -1        -1        -1        -1        64        1        0        5   "
+	"     4        -1        -1        -1        -1        -1        2        -1        -1        -1        -1        -1  "
+	"      -1        -1        -1        -1]"
+	I2CUserData		"[0 120  0  0]"
+	I2CRef			"2"
+	I2CxCON			"49151"
+	NewRegName		"1"
+	hexHandle		"4090cc00e0000000"
+	Buff8_size		"0"
+	Buff16_size		"0"
+	IntPriority		"6"
+	blockingMode		"0"
+      }
       SourceBlock	      "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
       SourceType	      "I2C Driver"
       I2CRef		      "2"
@@ -1479,6 +1650,68 @@ Model {
       Position		      [705, 102, 775, 132]
       ZOrder		      -4
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	PIN_SDO			"66"
+	PIN_SCK_out		"111"
+	SPISequence		"[-1       1140         0       32768      364583   364583.33333        -1        -1        -1        -1"
+	"         4        68         1        -1        -1        -1        -1        -1        -1        -1         8       "
+	"0.01      700000        -1        -1        -1        -1        -1        -1        -1         4        68         0 "
+	"       -1        -1        -1        -1        -1        -1        -1         1         1         0         2        "
+	" 1         1        -1        -1        -1        -1         4        68         1        -1        -1        -1     "
+	"   -1        -1        -1        -1         8       0.06      4200000        -1        -1        -1        -1        "
+	"-1        -1        -1         4        68         0        -1        -1        -1        -1        -1        -1     "
+	"   -1         1         1         0         3         1         1        -1        -1        -1        -1         4  "
+	"      68         1        -1        -1        -1        -1        -1        -1        -1         8       0.01      70"
+	"0000        -1        -1        -1        -1        -1        -1        -1         4        68         0        -1   "
+	"     -1        -1        -1        -1        -1        -1         1         1         0         4         1         1"
+	"        -1        -1        -1        -1         4        68         1        -1        -1        -1        -1       "
+	" -1        -1        -1         8       0.01      700000        -1        -1        -1        -1        -1        -1 "
+	"       -1         4        68         0        -1        -1        -1        -1        -1        -1        -1        "
+	" 1         1         0         5         1         1        -1        -1        -1        -1         4        68     "
+	"    1        -1        -1        -1        -1        -1        -1        -1         8       0.01      700000        -"
+	"1        -1        -1        -1        -1        -1        -1         4        68         0        -1        -1      "
+	"  -1        -1        -1        -1        -1         1         1         0         6         1         1        -1   "
+	"     -1        -1        -1         4        68         1        -1        -1        -1        -1        -1        -1"
+	"        -1         8       0.01      700000        -1        -1        -1        -1        -1        -1        -1    "
+	"     4        68         0        -1        -1        -1        -1        -1        -1        -1         1         1 "
+	"        0         7         1         1        -1        -1        -1        -1         4        68         1        "
+	"-1        -1        -1        -1        -1        -1        -1]"
+	SPISequenceFold		"[-1       1140         0       32768      364583   364583.33333        -1        -1        -1      "
+	"  -1         4        68         1        -1        -1        -1        -1        -1        -1        -1         8   "
+	"    0.01      700000        -1        -1        -1        -1        -1        -1        -1         4        68       "
+	"  0        -1        -1        -1        -1        -1        -1        -1         1         1         0         2    "
+	"     1         1        -1        -1        -1        -1         4        68         1        -1        -1        -1 "
+	"       -1        -1        -1        -1         8       0.06      4200000        -1        -1        -1        -1    "
+	"    -1        -1        -1         4        68         0        -1        -1        -1        -1        -1        -1 "
+	"       -1         1         1         0         3         1         1        -1        -1        -1        -1        "
+	" 4        68         1        -1        -1        -1        -1        -1        -1        -1         8       0.01    "
+	"  700000        -1        -1        -1        -1        -1        -1        -1         4        68         0        -"
+	"1        -1        -1        -1        -1        -1        -1         1         1         0         4         1      "
+	"   1        -1        -1        -1        -1         4        68         1        -1        -1        -1        -1   "
+	"     -1        -1        -1         8       0.01      700000        -1        -1        -1        -1        -1       "
+	" -1        -1         4        68         0        -1        -1        -1        -1        -1        -1        -1    "
+	"     1         1         0         5         1         1        -1        -1        -1        -1         4        68 "
+	"        1        -1        -1        -1        -1        -1        -1        -1         8       0.01      700000     "
+	"   -1        -1        -1        -1        -1        -1        -1         4        68         0        -1        -1  "
+	"      -1        -1        -1        -1        -1         1         1         0         6         1         1        -"
+	"1        -1        -1        -1         4        68         1        -1        -1        -1        -1        -1      "
+	"  -1        -1         8       0.01      700000        -1        -1        -1        -1        -1        -1        -1"
+	"         4        68         0        -1        -1        -1        -1        -1        -1        -1         1       "
+	"  1         0         7         1         1        -1        -1        -1        -1         4        68         1    "
+	"    -1        -1        -1        -1        -1        -1        -1]"
+	SPIUserData		"[27520 27393 27152  6404  6659  6920]"
+	SPIRef			"1"
+	SPIxCON2		"57347"
+	MASTER			"1"
+	hexHandle		"4090d00100000000"
+	Buff8_size		"0"
+	Buff16_size		"0"
+	IntPriority		"5"
+	DMA_Rx			"-1"
+	DMA_Tx			"-1"
+	blockingMode		"0"
+      }
       SourceBlock	      "MCHP_Blockset/BUS SPI/BUS SPI"
       SourceType	      "SPI Driver"
       SPIRef		      "1"
@@ -1539,7 +1772,11 @@ Model {
       SourceBlock	      "MCHP_Blockset/System Configuration/Compiler Options"
       SourceType	      ""
       LATEST_CMPLR	      on
+<<<<<<< HEAD
       COMP_LIST		      "xc16 - v1.26"
+=======
+      COMP_LIST		      "Dynamic Options"
+>>>>>>> master
       COMP_LIST_TXT	      "xc16 - v1.26"
       USE_64BIT_DOUBLE	      off
       MCHP_MULTITHREAD_COMPILATION on
@@ -1557,7 +1794,11 @@ Model {
       HEAP_SIZE		      "0"
       OMF		      "elf"
       DEBUG_INFO	      off
+<<<<<<< HEAD
       AssemblyListing	      on
+=======
+      AssemblyListing	      off
+>>>>>>> master
       ProduceHexOutput	      on
     }
     Block {
@@ -1566,11 +1807,26 @@ Model {
       SID		      "128"
       Ports		      [0, 1]
       Position		      [80, 260, 110, 290]
+<<<<<<< HEAD
       ZOrder		      -6
       LibraryVersion	      "1.356"
       SourceBlock	      "simulink/Sources/Counter\nFree-Running"
       SourceType	      "Counter Free-Running"
       ContentPreviewEnabled   off
+=======
+      LibraryVersion	      "1.225"
+      SourceBlock	      "simulink/Sources/Counter\nFree-Running"
+      SourceType	      "Counter Free-Running"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+>>>>>>> master
       NumBits		      "32"
       tsamp		      "T"
     }
@@ -1583,6 +1839,14 @@ Model {
       ZOrder		      -7
       AttributesFormatString  "%<cpy_MCHP_Id>"
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	Pins			"[0  1]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+	ReadPrevious_Flag	"1"
+      }
       SourceBlock	      "MCHP_Blockset/System Info/Data Sheet"
       SourceType	      ""
       DOC_MCHP_Id	      "33EP512MU810"
@@ -1596,7 +1860,6 @@ Model {
       Name		      "Data Type Conversion6"
       SID		      "129"
       Position		      [250, 268, 295, 282]
-      ZOrder		      -5
       ShowName		      off
       OutDataTypeStr	      "uint32"
       RndMeth		      "Floor"
@@ -1634,9 +1897,31 @@ Model {
 	  ZOrder		  -1
 	  BackgroundColor	  "lightBlue"
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    Port		    "A"
+	    PortNum		    "0"
+	    PinsBitewise	    "15"
+	    Pins		    "[0  1  2  3]"
+	    Simultaneous_Flag	    "0"
+	    Pack_Flag		    "0"
+	    ReadPrevious_Flag	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/Digital IO/Digital Output"
 	  SourceType		  ""
+<<<<<<< HEAD
 	  ContentPreviewEnabled	  off
+=======
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  GeneratePreprocessorConditionals off
+>>>>>>> master
 	  PORT			  "Dynamic Options"
 	  PORT_TXT		  "B   [ 0 : 15 ]"
 	  PIN			  "2"
@@ -1656,9 +1941,31 @@ Model {
 	  ZOrder		  -2
 	  BackgroundColor	  "red"
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    Port		    "A"
+	    PortNum		    "0"
+	    PinsBitewise	    "15"
+	    Pins		    "[0  1  2  3]"
+	    Simultaneous_Flag	    "0"
+	    Pack_Flag		    "0"
+	    ReadPrevious_Flag	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/Digital IO/Digital Output"
 	  SourceType		  ""
+<<<<<<< HEAD
 	  ContentPreviewEnabled	  off
+=======
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  GeneratePreprocessorConditionals off
+>>>>>>> master
 	  PORT			  "Dynamic Options"
 	  PORT_TXT		  "B   [ 0 : 15 ]"
 	  PIN			  "3"
@@ -1678,9 +1985,31 @@ Model {
 	  ZOrder		  -3
 	  BackgroundColor	  "green"
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    Port		    "A"
+	    PortNum		    "0"
+	    PinsBitewise	    "15"
+	    Pins		    "[0  1  2  3]"
+	    Simultaneous_Flag	    "0"
+	    Pack_Flag		    "0"
+	    ReadPrevious_Flag	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/Digital IO/Digital Output"
 	  SourceType		  ""
+<<<<<<< HEAD
 	  ContentPreviewEnabled	  off
+=======
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  GeneratePreprocessorConditionals off
+>>>>>>> master
 	  PORT			  "Dynamic Options"
 	  PORT_TXT		  "B   [ 0 : 15 ]"
 	  PIN			  "4"
@@ -1700,9 +2029,31 @@ Model {
 	  ZOrder		  -4
 	  BackgroundColor	  "yellow"
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    Port		    "A"
+	    PortNum		    "0"
+	    PinsBitewise	    "15"
+	    Pins		    "[0  1  2  3]"
+	    Simultaneous_Flag	    "0"
+	    Pack_Flag		    "0"
+	    ReadPrevious_Flag	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/Digital IO/Digital Output"
 	  SourceType		  ""
+<<<<<<< HEAD
 	  ContentPreviewEnabled	  off
+=======
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  GeneratePreprocessorConditionals off
+>>>>>>> master
 	  PORT			  "Dynamic Options"
 	  PORT_TXT		  "B   [ 0 : 15 ]"
 	  PIN			  "5"
@@ -1832,7 +2183,6 @@ Model {
       Name		      "Gain"
       SID		      "85"
       Position		      [165, 255, 220, 295]
-      ZOrder		      -8
       Gain		      "T*10e6"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
@@ -1846,6 +2196,11 @@ Model {
       Position		      [765, 642, 890, 718]
       ZOrder		      -11
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	MCULoadTimerRef		"2"
+	MCULoadPin		"-1"
+      }
       SourceBlock	      "MCHP_Blockset/Profiling/MCU Load"
       SourceType	      "MCU Load (Profile execution time)"
       MCULoadPin	      "Dynamic Options"
@@ -1871,7 +2226,6 @@ Model {
       Name		      "MPU_T"
       SID		      "132"
       Position		      [35, 368, 144, 392]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "MPU_T"
       ReadBeforeWriteMsg      "warning"
@@ -1890,7 +2244,11 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"MavlinkTX"
+<<<<<<< HEAD
 	Location		[172, 52, 1170, 770]
+=======
+	Location		[202, 83, 1144, 617]
+>>>>>>> master
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1908,27 +2266,21 @@ Model {
 	  Name			  "COMP_ID"
 	  SID			  "79"
 	  Position		  [125, 60, 155, 90]
-	  ZOrder		  -4
 	  OutDataTypeStr	  "uint8"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get Raw IMU"
 	  SID			  "89"
-	  Ports			  [0, 1]
 	  Position		  [185, 97, 270, 123]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlRawIMU"
-	  DataStoreElements	  "mlRawIMU"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get RawGpsInt"
 	  SID			  "120"
-	  Ports			  [0, 1]
 	  Position		  [190, 363, 265, 387]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlGpsData"
 	}
@@ -1936,56 +2288,41 @@ Model {
 	  BlockType		  DataStoreRead
 	  Name			  "Get mlAirData"
 	  SID			  "393"
-	  Ports			  [0, 1]
 	  Position		  [190, 488, 265, 512]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlAirData"
-	  DataStoreElements	  "mlAirData"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get mlSysStatus"
 	  SID			  "397"
-	  Ports			  [0, 1]
 	  Position		  [190, 633, 265, 657]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlSysStatus"
-	  DataStoreElements	  "mlSysStatus"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get time"
 	  SID			  "81"
-	  Ports			  [0, 1]
 	  Position		  [25, 132, 175, 158]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
-	  DataStoreElements	  "time_since_boot_usec"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get time1"
 	  SID			  "126"
-	  Ports			  [0, 1]
 	  Position		  [35, 387, 185, 413]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
-	  DataStoreElements	  "time_since_boot_usec"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Get time2"
 	  SID			  "392"
-	  Ports			  [0, 1]
 	  Position		  [35, 512, 185, 538]
-	  ZOrder		  -5
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "time_since_boot_usec"
-	  DataStoreElements	  "time_since_boot_usec"
 	}
 	Block {
 	  BlockType		  Reference
@@ -1995,6 +2332,21 @@ Model {
 	  Position		  [320, 313, 480, 412]
 	  ZOrder		  -12
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2  3  4]"
+	    OutputBlockIdxFct	    "[-1 -1 -1 -1]"
+	    FctType		    "1"
+	    FctName		    "PackGpsRawInt"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  "
+	    "0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw"
+	    "_int_t mlRawGpsDataInt ,uint32_t time_usec)"
+	    FctParamValue	    "[0  0  0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2041,6 +2393,19 @@ Model {
 	  Position		  [320, 191, 480, 289]
 	  ZOrder		  -13
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2]"
+	    OutputBlockIdxFct	    "[-1 -1]"
+	    FctType		    "1"
+	    FctName		    "PackHeartBeat"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   PackHeartBeat(uint8_t system_id, uint8_t component_id)"
+	    FctParamValue	    "[0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2082,10 +2447,33 @@ Model {
 	  BlockType		  Reference
 	  Name			  "PackRawIMU"
 	  SID			  "108"
+<<<<<<< HEAD
+	  Ports			  [3, 1]
+	  Position		  [320, 31, 480, 169]
+=======
 	  Ports			  [4, 1]
 	  Position		  [320, 33, 480, 172]
+<<<<<<< HEAD
 	  ZOrder		  -14
+=======
+>>>>>>> origin/master
+>>>>>>> master
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2 -1  3]"
+	    OutputBlockIdxFct	    "[-1 -1 -1]"
+	    FctType		    "1"
+	    FctName		    "PackRawIMU"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  "
+	    "0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   PackRawIMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t "
+	    "mlRawIMUData ,uint32_t time_usec)"
+	    FctParamValue	    "[0  0  0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2128,10 +2516,33 @@ Model {
 	  BlockType		  Reference
 	  Name			  "PackScaledPressure"
 	  SID			  "390"
+<<<<<<< HEAD
+	  Ports			  [3, 1]
+	  Position		  [320, 444, 480, 546]
+=======
 	  Ports			  [4, 1]
 	  Position		  [320, 446, 480, 549]
+<<<<<<< HEAD
 	  ZOrder		  -15
+=======
+>>>>>>> origin/master
+>>>>>>> master
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2 -1  3]"
+	    OutputBlockIdxFct	    "[-1 -1 -1]"
+	    FctType		    "1"
+	    FctName		    "PackScaledPressure"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  "
+	    "0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   PackScaledPressure(uint8_t system_id, uint8_t component_id, mavlink_sc"
+	    "aled_pressure_t mlAirData ,uint32_t time_usec)"
+	    FctParamValue	    "[0  0  0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2174,10 +2585,32 @@ Model {
 	  BlockType		  Reference
 	  Name			  "PackSysStatus"
 	  SID			  "395"
+<<<<<<< HEAD
+	  Ports			  [2, 1]
+	  Position		  [320, 575, 480, 670]
+=======
 	  Ports			  [3, 1]
 	  Position		  [320, 577, 480, 673]
+<<<<<<< HEAD
 	  ZOrder		  -16
+=======
+>>>>>>> origin/master
+>>>>>>> master
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2]"
+	    OutputBlockIdxFct	    "[-1 -1]"
+	    FctType		    "1"
+	    FctName		    "PackSysStatus"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   PackSysStatus(uint8_t system_id, uint8_t component_id, mavlink_sys_sta"
+	    "tus_t mlSysStatus)"
+	    FctParamValue	    "[0  0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2223,6 +2656,19 @@ Model {
 	  Position		  [320, 691, 480, 789]
 	  ZOrder		  -17
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2]"
+	    OutputBlockIdxFct	    "[-1 -1]"
+	    FctType		    "1"
+	    FctName		    "ParameterInterfaceResponse"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   ParameterInterfaceResponse(uint8_t system_id, uint8_t component_id)"
+	    FctParamValue	    "[0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2268,6 +2714,19 @@ Model {
 	  Position		  [320, 831, 480, 929]
 	  ZOrder		  -18
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1  2]"
+	    OutputBlockIdxFct	    "[-1 -1]"
+	    FctType		    "1"
+	    FctName		    "MissionInterfaceResponse"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "1"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  uint16_t   MissionInterfaceResponse(uint8_t system_id, uint8_t component_id)"
+	    FctParamValue	    "[0  0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2310,7 +2769,6 @@ Model {
 	  Name			  "SYS_ID"
 	  SID			  "78"
 	  Position		  [60, 25, 90, 55]
-	  ZOrder		  -4
 	  Value			  "101"
 	  OutDataTypeStr	  "uint8"
 	}
@@ -2322,6 +2780,19 @@ Model {
 	  Position		  [525, 27, 685, 163]
 	  ZOrder		  -20
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2367,6 +2838,19 @@ Model {
 	  Position		  [525, 191, 685, 289]
 	  ZOrder		  -21
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2396,6 +2880,19 @@ Model {
 	  Position		  [525, 316, 685, 414]
 	  ZOrder		  -22
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2425,6 +2922,19 @@ Model {
 	  Position		  [525, 441, 685, 539]
 	  ZOrder		  -23
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2454,6 +2964,19 @@ Model {
 	  Position		  [525, 566, 685, 664]
 	  ZOrder		  -24
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2483,6 +3006,19 @@ Model {
 	  Position		  [525, 691, 685, 789]
 	  ZOrder		  -25
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2512,6 +3048,19 @@ Model {
 	  Position		  [525, 831, 685, 929]
 	  ZOrder		  -26
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    InputBlockIdxFct	    "[1]"
+	    OutputBlockIdxFct	    "[-1]"
+	    FctType		    "1"
+	    FctName		    "TxN_Data_OverU1"
+	    FctParam_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    FctOutput		    "0"
+	    FctOutput_PtrSize	    "[0  0  0  0  0  0  0  0  0  0]"
+	    AddHeaderDeclaration    "1"
+	    FctDeclarationName	    "extern  void   TxN_Data_OverU1(uint16_t N)"
+	    FctParamValue	    "[0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/User Functions/C Function Call"
 	  SourceType		  "C Function Call"
 	  ParseFilesChkbx	  on
@@ -2543,7 +3092,15 @@ Model {
 	  ZOrder		  2
 	  SrcBlock		  "PackSysStatus"
 	  SrcPort		  1
+<<<<<<< HEAD
 	  Points		  [0, -20]
+=======
+<<<<<<< HEAD
+	  Points		  [0, -15]
+=======
+	  Points		  [0, -20]
+>>>>>>> origin/master
+>>>>>>> master
 	  DstBlock		  "TX_N_Data4"
 	  DstPort		  1
 	}
@@ -2564,7 +3121,15 @@ Model {
 	  ZOrder		  5
 	  SrcBlock		  "PackScaledPressure"
 	  SrcPort		  1
+<<<<<<< HEAD
 	  Points		  [0, -15]
+=======
+<<<<<<< HEAD
+	  Points		  [0, -10]
+=======
+	  Points		  [0, -15]
+>>>>>>> origin/master
+>>>>>>> master
 	  DstBlock		  "TX_N_Data3"
 	  DstPort		  1
 	}
@@ -2600,7 +3165,15 @@ Model {
 	  ZOrder		  10
 	  SrcBlock		  "PackRawIMU"
 	  SrcPort		  1
+<<<<<<< HEAD
 	  Points		  [0, -15]
+=======
+<<<<<<< HEAD
+	  Points		  [0, -10]
+=======
+	  Points		  [0, -15]
+>>>>>>> origin/master
+>>>>>>> master
 	  DstBlock		  "TX_N_Data"
 	  DstPort		  1
 	}
@@ -2977,7 +3550,11 @@ Model {
       "-1];MCHP.UART.port_ATx = [-1 -1];MCHP.UART.port_RTS = [32767  32767  32767  32767     -1     -1];MCHP.UART.port_"
       "CTS = [32767  32767  32767  32767     -1     -1];MCHP.UART.reg_UxMODE = [48127  48127  48127  48127     -1     -"
       "1];MCHP.UART.reg_UxSTA = [61439  61439  61439  61439     -1     -1];"
+<<<<<<< HEAD
       MCHP_CRC		      "-1158495"
+=======
+      MCHP_CRC		      "-1050224"
+>>>>>>> master
       BTMODE		      "Device is in Single Boot (legacy) mode"
       RES1		      "Not used"
       PLLSS		      "PLL is fed by the Primary oscillator"
@@ -3031,12 +3608,29 @@ Model {
       Position		      [180, 19, 808, 83]
       ZOrder		      -15
       ShowName		      off
+<<<<<<< HEAD
       LibraryVersion	      "1.356"
+=======
+      LibraryVersion	      "1.225"
+>>>>>>> master
       FontName		      "Arial"
       FontWeight	      "bold"
       SourceBlock	      "simulink/Model-Wide\nUtilities/Model Info"
       SourceType	      "CMBlock"
+<<<<<<< HEAD
       ContentPreviewEnabled   off
+=======
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      InitialBlockCM	      "none"
+>>>>>>> master
       BlockCM		      "None"
       Frame		      "off"
       DisplayStringWithTags   "%<Description>"
@@ -3057,6 +3651,14 @@ Model {
       ZOrder		      -16
       DropShadow	      on
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	Pins			"[0  1]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+	ReadPrevious_Flag	"1"
+      }
       SourceBlock	      "MCHP_Blockset/System Info/Port Info"
       SourceType	      ""
       MCHP_MASTERLINK	      "AUAV_V3_TestMavLink/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -4345,6 +4947,30 @@ Model {
 	  Position		  [25, 737, 215, 803]
 	  ZOrder		  -2
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    PIN_SCL		    "2"
+	    PIN_SDA		    "3"
+	    I2CSequence		    "[-1      33536      400000   399771.5591       165        -1        -1        -1        -1     "
+	    "   -1        1        -1        -1        -1        -1        -1        -1        -1        -1        -1        3"
+	    "2        0        0       238        -1        -1        -1        -1        -1        -1        64        1     "
+	    "   0        2        1        -1        -1        -1        -1        -1        3       239        -1        -1  "
+	    "      -1        -1        -1        -1        -1        -1       128        2        -1        -1        -1      "
+	    "  -1        -1        0        -1        -1        2        -1        -1        -1        -1        -1        -1 "
+	    "       -1        -1        -1        1        -1        -1        -1        -1        -1        -1        -1     "
+	    "   -1        -1        32        0        0       238        -1        -1        -1        -1        -1        -1"
+	    "        64        1        0        4        2        -1        -1        -1        -1        -1        2        "
+	    "-1        -1        -1        -1        -1        -1        -1        -1        -1]"
+	    I2CUserData		    "[246 244  46]"
+	    I2CRef		    "2"
+	    I2CxCON		    "49151"
+	    NewRegName		    "1"
+	    hexHandle		    "4091f400c0000000"
+	    Buff8_size		    "2"
+	    Buff16_size		    "0"
+	    IntPriority		    "6"
+	    blockingMode	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
 	  SourceType		  "I2C Driver"
 	  I2CRef		  "2"
@@ -4381,6 +5007,30 @@ Model {
 	  Position		  [25, 622, 215, 688]
 	  ZOrder		  -3
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    PIN_SCL		    "2"
+	    PIN_SDA		    "3"
+	    I2CSequence		    "[-1      33536      400000   399771.5591       165        -1        -1        -1        -1     "
+	    "   -1        1        -1        -1        -1        -1        -1        -1        -1        -1        -1        3"
+	    "2        0        0       238        -1        -1        -1        -1        -1        -1        64        1     "
+	    "   0        2        1        -1        -1        -1        -1        -1        3       239        -1        -1  "
+	    "      -1        -1        -1        -1        -1        -1       128        2        -1        -1        -1      "
+	    "  -1        -1        0        -1        -1        2        -1        -1        -1        -1        -1        -1 "
+	    "       -1        -1        -1        1        -1        -1        -1        -1        -1        -1        -1     "
+	    "   -1        -1        32        0        0       238        -1        -1        -1        -1        -1        -1"
+	    "        64        1        0        4        2        -1        -1        -1        -1        -1        2        "
+	    "-1        -1        -1        -1        -1        -1        -1        -1        -1]"
+	    I2CUserData		    "[246 244  52]"
+	    I2CRef		    "2"
+	    I2CxCON		    "49151"
+	    NewRegName		    "1"
+	    hexHandle		    "4091f800e0000000"
+	    Buff8_size		    "2"
+	    Buff16_size		    "0"
+	    IntPriority		    "6"
+	    blockingMode	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
 	  SourceType		  "I2C Driver"
 	  I2CRef		  "2"
@@ -4427,7 +5077,11 @@ Model {
 	  }
 	  System {
 	    Name		    "Baro Altimeter"
+<<<<<<< HEAD
 	    Location		    [225, 52, 1523, 893]
+=======
+	    Location		    [255, 103, 1497, 760]
+>>>>>>> master
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -4654,11 +5308,26 @@ Model {
 		  SID			  "201:14532"
 		  Ports			  [1, 1]
 		  Position		  [805, 125, 895, 155]
+<<<<<<< HEAD
 		  ZOrder		  -13
 		  LibraryVersion	  "1.125"
 		  SourceBlock		  "aerolibconvert2/Length Conversion"
 		  SourceType		  "Length Conversion"
 		  ContentPreviewEnabled	  off
+=======
+		  LibraryVersion	  "1.69"
+		  SourceBlock		  "aerolibconvert2/Length Conversion"
+		  SourceType		  "Length Conversion"
+		  ShowPortLabels	  "FromPortIcon"
+		  SystemSampleTime	  "-1"
+		  FunctionWithSeparateData off
+		  RTWMemSecFuncInitTerm	  "Inherit from model"
+		  RTWMemSecFuncExecute	  "Inherit from model"
+		  RTWMemSecDataConstants  "Inherit from model"
+		  RTWMemSecDataInternal	  "Inherit from model"
+		  RTWMemSecDataParameters "Inherit from model"
+		  GeneratePreprocessorConditionals off
+>>>>>>> master
 		  IU			  "ft"
 		  OU			  "m"
 		}
@@ -4949,7 +5618,20 @@ Model {
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
 	      RequestExecContextInheritance off
+<<<<<<< HEAD
 	      SFBlockType	      "MATLAB Function"
+=======
+	      MaskHideContents	      off
+	      MaskType		      "Stateflow"
+	      MaskDescription	      "Embedded MATLAB block"
+	      MaskSelfModifiable      on
+	      MaskDisplay	      "disp('getTIni');"
+	      MaskIconFrame	      on
+	      MaskIconOpaque	      off
+	      MaskIconRotate	      "none"
+	      MaskPortRotate	      "default"
+	      MaskIconUnits	      "normalized"
+>>>>>>> master
 	      System {
 		Name			"Enables/Disables\nthe Computation of \ninitial Baro Bias"
 		Location		[227, 345, 838, 789]
@@ -4983,7 +5665,7 @@ Model {
 		  ZOrder		  4
 		}
 		Block {
-		  BlockType		  S-Function
+		  BlockType		  "S-Function"
 		  Name			  " SFunction "
 		  SID			  "201:14541::14"
 		  Tag			  "Stateflow S-Function AUAV_V3_TestMavLink 22"
@@ -5400,11 +6082,9 @@ Model {
 		  BlockType		  Delay
 		  Name			  "Integer Delay"
 		  SID			  "201:14561"
-		  Ports			  [1, 1]
 		  Position		  [200, 173, 235, 207]
 		  ZOrder		  -4
 		  ShowName		  off
-		  InputPortMap		  "u0"
 		  DelayLength		  "1"
 		  InitialCondition	  "0"
 		  InputProcessing	  "Inherited"
@@ -5605,7 +6285,6 @@ Model {
 	  Name			  "Data Type Conversion10"
 	  SID			  "403"
 	  Position		  [930, 323, 970, 337]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -5616,7 +6295,6 @@ Model {
 	  Name			  "Data Type Conversion7"
 	  SID			  "401"
 	  Position		  [610, 648, 650, 662]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -5627,7 +6305,6 @@ Model {
 	  Name			  "Data Type Conversion8"
 	  SID			  "400"
 	  Position		  [610, 673, 650, 687]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -5638,7 +6315,6 @@ Model {
 	  Name			  "Data Type Conversion9"
 	  SID			  "402"
 	  Position		  [935, 348, 975, 362]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "single"
 	  RndMeth		  "Floor"
@@ -5648,10 +6324,12 @@ Model {
 	  BlockType		  Delay
 	  Name			  "Delay"
 	  SID			  "206"
-	  Ports			  [1, 1]
 	  Position		  [275, 28, 310, 62]
+<<<<<<< HEAD
 	  ZOrder		  -10
 	  InputPortMap		  "u0"
+=======
+>>>>>>> master
 	  DelayLength		  "1"
 	  InitialCondition	  "1"
 	  InputProcessing	  "Inherited"
@@ -5731,6 +6409,27 @@ Model {
 	      ZOrder		      -2
 	      ForegroundColor	      "magenta"
 	      LibraryVersion	      "3.37"
+	      List {
+		ListType		RTWdata
+		PIN_SCL			"2"
+		PIN_SDA			"3"
+		I2CSequence		"[-1      33536      400000   399771.5591       165        -1        -1        -1        -1        -1  "
+		"      1        -1        -1        -1        -1        -1        -1        -1        -1        -1        32        0"
+		"        0       238        -1        -1        -1        -1        -1        -1        64        1        0        2"
+		"        1        -1        -1        -1        -1        -1        3       239        -1        -1        -1        "
+		"-1        -1        -1        -1        -1       128        22        -1        -1        -1        -1        -1    "
+		"    0        -1        -1        2        -1        -1        -1        -1        -1        -1        -1        -1  "
+		"      -1]"
+		I2CUserData		"[170]"
+		I2CRef			"2"
+		I2CxCON			"49151"
+		NewRegName		"1"
+		hexHandle		"4091fc00e0000000"
+		Buff8_size		"22"
+		Buff16_size		"0"
+		IntPriority		"6"
+		blockingMode		"1"
+	      }
 	      SourceBlock	      "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
 	      SourceType	      "I2C Driver"
 	      I2CRef		      "2"
@@ -6022,8 +6721,12 @@ Model {
 		  SID			  "227"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
+<<<<<<< HEAD
 		  ZOrder		  -3
 		  LibraryVersion	  "1.356"
+=======
+		  LibraryVersion	  "1.225"
+>>>>>>> master
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -6182,8 +6885,12 @@ Model {
 		  SID			  "236"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
+<<<<<<< HEAD
 		  ZOrder		  -3
 		  LibraryVersion	  "1.356"
+=======
+		  LibraryVersion	  "1.225"
+>>>>>>> master
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -6342,8 +7049,12 @@ Model {
 		  SID			  "245"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
+<<<<<<< HEAD
 		  ZOrder		  -3
 		  LibraryVersion	  "1.356"
+=======
+		  LibraryVersion	  "1.225"
+>>>>>>> master
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -6502,8 +7213,12 @@ Model {
 		  SID			  "254"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
+<<<<<<< HEAD
 		  ZOrder		  -3
 		  LibraryVersion	  "1.356"
+=======
+		  LibraryVersion	  "1.225"
+>>>>>>> master
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -6662,8 +7377,12 @@ Model {
 		  SID			  "263"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
+<<<<<<< HEAD
 		  ZOrder		  -3
 		  LibraryVersion	  "1.356"
+=======
+		  LibraryVersion	  "1.225"
+>>>>>>> master
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -6822,8 +7541,12 @@ Model {
 		  SID			  "272"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
+<<<<<<< HEAD
 		  ZOrder		  -3
 		  LibraryVersion	  "1.356"
+=======
+		  LibraryVersion	  "1.225"
+>>>>>>> master
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -6982,8 +7705,12 @@ Model {
 		  SID			  "281"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
+<<<<<<< HEAD
 		  ZOrder		  -3
 		  LibraryVersion	  "1.356"
+=======
+		  LibraryVersion	  "1.225"
+>>>>>>> master
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -7142,8 +7869,12 @@ Model {
 		  SID			  "290"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
+<<<<<<< HEAD
 		  ZOrder		  -3
 		  LibraryVersion	  "1.356"
+=======
+		  LibraryVersion	  "1.225"
+>>>>>>> master
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -7302,8 +8033,12 @@ Model {
 		  SID			  "299"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
+<<<<<<< HEAD
 		  ZOrder		  -3
 		  LibraryVersion	  "1.356"
+=======
+		  LibraryVersion	  "1.225"
+>>>>>>> master
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -7462,8 +8197,12 @@ Model {
 		  SID			  "308"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
+<<<<<<< HEAD
 		  ZOrder		  -3
 		  LibraryVersion	  "1.356"
+=======
+		  LibraryVersion	  "1.225"
+>>>>>>> master
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -7622,8 +8361,12 @@ Model {
 		  SID			  "317"
 		  Ports			  [2, 1]
 		  Position		  [350, 21, 400, 119]
+<<<<<<< HEAD
 		  ZOrder		  -3
 		  LibraryVersion	  "1.356"
+=======
+		  LibraryVersion	  "1.225"
+>>>>>>> master
 		  SourceBlock		  "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 		  SourceType		  "Bitwise Operator"
 		  logicop		  "OR"
@@ -8394,12 +9137,10 @@ Model {
 	      BlockType		      Delay
 	      Name		      "Delay11"
 	      SID		      "347"
-	      Ports		      [1, 1]
 	      Position		      [480, 150, 510, 180]
 	      ZOrder		      -2
 	      BlockRotation	      270
 	      BlockMirror	      on
-	      InputPortMap	      "u0"
 	      DelayLength	      "1"
 	      InitialCondition	      "0"
 	      InputProcessing	      "Inherited"
@@ -8564,12 +9305,10 @@ Model {
 	      BlockType		      Delay
 	      Name		      "Delay11"
 	      SID		      "355"
-	      Ports		      [1, 1]
 	      Position		      [360, 130, 390, 160]
 	      ZOrder		      -2
 	      BlockRotation	      270
 	      BlockMirror	      on
-	      InputPortMap	      "u0"
 	      DelayLength	      "1"
 	      InitialCondition	      "0"
 	      InputProcessing	      "Inherited"
@@ -8748,8 +9487,12 @@ Model {
 	      SID		      "365"
 	      Ports		      [2, 1]
 	      Position		      [350, 21, 400, 119]
+<<<<<<< HEAD
 	      ZOrder		      -3
 	      LibraryVersion	      "1.356"
+=======
+	      LibraryVersion	      "1.225"
+>>>>>>> master
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 	      SourceType	      "Bitwise Operator"
 	      logicop		      "OR"
@@ -8913,8 +9656,12 @@ Model {
 	      SID		      "374"
 	      Ports		      [2, 1]
 	      Position		      [350, 21, 400, 119]
+<<<<<<< HEAD
 	      ZOrder		      -3
 	      LibraryVersion	      "1.356"
+=======
+	      LibraryVersion	      "1.225"
+>>>>>>> master
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 	      SourceType	      "Bitwise Operator"
 	      logicop		      "OR"
@@ -9046,36 +9793,46 @@ Model {
 	  SID			  "381"
 	  Ports			  []
 	  Position		  [772, 280, 812, 319]
+<<<<<<< HEAD
 	  ZOrder		  -20
 	  LibraryVersion	  "1.356"
+=======
+	  LibraryVersion	  "1.225"
+>>>>>>> master
 	  UserDataPersistent	  on
 	  UserData		  "DataTag2"
 	  SourceBlock		  "simulink/Model-Wide\nUtilities/DocBlock"
 	  SourceType		  "DocBlock"
+<<<<<<< HEAD
 	  ContentPreviewEnabled	  off
+=======
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  GeneratePreprocessorConditionals off
+>>>>>>> master
 	  DocumentType		  "Text"
 	}
 	Block {
 	  BlockType		  DataStoreWrite
 	  Name			  "Update RawPressure"
 	  SID			  "386"
-	  Ports			  [2]
-	  Position		  [680, 643, 770, 692]
-	  ZOrder		  -6
+	  Position		  [680, 645, 770, 695]
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlRawPressureData"
-	  DataStoreElements	  "mlRawPressureData.press_abs#mlRawPressureData.temperature"
 	}
 	Block {
 	  BlockType		  DataStoreWrite
 	  Name			  "Update ScaledPressure"
 	  SID			  "387"
-	  Ports			  [2]
-	  Position		  [1000, 318, 1090, 367]
-	  ZOrder		  -6
+	  Position		  [1000, 320, 1090, 370]
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlAirData"
-	  DataStoreElements	  "mlAirData.temperature#mlAirData.press_abs"
 	}
 	Line {
 	  ZOrder		  1
@@ -9294,8 +10051,7 @@ Model {
 	  ZOrder		  31
 	  SrcBlock		  "Data Type Conversion8"
 	  SrcPort		  1
-	  DstBlock		  "Update RawPressure"
-	  DstPort		  2
+	  Points		  [0, 0]
 	}
 	Line {
 	  Name			  "Temp (deg) * 10"
@@ -9335,8 +10091,7 @@ Model {
 	  ZOrder		  36
 	  SrcBlock		  "Data Type Conversion9"
 	  SrcPort		  1
-	  DstBlock		  "Update ScaledPressure"
-	  DstPort		  2
+	  Points		  [0, 0]
 	}
       }
     }
@@ -9371,6 +10126,29 @@ Model {
 	  Position		  [25, 264, 170, 316]
 	  ZOrder		  -1
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    PIN_SCL		    "2"
+	    PIN_SDA		    "3"
+	    I2CSequence		    "[-1      33536      400000   399771.5591       165        -1        -1        -1        -1     "
+	    "   -1        1        -1        -1        -1        -1        -1        -1        -1        -1        -1        3"
+	    "2        0        0        60        -1        -1        -1        -1        -1        -1        64        1     "
+	    "   0        2        1        -1        -1        -1        -1        -1        2        -1        -1        -1  "
+	    "      -1        -1        -1        -1        -1        -1        1        -1        -1        -1        -1      "
+	    "  -1        -1        -1        -1        -1        32        0        0        61        -1        -1        -1 "
+	    "       -1        -1        -1       128        6        -1        -1        -1        -1        -1        0      "
+	    "  -1        -1        2        -1        -1        -1        -1        -1        -1        -1        -1        -1"
+	    "]"
+	    I2CUserData		    "[3]"
+	    I2CRef		    "2"
+	    I2CxCON		    "49151"
+	    NewRegName		    "1"
+	    hexHandle		    "4092000140000000"
+	    Buff8_size		    "6"
+	    Buff16_size		    "0"
+	    IntPriority		    "6"
+	    blockingMode	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/BUS I2C/BUS I2C\nMASTER"
 	  SourceType		  "I2C Driver"
 	  I2CRef		  "2"
@@ -9404,6 +10182,36 @@ Model {
 	  Position		  [45, 36, 190, 184]
 	  ZOrder		  -2
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    PIN_SDO		    "66"
+	    PIN_SCK_out		    "111"
+	    SPISequence		    "[-1       1140        0      32768      364583   364583.3333        -1        -1        -1     "
+	    "   -1        4        68        0        -1        -1        -1        -1        -1        -1        -1        1 "
+	    "       1        0        2        1        1        -1        -1        -1        -1        2        3        -1 "
+	    "       -1        -1        1        -1        0        -1        -1        2        1        -1        -1        "
+	    "-1        1        -1        3        -1        -1        2        3        -1        -1        -1        1      "
+	    "  -1        4        -1        -1        4        68        1        -1        -1        -1        -1        -1  "
+	    "      -1        -1]"
+	    SPISequenceFold	    "[-1       1140        0      32768      364583   364583.3333        -1        -1        -1  "
+	    "      -1        4        68        0        -1        -1        -1        -1        -1        -1        -1       "
+	    " 1        1        0        2        1        1        -1        -1        -1        -1        2        3        "
+	    "-1        -1        -1        1        -1        0        -1        -1        2        1        -1        -1     "
+	    "   -1        1        -1        3        -1        -1        2        3        -1        -1        -1        1   "
+	    "     -1        4        -1        -1        4        68        1        -1        -1        -1        -1        -"
+	    "1        -1        -1]"
+	    SPIUserData		    "[47616]"
+	    SPIRef		    "1"
+	    SPIxCON2		    "57347"
+	    MASTER		    "1"
+	    hexHandle		    "40920800e0000000"
+	    Buff8_size		    "0"
+	    Buff16_size		    "7"
+	    IntPriority		    "5"
+	    DMA_Rx		    "-1"
+	    DMA_Tx		    "-1"
+	    blockingMode	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/BUS SPI/BUS SPI"
 	  SourceType		  "SPI Driver"
 	  SPIRef		  "1"
@@ -9448,7 +10256,6 @@ Model {
 	  Name			  "Data Type Conversion"
 	  SID			  "92"
 	  Position		  [390, 113, 435, 127]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -9459,7 +10266,6 @@ Model {
 	  Name			  "Data Type Conversion1"
 	  SID			  "93"
 	  Position		  [390, 133, 435, 147]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -9470,7 +10276,6 @@ Model {
 	  Name			  "Data Type Conversion2"
 	  SID			  "94"
 	  Position		  [390, 153, 435, 167]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -9481,7 +10286,6 @@ Model {
 	  Name			  "Data Type Conversion3"
 	  SID			  "95"
 	  Position		  [390, 173, 435, 187]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -9492,7 +10296,6 @@ Model {
 	  Name			  "Data Type Conversion4"
 	  SID			  "96"
 	  Position		  [390, 193, 435, 207]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -9503,7 +10306,6 @@ Model {
 	  Name			  "Data Type Conversion5"
 	  SID			  "97"
 	  Position		  [390, 213, 435, 227]
-	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "int16"
 	  RndMeth		  "Floor"
@@ -9632,8 +10434,12 @@ Model {
 	      SID		      "35"
 	      Ports		      [2, 1]
 	      Position		      [350, 21, 400, 119]
+<<<<<<< HEAD
 	      ZOrder		      -3
 	      LibraryVersion	      "1.356"
+=======
+	      LibraryVersion	      "1.225"
+>>>>>>> master
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 	      SourceType	      "Bitwise Operator"
 	      logicop		      "OR"
@@ -9679,11 +10485,13 @@ Model {
 	      BlockType		      ArithShift
 	      Name		      "Shift\nArithmetic"
 	      SID		      "67"
-	      Ports		      [1, 1]
 	      Position		      [230, 25, 310, 65]
+<<<<<<< HEAD
 	      ZOrder		      -7
 	      InputPortMap	      "u0"
 	      BitShiftNumber	      "8"
+=======
+>>>>>>> master
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -9798,8 +10606,12 @@ Model {
 	      SID		      "44"
 	      Ports		      [2, 1]
 	      Position		      [350, 21, 400, 119]
+<<<<<<< HEAD
 	      ZOrder		      -3
 	      LibraryVersion	      "1.356"
+=======
+	      LibraryVersion	      "1.225"
+>>>>>>> master
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 	      SourceType	      "Bitwise Operator"
 	      logicop		      "OR"
@@ -9845,11 +10657,13 @@ Model {
 	      BlockType		      ArithShift
 	      Name		      "Shift\nArithmetic"
 	      SID		      "68"
-	      Ports		      [1, 1]
 	      Position		      [230, 25, 310, 65]
+<<<<<<< HEAD
 	      ZOrder		      -7
 	      InputPortMap	      "u0"
 	      BitShiftNumber	      "8"
+=======
+>>>>>>> master
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -9965,8 +10779,12 @@ Model {
 	      SID		      "53"
 	      Ports		      [2, 1]
 	      Position		      [350, 21, 400, 119]
+<<<<<<< HEAD
 	      ZOrder		      -3
 	      LibraryVersion	      "1.356"
+=======
+	      LibraryVersion	      "1.225"
+>>>>>>> master
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
 	      SourceType	      "Bitwise Operator"
 	      logicop		      "OR"
@@ -10012,11 +10830,13 @@ Model {
 	      BlockType		      ArithShift
 	      Name		      "Shift\nArithmetic"
 	      SID		      "69"
-	      Ports		      [1, 1]
 	      Position		      [230, 25, 310, 65]
+<<<<<<< HEAD
 	      ZOrder		      -7
 	      InputPortMap	      "u0"
 	      BitShiftNumber	      "8"
+=======
+>>>>>>> master
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -10081,25 +10901,18 @@ Model {
 	  BlockType		  DataStoreWrite
 	  Name			  "Update MPU_T"
 	  SID			  "133"
-	  Ports			  [1]
 	  Position		  [265, 97, 325, 123]
-	  ZOrder		  -6
 	  BackgroundColor	  "orange"
 	  ShowName		  off
 	  DataStoreName		  "MPU_T"
-	  DataStoreElements	  "MPU_T"
 	}
 	Block {
 	  BlockType		  DataStoreWrite
 	  Name			  "Update Raw IMU DATA"
 	  SID			  "74"
-	  Ports			  [9]
 	  Position		  [455, 102, 520, 298]
-	  ZOrder		  -6
 	  BackgroundColor	  "orange"
 	  DataStoreName		  "mlRawIMU"
-	  DataStoreElements	  "mlRawIMU.xacc#mlRawIMU.yacc#mlRawIMU.zacc#mlRawIMU.xgyro#mlRawIMU.ygyro#mlRawIMU.zgyro#mlRawIM"
-	  "U.xmag#mlRawIMU.ymag#mlRawIMU.zmag"
 	}
 	Line {
 	  Name			  "U1 CH8"
@@ -10233,8 +11046,6 @@ Model {
 	  SrcBlock		  "Subsystem9"
 	  SrcPort		  1
 	  Points		  [50, 0; 0, -30]
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  8
 	}
 	Line {
 	  Name			  "U1 CH8"
@@ -10242,8 +11053,7 @@ Model {
 	  Labels		  [0, 0]
 	  SrcBlock		  "Subsystem8"
 	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  7
+	  Points		  [0, 0]
 	}
 	Line {
 	  Name			  "U1 CH10"
@@ -10252,8 +11062,6 @@ Model {
 	  SrcBlock		  "Subsystem10"
 	  SrcPort		  1
 	  Points		  [65, 0; 0, -60]
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  9
 	}
 	Line {
 	  ZOrder		  19
@@ -10266,36 +11074,31 @@ Model {
 	  ZOrder		  20
 	  SrcBlock		  "Data Type Conversion1"
 	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  2
+	  Points		  [0, 0]
 	}
 	Line {
 	  ZOrder		  21
 	  SrcBlock		  "Data Type Conversion2"
 	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  3
+	  Points		  [0, 0]
 	}
 	Line {
 	  ZOrder		  22
 	  SrcBlock		  "Data Type Conversion3"
 	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  4
+	  Points		  [0, 0]
 	}
 	Line {
 	  ZOrder		  23
 	  SrcBlock		  "Data Type Conversion4"
 	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  5
+	  Points		  [0, 0]
 	}
 	Line {
 	  ZOrder		  24
 	  SrcBlock		  "Data Type Conversion5"
 	  SrcPort		  1
-	  DstBlock		  "Update Raw IMU DATA"
-	  DstPort		  6
+	  Points		  [0, 0]
 	}
 	Line {
 	  Name			  "U1 CH4"
@@ -10322,7 +11125,15 @@ Model {
       SID		      "452"
       Ports		      [0, 4]
       Position		      [240, 691, 525, 874]
+<<<<<<< HEAD
       ZOrder		      -19
+=======
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+>>>>>>> master
       RequestExecContextInheritance off
       System {
 	Name			"Servo In Out"
@@ -10431,6 +11242,17 @@ Model {
 	  Position		  [25, 49, 115, 256]
 	  ZOrder		  -9
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    ICxCON1		    "[4099  4099  4099  4099  4099  4099]"
+	    ICxCON2		    "[0  0  0  0  0  0]"
+	    IntPriority		    "7"
+	    ICtype		    "1"
+	    Channels		    "[1  2  3  4  5  6]"
+	    RefTimers		    "[1  1  1  1  1  1]"
+	    Channel_UP_Down_Periode "[1     1     1     1     1     1]"
+	    ChangeDetected	    "[0     0     0     0     0     0]"
+	  }
 	  SourceBlock		  "MCHP_Blockset/Pulse Input//Output/Input Capture"
 	  SourceType		  "Input driver for Input Capture Peripheral"
 	  IntPriority		  "7"
@@ -10648,6 +11470,20 @@ Model {
 	  Position		  [1165, 25, 1285, 180]
 	  ZOrder		  -11
 	  LibraryVersion	  "3.37"
+	  List {
+	    ListType		    RTWdata
+	    OCxCON1		    "[4108  4108]"
+	    OCxCON2		    "[159  159]"
+	    OCtype		    "1"
+	    PulseTrig		    "1"
+	    Channels		    "[1  2]"
+	    RefTimers		    "[1  1]"
+	    Channel_UP_Down_Periode "[5     5]"
+	    RefTimersMax	    "[26249  26249]"
+	    PortPin		    "[0  0]"
+	    PortLetter		    "[6  4]"
+	    PeriodIsBlockInput	    "0"
+	  }
 	  SourceBlock		  "MCHP_Blockset/Pulse Input//Output/Output Compare - HW"
 	  SourceType		  "Input driver for Output Compare Peripheral Hardware"
 	  Channel		  "[1     2]"
@@ -10902,7 +11738,6 @@ Model {
       Name		      "TimeSinceBoot_usec"
       SID		      "80"
       Position		      [35, 323, 144, 347]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "time_since_boot_usec"
       ReadBeforeWriteMsg      "warning"
@@ -10919,6 +11754,14 @@ Model {
       ZOrder		      -21
       DropShadow	      on
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	Port			"A"
+	Pins			"[0  1]"
+	Simultaneous_Flag	"0"
+	Pack_Flag		"0"
+	ReadPrevious_Flag	"1"
+      }
       SourceBlock	      "MCHP_Blockset/System Info/Timer Info"
       SourceType	      ""
       MCHP_MASTERLINK	      "AUAV_V3_TestMavLink/Microchip Master\nAUAV V3 Board\nBusy Flag on D2 (RA6)"
@@ -10931,6 +11774,27 @@ Model {
       Position		      [440, 97, 540, 153]
       ZOrder		      -22
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	UARTRef			"1"
+	UxBRG			"75"
+	DesiredBaud		"57600"
+	Error			"-0.06"
+	InitSequence_enable	"1"
+	UxBRG_InitSeq		"39772"
+	DesiredBaud_InitSeq	"110"
+	Error_InitSeq		"-0.00"
+	InitSequence		"[72  101  108  108  111   32   87  111  114  108  100]"
+	InitSequence_str	"{72, 101, 108, 108, 111,  32,  87, 111, 114, 108, 100}"
+	InitBreakPos		"[1]"
+	InitBreakValue		"[1909091]"
+	UxMODE			"32768"
+	UxSTA			"9216"
+	UxMODE_InitSeq		"32768"
+	TX_INT_PRIORITY		"1"
+	TX_CIRCULAR_SIZE	"128"
+	MCHP_COM_ExtPIL		"0"
+      }
       SourceBlock	      "MCHP_Blockset/BUS UART/UART Configuration"
       SourceType	      "Configuration for UART peripheral"
       UART_REF		      "1"
@@ -10979,6 +11843,23 @@ Model {
       Position		      [570, 97, 670, 153]
       ZOrder		      -23
       LibraryVersion	      "3.37"
+      List {
+	ListType		RTWdata
+	UARTRef			"4"
+	UxBRG			"113"
+	DesiredBaud		"38400"
+	Error			"-0.06"
+	InitSequence_enable	"0"
+	UxBRG_InitSeq		"39772"
+	DesiredBaud_InitSeq	"110"
+	Error_InitSeq		"-0.00"
+	UxMODE			"32768"
+	UxSTA			"9216"
+	UxMODE_InitSeq		"32768"
+	TX_INT_PRIORITY		"1"
+	TX_CIRCULAR_SIZE	"128"
+	MCHP_COM_ExtPIL		"0"
+      }
       SourceBlock	      "MCHP_Blockset/BUS UART/UART Configuration"
       SourceType	      "Configuration for UART peripheral"
       UART_REF		      "4"
@@ -11023,30 +11904,23 @@ Model {
       BlockType		      DataStoreWrite
       Name		      "Update SysStatus Load"
       SID		      "426"
-      Ports		      [1]
       Position		      [920, 655, 1010, 705]
-      ZOrder		      -6
       BackgroundColor	      "orange"
       DataStoreName	      "mlSysStatus"
-      DataStoreElements	      "mlSysStatus.load"
     }
     Block {
       BlockType		      DataStoreWrite
       Name		      "Update time"
       SID		      "83"
-      Ports		      [1]
       Position		      [335, 261, 465, 289]
-      ZOrder		      -6
       BackgroundColor	      "orange"
       DataStoreName	      "time_since_boot_usec"
-      DataStoreElements	      "time_since_boot_usec"
     }
     Block {
       BlockType		      DataStoreMemory
       Name		      "mlAirData"
       SID		      "385"
       Position		      [35, 539, 145, 564]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "mlAirData"
       ReadBeforeWriteMsg      "warning"
@@ -11060,7 +11934,6 @@ Model {
       Name		      "mlGpsData"
       SID		      "117"
       Position		      [35, 449, 145, 474]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "mlGpsData"
       ReadBeforeWriteMsg      "warning"
@@ -11074,7 +11947,6 @@ Model {
       Name		      "mlRawIMU"
       SID		      "71"
       Position		      [35, 408, 144, 432]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "mlRawIMU"
       ReadBeforeWriteMsg      "warning"
@@ -11087,7 +11959,6 @@ Model {
       Name		      "mlRawPressureData"
       SID		      "384"
       Position		      [35, 494, 145, 519]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "mlRawPressureData"
       ReadBeforeWriteMsg      "warning"
@@ -11101,7 +11972,6 @@ Model {
       Name		      "mlSysStatus"
       SID		      "388"
       Position		      [35, 584, 145, 609]
-      ZOrder		      -4
       BackgroundColor	      "lightBlue"
       DataStoreName	      "mlSysStatus"
       ReadBeforeWriteMsg      "warning"
@@ -11133,7 +12003,10 @@ Model {
     }
     Line {
       Name		      "U3 CH4"
+<<<<<<< HEAD
       ZOrder		      4
+=======
+>>>>>>> master
       Labels		      [0, 0; -1, 1]
       SrcBlock		      "MCU Load"
       SrcPort		      1
@@ -11629,7 +12502,11 @@ MatData {
 }
 #Finite State Machines
 #
+<<<<<<< HEAD
 #   Stateflow 80000005
+=======
+#    Stateflow Version 7.5 (R2010a) dated Jul 24 2010, 06:19:54
+>>>>>>> master
 #
 #
 Stateflow {
@@ -11639,7 +12516,11 @@ Stateflow {
     created		    "03-Feb-2015 21:06:34"
     isLibrary		    0
     firstTarget		    8
+<<<<<<< HEAD
     sfVersion		    80000005
+=======
+    sfVersion		    75014000.000003
+>>>>>>> master
   }
   chart {
     id			    2
