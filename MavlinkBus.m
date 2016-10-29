@@ -87,7 +87,7 @@ elems(1).DataType = 'uint32';
 elems(1).SampleTime = -1;
 elems(1).Complexity = 'real';
 elems(1).SamplingMode = 'Sample based';
-elems(1).Minimunm = [];
+elems(1).Min = [];
 elems(1).Max = [];
 
 elems(2) = Simulink.BusElement;
@@ -98,7 +98,7 @@ elems(2).DataType = 'uint16';
 elems(2).SampleTime = -1;
 elems(2).Complexity = 'real';
 elems(2).SamplingMode = 'Sample based';
-elems(2).Minimunm = [];
+elems(2).Min = [];
 elems(2).Max = [];
 
 elems(3) = Simulink.BusElement;

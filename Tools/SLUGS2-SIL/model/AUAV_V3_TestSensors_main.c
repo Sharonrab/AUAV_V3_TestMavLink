@@ -237,7 +237,7 @@ void  _T2Interrupt(void)
       MCHP_MCULoadPreviousTimerValue[0] = Tmp_TMR;
     }
 
-    AUAV_V3_TestSensors_step(0);
+    AUAV_V3_TestSensors_step0();
 
     /* Get model outputs here */
     //_T2IF = 0;
@@ -269,7 +269,7 @@ void  _T2Interrupt(void)
       do {
         /* Start profiling task 1 */
         event.Flags1 = 0U;
-        AUAV_V3_TestSensors_step(1);
+        AUAV_V3_TestSensors_step1();
 
         /* Get model outputs here */
         ;                              /* Execute task tid 1 */
@@ -295,7 +295,7 @@ void  _T2Interrupt(void)
       do {
         /* Start profiling task 2 */
         event.Flags2 = 0U;
-        AUAV_V3_TestSensors_step(2);
+        AUAV_V3_TestSensors_step2();
 
         /* Get model outputs here */
         ;                              /* Execute task tid 2 */
@@ -320,7 +320,7 @@ void  _T2Interrupt(void)
       do {
         /* Start profiling task 3 */
         event.Flags3 = 0U;
-        AUAV_V3_TestSensors_step(3);
+        AUAV_V3_TestSensors_step3();
 
         /* Get model outputs here */
         ;                              /* Execute task tid 3 */
@@ -345,7 +345,7 @@ void  _T2Interrupt(void)
       do {
         /* Start profiling task 4 */
         event.Flags4 = 0U;
-        AUAV_V3_TestSensors_step(4);
+        AUAV_V3_TestSensors_step4();
 
         /* Get model outputs here */
         ;                              /* Execute task tid 4 */
@@ -370,7 +370,7 @@ void  _T2Interrupt(void)
       do {
         /* Start profiling task 5 */
         event.Flags5 = 0U;
-        AUAV_V3_TestSensors_step(5);
+        AUAV_V3_TestSensors_step5();
 
         /* Get model outputs here */
         ;                              /* Execute task tid 5 */
@@ -395,7 +395,7 @@ void  _T2Interrupt(void)
       do {
         /* Start profiling task 6 */
         event.Flags6 = 0U;
-        AUAV_V3_TestSensors_step(6);
+        AUAV_V3_TestSensors_step6();
 
         /* Get model outputs here */
         ;                              /* Execute task tid 6 */
@@ -420,7 +420,7 @@ void  _T2Interrupt(void)
       do {
         /* Start profiling task 7 */
         event.Flags7 = 0U;
-        AUAV_V3_TestSensors_step(7);
+        AUAV_V3_TestSensors_step7();
 
         /* Get model outputs here */
         ;                              /* Execute task tid 7 */
@@ -445,7 +445,7 @@ void  _T2Interrupt(void)
       do {
         /* Start profiling task 8 */
         event.Flags8 = 0U;
-        AUAV_V3_TestSensors_step(8);
+        AUAV_V3_TestSensors_step8();
 
         /* Get model outputs here */
         ;                              /* Execute task tid 8 */
@@ -470,7 +470,7 @@ void  _T2Interrupt(void)
       do {
         /* Start profiling task 9 */
         event.Flags9 = 0U;
-        AUAV_V3_TestSensors_step(9);
+        AUAV_V3_TestSensors_step9();
 
         /* Get model outputs here */
         ;                              /* Execute task tid 9 */
@@ -495,7 +495,7 @@ void  _T2Interrupt(void)
       do {
         /* Start profiling task 10 */
         event.Flags10 = 0U;
-        AUAV_V3_TestSensors_step(10);
+        AUAV_V3_TestSensors_step10();
 
         /* Get model outputs here */
         ;                              /* Execute task tid 10 */

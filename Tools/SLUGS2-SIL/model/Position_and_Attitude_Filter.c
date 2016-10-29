@@ -580,11 +580,11 @@ void Position_and_Attitude_Filt(void)
       /* Gain: '<S483>/UEN 2 NEU' */
       AUAV_V3_TestSensors_B.In1[colIdx] = 0.0F;
       AUAV_V3_TestSensors_B.In1[colIdx] +=
-        AUAV_V3_TestSensors_ConstP.pooled64[colIdx] * tmp_0[0];
+        AUAV_V3_TestSensors_ConstP.pooled63[colIdx] * tmp_0[0];
       AUAV_V3_TestSensors_B.In1[colIdx] +=
-        AUAV_V3_TestSensors_ConstP.pooled64[colIdx + 3] * tmp_0[1];
+        AUAV_V3_TestSensors_ConstP.pooled63[colIdx + 3] * tmp_0[1];
       AUAV_V3_TestSensors_B.In1[colIdx] +=
-        AUAV_V3_TestSensors_ConstP.pooled64[colIdx + 6] * tmp_0[2];
+        AUAV_V3_TestSensors_ConstP.pooled63[colIdx + 6] * tmp_0[2];
     }
 
     /* End of Inport: '<S481>/In1' */

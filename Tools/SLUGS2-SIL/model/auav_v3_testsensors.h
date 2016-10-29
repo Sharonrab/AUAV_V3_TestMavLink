@@ -1,29 +1,18 @@
-/*--------------------------------------------------------------
- *   MPLAB Blockset v3.35 for Microchip dsPIC chip family.     *
- *   Generate .c and .h files from Simulink model              *
- *   and compile to .elf, .hex and .cof file that can be       *
- *   flashed into the microcontroller                          *
- *                                                             *
- *      The Microchip name PIC, dsPIC, and MPLAB are           *
- *      registered trademarks of Microchip Technology Inc.     *
- *      MATLAB, Simulink, and Real-Time Workshop are           *
- *      registered trademarks of The MathWorks, Inc.           *
- *                                                             *
- *  Blockset authors: L.Kerhuel, U.Kumar                       *
- *  Product Page:  http://www.microchip.com/SimulinkBlocks     *
- *          Forum: http://www.microchip.com/forums/f192.aspx   *
- *          Wiki:  http://microchip.wikidot.com/simulink:start *
- *--------------------------------------------------------------
+/*
+ * -------------------------------------------------------------------
+ * MPLAB 16-Bit Device Blocks for Simulink v3.38.
  *
+ *   Product Page:  http://www.microchip.com/SimulinkBlocks
+ *           Forum: http://www.microchip.com/forums/f192.aspx
+ *           Wiki:  http://microchip.wikidot.com/simulink:start
+ * -------------------------------------------------------------------
  * File: AUAV_V3_TestSensors.h
  *
- * Real-Time Workshop code generated for Simulink model AUAV_V3_TestSensors.
+ * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                        : 1.223
- * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Wed Oct 12 11:23:18 2016
- * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Wed Oct 12 11:23:23 2016
+ * Model version                  : 1.226
+ * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
+ * C/C++ source code generated on : Sat Oct 29 03:04:25 2016
  */
 
 #ifndef RTW_HEADER_AUAV_V3_TestSensors_h_
@@ -618,7 +607,7 @@ typedef struct {
    *   '<S403>/UEN 2 NEU'
    *   '<S420>/UEN 2 NEU'
    */
-  real32_T pooled64[9];
+  real32_T pooled63[9];
 
   /* Pooled Parameter (Mixed Expressions)
    * Referenced by:
@@ -681,7 +670,7 @@ typedef struct {
    *   '<S164>/Switch3'
    *   '<S315>/Switch3'
    */
-  uint8_T pooled86;
+  uint8_T pooled87;
 
   /* Pooled Parameter (Mixed Expressions)
    * Referenced by:
@@ -702,7 +691,7 @@ typedef struct {
    *   '<S199>/RTB1'
    *   '<S381>/Constant'
    */
-  uint8_T pooled87;
+  uint8_T pooled88;
 
   /* Pooled Parameter (Mixed Expressions)
    * Referenced by:
@@ -713,7 +702,7 @@ typedef struct {
    *   '<S200>/RTB1'
    *   '<S381>/Constant1'
    */
-  uint8_T pooled88;
+  uint8_T pooled89;
 
   /* Computed Parameter: dE_Value
    * Referenced by: '<S654>/dE'
@@ -816,7 +805,17 @@ extern const mavlink_mission_item_values_t
 
 /* Model entry point functions */
 extern void AUAV_V3_TestSensors_initialize(void);
-extern void AUAV_V3_TestSensors_step(int_T tid);
+extern void AUAV_V3_TestSensors_step0(void);
+extern void AUAV_V3_TestSensors_step1(void);
+extern void AUAV_V3_TestSensors_step2(void);
+extern void AUAV_V3_TestSensors_step3(void);
+extern void AUAV_V3_TestSensors_step4(void);
+extern void AUAV_V3_TestSensors_step5(void);
+extern void AUAV_V3_TestSensors_step6(void);
+extern void AUAV_V3_TestSensors_step7(void);
+extern void AUAV_V3_TestSensors_step8(void);
+extern void AUAV_V3_TestSensors_step9(void);
+extern void AUAV_V3_TestSensors_step10(void);
 
 /* Real-time Model object */
 extern RT_MODEL_AUAV_V3_TestSensors_T *const AUAV_V3_TestSensors_M;
@@ -1561,7 +1560,8 @@ extern RT_MODEL_AUAV_V3_TestSensors_T *const AUAV_V3_TestSensors_M;
  */
 #endif                                 /* RTW_HEADER_AUAV_V3_TestSensors_h_ */
 
-/* File trailer for Real-Time Workshop generated code.
+/*
+ * File trailer for generated code.
  *
  * [EOF]
  */

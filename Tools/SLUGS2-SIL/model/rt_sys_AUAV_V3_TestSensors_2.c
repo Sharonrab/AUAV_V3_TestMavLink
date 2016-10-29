@@ -33,6 +33,17 @@
 #include "AUAV_V3_TestSensors_private.h"
 
 /*
+ * Start for enable system:
+ *    '<S28>/Enabled Subsystem'
+ *    '<S617>/Enabled Subsystem'
+ */
+void AUA_EnabledSubsystem_Start(rtB_EnabledSubsystem_AUAV_V3__T *localB)
+{
+  /* VirtualOutportStart for Outport: '<S38>/Out1' */
+  localB->In1 = 143.543F;
+}
+
+/*
  * Output and update for enable system:
  *    '<S28>/Enabled Subsystem'
  *    '<S615>/Enabled Subsystem'

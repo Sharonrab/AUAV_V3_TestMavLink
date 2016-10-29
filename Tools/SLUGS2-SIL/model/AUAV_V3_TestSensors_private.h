@@ -1,29 +1,18 @@
-/*--------------------------------------------------------------
- *   MPLAB Blockset v3.35 for Microchip dsPIC chip family.     *
- *   Generate .c and .h files from Simulink model              *
- *   and compile to .elf, .hex and .cof file that can be       *
- *   flashed into the microcontroller                          *
- *                                                             *
- *      The Microchip name PIC, dsPIC, and MPLAB are           *
- *      registered trademarks of Microchip Technology Inc.     *
- *      MATLAB, Simulink, and Real-Time Workshop are           *
- *      registered trademarks of The MathWorks, Inc.           *
- *                                                             *
- *  Blockset authors: L.Kerhuel, U.Kumar                       *
- *  Product Page:  http://www.microchip.com/SimulinkBlocks     *
- *          Forum: http://www.microchip.com/forums/f192.aspx   *
- *          Wiki:  http://microchip.wikidot.com/simulink:start *
- *--------------------------------------------------------------
+/*
+ * -------------------------------------------------------------------
+ * MPLAB 16-Bit Device Blocks for Simulink v3.38.
  *
+ *   Product Page:  http://www.microchip.com/SimulinkBlocks
+ *           Forum: http://www.microchip.com/forums/f192.aspx
+ *           Wiki:  http://microchip.wikidot.com/simulink:start
+ * -------------------------------------------------------------------
  * File: AUAV_V3_TestSensors_private.h
  *
- * Real-Time Workshop code generated for Simulink model AUAV_V3_TestSensors.
+ * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                        : 1.221
- * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Sun Oct 09 00:06:23 2016
- * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Sun Oct 09 00:06:26 2016
+ * Model version                  : 1.226
+ * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
+ * C/C++ source code generated on : Sat Oct 29 03:04:25 2016
  */
 
 #ifndef RTW_HEADER_AUAV_V3_TestSensors_private_h_
@@ -253,6 +242,9 @@ extern void hil_getRawRead(short * y1);
 extern void getGpsUbloxMainData(real32_T* y1);
 
 /* C Function Call declare function as extern */
+extern void updateAirData(real32_T* u1);
+
+/* C Function Call declare function as extern */
 extern void getGpsUbloxData(real32_T* y1);
 
 /* C Function Call declare function as extern */
@@ -270,7 +262,7 @@ extern volatile uint16_T MCHP_ic7up;
 extern volatile uint16_T MCHP_ic8up;
 
 /* C Function Call declare function as extern */
-extern uint16_T meanFilter5(uint8_T *u1);
+extern uint16_T meanFilter5(uint16_T *u1);
 
 /* C Function Call declare function as extern */
 extern uint8_T isApManual(uint16_T u1);
@@ -413,17 +405,6 @@ extern void AUAV_V3_TestSe_myMuxFun1_d(uint16_T rtu_u1, uint16_T rtu_u2,
   uint16_T rtu_u3, uint16_T rtu_u4, uint16_T rty_y[4]);
 extern void AUAV_V3_TestSens_myMuxFun3(const real32_T rtu_u1[3], const real32_T
   rtu_u2[3], rtB_myMuxFun3_AUAV_V3_TestSen_T *localB);
-extern void AUAV_V3_TestSensors_step0(void);
-extern void AUAV_V3_TestSensors_step1(void);
-extern void AUAV_V3_TestSensors_step2(void);
-extern void AUAV_V3_TestSensors_step3(void);
-extern void AUAV_V3_TestSensors_step4(void);
-extern void AUAV_V3_TestSensors_step5(void);
-extern void AUAV_V3_TestSensors_step6(void);
-extern void AUAV_V3_TestSensors_step7(void);
-extern void AUAV_V3_TestSensors_step8(void);
-extern void AUAV_V3_TestSensors_step9(void);
-extern void AUAV_V3_TestSensors_step10(void);
 
 #endif                                 /* RTW_HEADER_AUAV_V3_TestSensors_private_h_ */
 

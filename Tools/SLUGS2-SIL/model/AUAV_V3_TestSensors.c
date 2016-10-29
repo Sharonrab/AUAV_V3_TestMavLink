@@ -1350,10 +1350,10 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
       );
 
     /* Saturate: '<S654>/[0.55 0.68]' */
-    if (AUAV_V3_TestSensors_B.ChoosetheMediannavSupportcupd_a > 5790U) {
-      rtb_u2deg = 5790U;
-    } else if (AUAV_V3_TestSensors_B.ChoosetheMediannavSupportcupd_a < 5404U) {
-      rtb_u2deg = 5404U;
+    if (AUAV_V3_TestSensors_B.ChoosetheMediannavSupportcupd_a > 2400U) {
+      rtb_u2deg = 2400U;
+    } else if (AUAV_V3_TestSensors_B.ChoosetheMediannavSupportcupd_a < 2000U) {
+      rtb_u2deg = 2000U;
     } else {
       rtb_u2deg = AUAV_V3_TestSensors_B.ChoosetheMediannavSupportcupd_a;
     }
@@ -1369,7 +1369,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     /* S-Function (MCHP_C_function_Call): '<S654>/update dT Trim updateControlMcu.c [updated 4.28.16]' */
     updatePWMTrim(
                   &AUAV_V3_TestSensors_B.DataTypeConversion_hn
-                  , &AUAV_V3_TestSensors_ConstP.pooled86
+                  , &AUAV_V3_TestSensors_ConstP.pooled87
                   );
 
     /* DataTypeConversion: '<S671>/Data Type Conversion' incorporates:
@@ -1379,7 +1379,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S671>/Add'
      */
     AUAV_V3_TestSensors_B.DataTypeConversion = (real32_T)((real_T)rtb_u2deg *
-      0.00033692722371967678 + -1.2708894878706223);
+      0.00025000000000000011 *2.0 + -1.0000000000000009);
 
     /* S-Function (MCHP_C_function_Call): '<S654>/2' */
     AUAV_V3_TestSensors_B.u = meanFilter5(
@@ -1387,10 +1387,10 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
       );
 
     /* Saturate: '<S654>/[-2  2] deg' */
-    if (AUAV_V3_TestSensors_B.u > 5452U) {
-      rtb_u2deg = 5452U;
-    } else if (AUAV_V3_TestSensors_B.u < 5062U) {
-      rtb_u2deg = 5062U;
+    if (AUAV_V3_TestSensors_B.u > 3100U) {
+      rtb_u2deg = 3100U;
+    } else if (AUAV_V3_TestSensors_B.u < 2900U) {
+      rtb_u2deg = 2900U;
     } else {
       rtb_u2deg = AUAV_V3_TestSensors_B.u;
     }
@@ -1406,7 +1406,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     /* S-Function (MCHP_C_function_Call): '<S654>/update dA Trim updateControlMcu.c' */
     updatePWMTrim(
                   &AUAV_V3_TestSensors_B.DataTypeConversion_e
-                  , &AUAV_V3_TestSensors_ConstP.pooled87
+                  , &AUAV_V3_TestSensors_ConstP.pooled88
                   );
 
     /* DataTypeConversion: '<S672>/Data Type Conversion' incorporates:
@@ -1416,7 +1416,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S672>/Add'
      */
     AUAV_V3_TestSensors_B.DataTypeConversion_h = (real32_T)((real_T)rtb_u2deg *
-      -0.00017906923699679338 + 0.94142666863780888);
+      -8.726646259971655E-5 *2.0 + 0.52359877559829959);
 
     /* S-Function (MCHP_C_function_Call): '<S654>/3' */
     AUAV_V3_TestSensors_B.u_h = meanFilter5(
@@ -1424,10 +1424,10 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
       );
 
     /* Saturate: '<S654>/[-2  2] deg ' */
-    if (AUAV_V3_TestSensors_B.u_h > 5406U) {
-      rtb_u2deg = 5406U;
-    } else if (AUAV_V3_TestSensors_B.u_h < 5113U) {
-      rtb_u2deg = 5113U;
+    if (AUAV_V3_TestSensors_B.u_h > 3100U) {
+      rtb_u2deg = 3100U;
+    } else if (AUAV_V3_TestSensors_B.u_h < 2900U) {
+      rtb_u2deg = 2900U;
     } else {
       rtb_u2deg = AUAV_V3_TestSensors_B.u_h;
     }
@@ -1443,7 +1443,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     /* S-Function (MCHP_C_function_Call): '<S654>/update dR Trim updateControlMcu.c' */
     updatePWMTrim(
                   &AUAV_V3_TestSensors_B.DataTypeConversion_go
-                  , &AUAV_V3_TestSensors_ConstP.pooled88
+                  , &AUAV_V3_TestSensors_ConstP.pooled89
                   );
 
     /* DataTypeConversion: '<S673>/Data Type Conversion' incorporates:
@@ -1453,7 +1453,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S673>/Add'
      */
     AUAV_V3_TestSensors_B.DataTypeConversion_g = (real32_T)((real_T)rtb_u2deg *
-      -0.00023777959892739206 + 1.2505621706254633);
+      -8.726646259971655E-5 *2.0 + 0.52359877559829959);
 
     /* S-Function (MCHP_C_function_Call): '<S654>/4' */
     AUAV_V3_TestSensors_B.u_m = meanFilter5(
@@ -1461,10 +1461,10 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
       );
 
     /* Saturate: '<S654>/[-2  2] deg  ' */
-    if (AUAV_V3_TestSensors_B.u_m > 5546U) {
-      rtb_u2deg = 5546U;
-    } else if (AUAV_V3_TestSensors_B.u_m < 4966U) {
-      rtb_u2deg = 4966U;
+    if (AUAV_V3_TestSensors_B.u_m > 3100U) {
+      rtb_u2deg = 3100U;
+    } else if (AUAV_V3_TestSensors_B.u_m < 2900U) {
+      rtb_u2deg = 2900U;
     } else {
       rtb_u2deg = AUAV_V3_TestSensors_B.u_m;
     }
@@ -1490,7 +1490,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S674>/Add'
      */
     AUAV_V3_TestSensors_B.DataTypeConversion_f = (real32_T)((real_T)rtb_u2deg *
-      0.00012020173911806681 + -0.63178034080455925);
+      8.726646259971655E-5 *2.0+ -0.52359877559829959);
   }
 
   /* End of Outputs for SubSystem: '<S19>/Grab I.C.' */
@@ -1559,10 +1559,10 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     /* SignalConversion: '<S461>/Numerical Unity' incorporates:
      *  DataStoreRead: '<S458>/Get GS Location'
      */
-    AUAV_V3_TestSensors_B.NumericalUnity[0] = mlGSLocationFloat.lat * 0.0000001;
-    AUAV_V3_TestSensors_B.NumericalUnity[1] = mlGSLocationFloat.lon * 0.0000001;
-    AUAV_V3_TestSensors_B.NumericalUnity[2] = mlGSLocationFloat.alt * 0.001;
-
+	AUAV_V3_TestSensors_B.NumericalUnity[0] = mlGSLocationFloat.alt * 0.001; 
+    AUAV_V3_TestSensors_B.NumericalUnity[1] = mlGSLocationFloat.lat * 0.0000001;
+    AUAV_V3_TestSensors_B.NumericalUnity[2] = mlGSLocationFloat.lon * 0.0000001;
+  
     /* Gain: '<S462>/Deg2R' */
     rtb_cosphi = 0.0174532924F * AUAV_V3_TestSensors_B.NumericalUnity[1];
 
@@ -1834,11 +1834,11 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
       for (i = 0; i < 3; i++) {
         AUAV_V3_TestSensors_B.Reshape1[i] = 0.0F;
         AUAV_V3_TestSensors_B.Reshape1[i] +=
-          AUAV_V3_TestSensors_ConstP.pooled64[i] * tmp_0[0];
+          AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0];
         AUAV_V3_TestSensors_B.Reshape1[i] +=
-          AUAV_V3_TestSensors_ConstP.pooled64[i + 3] * tmp_0[1];
+          AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1];
         AUAV_V3_TestSensors_B.Reshape1[i] +=
-          AUAV_V3_TestSensors_ConstP.pooled64[i + 6] * tmp_0[2];
+          AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2];
       }
 
       /* End of Reshape: '<S446>/Reshape1' */
@@ -2051,11 +2051,11 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     for (i = 0; i < 3; i++) {
       AUAV_V3_TestSensors_B.WP0L2IPT1[i] = 0.0F;
       AUAV_V3_TestSensors_B.WP0L2IPT1[i] +=
-        AUAV_V3_TestSensors_ConstP.pooled64[i] * tmp_0[0];
+        AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0];
       AUAV_V3_TestSensors_B.WP0L2IPT1[i] +=
-        AUAV_V3_TestSensors_ConstP.pooled64[i + 3] * tmp_0[1];
+        AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1];
       AUAV_V3_TestSensors_B.WP0L2IPT1[i] +=
-        AUAV_V3_TestSensors_ConstP.pooled64[i + 6] * tmp_0[2];
+        AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2];
     }
 
     /* Gain: '<S422>/Deg2R' */
@@ -2167,9 +2167,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
     /* Gain: '<S420>/UEN 2 NEU' */
     for (i = 0; i < 3; i++) {
-      rtb_P32[i] = AUAV_V3_TestSensors_ConstP.pooled64[i + 6] * tmp_0[2] +
-        (AUAV_V3_TestSensors_ConstP.pooled64[i + 3] * tmp_0[1] +
-         AUAV_V3_TestSensors_ConstP.pooled64[i] * tmp_0[0]);
+      rtb_P32[i] = AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2] +
+        (AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1] +
+         AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0]);
     }
 
     /* Sum: '<S382>/Add' incorporates:
@@ -2460,9 +2460,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
     /* Gain: '<S348>/UEN 2 NEU' */
     for (i = 0; i < 3; i++) {
-      rtb_Product3_j0[i] = AUAV_V3_TestSensors_ConstP.pooled64[i + 6] * tmp_0[2]
-        + (AUAV_V3_TestSensors_ConstP.pooled64[i + 3] * tmp_0[1] +
-           AUAV_V3_TestSensors_ConstP.pooled64[i] * tmp_0[0]);
+      rtb_Product3_j0[i] = AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2]
+        + (AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1] +
+           AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0]);
     }
 
     /* Gain: '<S367>/Deg2R' */
@@ -2572,9 +2572,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
     /* Gain: '<S365>/UEN 2 NEU' */
     for (i = 0; i < 3; i++) {
-      rtb_Product2_c[i] = AUAV_V3_TestSensors_ConstP.pooled64[i + 6] * tmp_0[2]
-        + (AUAV_V3_TestSensors_ConstP.pooled64[i + 3] * tmp_0[1] +
-           AUAV_V3_TestSensors_ConstP.pooled64[i] * tmp_0[0]);
+      rtb_Product2_c[i] = AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2]
+        + (AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1] +
+           AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0]);
     }
 
     rtb_Product3_j0[0] = rtb_Product2_c[0] - rtb_Product3_j0[0];
@@ -2949,9 +2949,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
       /* Gain: '<S204>/UEN 2 NEU' */
       for (i = 0; i < 3; i++) {
-        rtb_Product3_j0[i] = AUAV_V3_TestSensors_ConstP.pooled64[i + 6] * tmp_0
-          [2] + (AUAV_V3_TestSensors_ConstP.pooled64[i + 3] * tmp_0[1] +
-                 AUAV_V3_TestSensors_ConstP.pooled64[i] * tmp_0[0]);
+        rtb_Product3_j0[i] = AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0
+          [2] + (AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1] +
+                 AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0]);
       }
 
       /* Delay: '<S198>/Integer Delay1' */
@@ -4152,7 +4152,6 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     AUAV_V3_TestSensors_B.u060
     );
 
-  AUAV_V3_TestSensors_B.myCosapUtilscupdated5116 = myTan(AUAV_V3_TestSensors_B.u060);
 
   /* Sum: '<S140>/Add4' incorporates:
    *  Constant: '<S140>/Constant2'
@@ -5418,7 +5417,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Product: '<S689>/Divide'
      *  Sum: '<S689>/Add'
      */
-    tmp_4 = floor(rtb_y_jl_idx_0 * 1484.0 + 1886.0);
+    tmp_4 = floor(rtb_y_jl_idx_0 * 2000.0 + 2000.0) / 2.;
 
     /* DataTypeConversion: '<S690>/Data Type Conversion' incorporates:
      *  Constant: '<S690>/Constant1'
@@ -5427,7 +5426,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Product: '<S690>/Divide'
      *  Sum: '<S690>/Add'
      */
-    tmp_5 = floor(rtb_Sum1_mzp * -2792.21432160421 + 2628.6666666666674);
+    tmp_5 = floor(rtb_Sum1_mzp * -5729.5779513082325 + 3000.0000000000009) / 2.;
 
     /* DataTypeConversion: '<S691>/Data Type Conversion' incorporates:
      *  Constant: '<S691>/Constant1'
@@ -5435,7 +5434,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Product: '<S691>/Divide'
      *  Sum: '<S691>/Add'
      */
-    tmp_6 = floor(rtb_cosphi * -2102.7551081301217 + 2629.666666666667);
+    tmp_6 = floor(rtb_cosphi * -5729.5779513082325 + 3000.0000000000009) / 2.;
 
     /* DataTypeConversion: '<S688>/Data Type Conversion' incorporates:
      *  Constant: '<S688>/Constant1'
@@ -5443,7 +5442,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Product: '<S688>/Divide'
      *  Sum: '<S688>/Add'
      */
-    tmp_7 = floor(rtb_IC4_idx_0 * 4159.6735926497768 + 2628.0000000000005);
+    tmp_7 = floor(rtb_IC4_idx_0 * 5729.5779513082325 + 3000.0000000000009) / 2.;
 
     /* DataTypeConversion: '<S689>/Data Type Conversion' */
     if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
@@ -5515,7 +5514,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
          *  Product: '<S684>/Divide'
          *  Sum: '<S684>/Add'
          */
-        tmp_4 = floor(rtb_y_jl_idx_0 * 1484.0 + 1886.0);
+        tmp_4 = floor(rtb_y_jl_idx_0 * 2000.0 + 2000.0);
         if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
           rtb_u2deg = 0U;
         } else {
@@ -5541,7 +5540,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
          *  Product: '<S685>/Divide'
          *  Sum: '<S685>/Add'
          */
-        tmp_4 = floor(rtb_Sum1_mzp * -2792.21432160421 + 2628.6666666666674);
+        tmp_4 = floor(rtb_Sum1_mzp * -5729.5779513082325 + 3000.0000000000009);
         if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
           rtb_Switch1_m = 0U;
         } else {
@@ -5566,7 +5565,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
          *  Product: '<S686>/Divide'
          *  Sum: '<S686>/Add'
          */
-        tmp_4 = floor(rtb_cosphi * -2102.7551081301217 + 2629.666666666667);
+        tmp_4 = floor(rtb_cosphi * -5729.5779513082325 + 3000.0000000000009);
         if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
           rtb_Switch2 = 0U;
         } else {
@@ -5591,7 +5590,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
          *  Product: '<S683>/Divide'
          *  Sum: '<S683>/Add'
          */
-        tmp_4 = floor(rtb_IC4_idx_0 * 4159.6735926497768 + 2628.0000000000005);
+        tmp_4 = floor(rtb_IC4_idx_0 * 5729.5779513082325 + 3000.0000000000009);
         if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
           rtb_Switch3_fq = 0U;
         } else {
@@ -6054,59 +6053,6 @@ void AUAV_V3_TestSensors_step10(void)  /* Sample time: [1.0s, 0.0s] */
   AUAV_V3_Mavlink_TX_AdapterTID10();
 
   /* End of Outputs for SubSystem: '<Root>/Mavlink_TX_Adapter' */
-}
-
-/* Model step wrapper function for compatibility with a static main program */
-void AUAV_V3_TestSensors_step(int_T tid)
-{
-  switch (tid) {
-   case 0 :
-    AUAV_V3_TestSensors_step0();
-    break;
-
-   case 1 :
-    AUAV_V3_TestSensors_step1();
-    break;
-
-   case 2 :
-    AUAV_V3_TestSensors_step2();
-    break;
-
-   case 3 :
-    AUAV_V3_TestSensors_step3();
-    break;
-
-   case 4 :
-    AUAV_V3_TestSensors_step4();
-    break;
-
-   case 5 :
-    AUAV_V3_TestSensors_step5();
-    break;
-
-   case 6 :
-    AUAV_V3_TestSensors_step6();
-    break;
-
-   case 7 :
-    AUAV_V3_TestSensors_step7();
-    break;
-
-   case 8 :
-    AUAV_V3_TestSensors_step8();
-    break;
-
-   case 9 :
-    AUAV_V3_TestSensors_step9();
-    break;
-
-   case 10 :
-    AUAV_V3_TestSensors_step10();
-    break;
-
-   default :
-    break;
-  }
 }
 
 /* Model initialize function */
@@ -6586,7 +6532,8 @@ void AUAV_V3_TestSensors_initialize(void)
   }
 }
 
-/* File trailer for Real-Time Workshop generated code.
+/*
+ * File trailer for generated code.
  *
  * [EOF]
  */

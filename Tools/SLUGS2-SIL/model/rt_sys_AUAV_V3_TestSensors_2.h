@@ -73,6 +73,7 @@ typedef struct {
   real32_T In1;                        /* '<S38>/In1' */
 } rtB_EnabledSubsystem_AUAV_V3__T;
 
+extern void AUA_EnabledSubsystem_Start(rtB_EnabledSubsystem_AUAV_V3__T *localB);
 extern void AUAV_V3_T_EnabledSubsystem(boolean_T rtu_Enable, real32_T rtu_In1,
   rtB_EnabledSubsystem_AUAV_V3__T *localB);
 

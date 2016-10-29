@@ -3,7 +3,6 @@
 #include "circBuffer.h"
 
 #include <stdio.h>
-<<<<<<< HEAD
 #ifdef UNIT_TEST
 #include "AUAV_V3_TestMavLink.h"
 //#include "AUAV3_WITH_SLUGS_SENSOR_AND_CONTROLLER.h"
@@ -14,9 +13,6 @@
 #include "AUAV_V3_TestSensors.h"
 
 #endif
-=======
-#include "AUAV_V3_TestMavlink.h"
->>>>>>> master
 
 uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
 uint8_t Uart4OutBuff[MAVLINK_MAX_PACKET_LEN];

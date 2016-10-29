@@ -101,11 +101,7 @@ UDBSocket UDBSocket_init(UDBSocketType type, uint16_t UDP_port, char* UDP_host, 
 			newSocket->si_other.sin_port = htons(newSocket->UDP_port);
 			newSocket->si_other.sin_addr.S_un.S_addr = inet_addr(UDP_host);
 
-<<<<<<< HEAD
 			UDBSocket_write(newSocket, (unsigned char*)"Hello", 6); // Initiate connection
-=======
-			UDBSocket_write(newSocket, (unsigned char*)"", 0); // Initiate connection
->>>>>>> master
 			break;
 		}
 		case UDBSocketUDPServer:
@@ -316,14 +312,11 @@ int UDBSocket_read(UDBSocket socket, unsigned char* buffer, int bufferLength)
 			int fromLength = sizeof(from);
 			int received_bytes = (int)recvfrom(socket->fd, (char*)buffer, bufferLength, 0,
 			                                   (struct sockaddr*)&from, &fromLength);
-<<<<<<< HEAD
 			int ierr = WSAGetLastError();
 			if (ierr == WSAEWOULDBLOCK) {  // currently no data available
 				Sleep(1);  // wait and try again		
 			}
 
-=======
->>>>>>> master
 			if (received_bytes < 0)
 			{
 				if (WSAGetLastError() != WSAEWOULDBLOCK && WSAGetLastError() != WSAECONNRESET)

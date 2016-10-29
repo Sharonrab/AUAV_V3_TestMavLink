@@ -206,6 +206,10 @@ void Sensor_Data_Adapter_Start(void)
   /* Start for S-Function (MCHP_MCU_LOAD): '<S583>/Calculus Time Step1' */
   TMR3 = 0;                            /* Initialize Timer 3 Value to 0.  Timer 3 is enabled only when the mcu is not idle */
 #endif
+  /* Start for Enabled SubSystem: '<S617>/Enabled Subsystem' */
+  AUA_EnabledSubsystem_Start(&AUAV_V3_TestSensors_B.EnabledSubsystem_m);
+
+  /* End of Start for SubSystem: '<S617>/Enabled Subsystem' */
 }
 
 /* Output and update for atomic system: '<Root>/Sensor_Data_Adapter' */

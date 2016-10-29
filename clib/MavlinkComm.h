@@ -17,13 +17,6 @@ void uartMavlinkBufferInit (void);
 #define SUCCESS ((char)0)
 #define FAILURE ((char)-1)
 
-typedef char BOOL;
-#define TRUE ((char)1)
-#define FALSE ((char)0)
-
-#define SUCCESS ((char)0)
-#define FAILURE ((char)-1)
-
 #define SYSTEMID	101
 #define COMPID		1
 #define GS_SYSTEMID	127
