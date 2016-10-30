@@ -73,8 +73,8 @@ void AUAV_V3_Mavlink_TX_AdapterTID0(void)
    *  Gain: '<S8>/Gain2'
    *  Sum: '<S8>/Sum1'
    */
-  tmp = (int16_T)fmod((int16_T)floor(((real_T)mlPwmCommands.servo1_raw - 942.0) *
-    0.13513513513513511), 65536.0);
+  tmp = (int16_T)fmod((int16_T)floor(((real_T)mlPwmCommands.servo1_raw - 189) *
+    0.47), 65536.0);
 
   /* DataStoreWrite: '<S8>/Set VfrHud' incorporates:
    *  DataTypeConversion: '<S8>/Data Type Conversion5'
@@ -135,6 +135,18 @@ void AUAV_V3_Mavlink_TX_AdapterTID2(void)
   TxN_Data_OverU1(
                   AUAV_V3_TestSensors_B.PackAttitude
                   );
+
+  AUAV_V3_TestSensors_B.PackNavigation = PackRawNavigation(
+	  ((uint8_T)101U)
+	  , ((uint8_T)1U)
+	  , mlNavigation
+	  , AUAV_V3_TestSensors_B.Gettime6
+  );
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data10' */
+  TxN_Data_OverU1(
+	  AUAV_V3_TestSensors_B.PackNavigation
+  );
 }
 
 /* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */

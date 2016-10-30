@@ -608,7 +608,7 @@ boolean handleUDBSockets(void)
 
 void udb_callback_read_sensors(void)
 {
-	float T, p, r, h;
+	float T, p, r, h,v;
 	//read_gyros(); // record the average values for both DCM and for offset measurements
 	//read_accel();
 	HILSIM_set_gplane();
@@ -616,12 +616,15 @@ void udb_callback_read_sensors(void)
 	h = mlGpsData.alt / 1000;
 	T = 15.04 - .00649 * h;
 	p = 101.29 *myPow((T + 273.1) / 288.08,5.256) * 1000; //pascal
-	r = p / (.2869 * (T + 273.1));
+	r = p / (.2869 * (T + 273.1)) /1000;//kg/m^3
+	v = mlGpsData.vel / 100;
 
-	mlRawPressureData.press_abs = (p - 9444.4) / 27.1270 ; //convert to static pressure in Pascal / baroScale
-	mlRawPressureData.press_diff1 = (1 / 2 * r * myPow(mlGpsData.vel, 2) +1005.9) / 1.0514 ;//pitotScale
+	mlRawPressureData.press_abs = (p ) / 27.1270 ; //convert to static pressure in Pascal / baroScale
+	mlRawPressureData.press_diff1 = (1 / 2 * r * myPow(v, 2) +1005.9) / 1.0514 ;//pitotScale
 	mlRawPressureData.temperature = (T + 1605.3) / 1.5113;
-
+	mlAirData.press_diff = ( r * myPow(v, 2))/2 / 100;//hectopascal (1 hPa = 100 Pa)
+	mlAirData.press_abs = (p ) / 100;//hectopascal (1 hPa = 100 Pa)
+	mlAirData.temperature = T*100;//0.01 degrees celsius
 }
 
 #if (MAG_YAW_DRIFT == 1)

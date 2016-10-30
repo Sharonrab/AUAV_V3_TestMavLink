@@ -6,9 +6,6 @@ slprj/*
 *.eps
 *.bak
 *.zip
-AUAV_V3_TestMavLink.X/*
-AUAV3_AND_SLUGS_SENSOR.X/*
-AUAV_V3_TestSensors.X/*
 *.X/*
 Bixler2/*
 

@@ -27,19 +27,53 @@ THE SOFTWARE.
 #include "updateSensorMcuState.h"
 
 void updateRawADCData(int16_t* adcData) {
+	float T, p, r, h,v;
+
     //mlRawPressureData.time_usec = mlAttitudeData.time_boot_ms; // set by updateTimestamp()
     mlRawPressureData.press_abs = (int16_t) adcData[0]; // Baro
     mlRawPressureData.press_diff1 = (int16_t) adcData[1]; // Pito
     mlRawPressureData.press_diff2 = (int16_t) adcData[2]; // Power
     mlRawPressureData.temperature = (int16_t) adcData[3]; // Temp
+	//SLUGS2
+	h = mlGpsData.alt / 1000;
+	T = 15.04 - .00649 * h;
+	p = 101.29 *myPow((T + 273.1) / 288.08, 5.256) * 1000; //pascal
+	r = p / (.2869 * (T + 273.1));
+	v = mlGpsData.vel / 100;
+
+	mlRawPressureData.press_abs = (p - 9444.4) / 27.1270; //convert to static pressure in Pascal / baroScale
+	mlRawPressureData.press_diff1 = (1 / 2 * r * myPow(v, 2) + 1005.9) / 1.0514;//pitotScale
+	mlRawPressureData.temperature = (T + 1605.3) / 1.5113;
+	
+	mlAirData.press_diff = (r * myPow(v, 2)) / 2 / 100;//hectopascal (1 hPa = 100 Pa)
+	mlAirData.press_abs = (p) / 100;//hectopascal (1 hPa = 100 Pa)
+	mlAirData.temperature = T * 100;//0.01 degrees celsius
 }
 
 void updateAirData(float* airData) {
+	//SLUGS2
+	float T, p, r, h,v;
+
+	h = mlGpsData.alt / 1000;
+	T = 15.04 - .00649 * h;
+	p = 101.29 *myPow((T + 273.1) / 288.08, 5.256) * 1000; //pascal
+	r = p / (.2869 * (T + 273.1));
+	v = mlGpsData.vel / 100;
+
+	
+
     //mlAirData.time_boot_ms = mlAttitudeData.time_boot_ms; // set by updateTimestamp()
     mlAirData.press_diff = airData[0]; //dynamic
     mlAirData.press_abs = airData[1]; //static
     mlAirData.temperature = (int16_t) (airData[2]*10.0); // temp 0.01
+
+	//SLUGS2
+	mlAirData.press_diff = (r * myPow(v, 2)) / 2 / 100;//hectopascal (1 hPa = 100 Pa)
+	mlAirData.press_abs = (p) / 100;//hectopascal (1 hPa = 100 Pa)
+	mlAirData.temperature = T * 100;//0.01 degrees celsius
 }
+
+
 
 void updateLoadData(uint8_t load, uint16_t mvPower) {
     mlCpuLoadData.sensLoad = load;

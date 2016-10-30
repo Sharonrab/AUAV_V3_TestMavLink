@@ -3566,7 +3566,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
    *  Product: '<S167>/Divide2'
    *  Saturate: '<S167>/[ 0.01 50000]'
    */
-  AUAV_V3_TestS_negprotect_l(2.0F * mlAirData.press_diff / rtb_Sum1_mzp,
+  AUAV_V3_TestS_negprotect_l(2.0F * mlAirData.press_diff * 100 / rtb_Sum1_mzp,
     &AUAV_V3_TestSensors_B.sf_negprotect_l);
 
   /* S-Function (MCHP_C_function_Call): '<S174>/mySqrt() apUtils.c [updated 5.1.16]' */
@@ -3807,7 +3807,8 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   /* DataStoreWrite: '<S71>/mlNavigation' incorporates:
    *  DataTypeConversion: '<S140>/Data Type Conversion'
    */
-  mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
+  //SLUGS2
+  mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)(int16_T)
     (uint16_T)-rtb_RhhcosphicoslambXe : (uint16_T)rtb_RhhcosphicoslambXe;
 
   /* Switch: '<S149>/Switch3' incorporates:

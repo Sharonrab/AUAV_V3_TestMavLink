@@ -279,6 +279,8 @@ typedef struct {
   uint16_T PackRawIMU;                 /* '<S8>/PackRawIMU' */
   uint16_T PackHeartBeat;              /* '<S8>/PackHeartBeat' */
   uint16_T PackAttitude;               /* '<S8>/Pack Attitude' */
+  uint16_T PackNavigation;               /* '<S8>/Pack Attitude' */
+
   uint16_T PackGpsRawInt;              /* '<S8>/PackGpsRawInt' */
   uint16_T PackScaledPressure;         /* '<S8>/PackScaledPressure' */
   uint16_T PackSysStatus;              /* '<S8>/PackSysStatus' */

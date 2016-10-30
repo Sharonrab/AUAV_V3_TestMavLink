@@ -144,11 +144,11 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
     // Populate default mid-level commands
     mlMidLevelCommands.hCommand = 120.0f; // altitude (m)
     mlMidLevelCommands.uCommand = 16.0f; // airspeed (m/s)
-    mlMidLevelCommands.rCommand = 0.0f; // turn rate (radians/s)
+    mlMidLevelCommands.rCommand = 0.2f; // turn rate (radians/s)
 
 	 // Initialize the system Status
 	 mlHeartbeatLocal.base_mode = MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
-	 mlHeartbeatLocal.custom_mode = SLUGS_MODE_MID_LEVEL;
+	 mlHeartbeatLocal.custom_mode = SLUGS_MODE_WAYPOINT;
 	 mlHeartbeatLocal.system_status = MAV_STATE_ACTIVE;
 	/* lastNavigationMode = mlHeartbeatLocal.custom_mode;
 	 mlSystemStatus.mode = MAV_MODE_MANUAL;
@@ -783,6 +783,23 @@ uint16_t PackRawAttitude(uint8_t system_id, uint8_t component_id, mavlink_attitu
   memset(&msg, 0, sizeof (mavlink_message_t));
   mavlink_msg_attitude_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec , mlAttitudeData.roll, mlAttitudeData.pitch, mlAttitudeData.yaw, mlAttitudeData.rollspeed, mlAttitudeData.pitchspeed, mlAttitudeData.yawspeed );
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+}
+
+uint16_t PackRawNavigation(uint8_t system_id, uint8_t component_id, mavlink_slugs_navigation_t mlNavigation, uint32_t time_usec) {
+	mavlink_system_t mavlink_system;
+
+	mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
+	mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
+										 //////////////////////////////////////////////////////////////////////////
+	mavlink_message_t msg;
+	memset(&msg, 0, sizeof(mavlink_message_t));
+	mavlink_msg_slugs_navigation_pack(mavlink_system.sysid, mavlink_system.compid, &msg,
+		mlNavigation.u_m, mlNavigation.phi_c, mlNavigation.theta_c, mlNavigation.psiDot_c, mlNavigation.ay_body, mlNavigation.totalDist, mlNavigation.dist2Go, mlNavigation.fromWP, mlNavigation.toWP, mlNavigation.h_c);
+	//mavlink_msg_command_long_pack(mavlink_system.sysid, mavlink_system.compid, &msg, mlNavigation.fromWP, mlNavigation.toWP, mlNavigation.h_c,111,
+	//	mlNavigation.u_m, mlNavigation.phi_c, mlNavigation.theta_c, mlNavigation.psiDot_c, mlNavigation.ay_body, mlNavigation.totalDist, mlNavigation.dist2Go);
+
+	return(mavlink_msg_to_send_buffer(UartOutBuff, &msg));
+
 }
 
 uint16_t PackPosXYZ_Sol(uint8_t system_id, uint8_t component_id, mavlink_local_position_ned_t mlLocalPositionSol ,uint32_t time_usec){
