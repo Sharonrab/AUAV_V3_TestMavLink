@@ -155,7 +155,7 @@ extern uint16_t PackRawAttitude(uint8_t system_id, uint8_t component_id,
 extern uint16_t PackRawNavigation(uint8_t system_id, uint8_t component_id, mavlink_slugs_navigation_t mlNavigation, uint32_t time_usec);
 /* C Function Call declare function as extern */
 extern void TxN_Data_OverU1(uint16_t N);
-
+extern void updatePWMTrim(unsigned short PWMData, unsigned char channel);
 /* C Function Call declare function as extern */
 extern uint16_t PackGpsRawInt(uint8_t system_id, uint8_t component_id,
   mavlink_gps_raw_int_t mlRawGpsDataInt, uint32_t time_usec);

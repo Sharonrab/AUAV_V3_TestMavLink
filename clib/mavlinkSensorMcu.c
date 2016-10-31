@@ -6,7 +6,7 @@
 
 // Declare the global structures that will hold the state of the Sensor MCU
 
-BOOL sendCommandAcknowledgement; // used for IPC of command acks to control MCU
+LOCAL_BOOL sendCommandAcknowledgement; // used for IPC of command acks to control MCU
 
 
 //mavlink_raw_imu_t mlRawImuData;

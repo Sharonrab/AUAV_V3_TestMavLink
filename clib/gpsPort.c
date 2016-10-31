@@ -27,7 +27,7 @@ CBRef uartBuffer;
 // UART and Buffer initialization
 
 void uartBufferInit(void) {
-
+#ifndef WIN
      /* Configure Pins as Analog or Digital */
     //ANSELE = 0xFF83;
 
@@ -48,10 +48,12 @@ void uartBufferInit(void) {
     _U4RXIP = 5;                         /* Rx Interrupt priority set to 1 */
     _U4RXIF = 0;
     _U4RXIE = 1;                         /* Enable Interrupt */
+#endif
     uartBuffer = (struct CircBuffer*) &com4Buffer;
     newCircBuffer(uartBuffer);
-}
 
+}
+#ifndef WIN
 // Interrupt service routine for U4 GPS port
 void __attribute__((__interrupt__, no_auto_psv)) _U4RXInterrupt(void) {
       _U4RXIF = 0;
@@ -70,6 +72,7 @@ void __attribute__((__interrupt__, no_auto_psv)) _U4RXInterrupt(void) {
     // clear the interrupt
     IFS5bits.U4RXIF = 0;
 }
+#endif
 void getGPSRawData(unsigned char* gpsBuffer) {
 	
 }

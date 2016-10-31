@@ -38,6 +38,9 @@ First Revision: Aug 18 2008 @ 17:42
 extern "C" {
 #endif
 
+#ifdef SLUGS2
+#define inline __inline
+#endif
 //#include "stdint.h"
 #include "inttypes.h"
 
@@ -45,7 +48,9 @@ extern "C" {
 
     // Boolean types
     // ===================
-typedef char BOOL;
+//#ifndef WIN
+typedef char LOCAL_BOOL;
+//#endif
 #define TRUE ((char)1)
 #define FALSE ((char)0)
 

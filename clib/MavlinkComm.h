@@ -172,6 +172,7 @@ void uartMavlinkBufferInit (void);
     uint16_t PackRawIMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t mlRawIMUData ,uint32_t time_usec);
     uint16_t PackRawAttitude(uint8_t system_id, uint8_t component_id, mavlink_attitude_t mlAttitudeData ,uint32_t time_usec);
     uint16_t PackPosXYZ_Sol(uint8_t system_id, uint8_t component_id, mavlink_local_position_ned_t mlLocalPositionSol ,uint32_t time_usec);
+	uint16_t PackRawNavigation(uint8_t system_id, uint8_t component_id, mavlink_slugs_navigation_t mlNavigation, uint32_t time_usec);
 
 char sendQGCDebugMessage(const char * dbgMessage, char severity, unsigned char* bytesToAdd, char positionStart) ;
 uint16_t PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt, uint32_t time_usec);

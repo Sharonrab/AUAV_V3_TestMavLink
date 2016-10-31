@@ -24,7 +24,8 @@ THE SOFTWARE.
 */
 
 #include "apUtils.h"
-//#define Nop()    {__asm__ volatile ("nop");}
+	//#define Nop()    {__asm__ volatile ("nop");}
+#define Nop() {;}
 /*
 // =====================================
 //			Trig and Math Functions
@@ -152,24 +153,29 @@ void tinyDelay(void) {
 }
 
 
-BOOL hasMode(uint8_t field, uint8_t flag) {
-    return (field & flag) > 0;
-}
+	LOCAL_BOOL hasMode(uint8_t field, uint8_t flag) {
+		return (field & flag) > 0;
+	}
 
 #ifndef __cplusplus
 
-// ================================
-//    Debug Functions
-// ================================
-void printToUart2 (const char *fmt, ...){
-	va_list ap;
-	char buf [300];
-	
-	va_start(ap, fmt);
-	vsprintf(buf, fmt, ap);
-	va_end (ap);
-	putsUART2((unsigned int*)buf);
-         while (BusyUART2());
-}
+	// ================================
+	//    Debug Functions
+	// ================================
+//	void printToUart2(const char *fmt, ...) {
+//		va_list ap;
+//		char buf[300];
+//
+//		va_start(ap, fmt);
+//		vsprintf(buf, fmt, ap);
+//		va_end(ap);
+//#ifndef WIN
+//
+//		//putsUART2((unsigned int*)buf);
+//		//while (BusyUART2());
+//
+//#endif
+//
+//	}
 
 #endif

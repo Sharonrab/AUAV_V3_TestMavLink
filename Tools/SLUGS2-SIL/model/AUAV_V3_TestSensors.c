@@ -1368,8 +1368,8 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
     /* S-Function (MCHP_C_function_Call): '<S654>/update dT Trim updateControlMcu.c [updated 4.28.16]' */
     updatePWMTrim(
-                  &AUAV_V3_TestSensors_B.DataTypeConversion_hn
-                  , &AUAV_V3_TestSensors_ConstP.pooled87
+                  AUAV_V3_TestSensors_B.DataTypeConversion_hn
+                  , AUAV_V3_TestSensors_ConstP.pooled87
                   );
 
     /* DataTypeConversion: '<S671>/Data Type Conversion' incorporates:
@@ -1405,8 +1405,8 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
     /* S-Function (MCHP_C_function_Call): '<S654>/update dA Trim updateControlMcu.c' */
     updatePWMTrim(
-                  &AUAV_V3_TestSensors_B.DataTypeConversion_e
-                  , &AUAV_V3_TestSensors_ConstP.pooled88
+                  AUAV_V3_TestSensors_B.DataTypeConversion_e
+                  , AUAV_V3_TestSensors_ConstP.pooled88
                   );
 
     /* DataTypeConversion: '<S672>/Data Type Conversion' incorporates:
@@ -1442,8 +1442,8 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
     /* S-Function (MCHP_C_function_Call): '<S654>/update dR Trim updateControlMcu.c' */
     updatePWMTrim(
-                  &AUAV_V3_TestSensors_B.DataTypeConversion_go
-                  , &AUAV_V3_TestSensors_ConstP.pooled89
+                  AUAV_V3_TestSensors_B.DataTypeConversion_go
+                  , AUAV_V3_TestSensors_ConstP.pooled89
                   );
 
     /* DataTypeConversion: '<S673>/Data Type Conversion' incorporates:
@@ -1479,8 +1479,8 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
     /* S-Function (MCHP_C_function_Call): '<S654>/update dE Trim updateControlMcu.c' */
     updatePWMTrim(
-                  &AUAV_V3_TestSensors_B.DataTypeConversion_k
-                  , &AUAV_V3_TestSensors_ConstP.dE_Value
+                  AUAV_V3_TestSensors_B.DataTypeConversion_k
+                  , AUAV_V3_TestSensors_ConstP.dE_Value
                   );
 
     /* DataTypeConversion: '<S674>/Data Type Conversion' incorporates:
@@ -1688,7 +1688,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     AUAV_V3_TestSensors_DWork.IC_FirstOutputTime = false;
     rtb_RhhcosphisinlambYe = 1.5F;
   } else {
-    rtb_RhhcosphisinlambYe = mlParamInterface.param[25];
+    rtb_RhhcosphisinlambYe = mlParamInterface.param[26];
   }
 
   /* End of InitialCondition: '<S186>/IC' */
@@ -1934,7 +1934,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     /* Product: '<S187>/Product' incorporates:
      *  DataStoreRead: '<Root>/PAR_NAV_L2_BASE PAR_NAV_PRETURN_K PAR_NAV_SSCOMP_ON'
      */
-    rtb_Product_lf = mlParamInterface.param[18] *
+    rtb_Product_lf = mlParamInterface.param[19] *
       AUAV_V3_TestSensors_B.mySqrtapUtilscupdated5116;
 
     /* Outputs for Enabled SubSystem: '<S187>/On WP Enable' incorporates:
@@ -2667,7 +2667,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     /* Product: '<S303>/Product1' incorporates:
      *  DataStoreRead: '<Root>/PAR_NAV_L2_BASE PAR_NAV_PRETURN_K PAR_NAV_SSCOMP_ON'
      */
-    AUAV_V3_TestSensors_B.Product1 = mlParamInterface.param[19] *
+    AUAV_V3_TestSensors_B.Product1 = mlParamInterface.param[20] *
       AUAV_V3_TestSensors_B.mySqrtapUtilscupdated5116;
 
     /* Update for Delay: '<S303>/Integer Delay1' */
@@ -2987,7 +2987,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
       /* Product: '<S181>/Product' incorporates:
        *  DataStoreRead: '<Root>/PAR_NAV_L2_BASE PAR_NAV_PRETURN_K PAR_NAV_SSCOMP_ON'
        */
-      rtb_RhhcosphisinlambYe = mlParamInterface.param[18] *
+      rtb_RhhcosphisinlambYe = mlParamInterface.param[19] *
         AUAV_V3_TestSensors_B.mySqrtapUtilscupdated5116;
 
       /* Sum: '<S181>/Sum2' */
@@ -3403,7 +3403,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   /* MATLAB Function: '<S270>/negprotect' incorporates:
    *  DataStoreRead: '<Root>/PAR_NAV_L2_BASE PAR_NAV_PRETURN_K PAR_NAV_SSCOMP_ON'
    */
-  AUAV_V3_TestSe_negprotect3(mlParamInterface.param[18],
+  AUAV_V3_TestSe_negprotect3(mlParamInterface.param[19],
     &AUAV_V3_TestSensors_B.sf_negprotect_b);
 
   /* S-Function (MCHP_C_function_Call): '<S272>/myAbs() apUtils.c [updated 5.1.16]' */
@@ -3619,7 +3619,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
    *  UnitDelay: '<S178>/FixPt Unit Delay2'
    */
   if (AUAV_V3_TestSensors_DWork.FixPtUnitDelay2_DSTATE != 0) {
-    rtb_Deg2R1 = 100.0F;
+    rtb_Deg2R1 = 200.0F;//SLUGS
   } else {
     rtb_Deg2R1 = AUAV_V3_TestSensors_DWork.FixPtUnitDelay1_DSTATE;
   }
@@ -4760,7 +4760,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
    *  EnablePort: '<S109>/Enable'
    */
   /* DataStoreRead: '<Root>/PAR_NAV_L2_BASE PAR_NAV_PRETURN_K PAR_NAV_SSCOMP_ON' */
-  if (mlParamInterface.param[20L] > 0.0F) {
+  if (mlParamInterface.param[21L] > 0.0F) {
     if (!AUAV_V3_TestSensors_DWork.SideslipCompensation_MODE) {
       /* InitializeConditions for UnitDelay: '<S126>/UD' */
       AUAV_V3_TestSensors_DWork.UD_DSTATE_f = 0.0F;
@@ -5272,8 +5272,8 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
    *  DataStoreRead: '<Root>/PAR_NAV_ISR_FAC PAR_PID_RMIX_ON PAR_PID_RMIX_P'
    *  Product: '<S102>/Product'
    */
-  if (mlParamInterface.param[26L] > 0.3F) {
-    rtb_RhhcosphicoslambXe = mlParamInterface.param[27] * rtb_Sum1_mzp;
+  if (mlParamInterface.param[27L] > 0.3F) {
+    rtb_RhhcosphicoslambXe = mlParamInterface.param[28] * rtb_Sum1_mzp;
   } else {
     rtb_RhhcosphicoslambXe = 0.0F;
   }

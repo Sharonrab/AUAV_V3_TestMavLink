@@ -28,11 +28,13 @@ THE SOFTWARE.
 #ifdef __cplusplus
     extern "C"{
 #endif
-    	
+   
+#ifndef WIN
 //#include <p33fxxxx.h>
 #include <p33EP512MU810.h>
 #include <spi.h>
-    	
+#endif    
+
 #include "apDefinitions.h"
 #include "apUtils.h"
 #include "mavlinkSensorMcu.h"
