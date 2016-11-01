@@ -144,11 +144,11 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
     // Populate default mid-level commands
     mlMidLevelCommands.hCommand = 120.0f; // altitude (m)
     mlMidLevelCommands.uCommand = 16.0f; // airspeed (m/s)
-    mlMidLevelCommands.rCommand = 0.2f; // turn rate (radians/s)
+    mlMidLevelCommands.rCommand = 0.0f; // turn rate (radians/s)
 
 	 // Initialize the system Status
 	 mlHeartbeatLocal.base_mode = MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
-	 mlHeartbeatLocal.custom_mode = SLUGS_MODE_WAYPOINT;
+	 mlHeartbeatLocal.custom_mode = SLUGS_MODE_MID_LEVEL;
 	 mlHeartbeatLocal.system_status = MAV_STATE_ACTIVE;
 	/* lastNavigationMode = mlHeartbeatLocal.custom_mode;
 	 mlSystemStatus.mode = MAV_MODE_MANUAL;
@@ -978,7 +978,7 @@ void TxN_Data_OverU4(uint16_t N){
   }
   _U4TXIF = U4STAbits.TRMT;
 #else
-	//mavlink_serial_send(MAVLINK_COMM_0, &Uart4OutBuff[0], (uint16_t)N);
+//	mavlink_serial_send(MAVLINK_COMM_0, &Uart4OutBuff[0], (uint16_t)N);
 
 #endif
 }
