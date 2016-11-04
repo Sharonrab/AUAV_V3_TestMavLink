@@ -160,9 +160,7 @@
     <ClCompile Include="clib\navSupport.c" />
     <ClCompile Include="clib\updateControlMcuState.c" />
     <ClCompile Include="clib\updateSensorMcuState.c" />
-    <ClCompile Include="external\gpsParseCommon.c" />
     <ClCompile Include="external\gpsParseUBX.c" />
-    <ClCompile Include="external\mathlibNAV.c" />
     <ClCompile Include="flt2frct.c" />
     <ClCompile Include="frct2flt.c" />
     <ClCompile Include="main.c" />

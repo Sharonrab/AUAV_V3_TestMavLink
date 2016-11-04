@@ -42,7 +42,7 @@ extern "C" {
     extern mavlink_statustext_t mlStatustext;
 
     // Others
-    extern BOOL sendCommandAcknowledgement;
+    extern LOCAL_BOOL sendCommandAcknowledgement;
 
 
     void mavlinkInit(void);

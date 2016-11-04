@@ -148,7 +148,7 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
 
 	 // Initialize the system Status
 	 mlHeartbeatLocal.base_mode = MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
-	 mlHeartbeatLocal.custom_mode = SLUGS_MODE_MID_LEVEL;
+	 mlHeartbeatLocal.custom_mode = SLUGS_MODE_WAYPOINT;
 	 mlHeartbeatLocal.system_status = MAV_STATE_ACTIVE;
 	/* lastNavigationMode = mlHeartbeatLocal.custom_mode;
 	 mlSystemStatus.mode = MAV_MODE_MANUAL;

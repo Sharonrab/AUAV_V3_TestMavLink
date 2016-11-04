@@ -26,12 +26,14 @@
 
 //#include "udbTypes.h"
 //#include "libUDB.h"
-//#include "mavlink.h"
+#include "mavlink.h"
 /* Include model header file for global data */
 #include "AUAV_V3_TestSensors.h"
 #ifdef WIN
 #include <stdint.h>
 #endif
+extern uint8_t Uart4OutBuff[MAVLINK_MAX_PACKET_LEN];
+
 // UDB Types
 struct bb { uint8_t B0; uint8_t B1; };
 struct bbbb { uint8_t B0; uint8_t B1; uint8_t B2; uint8_t B3; };
@@ -79,30 +81,35 @@ uint16_t air_speed_magnitudeXY = 0;
 uint16_t air_speed_3DGPS = 0;
 int8_t calculated_heading;           // takes into account wind velocity
 
-static int8_t cog_previous = 64;
-static int16_t sog_previous = 0;
-static int16_t climb_rate_previous = 0;
-static int16_t location_previous[] = { 0, 0, 0 };
-static uint16_t velocity_previous = 0;
+#define SCALEACCEL      2.64
+
+#define GRAVITY                 ((int32_t)(5280.0/SCALEACCEL))  // gravity in AtoD/2 units
+typedef int16_t fractional;
+
+fractional gplane[] = { 0, 0, GRAVITY };
+int16_t aero_force[] = { 0 , 0 , -GRAVITY };
+//static int8_t cog_previous = 64;
+//static int16_t sog_previous = 0;
+//static int16_t climb_rate_previous = 0;
+//static int16_t location_previous[] = { 0, 0, 0 };
+//static uint16_t velocity_previous = 0;
 
 extern void(*msg_parse)(uint8_t gpschar);
 typedef void(*background_callback)(void);
 
 static void udb_background_callback_triggered(void);
-extern void udb_background_trigger(background_callback callback);
+void udb_background_trigger(background_callback callback);
 
 void gpsoutline(const char* message);
 void gpsoutbin(int16_t length, const uint8_t* msg);
 
 union longbbbb date_gps_, time_gps_;
-typedef int16_t fractional;
 
- fractional gplane[];
- int16_t aero_force[];
- fractional dirOverGndHGPS[];         //  horizontal velocity over ground, as measured by GPS (Vz = 0 )
- fractional dirOverGndHrmat[];        //  horizontal direction over ground, as indicated by Rmatrix
+
+// fractional dirOverGndHGPS[];         //  horizontal velocity over ground, as measured by GPS (Vz = 0 )
+// fractional dirOverGndHrmat[];        //  horizontal direction over ground, as indicated by Rmatrix
  extern mavlink_gps_raw_int_t mlGpsData;
-
+ extern mavlink_servo_output_raw_t mlPwmCommands;
 //#if (GPS_TYPE == GPS_UBX_2HZ || GPS_TYPE == GPS_UBX_4HZ || GPS_TYPE == GPS_ALL)
 
 // Parse the GPS messages, using the binary interface.
@@ -857,6 +864,10 @@ static void msg_MSGU(uint8_t gpschar)
 }
 // If GPS data has not been received for this many state machine cycles, consider the GPS lock to be lost.
 #define GPS_DATA_MAX_AGE    9
+void udb_background_trigger(background_callback callback)
+{
+	if (callback) callback();
+}
 
 static void msg_CS1(uint8_t gpschar)
 {
@@ -973,12 +984,7 @@ void HILSIM_saturate( uint16_t size , int16_t vector[3] )
 	}	
 }
 // gravity, as measured in plane coordinate system
-#define SCALEACCEL      2.64
 
-#define GRAVITY                 ((int32_t)(5280.0/SCALEACCEL))  // gravity in AtoD/2 units
-
-fractional gplane[] = { 0, 0, GRAVITY };
-int16_t aero_force[] = { 0 , 0 , -GRAVITY };
 
 void HILSIM_set_gplane(void)
 {
@@ -1006,9 +1012,10 @@ void HILSIM_set_gplane(void)
 extern fractional omegagyro[];
 
 #else
-fractional omegagyro[];
+fractional omegagyro[] = { 0, 0, 0 };
 
 #endif
+
 void HILSIM_set_omegagyro(void)
 {
 	omegagyro[0] = p_sim.BB;
@@ -1037,12 +1044,20 @@ void init_gps_ubx(void)
 
 void gpsoutbin(int16_t length, const uint8_t msg[]) // output a binary message to the GPS
 {
+    uint8_t i;
 	gps_out_buffer = 0; // clear the buffer pointer first, for safety, in case we're interrupted
 	gps_out_index = 0;
 	gps_out_buffer_length = length;
 	gps_out_buffer = (uint8_t*)msg;
 
-	udb_gps_start_sending_data();
+#ifdef WIN
+    	udb_gps_start_sending_data();
+#else
+         for (i = 0U; i < length; i++) {
+             Uart4OutBuff[i] = msg[i];
+	}
+        
+#endif
 }
 
 void gpsoutline(const char *message) // output one NMEA line to the GPS
@@ -1092,18 +1107,18 @@ boolean gps_nav_capable_check_set(void)
 
 static void udb_background_callback_triggered(void)
 {
-	union longbbbb accum;
-	union longww accum_velocity;
-	union longww longaccum;
-	int8_t cog_circular;
-	int8_t cog_delta;
-	int16_t sog_delta;
-	int16_t climb_rate_delta;
+//	union longbbbb accum;
+//	union longww accum_velocity;
+//	union longww longaccum;
+//	int8_t cog_circular;
+//	int8_t cog_delta;
+//	int16_t sog_delta;
+//	int16_t climb_rate_delta;
 //#ifdef USE_EXTENDED_NAV
 //	int32_t location[3];
 //#else
-	int16_t location[3];
-	union longbbbb accum_nav;
+//	int16_t location[3];
+//	union longbbbb accum_nav;
 //#endif // USE_EXTENDED_NAV
 	/*int16_t location_deltaZ;
 	struct relative2D location_deltaXY;
@@ -1259,4 +1274,63 @@ static void udb_background_callback_triggered(void)
 		//dcm_flags._.gps_history_valid = 0;  // gps history has to be restarted
 		gps_update_basic_data();            // update svs
 	}
+}
+#define CHANNEL_1               1
+#define CHANNEL_2               2
+#define CHANNEL_3               3
+#define CHANNEL_4               4
+#define CHANNEL_5               5
+#define THROTTLE_OUTPUT_CHANNEL             CHANNEL_3
+#define AILERON_OUTPUT_CHANNEL              CHANNEL_1
+#define ELEVATOR_OUTPUT_CHANNEL             CHANNEL_2
+#define RUDDER_OUTPUT_CHANNEL               CHANNEL_4
+#define NUM_OUTPUTS                         4
+#define HILSIM_NUM_SERVOS 8
+#define MAX_OUTPUTS     8
+uint8_t SIMservoOutputs[] = {
+	0xFF, 0xEE, //sync
+	0x03, 0x04, //S1
+	0x05, 0x06, //S2
+	0x07, 0x08, //S3
+	0x09, 0x0A, //S4
+	0x0B, 0x0C, //S5
+	0x0D, 0x0E, //S6
+	0x0F, 0x10, //S7
+	0x11, 0x12, //S8
+	0x13, 0x14  //checksum
+};
+uint16_t send_HILSIM_outputs(void)
+{
+	// Setup outputs for HILSIM
+	int16_t i;
+	uint8_t CK_A = 0;
+	uint8_t CK_B = 0;
+	union intbb TempBB;
+    
+    int16_t udb_pwOut[MAX_OUTPUTS]; // pulse widths for servo outputs
+
+	udb_pwOut[AILERON_OUTPUT_CHANNEL] = mlPwmCommands.servo2_raw *10 ;//
+	udb_pwOut[THROTTLE_OUTPUT_CHANNEL] = mlPwmCommands.servo1_raw * 10;//
+	udb_pwOut[RUDDER_OUTPUT_CHANNEL] = mlPwmCommands.servo3_raw * 10;//
+	udb_pwOut[ELEVATOR_OUTPUT_CHANNEL] = mlPwmCommands.servo4_raw * 10 ;//
+	for (i = 1; i <= NUM_OUTPUTS; i++)
+	{
+		
+		TempBB.BB = udb_pwOut[i];
+		SIMservoOutputs[2 * i] = TempBB._.B1;
+		SIMservoOutputs[(2 * i) + 1] = TempBB._.B0;
+	}
+
+	for (i = 2; i < HILSIM_NUM_SERVOS * 2 + 2; i++)
+	{
+		CK_A += SIMservoOutputs[i];
+		CK_B += CK_A;
+	}
+	SIMservoOutputs[i] = CK_A;
+	SIMservoOutputs[i + 1] = CK_B;
+
+	// Send HILSIM outputs
+	gpsoutbin(HILSIM_NUM_SERVOS * 2 + 4, SIMservoOutputs);
+
+    return HILSIM_NUM_SERVOS * 2 + 4;
 }
