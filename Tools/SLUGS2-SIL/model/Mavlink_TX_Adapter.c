@@ -1,29 +1,18 @@
-/*--------------------------------------------------------------
- *   MPLAB Blockset v3.35 for Microchip dsPIC chip family.     *
- *   Generate .c and .h files from Simulink model              *
- *   and compile to .elf, .hex and .cof file that can be       *
- *   flashed into the microcontroller                          *
- *                                                             *
- *      The Microchip name PIC, dsPIC, and MPLAB are           *
- *      registered trademarks of Microchip Technology Inc.     *
- *      MATLAB, Simulink, and Real-Time Workshop are           *
- *      registered trademarks of The MathWorks, Inc.           *
- *                                                             *
- *  Blockset authors: L.Kerhuel, U.Kumar                       *
- *  Product Page:  http://www.microchip.com/SimulinkBlocks     *
- *          Forum: http://www.microchip.com/forums/f192.aspx   *
- *          Wiki:  http://microchip.wikidot.com/simulink:start *
- *--------------------------------------------------------------
+/*
+ * -------------------------------------------------------------------
+ * MPLAB 16-Bit Device Blocks for Simulink v3.38.
  *
+ *   Product Page:  http://www.microchip.com/SimulinkBlocks
+ *           Forum: http://www.microchip.com/forums/f192.aspx
+ *           Wiki:  http://microchip.wikidot.com/simulink:start
+ * -------------------------------------------------------------------
  * File: Mavlink_TX_Adapter.c
  *
- * Real-Time Workshop code generated for Simulink model AUAV_V3_TestSensors.
+ * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                        : 1.221
- * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Sun Oct 09 00:06:23 2016
- * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Sun Oct 09 00:06:26 2016
+ * Model version                  : 1.241
+ * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
+ * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
  */
 
 #include "Mavlink_TX_Adapter.h"
@@ -73,7 +62,7 @@ void AUAV_V3_Mavlink_TX_AdapterTID0(void)
    *  Gain: '<S8>/Gain2'
    *  Sum: '<S8>/Sum1'
    */
-  tmp = (int16_T)fmod((int16_T)floor(((real_T)mlPwmCommands.servo1_raw - 189) *
+  tmp = (int16_T)fmod((int16_T)floor(((real_T)mlPwmCommands.servo1_raw - 189.0) *
     0.47), 65536.0);
 
   /* DataStoreWrite: '<S8>/Set VfrHud' incorporates:
@@ -84,10 +73,12 @@ void AUAV_V3_Mavlink_TX_AdapterTID0(void)
 
   /* RateTransition: '<S8>/RawIMU Rate Transition' incorporates:
    *  RateTransition: '<S8>/Attitude Rate Transition'
+   *  RateTransition: '<S8>/Attitude Rate Transition1'
    */
   if (AUAV_V3_TestSensors_M->Timing.RateInteraction.TID0_2 == 1) {
     AUAV_V3_TestSensors_B.RawIMURateTransition = mlRawImuData;
     AUAV_V3_TestSensors_B.AttitudeRateTransition = mlAttitudeSol;
+    AUAV_V3_TestSensors_B.AttitudeRateTransition1 = mlNavigation;
   }
 
   /* End of RateTransition: '<S8>/RawIMU Rate Transition' */
@@ -136,17 +127,22 @@ void AUAV_V3_Mavlink_TX_AdapterTID2(void)
                   AUAV_V3_TestSensors_B.PackAttitude
                   );
 
-  AUAV_V3_TestSensors_B.PackNavigation = PackRawNavigation(
-	  ((uint8_T)101U)
-	  , ((uint8_T)1U)
-	  , mlNavigation
-	  , AUAV_V3_TestSensors_B.Gettime6
-  );
+  /* DataStoreRead: '<S8>/Get time7' */
+  AUAV_V3_TestSensors_B.Gettime7 =
+    AUAV_V3_TestSensors_DWork.time_since_boot_usec;
 
-  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data10' */
+  /* S-Function (MCHP_C_function_Call): '<S8>/Pack Navigation' */
+  AUAV_V3_TestSensors_B.PackNavigation = PackRawNavigation(
+    ((uint8_T)101U)
+    , ((uint8_T)1U)
+    , AUAV_V3_TestSensors_B.AttitudeRateTransition1
+    , AUAV_V3_TestSensors_B.Gettime7
+    );
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data11' */
   TxN_Data_OverU1(
-	  AUAV_V3_TestSensors_B.PackNavigation
-  );
+                  AUAV_V3_TestSensors_B.PackNavigation
+                  );
 }
 
 /* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
@@ -322,7 +318,8 @@ void AUAV_V3_Mavlink_TX_AdapterTID10(void)
                   );
 }
 
-/* File trailer for Real-Time Workshop generated code.
+/*
+ * File trailer for generated code.
  *
  * [EOF]
  */

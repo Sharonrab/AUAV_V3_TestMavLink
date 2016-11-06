@@ -3,6 +3,9 @@
 #include "circBuffer.h"
 #include <rtwtypes.h>
 #include "inttypes.h"
+#ifdef WIN //SLUGS2 SIL
+#define inline __inline
+#endif
 #include "mavlink.h"
 
 

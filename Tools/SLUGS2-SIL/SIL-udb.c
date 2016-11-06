@@ -47,32 +47,32 @@ union dcm_fbts_word dcm_flags;
 fractional omegagyro[] = { 0, 0, 0 };
 static fractional omega[] = { 0, 0, 0 };
 
-#if (HILSIM == 1)
-#if (USE_VARIABLE_HILSIM_CHANNELS != 1)
-uint8_t SIMservoOutputs[] = {
-	0xFF, 0xEE, //sync
-	0x03, 0x04, //S1
-	0x05, 0x06, //S2
-	0x07, 0x08, //S3
-	0x09, 0x0A, //S4
-	0x0B, 0x0C, //S5
-	0x0D, 0x0E, //S6
-	0x0F, 0x10, //S7
-	0x11, 0x12, //S8
-	0x13, 0x14  //checksum
-};
-#define HILSIM_NUM_SERVOS 8
-#else
-#define HILSIM_NUM_SERVOS NUM_OUTPUTS
-uint8_t SIMservoOutputs[(NUM_OUTPUTS * 2) + 5] = {
-	0xFE, 0xEF, // sync
-	0x00        // output count
-				// Two checksum on the end
-};
-#endif // USE_VARIABLE_HILSIM_CHANNELS
-
-void send_HILSIM_outputs(void);
-#endif // HILSIM
+//#if (HILSIM == 1)
+//#if (USE_VARIABLE_HILSIM_CHANNELS != 1)
+//uint8_t SIMservoOutputs[] = {
+//	0xFF, 0xEE, //sync
+//	0x03, 0x04, //S1
+//	0x05, 0x06, //S2
+//	0x07, 0x08, //S3
+//	0x09, 0x0A, //S4
+//	0x0B, 0x0C, //S5
+//	0x0D, 0x0E, //S6
+//	0x0F, 0x10, //S7
+//	0x11, 0x12, //S8
+//	0x13, 0x14  //checksum
+//};
+//#define HILSIM_NUM_SERVOS 8
+//#else
+//#define HILSIM_NUM_SERVOS NUM_OUTPUTS
+//uint8_t SIMservoOutputs[(NUM_OUTPUTS * 2) + 5] = {
+//	0xFE, 0xEF, // sync
+//	0x00        // output count
+//				// Two checksum on the end
+//};
+//#endif // USE_VARIABLE_HILSIM_CHANNELS
+//
+//void send_HILSIM_outputs(void);
+//#endif // HILSIM
 
 struct timezone
 {
@@ -285,7 +285,7 @@ void udb_run(void)
 			
 
 			
-			udb_callback_read_sensors();
+			//udb_callback_read_sensors();
 
 			udb_flags._.radio_on = (sil_radio_on && 
 			    udb_pwIn[FAILSAFE_INPUT_CHANNEL] >= FAILSAFE_INPUT_MIN && 
@@ -297,7 +297,7 @@ void udb_run(void)
 			//udb_heartbeat_callback(); // Run at HEARTBEAT_HZ
 			_T2Interrupt();
 #if (HILSIM == 1)
-			send_HILSIM_outputs();
+			//send_HILSIM_outputs();
 #endif
 			sil_ui_update();
 			mlPilotConsoleData.chan3_raw = (udb_pwIn[THROTTLE_INPUT_CHANNEL]);// -1886.0) / 1484.0;
@@ -357,70 +357,70 @@ void udb_run(void)
 }
 
 
-#if (HILSIM == 1)
-
-void send_HILSIM_outputs(void)
-{
-	// Setup outputs for HILSIM
-	int16_t i;
-	uint8_t CK_A = 0;
-	uint8_t CK_B = 0;
-	union intbb TempBB;
-
-#if (USE_VARIABLE_HILSIM_CHANNELS != 1)
-	udb_pwOut[AILERON_OUTPUT_CHANNEL] = mlPwmCommands.servo2_raw *10 ;//
-	udb_pwOut[THROTTLE_OUTPUT_CHANNEL] = mlPwmCommands.servo1_raw * 10;//
-	udb_pwOut[RUDDER_OUTPUT_CHANNEL] = mlPwmCommands.servo3_raw * 10;//
-	udb_pwOut[ELEVATOR_OUTPUT_CHANNEL] = mlPwmCommands.servo4_raw * 10 ;//
-	for (i = 1; i <= NUM_OUTPUTS; i++)
-	{
-		
-		TempBB.BB = udb_pwOut[i];
-		SIMservoOutputs[2 * i] = TempBB._.B1;
-		SIMservoOutputs[(2 * i) + 1] = TempBB._.B0;
-	}
-
-	for (i = 2; i < HILSIM_NUM_SERVOS * 2 + 2; i++)
-	{
-		CK_A += SIMservoOutputs[i];
-		CK_B += CK_A;
-	}
-	SIMservoOutputs[i] = CK_A;
-	SIMservoOutputs[i + 1] = CK_B;
-
-	// Send HILSIM outputs
-	gpsoutbin(HILSIM_NUM_SERVOS * 2 + 4, SIMservoOutputs);
-#else
-	for (i = 1; i <= NUM_OUTPUTS; i++)
-	{
-		TempBB.BB = udb_pwOut[i];
-		SIMservoOutputs[(2 * i) + 1] = TempBB._.B1;
-		SIMservoOutputs[(2 * i) + 2] = TempBB._.B0;
-	}
-
-	SIMservoOutputs[2] = NUM_OUTPUTS;
-
-	// Calcualte checksum
-	for (i = 3; i < (NUM_OUTPUTS * 2) + 3; i++)
-	{
-		CK_A += SIMservoOutputs[i];
-		CK_B += CK_A;
-	}
-	SIMservoOutputs[i] = CK_A;
-	SIMservoOutputs[i + 1] = CK_B;
-
-	// Send HILSIM outputs
-	gpsoutbin((HILSIM_NUM_SERVOS * 2) + 5, SIMservoOutputs);
-#endif // USE_VARIABLE_HILSIM_CHANNELS
-}
-
-#endif // HILSIM
-
-
-void udb_background_trigger(background_callback callback)
-{
-	if (callback) callback();
-}
+//#if (HILSIM == 1)
+//
+//void send_HILSIM_outputs(void)
+//{
+//	// Setup outputs for HILSIM
+//	int16_t i;
+//	uint8_t CK_A = 0;
+//	uint8_t CK_B = 0;
+//	union intbb TempBB;
+//
+//#if (USE_VARIABLE_HILSIM_CHANNELS != 1)
+//	udb_pwOut[AILERON_OUTPUT_CHANNEL] = (mlPwmCommands.servo2_raw) * 10;//  + mlPwmCommands.servo6_raw / 2) * 5 ;//
+//	udb_pwOut[THROTTLE_OUTPUT_CHANNEL] = (mlPwmCommands.servo1_raw) * 10;// + mlPwmCommands.servo5_raw / 2) * 5;//
+//	udb_pwOut[RUDDER_OUTPUT_CHANNEL] = (mlPwmCommands.servo3_raw) * 10;// + mlPwmCommands.servo7_raw / 2) * 5;//
+//	udb_pwOut[ELEVATOR_OUTPUT_CHANNEL] = (mlPwmCommands.servo4_raw) * 10;// + mlPwmCommands.servo8_raw / 2) * 5 ;//
+//	for (i = 1; i <= NUM_OUTPUTS; i++)
+//	{
+//		
+//		TempBB.BB = udb_pwOut[i];
+//		SIMservoOutputs[2 * i] = TempBB._.B1;
+//		SIMservoOutputs[(2 * i) + 1] = TempBB._.B0;
+//	}
+//
+//	for (i = 2; i < HILSIM_NUM_SERVOS * 2 + 2; i++)
+//	{
+//		CK_A += SIMservoOutputs[i];
+//		CK_B += CK_A;
+//	}
+//	SIMservoOutputs[i] = CK_A;
+//	SIMservoOutputs[i + 1] = CK_B;
+//
+//	// Send HILSIM outputs
+//	gpsoutbin(HILSIM_NUM_SERVOS * 2 + 4, SIMservoOutputs);
+//#else
+//	for (i = 1; i <= NUM_OUTPUTS; i++)
+//	{
+//		TempBB.BB = udb_pwOut[i];
+//		SIMservoOutputs[(2 * i) + 1] = TempBB._.B1;
+//		SIMservoOutputs[(2 * i) + 2] = TempBB._.B0;
+//	}
+//
+//	SIMservoOutputs[2] = NUM_OUTPUTS;
+//
+//	// Calcualte checksum
+//	for (i = 3; i < (NUM_OUTPUTS * 2) + 3; i++)
+//	{
+//		CK_A += SIMservoOutputs[i];
+//		CK_B += CK_A;
+//	}
+//	SIMservoOutputs[i] = CK_A;
+//	SIMservoOutputs[i + 1] = CK_B;
+//
+//	// Send HILSIM outputs
+//	gpsoutbin((HILSIM_NUM_SERVOS * 2) + 5, SIMservoOutputs);
+//#endif // USE_VARIABLE_HILSIM_CHANNELS
+//}
+//
+//#endif // HILSIM
+//
+//
+//void udb_background_trigger(background_callback callback)
+//{
+//	if (callback) callback();
+//}
 
 uint8_t udb_cpu_load(void)
 {
@@ -606,26 +606,26 @@ boolean handleUDBSockets(void)
 	return didRead;
 }
 
-void udb_callback_read_sensors(void)
-{
-	float T, p, r, h,v;
-	//read_gyros(); // record the average values for both DCM and for offset measurements
-	//read_accel();
-	HILSIM_set_gplane();
-	HILSIM_set_omegagyro();
-	h = mlGpsData.alt / 1000;
-	T = 15.04 - .00649 * h;
-	p = 101.29 *myPow((T + 273.1) / 288.08,5.256) * 1000; //pascal
-	r = p / (.2869 * (T + 273.1)) /1000;//kg/m^3
-	v = mlGpsData.vel / 100;
-
-	mlRawPressureData.press_abs = (p ) / 27.1270 ; //convert to static pressure in Pascal / baroScale
-	mlRawPressureData.press_diff1 = (1 / 2 * r * myPow(v, 2) +1005.9) / 1.0514 ;//pitotScale
-	mlRawPressureData.temperature = (T + 1605.3) / 1.5113;
-	mlAirData.press_diff = ( r * myPow(v, 2))/2 / 100;//hectopascal (1 hPa = 100 Pa)
-	mlAirData.press_abs = (p ) / 100;//hectopascal (1 hPa = 100 Pa)
-	mlAirData.temperature = T*100;//0.01 degrees celsius
-}
+//void udb_callback_read_sensors(void)
+//{
+//	float T, p, r, h,v;
+//	//read_gyros(); // record the average values for both DCM and for offset measurements
+//	//read_accel();
+//	HILSIM_set_gplane();
+//	HILSIM_set_omegagyro();
+//	h = mlGpsData.alt / 1000;
+//	T = 15.04 - .00649 * h;
+//	p = 101.29 *myPow((T + 273.1) / 288.08,5.256) * 1000; //pascal
+//	r = p / (.2869 * (T + 273.1)) /1000;//kg/m^3
+//	v = mlGpsData.vel / 100;
+//
+//	mlRawPressureData.press_abs = (p ) / 27.1270 ; //convert to static pressure in Pascal / baroScale
+//	mlRawPressureData.press_diff1 = (1 / 2 * r * myPow(v, 2) +1005.9) / 1.0514 ;//pitotScale
+//	mlRawPressureData.temperature = (T + 1605.3) / 1.5113;
+//	mlAirData.press_diff = ( r * myPow(v, 2))/2 / 100;//hectopascal (1 hPa = 100 Pa)
+//	mlAirData.press_abs = (p ) / 100;//hectopascal (1 hPa = 100 Pa)
+//	mlAirData.temperature = T*100;//0.01 degrees celsius
+//}
 
 #if (MAG_YAW_DRIFT == 1)
 

@@ -144,7 +144,7 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
     // Populate default mid-level commands
     mlMidLevelCommands.hCommand = 120.0f; // altitude (m)
     mlMidLevelCommands.uCommand = 16.0f; // airspeed (m/s)
-    mlMidLevelCommands.rCommand = 0.2f; // turn rate (radians/s)
+    mlMidLevelCommands.rCommand = 0.0f; // turn rate (radians/s)
 
 	 // Initialize the system Status
 	 mlHeartbeatLocal.base_mode = MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;

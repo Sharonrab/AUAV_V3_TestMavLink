@@ -4,7 +4,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#ifdef SLUGS2
+#ifdef WIN //SLUGS2 SIL
 #define inline __inline
 #endif
 #include "MavlinkComm.h"

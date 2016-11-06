@@ -1,29 +1,18 @@
-/*--------------------------------------------------------------
- *   MPLAB Blockset v3.35 for Microchip dsPIC chip family.     *
- *   Generate .c and .h files from Simulink model              *
- *   and compile to .elf, .hex and .cof file that can be       *
- *   flashed into the microcontroller                          *
- *                                                             *
- *      The Microchip name PIC, dsPIC, and MPLAB are           *
- *      registered trademarks of Microchip Technology Inc.     *
- *      MATLAB, Simulink, and Real-Time Workshop are           *
- *      registered trademarks of The MathWorks, Inc.           *
- *                                                             *
- *  Blockset authors: L.Kerhuel, U.Kumar                       *
- *  Product Page:  http://www.microchip.com/SimulinkBlocks     *
- *          Forum: http://www.microchip.com/forums/f192.aspx   *
- *          Wiki:  http://microchip.wikidot.com/simulink:start *
- *--------------------------------------------------------------
+/*
+ * -------------------------------------------------------------------
+ * MPLAB 16-Bit Device Blocks for Simulink v3.38.
  *
+ *   Product Page:  http://www.microchip.com/SimulinkBlocks
+ *           Forum: http://www.microchip.com/forums/f192.aspx
+ *           Wiki:  http://microchip.wikidot.com/simulink:start
+ * -------------------------------------------------------------------
  * File: AUAV_V3_TestSensors.c
  *
- * Real-Time Workshop code generated for Simulink model AUAV_V3_TestSensors.
+ * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                        : 1.223
- * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Wed Oct 12 11:23:18 2016
- * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Wed Oct 12 11:23:23 2016
+ * Model version                  : 1.241
+ * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
+ * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
  */
 
 #include "AUAV_V3_TestSensors.h"
@@ -836,11 +825,11 @@ void AUAV_V3_TestSe_negprotect3(real32_T rtu_val,
 
 /*
  * Initial conditions for atomic system:
- *    '<S650>/Buffer IC Channel'
- *    '<S650>/Buffer IC Channel1'
- *    '<S650>/Buffer IC Channel2'
- *    '<S650>/Buffer IC Channel3'
- *    '<S655>/Buffer Failsafe Channel'
+ *    '<S655>/Buffer IC Channel'
+ *    '<S655>/Buffer IC Channel1'
+ *    '<S655>/Buffer IC Channel2'
+ *    '<S655>/Buffer IC Channel3'
+ *    '<S660>/Buffer Failsafe Channel'
  */
 void AUAV__BufferICChannel_Init(rtDW_BufferICChannel_AUAV_V3__T *localDW)
 {
@@ -852,11 +841,11 @@ void AUAV__BufferICChannel_Init(rtDW_BufferICChannel_AUAV_V3__T *localDW)
 
 /*
  * Output and update for atomic system:
- *    '<S650>/Buffer IC Channel'
- *    '<S650>/Buffer IC Channel1'
- *    '<S650>/Buffer IC Channel2'
- *    '<S650>/Buffer IC Channel3'
- *    '<S655>/Buffer Failsafe Channel'
+ *    '<S655>/Buffer IC Channel'
+ *    '<S655>/Buffer IC Channel1'
+ *    '<S655>/Buffer IC Channel2'
+ *    '<S655>/Buffer IC Channel3'
+ *    '<S660>/Buffer Failsafe Channel'
  */
 void AUAV_V3_Te_BufferICChannel(uint16_T rtu_latest,
   rtB_BufferICChannel_AUAV_V3_T_T *localB, rtDW_BufferICChannel_AUAV_V3__T
@@ -864,45 +853,45 @@ void AUAV_V3_Te_BufferICChannel(uint16_T rtu_latest,
 {
   int16_T i;
 
-  /* MATLAB Function 'Trim Vals [updated 4.28.16]/Bufffer IC/Buffer IC Channel': '<S656>:1' */
+  /* MATLAB Function 'Trim Vals [updated 4.28.16]/Bufffer IC/Buffer IC Channel': '<S661>:1' */
   /*  This block supports an embeddable subset of the MATLAB language. */
   /*  See the help menu for details.  */
-  /* '<S656>:1:11' */
+  /* '<S661>:1:11' */
   for (i = 0; i < 7; i++) {
     localB->history[i] = 0U;
   }
 
-  /* '<S656>:1:13' */
+  /* '<S661>:1:13' */
   for (i = 0; i < 6; i++) {
-    /* '<S656>:1:13' */
-    /* '<S656>:1:14' */
+    /* '<S661>:1:13' */
+    /* '<S661>:1:14' */
     localDW->oldValues[6 - i] = localDW->oldValues[5 - i];
 
-    /* '<S656>:1:15' */
+    /* '<S661>:1:15' */
     localB->history[6 - i] = localDW->oldValues[5 - i];
 
-    /* '<S656>:1:13' */
+    /* '<S661>:1:13' */
   }
 
-  /* '<S656>:1:18' */
+  /* '<S661>:1:18' */
   localDW->oldValues[0] = rtu_latest;
 
-  /* '<S656>:1:19' */
+  /* '<S661>:1:19' */
   localB->history[0] = rtu_latest;
 }
 
 /*
  * Output and update for atomic system:
- *    '<S682>/myMux Fun1'
- *    '<S681>/myMux Fun1'
+ *    '<S688>/myMux Fun1'
+ *    '<S687>/myMux Fun1'
  */
 void AUAV_V3_TestSe_myMuxFun1_d(uint16_T rtu_u1, uint16_T rtu_u2, uint16_T
   rtu_u3, uint16_T rtu_u4, uint16_T rty_y[4])
 {
-  /* MATLAB Function 'Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds/myMux Fun1': '<S692>:1' */
+  /* MATLAB Function 'Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds/myMux Fun1': '<S698>:1' */
   /*  This block supports an embeddable subset of the MATLAB language. */
   /*  See the help menu for details.  */
-  /* '<S692>:1:5' */
+  /* '<S698>:1:5' */
   rty_y[0] = rtu_u1;
   rty_y[1] = rtu_u2;
   rty_y[2] = rtu_u3;
@@ -1001,14 +990,14 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     AUAV_V3_TestSensors_M->Timing.RateInteraction.TID0_3 = 0;
   }
 
-  /* Gain: '<S693>/Unit Conversion' incorporates:
+  /* Gain: '<S699>/Unit Conversion' incorporates:
    *  DataStoreRead: '<S21>/PAR_CONFIG_ROLL_R PAR_CONFIG_PITCH_R PAR_CONFIG_YAW_R'
    */
   rtb_Product3_j0[0] = 0.0174532924F * mlParamInterface.param[15L];
   rtb_Product3_j0[1] = 0.0174532924F * mlParamInterface.param[16L];
   rtb_Product3_j0[2] = 0.0174532924F * mlParamInterface.param[17L];
 
-  /* Trigonometry: '<S696>/SinCos' */
+  /* Trigonometry: '<S702>/SinCos' */
   rtb_Product2_c[0] = (real32_T)cos(rtb_Product3_j0[0]);
   rtb_Product3_j0[0] = (real32_T)sin(rtb_Product3_j0[0]);
   rtb_Product2_c[1] = (real32_T)cos(rtb_Product3_j0[1]);
@@ -1016,53 +1005,53 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   rtb_RhhcosphisinlambYe = (real32_T)cos(rtb_Product3_j0[2]);
   rtb_Sum1_mzp = (real32_T)sin(rtb_Product3_j0[2]);
 
-  /* Product: '<S703>/u(5)*u(6)' incorporates:
-   *  Trigonometry: '<S696>/SinCos'
+  /* Product: '<S709>/u(5)*u(6)' incorporates:
+   *  Trigonometry: '<S702>/SinCos'
    */
   rtb_VectorConcatenate[0] = rtb_Product2_c[1] * rtb_RhhcosphisinlambYe;
 
-  /* Sum: '<S706>/Sum' incorporates:
-   *  Product: '<S706>/u(3)*u(4)'
-   *  Product: '<S706>/u(6)*u(1)*u(2)'
-   *  Trigonometry: '<S696>/SinCos'
+  /* Sum: '<S712>/Sum' incorporates:
+   *  Product: '<S712>/u(3)*u(4)'
+   *  Product: '<S712>/u(6)*u(1)*u(2)'
+   *  Trigonometry: '<S702>/SinCos'
    */
   rtb_VectorConcatenate[1] = rtb_RhhcosphisinlambYe * rtb_Product3_j0[0] *
     rtb_Product3_j0[1] - rtb_Sum1_mzp * rtb_Product2_c[0];
 
-  /* Sum: '<S709>/Sum' incorporates:
-   *  Product: '<S709>/u(1)*u(3)'
-   *  Product: '<S709>/u(2)*u(4)*u(6)'
-   *  Trigonometry: '<S696>/SinCos'
+  /* Sum: '<S715>/Sum' incorporates:
+   *  Product: '<S715>/u(1)*u(3)'
+   *  Product: '<S715>/u(2)*u(4)*u(6)'
+   *  Trigonometry: '<S702>/SinCos'
    */
   rtb_VectorConcatenate[2] = rtb_Product3_j0[1] * rtb_Product2_c[0] *
     rtb_RhhcosphisinlambYe + rtb_Product3_j0[0] * rtb_Sum1_mzp;
 
-  /* Product: '<S704>/u(3)*u(5)' */
+  /* Product: '<S710>/u(3)*u(5)' */
   rtb_VectorConcatenate[3] = rtb_Sum1_mzp * rtb_Product2_c[1];
 
-  /* Sum: '<S707>/Sum' incorporates:
-   *  Product: '<S707>/u(1)*u(2)*u(3)'
-   *  Product: '<S707>/u(4)*u(6)'
-   *  Trigonometry: '<S696>/SinCos'
+  /* Sum: '<S713>/Sum' incorporates:
+   *  Product: '<S713>/u(1)*u(2)*u(3)'
+   *  Product: '<S713>/u(4)*u(6)'
+   *  Trigonometry: '<S702>/SinCos'
    */
   rtb_VectorConcatenate[4] = rtb_Product3_j0[0] * rtb_Product3_j0[1] *
     rtb_Sum1_mzp + rtb_Product2_c[0] * rtb_RhhcosphisinlambYe;
 
-  /* Sum: '<S710>/Sum' incorporates:
-   *  Product: '<S710>/u(1)*u(6)'
-   *  Product: '<S710>/u(2)*u(3)*u(4)'
-   *  Trigonometry: '<S696>/SinCos'
+  /* Sum: '<S716>/Sum' incorporates:
+   *  Product: '<S716>/u(1)*u(6)'
+   *  Product: '<S716>/u(2)*u(3)*u(4)'
+   *  Trigonometry: '<S702>/SinCos'
    */
   rtb_VectorConcatenate[5] = rtb_Product3_j0[1] * rtb_Sum1_mzp * rtb_Product2_c
     [0] - rtb_RhhcosphisinlambYe * rtb_Product3_j0[0];
 
-  /* Gain: '<S705>/Gain2' */
+  /* Gain: '<S711>/Gain2' */
   rtb_VectorConcatenate[6] = -rtb_Product3_j0[1];
 
-  /* Product: '<S708>/u(1)*u(3)' */
+  /* Product: '<S714>/u(1)*u(3)' */
   rtb_VectorConcatenate[7] = rtb_Product3_j0[0] * rtb_Product2_c[1];
 
-  /* Product: '<S711>/u(4)*u(5)' */
+  /* Product: '<S717>/u(4)*u(5)' */
   rtb_VectorConcatenate[8] = rtb_Product2_c[0] * rtb_Product2_c[1];
 
   /* Math: '<S21>/Math Function' */
@@ -1104,7 +1093,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   AUAV_V3_TestSensors_B.y_k[4] = AUAV_V3_TestSensors_B.GyroErr[1];
   AUAV_V3_TestSensors_B.y_k[5] = AUAV_V3_TestSensors_B.GyroErr[2];
 
-  /* Trigonometry: '<S697>/SinCos' */
+  /* Trigonometry: '<S703>/SinCos' */
   rtb_Product2_c[0] = (real32_T)sin(AUAV_V3_TestSensors_B.y_k[0]);
   rtb_Product3_j0[0] = (real32_T)cos(AUAV_V3_TestSensors_B.y_k[0]);
   rtb_Product2_c[1] = (real32_T)sin(AUAV_V3_TestSensors_B.y_k[1]);
@@ -1112,47 +1101,47 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   rtb_Product2_c[2] = (real32_T)sin(AUAV_V3_TestSensors_B.y_k[2]);
   rtb_Product3_j0[2] = (real32_T)cos(AUAV_V3_TestSensors_B.y_k[2]);
 
-  /* Product: '<S713>/u(5)*u(6)' */
+  /* Product: '<S719>/u(5)*u(6)' */
   rtb_VectorConcatenate_m[0] = rtb_Product3_j0[1] * rtb_Product3_j0[2];
 
-  /* Sum: '<S716>/Sum' incorporates:
-   *  Product: '<S716>/u(3)*u(4)'
-   *  Product: '<S716>/u(6)*u(1)*u(2)'
+  /* Sum: '<S722>/Sum' incorporates:
+   *  Product: '<S722>/u(3)*u(4)'
+   *  Product: '<S722>/u(6)*u(1)*u(2)'
    */
   rtb_VectorConcatenate_m[1] = rtb_Product3_j0[2] * rtb_Product2_c[0] *
     rtb_Product2_c[1] - rtb_Product2_c[2] * rtb_Product3_j0[0];
 
-  /* Sum: '<S719>/Sum' incorporates:
-   *  Product: '<S719>/u(1)*u(3)'
-   *  Product: '<S719>/u(2)*u(4)*u(6)'
+  /* Sum: '<S725>/Sum' incorporates:
+   *  Product: '<S725>/u(1)*u(3)'
+   *  Product: '<S725>/u(2)*u(4)*u(6)'
    */
   rtb_VectorConcatenate_m[2] = rtb_Product2_c[1] * rtb_Product3_j0[0] *
     rtb_Product3_j0[2] + rtb_Product2_c[0] * rtb_Product2_c[2];
 
-  /* Product: '<S714>/u(3)*u(5)' */
+  /* Product: '<S720>/u(3)*u(5)' */
   rtb_VectorConcatenate_m[3] = rtb_Product2_c[2] * rtb_Product3_j0[1];
 
-  /* Sum: '<S717>/Sum' incorporates:
-   *  Product: '<S717>/u(1)*u(2)*u(3)'
-   *  Product: '<S717>/u(4)*u(6)'
+  /* Sum: '<S723>/Sum' incorporates:
+   *  Product: '<S723>/u(1)*u(2)*u(3)'
+   *  Product: '<S723>/u(4)*u(6)'
    */
   rtb_VectorConcatenate_m[4] = rtb_Product2_c[0] * rtb_Product2_c[1] *
     rtb_Product2_c[2] + rtb_Product3_j0[0] * rtb_Product3_j0[2];
 
-  /* Sum: '<S720>/Sum' incorporates:
-   *  Product: '<S720>/u(1)*u(6)'
-   *  Product: '<S720>/u(2)*u(3)*u(4)'
+  /* Sum: '<S726>/Sum' incorporates:
+   *  Product: '<S726>/u(1)*u(6)'
+   *  Product: '<S726>/u(2)*u(3)*u(4)'
    */
   rtb_VectorConcatenate_m[5] = rtb_Product2_c[1] * rtb_Product2_c[2] *
     rtb_Product3_j0[0] - rtb_Product3_j0[2] * rtb_Product2_c[0];
 
-  /* Gain: '<S715>/Gain2' */
+  /* Gain: '<S721>/Gain2' */
   rtb_VectorConcatenate_m[6] = -rtb_Product2_c[1];
 
-  /* Product: '<S718>/u(1)*u(3)' */
+  /* Product: '<S724>/u(1)*u(3)' */
   rtb_VectorConcatenate_m[7] = rtb_Product2_c[0] * rtb_Product3_j0[1];
 
-  /* Product: '<S721>/u(4)*u(5)' */
+  /* Product: '<S727>/u(4)*u(5)' */
   rtb_VectorConcatenate_m[8] = rtb_Product3_j0[0] * rtb_Product3_j0[1];
 
   /* Product: '<S21>/Product' */
@@ -1170,59 +1159,59 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
   /* End of Product: '<S21>/Product' */
 
-  /* Gain: '<S702>/Gain1' incorporates:
-   *  Selector: '<S702>/Selector1'
+  /* Gain: '<S708>/Gain1' incorporates:
+   *  Selector: '<S708>/Selector1'
    */
   rtb_VectorConcatenate_h[0] = rtb_VectorConcatenate[3];
   rtb_VectorConcatenate_h[1] = rtb_VectorConcatenate[0];
   rtb_VectorConcatenate_h[2] = -rtb_VectorConcatenate[6];
 
-  /* Gain: '<S702>/Gain2' incorporates:
-   *  Selector: '<S702>/Selector2'
+  /* Gain: '<S708>/Gain2' incorporates:
+   *  Selector: '<S708>/Selector2'
    */
   rtb_VectorConcatenate_h[3] = rtb_VectorConcatenate[7];
   rtb_VectorConcatenate_h[4] = rtb_VectorConcatenate[8];
 
-  /* Gain: '<S702>/Gain3' incorporates:
-   *  Selector: '<S702>/Selector3'
+  /* Gain: '<S708>/Gain3' incorporates:
+   *  Selector: '<S708>/Selector3'
    */
   rtb_VectorConcatenate_h[5] = -rtb_VectorConcatenate[1];
   rtb_VectorConcatenate_h[6] = rtb_VectorConcatenate[4];
 
-  /* If: '<S694>/If' incorporates:
-   *  Gain: '<S702>/Gain1'
-   *  Selector: '<S702>/Selector1'
+  /* If: '<S700>/If' incorporates:
+   *  Gain: '<S708>/Gain1'
+   *  Selector: '<S708>/Selector1'
    */
   if ((-rtb_VectorConcatenate[6] >= 1.0F) || (-rtb_VectorConcatenate[6] <= -1.0F))
   {
-    /* Outputs for IfAction SubSystem: '<S694>/AxisRotZeroR3' incorporates:
-     *  ActionPort: '<S701>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S700>/AxisRotZeroR3' incorporates:
+     *  ActionPort: '<S707>/Action Port'
      */
     AUAV_V3_Test_AxisRotZeroR3(rtb_VectorConcatenate_h, &rtb_Merge_m[0],
       &rtb_Merge_m[1], &rtb_Merge_m[2]);
 
-    /* End of Outputs for SubSystem: '<S694>/AxisRotZeroR3' */
+    /* End of Outputs for SubSystem: '<S700>/AxisRotZeroR3' */
   } else {
-    /* Outputs for IfAction SubSystem: '<S694>/AxisRotDefault' incorporates:
-     *  ActionPort: '<S700>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S700>/AxisRotDefault' incorporates:
+     *  ActionPort: '<S706>/Action Port'
      */
     AUAV_V3_Tes_AxisRotDefault(rtb_VectorConcatenate_h, &rtb_Merge_m[0],
       &rtb_Merge_m[1], &rtb_Merge_m[2]);
 
-    /* End of Outputs for SubSystem: '<S694>/AxisRotDefault' */
+    /* End of Outputs for SubSystem: '<S700>/AxisRotDefault' */
   }
 
-  /* End of If: '<S694>/If' */
+  /* End of If: '<S700>/If' */
 
   /* MATLAB Function: '<S21>/Embedded MATLAB Function1' */
   A_EmbeddedMATLABFunction_l(rtb_Merge_m[0],
     &AUAV_V3_TestSensors_B.sf_EmbeddedMATLABFunction1);
 
   /* MATLAB Function: '<S21>/myMux Fun1' */
-  /* MATLAB Function 'get Nav Vars [updated 4.28.16]/myMux Fun1': '<S698>:1' */
+  /* MATLAB Function 'get Nav Vars [updated 4.28.16]/myMux Fun1': '<S704>:1' */
   /*  This block supports an embeddable subset of the MATLAB language. */
   /*  See the help menu for details.  */
-  /* '<S698>:1:5' */
+  /* '<S704>:1:5' */
   rtb_y_jl_idx_0 = rtb_Merge_m[2];
   rtb_y_jl_idx_1 = rtb_Merge_m[1];
 
@@ -1235,7 +1224,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   mlAttitudeSol.yaw = AUAV_V3_TestSensors_B.sf_EmbeddedMATLABFunction1.y;
   mlAttitudeSol.time_boot_ms = AUAV_V3_TestSensors_DWork.time_since_boot_usec;
 
-  /* DataTypeConversion: '<S677>/Data Type Conversion1' incorporates:
+  /* DataTypeConversion: '<S682>/Data Type Conversion1' incorporates:
    *  DataStoreRead: '<S20>/mlHeartbeatLocal'
    */
   rtb_DataTypeConversion1_hq = (uint8_T)mlHeartbeatLocal.custom_mode;
@@ -1274,17 +1263,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     &AUAV_V3_TestSensors_B.sf_BufferFailsafeChannel,
     &AUAV_V3_TestSensors_DWork.sf_BufferFailsafeChannel);
 
-  /* DataTypeConversion: '<S655>/Data Type Conversion1' */
-  for (i = 0; i < 7; i++) {
-    AUAV_V3_TestSensors_B.DataTypeConversion1_d[i] = (uint16_T)
-      AUAV_V3_TestSensors_B.sf_BufferFailsafeChannel.history[i];
-  }
-
-  /* End of DataTypeConversion: '<S655>/Data Type Conversion1' */
-
-  /* S-Function (MCHP_C_function_Call): '<S655>/Choose the Median [navSupport.c] [updated 5.1.16]' */
+  /* S-Function (MCHP_C_function_Call): '<S660>/Choose the Median [navSupport.c] [updated 5.1.16]' */
   AUAV_V3_TestSensors_B.ChoosetheMediannavSupportcupdat = meanFilter5(
-    &AUAV_V3_TestSensors_B.DataTypeConversion1_d[0]
+    &AUAV_V3_TestSensors_B.sf_BufferFailsafeChannel.history[0]
     );
 
   /* S-Function (MCHP_C_function_Call): '<S19>/Manual or Auto? [navSupport.c] [updated 4.28.16]' */
@@ -1369,7 +1350,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     /* S-Function (MCHP_C_function_Call): '<S654>/update dT Trim updateControlMcu.c [updated 4.28.16]' */
     updatePWMTrim(
                   AUAV_V3_TestSensors_B.DataTypeConversion_hn
-                  , AUAV_V3_TestSensors_ConstP.pooled87
+                  , ((uint8_T)0U)
                   );
 
     /* DataTypeConversion: '<S671>/Data Type Conversion' incorporates:
@@ -1406,7 +1387,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     /* S-Function (MCHP_C_function_Call): '<S654>/update dA Trim updateControlMcu.c' */
     updatePWMTrim(
                   AUAV_V3_TestSensors_B.DataTypeConversion_e
-                  , AUAV_V3_TestSensors_ConstP.pooled88
+                  , ((uint8_T)1U)
                   );
 
     /* DataTypeConversion: '<S672>/Data Type Conversion' incorporates:
@@ -1443,7 +1424,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     /* S-Function (MCHP_C_function_Call): '<S654>/update dR Trim updateControlMcu.c' */
     updatePWMTrim(
                   AUAV_V3_TestSensors_B.DataTypeConversion_go
-                  , AUAV_V3_TestSensors_ConstP.pooled89
+                  , ((uint8_T)2U)
                   );
 
     /* DataTypeConversion: '<S673>/Data Type Conversion' incorporates:
@@ -1480,7 +1461,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     /* S-Function (MCHP_C_function_Call): '<S654>/update dE Trim updateControlMcu.c' */
     updatePWMTrim(
                   AUAV_V3_TestSensors_B.DataTypeConversion_k
-                  , AUAV_V3_TestSensors_ConstP.dE_Value
+                  , ((uint8_T)3U)
                   );
 
     /* DataTypeConversion: '<S674>/Data Type Conversion' incorporates:
@@ -1559,10 +1540,10 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     /* SignalConversion: '<S461>/Numerical Unity' incorporates:
      *  DataStoreRead: '<S458>/Get GS Location'
      */
-	AUAV_V3_TestSensors_B.NumericalUnity[0] = mlGSLocationFloat.alt * 0.001; 
-    AUAV_V3_TestSensors_B.NumericalUnity[1] = mlGSLocationFloat.lat * 0.0000001;
-    AUAV_V3_TestSensors_B.NumericalUnity[2] = mlGSLocationFloat.lon * 0.0000001;
-  
+    AUAV_V3_TestSensors_B.NumericalUnity[0] = 0.001F * mlGSLocationFloat.alt;
+    AUAV_V3_TestSensors_B.NumericalUnity[1] = 1.0E-7F * mlGSLocationFloat.lat;
+    AUAV_V3_TestSensors_B.NumericalUnity[2] = 1.0E-7F * mlGSLocationFloat.lon;
+
     /* Gain: '<S462>/Deg2R' */
     rtb_cosphi = 0.0174532924F * AUAV_V3_TestSensors_B.NumericalUnity[1];
 
@@ -1834,11 +1815,11 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
       for (i = 0; i < 3; i++) {
         AUAV_V3_TestSensors_B.Reshape1[i] = 0.0F;
         AUAV_V3_TestSensors_B.Reshape1[i] +=
-          AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0];
+          AUAV_V3_TestSensors_ConstP.pooled62[i] * tmp_0[0];
         AUAV_V3_TestSensors_B.Reshape1[i] +=
-          AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1];
+          AUAV_V3_TestSensors_ConstP.pooled62[i + 3] * tmp_0[1];
         AUAV_V3_TestSensors_B.Reshape1[i] +=
-          AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2];
+          AUAV_V3_TestSensors_ConstP.pooled62[i + 6] * tmp_0[2];
       }
 
       /* End of Reshape: '<S446>/Reshape1' */
@@ -2051,11 +2032,11 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     for (i = 0; i < 3; i++) {
       AUAV_V3_TestSensors_B.WP0L2IPT1[i] = 0.0F;
       AUAV_V3_TestSensors_B.WP0L2IPT1[i] +=
-        AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0];
+        AUAV_V3_TestSensors_ConstP.pooled62[i] * tmp_0[0];
       AUAV_V3_TestSensors_B.WP0L2IPT1[i] +=
-        AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1];
+        AUAV_V3_TestSensors_ConstP.pooled62[i + 3] * tmp_0[1];
       AUAV_V3_TestSensors_B.WP0L2IPT1[i] +=
-        AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2];
+        AUAV_V3_TestSensors_ConstP.pooled62[i + 6] * tmp_0[2];
     }
 
     /* Gain: '<S422>/Deg2R' */
@@ -2167,9 +2148,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
     /* Gain: '<S420>/UEN 2 NEU' */
     for (i = 0; i < 3; i++) {
-      rtb_P32[i] = AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2] +
-        (AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1] +
-         AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0]);
+      rtb_P32[i] = AUAV_V3_TestSensors_ConstP.pooled62[i + 6] * tmp_0[2] +
+        (AUAV_V3_TestSensors_ConstP.pooled62[i + 3] * tmp_0[1] +
+         AUAV_V3_TestSensors_ConstP.pooled62[i] * tmp_0[0]);
     }
 
     /* Sum: '<S382>/Add' incorporates:
@@ -2460,9 +2441,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
     /* Gain: '<S348>/UEN 2 NEU' */
     for (i = 0; i < 3; i++) {
-      rtb_Product3_j0[i] = AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2]
-        + (AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1] +
-           AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0]);
+      rtb_Product3_j0[i] = AUAV_V3_TestSensors_ConstP.pooled62[i + 6] * tmp_0[2]
+        + (AUAV_V3_TestSensors_ConstP.pooled62[i + 3] * tmp_0[1] +
+           AUAV_V3_TestSensors_ConstP.pooled62[i] * tmp_0[0]);
     }
 
     /* Gain: '<S367>/Deg2R' */
@@ -2572,9 +2553,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
     /* Gain: '<S365>/UEN 2 NEU' */
     for (i = 0; i < 3; i++) {
-      rtb_Product2_c[i] = AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2]
-        + (AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1] +
-           AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0]);
+      rtb_Product2_c[i] = AUAV_V3_TestSensors_ConstP.pooled62[i + 6] * tmp_0[2]
+        + (AUAV_V3_TestSensors_ConstP.pooled62[i + 3] * tmp_0[1] +
+           AUAV_V3_TestSensors_ConstP.pooled62[i] * tmp_0[0]);
     }
 
     rtb_Product3_j0[0] = rtb_Product2_c[0] - rtb_Product3_j0[0];
@@ -2949,9 +2930,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
       /* Gain: '<S204>/UEN 2 NEU' */
       for (i = 0; i < 3; i++) {
-        rtb_Product3_j0[i] = AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0
-          [2] + (AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1] +
-                 AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0]);
+        rtb_Product3_j0[i] = AUAV_V3_TestSensors_ConstP.pooled62[i + 6] * tmp_0
+          [2] + (AUAV_V3_TestSensors_ConstP.pooled62[i + 3] * tmp_0[1] +
+                 AUAV_V3_TestSensors_ConstP.pooled62[i] * tmp_0[0]);
       }
 
       /* Delay: '<S198>/Integer Delay1' */
@@ -3540,8 +3521,8 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
    */
   AUAV_V3_TestSensors_B.Add = 1.0F - 3.28084F * rtb_Sum1_mzp / 145442.0F;
 
-  /* S-Function (MCHP_C_function_Call): '<S172>/myTan() apUtils.c [updated 5.1.16]' */
-  AUAV_V3_TestSensors_B.myTanapUtilscupdated5116 = myPow(
+  /* S-Function (MCHP_C_function_Call): '<S172>/myPow() apUtils.c [updated 5.1.16]' */
+  AUAV_V3_TestSensors_B.myPowapUtilscupdated5116 = myPow(
     AUAV_V3_TestSensors_B.Add
     , 4.25587606F
     );
@@ -3549,7 +3530,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   /* Product: '<S166>/Divide1' incorporates:
    *  Constant: '<S166>/Rho_0 (Kg//m^3)'
    */
-  rtb_Sum1_mzp = AUAV_V3_TestSensors_B.myTanapUtilscupdated5116 * 1.225F;
+  rtb_Sum1_mzp = AUAV_V3_TestSensors_B.myPowapUtilscupdated5116 * 1.225F;
 
   /* Saturate: '<S167>/[ 0.01 50000]' */
   if (rtb_Sum1_mzp > 50000.0F) {
@@ -3566,8 +3547,8 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
    *  Product: '<S167>/Divide2'
    *  Saturate: '<S167>/[ 0.01 50000]'
    */
-  AUAV_V3_TestS_negprotect_l(2.0F * mlAirData.press_diff * 100 / rtb_Sum1_mzp,
-    &AUAV_V3_TestSensors_B.sf_negprotect_l);
+  AUAV_V3_TestS_negprotect_l(2.0F * (100.0F * mlAirData.press_diff) /
+    rtb_Sum1_mzp, &AUAV_V3_TestSensors_B.sf_negprotect_l);
 
   /* S-Function (MCHP_C_function_Call): '<S174>/mySqrt() apUtils.c [updated 5.1.16]' */
   AUAV_V3_TestSensors_B.mySqrtapUtilscupdated5116_me = mySqrt(
@@ -3619,7 +3600,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
    *  UnitDelay: '<S178>/FixPt Unit Delay2'
    */
   if (AUAV_V3_TestSensors_DWork.FixPtUnitDelay2_DSTATE != 0) {
-    rtb_Deg2R1 = 200.0F;//SLUGS
+    rtb_Deg2R1 = 100.0F;//SLUGS
   } else {
     rtb_Deg2R1 = AUAV_V3_TestSensors_DWork.FixPtUnitDelay1_DSTATE;
   }
@@ -4273,13 +4254,13 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
    *  Inport: '<S92>/In1'
    *  Logic: '<S80>/Logical Operator'
    */
-  rtb_IC4_idx_1 = mlParamInterface.param[21];
-  rtb_Product_lf = mlParamInterface.param[22];
+  rtb_IC4_idx_1 = mlParamInterface.param[22];
+  rtb_Product_lf = mlParamInterface.param[23];
 
   /* Outputs for Enabled SubSystem: '<S6>/L1 Output Feedback Controller With  Projection Operator' incorporates:
    *  EnablePort: '<S69>/Enable'
    */
-  if (mlParamInterface.param[24L] > 0.0F) {
+  if (mlParamInterface.param[25L] > 0.0F) {
     if (!AUAV_V3_TestSensors_DWork.L1OutputFeedbackControllerWithP) {
       /* InitializeConditions for UnitDelay: '<S89>/UD' */
       AUAV_V3_TestSensors_DWork.UD_DSTATE_ff = 0.0F;
@@ -4345,7 +4326,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
        *  Sum: '<S89>/Diff'
        *  UnitDelay: '<S89>/UD'
        */
-      rtb_Sum1_mzp = (real32_T)fabs(mlParamInterface.param[21] -
+      rtb_Sum1_mzp = (real32_T)fabs(mlParamInterface.param[22] -
         AUAV_V3_TestSensors_DWork.UD_DSTATE_ff);
 
       /* Saturate: '<S86>/Saturation1' */
@@ -4363,7 +4344,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      */
     if (rtb_Sum1_mzp > 0.0F) {
       /* Gain: '<S85>/-T' */
-      AUAV_V3_TestSensors_B.T_m = -0.01F * mlParamInterface.param[21];
+      AUAV_V3_TestSensors_B.T_m = -0.01F * mlParamInterface.param[22];
 
       /* S-Function (MCHP_C_function_Call): '<S87>/myExp() apUtils.c [updated 5.1.16]' */
       AUAV_V3_TestSensors_B.myExpapUtilscupdated5116_f = myExp(
@@ -4415,7 +4396,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
        *  Sum: '<S99>/Diff'
        *  UnitDelay: '<S99>/UD'
        */
-      rtb_Sum1_mzp = (real32_T)fabs(mlParamInterface.param[22] -
+      rtb_Sum1_mzp = (real32_T)fabs(mlParamInterface.param[23] -
         AUAV_V3_TestSensors_DWork.UD_DSTATE_j);
 
       /* Saturate: '<S96>/Saturation1' */
@@ -4433,7 +4414,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      */
     if (rtb_Sum1_mzp > 0.0F) {
       /* Gain: '<S95>/-T' */
-      AUAV_V3_TestSensors_B.T = -0.01F * mlParamInterface.param[22];
+      AUAV_V3_TestSensors_B.T = -0.01F * mlParamInterface.param[23];
 
       /* S-Function (MCHP_C_function_Call): '<S97>/myExp() apUtils.c [updated 5.1.16]' */
       AUAV_V3_TestSensors_B.myExpapUtilscupdated5116 = myExp(
@@ -4535,7 +4516,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Inport: '<S92>/In1'
      *  Logic: '<S80>/Logical Operator'
      */
-    rtb_Projection = mlParamInterface.param[23] * AUAV_V3_TestSensors_B.Merge_oo;
+    rtb_Projection = mlParamInterface.param[24] * AUAV_V3_TestSensors_B.Merge_oo;
 
     /* Sum: '<S69>/Sum4' incorporates:
      *  Delay: '<S69>/Integer Delay'
@@ -4588,7 +4569,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Constant: '<S84>/Constant5'
      *  Logic: '<S69>/Logical Operator'
      */
-    if (!(mlParamInterface.param[24] != 0.0F) > 0) {
+    if (!(mlParamInterface.param[25] != 0.0F) > 0) {
       rtb_Switch1_a = 0.0F;
     } else {
       /* Sum: '<S84>/Subtract1' incorporates:
@@ -4694,7 +4675,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   /* End of Saturate: '<S135>/bank Limit' */
 
   /* S-Function (MCHP_C_function_Call): '<S138>/myTan() apUtils.c [updated 5.1.16]' */
-  AUAV_V3_TestSensors_B.myTanapUtilscupdated5116_a = myTan(
+  AUAV_V3_TestSensors_B.myTanapUtilscupdated5116 = myTan(
     AUAV_V3_TestSensors_B.bankLimit
     );
 
@@ -4729,7 +4710,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     }
 
     rtb_Ze_b = 1.0F / rtb_Sum1_mzp * 9.80665F *
-      AUAV_V3_TestSensors_B.myTanapUtilscupdated5116_a;
+      AUAV_V3_TestSensors_B.myTanapUtilscupdated5116;
   }
 
   /* End of Switch: '<S103>/Switch1' */
@@ -4737,7 +4718,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   /* Switch: '<S103>/Switch' incorporates:
    *  DataStoreRead: '<Root>/PAR_L1_OMEGA PAR_L1_M PAR_L1_GAMMA PAR_L1_ON_OFF'
    */
-  if (mlParamInterface.param[24] > 0.3F) {
+  if (mlParamInterface.param[25] > 0.3F) {
     rtb_RhhcosphisinlambYe = AUAV_V3_TestSensors_B.PsiDotLimit;
   } else {
     rtb_RhhcosphisinlambYe = rtb_Ze_b;
@@ -5685,16 +5666,20 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   /* Outputs for Enabled SubSystem: '<S20>/Send_Cmd_HIL' incorporates:
    *  EnablePort: '<S678>/Enable'
    */
-  if (AUAV_V3_TestSensors_B.HILManualSwitch > 0.0) {
-    /* DataStoreRead: '<S678>/Get Raw Commands' */
+  /* DataStoreRead: '<S20>/Data Store Read' incorporates:
+   *  Constant: '<S683>/COMP_ID'
+   *  Constant: '<S683>/SYS_ID'
+   */
+  if (AUAV_V3_TestSensors_DWork.SIX_DOF_HIL_FLAG > 0.0) {
+    /* DataStoreRead: '<S683>/Get Raw Commands' */
     AUAV_V3_TestSensors_B.GetRawCommands = mlPwmCommands;
 
     /* DataStoreRead: '<S678>/Get time5' */
     AUAV_V3_TestSensors_B.Gettime5 =
       AUAV_V3_TestSensors_DWork.time_since_boot_usec;
 
-    /* S-Function (MCHP_C_function_Call): '<S678>/PackRawServo' */
-    AUAV_V3_TestSensors_B.PackRawServo = HIL_PackRawServo(
+    /* S-Function (MCHP_C_function_Call): '<S683>/PackRawServo' */
+    AUAV_V3_TestSensors_B.PackRawServo_l = HIL_PackRawServo(
       ((uint8_T)101U)
       , ((uint8_T)1U)
       , AUAV_V3_TestSensors_B.GetRawCommands
@@ -5702,6 +5687,24 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
       );
 
     /* S-Function (MCHP_C_function_Call): '<S678>/TX_N_Data9' */
+    TxN_Data_OverU4(
+                    AUAV_V3_TestSensors_B.PackRawServo_l
+                    );
+  }
+
+  /* End of DataStoreRead: '<S20>/Data Store Read' */
+  /* End of Outputs for SubSystem: '<S20>/Send_Cmd_6DOF_HIL' */
+
+  /* Outputs for Enabled SubSystem: '<S20>/Send_Cmd_X_Plane_HIL' incorporates:
+   *  EnablePort: '<S684>/Enable'
+   */
+  /* DataStoreRead: '<S20>/Data Store Read1' */
+  if (AUAV_V3_TestSensors_DWork.X_PLANE_HIL_FLAG > 0.0) {
+    /* S-Function (MCHP_C_function_Call): '<S684>/PackRawServo' */
+    AUAV_V3_TestSensors_B.PackRawServo = send_HILSIM_outputs(
+      );
+
+    /* S-Function (MCHP_C_function_Call): '<S684>/TX_N_Data9' */
     TxN_Data_OverU4(
                     AUAV_V3_TestSensors_B.PackRawServo
                     );
@@ -5718,6 +5721,16 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   mlPilotConsoleData.chan6_raw = AUAV_V3_TestSensors_B.InputCapture_o6;
   mlPilotConsoleData.chan7_raw = AUAV_V3_TestSensors_B.InputCapture_o7;
   mlPilotConsoleData.chan8_raw = AUAV_V3_TestSensors_B.InputCapture_o8;
+
+  /* DataStoreWrite: '<Root>/Data Store Write' incorporates:
+   *  Constant: '<Root>/Constant3'
+   */
+  AUAV_V3_TestSensors_DWork.SIX_DOF_HIL_FLAG = 0.0;
+
+  /* DataStoreWrite: '<Root>/Data Store Write1' incorporates:
+   *  Constant: '<Root>/Constant4'
+   */
+  AUAV_V3_TestSensors_DWork.X_PLANE_HIL_FLAG = 1.0;
 
   /* Gain: '<Root>/Gain' incorporates:
    *  UnitDelay: '<S3>/Output'
@@ -6457,8 +6470,8 @@ void AUAV_V3_TestSensors_initialize(void)
   /* Configure UART4 Tx Interruption */
   MCHP_UART4_Tx.head = 0;              /* Initialise Circular Buffers */
   MCHP_UART4_Tx.tail = 0;
-  _U4TXIP = 1;                         /* Tx Interrupt priority set to 1 */
-  _U4TXIF = 0;
+  _U4TXIP = 5;                         /*  Tx Interrupt priority set to 5 */
+  _U4TXIF = 0;                         /*  */
   _U4TXIE = 1;                         /* Enable Interrupt */
 #endif
 

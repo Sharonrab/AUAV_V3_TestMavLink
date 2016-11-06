@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.226
+ * Model version                  : 1.241
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Oct 29 03:04:25 2016
+ * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
  */
 
 #ifndef RTW_HEADER_AUAV_V3_TestSensors_private_h_
@@ -152,10 +152,17 @@ extern void TxN_Data_OverU1(uint16_t N);
 /* C Function Call declare function as extern */
 extern uint16_t PackRawAttitude(uint8_t system_id, uint8_t component_id,
   mavlink_attitude_t mlAttitudeData ,uint32_t time_usec);
-extern uint16_t PackRawNavigation(uint8_t system_id, uint8_t component_id, mavlink_slugs_navigation_t mlNavigation, uint32_t time_usec);
+
 /* C Function Call declare function as extern */
 extern void TxN_Data_OverU1(uint16_t N);
-extern void updatePWMTrim(unsigned short PWMData, unsigned char channel);
+
+/* C Function Call declare function as extern */
+extern uint16_t PackRawNavigation(uint8_t system_id, uint8_t component_id,
+  mavlink_slugs_navigation_t mlNavigation, uint32_t time_usec);
+
+/* C Function Call declare function as extern */
+extern void TxN_Data_OverU1(uint16_t N);
+
 /* C Function Call declare function as extern */
 extern uint16_t PackGpsRawInt(uint8_t system_id, uint8_t component_id,
   mavlink_gps_raw_int_t mlRawGpsDataInt, uint32_t time_usec);
@@ -236,13 +243,40 @@ extern void hilRead(uint8_T* y1);
 extern void protDecodeHil(uint8_T* u1);
 
 /* C Function Call declare function as extern */
-extern void hil_getRawRead(short * y1);
+extern void hil_getRawRead(int16_t * y1);
+
+/* C Function Call declare function as extern */
+extern void HILSIM_set_gplane(void);
+
+/* C Function Call declare function as extern */
+extern void HILSIM_set_omegagyro(void);
+
+/* C Function Call declare function as extern */
+extern void hil_getRawRead(int16_t * y1);
+
+/* C Function Call declare function as extern */
+extern void updateRawADCData(int16_T* u1);
+
+/* C Function Call declare function as extern */
+extern void updateRawADCData(int16_T* u1);
+
+/* C Function Call declare function as extern */
+extern void getCubeData(int16_T* y1);
+
+/* C Function Call declare function as extern */
+extern uint8_T isGPSNovatel();
 
 /* C Function Call declare function as extern */
 extern void getGpsUbloxMainData(real32_T* y1);
 
 /* C Function Call declare function as extern */
 extern void updateAirData(real32_T* u1);
+
+/* C Function Call declare function as extern */
+extern void updateSensorDiag(real32_T* u1);
+
+/* C Function Call declare function as extern */
+extern void updateLoadData(uint8_T u1, uint16_T u2);
 
 /* C Function Call declare function as extern */
 extern void getGpsUbloxData(real32_T* y1);
@@ -269,6 +303,12 @@ extern uint8_T isApManual(uint16_T u1);
 
 /* C Function Call declare function as extern */
 extern uint8_T justEnabled(uint8_T u1, uint8_T u2);
+
+/* C Function Call declare function as extern */
+extern uint16_T meanFilter5(uint16_T* u1);
+
+/* C Function Call declare function as extern */
+extern void updatePWMTrim(uint16_T u1, uint8_T u2);
 
 /* C Function Call declare function as extern */
 extern void getRTB(uint8_T* y1);
@@ -319,6 +359,12 @@ extern float mySqrt(float x);
 extern float mySqrt(float x);
 
 /* C Function Call declare function as extern */
+extern float myAcos(float x);
+
+/* C Function Call declare function as extern */
+extern float myAcos(float x);
+
+/* C Function Call declare function as extern */
 extern float mySqrt(float x);
 
 /* C Function Call declare function as extern */
@@ -334,7 +380,25 @@ extern float myAbs(float x);
 extern float myAtan(float x);
 
 /* C Function Call declare function as extern */
-//extern float myTan(float x);
+extern float myPow(float x, float toTheN);
+
+/* C Function Call declare function as extern */
+extern float myExp(float x);
+
+/* C Function Call declare function as extern */
+extern float myExp(float x);
+
+/* C Function Call declare function as extern */
+extern float myTan(float x);
+
+/* C Function Call declare function as extern */
+extern float myTan(float x);
+
+/* C Function Call declare function as extern */
+extern float myTan(float x);
+
+/* C Function Call declare function as extern */
+extern float myTan(float x);
 
 /* C Function Call declare function as extern */
 extern void getPassValues(uint8_T* pasVals);
@@ -342,6 +406,12 @@ extern void getPassValues(uint8_T* pasVals);
 /* C Function Call declare function as extern */
 extern uint16_t HIL_PackRawServo(uint8_t system_id, uint8_t component_id,
   mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec);
+
+/* C Function Call declare function as extern */
+extern void TxN_Data_OverU4(uint16_t N);
+
+/* C Function Call declare function as extern */
+extern uint16_t send_HILSIM_outputs(void);
 
 /* C Function Call declare function as extern */
 extern void TxN_Data_OverU4(uint16_t N);
@@ -363,6 +433,9 @@ extern void updateBias(float * biasData);
 
 /* C Function Call declare function as extern */
 extern void gpsUbloxParse(void);
+
+/* C Function Call declare function as extern */
+extern void protDecodeMavlink(void);
 extern void mul_wide_u32(uint32_T in0, uint32_T in1, uint32_T *ptrOutBitsHi,
   uint32_T *ptrOutBitsLo);
 extern uint32_T mul_u32_u32_u32_sr15(uint32_T a, uint32_T b);
@@ -408,7 +481,8 @@ extern void AUAV_V3_TestSens_myMuxFun3(const real32_T rtu_u1[3], const real32_T
 
 #endif                                 /* RTW_HEADER_AUAV_V3_TestSensors_private_h_ */
 
-/* File trailer for Real-Time Workshop generated code.
+/*
+ * File trailer for generated code.
  *
  * [EOF]
  */

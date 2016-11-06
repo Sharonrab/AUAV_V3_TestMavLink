@@ -1,29 +1,18 @@
-/*--------------------------------------------------------------
- *   MPLAB Blockset v3.35 for Microchip dsPIC chip family.     *
- *   Generate .c and .h files from Simulink model              *
- *   and compile to .elf, .hex and .cof file that can be       *
- *   flashed into the microcontroller                          *
- *                                                             *
- *      The Microchip name PIC, dsPIC, and MPLAB are           *
- *      registered trademarks of Microchip Technology Inc.     *
- *      MATLAB, Simulink, and Real-Time Workshop are           *
- *      registered trademarks of The MathWorks, Inc.           *
- *                                                             *
- *  Blockset authors: L.Kerhuel, U.Kumar                       *
- *  Product Page:  http://www.microchip.com/SimulinkBlocks     *
- *          Forum: http://www.microchip.com/forums/f192.aspx   *
- *          Wiki:  http://microchip.wikidot.com/simulink:start *
- *--------------------------------------------------------------
+/*
+ * -------------------------------------------------------------------
+ * MPLAB 16-Bit Device Blocks for Simulink v3.38.
  *
+ *   Product Page:  http://www.microchip.com/SimulinkBlocks
+ *           Forum: http://www.microchip.com/forums/f192.aspx
+ *           Wiki:  http://microchip.wikidot.com/simulink:start
+ * -------------------------------------------------------------------
  * File: rt_sys_AUAV_V3_TestSensors_75.c
  *
- * Real-Time Workshop code generated for Simulink model AUAV_V3_TestSensors.
+ * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                        : 1.221
- * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Sun Oct 09 00:06:23 2016
- * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Sun Oct 09 00:06:26 2016
+ * Model version                  : 1.241
+ * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
+ * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
  */
 
 #include "rt_sys_AUAV_V3_TestSensors_75.h"
@@ -71,7 +60,7 @@ real32_T rt_atan2f_snf(real32_T u0, real32_T u1)
 /*
  * Output and update for action system:
  *    '<S490>/AxisRotZeroR3'
- *    '<S692>/AxisRotZeroR3'
+ *    '<S700>/AxisRotZeroR3'
  */
 void AUAV_V3_Test_AxisRotZeroR3(const real32_T rtu_In1[7], real32_T *rty_1,
   real32_T *rty_2, real32_T *rty_3)
@@ -98,7 +87,8 @@ void AUAV_V3_Test_AxisRotZeroR3(const real32_T rtu_In1[7], real32_T *rty_1,
   *rty_3 = 0.0F;
 }
 
-/* File trailer for Real-Time Workshop generated code.
+/*
+ * File trailer for generated code.
  *
  * [EOF]
  */

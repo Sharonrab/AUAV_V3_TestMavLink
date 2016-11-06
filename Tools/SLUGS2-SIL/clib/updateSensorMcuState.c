@@ -23,8 +23,10 @@ THE SOFTWARE.
 
  */
 
+#include "AUAV_V3_TestSensors.h"
 
 #include "updateSensorMcuState.h"
+extern float myPow(float x, float toTheN);
 
 void updateRawADCData(int16_t* adcData) {
 	float T, p, r, h,v;
@@ -35,30 +37,30 @@ void updateRawADCData(int16_t* adcData) {
     mlRawPressureData.press_diff2 = (int16_t) adcData[2]; // Power
     mlRawPressureData.temperature = (int16_t) adcData[3]; // Temp
 	//SLUGS2
-	h = mlGpsData.alt / 1000;
-	T = 15.04 - .00649 * h;
-	p = 101.29 *myPow((T + 273.1) / 288.08, 5.256) * 1000; //pascal
-	r = p / (.2869 * (T + 273.1));
-	v = mlGpsData.vel / 100;
+	h = (float)((float)(mlGpsData.alt) / 1000.0f);
+	T = (float)(15.04f - .00649f * h);
+	p = (float)(101.29f *myPow((T + 273.1f) / 288.08f, 5.256f) * 1000.0f); //pascal
+	r = (float)(p / (.2869f * (T + 273.1f))) /1000.0f;
+	v = (float)((float)(mlGpsData.vel) / 100.0f);
 
 	mlRawPressureData.press_abs = (p - 9444.4) / 27.1270; //convert to static pressure in Pascal / baroScale
 	mlRawPressureData.press_diff1 = (1 / 2 * r * myPow(v, 2) + 1005.9) / 1.0514;//pitotScale
 	mlRawPressureData.temperature = (T + 1605.3) / 1.5113;
 	
-	mlAirData.press_diff = (r * myPow(v, 2)) / 2 / 100;//hectopascal (1 hPa = 100 Pa)
-	mlAirData.press_abs = (p) / 100;//hectopascal (1 hPa = 100 Pa)
-	mlAirData.temperature = T * 100;//0.01 degrees celsius
+	mlAirData.press_diff = (float)((r * myPow(v, 2)) / 2.0f / 100.0f);//hectopascal (1 hPa = 100 Pa)
+	mlAirData.press_abs = (float)((p) / 100.0f);//hectopascal (1 hPa = 100 Pa)
+	mlAirData.temperature = (int16_t)(T * 100.0f);//0.01 degrees celsius
 }
 
 void updateAirData(float* airData) {
 	//SLUGS2
 	float T, p, r, h,v;
 
-	h = mlGpsData.alt / 1000;
-	T = 15.04 - .00649 * h;
-	p = 101.29 *myPow((T + 273.1) / 288.08, 5.256) * 1000; //pascal
-	r = p / (.2869 * (T + 273.1));
-	v = mlGpsData.vel / 100;
+	h = (float)((float)(mlGpsData.alt) / 1000.0f);
+	T = (float)(15.04f - .00649f * h);
+	p = (float)(101.29f *myPow((T + 273.1f) / 288.08f, 5.256f) * 1000.0f); //pascal
+	r = (float)(p / (.2869f * (T + 273.1f))) /1000.0f;
+	v = (float)((float)(mlGpsData.vel) / 100.0f);
 
 	
 
@@ -68,9 +70,9 @@ void updateAirData(float* airData) {
     mlAirData.temperature = (int16_t) (airData[2]*10.0); // temp 0.01
 
 	//SLUGS2
-	mlAirData.press_diff = (r * myPow(v, 2)) / 2 / 100;//hectopascal (1 hPa = 100 Pa)
-	mlAirData.press_abs = (p) / 100;//hectopascal (1 hPa = 100 Pa)
-	mlAirData.temperature = T * 100;//0.01 degrees celsius
+	mlAirData.press_diff = (float)((r * myPow(v, 2)) / 2.0f / 100.0f);//hectopascal (1 hPa = 100 Pa)
+	mlAirData.press_abs = (float)((p) / 100.0f);//hectopascal (1 hPa = 100 Pa)
+	mlAirData.temperature = (int16_t)(T * 100.0f);//0.01 degrees celsius
 }
 
 

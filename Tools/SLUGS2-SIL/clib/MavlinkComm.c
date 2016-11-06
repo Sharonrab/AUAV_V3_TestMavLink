@@ -72,11 +72,11 @@ uint8_t isFinite(float s) {
 void InitParameterInterface(void)
 {
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_P], "PID_AIRSPD_P");
-    mlParamInterface.param[PAR_PID_AIRSPEED_P] = 0.949999988079;
+    mlParamInterface.param[PAR_PID_AIRSPEED_P] = 0.035;
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_I], "PID_AIRSPD_I");
-    //mlParamInterface.param[PAR_PID_AIRSPEED_I] = 0.00700000021607;
+    mlParamInterface.param[PAR_PID_AIRSPEED_I] = 1.49999996211e-05;
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_D], "PID_AIRSPD_D");
-    //mlParamInterface.param[PAR_PID_AIRSPEED_D] = 0.20000000298;
+    mlParamInterface.param[PAR_PID_AIRSPEED_D] = 0.004;
 
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_P], "PID_PIT_FO_P");
         mlParamInterface.param[PAR_PID_PITCH_FO_P] = -0.20000000298;
@@ -94,7 +94,7 @@ void InitParameterInterface(void)
 
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_P], "PID_HE2PITC_P");
-                //mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.0450000017881;
+                mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.0450000017881;
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_I], "PID_HE2PITC_I");
                 mlParamInterface.param[PAR_PID_HE_TO_PI_I] = 0;

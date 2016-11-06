@@ -43,7 +43,7 @@ THE SOFTWARE.
 //#else
 //#include "AUAV3_AND_SLUGS_SENSOR.h"
 //#endif
-#ifdef SLUGS2
+#ifdef WIN //SLUGS2 SIL
 #define inline __inline
 #endif
 #include "mavlink.h"
@@ -59,6 +59,11 @@ THE SOFTWARE.
 extern CBRef uartBuffer;
 //#endif
 extern mavlink_gps_raw_int_t mlGpsData;
+extern void udb_gps_callback_received_byte(uint8_t rxchar);
+
+extern void TxN_Data_OverU1(uint16_t N);
+
+extern uint16_t PackTextMsg(uint8_t system_id, uint8_t component_id, unsigned char buf);
 
 char hex2char(char halfhex) {
     char rv;
@@ -176,6 +181,9 @@ void gpsUbloxParse(void) {
 
     unsigned char inStream[MSIZE];
     unsigned char bufferLen = 11;
+    int32_t bytesRead;
+    int16_t i;
+#ifdef WIN
 
     memset(inStream, 0, MSIZE);
     
@@ -199,7 +207,12 @@ void gpsUbloxParse(void) {
 
         memset(inStream, 0, MSIZE);
     }
-
+#else
+    bytesRead = getLength(uartBuffer);
+    for (i = 0; i < bytesRead; i++) {
+				udb_gps_callback_received_byte(readFront(uartBuffer));
+	}
+#endif
 }
 
 void getGpsUbloxMainData(float* data) {

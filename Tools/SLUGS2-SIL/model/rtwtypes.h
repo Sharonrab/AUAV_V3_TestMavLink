@@ -50,7 +50,7 @@
  *   Signed integer division rounds to: Zero
  *   Shift right on a signed integer as arithmetic shift: on
  *=======================================================================*/
-#ifndef SLUGS2
+#ifndef WIN
 
 
 /*=======================================================================*

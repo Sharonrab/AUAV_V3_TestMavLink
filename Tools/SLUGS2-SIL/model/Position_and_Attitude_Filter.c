@@ -1,29 +1,18 @@
-/*--------------------------------------------------------------
- *   MPLAB Blockset v3.35 for Microchip dsPIC chip family.     *
- *   Generate .c and .h files from Simulink model              *
- *   and compile to .elf, .hex and .cof file that can be       *
- *   flashed into the microcontroller                          *
- *                                                             *
- *      The Microchip name PIC, dsPIC, and MPLAB are           *
- *      registered trademarks of Microchip Technology Inc.     *
- *      MATLAB, Simulink, and Real-Time Workshop are           *
- *      registered trademarks of The MathWorks, Inc.           *
- *                                                             *
- *  Blockset authors: L.Kerhuel, U.Kumar                       *
- *  Product Page:  http://www.microchip.com/SimulinkBlocks     *
- *          Forum: http://www.microchip.com/forums/f192.aspx   *
- *          Wiki:  http://microchip.wikidot.com/simulink:start *
- *--------------------------------------------------------------
+/*
+ * -------------------------------------------------------------------
+ * MPLAB 16-Bit Device Blocks for Simulink v3.38.
  *
+ *   Product Page:  http://www.microchip.com/SimulinkBlocks
+ *           Forum: http://www.microchip.com/forums/f192.aspx
+ *           Wiki:  http://microchip.wikidot.com/simulink:start
+ * -------------------------------------------------------------------
  * File: Position_and_Attitude_Filter.c
  *
- * Real-Time Workshop code generated for Simulink model AUAV_V3_TestSensors.
+ * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                        : 1.221
- * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Sun Oct 09 00:06:23 2016
- * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Sun Oct 09 00:06:26 2016
+ * Model version                  : 1.241
+ * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
+ * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
  */
 
 #include "Position_and_Attitude_Filter.h"
@@ -580,11 +569,11 @@ void Position_and_Attitude_Filt(void)
       /* Gain: '<S483>/UEN 2 NEU' */
       AUAV_V3_TestSensors_B.In1[colIdx] = 0.0F;
       AUAV_V3_TestSensors_B.In1[colIdx] +=
-        AUAV_V3_TestSensors_ConstP.pooled63[colIdx] * tmp_0[0];
+        AUAV_V3_TestSensors_ConstP.pooled62[colIdx] * tmp_0[0];
       AUAV_V3_TestSensors_B.In1[colIdx] +=
-        AUAV_V3_TestSensors_ConstP.pooled63[colIdx + 3] * tmp_0[1];
+        AUAV_V3_TestSensors_ConstP.pooled62[colIdx + 3] * tmp_0[1];
       AUAV_V3_TestSensors_B.In1[colIdx] +=
-        AUAV_V3_TestSensors_ConstP.pooled63[colIdx + 6] * tmp_0[2];
+        AUAV_V3_TestSensors_ConstP.pooled62[colIdx + 6] * tmp_0[2];
     }
 
     /* End of Inport: '<S481>/In1' */
@@ -1477,7 +1466,8 @@ void Position_and_Attitude_Filt(void)
   }
 }
 
-/* File trailer for Real-Time Workshop generated code.
+/*
+ * File trailer for generated code.
  *
  * [EOF]
  */

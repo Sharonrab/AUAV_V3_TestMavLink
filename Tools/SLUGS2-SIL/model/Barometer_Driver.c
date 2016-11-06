@@ -1,29 +1,18 @@
-/*--------------------------------------------------------------
- *   MPLAB Blockset v3.35 for Microchip dsPIC chip family.     *
- *   Generate .c and .h files from Simulink model              *
- *   and compile to .elf, .hex and .cof file that can be       *
- *   flashed into the microcontroller                          *
- *                                                             *
- *      The Microchip name PIC, dsPIC, and MPLAB are           *
- *      registered trademarks of Microchip Technology Inc.     *
- *      MATLAB, Simulink, and Real-Time Workshop are           *
- *      registered trademarks of The MathWorks, Inc.           *
- *                                                             *
- *  Blockset authors: L.Kerhuel, U.Kumar                       *
- *  Product Page:  http://www.microchip.com/SimulinkBlocks     *
- *          Forum: http://www.microchip.com/forums/f192.aspx   *
- *          Wiki:  http://microchip.wikidot.com/simulink:start *
- *--------------------------------------------------------------
+/*
+ * -------------------------------------------------------------------
+ * MPLAB 16-Bit Device Blocks for Simulink v3.38.
  *
+ *   Product Page:  http://www.microchip.com/SimulinkBlocks
+ *           Forum: http://www.microchip.com/forums/f192.aspx
+ *           Wiki:  http://microchip.wikidot.com/simulink:start
+ * -------------------------------------------------------------------
  * File: Barometer_Driver.c
  *
- * Real-Time Workshop code generated for Simulink model AUAV_V3_TestSensors.
+ * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                        : 1.221
- * Real-Time Workshop file version      : 8.8 (R2015a) 09-Feb-2015
- * Real-Time Workshop file generated on : Sun Oct 09 00:06:23 2016
- * TLC version                          : 8.8 (Jan 20 2015)
- * C source code generated on           : Sun Oct 09 00:06:26 2016
+ * Model version                  : 1.241
+ * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
+ * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
  */
 
 #include "Barometer_Driver.h"
@@ -55,11 +44,6 @@ void AUA_Barometer_Driver_Start(void)
   _MI2C2IP = 6;                        /* Set I2C Master Interrupt Priority */
   _MI2C2IF = 0;
   _MI2C2IE = 1;
-
-  /* Start for Enabled SubSystem: '<S28>/Enabled Subsystem' */
-  AUA_EnabledSubsystem_Start(&AUAV_V3_TestSensors_B.EnabledSubsystem);
-
-  /* End of Start for SubSystem: '<S28>/Enabled Subsystem' */
 }
 
 /* Output and update for atomic system: '<Root>/Barometer_Driver' */
@@ -406,7 +390,7 @@ void AUAV_V3_T_Barometer_Driver(void)
      *  Constant: '<S28>/Constant5'
      *  Delay: '<S41>/Integer Delay'
      */
-    AUAV_V3_TestSensors_B.Sum_k = 143.543F -
+    AUAV_V3_TestSensors_B.Sum_k = 0.0F -
       AUAV_V3_TestSensors_DWork.IntegerDelay_DSTATE_jh;
   }
 
@@ -515,7 +499,6 @@ void AUAV_V3_T_Barometer_Driver(void)
     AUAV_V3_TestSensors_B.u0k120k_i;
 
   /* Sum: '<S37>/Sum1' incorporates:
-   *  Constant: '<S28>/Constant5'
    *  Constant: '<S37>/Constant2'
    *  Constant: '<S37>/Constant3'
    *  Constant: '<S37>/Constant4'
@@ -528,7 +511,7 @@ void AUAV_V3_T_Barometer_Driver(void)
    *  Sum: '<S37>/Sum3'
    */
   rtb_x = ((rtb_x * rtb_x * 0.093502529F + rtb_x * -0.188893303F) +
-           2.18031291E-5F) * 145473.5F * 0.3048F + 143.543F;
+           2.18031291E-5F) * 145473.5F * 0.3048F;
 
   /* Outputs for Enabled SubSystem: '<S28>/Enabled Subsystem' */
 

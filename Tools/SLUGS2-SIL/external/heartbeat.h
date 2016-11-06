@@ -24,7 +24,7 @@
 
 
 // number of heartbeats per second
-#ifdef SLUGS2
+#ifdef WIN //SLUGS2 SIL
 #define HEARTBEAT_HZ 100
 #else
 #define HEARTBEAT_HZ 40
