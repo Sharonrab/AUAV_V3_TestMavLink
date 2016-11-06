@@ -725,6 +725,7 @@ void init_servoPrepare(void) // initialize the PWM
 		udb_pwOut[i] = ((i == THROTTLE_OUTPUT_CHANNEL) ? 0 : 3000);
 #endif
 	}
+	udb_pwIn[MODE_SWITCH_INPUT_CHANNEL] = 1000;
 
 #if (NORADIO == 1)
 	udb_pwIn[MODE_SWITCH_INPUT_CHANNEL] = udb_pwTrim[MODE_SWITCH_INPUT_CHANNEL] = 4000;

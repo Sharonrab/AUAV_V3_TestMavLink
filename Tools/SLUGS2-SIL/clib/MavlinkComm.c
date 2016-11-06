@@ -79,7 +79,7 @@ void InitParameterInterface(void)
     mlParamInterface.param[PAR_PID_AIRSPEED_D] = 0.004;
 
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_P], "PID_PIT_FO_P");
-        mlParamInterface.param[PAR_PID_PITCH_FO_P] = -0.20000000298;
+        mlParamInterface.param[PAR_PID_PITCH_FO_P] = -0.11;
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_I], "PID_PIT_FO_I");
         //mlParamInterface.param[PAR_PID_PITCH_FO_I] = -0.00499999988824;   
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_D], "PID_PIT_FO_D");
@@ -148,8 +148,10 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
 
 	 // Initialize the system Status
 	 mlHeartbeatLocal.base_mode = MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
-	 mlHeartbeatLocal.custom_mode = SLUGS_MODE_WAYPOINT;
+	 mlHeartbeatLocal.custom_mode = SLUGS_MODE_WAYPOINT;// SLUGS_MODE_WAYPOINT;
 	 mlHeartbeatLocal.system_status = MAV_STATE_ACTIVE;
+	 mlPassthrough.bitfieldPt = 8;//;// 8 | 16 | 64 | 128 Enable throtle pass through
+
 	/* lastNavigationMode = mlHeartbeatLocal.custom_mode;
 	 mlSystemStatus.mode = MAV_MODE_MANUAL;
 	 mlSystemStatus.nav_mode = MAV_NAV_WAYPOINT;
