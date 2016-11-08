@@ -72,14 +72,14 @@ uint8_t isFinite(float s) {
 void InitParameterInterface(void)
 {
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_P], "PID_AIRSPD_P");
-    mlParamInterface.param[PAR_PID_AIRSPEED_P] = 0.949999988079;
+    mlParamInterface.param[PAR_PID_AIRSPEED_P] = 0.035;
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_I], "PID_AIRSPD_I");
-    //mlParamInterface.param[PAR_PID_AIRSPEED_I] = 0.00700000021607;
+    mlParamInterface.param[PAR_PID_AIRSPEED_I] = 1.49999996211e-05;
     strcpy(mlParamInterface.param_name[PAR_PID_AIRSPEED_D], "PID_AIRSPD_D");
-    //mlParamInterface.param[PAR_PID_AIRSPEED_D] = 0.20000000298;
+    mlParamInterface.param[PAR_PID_AIRSPEED_D] = 0.004;
 
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_P], "PID_PIT_FO_P");
-        mlParamInterface.param[PAR_PID_PITCH_FO_P] = -0.20000000298;
+        mlParamInterface.param[PAR_PID_PITCH_FO_P] = -0.11;
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_I], "PID_PIT_FO_I");
         //mlParamInterface.param[PAR_PID_PITCH_FO_I] = -0.00499999988824;   
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_D], "PID_PIT_FO_D");
@@ -94,7 +94,7 @@ void InitParameterInterface(void)
 
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_P], "PID_HE2PITC_P");
-                //mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.0450000017881;
+                mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.0450000017881;
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_I], "PID_HE2PITC_I");
                 mlParamInterface.param[PAR_PID_HE_TO_PI_I] = 0;
@@ -148,8 +148,10 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
 
 	 // Initialize the system Status
 	 mlHeartbeatLocal.base_mode = MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
-	 mlHeartbeatLocal.custom_mode = SLUGS_MODE_WAYPOINT;
+	 mlHeartbeatLocal.custom_mode = SLUGS_MODE_WAYPOINT;// SLUGS_MODE_WAYPOINT;
 	 mlHeartbeatLocal.system_status = MAV_STATE_ACTIVE;
+	 mlPassthrough.bitfieldPt = 8;//;// 8 | 16 | 64 | 128 Enable throtle pass through
+
 	/* lastNavigationMode = mlHeartbeatLocal.custom_mode;
 	 mlSystemStatus.mode = MAV_MODE_MANUAL;
 	 mlSystemStatus.nav_mode = MAV_NAV_WAYPOINT;

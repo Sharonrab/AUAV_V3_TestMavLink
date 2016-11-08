@@ -43,7 +43,7 @@ THE SOFTWARE.
 //#else
 //#include "AUAV3_AND_SLUGS_SENSOR.h"
 //#endif
-#ifdef SLUGS2
+#ifdef WIN //SLUGS2 SIL
 #define inline __inline
 #endif
 #include "mavlink.h"

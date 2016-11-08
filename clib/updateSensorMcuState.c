@@ -40,7 +40,7 @@ void updateRawADCData(int16_t* adcData) {
 	h = (float)((float)(mlGpsData.alt) / 1000.0f);
 	T = (float)(15.04f - .00649f * h);
 	p = (float)(101.29f *myPow((T + 273.1f) / 288.08f, 5.256f) * 1000.0f); //pascal
-	r = (float)(p / (.2869f * (T + 273.1f)));
+	r = (float)(p / (.2869f * (T + 273.1f))) /1000.0f;
 	v = (float)((float)(mlGpsData.vel) / 100.0f);
 
 	mlRawPressureData.press_abs = (p - 9444.4) / 27.1270; //convert to static pressure in Pascal / baroScale
@@ -59,7 +59,7 @@ void updateAirData(float* airData) {
 	h = (float)((float)(mlGpsData.alt) / 1000.0f);
 	T = (float)(15.04f - .00649f * h);
 	p = (float)(101.29f *myPow((T + 273.1f) / 288.08f, 5.256f) * 1000.0f); //pascal
-	r = (float)(p / (.2869f * (T + 273.1f)));
+	r = (float)(p / (.2869f * (T + 273.1f))) /1000.0f;
 	v = (float)((float)(mlGpsData.vel) / 100.0f);
 
 	

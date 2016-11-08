@@ -41,7 +41,7 @@ THE SOFTWARE.
 //#include "apDefinitions.h"
     // Circular Buffer Size
     // ===================
-#define BSIZE			512
+#define BSIZE			1024
 
 #ifdef __cplusplus
        extern "C"{
