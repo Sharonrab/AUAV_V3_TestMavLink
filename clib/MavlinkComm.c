@@ -837,7 +837,7 @@ uint16_t PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_
   //////////////////////////////////////////////////////////////////////////
   mavlink_message_t msg;
   memset(&msg, 0, sizeof (mavlink_message_t));
-  mavlink_msg_gps_raw_int_pack(mavlink_system.sysid, mavlink_system.compid, &msg , mlRawGpsDataInt.time_usec,mlRawGpsDataInt.fix_type, mlRawGpsDataInt.lat,
+  mavlink_msg_gps_raw_int_pack(mavlink_system.sysid, mavlink_system.compid, &msg , time_usec ,mlRawGpsDataInt.fix_type, mlRawGpsDataInt.lat,
           mlRawGpsDataInt.lon, mlRawGpsDataInt.alt, mlRawGpsDataInt.eph, mlRawGpsDataInt.epv, mlRawGpsDataInt.vel,
           mlRawGpsDataInt.cog, mlRawGpsDataInt.satellites_visible);
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
