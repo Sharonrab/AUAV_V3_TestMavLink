@@ -59,11 +59,11 @@ typedef char LOCAL_BOOL;
 
     // Circular Buffer Size
     // ===================
-#define BSIZE			512
+//#define BSIZE			512
 
     // GPS Circular Buffers
     // ====================
-#define MSIZE			180
+//#define MSIZE			180
 
     // UAV System ID
     // =============
