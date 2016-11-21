@@ -163,18 +163,26 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
 	 mlBoot.version = 1;
 	 mlMobileLocation.latitude = 36.988506f ;
 	 mlMobileLocation.longitude = -122.055308f;
-	 mlWpValues.lat[0] = 36.9958344;
-	 mlWpValues.lat[1] = 36.9870605;
-
-	 mlWpValues.lon[0] = -122.065491;
-	 mlWpValues.lon[1] = -122.044891;
+	 mlWpValues.lat[0] = 36.9885682;
+	 mlWpValues.lat[1] = 36.9883968;
+     mlWpValues.lat[2] = 36.9869056;
+	 mlWpValues.lat[3] = 36.9869056;
+     
+	 mlWpValues.lon[0] = -122.0528913;
+	 mlWpValues.lon[1] = -122.0501447;
+     mlWpValues.lon[2] = -122.0500696;
+	 mlWpValues.lon[3] = -122.0530200;
 
 	 mlWpValues.alt[0] = 30.0;
 	 mlWpValues.alt[1] = 30.0;
-
+     mlWpValues.alt[2] = 30.0;
+	 mlWpValues.alt[3] = 30.0;
+     
 	 mlWpValues.type[0] = 16;
 	 mlWpValues.type[1] = 16;
-	 mlWpValues.wpCount = 2;
+     mlWpValues.type[2] = 16;
+	 mlWpValues.type[3] = 16;
+	 mlWpValues.wpCount = 4;
 
 }
 
