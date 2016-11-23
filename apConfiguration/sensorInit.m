@@ -42,7 +42,21 @@ accelXCutTemp = 350.0;
 
 % Scale/Offset sets
 % =================
-
+%Bixler2_1
+    imuOffset_xacc  =       -300;
+    imuOffset_yacc  =       50;
+    imuOffset_zacc  =       660;
+    imuOffset_xgyro =       105;
+    imuOffset_ygyro =       65;
+    imuOffset_zgyro =       5;
+ %Pheonix
+    imuOffset_xacc  =       -50;
+    imuOffset_yacc  =       -350;
+    imuOffset_zacc  =       180;
+   
+    imuOffset_xgyro =       96;
+    imuOffset_ygyro =       -15;
+    imuOffset_zgyro =       4;
 % Baro
 % From data sheet assuming linear mapping from 5 to 3.3 
 % into the micro ADC
