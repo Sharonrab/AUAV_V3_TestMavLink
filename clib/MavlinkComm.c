@@ -787,8 +787,8 @@ uint16_t PackTextMsg(uint8_t system_id, uint8_t component_id, unsigned char buf)
 uint16_t PackRawIMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t mlRawIMUData ,uint32_t time_usec){
   mavlink_system_t mavlink_system;
 
-  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
-    return 0;
+//  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
+//    return 0;
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
   //////////////////////////////////////////////////////////////////////////
@@ -801,8 +801,8 @@ uint16_t PackRawIMU(uint8_t system_id, uint8_t component_id, mavlink_raw_imu_t m
 uint16_t PackRawAttitude(uint8_t system_id, uint8_t component_id, mavlink_attitude_t mlAttitudeData ,uint32_t time_usec){
   mavlink_system_t mavlink_system;
 
-  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
-    return 0;
+//  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
+//    return 0;
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
   //////////////////////////////////////////////////////////////////////////
@@ -815,8 +815,8 @@ uint16_t PackRawAttitude(uint8_t system_id, uint8_t component_id, mavlink_attitu
 uint16_t PackRawNavigation(uint8_t system_id, uint8_t component_id, mavlink_slugs_navigation_t mlNavigation, uint32_t time_usec) {
 	mavlink_system_t mavlink_system;
 
-    if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
-    return 0;
+//    if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
+//    return 0;
 	mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
 	mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
 										 //////////////////////////////////////////////////////////////////////////
@@ -834,8 +834,8 @@ uint16_t PackRawNavigation(uint8_t system_id, uint8_t component_id, mavlink_slug
 uint16_t PackPosXYZ_Sol(uint8_t system_id, uint8_t component_id, mavlink_local_position_ned_t mlLocalPositionSol ,uint32_t time_usec){
   mavlink_system_t mavlink_system;
 
-  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
-    return 0;
+//  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
+//    return 0;
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
   //////////////////////////////////////////////////////////////////////////
@@ -847,8 +847,8 @@ uint16_t PackPosXYZ_Sol(uint8_t system_id, uint8_t component_id, mavlink_local_p
 
 uint16_t PackGpsRawInt(uint8_t system_id, uint8_t component_id, mavlink_gps_raw_int_t mlRawGpsDataInt ,uint32_t time_usec){
   mavlink_system_t mavlink_system;
-if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
-    return 0;
+//if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
+//    return 0;
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
   //////////////////////////////////////////////////////////////////////////
@@ -864,8 +864,8 @@ if (!(mlPending.wpProtState == WP_PROT_IDLE))
 uint16_t PackScaledPressure(uint8_t system_id, uint8_t component_id, mavlink_scaled_pressure_t mlAirData ,uint32_t time_usec){
   mavlink_system_t mavlink_system;
 
-  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
-    return 0;
+//  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
+//    return 0;
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
   //////////////////////////////////////////////////////////////////////////
@@ -879,8 +879,8 @@ uint16_t PackScaledPressure(uint8_t system_id, uint8_t component_id, mavlink_sca
 uint16_t PackSysStatus(uint8_t system_id, uint8_t component_id, mavlink_sys_status_t mlSysStatus){
   mavlink_system_t mavlink_system;
 
-  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
-    return 0;
+//  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
+//    return 0;
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
   //////////////////////////////////////////////////////////////////////////
@@ -896,8 +896,8 @@ uint16_t PackSysStatus(uint8_t system_id, uint8_t component_id, mavlink_sys_stat
 uint16_t PackRawServo(uint8_t system_id, uint8_t component_id, mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec){
   mavlink_system_t mavlink_system;
 
-  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
-    return 0;
+//  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
+//    return 0;
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
   //////////////////////////////////////////////////////////////////////////
@@ -922,8 +922,8 @@ uint16_t HIL_PackRawServo(uint8_t system_id, uint8_t component_id, mavlink_servo
 uint16_t PackRawRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_raw_t mlRC_Commands ,uint32_t time_usec){
   mavlink_system_t mavlink_system;
 
-  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
-    return 0;
+//  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
+//    return 0;
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
   //////////////////////////////////////////////////////////////////////////
@@ -936,8 +936,8 @@ uint16_t PackRawRC(uint8_t system_id, uint8_t component_id, mavlink_rc_channels_
 uint16_t PackVFR_HUD(uint8_t system_id, uint8_t component_id, mavlink_vfr_hud_t mlVfr_hud ,uint32_t time_usec){
   mavlink_system_t mavlink_system;
 
-  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
-    return 0;
+//  if (!(mlPending.wpProtState == WP_PROT_IDLE)) 
+//    return 0;
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
   //////////////////////////////////////////////////////////////////////////

@@ -17,7 +17,7 @@ extern "C" {
 #include <stdio.h>	
 
 
-#define PROTOCOL_TIMEOUT_TICKS 20    ///< maximum time to wait for pending messages until timeout
+//#define PROTOCOL_TIMEOUT_TICKS 20    ///< maximum time to wait for pending messages until timeout
 
 
 
