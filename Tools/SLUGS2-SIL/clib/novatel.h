@@ -31,7 +31,7 @@ extern "C" {
 
 #include "mavlinkSensorMcu.h"
 #include "gpsPort.h"
-
+#include "gpsUblox.h"
     typedef union {
         unsigned char chData[8];
         long double doData;

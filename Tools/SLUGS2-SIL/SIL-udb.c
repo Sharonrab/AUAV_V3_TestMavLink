@@ -29,7 +29,10 @@
 
 //mavlink_gps_raw_int_t mlGpsData;       /* '<Root>/mlGpsData' */
 extern uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
-
+extern void  _T2Interrupt(void);
+extern void gpsoutbin(int16_t length, const uint8_t msg[]);
+extern void HILSIM_set_gplane(void);
+extern void HILSIM_set_omegagyro(void);
 #ifdef WIN
 
 #define SIL_WINDOWS_INCS
@@ -261,8 +264,8 @@ void udb_run(void)
 		initialised = 1;
 		if (strlen(SILSIM_SERIAL_RC_INPUT_DEVICE) == 0)
 		{
-			udb_pwIn[THROTTLE_INPUT_CHANNEL] = 2000;
-			udb_pwTrim[THROTTLE_INPUT_CHANNEL] = 2000;
+			udb_pwIn[THROTTLE_INPUT_CHANNEL] = 9386;
+			udb_pwTrim[THROTTLE_INPUT_CHANNEL] = 9386;
 		}
 		nextHeartbeatTime = get_current_milliseconds();
 	}
@@ -713,7 +716,7 @@ void init_servoPrepare(void) // initialize the PWM
 #if (FIXED_TRIMPOINT == 1)
 		udb_pwTrim[i] = udb_pwIn[i] = ((i == THROTTLE_INPUT_CHANNEL) ? THROTTLE_TRIMPOINT : CHANNEL_TRIMPOINT);
 #else
-		udb_pwIn[i] = udb_pwTrim[i] = ((i == THROTTLE_INPUT_CHANNEL) ? 0 : 3000);
+		udb_pwIn[i] = udb_pwTrim[i] = ((i == THROTTLE_INPUT_CHANNEL) ? 9386 : 13154);
 #endif
 	}
 
@@ -722,7 +725,7 @@ void init_servoPrepare(void) // initialize the PWM
 #if (FIXED_TRIMPOINT == 1)
 		udb_pwOut[i] = ((i == THROTTLE_OUTPUT_CHANNEL) ? THROTTLE_TRIMPOINT : CHANNEL_TRIMPOINT);
 #else
-		udb_pwOut[i] = ((i == THROTTLE_OUTPUT_CHANNEL) ? 0 : 3000);
+		udb_pwOut[i] = ((i == THROTTLE_OUTPUT_CHANNEL) ? 9386 : 13154);
 #endif
 	}
 	udb_pwIn[MODE_SWITCH_INPUT_CHANNEL] = 1000;

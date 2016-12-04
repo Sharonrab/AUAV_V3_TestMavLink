@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.241
+ * Model version                  : 1.262
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
+ * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
  */
 
 #include "Position_and_Attitude_Filter.h"
@@ -177,7 +177,7 @@ void Position_and_Attitude_Filt(void)
   real_T rtb_DataTypeConversion2_gb;
   real_T rtb_DiscreteZeroPole_ki;
   real32_T rtb_RhhcosphicoslambXe;
-  real32_T rtb_Product_pc;
+  real32_T rtb_Product;
   real32_T rtb_Product1_gz;
   real32_T rtb_Product2_noi;
   real32_T rtb_Product3_ap;
@@ -226,7 +226,7 @@ void Position_and_Attitude_Filt(void)
   /* Product: '<S494>/Product' incorporates:
    *  DiscreteIntegrator: '<S478>/Discrete-Time Integrator1'
    */
-  rtb_Product_pc = AUAV_V3_TestSensors_DWork.DiscreteTimeIntegrator1_DSTATE[0] /
+  rtb_Product = AUAV_V3_TestSensors_DWork.DiscreteTimeIntegrator1_DSTATE[0] /
     rtb_RhhcosphicoslambXe;
 
   /* Product: '<S494>/Product1' incorporates:
@@ -254,12 +254,12 @@ void Position_and_Attitude_Filt(void)
    *  Product: '<S535>/Product3'
    *  Sum: '<S535>/Sum'
    */
-  rtb_RhhcosphicoslambXe = (real32_T)sqrt(((rtb_Product_pc * rtb_Product_pc +
+  rtb_RhhcosphicoslambXe = (real32_T)sqrt(((rtb_Product * rtb_Product +
     rtb_Product1_gz * rtb_Product1_gz) + rtb_Product2_noi * rtb_Product2_noi) +
     rtb_Product3_ap * rtb_Product3_ap);
 
   /* Product: '<S533>/Product' */
-  rtb_Deg2R1 = rtb_Product_pc / rtb_RhhcosphicoslambXe;
+  rtb_Deg2R1 = rtb_Product / rtb_RhhcosphicoslambXe;
 
   /* Product: '<S533>/Product1' */
   rtb_RhhcosphisinlambYe = rtb_Product1_gz / rtb_RhhcosphicoslambXe;
@@ -569,11 +569,11 @@ void Position_and_Attitude_Filt(void)
       /* Gain: '<S483>/UEN 2 NEU' */
       AUAV_V3_TestSensors_B.In1[colIdx] = 0.0F;
       AUAV_V3_TestSensors_B.In1[colIdx] +=
-        AUAV_V3_TestSensors_ConstP.pooled62[colIdx] * tmp_0[0];
+        AUAV_V3_TestSensors_ConstP.pooled64[colIdx] * tmp_0[0];
       AUAV_V3_TestSensors_B.In1[colIdx] +=
-        AUAV_V3_TestSensors_ConstP.pooled62[colIdx + 3] * tmp_0[1];
+        AUAV_V3_TestSensors_ConstP.pooled64[colIdx + 3] * tmp_0[1];
       AUAV_V3_TestSensors_B.In1[colIdx] +=
-        AUAV_V3_TestSensors_ConstP.pooled62[colIdx + 6] * tmp_0[2];
+        AUAV_V3_TestSensors_ConstP.pooled64[colIdx + 6] * tmp_0[2];
     }
 
     /* End of Inport: '<S481>/In1' */
@@ -1229,15 +1229,15 @@ void Position_and_Attitude_Filt(void)
     rtb_Product3_ap * AUAV_V3_TestSensors_DWork.IntegerDelay_DSTATE_j[2];
 
   /* '<S497>:1:9' */
-  rtb_TmpSignalConversionAtSFun_0[0] = rtb_Product_pc;
+  rtb_TmpSignalConversionAtSFun_0[0] = rtb_Product;
   rtb_TmpSignalConversionAtSFun_0[3] = -rtb_Product3_ap;
   rtb_TmpSignalConversionAtSFun_0[6] = rtb_Product2_noi;
   rtb_TmpSignalConversionAtSFun_0[1] = rtb_Product3_ap;
-  rtb_TmpSignalConversionAtSFun_0[4] = rtb_Product_pc;
+  rtb_TmpSignalConversionAtSFun_0[4] = rtb_Product;
   rtb_TmpSignalConversionAtSFun_0[7] = -rtb_Product1_gz;
   rtb_TmpSignalConversionAtSFun_0[2] = -rtb_Product2_noi;
   rtb_TmpSignalConversionAtSFun_0[5] = rtb_Product1_gz;
-  rtb_TmpSignalConversionAtSFun_0[8] = rtb_Product_pc;
+  rtb_TmpSignalConversionAtSFun_0[8] = rtb_Product;
   for (colIdx = 0; colIdx < 3; colIdx++) {
     tmp[3 * colIdx] = rtb_TmpSignalConversionAtSFun_0[3 * colIdx] * 0.5F;
     tmp[1 + 3 * colIdx] = rtb_TmpSignalConversionAtSFun_0[3 * colIdx + 1] * 0.5F;

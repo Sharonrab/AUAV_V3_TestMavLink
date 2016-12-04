@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.241
+ * Model version                  : 1.262
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
+ * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
  */
 
 #ifndef RTW_HEADER_AUAV_V3_TestSensors_h_
@@ -118,7 +118,7 @@ typedef struct {
 typedef struct {
   mavlink_attitude_t AttitudeRateTransition;/* '<S8>/Attitude Rate Transition' */
   mavlink_gps_raw_int_t GetRawGpsInt;  /* '<S8>/Get RawGpsInt' */
-  mavlink_slugs_navigation_t AttitudeRateTransition1;/* '<S8>/Attitude Rate Transition1' */
+  mavlink_slugs_navigation_t GetAttitude1;/* '<S8>/Get Attitude 1' */
   mavlink_sys_status_t GetmlSysStatus; /* '<S8>/Get mlSysStatus' */
   mavlink_rc_channels_raw_t RCRateTransition;/* '<S8>/RC Rate Transition' */
   mavlink_raw_imu_t RawIMURateTransition;/* '<S8>/RawIMU Rate Transition' */
@@ -267,6 +267,8 @@ typedef struct {
   uint16_T InputCapture_o5;            /* '<S656>/Input Capture' */
   uint16_T ChoosetheMediannavSupportcupdat;/* '<S660>/Choose the Median [navSupport.c] [updated 5.1.16]' */
   uint16_T Merge_oc[4];                /* '<S682>/Merge' */
+  uint16_T RateTransition[4];          /* '<S20>/Rate Transition' */
+  uint16_T Gain[4];                    /* '<S20>/Gain' */
   uint16_T U3CH4;                      /* '<Root>/MCU Load' */
   uint16_T PackRawServo;               /* '<S684>/PackRawServo' */
   uint16_T PackRawServo_l;             /* '<S683>/PackRawServo' */
@@ -441,6 +443,9 @@ typedef struct {
 
 /* Block states (auto storage) for system '<Root>' */
 typedef struct {
+  mavlink_attitude_t AttitudeRateTransition_Buffer0;/* '<S8>/Attitude Rate Transition' */
+  mavlink_rc_channels_raw_t RCRateTransition_Buffer0;/* '<S8>/RC Rate Transition' */
+  mavlink_raw_imu_t RawIMURateTransition_Buffer0;/* '<S8>/RawIMU Rate Transition' */
   real_T DiscreteZeroPole_DSTATE;      /* '<S640>/Discrete Zero-Pole' */
   real_T DiscreteZeroPole_DSTATE_o;    /* '<S566>/Discrete Zero-Pole' */
   real_T DiscreteZeroPole_DSTATE_j;    /* '<S567>/Discrete Zero-Pole' */
@@ -552,6 +557,9 @@ typedef struct {
   uint8_T IntegerDelay_DSTATE_im;      /* '<S187>/Integer Delay' */
   uint8_T FixPtUnitDelay2_DSTATE;      /* '<S178>/FixPt Unit Delay2' */
   boolean_T Delay_DSTATE_e;            /* '<S464>/Delay' */
+  int8_T RawIMURateTransition_semaphoreT;/* '<S8>/RawIMU Rate Transition' */
+  int8_T AttitudeRateTransition_semaphor;/* '<S8>/Attitude Rate Transition' */
+  int8_T RCRateTransition_semaphoreTaken;/* '<S8>/RC Rate Transition' */
   uint8_T fromWp;                      /* '<S187>/computeCurrentWP' */
   uint8_T toWp;                        /* '<S187>/computeCurrentWP' */
   uint8_T persistentDidReachIP;        /* '<S187>/Embedded MATLAB Function' */
@@ -622,7 +630,7 @@ typedef struct {
    *   '<S403>/UEN 2 NEU'
    *   '<S420>/UEN 2 NEU'
    */
-  real32_T pooled62[9];
+  real32_T pooled64[9];
 } ConstParam_AUAV_V3_TestSensor_T;
 
 /* Real-time Model Data Structure */
@@ -636,13 +644,12 @@ struct tag_RTM_AUAV_V3_TestSensors_T {
     uint32_T clockTick0;
     boolean_T firstInitCondFlag;
     struct {
-      uint8_T TID[11];
-      uint8_T cLimit[11];
+      uint16_T TID[21];
+      uint16_T cLimit[21];
     } TaskCounters;
 
     struct {
-      uint8_T TID0_2;
-      uint8_T TID0_3;
+      uint16_T TID0_1;
     } RateInteraction;
   } Timing;
 };
@@ -731,6 +738,16 @@ extern void AUAV_V3_TestSensors_step7(void);
 extern void AUAV_V3_TestSensors_step8(void);
 extern void AUAV_V3_TestSensors_step9(void);
 extern void AUAV_V3_TestSensors_step10(void);
+extern void AUAV_V3_TestSensors_step11(void);
+extern void AUAV_V3_TestSensors_step12(void);
+extern void AUAV_V3_TestSensors_step13(void);
+extern void AUAV_V3_TestSensors_step14(void);
+extern void AUAV_V3_TestSensors_step15(void);
+extern void AUAV_V3_TestSensors_step16(void);
+extern void AUAV_V3_TestSensors_step17(void);
+extern void AUAV_V3_TestSensors_step18(void);
+extern void AUAV_V3_TestSensors_step19(void);
+extern void AUAV_V3_TestSensors_step20(void);
 
 /* Real-time Model object */
 extern RT_MODEL_AUAV_V3_TestSensors_T *const AUAV_V3_TestSensors_M;

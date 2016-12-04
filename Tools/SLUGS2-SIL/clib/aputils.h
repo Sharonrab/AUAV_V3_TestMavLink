@@ -70,9 +70,7 @@ THE SOFTWARE.
 
 
 // Trig and Math Functions
-		   
-
-		   float myAtan2 (float num, float denom);
+float myAtan2 (float num, float denom);
 float myPow (float x, float toTheN);
 float mySqrt (float x);
 float myAbs (float x);

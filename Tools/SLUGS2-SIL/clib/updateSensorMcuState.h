@@ -28,6 +28,7 @@ THE SOFTWARE.
 
 #include "apDefinitions.h"
 #include "mavlinkSensorMcu.h"
+#include "gpsUblox.h"
 
 #define MPS_TO_MG 	101.8849
 

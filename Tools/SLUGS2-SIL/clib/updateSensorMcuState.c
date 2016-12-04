@@ -26,6 +26,7 @@ THE SOFTWARE.
 #include "AUAV_V3_TestSensors.h"
 
 #include "updateSensorMcuState.h"
+
 extern float myPow(float x, float toTheN);
 
 void updateRawADCData(int16_t* adcData) {

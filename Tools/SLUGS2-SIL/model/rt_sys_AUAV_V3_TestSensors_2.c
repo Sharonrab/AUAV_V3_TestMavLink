@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.241
+ * Model version                  : 1.262
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
+ * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
  */
 
 #include "rt_sys_AUAV_V3_TestSensors_2.h"
@@ -20,6 +20,17 @@
 /* Include model header file for global data */
 #include "AUAV_V3_TestSensors.h"
 #include "AUAV_V3_TestSensors_private.h"
+
+/*
+ * Start for enable system:
+ *    '<S28>/Enabled Subsystem'
+ *    '<S622>/Enabled Subsystem'
+ */
+void AUA_EnabledSubsystem_Start(rtB_EnabledSubsystem_AUAV_V3__T *localB)
+{
+  /* VirtualOutportStart for Outport: '<S38>/Out1' */
+  localB->In1 = 143.543F;
+}
 
 /*
  * Output and update for enable system:

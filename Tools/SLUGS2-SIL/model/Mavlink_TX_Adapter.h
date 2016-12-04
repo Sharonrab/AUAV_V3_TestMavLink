@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.241
+ * Model version                  : 1.262
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
+ * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
  */
 
 #ifndef RTW_HEADER_Mavlink_TX_Adapter_h_
@@ -30,14 +30,18 @@
 #include "rt_nonfinite.h"
 
 extern void AUAV_V3_Mavlink_TX_AdapterTID0(void);
-extern void AUAV_V3_Mavlink_TX_AdapterTID2(void);
-extern void AUAV_V3_Mavlink_TX_AdapterTID3(void);
-extern void AUAV_V3_Mavlink_TX_AdapterTID4(void);
 extern void AUAV_V3_Mavlink_TX_AdapterTID5(void);
 extern void AUAV_V3_Mavlink_TX_AdapterTID6(void);
-extern void AUAV_V3_Mavlink_TX_AdapterTID7(void);
-extern void AUAV_V3_Mavlink_TX_AdapterTID9(void);
 extern void AUAV_V3_Mavlink_TX_AdapterTID10(void);
+extern void AUAV_V3_Mavlink_TX_AdapterTID12(void);
+extern void AUAV_V3_Mavlink_TX_AdapterTID13(void);
+extern void AUAV_V3_Mavlink_TX_AdapterTID14(void);
+extern void AUAV_V3_Mavlink_TX_AdapterTID15(void);
+extern void AUAV_V3_Mavlink_TX_AdapterTID16(void);
+extern void AUAV_V3_Mavlink_TX_AdapterTID17(void);
+extern void AUAV_V3_Mavlink_TX_AdapterTID18(void);
+extern void AUAV_V3_Mavlink_TX_AdapterTID19(void);
+extern void AUAV_V3_Mavlink_TX_AdapterTID20(void);
 
 #endif                                 /* RTW_HEADER_Mavlink_TX_Adapter_h_ */
 

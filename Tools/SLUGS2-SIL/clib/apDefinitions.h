@@ -59,11 +59,11 @@ typedef char LOCAL_BOOL;
 
     // Circular Buffer Size
     // ===================
-#define BSIZE			512
+//#define BSIZE			512
 
     // GPS Circular Buffers
     // ====================
-#define MSIZE			180
+//#define MSIZE			180
 
     // UAV System ID
     // =============
@@ -112,11 +112,11 @@ typedef char LOCAL_BOOL;
     // ==============
 
     // GPS Fix Types
-    enum GPS_FIX {
-        GPS_FIX_NONE = 0,
-        GPS_FIX_2D = 2,
-        GPS_FIX_3D = 3
-    };
+//    enum GPS_FIX {
+//        GPS_FIX_NONE = 0,
+//        GPS_FIX_2D = 2,
+//        GPS_FIX_3D = 3
+//    };
 
     // PID EEPROM Error Messages
 

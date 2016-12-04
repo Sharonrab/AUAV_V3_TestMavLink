@@ -39,7 +39,6 @@ THE SOFTWARE.
 #include "apUtils.h"
 #include "mavlinkSensorMcu.h"
 
-
 #if (USE_CUBE_16405 == 1)
 
 
@@ -194,6 +193,7 @@ bits [6:7] of Address must be [1 0] since this will be a write
 #define W_YACC_OFFSET_HI	(unsigned short)0xA300
 #define W_ZACC_OFFSET_LO	(unsigned short)0xA4FB // -5
 #define W_ZACC_OFFSET_HI	(unsigned short)0xA51F
+
 
 typedef struct tCubeBuffer {
   int16_t  ax[4];

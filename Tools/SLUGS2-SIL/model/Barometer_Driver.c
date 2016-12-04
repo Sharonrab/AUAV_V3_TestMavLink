@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.241
+ * Model version                  : 1.262
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
+ * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
  */
 
 #include "Barometer_Driver.h"
@@ -44,6 +44,11 @@ void AUA_Barometer_Driver_Start(void)
   _MI2C2IP = 6;                        /* Set I2C Master Interrupt Priority */
   _MI2C2IF = 0;
   _MI2C2IE = 1;
+
+  /* Start for Enabled SubSystem: '<S28>/Enabled Subsystem' */
+  AUA_EnabledSubsystem_Start(&AUAV_V3_TestSensors_B.EnabledSubsystem);
+
+  /* End of Start for SubSystem: '<S28>/Enabled Subsystem' */
 }
 
 /* Output and update for atomic system: '<Root>/Barometer_Driver' */
@@ -52,9 +57,7 @@ void AUAV_V3_T_Barometer_Driver(void)
   /* local block i/o variables */
   real_T rtb_DataTypeConversion;
   real_T rtb_DiscreteZeroPole;
-  uint16_T rtb_Sum1_n;
-  uint16_T rtb_SumB21;
-  boolean_T rtb_LogicalOperator;
+  uint16_T rtb_Product;
   int16_T rtb_B6;
   int32_T rtb_Bias5;
   uint32_T rtb_B4;
@@ -62,6 +65,8 @@ void AUAV_V3_T_Barometer_Driver(void)
   uint32_T rtb_Sum6;
   uint32_T qY;
   uint32_T qY_0;
+  uint32_T q0;
+  uint32_T qY_1;
 
   /* S-Function (MCHP_BUS_I2C_MASTER): '<S1>/BUS I2C Initialize BMP180 Read T°, Convert P @ 100Hz' */
   /* number of I2C blocks : 5 ; Current: 2 ; MCHP_I2C_StartImplemented =  3*/
@@ -96,39 +101,34 @@ void AUAV_V3_T_Barometer_Driver(void)
    *  Gain: '<S34>/Gain'
    *  S-Function (sfix_bitop): '<S34>/Bitwise Operator'
    */
-  rtb_B4 = ((uint16_T)AUAV_V3_TestSensors_B.BUSI2CInitializeBMP180ReadTConv[0] <<
-            8 | AUAV_V3_TestSensors_B.BUSI2CInitializeBMP180ReadTConv[1]) *
-    31949UL >> 5;
-  qY_0 = rtb_B4 + mul_u32_u32_u32_sr15(30771UL,
+  q0 = ((uint16_T)AUAV_V3_TestSensors_B.BUSI2CInitializeBMP180ReadTConv[0] << 8 |
+        AUAV_V3_TestSensors_B.BUSI2CInitializeBMP180ReadTConv[1]) * 31949UL >> 5;
+  qY_1 = q0 + mul_u32_u32_u32_sr15(30771UL,
     AUAV_V3_TestSensors_DWork.Delay11_DSTATE);
-  if (qY_0 < rtb_B4) {
-    qY_0 = MAX_uint32_T;
+  if (qY_1 < q0) {
+    qY_1 = MAX_uint32_T;
   }
 
   /* Sum: '<S32>/SumB21' incorporates:
    *  Delay: '<S32>/Delay11'
    *  Sum: '<S32>/SumA21'
    */
-  if (qY_0 > 2147483647UL) {
-    rtb_B4 = MAX_uint32_T;
+  if (qY_1 > 2147483647UL) {
+    q0 = MAX_uint32_T;
   } else {
-    rtb_B4 = qY_0 << 1;
+    q0 = qY_1 << 1;
   }
 
   if (AUAV_V3_TestSensors_DWork.Delay11_DSTATE > 2147483647UL) {
-    rtb_Sum6 = MAX_uint32_T;
+    rtb_B4 = MAX_uint32_T;
   } else {
-    rtb_Sum6 = AUAV_V3_TestSensors_DWork.Delay11_DSTATE << 1;
+    rtb_B4 = AUAV_V3_TestSensors_DWork.Delay11_DSTATE << 1;
   }
 
-  qY = rtb_B4 + rtb_Sum6;
-  if (qY < rtb_B4) {
-    qY = MAX_uint32_T;
+  qY_0 = q0 + rtb_B4;
+  if (qY_0 < q0) {
+    qY_0 = MAX_uint32_T;
   }
-
-  rtb_Sum1_n = (uint16_T)(qY >> 16);
-
-  /* End of Sum: '<S32>/SumB21' */
 
   /* S-Function (MCHP_BUS_I2C_MASTER): '<S1>/BUS I2C Initialize BMP180 Read P, Convert T° @100Hz' */
   /* number of I2C blocks : 5 ; Current: 3 ; MCHP_I2C_StartImplemented =  3*/
@@ -163,12 +163,11 @@ void AUAV_V3_T_Barometer_Driver(void)
    *  Gain: '<S35>/Gain'
    *  S-Function (sfix_bitop): '<S35>/Bitwise Operator'
    */
-  rtb_B4 = ((uint16_T)AUAV_V3_TestSensors_B.BUSI2CInitializeBMP180ReadPConv[0] <<
-            8 | AUAV_V3_TestSensors_B.BUSI2CInitializeBMP180ReadPConv[1]) *
-    31949UL >> 5;
-  qY = rtb_B4 + mul_u32_u32_u32_sr15(30771UL,
+  q0 = ((uint16_T)AUAV_V3_TestSensors_B.BUSI2CInitializeBMP180ReadPConv[0] << 8 |
+        AUAV_V3_TestSensors_B.BUSI2CInitializeBMP180ReadPConv[1]) * 31949UL >> 5;
+  qY = q0 + mul_u32_u32_u32_sr15(30771UL,
     AUAV_V3_TestSensors_DWork.Delay11_DSTATE_j);
-  if (qY < rtb_B4) {
+  if (qY < q0) {
     qY = MAX_uint32_T;
   }
 
@@ -177,42 +176,21 @@ void AUAV_V3_T_Barometer_Driver(void)
    *  Sum: '<S33>/SumA21'
    */
   if (qY > 2147483647UL) {
-    rtb_B4 = MAX_uint32_T;
+    q0 = MAX_uint32_T;
   } else {
-    rtb_B4 = qY << 1;
+    q0 = qY << 1;
   }
 
   if (AUAV_V3_TestSensors_DWork.Delay11_DSTATE_j > 2147483647UL) {
-    rtb_Sum6 = MAX_uint32_T;
+    rtb_B4 = MAX_uint32_T;
   } else {
-    rtb_Sum6 = AUAV_V3_TestSensors_DWork.Delay11_DSTATE_j << 1;
+    rtb_B4 = AUAV_V3_TestSensors_DWork.Delay11_DSTATE_j << 1;
   }
 
-  rtb_Sum6 += rtb_B4;
-  if (rtb_Sum6 < rtb_B4) {
+  rtb_Sum6 = q0 + rtb_B4;
+  if (rtb_Sum6 < q0) {
     rtb_Sum6 = MAX_uint32_T;
   }
-
-  rtb_SumB21 = (uint16_T)(rtb_Sum6 >> 16);
-
-  /* End of Sum: '<S33>/SumB21' */
-
-  /* Logic: '<S1>/Logical Operator' */
-  rtb_LogicalOperator = !(AUAV_V3_TestSensors_B.HILManualSwitch != 0.0);
-
-  /* Outputs for Enabled SubSystem: '<S1>/Disable path through in HIL Subsystem' incorporates:
-   *  EnablePort: '<S29>/Enable'
-   */
-  if (rtb_LogicalOperator) {
-    /* DataStoreWrite: '<S29>/Update RawPressure' incorporates:
-     *  DataTypeConversion: '<S1>/Data Type Conversion7'
-     *  DataTypeConversion: '<S1>/Data Type Conversion8'
-     */
-    mlRawPressureData.press_abs = (int16_T)rtb_Sum1_n;
-    mlRawPressureData.temperature = (int16_T)rtb_SumB21;
-  }
-
-  /* End of Outputs for SubSystem: '<S1>/Disable path through in HIL Subsystem' */
 
   /* Outputs for Enabled SubSystem: '<S1>/I2C Initialisation Read EEPROM Calibration data Once (Blocking Function)' incorporates:
    *  EnablePort: '<S31>/Enable'
@@ -359,13 +337,15 @@ void AUAV_V3_T_Barometer_Driver(void)
   /* End of Delay: '<S1>/Delay' */
   /* End of Outputs for SubSystem: '<S1>/I2C Initialisation Read EEPROM Calibration data Once (Blocking Function)' */
 
-  /* Sum: '<S27>/Sum' */
-  rtb_Sum1_n -= AUAV_V3_TestSensors_B.RateTransition7;
-
-  /* Product: '<S27>/Product' */
-  rtb_Sum6 = (uint32_T)rtb_Sum1_n * AUAV_V3_TestSensors_B.RateTransition6;
-  rtb_Sum1_n = (uint16_T)(((uint16_T)((int16_T)rtb_Sum6 & 16384) != 0U) +
-    (rtb_Sum6 >> 15));
+  /* Product: '<S27>/Product' incorporates:
+   *  Sum: '<S27>/Sum'
+   *  Sum: '<S32>/SumB21'
+   */
+  rtb_B4 = (uint32_T)((uint16_T)(qY_0 >> 16) -
+                      AUAV_V3_TestSensors_B.RateTransition7) *
+    AUAV_V3_TestSensors_B.RateTransition6;
+  rtb_Product = (uint16_T)(((uint16_T)((int16_T)rtb_B4 & 16384) != 0U) + (rtb_B4
+    >> 15));
 
   /* Sum: '<S27>/Sum2' incorporates:
    *  Bias: '<S27>/Bias'
@@ -374,8 +354,8 @@ void AUAV_V3_T_Barometer_Driver(void)
    *  Sum: '<S27>/Sum1'
    */
   rtb_B6 = (div_s16s32_round((int32_T)AUAV_V3_TestSensors_B.RateTransition11 <<
-             11, rtb_Sum1_n + AUAV_V3_TestSensors_B.RateTransition12) + (int16_T)
-            rtb_Sum1_n) - 4000;
+             11, rtb_Product + AUAV_V3_TestSensors_B.RateTransition12) +
+            (int16_T)rtb_Product) - 4000;
 
   /* MATLAB Function: '<S28>/Enables//Disables the Computation of  initial Baro Bias' */
   EnablesDisablestheComputat
@@ -390,7 +370,7 @@ void AUAV_V3_T_Barometer_Driver(void)
      *  Constant: '<S28>/Constant5'
      *  Delay: '<S41>/Integer Delay'
      */
-    AUAV_V3_TestSensors_B.Sum_k = 0.0F -
+    AUAV_V3_TestSensors_B.Sum_k = 143.543F -
       AUAV_V3_TestSensors_DWork.IntegerDelay_DSTATE_jh;
   }
 
@@ -405,11 +385,12 @@ void AUAV_V3_T_Barometer_Driver(void)
    *  Product: '<S27>/Product3'
    *  Sum: '<S27>/Sum3'
    *  Sum: '<S27>/Sum4'
+   *  Sum: '<S33>/SumB21'
    */
-  rtb_Sum6 = (uint32_T)rtb_SumB21 - (((((int16_T)((int32_T)rtb_B6 *
-    AUAV_V3_TestSensors_B.RateTransition3 >> 11) + (int16_T)mul_s32_s32_s32_sr23
-    (AUAV_V3_TestSensors_B.RateTransition9, rtb_Bias5)) + ((int32_T)
-    AUAV_V3_TestSensors_B.RateTransition2 << 2)) + 2L) >> 2);
+  rtb_Sum6 = (uint32_T)(uint16_T)(rtb_Sum6 >> 16) - (((((int16_T)((int32_T)
+    rtb_B6 * AUAV_V3_TestSensors_B.RateTransition3 >> 11) + (int16_T)
+    mul_s32_s32_s32_sr23(AUAV_V3_TestSensors_B.RateTransition9, rtb_Bias5)) +
+    ((int32_T)AUAV_V3_TestSensors_B.RateTransition2 << 2)) + 2L) >> 2);
 
   /* Product: '<S27>/Product6' incorporates:
    *  Bias: '<S27>/Bias3'
@@ -499,6 +480,7 @@ void AUAV_V3_T_Barometer_Driver(void)
     AUAV_V3_TestSensors_B.u0k120k_i;
 
   /* Sum: '<S37>/Sum1' incorporates:
+   *  Constant: '<S28>/Constant5'
    *  Constant: '<S37>/Constant2'
    *  Constant: '<S37>/Constant3'
    *  Constant: '<S37>/Constant4'
@@ -511,7 +493,7 @@ void AUAV_V3_T_Barometer_Driver(void)
    *  Sum: '<S37>/Sum3'
    */
   rtb_x = ((rtb_x * rtb_x * 0.093502529F + rtb_x * -0.188893303F) +
-           2.18031291E-5F) * 145473.5F * 0.3048F;
+           2.18031291E-5F) * 145473.5F * 0.3048F + 143.543F;
 
   /* Outputs for Enabled SubSystem: '<S28>/Enabled Subsystem' */
 
@@ -525,25 +507,10 @@ void AUAV_V3_T_Barometer_Driver(void)
 
   /* End of Outputs for SubSystem: '<S28>/Enabled Subsystem' */
 
-  /* Outputs for Enabled SubSystem: '<S1>/Disable path through in HIL Subsystem1' incorporates:
-   *  EnablePort: '<S30>/Enable'
-   */
-  if (rtb_LogicalOperator) {
-    /* DataStoreWrite: '<S30>/Update ScaledPressure' incorporates:
-     *  Bias: '<S27>/Bias'
-     *  Bias: '<S27>/Bias1'
-     *  Gain: '<S1>/Gain21'
-     */
-    mlAirData.temperature = (int16_T)((rtb_B6 + 4008) * 5L >> 3);
-    mlAirData.press_abs = AUAV_V3_TestSensors_B.EnabledSubsystem.In1;
-  }
-
-  /* End of Outputs for SubSystem: '<S1>/Disable path through in HIL Subsystem1' */
-
   /* Update for Delay: '<S32>/Delay11' incorporates:
    *  Sum: '<S32>/SumA21'
    */
-  AUAV_V3_TestSensors_DWork.Delay11_DSTATE = qY_0;
+  AUAV_V3_TestSensors_DWork.Delay11_DSTATE = qY_1;
 
   /* Update for Delay: '<S33>/Delay11' incorporates:
    *  Sum: '<S33>/SumA21'

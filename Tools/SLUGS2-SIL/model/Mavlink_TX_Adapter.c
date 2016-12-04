@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.241
+ * Model version                  : 1.262
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
+ * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
  */
 
 #include "Mavlink_TX_Adapter.h"
@@ -63,7 +63,7 @@ void AUAV_V3_Mavlink_TX_AdapterTID0(void)
    *  Sum: '<S8>/Sum1'
    */
   tmp = (int16_T)fmod((int16_T)floor(((real_T)mlPwmCommands.servo1_raw - 189.0) *
-    0.47), 65536.0);
+    0.135), 65536.0);
 
   /* DataStoreWrite: '<S8>/Set VfrHud' incorporates:
    *  DataTypeConversion: '<S8>/Data Type Conversion5'
@@ -71,29 +71,106 @@ void AUAV_V3_Mavlink_TX_AdapterTID0(void)
   mlVfr_hud.throttle = tmp < 0 ? (uint16_T)-(int16_T)(uint16_T)-(real_T)tmp :
     (uint16_T)tmp;
 
-  /* RateTransition: '<S8>/RawIMU Rate Transition' incorporates:
-   *  RateTransition: '<S8>/Attitude Rate Transition'
-   *  RateTransition: '<S8>/Attitude Rate Transition1'
-   */
-  if (AUAV_V3_TestSensors_M->Timing.RateInteraction.TID0_2 == 1) {
-    AUAV_V3_TestSensors_B.RawIMURateTransition = mlRawImuData;
-    AUAV_V3_TestSensors_B.AttitudeRateTransition = mlAttitudeSol;
-    AUAV_V3_TestSensors_B.AttitudeRateTransition1 = mlNavigation;
+  /* RateTransition: '<S8>/RawIMU Rate Transition' */
+  if (!(AUAV_V3_TestSensors_DWork.RawIMURateTransition_semaphoreT != 0)) {
+    AUAV_V3_TestSensors_DWork.RawIMURateTransition_Buffer0 = mlRawImuData;
   }
 
   /* End of RateTransition: '<S8>/RawIMU Rate Transition' */
 
+  /* RateTransition: '<S8>/Attitude Rate Transition' */
+  if (!(AUAV_V3_TestSensors_DWork.AttitudeRateTransition_semaphor != 0)) {
+    AUAV_V3_TestSensors_DWork.AttitudeRateTransition_Buffer0 = mlAttitudeSol;
+  }
+
+  /* End of RateTransition: '<S8>/Attitude Rate Transition' */
+
   /* RateTransition: '<S8>/RC Rate Transition' */
-  if (AUAV_V3_TestSensors_M->Timing.RateInteraction.TID0_3 == 1) {
-    AUAV_V3_TestSensors_B.RCRateTransition = mlPilotConsoleData;
+  if (!(AUAV_V3_TestSensors_DWork.RCRateTransition_semaphoreTaken != 0)) {
+    AUAV_V3_TestSensors_DWork.RCRateTransition_Buffer0 = mlPilotConsoleData;
   }
 
   /* End of RateTransition: '<S8>/RC Rate Transition' */
 }
 
 /* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
-void AUAV_V3_Mavlink_TX_AdapterTID2(void)
+void AUAV_V3_Mavlink_TX_AdapterTID5(void)
 {
+  /* S-Function (MCHP_C_function_Call): '<S8>/ParamInterfaceResponse' */
+  AUAV_V3_TestSensors_B.ParamInterfaceResponse = ParameterInterfaceResponse(
+    ((uint8_T)101U)
+    , ((uint8_T)1U)
+    );
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data5' */
+  TxN_Data_OverU1(
+                  AUAV_V3_TestSensors_B.ParamInterfaceResponse
+                  );
+}
+
+/* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
+void AUAV_V3_Mavlink_TX_AdapterTID6(void)
+{
+  /* S-Function (MCHP_C_function_Call): '<S8>/MissionInterfaceResponse' */
+  AUAV_V3_TestSensors_B.MissionInterfaceResponse = MissionInterfaceResponse(
+    ((uint8_T)101U)
+    , ((uint8_T)1U)
+    );
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data6' */
+  TxN_Data_OverU1(
+                  AUAV_V3_TestSensors_B.MissionInterfaceResponse
+                  );
+}
+
+/* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
+void AUAV_V3_Mavlink_TX_AdapterTID10(void)
+{
+  /* S-Function (MCHP_C_function_Call): '<S8>/PackHeartBeat' */
+  AUAV_V3_TestSensors_B.PackHeartBeat = PackHeartBeat(
+    ((uint8_T)101U)
+    , ((uint8_T)1U)
+    );
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data1' */
+  TxN_Data_OverU1(
+                  AUAV_V3_TestSensors_B.PackHeartBeat
+                  );
+}
+
+/* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
+void AUAV_V3_Mavlink_TX_AdapterTID12(void)
+{
+  /* DataStoreRead: '<S8>/Get RawGpsInt' */
+  AUAV_V3_TestSensors_B.GetRawGpsInt = mlGpsData;
+
+  /* DataStoreRead: '<S8>/Get time1' */
+  AUAV_V3_TestSensors_B.Gettime1 =
+    AUAV_V3_TestSensors_DWork.time_since_boot_usec;
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/PackGpsRawInt' */
+  AUAV_V3_TestSensors_B.PackGpsRawInt = PackGpsRawInt(
+    ((uint8_T)101U)
+    , ((uint8_T)1U)
+    , AUAV_V3_TestSensors_B.GetRawGpsInt
+    , AUAV_V3_TestSensors_B.Gettime1
+    );
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data2' */
+  TxN_Data_OverU1(
+                  AUAV_V3_TestSensors_B.PackGpsRawInt
+                  );
+}
+
+/* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
+void AUAV_V3_Mavlink_TX_AdapterTID13(void)
+{
+  /* RateTransition: '<S8>/RawIMU Rate Transition' */
+  AUAV_V3_TestSensors_DWork.RawIMURateTransition_semaphoreT = 1;
+  AUAV_V3_TestSensors_B.RawIMURateTransition =
+    AUAV_V3_TestSensors_DWork.RawIMURateTransition_Buffer0;
+  AUAV_V3_TestSensors_DWork.RawIMURateTransition_semaphoreT = 0;
+
   /* DataStoreRead: '<S8>/Get time' */
   AUAV_V3_TestSensors_B.Gettime = AUAV_V3_TestSensors_DWork.time_since_boot_usec;
 
@@ -109,105 +186,10 @@ void AUAV_V3_Mavlink_TX_AdapterTID2(void)
   TxN_Data_OverU1(
                   AUAV_V3_TestSensors_B.PackRawIMU
                   );
-
-  /* DataStoreRead: '<S8>/Get time6' */
-  AUAV_V3_TestSensors_B.Gettime6 =
-    AUAV_V3_TestSensors_DWork.time_since_boot_usec;
-
-  /* S-Function (MCHP_C_function_Call): '<S8>/Pack Attitude' */
-  AUAV_V3_TestSensors_B.PackAttitude = PackRawAttitude(
-    ((uint8_T)101U)
-    , ((uint8_T)1U)
-    , AUAV_V3_TestSensors_B.AttitudeRateTransition
-    , AUAV_V3_TestSensors_B.Gettime6
-    );
-
-  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data10' */
-  TxN_Data_OverU1(
-                  AUAV_V3_TestSensors_B.PackAttitude
-                  );
-
-  /* DataStoreRead: '<S8>/Get time7' */
-  AUAV_V3_TestSensors_B.Gettime7 =
-    AUAV_V3_TestSensors_DWork.time_since_boot_usec;
-
-  /* S-Function (MCHP_C_function_Call): '<S8>/Pack Navigation' */
-  AUAV_V3_TestSensors_B.PackNavigation = PackRawNavigation(
-    ((uint8_T)101U)
-    , ((uint8_T)1U)
-    , AUAV_V3_TestSensors_B.AttitudeRateTransition1
-    , AUAV_V3_TestSensors_B.Gettime7
-    );
-
-  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data11' */
-  TxN_Data_OverU1(
-                  AUAV_V3_TestSensors_B.PackNavigation
-                  );
 }
 
 /* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
-void AUAV_V3_Mavlink_TX_AdapterTID3(void)
-{
-  /* DataStoreRead: '<S8>/Get time3' */
-  AUAV_V3_TestSensors_B.Gettime3 =
-    AUAV_V3_TestSensors_DWork.time_since_boot_usec;
-
-  /* S-Function (MCHP_C_function_Call): '<S8>/PackRawRC' */
-  AUAV_V3_TestSensors_B.PackRawRC = PackRawRC(
-    ((uint8_T)101U)
-    , ((uint8_T)1U)
-    , AUAV_V3_TestSensors_B.RCRateTransition
-    , AUAV_V3_TestSensors_B.Gettime3
-    );
-
-  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data7' */
-  TxN_Data_OverU1(
-                  AUAV_V3_TestSensors_B.PackRawRC
-                  );
-
-  /* DataStoreRead: '<S8>/Get VfrHud' */
-  AUAV_V3_TestSensors_B.GetVfrHud = mlVfr_hud;
-
-  /* DataStoreRead: '<S8>/Get time4' */
-  AUAV_V3_TestSensors_B.Gettime4_e =
-    AUAV_V3_TestSensors_DWork.time_since_boot_usec;
-
-  /* S-Function (MCHP_C_function_Call): '<S8>/PackHUD' */
-  AUAV_V3_TestSensors_B.PackHUD = PackVFR_HUD(
-    ((uint8_T)101U)
-    , ((uint8_T)1U)
-    , AUAV_V3_TestSensors_B.GetVfrHud
-    , AUAV_V3_TestSensors_B.Gettime4_e
-    );
-
-  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data8' */
-  TxN_Data_OverU1(
-                  AUAV_V3_TestSensors_B.PackHUD
-                  );
-
-  /* DataStoreRead: '<S8>/Get Raw Commands' */
-  AUAV_V3_TestSensors_B.GetRawCommands_p = mlPwmCommands;
-
-  /* DataStoreRead: '<S8>/Get time5' */
-  AUAV_V3_TestSensors_B.Gettime5_a =
-    AUAV_V3_TestSensors_DWork.time_since_boot_usec;
-
-  /* S-Function (MCHP_C_function_Call): '<S8>/PackRawServo' */
-  AUAV_V3_TestSensors_B.PackRawServo_d = PackRawServo(
-    ((uint8_T)101U)
-    , ((uint8_T)1U)
-    , AUAV_V3_TestSensors_B.GetRawCommands_p
-    , AUAV_V3_TestSensors_B.Gettime5_a
-    );
-
-  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data9' */
-  TxN_Data_OverU1(
-                  AUAV_V3_TestSensors_B.PackRawServo_d
-                  );
-}
-
-/* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
-void AUAV_V3_Mavlink_TX_AdapterTID4(void)
+void AUAV_V3_Mavlink_TX_AdapterTID14(void)
 {
   /* DataStoreRead: '<S8>/Get mlAirData' */
   AUAV_V3_TestSensors_B.GetmlAirData = mlAirData;
@@ -231,7 +213,7 @@ void AUAV_V3_Mavlink_TX_AdapterTID4(void)
 }
 
 /* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
-void AUAV_V3_Mavlink_TX_AdapterTID5(void)
+void AUAV_V3_Mavlink_TX_AdapterTID15(void)
 {
   /* DataStoreRead: '<S8>/Get mlSysStatus' */
   AUAV_V3_TestSensors_B.GetmlSysStatus = mlSysStatus;
@@ -250,71 +232,128 @@ void AUAV_V3_Mavlink_TX_AdapterTID5(void)
 }
 
 /* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
-void AUAV_V3_Mavlink_TX_AdapterTID6(void)
+void AUAV_V3_Mavlink_TX_AdapterTID16(void)
 {
-  /* S-Function (MCHP_C_function_Call): '<S8>/ParamInterfaceResponse' */
-  AUAV_V3_TestSensors_B.ParamInterfaceResponse = ParameterInterfaceResponse(
-    ((uint8_T)101U)
-    , ((uint8_T)1U)
-    );
+  /* DataStoreRead: '<S8>/Get VfrHud' */
+  AUAV_V3_TestSensors_B.GetVfrHud = mlVfr_hud;
 
-  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data5' */
-  TxN_Data_OverU1(
-                  AUAV_V3_TestSensors_B.ParamInterfaceResponse
-                  );
-}
-
-/* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
-void AUAV_V3_Mavlink_TX_AdapterTID7(void)
-{
-  /* S-Function (MCHP_C_function_Call): '<S8>/MissionInterfaceResponse' */
-  AUAV_V3_TestSensors_B.MissionInterfaceResponse = MissionInterfaceResponse(
-    ((uint8_T)101U)
-    , ((uint8_T)1U)
-    );
-
-  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data6' */
-  TxN_Data_OverU1(
-                  AUAV_V3_TestSensors_B.MissionInterfaceResponse
-                  );
-}
-
-/* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
-void AUAV_V3_Mavlink_TX_AdapterTID9(void)
-{
-  /* S-Function (MCHP_C_function_Call): '<S8>/PackHeartBeat' */
-  AUAV_V3_TestSensors_B.PackHeartBeat = PackHeartBeat(
-    ((uint8_T)101U)
-    , ((uint8_T)1U)
-    );
-
-  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data1' */
-  TxN_Data_OverU1(
-                  AUAV_V3_TestSensors_B.PackHeartBeat
-                  );
-}
-
-/* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
-void AUAV_V3_Mavlink_TX_AdapterTID10(void)
-{
-  /* DataStoreRead: '<S8>/Get RawGpsInt' */
-  AUAV_V3_TestSensors_B.GetRawGpsInt = mlGpsData;
-
-  /* DataStoreRead: '<S8>/Get time1' */
-  AUAV_V3_TestSensors_B.Gettime1 =
+  /* DataStoreRead: '<S8>/Get time4' */
+  AUAV_V3_TestSensors_B.Gettime4_e =
     AUAV_V3_TestSensors_DWork.time_since_boot_usec;
 
-  /* S-Function (MCHP_C_function_Call): '<S8>/PackGpsRawInt' */
-  AUAV_V3_TestSensors_B.PackGpsRawInt = PackGpsRawInt(
+  /* S-Function (MCHP_C_function_Call): '<S8>/PackHUD' */
+  AUAV_V3_TestSensors_B.PackHUD = PackVFR_HUD(
     ((uint8_T)101U)
     , ((uint8_T)1U)
-    , AUAV_V3_TestSensors_B.GetRawGpsInt
-    , AUAV_V3_TestSensors_B.Gettime1
+    , AUAV_V3_TestSensors_B.GetVfrHud
+    , AUAV_V3_TestSensors_B.Gettime4_e
     );
 
-  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data2' */
+  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data8' */
   TxN_Data_OverU1(
-                  AUAV_V3_TestSensors_B.PackGpsRawInt
+                  AUAV_V3_TestSensors_B.PackHUD
+                  );
+}
+
+/* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
+void AUAV_V3_Mavlink_TX_AdapterTID17(void)
+{
+  /* RateTransition: '<S8>/RC Rate Transition' */
+  AUAV_V3_TestSensors_DWork.RCRateTransition_semaphoreTaken = 1;
+  AUAV_V3_TestSensors_B.RCRateTransition =
+    AUAV_V3_TestSensors_DWork.RCRateTransition_Buffer0;
+  AUAV_V3_TestSensors_DWork.RCRateTransition_semaphoreTaken = 0;
+
+  /* DataStoreRead: '<S8>/Get time3' */
+  AUAV_V3_TestSensors_B.Gettime3 =
+    AUAV_V3_TestSensors_DWork.time_since_boot_usec;
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/PackRawRC' */
+  AUAV_V3_TestSensors_B.PackRawRC = PackRawRC(
+    ((uint8_T)101U)
+    , ((uint8_T)1U)
+    , AUAV_V3_TestSensors_B.RCRateTransition
+    , AUAV_V3_TestSensors_B.Gettime3
+    );
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data7' */
+  TxN_Data_OverU1(
+                  AUAV_V3_TestSensors_B.PackRawRC
+                  );
+}
+
+/* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
+void AUAV_V3_Mavlink_TX_AdapterTID18(void)
+{
+  /* DataStoreRead: '<S8>/Get Raw Commands' */
+  AUAV_V3_TestSensors_B.GetRawCommands_p = mlPwmCommands;
+
+  /* DataStoreRead: '<S8>/Get time5' */
+  AUAV_V3_TestSensors_B.Gettime5_a =
+    AUAV_V3_TestSensors_DWork.time_since_boot_usec;
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/PackRawServo' */
+  AUAV_V3_TestSensors_B.PackRawServo_d = PackRawServo(
+    ((uint8_T)101U)
+    , ((uint8_T)1U)
+    , AUAV_V3_TestSensors_B.GetRawCommands_p
+    , AUAV_V3_TestSensors_B.Gettime5_a
+    );
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data9' */
+  TxN_Data_OverU1(
+                  AUAV_V3_TestSensors_B.PackRawServo_d
+                  );
+}
+
+/* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
+void AUAV_V3_Mavlink_TX_AdapterTID19(void)
+{
+  /* DataStoreRead: '<S8>/Get Attitude 1' */
+  AUAV_V3_TestSensors_B.GetAttitude1 = mlNavigation;
+
+  /* DataStoreRead: '<S8>/Get time7' */
+  AUAV_V3_TestSensors_B.Gettime7 =
+    AUAV_V3_TestSensors_DWork.time_since_boot_usec;
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/Pack Navigation' */
+  AUAV_V3_TestSensors_B.PackNavigation = PackRawNavigation(
+    ((uint8_T)101U)
+    , ((uint8_T)1U)
+    , AUAV_V3_TestSensors_B.GetAttitude1
+    , AUAV_V3_TestSensors_B.Gettime7
+    );
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data11' */
+  TxN_Data_OverU1(
+                  AUAV_V3_TestSensors_B.PackNavigation
+                  );
+}
+
+/* Output and update for atomic system: '<Root>/Mavlink_TX_Adapter' */
+void AUAV_V3_Mavlink_TX_AdapterTID20(void)
+{
+  /* RateTransition: '<S8>/Attitude Rate Transition' */
+  AUAV_V3_TestSensors_DWork.AttitudeRateTransition_semaphor = 1;
+  AUAV_V3_TestSensors_B.AttitudeRateTransition =
+    AUAV_V3_TestSensors_DWork.AttitudeRateTransition_Buffer0;
+  AUAV_V3_TestSensors_DWork.AttitudeRateTransition_semaphor = 0;
+
+  /* DataStoreRead: '<S8>/Get time6' */
+  AUAV_V3_TestSensors_B.Gettime6 =
+    AUAV_V3_TestSensors_DWork.time_since_boot_usec;
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/Pack Attitude' */
+  AUAV_V3_TestSensors_B.PackAttitude = PackRawAttitude(
+    ((uint8_T)101U)
+    , ((uint8_T)1U)
+    , AUAV_V3_TestSensors_B.AttitudeRateTransition
+    , AUAV_V3_TestSensors_B.Gettime6
+    );
+
+  /* S-Function (MCHP_C_function_Call): '<S8>/TX_N_Data10' */
+  TxN_Data_OverU1(
+                  AUAV_V3_TestSensors_B.PackAttitude
                   );
 }
 

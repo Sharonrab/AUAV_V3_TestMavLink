@@ -49,7 +49,7 @@ THE SOFTWARE.
 #include "mavlink.h"
 #include "gpsUblox.h"
 #include "circBuffer.h"
-
+#include "AUAV_V3_TestSensors.h"
 // this function converts one hex ascii character to decimal
 // used for the checksum comparison
 // Kindly contributed by: Bryant Mairs
@@ -158,7 +158,7 @@ unsigned char gpsUbloxSeparate(unsigned char* outStream) {
 
         // finally compute the type of message
         chksumHeader = getChecksum(outBuf, 6);
-        gpsDebugMsg(getLength(uartBuffer));
+        //gpsDebugMsg(getLength(uartBuffer));
         // based on the obtained header checksum set the type
         switch (chksumHeader) {
                         
@@ -183,8 +183,8 @@ void gpsUbloxParse(void) {
     unsigned char bufferLen = 11;
     int32_t bytesRead;
     int16_t i;
-#ifdef WIN
-
+    if (AUAV_V3_TestSensors_DWork.X_PLANE_HIL_FLAG ==0)
+    {
     memset(inStream, 0, MSIZE);
     
     //gpsDebugMsg(getLength(bufferLen));
@@ -207,12 +207,14 @@ void gpsUbloxParse(void) {
 
         memset(inStream, 0, MSIZE);
     }
-#else
+    }
+else
+    {
     bytesRead = getLength(uartBuffer);
     for (i = 0; i < bytesRead; i++) {
 				udb_gps_callback_received_byte(readFront(uartBuffer));
 	}
-#endif
+}
 }
 
 void getGpsUbloxMainData(float* data) {

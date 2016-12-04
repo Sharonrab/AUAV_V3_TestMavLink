@@ -30,7 +30,7 @@ void uartMavlinkBufferInit (void);
 #define MAX_NUM_WPS     17
 #define PARAM_NAME_LENGTH	16
 
-#define PROTOCOL_TIMEOUT_TICKS 20    ///< maximum time to wait for pending messages until timeout
+#define PROTOCOL_TIMEOUT_TICKS 800    ///< maximum time to wait for pending messages until timeout
 
   enum WP_PROTOCOL {
     WP_PROT_IDLE,

@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.241
+ * Model version                  : 1.262
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
+ * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
  */
 
 #include "IMU_Mag_Driver.h"
@@ -92,25 +92,26 @@ void AUAV_V3_Tes_IMU_Mag_Driver(void)
   /* Logic: '<S5>/Logical Operator1' */
   if (!(AUAV_V3_TestSensors_B.HILManualSwitch != 0.0)) {
     /* DataStoreWrite: '<S61>/Update Raw IMU DATA1' incorporates:
-     *  DataTypeConversion: '<S5>/Data Type Conversion10'
-     *  DataTypeConversion: '<S5>/Data Type Conversion11'
-     *  DataTypeConversion: '<S5>/Data Type Conversion6'
-     *  DataTypeConversion: '<S5>/Data Type Conversion7'
-     *  DataTypeConversion: '<S5>/Data Type Conversion8'
-     *  DataTypeConversion: '<S5>/Data Type Conversion9'
+     *  Bias: '<S60>/Bias11'
+     *  Bias: '<S60>/Bias6'
+     *  Bias: '<S60>/Bias7'
+     *  Bias: '<S60>/Bias8'
+     *  Bias: '<S60>/Bias9'
+     *  DataTypeConversion: '<S60>/Data Type Conversion2'
+     *  DataTypeConversion: '<S60>/Data Type Conversion3'
      *  DataTypeConversion: '<S62>/Data Type Conversion3'
      *  DataTypeConversion: '<S64>/Data Type Conversion3'
      *  DataTypeConversion: '<S65>/Data Type Conversion3'
      */
-    mlRawImuData.xacc = (int16_T)AUAV_V3_TestSensors_B.U1CH8[0];
-    mlRawImuData.yacc = (int16_T)AUAV_V3_TestSensors_B.U1CH8[1];
-    mlRawImuData.zacc = (int16_T)AUAV_V3_TestSensors_B.U1CH8[2];
+    mlRawImuData.xacc = (int16_T)AUAV_V3_TestSensors_B.U1CH8[0] - 50;
+    mlRawImuData.yacc = (int16_T)AUAV_V3_TestSensors_B.U1CH8[1] - 350;
+    mlRawImuData.zacc = (int16_T)AUAV_V3_TestSensors_B.U1CH8[2] + 180;
     mlRawImuData.xgyro = (int16_T)
-      AUAV_V3_TestSensors_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[0];
+      AUAV_V3_TestSensors_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[0] + 96;
     mlRawImuData.ygyro = (int16_T)
-      AUAV_V3_TestSensors_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[1];
+      AUAV_V3_TestSensors_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[1] - 15;
     mlRawImuData.zgyro = (int16_T)
-      AUAV_V3_TestSensors_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[2];
+      AUAV_V3_TestSensors_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[2] + 4;
     mlRawImuData.xmag = AUAV_V3_TestSensors_B.BUSI2CReadHMC5883Magn100Hz1[1];
     mlRawImuData.ymag = AUAV_V3_TestSensors_B.BUSI2CReadHMC5883Magn100Hz1[3];
     mlRawImuData.zmag = AUAV_V3_TestSensors_B.BUSI2CReadHMC5883Magn100Hz1[5];

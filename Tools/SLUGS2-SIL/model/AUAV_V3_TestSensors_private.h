@@ -10,16 +10,15 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.241
+ * Model version                  : 1.262
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
+ * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
  */
 
 #ifndef RTW_HEADER_AUAV_V3_TestSensors_private_h_
 #define RTW_HEADER_AUAV_V3_TestSensors_private_h_
 #include "rtwtypes.h"
 #include "multiword_types.h"
-#include "apUtils.h"
 
 /* Private macros used by the generated code to access rtModel */
 #ifndef rtmSetFirstInitCond
@@ -78,13 +77,13 @@ Verification pane for ERT based targets, which will disable the \
 preprocessor word size checks.
 #endif
 
-extern volatile uint16_T mcuFlagRecursion __attribute__ ((near));
-extern volatile uint16_T MCHP_MCULoadResult[] __attribute__ ((near));
-extern volatile uint16_T MCHP_MCULoadPreviousTimerValue[] __attribute__ ((near));
+extern volatile uint_T mcuFlagRecursion __attribute__ ((near)) ;
+extern volatile uint_T MCHP_MCULoadResult[] __attribute__ ((near)) ;
+extern volatile uint_T MCHP_MCULoadPreviousTimerValue[] __attribute__ ((near)) ;
 #else
-extern volatile uint16_T mcuFlagRecursion ;
-extern volatile uint16_T MCHP_MCULoadResult[] ;
-extern volatile uint16_T MCHP_MCULoadPreviousTimerValue[];
+extern volatile uint_T mcuFlagRecursion ;
+extern volatile uint_T MCHP_MCULoadResult[] ;
+extern volatile uint_T MCHP_MCULoadPreviousTimerValue[];
 #endif
 
 	union
@@ -100,13 +99,16 @@ extern volatile uint16_T MCHP_MCULoadPreviousTimerValue[];
 			unsigned int task7 : 1;
 			unsigned int task8 : 1;
 			unsigned int task9 : 1;
-			unsigned int task10 : 1;
+		    unsigned int task10 : 1;
+		    unsigned int task11 : 1;
+		    unsigned int task12 : 1;
+		    unsigned int task13 : 1;
+		    unsigned int task14 : 1;
+		    unsigned int task15 : 1;
 		} b;
 
-
-		unsigned int val;
-	
-} extern MCHP_MCU_Overload;
+  unsigned int val;
+} extern volatile MCHP_MCU_Overload;
 
 extern uint16_T volatile MCHP_I2C2_State;
 extern unsigned int volatile MCHP_I2C22_Request;

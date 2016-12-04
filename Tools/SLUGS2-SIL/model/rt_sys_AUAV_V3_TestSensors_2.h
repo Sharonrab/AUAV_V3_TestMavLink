@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.241
+ * Model version                  : 1.262
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
+ * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
  */
 
 #ifndef RTW_HEADER_rt_sys_AUAV_V3_TestSensors_2_h_
@@ -40,10 +40,10 @@ typedef struct MCHP_SPI1_QueueStr{
 } MCHP_SPI1_QueueStr;
 
 /* Declare UART1 Tx Circular Buffer Structure */
-#define Tx_BUFF_SIZE_Uart1             (512)
+#define Tx_BUFF_SIZE_Uart1             (1024)
 
 typedef struct MCHP_UART1_TxStr{
-  volatile uint8_T buffer[Tx_BUFF_SIZE_Uart1];/* Size Rx_BUFF_SIZE_Uart1 is 512 */
+  volatile uint8_T buffer[Tx_BUFF_SIZE_Uart1];/* Size Rx_BUFF_SIZE_Uart1 is 1024 */
   uint_T tail;                         /* tail is the index for the next value to be read from the Circular buffer */
   volatile uint_T head;                /* head is the index for the next value to be written into the Circular buffer */
 } MCHP_UART1_TxStr;
@@ -62,6 +62,7 @@ typedef struct {
   real32_T In1;                        /* '<S38>/In1' */
 } rtB_EnabledSubsystem_AUAV_V3__T;
 
+extern void AUA_EnabledSubsystem_Start(rtB_EnabledSubsystem_AUAV_V3__T *localB);
 extern void AUAV_V3_T_EnabledSubsystem(boolean_T rtu_Enable, real32_T rtu_In1,
   rtB_EnabledSubsystem_AUAV_V3__T *localB);
 

@@ -19,6 +19,8 @@
 
 #include "../mavLink/include/mavlink_types.h"
 
+extern void protDecodeMavlink(void);
+
 UDBSocket gpsSocket;
 UDBSocket telemetrySocket;
 

@@ -167,6 +167,7 @@
     <ClCompile Include="model\AUAV_V3_TestSensors.c" />
     <ClCompile Include="model\AUAV_V3_TestSensors_data.c" />
     <ClCompile Include="model\AUAV_V3_TestSensors_main.c" />
+    <ClCompile Include="model\LEDs_Driver.c" />
     <ClCompile Include="model\Mavlink_TX_Adapter.c" />
     <ClCompile Include="model\Position_and_Attitude_Filter.c" />
     <ClCompile Include="model\rtGetInf.c" />

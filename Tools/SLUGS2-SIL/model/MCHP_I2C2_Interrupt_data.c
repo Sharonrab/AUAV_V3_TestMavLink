@@ -3,6 +3,7 @@
 #include "AUAV_V3_TestSensors.h"
 #include "AUAV_V3_TestSensors_private.h"
 
+/* I2C - Interrupt: <S1>/BUS I2C Initialize BMP180 Read T°, Convert P @ 100Hz */
 volatile uint16_T MCHP_I2C2_State = 0;
 unsigned int volatile MCHP_I2C22_Request = 0;
 

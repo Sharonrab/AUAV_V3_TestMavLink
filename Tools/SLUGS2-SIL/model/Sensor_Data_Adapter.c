@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.241
+ * Model version                  : 1.262
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Nov 05 08:28:55 2016
+ * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
  */
 
 #include "Sensor_Data_Adapter.h"
@@ -212,10 +212,13 @@ void A_Sensor_Data_Adapter_Init(void)
 void Sensor_Data_Adapter_Start(void)
 {
 #ifndef WIN
-  /* Start for S-Function (MCHP_MCU_LOAD): '<S583>/Calculus Time Step1' */
+  /* Start for S-Function (MCHP_MCU_LOAD): '<S590>/Calculus Time Step1' */
   TMR3 = 0;                            /* Initialize Timer 3 Value to 0.  Timer 3 is enabled only when the mcu is not idle */
 #endif
-  
+  /* Start for Enabled SubSystem: '<S622>/Enabled Subsystem' */
+  AUA_EnabledSubsystem_Start(&AUAV_V3_TestSensors_B.EnabledSubsystem_m);
+
+  /* End of Start for SubSystem: '<S622>/Enabled Subsystem' */
 }
 
 /* Output and update for atomic system: '<Root>/Sensor_Data_Adapter' */
@@ -224,7 +227,7 @@ void AUAV_V_Sensor_Data_Adapter(void)
   /* local block i/o variables */
   real_T rtb_DataTypeConversion_n;
   real_T rtb_DiscreteZeroPole_i;
-  boolean_T rtb_LogicalOperator;
+  boolean_T rtb_LogicalOperator_df;
   int16_T rtb_Switch_d[13];
   real32_T rtb_Sum_o;
   uint8_T rtb_Compare_gl;
@@ -359,12 +362,12 @@ void AUAV_V_Sensor_Data_Adapter(void)
   /* End of Outputs for SubSystem: '<S16>/Raw HIL  Readings' */
 
   /* Logic: '<S581>/Logical Operator' */
-  rtb_LogicalOperator = !(AUAV_V3_TestSensors_B.HILManualSwitch != 0.0);
+  rtb_LogicalOperator_df = !(AUAV_V3_TestSensors_B.HILManualSwitch != 0.0);
 
   /* Outputs for Enabled SubSystem: '<S581>/If no HIL then Read all the Sensors' incorporates:
    *  EnablePort: '<S591>/Enable'
    */
-  if (rtb_LogicalOperator) {
+  if (rtb_LogicalOperator_df) {
     /* DataTypeConversion: '<S591>/Data Type Conversion' incorporates:
      *  DataStoreRead: '<S591>/Get mlAirData1'
      */
@@ -999,7 +1002,7 @@ void AUAV_V_Sensor_Data_Adapter(void)
 
   /* Switch: '<S581>/Switch1' */
   for (i = 0; i < 5; i++) {
-    if (rtb_LogicalOperator) {
+    if (rtb_LogicalOperator_df) {
       AUAV_V3_TestSensors_B.Switch1[i] =
         AUAV_V3_TestSensors_B.ProducetheGPSMainDataandupdat_a[i];
     } else {

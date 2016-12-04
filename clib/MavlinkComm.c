@@ -872,7 +872,7 @@ uint16_t PackScaledPressure(uint8_t system_id, uint8_t component_id, mavlink_sca
   mavlink_message_t msg;
   memset(&msg, 0, sizeof (mavlink_message_t));
   mavlink_msg_scaled_pressure_pack(system_id, component_id, &msg,
-						       time_usec/1000, mlAirData.press_abs, mlAirData.press_diff, mlAirData.temperature);
+						       time_usec, mlAirData.press_abs, mlAirData.press_diff, mlAirData.temperature);
   return( mavlink_msg_to_send_buffer(UartOutBuff, &msg));
 }
 
