@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.262
+ * Model version                  : 1.264
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
+ * C/C++ source code generated on : Sat Dec 03 23:00:15 2016
  */
 
 #include "AUAV_V3_TestSensors.h"
@@ -1056,10 +1056,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
   /* End of Math: '<S21>/Math Function' */
 
-  /* ManualSwitch: '<Root>/HIL Manual Switch' incorporates:
-   *  Constant: '<Root>/Constant1'
-   */
-  AUAV_V3_TestSensors_B.HILManualSwitch = 0.0;
+  /* DataStoreRead: '<Root>/Data Store Read' */
+  AUAV_V3_TestSensors_B.DataStoreRead =
+    AUAV_V3_TestSensors_DWork.X_PLANE_HIL_FLAG;
 
   /* Outputs for Atomic SubSystem: '<Root>/Sensor_Data_Adapter' */
   AUAV_V_Sensor_Data_Adapter();
@@ -1353,7 +1352,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S676>/Add'
      */
     AUAV_V3_TestSensors_B.DataTypeConversion = (real32_T)((real_T)rtb_u2deg *
-      0.00013460761879122363 + -1.2634271099744254);
+      0.00013460761879122366 + -1.2634271099744259);
 
     /* S-Function (MCHP_C_function_Call): '<S659>/2' */
     AUAV_V3_TestSensors_B.u = meanFilter5(
@@ -1390,7 +1389,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S677>/Add'
      */
     AUAV_V3_TestSensors_B.DataTypeConversion_h = (real32_T)((real_T)rtb_u2deg *
-      -7.1481057518468276E-5 + 0.94019034954041281);
+      -7.14810575184683E-5 + 0.940190349540413);
 
     /* S-Function (MCHP_C_function_Call): '<S659>/3' */
     AUAV_V3_TestSensors_B.u_h = meanFilter5(
@@ -1427,7 +1426,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S678>/Add'
      */
     AUAV_V3_TestSensors_B.DataTypeConversion_g = (real32_T)((real_T)rtb_u2deg *
-      -9.5308076691291043E-5 + 1.2535871327205506);
+      -9.530807669129107E-5 + 1.2535871327205506);
 
     /* S-Function (MCHP_C_function_Call): '<S659>/4' */
     AUAV_V3_TestSensors_B.u_m = meanFilter5(
@@ -1464,7 +1463,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S679>/Add'
      */
     AUAV_V3_TestSensors_B.DataTypeConversion_f = (real32_T)((real_T)rtb_u2deg *
-      4.7654038345645522E-5 + -0.62679356636027528);
+      4.7654038345645535E-5 + -0.62679356636027528);
   }
 
   /* End of Outputs for SubSystem: '<S19>/Grab I.C.' */
@@ -1811,11 +1810,11 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
       for (i = 0; i < 3; i++) {
         AUAV_V3_TestSensors_B.Reshape1[i] = 0.0F;
         AUAV_V3_TestSensors_B.Reshape1[i] +=
-          AUAV_V3_TestSensors_ConstP.pooled64[i] * tmp_0[0];
+          AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0];
         AUAV_V3_TestSensors_B.Reshape1[i] +=
-          AUAV_V3_TestSensors_ConstP.pooled64[i + 3] * tmp_0[1];
+          AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1];
         AUAV_V3_TestSensors_B.Reshape1[i] +=
-          AUAV_V3_TestSensors_ConstP.pooled64[i + 6] * tmp_0[2];
+          AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2];
       }
 
       /* End of Reshape: '<S446>/Reshape1' */
@@ -2028,11 +2027,11 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     for (i = 0; i < 3; i++) {
       AUAV_V3_TestSensors_B.WP0L2IPT1[i] = 0.0F;
       AUAV_V3_TestSensors_B.WP0L2IPT1[i] +=
-        AUAV_V3_TestSensors_ConstP.pooled64[i] * tmp_0[0];
+        AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0];
       AUAV_V3_TestSensors_B.WP0L2IPT1[i] +=
-        AUAV_V3_TestSensors_ConstP.pooled64[i + 3] * tmp_0[1];
+        AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1];
       AUAV_V3_TestSensors_B.WP0L2IPT1[i] +=
-        AUAV_V3_TestSensors_ConstP.pooled64[i + 6] * tmp_0[2];
+        AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2];
     }
 
     /* Gain: '<S422>/Deg2R' */
@@ -2144,9 +2143,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
     /* Gain: '<S420>/UEN 2 NEU' */
     for (i = 0; i < 3; i++) {
-      rtb_P32[i] = AUAV_V3_TestSensors_ConstP.pooled64[i + 6] * tmp_0[2] +
-        (AUAV_V3_TestSensors_ConstP.pooled64[i + 3] * tmp_0[1] +
-         AUAV_V3_TestSensors_ConstP.pooled64[i] * tmp_0[0]);
+      rtb_P32[i] = AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2] +
+        (AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1] +
+         AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0]);
     }
 
     /* Sum: '<S382>/Add' incorporates:
@@ -2437,9 +2436,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
     /* Gain: '<S348>/UEN 2 NEU' */
     for (i = 0; i < 3; i++) {
-      rtb_Product3_j0[i] = AUAV_V3_TestSensors_ConstP.pooled64[i + 6] * tmp_0[2]
-        + (AUAV_V3_TestSensors_ConstP.pooled64[i + 3] * tmp_0[1] +
-           AUAV_V3_TestSensors_ConstP.pooled64[i] * tmp_0[0]);
+      rtb_Product3_j0[i] = AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2]
+        + (AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1] +
+           AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0]);
     }
 
     /* Gain: '<S367>/Deg2R' */
@@ -2549,9 +2548,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
     /* Gain: '<S365>/UEN 2 NEU' */
     for (i = 0; i < 3; i++) {
-      rtb_Product2_c[i] = AUAV_V3_TestSensors_ConstP.pooled64[i + 6] * tmp_0[2]
-        + (AUAV_V3_TestSensors_ConstP.pooled64[i + 3] * tmp_0[1] +
-           AUAV_V3_TestSensors_ConstP.pooled64[i] * tmp_0[0]);
+      rtb_Product2_c[i] = AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0[2]
+        + (AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1] +
+           AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0]);
     }
 
     rtb_Product3_j0[0] = rtb_Product2_c[0] - rtb_Product3_j0[0];
@@ -2926,9 +2925,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
 
       /* Gain: '<S204>/UEN 2 NEU' */
       for (i = 0; i < 3; i++) {
-        rtb_Product3_j0[i] = AUAV_V3_TestSensors_ConstP.pooled64[i + 6] * tmp_0
-          [2] + (AUAV_V3_TestSensors_ConstP.pooled64[i + 3] * tmp_0[1] +
-                 AUAV_V3_TestSensors_ConstP.pooled64[i] * tmp_0[0]);
+        rtb_Product3_j0[i] = AUAV_V3_TestSensors_ConstP.pooled63[i + 6] * tmp_0
+          [2] + (AUAV_V3_TestSensors_ConstP.pooled63[i + 3] * tmp_0[1] +
+                 AUAV_V3_TestSensors_ConstP.pooled63[i] * tmp_0[0]);
       }
 
       /* Delay: '<S198>/Integer Delay1' */
@@ -4881,8 +4880,8 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   AUAV_V3_TestSensors_B.Divide = rtb_RhhcosphisinlambYe * rtb_Product3_bo /
     9.80665F;
 
-  /* S-Function (MCHP_C_function_Call): '<S133>/myTan() apUtils.c [updated 5.1.16]' */
-  AUAV_V3_TestSensors_B.myTanapUtilscupdated5116_b = myTan(
+  /* S-Function (MCHP_C_function_Call): '<S133>/myAtan() apUtils.c [updated 5.1.16]' */
+  AUAV_V3_TestSensors_B.myTanapUtilscupdated5116_b = myAtan(
     AUAV_V3_TestSensors_B.Divide
     );
 
@@ -5411,7 +5410,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Product: '<S697>/Divide'
      *  Sum: '<S697>/Add'
      */
-    tmp_6 = floor(rtb_cosphi * -5246.1448116666006 + 6576.5);
+    tmp_6 = floor(rtb_cosphi * -5246.1448116666006 + 6576.5000000000018);
 
     /* DataTypeConversion: '<S694>/Data Type Conversion' incorporates:
      *  Constant: '<S694>/Constant1'
@@ -5419,7 +5418,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
      *  Product: '<S694>/Divide'
      *  Sum: '<S694>/Add'
      */
-    tmp_7 = floor(rtb_IC4_idx_0 * 10492.289623333201 + 6576.5);
+    tmp_7 = floor(rtb_IC4_idx_0 * 10492.289623333201 + 6576.5000000000018);
 
     /* DataTypeConversion: '<S695>/Data Type Conversion' */
     if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
@@ -5551,7 +5550,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
          *  Product: '<S692>/Divide'
          *  Sum: '<S692>/Add'
          */
-        tmp_4 = floor(rtb_cosphi * -5246.1448116666006 + 6576.5);
+        tmp_4 = floor(rtb_cosphi * -5246.1448116666006 + 6576.5000000000018);
         if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
           rtb_Switch2 = 0U;
         } else {
@@ -5576,7 +5575,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
          *  Product: '<S689>/Divide'
          *  Sum: '<S689>/Add'
          */
-        tmp_4 = floor(rtb_IC4_idx_0 * 10492.289623333201 + 6576.5);
+        tmp_4 = floor(rtb_IC4_idx_0 * 10492.289623333201 + 6576.5000000000018);
         if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
           rtb_Switch3_fq = 0U;
         } else {
@@ -5743,9 +5742,9 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   AUAV_V3_TestSensors_DWork.SIX_DOF_HIL_FLAG = 0.0;
 
   /* DataStoreWrite: '<Root>/Data Store Write1' incorporates:
-   *  Constant: '<Root>/Constant5'
+   *  Constant: '<Root>/Constant4'
    */
-  AUAV_V3_TestSensors_DWork.X_PLANE_HIL_FLAG = 0.0;
+  AUAV_V3_TestSensors_DWork.X_PLANE_HIL_FLAG = 1.0;
 
   /* Gain: '<Root>/Gain' incorporates:
    *  UnitDelay: '<S3>/Output'
@@ -6499,6 +6498,7 @@ void AUAV_V3_TestSensors_initialize(void)
 
   /* Start for Atomic SubSystem: '<Root>/IMU_Mag_Driver' */
   AUAV__IMU_Mag_Driver_Start();
+
   /* End of Start for SubSystem: '<Root>/IMU_Mag_Driver' */
 
   /* Start for S-Function (MCHP_BUS_SPI): '<Root>/BUS SPI Initialize MPU 6000 Once at Startup Gyro:+-500°//s (65535=>1000) Accelero: +-2G (65535=>4G)' */

@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.262
+ * Model version                  : 1.264
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
+ * C/C++ source code generated on : Sat Dec 03 23:00:15 2016
  */
 
 #include "IMU_Mag_Driver.h"
@@ -90,7 +90,7 @@ void AUAV_V3_Tes_IMU_Mag_Driver(void)
    *  EnablePort: '<S61>/Enable'
    */
   /* Logic: '<S5>/Logical Operator1' */
-  if (!(AUAV_V3_TestSensors_B.HILManualSwitch != 0.0)) {
+  if (!(AUAV_V3_TestSensors_B.DataStoreRead != 0.0)) {
     /* DataStoreWrite: '<S61>/Update Raw IMU DATA1' incorporates:
      *  Bias: '<S60>/Bias11'
      *  Bias: '<S60>/Bias6'

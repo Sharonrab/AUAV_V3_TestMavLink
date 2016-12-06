@@ -242,7 +242,7 @@ void AUAV_V_Sensor_Data_Adapter(void)
   /* Outputs for Enabled SubSystem: '<S16>/Raw HIL  Readings' incorporates:
    *  EnablePort: '<S580>/Enable'
    */
-  if (AUAV_V3_TestSensors_B.HILManualSwitch > 0.0) {
+  if (AUAV_V3_TestSensors_B.DataStoreRead > 0.0) {
     /* Outputs for Enabled SubSystem: '<S580>/Enabled Subsystem' incorporates:
      *  EnablePort: '<S582>/Enable'
      */
@@ -362,7 +362,7 @@ void AUAV_V_Sensor_Data_Adapter(void)
   /* End of Outputs for SubSystem: '<S16>/Raw HIL  Readings' */
 
   /* Logic: '<S581>/Logical Operator' */
-  rtb_LogicalOperator_df = !(AUAV_V3_TestSensors_B.HILManualSwitch != 0.0);
+  rtb_LogicalOperator_df = !(AUAV_V3_TestSensors_B.DataStoreRead != 0.0);
 
   /* Outputs for Enabled SubSystem: '<S581>/If no HIL then Read all the Sensors' incorporates:
    *  EnablePort: '<S591>/Enable'
@@ -492,7 +492,7 @@ void AUAV_V_Sensor_Data_Adapter(void)
 
   /* Switch: '<S581>/Switch' */
   for (i = 0; i < 13; i++) {
-    if (AUAV_V3_TestSensors_B.HILManualSwitch != 0.0) {
+    if (AUAV_V3_TestSensors_B.DataStoreRead != 0.0) {
       rtb_Switch_d[i] = AUAV_V3_TestSensors_B.Switch_i[i];
     } else {
       rtb_Switch_d[i] = AUAV_V3_TestSensors_B.y_l[i];

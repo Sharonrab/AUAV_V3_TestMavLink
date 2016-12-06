@@ -127,7 +127,7 @@ static void sil_rc_input_adjust(char *inChannelName, int inChannelIndex, int del
 
 void save_config(void);
 
-#define KEYPRESS_INPUT_DELTA 50
+#define KEYPRESS_INPUT_DELTA 150
 
 static int sil_handle_key_input(char c)
 {
@@ -185,11 +185,11 @@ static int sil_handle_key_input(char c)
 					break;
 
 				case '2': // switch mode to stabilised
-					udb_pwIn[MODE_SWITCH_INPUT_CHANNEL] = 2000;// MODE_SWITCH_THRESHOLD_LOW - 1;
+					udb_pwIn[MODE_SWITCH_INPUT_CHANNEL] = 13000;// MODE_SWITCH_THRESHOLD_LOW - 1;
 					break;
 
 				case '3': // switch mode to guided
-					udb_pwIn[MODE_SWITCH_INPUT_CHANNEL] = 3500;// MODE_SWITCH_THRESHOLD_HIGH - 1;
+					udb_pwIn[MODE_SWITCH_INPUT_CHANNEL] = 16000;// MODE_SWITCH_THRESHOLD_HIGH - 1;
 					break;
 
 				case '4': // switch mode to failsafe

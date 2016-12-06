@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.262
+ * Model version                  : 1.264
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
+ * C/C++ source code generated on : Sat Dec 03 23:00:15 2016
  */
 
 #ifndef RTW_HEADER_AUAV_V3_TestSensors_h_
@@ -126,7 +126,7 @@ typedef struct {
   mavlink_servo_output_raw_t GetRawCommands_p;/* '<S8>/Get Raw Commands' */
   mavlink_vfr_hud_t GetVfrHud;         /* '<S8>/Get VfrHud' */
   mavlink_scaled_pressure_t GetmlAirData;/* '<S8>/Get mlAirData' */
-  real_T HILManualSwitch;              /* '<Root>/HIL Manual Switch' */
+  real_T DataStoreRead;                /* '<Root>/Data Store Read' */
   real32_T myCosaLibcupdated5116;      /* '<S75>/myCos() aLib.c [updated 5.1.16]' */
   real32_T CFunctionCall1;             /* '<S76>/C Function Call1' */
   real32_T y[9];                       /* '<Root>/myMux Fun5' */
@@ -630,7 +630,7 @@ typedef struct {
    *   '<S403>/UEN 2 NEU'
    *   '<S420>/UEN 2 NEU'
    */
-  real32_T pooled64[9];
+  real32_T pooled63[9];
 } ConstParam_AUAV_V3_TestSensor_T;
 
 /* Real-time Model Data Structure */

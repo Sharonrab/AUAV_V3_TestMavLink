@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'AUAV_V3_TestSensors'.
  *
- * Model version                  : 1.262
+ * Model version                  : 1.264
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
+ * C/C++ source code generated on : Sat Dec 03 23:00:15 2016
  */
 
 #ifndef RTW_HEADER_IMU_Mag_Driver_h_

@@ -94,7 +94,7 @@ void InitParameterInterface(void)
 
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_P], "PID_HE2PITC_P");
-                mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.0450000017881;
+                mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.001;
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_I], "PID_HE2PITC_I");
                 mlParamInterface.param[PAR_PID_HE_TO_PI_I] = 0;

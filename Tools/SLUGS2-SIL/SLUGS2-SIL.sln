@@ -1,17 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SLUGS2-SIL", "SLUGS2-SIL.vcxproj", "{A800F0C2-FF9A-4385-B4C5-9AECF7F9D5ED}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "silcat", "silcat.vcxproj", "{0C9F0777-B304-4222-8DD8-96F254C91D37}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MatrixPilot-SIL", "..\..\..\MatrixPilot-1\Tools\MatrixPilot-SIL\MatrixPilot-SIL.vcxproj", "{81C72BCE-FAF2-423A-B311-50BA1F7A010D}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XP_UDB_HILSIM", "..\HILSIM_XPlane\XP_UDB_HILSIM.vcxproj", "{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Win32TestProject", "..\Win32TestProject\Win32TestProject.vcxproj", "{97303CEE-CBB7-44B3-88BB-DC5242BE3972}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XP_UDB_HILSIM", "..\HILSIM_XPlane\XP_UDB_HILSIM.vcxproj", "{81C72BCE-FAF2-423A-B311-50BA1F7A010D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,34 +49,6 @@ Global
 		{0C9F0777-B304-4222-8DD8-96F254C91D37}.Release|Win32.ActiveCfg = Release|Win32
 		{0C9F0777-B304-4222-8DD8-96F254C91D37}.Release|Win32.Build.0 = Release|Win32
 		{0C9F0777-B304-4222-8DD8-96F254C91D37}.Release|x64.ActiveCfg = Release|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Bixler2|Win32.ActiveCfg = DebugBixler2|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Bixler2|Win32.Build.0 = DebugBixler2|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Bixler2|x64.ActiveCfg = DebugBixler2|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Bixler2|x64.Build.0 = DebugBixler2|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Debug|Win32.ActiveCfg = Debug|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Debug|Win32.Build.0 = Debug|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Debug|x64.ActiveCfg = Debug|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.DebugBixler2|Win32.ActiveCfg = DebugBixler2|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.DebugBixler2|Win32.Build.0 = DebugBixler2|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.DebugBixler2|x64.ActiveCfg = Release|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.DebugBixler2|x64.Build.0 = Release|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Release|Win32.ActiveCfg = Release|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Release|Win32.Build.0 = Release|Win32
-		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Release|x64.ActiveCfg = Release|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.Bixler2|Win32.ActiveCfg = Release|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.Bixler2|Win32.Build.0 = Release|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.Bixler2|x64.ActiveCfg = Debug|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.Bixler2|x64.Build.0 = Debug|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.Debug|Win32.ActiveCfg = Debug|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.Debug|Win32.Build.0 = Debug|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.Debug|x64.ActiveCfg = Debug|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.DebugBixler2|Win32.ActiveCfg = Debug|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.DebugBixler2|Win32.Build.0 = Debug|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.DebugBixler2|x64.ActiveCfg = Debug|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.DebugBixler2|x64.Build.0 = Debug|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.Release|Win32.ActiveCfg = Release|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.Release|Win32.Build.0 = Release|Win32
-		{F05FCBAF-ECE4-4194-AD5A-496BB740AEA9}.Release|x64.ActiveCfg = Release|Win32
 		{97303CEE-CBB7-44B3-88BB-DC5242BE3972}.Bixler2|Win32.ActiveCfg = Release|Win32
 		{97303CEE-CBB7-44B3-88BB-DC5242BE3972}.Bixler2|Win32.Build.0 = Release|Win32
 		{97303CEE-CBB7-44B3-88BB-DC5242BE3972}.Bixler2|x64.ActiveCfg = Release|x64
@@ -95,6 +65,18 @@ Global
 		{97303CEE-CBB7-44B3-88BB-DC5242BE3972}.Release|Win32.Build.0 = Release|Win32
 		{97303CEE-CBB7-44B3-88BB-DC5242BE3972}.Release|x64.ActiveCfg = Release|x64
 		{97303CEE-CBB7-44B3-88BB-DC5242BE3972}.Release|x64.Build.0 = Release|x64
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Bixler2|Win32.ActiveCfg = Release|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Bixler2|Win32.Build.0 = Release|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Bixler2|x64.ActiveCfg = Release|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Debug|Win32.Build.0 = Debug|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Debug|x64.ActiveCfg = Debug|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.DebugBixler2|Win32.ActiveCfg = Debug|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.DebugBixler2|Win32.Build.0 = Debug|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.DebugBixler2|x64.ActiveCfg = Debug|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Release|Win32.ActiveCfg = Release|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Release|Win32.Build.0 = Release|Win32
+		{81C72BCE-FAF2-423A-B311-50BA1F7A010D}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
