@@ -17,7 +17,8 @@
 
 #include "AUAV_V3_TestSensors.h"
 #include "AUAV_V3_TestSensors_private.h"
-
+#define BANKCOMMANDLIMIT 0.836332315F
+#define PITCHCOMMANDLIMIT 0.261799395F
 /* user code (top of source file) */
 #include "gpsPort.h"
 #include "MavlinkComm.h"
@@ -3425,10 +3426,10 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     );
 
   /* Saturate: '<S271>/Bank  Limit Command' */
-  if (AUAV_V3_TestSensors_B.myAtanapUtilscupdated5116 > 0.436332315F) {
-    rtb_cosphi = 0.436332315F;
-  } else if (AUAV_V3_TestSensors_B.myAtanapUtilscupdated5116 < -0.436332315F) {
-    rtb_cosphi = -0.436332315F;
+  if (AUAV_V3_TestSensors_B.myAtanapUtilscupdated5116 > BANKCOMMANDLIMIT) {
+    rtb_cosphi = BANKCOMMANDLIMIT;
+  } else if (AUAV_V3_TestSensors_B.myAtanapUtilscupdated5116 < -BANKCOMMANDLIMIT) {
+    rtb_cosphi = -BANKCOMMANDLIMIT;
   } else {
     rtb_cosphi = AUAV_V3_TestSensors_B.myAtanapUtilscupdated5116;
   }
@@ -3675,7 +3676,7 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
    *  RelationalOperator: '<S143>/Relational Operator'
    *  RelationalOperator: '<S143>/Relational Operator1'
    */
-  if ((rtb_Deg2R1 > -0.261799395F) && (rtb_Deg2R1 < 0.261799395F)) {
+  if ((rtb_Deg2R1 > -PITCHCOMMANDLIMIT) && (rtb_Deg2R1 < PITCHCOMMANDLIMIT)) {
     rtb_Deg2R1 = AUAV_V3_TestSensors_DWork.IntegerDelay3_DSTATE_e;
   } else {
     rtb_Deg2R1 = 0.0F;
@@ -3751,14 +3752,14 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
    *  RelationalOperator: '<S157>/UpperRelop'
    *  Switch: '<S157>/Switch'
    */
-  if (AUAV_V3_TestSensors_DWork.Memory1_PreviousInput > 0.261799395F) {
+  if (AUAV_V3_TestSensors_DWork.Memory1_PreviousInput > PITCHCOMMANDLIMIT) {
     /* Saturate: '<S140>/Theta_c Limit' */
-    rtb_Deg2R1 = 0.261799395F;
-  } else if (AUAV_V3_TestSensors_DWork.Memory1_PreviousInput < -0.261799395F) {
+    rtb_Deg2R1 = PITCHCOMMANDLIMIT;
+  } else if (AUAV_V3_TestSensors_DWork.Memory1_PreviousInput < -PITCHCOMMANDLIMIT) {
     /* Switch: '<S157>/Switch' incorporates:
      *  Saturate: '<S140>/Theta_c Limit'
      */
-    rtb_Deg2R1 = -0.261799395F;
+    rtb_Deg2R1 = -PITCHCOMMANDLIMIT;
   } else {
     /* Saturate: '<S140>/Theta_c Limit' incorporates:
      *  Switch: '<S157>/Switch'
@@ -4656,11 +4657,11 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
   /* End of Switch: '<S136>/Switch3' */
 
   /* Saturate: '<S135>/bank Limit' */
-  if (AUAV_V3_TestSensors_DWork.IntegerDelay3_DSTATE_mw > 0.436332315F) {
-    AUAV_V3_TestSensors_B.bankLimit = 0.436332315F;
-  } else if (AUAV_V3_TestSensors_DWork.IntegerDelay3_DSTATE_mw < -0.436332315F)
+  if (AUAV_V3_TestSensors_DWork.IntegerDelay3_DSTATE_mw > BANKCOMMANDLIMIT) {
+    AUAV_V3_TestSensors_B.bankLimit = BANKCOMMANDLIMIT;
+  } else if (AUAV_V3_TestSensors_DWork.IntegerDelay3_DSTATE_mw < -BANKCOMMANDLIMIT)
   {
-    AUAV_V3_TestSensors_B.bankLimit = -0.436332315F;
+    AUAV_V3_TestSensors_B.bankLimit = -BANKCOMMANDLIMIT;
   } else {
     AUAV_V3_TestSensors_B.bankLimit =
       AUAV_V3_TestSensors_DWork.IntegerDelay3_DSTATE_mw;
@@ -4756,10 +4757,10 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
       &AUAV_V3_TestSensors_B.sf_negprotect);
 
     /* Saturate: '<S117>/bank Limit' */
-    if (AUAV_V3_TestSensors_B.y_j[0] > 0.436332315F) {
-      AUAV_V3_TestSensors_B.bankLimit_e = 0.436332315F;
-    } else if (AUAV_V3_TestSensors_B.y_j[0] < -0.436332315F) {
-      AUAV_V3_TestSensors_B.bankLimit_e = -0.436332315F;
+    if (AUAV_V3_TestSensors_B.y_j[0] > BANKCOMMANDLIMIT) {
+      AUAV_V3_TestSensors_B.bankLimit_e = BANKCOMMANDLIMIT;
+    } else if (AUAV_V3_TestSensors_B.y_j[0] < -BANKCOMMANDLIMIT) {
+      AUAV_V3_TestSensors_B.bankLimit_e = -BANKCOMMANDLIMIT;
     } else {
       AUAV_V3_TestSensors_B.bankLimit_e = AUAV_V3_TestSensors_B.y_j[0];
     }
@@ -4890,11 +4891,11 @@ void AUAV_V3_TestSensors_step0(void)   /* Sample time: [0.01s, 0.0s] */
     AUAV_V3_TestSensors_B.myTanapUtilscupdated5116_b;
 
   /* Saturate: '<S102>/Bank  Limit Command' */
-  if (rtb_Deg2R1 > 0.436332315F) {
-    rtb_Deg2R1 = 0.436332315F;
+  if (rtb_Deg2R1 > BANKCOMMANDLIMIT) {
+    rtb_Deg2R1 = BANKCOMMANDLIMIT;
   } else {
-    if (rtb_Deg2R1 < -0.436332315F) {
-      rtb_Deg2R1 = -0.436332315F;
+    if (rtb_Deg2R1 < -BANKCOMMANDLIMIT) {
+      rtb_Deg2R1 = -BANKCOMMANDLIMIT;
     }
   }
 

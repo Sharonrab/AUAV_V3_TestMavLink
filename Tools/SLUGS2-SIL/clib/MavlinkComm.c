@@ -86,15 +86,15 @@ void InitParameterInterface(void)
         //mlParamInterface.param[PAR_PID_PITCH_FO_D] = -0.0599999986589;
 
     strcpy(mlParamInterface.param_name[PAR_PID_ROLL_CON_P], "PID_ROLL_CO_P");
-	mlParamInterface.param[PAR_PID_ROLL_CON_P] = 0.099;// 0.649999976158;
+	mlParamInterface.param[PAR_PID_ROLL_CON_P] = 0.1;// 0.649999976158;
     strcpy(mlParamInterface.param_name[PAR_PID_ROLL_CON_I], "PID_ROLL_CO_I");
-            mlParamInterface.param[PAR_PID_ROLL_CON_I] = 0.001;//0.00999999977648;
+            mlParamInterface.param[PAR_PID_ROLL_CON_I] = 0.002;//0.00999999977648;
     strcpy(mlParamInterface.param_name[PAR_PID_ROLL_CON_D], "PID_ROLL_CO_D");
-           mlParamInterface.param[PAR_PID_ROLL_CON_D] = 0.01;//0.0599999986589;
+           mlParamInterface.param[PAR_PID_ROLL_CON_D] = 0;//0.0599999986589;
 
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_P], "PID_HE2PITC_P");
-                mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.001;
+                mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.0450000017881;
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_I], "PID_HE2PITC_I");
                 mlParamInterface.param[PAR_PID_HE_TO_PI_I] = 0;
@@ -163,26 +163,18 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
 	 mlBoot.version = 1;
 	 mlMobileLocation.latitude = 36.988506f ;
 	 mlMobileLocation.longitude = -122.055308f;
-	 mlWpValues.lat[0] = 36.9885682;
- 	 mlWpValues.lat[1] = 36.9883968;
-     mlWpValues.lat[2] = 36.9869056;
- 	 mlWpValues.lat[3] = 36.9869056;
-      
- 	 mlWpValues.lon[0] = -122.0528913;
- 	 mlWpValues.lon[1] = -122.0501447;
-     mlWpValues.lon[2] = -122.0500696;
- 	 mlWpValues.lon[3] = -122.0530200;
+	 mlWpValues.lat[0] = 36.9958344;
+	 mlWpValues.lat[1] = 36.9870605;
+
+	 mlWpValues.lon[0] = -122.065491;
+	 mlWpValues.lon[1] = -122.044891;
 
 	 mlWpValues.alt[0] = 30.0;
 	 mlWpValues.alt[1] = 30.0;
-     mlWpValues.alt[2] = 30.0;
- 	 mlWpValues.alt[3] = 30.0;
-     
+
 	 mlWpValues.type[0] = 16;
 	 mlWpValues.type[1] = 16;
-	 mlWpValues.type[2] = 16;
- 	 mlWpValues.type[3] = 16;
- 	 mlWpValues.wpCount = 4;
+	 mlWpValues.wpCount = 2;
 
 }
 
