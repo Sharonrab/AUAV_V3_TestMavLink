@@ -13,11 +13,11 @@
 
 #include "mavlink.h"
 /* Include model header file for global data */
-#include "AUAV_V3_TestSensors.h"
-#include "AUAV_V3_TestSensors_private.h"
+#include "SLUGS2.h"
+#include "SLUGS2_private.h"
 
-#ifndef AUAV_V3_TestSensors_COMMON_INCLUDES_
-# define AUAV_V3_TestSensors_COMMON_INCLUDES_
+#ifndef SLUGS2_COMMON_INCLUDES_
+# define SLUGS2_COMMON_INCLUDES_
 #include "rtwtypes.h"
 #endif
 

@@ -2,7 +2,9 @@
 #define  _MAVLINK_COMM_H_
 #include "circBuffer.h"
 #include <rtwtypes.h>
-#include "inttypes.h"
+#include <stdint.h>
+
+//#include "inttypes.h"
 #ifdef WIN //SLUGS2 SIL
 #define inline __inline
 #endif
@@ -29,8 +31,11 @@ void uartMavlinkBufferInit (void);
 #define MAXSEND         109
 #define MAX_NUM_WPS     17
 #define PARAM_NAME_LENGTH	16
-
-#define PROTOCOL_TIMEOUT_TICKS 800    ///< maximum time to wait for pending messages until timeout
+#ifdef WIN //SLUGS2 SIL
+#define PROTOCOL_TIMEOUT_TICKS 20    ///< maximum time to wait for pending messages until timeout
+#else
+#define PROTOCOL_TIMEOUT_TICKS 800 
+#endif
 
   enum WP_PROTOCOL {
     WP_PROT_IDLE,

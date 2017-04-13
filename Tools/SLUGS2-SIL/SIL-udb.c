@@ -25,7 +25,7 @@
 #include "mavlink.h"
 
 /* Include model header file for global data */
-#include "AUAV_V3_TestSensors.h"
+#include "SLUGS2.h"
 
 //mavlink_gps_raw_int_t mlGpsData;       /* '<Root>/mlGpsData' */
 extern uint8_t UartOutBuff[MAVLINK_MAX_PACKET_LEN];
@@ -134,7 +134,7 @@ inline int gettimeofday(struct timeval* p, void* tz /* IGNORED */)
 #include "SIL-events.h"
 #include "SIL-eeprom.h"
 /* Include model header file for global data */
-#include "AUAV_V3_TestSensors.h"
+#include "SLUGS2.h"
 
 uint16_t udb_heartbeat_counter;
 
@@ -243,7 +243,7 @@ void udb_init(void)
 	}
 
 	/* Initialize model */
-	AUAV_V3_TestSensors_initialize();
+	SLUGS2_initialize();
 }
 
 #define UDB_WRAP_TIME 1000
@@ -278,7 +278,7 @@ void udb_run(void)
 
 		currentTime = get_current_milliseconds();
 
-		AUAV_V3_TestSensors_DWork.time_since_boot_usec = get_current_microseconds();
+		SLUGS2_DWork.time_since_boot_usec = get_current_microseconds();
 
 
 		if (currentTime >= nextHeartbeatTime &&

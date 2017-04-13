@@ -1,5 +1,5 @@
-#include "AUAV_V3_TestMavLink.h"
-#include "AUAV_V3_TestMavLink_private.h"
+#include "SLUGS2.h"
+#include "SLUGS2_private.h"
 
 /* Implement SPI 1 Interrupts */
 void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
@@ -8,7 +8,7 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
   boolean_T Continue;
   _SPI1IF = 0;
   asm("INC _mcuFlagRecursion");        /* ensure atomic	mcuFlagRecursion++; */
-  T2CONbits.TON = 1;
+  T3CONbits.TON = 1;
 
   /* Declaration of Variables */
   uint16_T tmp;
@@ -30,116 +30,6 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
 
      case 1:                           /* Start a new SPI Sequence */
       /* Toggle pin */
-      LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
-
-      /* Delay */
-      __delay32(700000);               /* Delay  */
-
-      /* Toggle pin */
-      LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
-
-      /* Write only Sequence */
-      SPI1BUF = 0x6B80;
-
-      /* Toggle pin */
-      MCHP_SPI1_State++;
-      break;
-
-     case 2:
-      LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
-
-      /* Delay */
-      __delay32(4200000);              /* Delay  */
-
-      /* Toggle pin */
-      LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
-
-      /* Write only Sequence */
-      tmp = SPI1BUF;
-      SPI1BUF = 0x6B01;
-
-      /* Toggle pin */
-      MCHP_SPI1_State++;
-      break;
-
-     case 3:
-      LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
-
-      /* Delay */
-      __delay32(700000);               /* Delay  */
-
-      /* Toggle pin */
-      LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
-
-      /* Write only Sequence */
-      tmp = SPI1BUF;
-      SPI1BUF = 0x6A10;
-
-      /* Toggle pin */
-      MCHP_SPI1_State++;
-      break;
-
-     case 4:
-      LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
-
-      /* Delay */
-      __delay32(700000);               /* Delay  */
-
-      /* Toggle pin */
-      LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
-
-      /* Write only Sequence */
-      tmp = SPI1BUF;
-      SPI1BUF = 0x1904;
-
-      /* Toggle pin */
-      MCHP_SPI1_State++;
-      break;
-
-     case 5:
-      LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
-
-      /* Delay */
-      __delay32(700000);               /* Delay  */
-
-      /* Toggle pin */
-      LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
-
-      /* Write only Sequence */
-      tmp = SPI1BUF;
-      SPI1BUF = 0x1A03;
-
-      /* Toggle pin */
-      MCHP_SPI1_State++;
-      break;
-
-     case 6:
-      LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
-
-      /* Delay */
-      __delay32(700000);               /* Delay  */
-
-      /* Toggle pin */
-      LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
-
-      /* Write only Sequence */
-      tmp = SPI1BUF;
-      SPI1BUF = 0x1B08;
-
-      /* Toggle pin */
-      MCHP_SPI1_State++;
-      break;
-
-     case 7:
-      LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
-      tmp = SPI1BUF;
-      MCHP_SPI12_Request = 0;          /* This SPI sequence could be Re-Enabled */
-      MCHP_SPI1_State = 0;             /* End of SPI Sequence. SPI Interrupt should be started for new sequence */
-      Continue = (MCHP_SPI1_Queue.head != MCHP_SPI1_Queue.tail);/* One next sequence queued, start it now */
-      break;
-
-     case 8:                           /* Start a new SPI Sequence */
-      /* Toggle pin */
       LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
 
       /* Write only Sequence */
@@ -160,7 +50,7 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
       MCHP_SPI1_State++;
       break;
 
-     case 9:
+     case 2:
       /* Toggle pin */
       LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
       tmp = SPI1BUF;
@@ -176,6 +66,82 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
       Continue = (MCHP_SPI1_Queue.head != MCHP_SPI1_Queue.tail);/* One next sequence queued, start it now */
       break;
 
+     case 3:                           /* Start a new SPI Sequence */
+      /* Toggle pin */
+      LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
+
+      /* Delay */
+      __delay32(700000);               /* Delay  */
+
+      /* Toggle pin */
+      LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
+
+      /* Write only Sequence */
+      SPI1BUF = 0x6A80;
+
+      /* Toggle pin */
+      MCHP_SPI1_State++;
+      break;
+
+     case 4:
+      LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
+
+      /* Delay */
+      __delay32(4200000);              /* Delay  */
+
+      /* Toggle pin */
+      LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
+
+      /* Write only Sequence */
+      tmp = SPI1BUF;
+      SPI1BUF = 0x6B01;
+
+      /* Toggle pin */
+      MCHP_SPI1_State++;
+      break;
+
+     case 5:
+      LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
+
+      /* Delay */
+      __delay32(700000);               /* Delay  */
+
+      /* Toggle pin */
+      LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
+
+      /* Write only Sequence */
+      tmp = SPI1BUF;
+      SPI1BUF = 0x1B08;
+
+      /* Toggle pin */
+      MCHP_SPI1_State++;
+      break;
+
+     case 6:
+      LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
+
+      /* Delay */
+      __delay32(700000);               /* Delay  */
+
+      /* Toggle pin */
+      LATEbits.LATE4 = 0;              /* switch RE4 to 0 */
+
+      /* Write only Sequence */
+      tmp = SPI1BUF;
+      SPI1BUF = 0x6A10;
+
+      /* Toggle pin */
+      MCHP_SPI1_State++;
+      break;
+
+     case 7:
+      LATEbits.LATE4 = 1;              /* switch RE4 to 1 */
+      tmp = SPI1BUF;
+      MCHP_SPI12_Request = 0;          /* This SPI sequence could be Re-Enabled */
+      MCHP_SPI1_State = 0;             /* End of SPI Sequence. SPI Interrupt should be started for new sequence */
+      Continue = (MCHP_SPI1_Queue.head != MCHP_SPI1_Queue.tail);/* One next sequence queued, start it now */
+      break;
+
      default:                          /* Sequence finished */
       MCHP_SPI1_State = 0;             /* Should never happend */
       break;
@@ -184,6 +150,6 @@ void __attribute__((__interrupt__,__shadow__,__auto_psv__)) _SPI1Interrupt(void)
 
   asm("DEC _mcuFlagRecursion");        /* ensure --mcuFlagRecursion is atomic */
   if (mcuFlagRecursion == 0) {
-    T2CONbits.TON = 0;
+    T3CONbits.TON = 0;
   }
 }                                      /* Enf of interrupt */

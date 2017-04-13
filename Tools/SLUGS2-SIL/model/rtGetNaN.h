@@ -8,11 +8,11 @@
  * -------------------------------------------------------------------
  * File: rtGetNaN.h
  *
- * Code generated for Simulink model 'AUAV_V3_TestSensors'.
+ * Code generated for Simulink model 'SLUGS2'.
  *
- * Model version                  : 1.262
+ * Model version                  : 1.271
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
+ * C/C++ source code generated on : Tue Apr 11 15:47:53 2017
  */
 
 #ifndef RTW_HEADER_rtGetNaN_h_

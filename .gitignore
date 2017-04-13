@@ -9,6 +9,9 @@ slprj/*
 *.X/*
 Bixler2/*
 AUAV_V3_TestSensors.X/*
+*.o
+*.obj
+*.asv
 
 <<<<<<< HEAD
 ## Ignore Visual Studio temporary files, build results, and

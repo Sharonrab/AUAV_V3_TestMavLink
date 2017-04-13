@@ -1,7 +1,11 @@
 
 #include <math.h>
 #include "mavlinkCommsControlMcu.h"
+#ifdef UNIT_TEST
 #include "AUAV_V3_TestSensors.h"
+#else
+#include "SLUGS2.h"
+#endif
 //#include "DEE.h"
 #define TRUE ((char)1)
 #define FALSE ((char)0)

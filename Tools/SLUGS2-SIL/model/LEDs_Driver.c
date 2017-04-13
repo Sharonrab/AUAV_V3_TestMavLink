@@ -8,88 +8,88 @@
  * -------------------------------------------------------------------
  * File: LEDs_Driver.c
  *
- * Code generated for Simulink model 'AUAV_V3_TestSensors'.
+ * Code generated for Simulink model 'SLUGS2'.
  *
- * Model version                  : 1.262
+ * Model version                  : 1.271
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Wed Nov 23 10:01:40 2016
+ * C/C++ source code generated on : Tue Apr 11 15:47:53 2017
  */
 
 #include "LEDs_Driver.h"
 
 /* Include model header file for global data */
-#include "AUAV_V3_TestSensors.h"
-#include "AUAV_V3_TestSensors_private.h"
+#include "SLUGS2.h"
+#include "SLUGS2_private.h"
 
 /* Outputs for atomic system: '<Root>/LEDs_Driver' */
-void AUAV_V3_TestSe_LEDs_DriverTID3(void)
+void SLUGS2_LEDs_DriverTID3(void)
 {
 #ifndef WIN
 
-  /* S-Function (MCHP_Digital_Output_Read): '<S466>/Digital Output Read' */
-  /* MCHP_Digital_Output_Read Block: <S466>/Digital Output Read/Output */
+  /* S-Function (MCHP_Digital_Output_Read): '<S459>/Digital Output Read' */
+  /* MCHP_Digital_Output_Read Block: <S459>/Digital Output Read/Output */
 
-  /* Logic: '<S7>/Logical Operator1' incorporates:
-   *  S-Function (MCHP_Digital_Output_Read): '<S466>/Digital Output Read'
+  /* Logic: '<S5>/Logical Operator1' incorporates:
+   *  S-Function (MCHP_Digital_Output_Read): '<S459>/Digital Output Read'
    */
-  AUAV_V3_TestSensors_B.LogicalOperator1 = !LATBbits.LATB3;
+  SLUGS2_B.LogicalOperator1 = !LATBbits.LATB3;
 
-  /* S-Function (MCHP_Digital_Output_Write): '<S466>/Digital Output Write' */
-  LATBbits.LATB3 = AUAV_V3_TestSensors_B.LogicalOperator1;
+  /* S-Function (MCHP_Digital_Output_Write): '<S459>/Digital Output Write' */
+  LATBbits.LATB3 = SLUGS2_B.LogicalOperator1;
 #endif
 }
 
 /* Outputs for atomic system: '<Root>/LEDs_Driver' */
-void AUAV_V3_TestSe_LEDs_DriverTID4(void)
+void SLUGS2_LEDs_DriverTID4(void)
 {
 #ifndef WIN
 
-  /* S-Function (MCHP_Digital_Output_Read): '<S465>/Digital Output Read' */
-  /* MCHP_Digital_Output_Read Block: <S465>/Digital Output Read/Output */
+  /* S-Function (MCHP_Digital_Output_Read): '<S458>/Digital Output Read' */
+  /* MCHP_Digital_Output_Read Block: <S458>/Digital Output Read/Output */
 
-  /* Logic: '<S7>/Logical Operator' incorporates:
-   *  S-Function (MCHP_Digital_Output_Read): '<S465>/Digital Output Read'
+  /* Logic: '<S5>/Logical Operator' incorporates:
+   *  S-Function (MCHP_Digital_Output_Read): '<S458>/Digital Output Read'
    */
-  AUAV_V3_TestSensors_B.LogicalOperator = !LATBbits.LATB2;
+  SLUGS2_B.LogicalOperator = !LATBbits.LATB2;
 
-  /* S-Function (MCHP_Digital_Output_Write): '<S465>/Digital Output Write' */
-  LATBbits.LATB2 = AUAV_V3_TestSensors_B.LogicalOperator;
+  /* S-Function (MCHP_Digital_Output_Write): '<S458>/Digital Output Write' */
+  LATBbits.LATB2 = SLUGS2_B.LogicalOperator;
 #endif
 }
 
 /* Outputs for atomic system: '<Root>/LEDs_Driver' */
-void AUAV_V3_TestSe_LEDs_DriverTID7(void)
+void SLUGS2_LEDs_DriverTID7(void)
 {
 #ifndef WIN
 
-  /* S-Function (MCHP_Digital_Output_Read): '<S467>/Digital Output Read' */
-  /* MCHP_Digital_Output_Read Block: <S467>/Digital Output Read/Output */
+  /* S-Function (MCHP_Digital_Output_Read): '<S460>/Digital Output Read' */
+  /* MCHP_Digital_Output_Read Block: <S460>/Digital Output Read/Output */
 
-  /* Logic: '<S7>/Logical Operator2' incorporates:
-   *  S-Function (MCHP_Digital_Output_Read): '<S467>/Digital Output Read'
+  /* Logic: '<S5>/Logical Operator2' incorporates:
+   *  S-Function (MCHP_Digital_Output_Read): '<S460>/Digital Output Read'
    */
-  AUAV_V3_TestSensors_B.LogicalOperator2 = !LATBbits.LATB4;
+  SLUGS2_B.LogicalOperator2 = !LATBbits.LATB4;
 
-  /* S-Function (MCHP_Digital_Output_Write): '<S467>/Digital Output Write' */
-  LATBbits.LATB4 = AUAV_V3_TestSensors_B.LogicalOperator2;
+  /* S-Function (MCHP_Digital_Output_Write): '<S460>/Digital Output Write' */
+  LATBbits.LATB4 = SLUGS2_B.LogicalOperator2;
 #endif
 }
 
 /* Outputs for atomic system: '<Root>/LEDs_Driver' */
-void AUAV_V3_TestSe_LEDs_DriverTID9(void)
+void SLUGS2_LEDs_DriverTID9(void)
 {
 #ifndef WIN
 
-  /* S-Function (MCHP_Digital_Output_Read): '<S468>/Digital Output Read' */
-  /* MCHP_Digital_Output_Read Block: <S468>/Digital Output Read/Output */
+  /* S-Function (MCHP_Digital_Output_Read): '<S461>/Digital Output Read' */
+  /* MCHP_Digital_Output_Read Block: <S461>/Digital Output Read/Output */
 
-  /* Logic: '<S7>/Logical Operator3' incorporates:
-   *  S-Function (MCHP_Digital_Output_Read): '<S468>/Digital Output Read'
+  /* Logic: '<S5>/Logical Operator3' incorporates:
+   *  S-Function (MCHP_Digital_Output_Read): '<S461>/Digital Output Read'
    */
-  AUAV_V3_TestSensors_B.LogicalOperator3 = !LATBbits.LATB5;
+  SLUGS2_B.LogicalOperator3 = !LATBbits.LATB5;
 
-  /* S-Function (MCHP_Digital_Output_Write): '<S468>/Digital Output Write' */
-  LATBbits.LATB5 = AUAV_V3_TestSensors_B.LogicalOperator3;
+  /* S-Function (MCHP_Digital_Output_Write): '<S461>/Digital Output Write' */
+  LATBbits.LATB5 = SLUGS2_B.LogicalOperator3;
 #endif
 }
 

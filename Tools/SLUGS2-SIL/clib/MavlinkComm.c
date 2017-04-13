@@ -10,7 +10,7 @@
 #elif defined  SENSORS_UNIT_TEST
 #include "AUAV_V3_TestSensors.h"
 #else
-#include "AUAV_V3_TestSensors.h"
+#include "SLUGS2.h"
 
 #endif
 
@@ -621,7 +621,7 @@ uint16_t MissionInterfaceResponse(uint8_t system_id, uint8_t component_id){
   mlPending.wpTimeOut++;
 
   // if Timed out reset the state machine and send an error
-  if (mlPending.wpTimeOut > PROTOCOL_TIMEOUT_TICKS) {
+  if (mlPending.wpProtState != WP_PROT_IDLE && mlPending.wpTimeOut > PROTOCOL_TIMEOUT_TICKS) {
       memset(&msg, 0, sizeof (mavlink_message_t));
 
       mavlink_msg_mission_ack_pack(system_id,

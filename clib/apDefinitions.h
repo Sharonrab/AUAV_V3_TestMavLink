@@ -41,8 +41,8 @@ extern "C" {
 #ifdef WIN //SLUGS2 SIL
 #define inline __inline
 #endif
-//#include "stdint.h"
-#include "inttypes.h"
+#include "stdint.h"
+//#include "inttypes.h"
 
     // =========== Global Definitions ==========
 

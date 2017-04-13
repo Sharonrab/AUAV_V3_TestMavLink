@@ -25,7 +25,7 @@
 #endif
 #include "mavlink.h"
 /* Include model header file for global data */
-#include "AUAV_V3_TestSensors.h"
+#include "SLUGS2.h"
 
 extern uint8_t Uart4OutBuff[MAVLINK_MAX_PACKET_LEN];
 

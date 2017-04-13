@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="flt2frct.c" />
+    <ClCompile Include="frct2flt.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="SIL-24LC256.c" />
+    <ClCompile Include="SIL-dsp.c" />
+    <ClCompile Include="SIL-eeprom.c" />
+    <ClCompile Include="SIL-events.c" />
+    <ClCompile Include="SIL-filesystem.c" />
+    <ClCompile Include="SIL-I2C1.c" />
+    <ClCompile Include="SIL-serial.c" />
+    <ClCompile Include="SIL-udb.c" />
+    <ClCompile Include="SIL-ui-mp-term.c" />
+    <ClCompile Include="clib\MavlinkComm.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\gpsUblox.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\circBuffer.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="external\gpsParseUBX.c">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Mavlink_TX_Adapter.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_nonfinite.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rtGetInf.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rtGetNaN.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Position_and_Attitude_Filter.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_18.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_2.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_3.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_22.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_75.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_76.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_77.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_86.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\apUtils.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\updateSensorMcuState.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\mavlinkSensorMcu.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="model\AUAV_V3_TestSensors_data.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\AUAV_V3_TestSensors.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\updateControlMcuState.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\mavlinkControlMcu.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Sensor_Data_Adapter.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\navSupport.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\hil.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\adisCube16405.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\gpsPort.c">
+      <Filter>clib</Filter>
+    </ClCompile>
+    <ClCompile Include="model\AUAV_V3_TestSensors_main.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\LEDs_Driver.c" />
+    <ClCompile Include="..\..\HILSIM_XPlane\UDBSocketWin.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="model\rtwtypes.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\Mavlink_TX_Adapter.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\auav_v3_testsensors.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\AUAV_V3_TestSensors_private.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\AUAV_V3_TestSensors_types.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\multiword_types.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="clib">
+      <UniqueIdentifier>{aa9f8c95-3a88-4650-b238-0113681ab995}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external">
+      <UniqueIdentifier>{132a45b6-fcbe-4894-a9cd-28ca84cf26ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{68a39a6d-d3a9-44b3-abeb-4aaf5c349b72}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

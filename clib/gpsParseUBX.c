@@ -28,7 +28,11 @@
 //#include "libUDB.h"
 #include "mavlink.h"
 /* Include model header file for global data */
+#ifdef UNIT_TEST
 #include "AUAV_V3_TestSensors.h"
+#else
+#include "SLUGS2.h"
+#endif
 #ifdef WIN
 #include <stdint.h>
 #endif

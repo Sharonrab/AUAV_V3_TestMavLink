@@ -8,27 +8,27 @@
  * -------------------------------------------------------------------
  * File: IMU_Mag_Driver.h
  *
- * Code generated for Simulink model 'AUAV_V3_TestSensors'.
+ * Code generated for Simulink model 'SLUGS2'.
  *
- * Model version                  : 1.264
+ * Model version                  : 1.271
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Dec 03 23:00:15 2016
+ * C/C++ source code generated on : Tue Apr 11 15:47:53 2017
  */
 
 #ifndef RTW_HEADER_IMU_Mag_Driver_h_
 #define RTW_HEADER_IMU_Mag_Driver_h_
-#ifndef AUAV_V3_TestSensors_COMMON_INCLUDES_
-# define AUAV_V3_TestSensors_COMMON_INCLUDES_
+#ifndef SLUGS2_COMMON_INCLUDES_
+# define SLUGS2_COMMON_INCLUDES_
 #include "rtwtypes.h"
-#endif                                 /* AUAV_V3_TestSensors_COMMON_INCLUDES_ */
+#endif                                 /* SLUGS2_COMMON_INCLUDES_ */
 
-#include "AUAV_V3_TestSensors_types.h"
+#include "SLUGS2_types.h"
 
 /* Shared type includes */
 #include "multiword_types.h"
 
-extern void AUAV__IMU_Mag_Driver_Start(void);
-extern void AUAV_V3_Tes_IMU_Mag_Driver(void);
+extern void SLUGS_IMU_Mag_Driver_Start(void);
+extern void SLUGS2_IMU_Mag_Driver(void);
 
 #endif                                 /* RTW_HEADER_IMU_Mag_Driver_h_ */
 

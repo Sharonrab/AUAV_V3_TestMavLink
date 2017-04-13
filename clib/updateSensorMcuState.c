@@ -23,7 +23,11 @@ THE SOFTWARE.
 
  */
 
+#ifdef UNIT_TEST
 #include "AUAV_V3_TestSensors.h"
+#else
+#include "SLUGS2.h"
+#endif
 
 #include "updateSensorMcuState.h"
 

@@ -26,12 +26,6 @@
     <ClCompile Include="external\gpsParseUBX.c">
       <Filter>external</Filter>
     </ClCompile>
-    <ClCompile Include="external\gpsParseCommon.c">
-      <Filter>external</Filter>
-    </ClCompile>
-    <ClCompile Include="external\mathlibNAV.c">
-      <Filter>external</Filter>
-    </ClCompile>
     <ClCompile Include="model\Mavlink_TX_Adapter.c">
       <Filter>Model</Filter>
     </ClCompile>
@@ -47,30 +41,6 @@
     <ClCompile Include="model\Position_and_Attitude_Filter.c">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_18.c">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_2.c">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_3.c">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_22.c">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_75.c">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_76.c">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_77.c">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\rt_sys_AUAV_V3_TestSensors_86.c">
-      <Filter>Model</Filter>
-    </ClCompile>
     <ClCompile Include="clib\apUtils.c">
       <Filter>clib</Filter>
     </ClCompile>
@@ -79,12 +49,6 @@
     </ClCompile>
     <ClCompile Include="clib\mavlinkSensorMcu.c">
       <Filter>clib</Filter>
-    </ClCompile>
-    <ClCompile Include="model\AUAV_V3_TestSensors_data.c">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="model\AUAV_V3_TestSensors.c">
-      <Filter>Model</Filter>
     </ClCompile>
     <ClCompile Include="clib\updateControlMcuState.c">
       <Filter>clib</Filter>
@@ -107,7 +71,40 @@
     <ClCompile Include="clib\gpsPort.c">
       <Filter>clib</Filter>
     </ClCompile>
-    <ClCompile Include="model\AUAV_V3_TestSensors_main.c">
+    <ClCompile Include="model\LEDs_Driver.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_SLUGS2_2.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_SLUGS2_3.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_SLUGS2_18.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_SLUGS2_22.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_SLUGS2_75.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_SLUGS2_76.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_SLUGS2_77.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\rt_sys_SLUGS2_86.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\SLUGS2.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\SLUGS2_data.c">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\SLUGS2_main.c">
       <Filter>Model</Filter>
     </ClCompile>
   </ItemGroup>
@@ -119,16 +116,40 @@
     <ClInclude Include="model\Mavlink_TX_Adapter.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="model\auav_v3_testsensors.h">
-      <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\AUAV_V3_TestSensors_private.h">
-      <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="model\AUAV_V3_TestSensors_types.h">
-      <Filter>Model</Filter>
-    </ClInclude>
     <ClInclude Include="model\multiword_types.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\rt_sys_SLUGS2_2.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\rt_sys_SLUGS2_3.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\rt_sys_SLUGS2_18.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\rt_sys_SLUGS2_22.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\rt_sys_SLUGS2_75.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\rt_sys_SLUGS2_76.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\rt_sys_SLUGS2_77.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\rt_sys_SLUGS2_86.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\SLUGS2.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\SLUGS2_private.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\SLUGS2_types.h">
       <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>

@@ -244,7 +244,7 @@ int16_t mavlink_serial_send(mavlink_channel_t UNUSED(chan), const uint8_t buf[],
 	}
 	return (1);
 }
-#ifdef SLUGS2
+#ifdef WIN//SLUGS2
 void Sync_SendSerial(void)
 {
 	if (serial_interrupt_stopped == 0)
