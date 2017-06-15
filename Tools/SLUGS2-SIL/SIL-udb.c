@@ -716,7 +716,7 @@ void init_servoPrepare(void) // initialize the PWM
 #if (FIXED_TRIMPOINT == 1)
 		udb_pwTrim[i] = udb_pwIn[i] = ((i == THROTTLE_INPUT_CHANNEL) ? THROTTLE_TRIMPOINT : CHANNEL_TRIMPOINT);
 #else
-		udb_pwIn[i] = udb_pwTrim[i] = ((i == THROTTLE_INPUT_CHANNEL) ? 9386 : 13154);
+		udb_pwIn[i] = udb_pwTrim[i] = ((i == THROTTLE_INPUT_CHANNEL) ? 9386  : 13154 );
 #endif
 	}
 
@@ -725,7 +725,7 @@ void init_servoPrepare(void) // initialize the PWM
 #if (FIXED_TRIMPOINT == 1)
 		udb_pwOut[i] = ((i == THROTTLE_OUTPUT_CHANNEL) ? THROTTLE_TRIMPOINT : CHANNEL_TRIMPOINT);
 #else
-		udb_pwOut[i] = ((i == THROTTLE_OUTPUT_CHANNEL) ? 9386 : 13154);
+		udb_pwOut[i] = ((i == THROTTLE_OUTPUT_CHANNEL) ? 9386  : 13154 );
 #endif
 	}
 	udb_pwIn[MODE_SWITCH_INPUT_CHANNEL] = 1000;

@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'SLUGS2'.
  *
- * Model version                  : 1.271
+ * Model version                  : 1.277
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Tue Apr 11 15:47:53 2017
+ * C/C++ source code generated on : Fri Apr 14 08:51:26 2017
  */
 
 #include "Barometer_Driver.h"
@@ -43,6 +43,11 @@ void SLU_Barometer_Driver_Start(void)
   _MI2C2IP = 6;                        /* Set I2C Master Interrupt Priority */
   _MI2C2IF = 0;
   _MI2C2IE = 1;
+
+  /* Start for Enabled SubSystem: '<S24>/Enabled Subsystem' */
+  SLU_EnabledSubsystem_Start(&SLUGS2_B.EnabledSubsystem);
+
+  /* End of Start for SubSystem: '<S24>/Enabled Subsystem' */
 }
 
 /* Output and update for atomic system: '<Root>/Barometer_Driver' */
@@ -360,7 +365,7 @@ void SLUGS2_Barometer_Driver(void)
      *  Constant: '<S24>/Constant5'
      *  Delay: '<S37>/Integer Delay'
      */
-    SLUGS2_B.Sum_k = 0.0F - SLUGS2_DWork.IntegerDelay_DSTATE_jh;
+    SLUGS2_B.Sum_k = 143.543F - SLUGS2_DWork.IntegerDelay_DSTATE_jh;
   }
 
   /* End of Outputs for SubSystem: '<S24>/Zero Out Height' */
@@ -466,6 +471,7 @@ void SLUGS2_Barometer_Driver(void)
   rtb_x = ((real32_T)rtb_Bias5 - SLUGS2_B.u0k120k_i) / SLUGS2_B.u0k120k_i;
 
   /* Sum: '<S33>/Sum1' incorporates:
+   *  Constant: '<S24>/Constant5'
    *  Constant: '<S33>/Constant2'
    *  Constant: '<S33>/Constant3'
    *  Constant: '<S33>/Constant4'
@@ -478,7 +484,7 @@ void SLUGS2_Barometer_Driver(void)
    *  Sum: '<S33>/Sum3'
    */
   rtb_x = ((rtb_x * rtb_x * 0.093502529F + rtb_x * -0.188893303F) +
-           2.18031291E-5F) * 145473.5F * 0.3048F;
+           2.18031291E-5F) * 145473.5F * 0.3048F + 143.543F;
 
   /* Outputs for Enabled SubSystem: '<S24>/Enabled Subsystem' */
 

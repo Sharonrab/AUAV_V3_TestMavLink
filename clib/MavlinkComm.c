@@ -728,7 +728,7 @@ uint16_t PackHeartBeat(uint8_t system_id, uint8_t component_id){
 
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
-  mavlink_system.type = MAV_TYPE_FIXED_WING;   ///< This system is an airplane / fixed wing
+//  mavlink_system.type = MAV_TYPE_FIXED_WING;   ///< This system is an airplane / fixed wing
 
   // Define the system type, in this case an airplane
   uint8_t system_type = MAV_TYPE_FIXED_WING;

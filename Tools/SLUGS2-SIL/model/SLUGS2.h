@@ -64,6 +64,12 @@
 # define rtmTaskCounter(rtm, idx)      ((rtm)->Timing.TaskCounters.TID[(idx)])
 #endif
 
+/* Exported data define */
+
+/* Definition for custom storage class: Define */
+#define Param_bankCommandLimit         (0.436332285F ) //25deg 
+#define Param_AileronLimit         (0.383972436F) //22deg 
+
 /* user code (top of header file) */
 #include "MavlinkComm.h"
 
@@ -239,6 +245,7 @@ typedef struct {
   real32_T Sum_k;                      /* '<S37>/Sum' */
   real32_T u0k120k_i;                  /* '<S36>/[80k - 120k]' */
   uint32_T Gettime4;                   /* '<Root>/Get time4' */
+  uint32_T Gettime5;                   /* '<S671>/Get time5' */
   uint32_T Gettime;                    /* '<S6>/Get time' */
   uint32_T Gettime6;                   /* '<S6>/Get time6' */
   uint32_T Gettime7;                   /* '<S6>/Get time7' */
@@ -246,7 +253,7 @@ typedef struct {
   uint32_T Gettime2;                   /* '<S6>/Get time2' */
   uint32_T Gettime3;                   /* '<S6>/Get time3' */
   uint32_T Gettime4_e;                 /* '<S6>/Get time4' */
-  uint32_T Gettime5;                   /* '<S6>/Get time5' */
+  uint32_T Gettime5_a;                 /* '<S6>/Get time5' */
   int16_T ReadtheCubeDataadisCube16405c1[10];/* '<S583>/Read the Cube Data [adisCube16405.c]1' */
   int16_T y_l[13];                     /* '<S583>/myMux Fun4' */
   int16_T Switch_i[13];                /* '<S572>/Switch' */
@@ -629,7 +636,7 @@ typedef struct {
    *   '<S396>/UEN 2 NEU'
    *   '<S413>/UEN 2 NEU'
    */
-  real32_T pooled63[9];
+  real32_T pooled64[9];
 } ConstParam_SLUGS2_T;
 
 /* Real-time Model Data Structure */

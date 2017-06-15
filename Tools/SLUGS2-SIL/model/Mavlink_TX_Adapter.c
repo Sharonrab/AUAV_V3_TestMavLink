@@ -283,14 +283,14 @@ void SLUGS2_Mavlink_TX_AdapterTID18(void)
   SLUGS2_B.GetRawCommands_p = mlPwmCommands;
 
   /* DataStoreRead: '<S6>/Get time5' */
-  SLUGS2_B.Gettime5 = SLUGS2_DWork.time_since_boot_usec;
+  SLUGS2_B.Gettime5_a = SLUGS2_DWork.time_since_boot_usec;
 
   /* S-Function (MCHP_C_function_Call): '<S6>/PackRawServo' */
   SLUGS2_B.PackRawServo_d = PackRawServo(
     ((uint8_T)101U)
     , ((uint8_T)1U)
     , SLUGS2_B.GetRawCommands_p
-    , SLUGS2_B.Gettime5
+    , SLUGS2_B.Gettime5_a
     );
 
   /* S-Function (MCHP_C_function_Call): '<S6>/TX_N_Data9' */

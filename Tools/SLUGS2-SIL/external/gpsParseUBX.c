@@ -1304,10 +1304,10 @@ uint16_t send_HILSIM_outputs(void)
     
     int16_t udb_pwOut[MAX_OUTPUTS]; // pulse widths for servo outputs
 
-	udb_pwOut[AILERON_OUTPUT_CHANNEL] = mlPwmCommands.servo2_raw *10 ;//
-	udb_pwOut[THROTTLE_OUTPUT_CHANNEL] = mlPwmCommands.servo1_raw * 10;//
-	udb_pwOut[RUDDER_OUTPUT_CHANNEL] = mlPwmCommands.servo3_raw * 10;//
-	udb_pwOut[ELEVATOR_OUTPUT_CHANNEL] = mlPwmCommands.servo4_raw * 10 ;//
+	udb_pwOut[AILERON_OUTPUT_CHANNEL] = mlPwmCommands.servo2_raw;// *10;//
+	udb_pwOut[THROTTLE_OUTPUT_CHANNEL] = mlPwmCommands.servo1_raw;// *10;//
+	udb_pwOut[RUDDER_OUTPUT_CHANNEL] = mlPwmCommands.servo3_raw;// *10;//
+	udb_pwOut[ELEVATOR_OUTPUT_CHANNEL] = mlPwmCommands.servo4_raw;// *10;//
 	for (i = 1; i <= NUM_OUTPUTS; i++)
 	{
 		

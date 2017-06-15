@@ -36,7 +36,7 @@ Comm,COM6, 38400
 #Comm,/dev/cu.usbserial-A600dP4v,38400
 #Port,14551
 Overide,sim/operation/override/override_flightcontrol
-Control,1,sim/joystick/FC_roll,13154,3661,3661,-1,-1
-Control,2,sim/joystick/FC_ptch,13154,3661,3661,-1,-1
-Control,4,sim/joystick/FC_hdng,13154,3661,3661,-1,-1
-Engine,3,255,9386,7429,0,1,0
+Control,1,sim/joystick/FC_roll,1315,366,366,-1,-1
+Control,2,sim/joystick/FC_ptch,1315,366,366,-1,-1
+Control,4,sim/joystick/FC_hdng,1315,366,366,-1,-1
+Engine,3,255,938,742,0,1,0

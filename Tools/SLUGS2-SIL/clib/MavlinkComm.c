@@ -163,11 +163,11 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
 	 mlBoot.version = 1;
 	 mlMobileLocation.latitude = 36.988506f ;
 	 mlMobileLocation.longitude = -122.055308f;
-	 mlWpValues.lat[0] = 36.9958344;
-	 mlWpValues.lat[1] = 36.9870605;
+	 mlWpValues.lat[0] = 36.9894257;
+	 mlWpValues.lat[1] = 36.9860306;
 
-	 mlWpValues.lon[0] = -122.065491;
-	 mlWpValues.lon[1] = -122.044891;
+	 mlWpValues.lon[0] = -122.0525284;
+	 mlWpValues.lon[1] = -122.0516663;
 
 	 mlWpValues.alt[0] = 30.0;
 	 mlWpValues.alt[1] = 30.0;
@@ -728,7 +728,7 @@ uint16_t PackHeartBeat(uint8_t system_id, uint8_t component_id){
 
   mavlink_system.sysid = system_id;                   ///< ID 20 for this airplane
   mavlink_system.compid = component_id;//MAV_COMP_ID_IMU;     ///< The component sending the message is the IMU, it could be also a Linux process
-  mavlink_system.type = MAV_TYPE_FIXED_WING;   ///< This system is an airplane / fixed wing
+ // mavlink_system.type = MAV_TYPE_FIXED_WING;   ///< This system is an airplane / fixed wing
 
   // Define the system type, in this case an airplane
   uint8_t system_type = MAV_TYPE_FIXED_WING;
@@ -818,7 +818,7 @@ uint16_t PackRawNavigation(uint8_t system_id, uint8_t component_id, mavlink_slug
 		mlNavigation.u_m, mlNavigation.phi_c, mlNavigation.theta_c, mlNavigation.psiDot_c, mlNavigation.ay_body, mlNavigation.totalDist, mlNavigation.dist2Go, mlNavigation.fromWP, mlNavigation.toWP, mlNavigation.h_c);
 	//mavlink_msg_command_long_pack(mavlink_system.sysid, mavlink_system.compid, &msg, mlNavigation.fromWP, mlNavigation.toWP, mlNavigation.h_c,111,
 	//	mlNavigation.u_m, mlNavigation.phi_c, mlNavigation.theta_c, mlNavigation.psiDot_c, mlNavigation.ay_body, mlNavigation.totalDist, mlNavigation.dist2Go);
-
+	
 	return(mavlink_msg_to_send_buffer(UartOutBuff, &msg));
 
 }

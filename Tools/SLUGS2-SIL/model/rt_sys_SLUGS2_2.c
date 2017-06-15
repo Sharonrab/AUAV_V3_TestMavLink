@@ -22,6 +22,17 @@
 #include "SLUGS2_private.h"
 
 /*
+ * Start for enable system:
+ *    '<S24>/Enabled Subsystem'
+ *    '<S614>/Enabled Subsystem'
+ */
+void SLU_EnabledSubsystem_Start(rtB_EnabledSubsystem_SLUGS2_T *localB)
+{
+  /* VirtualOutportStart for Outport: '<S34>/Out1' */
+  localB->In1 = 143.543F;
+}
+
+/*
  * Output and update for enable system:
  *    '<S24>/Enabled Subsystem'
  *    '<S614>/Enabled Subsystem'

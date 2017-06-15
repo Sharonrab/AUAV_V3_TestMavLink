@@ -99,7 +99,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Bixler2|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\mavlink\include\slugs; C:\Program Files (x86)\Microchip\xc16\v1.26\support\generic\h\;C:\Program Files (x86)\Microchip\xc16\v1.26\support\dsPIC33E\h\;..\..\mavLink\include\common;.\model;.\clib;.\external;..\;.\;..\mavLink\include\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\mavlink\include\slugs;C:\Program Files (x86)\Microchip\xc16\v1.26\support\generic\h\;C:\Program Files (x86)\Microchip\xc16\v1.26\support\dsPIC33E\h\;.\model;.\clib;.\external;..\;.\;..\mavLink\include\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_libq_h_;__LIBPIC30_H;MAVLINK_SYSID=2;WIN;WIN32;_DEBUG;_WINDOWS;_USRDLL;XPNETDATA_EXPORTS;IBM=1;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

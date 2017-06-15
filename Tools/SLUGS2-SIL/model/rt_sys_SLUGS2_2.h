@@ -62,6 +62,7 @@ typedef struct {
   real32_T In1;                        /* '<S34>/In1' */
 } rtB_EnabledSubsystem_SLUGS2_T;
 
+extern void SLU_EnabledSubsystem_Start(rtB_EnabledSubsystem_SLUGS2_T *localB);
 extern void SLUGS2_EnabledSubsystem(boolean_T rtu_Enable, real32_T rtu_In1,
   rtB_EnabledSubsystem_SLUGS2_T *localB);
 

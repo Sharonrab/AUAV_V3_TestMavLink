@@ -556,9 +556,9 @@ void Position_and_Attitude_Filt(void)
     for (colIdx = 0; colIdx < 3; colIdx++) {
       /* Gain: '<S476>/UEN 2 NEU' */
       SLUGS2_B.In1[colIdx] = 0.0F;
-      SLUGS2_B.In1[colIdx] += SLUGS2_ConstP.pooled63[colIdx] * tmp_0[0];
-      SLUGS2_B.In1[colIdx] += SLUGS2_ConstP.pooled63[colIdx + 3] * tmp_0[1];
-      SLUGS2_B.In1[colIdx] += SLUGS2_ConstP.pooled63[colIdx + 6] * tmp_0[2];
+      SLUGS2_B.In1[colIdx] += SLUGS2_ConstP.pooled64[colIdx] * tmp_0[0];
+      SLUGS2_B.In1[colIdx] += SLUGS2_ConstP.pooled64[colIdx + 3] * tmp_0[1];
+      SLUGS2_B.In1[colIdx] += SLUGS2_ConstP.pooled64[colIdx + 6] * tmp_0[2];
     }
 
     /* End of Inport: '<S474>/In1' */
