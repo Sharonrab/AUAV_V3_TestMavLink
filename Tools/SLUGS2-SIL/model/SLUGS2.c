@@ -1302,10 +1302,10 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
       );
 
     /* Saturate: '<S647>/[0.55 0.68]' */
-    if (SLUGS2_B.ChoosetheMediannavSupportcupd_a > 28875U) {
-      rtb_u2deg = 28875U;
-    } else if (SLUGS2_B.ChoosetheMediannavSupportcupd_a < 26944U) {
-      rtb_u2deg = 26944U;
+    if (SLUGS2_B.ChoosetheMediannavSupportcupd_a > 14438U) {
+      rtb_u2deg = 14438U;
+    } else if (SLUGS2_B.ChoosetheMediannavSupportcupd_a < 13472U) {
+      rtb_u2deg = 13472U;
     } else {
       rtb_u2deg = SLUGS2_B.ChoosetheMediannavSupportcupd_a;
     }
@@ -1338,10 +1338,10 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
       );
 
     /* Saturate: '<S647>/[-2  2] deg' */
-    if (SLUGS2_B.u > 2728U) {
-      rtb_u2deg = 2728U;
-    } else if (SLUGS2_B.u < 2533U) {
-      rtb_u2deg = 2533U;
+    if (SLUGS2_B.u > 13641U) {
+      rtb_u2deg = 13641U;
+    } else if (SLUGS2_B.u < 12665U) {
+      rtb_u2deg = 12665U;
     } else {
       rtb_u2deg = SLUGS2_B.u;
     }
@@ -1366,7 +1366,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S665>/Add'
      */
     SLUGS2_B.DataTypeConversion_h = (real32_T)((real_T)rtb_u2deg *
-      -0.00071481057518468229 + 0.94019034954041214);
+      -7.1481057518468276E-5 + 0.94019034954041281);
 
     /* S-Function (MCHP_C_function_Call): '<S647>/3' */
     SLUGS2_B.u_h = meanFilter5(
@@ -1374,10 +1374,10 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
       );
 
     /* Saturate: '<S647>/[-2  2] deg ' */
-    if (SLUGS2_B.u_h > 2704U) {
-      rtb_u2deg = 2704U;
-    } else if (SLUGS2_B.u_h < 2557U) {
-      rtb_u2deg = 2557U;
+    if (SLUGS2_B.u_h > 13519U) {
+      rtb_u2deg = 13519U;
+    } else if (SLUGS2_B.u_h < 12787U) {
+      rtb_u2deg = 12787U;
     } else {
       rtb_u2deg = SLUGS2_B.u_h;
     }
@@ -1402,7 +1402,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S666>/Add'
      */
     SLUGS2_B.DataTypeConversion_g = (real32_T)((real_T)rtb_u2deg *
-      -0.00095308076691290973 + 1.2535871327205494);
+      -9.5308076691291043E-5 + 1.2535871327205506);
 
     /* S-Function (MCHP_C_function_Call): '<S647>/4' */
     SLUGS2_B.u_m = meanFilter5(
@@ -1410,10 +1410,10 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
       );
 
     /* Saturate: '<S647>/[-2  2] deg  ' */
-    if (SLUGS2_B.u_m > 2777U) {
-      rtb_u2deg = 2777U;
-    } else if (SLUGS2_B.u_m < 2484U) {
-      rtb_u2deg = 2484U;
+    if (SLUGS2_B.u_m > 13886U) {
+      rtb_u2deg = 13886U;
+    } else if (SLUGS2_B.u_m < 12420U) {
+      rtb_u2deg = 12420U;
     } else {
       rtb_u2deg = SLUGS2_B.u_m;
     }
@@ -1438,7 +1438,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S667>/Add'
      */
     SLUGS2_B.DataTypeConversion_f = (real32_T)((real_T)rtb_u2deg *
-      0.00047654038345645486 + -0.62679356636027472);
+      4.7654038345645522E-5 + -0.62679356636027528);
   }
 
   /* End of Outputs for SubSystem: '<S15>/Grab I.C.' */
@@ -1597,8 +1597,8 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   /* InitialCondition: '<S182>/IC4' */
   if (SLUGS2_DWork.IC4_FirstOutputTime) {
     SLUGS2_DWork.IC4_FirstOutputTime = false;
-    rtb_IC4_idx_0 = 36.9885063F;
-    rtb_IC4_idx_1 = -122.055305F;
+	rtb_IC4_idx_0 = -122.055305F; //36.9885063F;
+	rtb_IC4_idx_1 = 36.9885063F; //-122.055305F;
   } else {
     rtb_IC4_idx_0 = SLUGS2_B.DataTypeConversion_c[0];
     rtb_IC4_idx_1 = SLUGS2_B.DataTypeConversion_c[1];
@@ -2575,7 +2575,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
       SLUGS2_B.mySqrtapUtilscupdated5116;
 
     /* Update for Delay: '<S296>/Integer Delay1' */
-    SLUGS2_DWork.IntegerDelay1_DSTATE_gn = rtb_Product2_c[2];
+	SLUGS2_DWork.IntegerDelay1_DSTATE_gn = rtb_Product2_c[2];// WIN  rtb_Product2_c[2];
 
     /* End of Outputs for SubSystem: '<S180>/Get Frenet' */
 
@@ -3469,7 +3469,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
    *  UnitDelay: '<S171>/FixPt Unit Delay2'
    */
   if (SLUGS2_DWork.FixPtUnitDelay2_DSTATE != 0) {
-    rtb_Deg2R1 = 100.0F;
+	  rtb_Deg2R1 = 143.543F;//WIN 100.0F;
   } else {
     rtb_Deg2R1 = SLUGS2_DWork.FixPtUnitDelay1_DSTATE;
   }
@@ -3483,7 +3483,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   if (rtb_IC1_a) {
     rtb_Sum1_mj = mlMidLevelCommands.hCommand;
   } else {
-    rtb_Sum1_mj = SLUGS2_B.Merge1;
+	  rtb_Sum1_mj = SLUGS2_B.Merge1;
   }
 
   /* End of Switch: '<S4>/Switch' */
@@ -3661,13 +3661,13 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   /* DataStoreWrite: '<S64>/mlNavigation' incorporates:
    *  DataTypeConversion: '<S133>/Data Type Conversion'
    */
-#ifdef WIN
-  mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)(int16_T)
-    (uint16_T)-rtb_RhhcosphicoslambXe : (uint16_T)rtb_RhhcosphicoslambXe;
-#else
+//#ifdef WIN
+//  mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)(int16_T)
+//    (uint16_T)-rtb_RhhcosphicoslambXe : (uint16_T)rtb_RhhcosphicoslambXe;
+//#else
 mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
     (uint16_T)-rtb_RhhcosphicoslambXe : (uint16_T)rtb_RhhcosphicoslambXe;
-#endif
+//#endif
 
   /* Switch: '<S142>/Switch3' incorporates:
    *  RelationalOperator: '<S142>/Relational Operator2'
@@ -5173,7 +5173,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      *  Product: '<S684>/Divide'
      *  Sum: '<S684>/Add'
      */
-    tmp_4 = floor(rtb_Sum1_mj * -699.48597488887981 + 657.6500000000002);
+    tmp_4 = floor(rtb_Sum1_mj * -6994.8597488887972 + 6576.5000000000009);
 
     /* DataTypeConversion: '<S685>/Data Type Conversion' incorporates:
      *  Constant: '<S685>/Constant1'
@@ -5181,7 +5181,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      *  Product: '<S685>/Divide'
      *  Sum: '<S685>/Add'
      */
-    tmp_5 = floor(rtb_cosphi * -524.6144811666602 + 657.65000000000009);
+    tmp_5 = floor(rtb_cosphi * -5246.1448116666006 + 6576.5);
 
     /* DataTypeConversion: '<S682>/Data Type Conversion' incorporates:
      *  Constant: '<S682>/Constant1'
@@ -5189,7 +5189,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      *  Product: '<S682>/Divide'
      *  Sum: '<S682>/Add'
      */
-    tmp_6 = floor(rtb_IC4_idx_0 * 1049.2289623333204 + 657.65000000000009);
+    tmp_6 = floor(rtb_IC4_idx_0 * 10492.289623333201 + 6576.5);
 
     /* DataTypeConversion: '<S684>/Data Type Conversion' */
     if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
@@ -5284,7 +5284,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
          *  Product: '<S679>/Divide'
          *  Sum: '<S679>/Add'
          */
-        tmp_4 = floor(rtb_Sum1_mj * -699.48597488887981 + 657.6500000000002);
+        tmp_4 = floor(rtb_Sum1_mj * -6994.8597488887972 + 6576.5000000000009);
         if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
           rtb_Switch1_m = 0U;
         } else {
@@ -5309,7 +5309,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
          *  Product: '<S680>/Divide'
          *  Sum: '<S680>/Add'
          */
-        tmp_4 = floor(rtb_cosphi * -524.6144811666602 + 657.65000000000009);
+        tmp_4 = floor(rtb_cosphi * -5246.1448116666006 + 6576.5);
         if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
           rtb_Switch2 = 0U;
         } else {
@@ -5334,7 +5334,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
          *  Product: '<S677>/Divide'
          *  Sum: '<S677>/Add'
          */
-        tmp_4 = floor(rtb_IC4_idx_0 * 1049.2289623333204 + 657.65000000000009);
+        tmp_4 = floor(rtb_IC4_idx_0 * 10492.289623333201 + 6576.5);
         if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
           rtb_Switch3_fq = 0U;
         } else {
@@ -5490,6 +5490,8 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   mlPilotConsoleData.chan6_raw = SLUGS2_B.InputCapture_o6;
   mlPilotConsoleData.chan7_raw = SLUGS2_B.InputCapture_o7;
   mlPilotConsoleData.chan8_raw = SLUGS2_B.InputCapture_o8;
+  mlPilotConsoleData.port = 8U;
+  mlPilotConsoleData.rssi = 20U;
 
   /* DataStoreWrite: '<Root>/Data Store Write' incorporates:
    *  Constant: '<Root>/Constant3'
@@ -6105,7 +6107,8 @@ void SLUGS2_initialize(void)
 
   /* InitializeConditions for Enabled SubSystem: '<S180>/Get Frenet' */
   /* InitializeConditions for Delay: '<S296>/Integer Delay1' */
-  SLUGS2_DWork.IntegerDelay1_DSTATE_gn = 1.0F;
+  //WIN
+  SLUGS2_DWork.IntegerDelay1_DSTATE_gn = 143.543F;// 1.0F;
 
   /* End of InitializeConditions for SubSystem: '<S180>/Get Frenet' */
   /* InitializeConditions for IfAction SubSystem: '<S173>/Normal WP  Navigation' */

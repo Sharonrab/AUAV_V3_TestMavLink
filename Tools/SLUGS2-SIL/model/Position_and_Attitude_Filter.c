@@ -515,7 +515,9 @@ void Position_and_Attitude_Filt(void)
   /* Outputs for Enabled SubSystem: '<S12>/Enabled Subsystem' incorporates:
    *  EnablePort: '<S474>/Enable'
    */
+#ifndef WIN
   if (SLUGS2_B.ChecksifFixTypeis3updateSenso_p > 0) {
+#endif
     /* SignalConversion: '<S540>/TmpSignal ConversionAtProduct1Inport1' incorporates:
      *  Fcn: '<S543>/11'
      *  Fcn: '<S543>/12'
@@ -568,7 +570,9 @@ void Position_and_Attitude_Filt(void)
 
     /* Inport: '<S474>/In3' */
     SLUGS2_B.In3 = SLUGS2_B.Switch1[4];
+#ifndef WIN
   }
+#endif
 
   /* End of Outputs for SubSystem: '<S12>/Enabled Subsystem' */
 

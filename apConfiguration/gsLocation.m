@@ -9,8 +9,8 @@
 % GS_location = [0 36.9898376464844 -122.051963806152];
 % GS_location = [0 19.0450708 -95.9717882];
 % GS_location = [0 36.99 -122.05]; %UCSC
-baseHeight = 143.543; % (use this one)
-GS_location = [baseHeight 36.988506 -122.055308]; %UCSC (use this one)
+baseHeight = 166.3;%143.543; % (use this one)
+GS_location = [baseHeight 36.9885025 -122.0509262]; %UCSC (use this one)
 
 %baseHeight = 611.6;
 %GS_location = [baseHeight 37.070751835589604 -122.12770032696426];

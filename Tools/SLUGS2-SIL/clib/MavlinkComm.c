@@ -94,10 +94,10 @@ void InitParameterInterface(void)
 
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_P], "PID_HE2PITC_P");
-                mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.0450000017881;
+                mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.13;//0.0450000017881;
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_I], "PID_HE2PITC_I");
-                mlParamInterface.param[PAR_PID_HE_TO_PI_I] = 0;
+	mlParamInterface.param[PAR_PID_HE_TO_PI_I] = 0.5;// 0;
 
     strcpy(mlParamInterface.param_name[PAR_PID_HEI_ERR_FF], "PID_HERR_FF");
                 //mlParamInterface.param[PAR_PID_HEI_ERR_FF] = -0.10000000149;
@@ -142,15 +142,15 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
     strcpy(mlParamInterface.param_name[PAR_CONFIG_YAW_R], "CONFIG_YAW_R");
     mlParamInterface.param[PAR_CONFIG_YAW_R] = 0;                    
     // Populate default mid-level commands
-    mlMidLevelCommands.hCommand = 120.0f; // altitude (m)
+    mlMidLevelCommands.hCommand = 170.0f; // altitude (m)
     mlMidLevelCommands.uCommand = 16.0f; // airspeed (m/s)
     mlMidLevelCommands.rCommand = 0.0f; // turn rate (radians/s)
 
 	 // Initialize the system Status
 	 mlHeartbeatLocal.base_mode = MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
-	 mlHeartbeatLocal.custom_mode = SLUGS_MODE_WAYPOINT;// SLUGS_MODE_WAYPOINT;
+	 mlHeartbeatLocal.custom_mode = SLUGS_MODE_MID_LEVEL;// SLUGS_MODE_WAYPOINT;// SLUGS_MODE_WAYPOINT;
 	 mlHeartbeatLocal.system_status = MAV_STATE_ACTIVE;
-	 mlPassthrough.bitfieldPt = 8;//;// 8 | 16 | 64 | 128 Enable throtle pass through
+	 mlPassthrough.bitfieldPt = 8 | 16 | 64 | 128;//;// 8 | 16 | 64 | 128 Enable throtle pass through
 
 	/* lastNavigationMode = mlHeartbeatLocal.custom_mode;
 	 mlSystemStatus.mode = MAV_MODE_MANUAL;
@@ -161,16 +161,16 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
 	 mlCameraOrder.zoom = 1;
 
 	 mlBoot.version = 1;
-	 mlMobileLocation.latitude = 36.988506f ;
-	 mlMobileLocation.longitude = -122.055308f;
-	 mlWpValues.lat[0] = 36.9894257;
-	 mlWpValues.lat[1] = 36.9860306;
+	 mlMobileLocation.latitude = 36.9876099f;
+	 mlMobileLocation.longitude = -122.0505066f;
+	 mlWpValues.lat[0] = 36.9876099f;
+	 mlWpValues.lat[1] = 36.9841805f;
 
-	 mlWpValues.lon[0] = -122.0525284;
-	 mlWpValues.lon[1] = -122.0516663;
+	 mlWpValues.lon[0] = -122.0505066f;
+	 mlWpValues.lon[1] = -122.0501633f;
 
-	 mlWpValues.alt[0] = 30.0;
-	 mlWpValues.alt[1] = 30.0;
+	 mlWpValues.alt[0] = 160 + 30.0;
+	 mlWpValues.alt[1] = 160 + 30.0;
 
 	 mlWpValues.type[0] = 16;
 	 mlWpValues.type[1] = 16;

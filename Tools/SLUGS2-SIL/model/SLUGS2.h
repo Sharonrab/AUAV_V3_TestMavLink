@@ -64,12 +64,6 @@
 # define rtmTaskCounter(rtm, idx)      ((rtm)->Timing.TaskCounters.TID[(idx)])
 #endif
 
-/* Exported data define */
-
-/* Definition for custom storage class: Define */
-#define Param_bankCommandLimit         (0.436332285F ) //25deg 
-#define Param_AileronLimit         (0.383972436F) //22deg 
-
 /* user code (top of header file) */
 #include "MavlinkComm.h"
 

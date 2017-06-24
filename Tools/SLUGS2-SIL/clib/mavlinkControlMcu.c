@@ -1,6 +1,10 @@
 #include "MavlinkComm.h"
 #include "mavlinkControlMcu.h"
+#ifdef UNIT_TEST
+#include "AUAV_V3_TestSensors.h"
+#else
 #include "SLUGS2.h"
+#endif
 
 //mavlink_raw_imu_t mlRawImuData;
 //mavlink_gps_raw_int_t mlGpsData;

@@ -49,7 +49,11 @@ THE SOFTWARE.
 #include "mavlink.h"
 #include "gpsUblox.h"
 #include "circBuffer.h"
+#ifdef UNIT_TEST
+#include "AUAV_V3_TestSensors.h"
+#else
 #include "SLUGS2.h"
+#endif
 // this function converts one hex ascii character to decimal
 // used for the checksum comparison
 // Kindly contributed by: Bryant Mairs
@@ -183,7 +187,11 @@ void gpsUbloxParse(void) {
     unsigned char bufferLen = 11;
     int32_t bytesRead;
     int16_t i;
-	if (SLUGS2_DWork.X_PLANE_HIL_FLAG == 0)
+#ifdef UNIT_TEST
+ if (AUAV_V3_TestSensors_DWork.X_PLANE_HIL_FLAG ==0)
+#else
+ if (SLUGS2_DWork.X_PLANE_HIL_FLAG ==0)
+#endif  
     {
     memset(inStream, 0, MSIZE);
     

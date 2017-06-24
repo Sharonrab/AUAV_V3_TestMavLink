@@ -118,16 +118,16 @@ static void sil_rc_input_adjust(char *inChannelName, int inChannelIndex, int del
 {
 	udb_pwIn[inChannelIndex] = udb_servo_pulsesat(udb_pwIn[inChannelIndex] + delta);
 	if (inChannelIndex == THROTTLE_INPUT_CHANNEL) {
-		printf("%s = %d%%\n", inChannelName, (udb_pwIn[inChannelIndex]-udb_pwTrim[inChannelIndex])/20);
+		printf("%s = %d%%\n", inChannelName, (udb_pwIn[inChannelIndex]-udb_pwTrim[inChannelIndex])/100);
 	}
 	else {
-		printf("%s = %d%%\n", inChannelName, (udb_pwIn[inChannelIndex]-udb_pwTrim[inChannelIndex])/10);
+		printf("%s = %d%%\n", inChannelName, (udb_pwIn[inChannelIndex]-udb_pwTrim[inChannelIndex])/100);
 	}
 }
 
 void save_config(void);
 
-#define KEYPRESS_INPUT_DELTA 150
+#define KEYPRESS_INPUT_DELTA ((SERVOMAX - SERVOMIN)/100) //  150
 
 static int sil_handle_key_input(char c)
 {
@@ -141,7 +141,7 @@ static int sil_handle_key_input(char c)
 					break;
 
 				case 'w':
-					sil_rc_input_adjust("throttle", THROTTLE_INPUT_CHANNEL, KEYPRESS_INPUT_DELTA*2);
+					sil_rc_input_adjust("throttle", THROTTLE_INPUT_CHANNEL, KEYPRESS_INPUT_DELTA*10);
 					break;
 
 				case 's':
