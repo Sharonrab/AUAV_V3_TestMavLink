@@ -66,16 +66,16 @@ void getMidLevelCommands(float* commands) {
 unsigned char isApManual(uint16_t failsafe) {
     // Disable and toggle manual/guided mode depending on failsafe
     if (failsafe < (uint16_t)2000U) {
-		mlHeartbeatLocal.custom_mode = SLUGS_MODE_WAYPOINT;
+		mlHeartbeatLocal.custom_mode = SLUGS_MODE_MID_LEVEL;// SLUGS_MODE_WAYPOINT;
         mlHeartbeatLocal.base_mode &= ~MAV_MODE_FLAG_AUTO_ENABLED;
-		mlHeartbeatLocal.base_mode &= ~MAV_MODE_FLAG_STABILIZE_ENABLED;
+		//mlHeartbeatLocal.base_mode &= ~MAV_MODE_FLAG_STABILIZE_ENABLED;
 
         mlHeartbeatLocal.base_mode |= MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
     }
 	else if (failsafe < (uint16_t)3000U) {
-		mlHeartbeatLocal.custom_mode = SLUGS_MODE_SELECTIVE_PASSTHROUGH;
+		mlHeartbeatLocal.custom_mode = SLUGS_MODE_SELECTIVE_PASSTHROUGH;// SLUGS_MODE_MID_LEVEL;// SLUGS_MODE_SELECTIVE_PASSTHROUGH;
 		mlHeartbeatLocal.base_mode &= ~MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
-		mlHeartbeatLocal.base_mode |= MAV_MODE_FLAG_STABILIZE_ENABLED;
+		//mlHeartbeatLocal.base_mode |= MAV_MODE_FLAG_STABILIZE_ENABLED;
 
 		mlHeartbeatLocal.base_mode |= MAV_MODE_FLAG_AUTO_ENABLED;
 
@@ -84,7 +84,7 @@ unsigned char isApManual(uint16_t failsafe) {
     else {
 		mlHeartbeatLocal.custom_mode = SLUGS_MODE_WAYPOINT;
         mlHeartbeatLocal.base_mode &= ~MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
-		mlHeartbeatLocal.base_mode &= ~MAV_MODE_FLAG_STABILIZE_ENABLED;
+		//mlHeartbeatLocal.base_mode &= ~MAV_MODE_FLAG_STABILIZE_ENABLED;
 
         mlHeartbeatLocal.base_mode |= MAV_MODE_FLAG_AUTO_ENABLED;
     }

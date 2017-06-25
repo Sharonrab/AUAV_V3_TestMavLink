@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'SLUGS2'.
  *
- * Model version                  : 1.271
+ * Model version                  : 1.290
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Tue Apr 11 15:47:53 2017
+ * C/C++ source code generated on : Sat Jun 24 13:21:56 2017
  */
 
 #ifndef RTW_HEADER_SLUGS2_h_
@@ -129,6 +129,7 @@ typedef struct {
   real_T DataStoreRead;                /* '<Root>/Data Store Read' */
   real32_T myCosaLibcupdated5116;      /* '<S68>/myCos() aLib.c [updated 5.1.16]' */
   real32_T CFunctionCall1;             /* '<S69>/C Function Call1' */
+  real32_T Merge[4];                   /* '<S670>/Merge' */
   real32_T y[9];                       /* '<Root>/myMux Fun5' */
   real32_T y_k[6];                     /* '<Root>/myMux Fun2' */
   real32_T y_j[6];                     /* '<S17>/myMux Fun2' */
@@ -136,7 +137,7 @@ typedef struct {
   real32_T DataTypeConversion_h;       /* '<S665>/Data Type Conversion' */
   real32_T DataTypeConversion_g;       /* '<S666>/Data Type Conversion' */
   real32_T DataTypeConversion_f;       /* '<S667>/Data Type Conversion' */
-  real32_T Merge;                      /* '<S618>/Merge' */
+  real32_T Merge_m;                    /* '<S618>/Merge' */
   real32_T Merge_j;                    /* '<S619>/Merge' */
   real32_T ProducetheGPSMainDataandupdatet[5];/* '<S580>/Produce the GPS Main Data and update the AP State (lat lon hei cog sog) [gpsUblox.c]1' */
   real32_T DataTypeConversion7[3];     /* '<S581>/Data Type Conversion7' */
@@ -266,7 +267,6 @@ typedef struct {
   uint16_T InputCapture_o4;            /* '<S644>/Input Capture' */
   uint16_T InputCapture_o5;            /* '<S644>/Input Capture' */
   uint16_T ChoosetheMediannavSupportcupdat;/* '<S648>/Choose the Median [navSupport.c] [updated 5.1.16]' */
-  uint16_T Merge_oc[4];                /* '<S670>/Merge' */
   uint16_T RateTransition[4];          /* '<S16>/Rate Transition' */
   uint16_T Gain[4];                    /* '<S16>/Gain' */
   uint16_T U3CH4;                      /* '<Root>/MCU Load' */
@@ -309,6 +309,7 @@ typedef struct {
   uint8_T CFunctionCall;               /* '<S659>/C Function Call' */
   uint8_T GetRTBOrdernavSupportcupdated42[2];/* '<Root>/Get RTB Order [navSupport.c] [updated 4.27.16]' */
   uint8_T InitializeControlMCU[4];     /* '<S675>/Initialize Control MCU' */
+  uint8_T InitializeControlMCU_a[4];   /* '<S677>/Initialize Control MCU' */
   uint8_T DataTypeConversion12;        /* '<S582>/Data Type Conversion12' */
   uint8_T ChecksifFixTypeis3updateSensorM;/* '<S13>/Checks if FixType is 3 [updateSensorMCUState.c]1' */
   uint8_T IstheGPSNovatelorUbloxgpsPortc1;/* '<S583>/Is the GPS Novatel or Ublox? [gpsPort.c]1' */
@@ -1434,46 +1435,56 @@ extern RT_MODEL_SLUGS2_T *const SLUGS2_M;
  * '<S674>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Passthrough'
  * '<S675>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Selective Passthrough'
  * '<S676>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds'
- * '<S677>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Selective Passthrough/Convert to PWM'
- * '<S678>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Selective Passthrough/Convert to PWM1'
- * '<S679>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Selective Passthrough/Convert to PWM2'
- * '<S680>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Selective Passthrough/Convert to PWM3'
- * '<S681>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Selective Passthrough/myMux Fun1'
- * '<S682>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds/Convert to PWM'
- * '<S683>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds/Convert to PWM1'
- * '<S684>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds/Convert to PWM2'
- * '<S685>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds/Convert to PWM3'
- * '<S686>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds/myMux Fun1'
- * '<S687>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Angle Conversion'
- * '<S688>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Direction Cosine Matrix to Rotation Angles'
- * '<S689>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Embedded MATLAB Function1'
- * '<S690>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1'
- * '<S691>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2'
- * '<S692>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/myMux Fun1'
- * '<S693>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/myMux Fun2'
- * '<S694>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Direction Cosine Matrix to Rotation Angles/AxisRotDefault'
- * '<S695>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Direction Cosine Matrix to Rotation Angles/AxisRotZeroR3'
- * '<S696>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Direction Cosine Matrix to Rotation Angles/Get DCM Values'
- * '<S697>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A11'
- * '<S698>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A12'
- * '<S699>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A13'
- * '<S700>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A21'
- * '<S701>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A22'
- * '<S702>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A23'
- * '<S703>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A31'
- * '<S704>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A32'
- * '<S705>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A33'
- * '<S706>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/Create Transformation Matrix'
- * '<S707>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A11'
- * '<S708>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A12'
- * '<S709>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A13'
- * '<S710>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A21'
- * '<S711>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A22'
- * '<S712>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A23'
- * '<S713>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A31'
- * '<S714>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A32'
- * '<S715>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A33'
- * '<S716>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/Create Transformation Matrix'
+ * '<S677>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1'
+ * '<S678>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Selective Passthrough/Convert to PWM'
+ * '<S679>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Selective Passthrough/Convert to PWM1'
+ * '<S680>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Selective Passthrough/Convert to PWM2'
+ * '<S681>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Selective Passthrough/Convert to PWM3'
+ * '<S682>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Selective Passthrough/myMux Fun1'
+ * '<S683>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds/Convert to PWM'
+ * '<S684>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds/Convert to PWM1'
+ * '<S685>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds/Convert to PWM2'
+ * '<S686>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds/Convert to PWM3'
+ * '<S687>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds/myMux Fun1'
+ * '<S688>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1/Average'
+ * '<S689>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1/Average1'
+ * '<S690>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1/Average2'
+ * '<S691>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1/Average3'
+ * '<S692>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1/Convert to PWM'
+ * '<S693>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1/Convert to PWM1'
+ * '<S694>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1/Convert to PWM2'
+ * '<S695>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1/Convert to PWM3'
+ * '<S696>' : 'SLUGS2/Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1/myMux Fun1'
+ * '<S697>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Angle Conversion'
+ * '<S698>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Direction Cosine Matrix to Rotation Angles'
+ * '<S699>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Embedded MATLAB Function1'
+ * '<S700>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1'
+ * '<S701>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2'
+ * '<S702>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/myMux Fun1'
+ * '<S703>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/myMux Fun2'
+ * '<S704>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Direction Cosine Matrix to Rotation Angles/AxisRotDefault'
+ * '<S705>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Direction Cosine Matrix to Rotation Angles/AxisRotZeroR3'
+ * '<S706>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Direction Cosine Matrix to Rotation Angles/Get DCM Values'
+ * '<S707>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A11'
+ * '<S708>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A12'
+ * '<S709>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A13'
+ * '<S710>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A21'
+ * '<S711>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A22'
+ * '<S712>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A23'
+ * '<S713>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A31'
+ * '<S714>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A32'
+ * '<S715>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/A33'
+ * '<S716>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix1/Create Transformation Matrix'
+ * '<S717>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A11'
+ * '<S718>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A12'
+ * '<S719>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A13'
+ * '<S720>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A21'
+ * '<S721>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A22'
+ * '<S722>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A23'
+ * '<S723>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A31'
+ * '<S724>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A32'
+ * '<S725>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/A33'
+ * '<S726>' : 'SLUGS2/get Nav Vars [updated 4.28.16]/Euler Angles to  Direction Cosine Matrix2/Create Transformation Matrix'
  */
 #endif                                 /* RTW_HEADER_SLUGS2_h_ */
 

@@ -365,7 +365,7 @@ void SLUGS2_Barometer_Driver(void)
      *  Constant: '<S24>/Constant5'
      *  Delay: '<S37>/Integer Delay'
      */
-    SLUGS2_B.Sum_k = 143.543F - SLUGS2_DWork.IntegerDelay_DSTATE_jh;
+    SLUGS2_B.Sum_k = 166.3F - SLUGS2_DWork.IntegerDelay_DSTATE_jh;
   }
 
   /* End of Outputs for SubSystem: '<S24>/Zero Out Height' */
@@ -484,7 +484,7 @@ void SLUGS2_Barometer_Driver(void)
    *  Sum: '<S33>/Sum3'
    */
   rtb_x = ((rtb_x * rtb_x * 0.093502529F + rtb_x * -0.188893303F) +
-           2.18031291E-5F) * 145473.5F * 0.3048F + 143.543F;
+           2.18031291E-5F) * 145473.5F * 0.3048F + 166.3F;
 
   /* Outputs for Enabled SubSystem: '<S24>/Enabled Subsystem' */
 

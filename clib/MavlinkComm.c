@@ -142,7 +142,7 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
     strcpy(mlParamInterface.param_name[PAR_CONFIG_YAW_R], "CONFIG_YAW_R");
     mlParamInterface.param[PAR_CONFIG_YAW_R] = 0;                    
     // Populate default mid-level commands
-    mlMidLevelCommands.hCommand = 120.0f; // altitude (m)
+    mlMidLevelCommands.hCommand = 170.0f; // altitude (m)
     mlMidLevelCommands.uCommand = 16.0f; // airspeed (m/s)
     mlMidLevelCommands.rCommand = 0.0f; // turn rate (radians/s)
 
@@ -161,15 +161,15 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
 	 mlCameraOrder.zoom = 1;
 
 	 mlBoot.version = 1;
-	 mlMobileLocation.latitude = 36.988506f ;
-	 mlMobileLocation.longitude = -122.055308f;
-	 mlWpValues.lat[0] = 36.9958344;
-	 mlWpValues.lat[1] = 36.9870605;
+	 mlMobileLocation.latitude = 36.9876099f;
+	 mlMobileLocation.longitude = -122.0505066f;
+	 mlWpValues.lat[0] = 36.9876099f;
+	 mlWpValues.lat[1] = 36.9841805f;
 
-	 mlWpValues.lon[0] = -122.065491;
-	 mlWpValues.lon[1] = -122.044891;
+	 mlWpValues.lon[0] = -122.0505066f;
+	 mlWpValues.lon[1] = -122.0501633f;
 
-	 mlWpValues.alt[0] = 30.0;
+	 mlWpValues.alt[0] = 160 + 30.0;
 	 mlWpValues.alt[1] = 30.0;
 
 	 mlWpValues.type[0] = 16;

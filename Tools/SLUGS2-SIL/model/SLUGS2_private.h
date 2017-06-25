@@ -406,6 +406,9 @@ extern float myAtan(float x);
 extern void getPassValues(uint8_T* pasVals);
 
 /* C Function Call declare function as extern */
+extern void getPassValues(uint8_T* pasVals);
+
+/* C Function Call declare function as extern */
 extern uint16_t HIL_PackRawServo(uint8_t system_id, uint8_t component_id,
   mavlink_servo_output_raw_t mlPwmCommands ,uint32_t time_usec);
 
@@ -475,8 +478,8 @@ extern void SLUGS2_negprotect3(real32_T rtu_val, rtB_negprotect3_SLUGS2_T
 extern void SLUGS_BufferICChannel_Init(rtDW_BufferICChannel_SLUGS2_T *localDW);
 extern void SLUGS2_BufferICChannel(uint16_T rtu_latest,
   rtB_BufferICChannel_SLUGS2_T *localB, rtDW_BufferICChannel_SLUGS2_T *localDW);
-extern void SLUGS2_myMuxFun1_d(uint16_T rtu_u1, uint16_T rtu_u2, uint16_T rtu_u3,
-  uint16_T rtu_u4, uint16_T rty_y[4]);
+extern void SLUGS2_myMuxFun1_h(real32_T rtu_u1, real32_T rtu_u2, real32_T rtu_u3,
+  real32_T rtu_u4, real32_T rty_y[4]);
 extern void SLUGS2_myMuxFun3(const real32_T rtu_u1[3], const real32_T rtu_u2[3],
   rtB_myMuxFun3_SLUGS2_T *localB);
 

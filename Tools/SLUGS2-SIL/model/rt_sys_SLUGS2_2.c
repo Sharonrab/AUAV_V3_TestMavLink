@@ -29,7 +29,7 @@
 void SLU_EnabledSubsystem_Start(rtB_EnabledSubsystem_SLUGS2_T *localB)
 {
   /* VirtualOutportStart for Outport: '<S34>/Out1' */
-  localB->In1 = 143.543F;
+  localB->In1 = 166.3F;
 }
 
 /*

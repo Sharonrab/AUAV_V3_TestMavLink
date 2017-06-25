@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'SLUGS2'.
  *
- * Model version                  : 1.271
+ * Model version                  : 1.291
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Tue Apr 11 15:47:53 2017
+ * C/C++ source code generated on : Sat Jun 24 14:00:22 2017
  */
 
 #include "SLUGS2.h"
@@ -870,16 +870,16 @@ void SLUGS2_BufferICChannel(uint16_T rtu_latest, rtB_BufferICChannel_SLUGS2_T
 
 /*
  * Output and update for atomic system:
- *    '<S676>/myMux Fun1'
+ *    '<S677>/myMux Fun1'
  *    '<S675>/myMux Fun1'
  */
-void SLUGS2_myMuxFun1_d(uint16_T rtu_u1, uint16_T rtu_u2, uint16_T rtu_u3,
-  uint16_T rtu_u4, uint16_T rty_y[4])
+void SLUGS2_myMuxFun1_h(real32_T rtu_u1, real32_T rtu_u2, real32_T rtu_u3,
+  real32_T rtu_u4, real32_T rty_y[4])
 {
-  /* MATLAB Function 'Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds/myMux Fun1': '<S686>:1' */
+  /* MATLAB Function 'Update PWM Commands and Send Telemetry [updated 4.27.16]/Generate PWM Signals Based on the Control Type/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1/myMux Fun1': '<S696>:1' */
   /*  This block supports an embeddable subset of the MATLAB language. */
   /*  See the help menu for details.  */
-  /* '<S686>:1:5' */
+  /* '<S696>:1:5' */
   rty_y[0] = rtu_u1;
   rty_y[1] = rtu_u2;
   rty_y[2] = rtu_u3;
@@ -930,6 +930,9 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   real32_T rtb_Subtract_a;
   real32_T rtb_Subtract_od;
   real32_T rtb_Switch1_a;
+  uint16_T rtb_DataTypeConversion_lk;
+  uint16_T rtb_DataTypeConversion_ee;
+  uint16_T rtb_DataTypeConversion_g0;
   real32_T rtb_Merge_m[3];
   real32_T rtb_Ze_b;
   real32_T rtb_cosphi;
@@ -939,9 +942,6 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   real32_T rtb_RhhcosphicoslambXe;
   real32_T rtb_Product;
   real32_T rtb_Switch3_kh;
-  uint16_T rtb_Switch1_m;
-  uint16_T rtb_Switch2;
-  uint16_T rtb_Switch3_fq;
   real32_T rtb_P32[3];
   real32_T rtb_MathFunction[9];
   int16_T i;
@@ -957,11 +957,9 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   real32_T rtb_y_jl_idx_1;
   real32_T rtb_y_jl_idx_0;
   real_T tmp_4;
-  real_T tmp_5;
-  real_T tmp_6;
-  uint64m_T tmp_7;
-  uint64m_T tmp_8;
-  uint32_T tmp_9;
+  uint64m_T tmp_5;
+  uint64m_T tmp_6;
+  uint32_T tmp_7;
 
   /* Update the flag to indicate when data transfers from
    *  Sample time: [0.01s, 0.0s] to Sample time: [0.02s, 0.0s]  */
@@ -970,14 +968,14 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
     SLUGS2_M->Timing.RateInteraction.TID0_1 = 0;
   }
 
-  /* Gain: '<S687>/Unit Conversion' incorporates:
+  /* Gain: '<S697>/Unit Conversion' incorporates:
    *  DataStoreRead: '<S17>/PAR_CONFIG_ROLL_R PAR_CONFIG_PITCH_R PAR_CONFIG_YAW_R'
    */
   rtb_Product3_j0[0] = 0.0174532924F * mlParamInterface.param[15L];
   rtb_Product3_j0[1] = 0.0174532924F * mlParamInterface.param[16L];
   rtb_Product3_j0[2] = 0.0174532924F * mlParamInterface.param[17L];
 
-  /* Trigonometry: '<S690>/SinCos' */
+  /* Trigonometry: '<S700>/SinCos' */
   rtb_Product2_c[0] = (real32_T)cos(rtb_Product3_j0[0]);
   rtb_Product3_j0[0] = (real32_T)sin(rtb_Product3_j0[0]);
   rtb_Product2_c[1] = (real32_T)cos(rtb_Product3_j0[1]);
@@ -985,53 +983,53 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   rtb_RhhcosphisinlambYe = (real32_T)cos(rtb_Product3_j0[2]);
   rtb_Sum1_mj = (real32_T)sin(rtb_Product3_j0[2]);
 
-  /* Product: '<S697>/u(5)*u(6)' incorporates:
-   *  Trigonometry: '<S690>/SinCos'
+  /* Product: '<S707>/u(5)*u(6)' incorporates:
+   *  Trigonometry: '<S700>/SinCos'
    */
   rtb_VectorConcatenate[0] = rtb_Product2_c[1] * rtb_RhhcosphisinlambYe;
 
-  /* Sum: '<S700>/Sum' incorporates:
-   *  Product: '<S700>/u(3)*u(4)'
-   *  Product: '<S700>/u(6)*u(1)*u(2)'
-   *  Trigonometry: '<S690>/SinCos'
+  /* Sum: '<S710>/Sum' incorporates:
+   *  Product: '<S710>/u(3)*u(4)'
+   *  Product: '<S710>/u(6)*u(1)*u(2)'
+   *  Trigonometry: '<S700>/SinCos'
    */
   rtb_VectorConcatenate[1] = rtb_RhhcosphisinlambYe * rtb_Product3_j0[0] *
     rtb_Product3_j0[1] - rtb_Sum1_mj * rtb_Product2_c[0];
 
-  /* Sum: '<S703>/Sum' incorporates:
-   *  Product: '<S703>/u(1)*u(3)'
-   *  Product: '<S703>/u(2)*u(4)*u(6)'
-   *  Trigonometry: '<S690>/SinCos'
+  /* Sum: '<S713>/Sum' incorporates:
+   *  Product: '<S713>/u(1)*u(3)'
+   *  Product: '<S713>/u(2)*u(4)*u(6)'
+   *  Trigonometry: '<S700>/SinCos'
    */
   rtb_VectorConcatenate[2] = rtb_Product3_j0[1] * rtb_Product2_c[0] *
     rtb_RhhcosphisinlambYe + rtb_Product3_j0[0] * rtb_Sum1_mj;
 
-  /* Product: '<S698>/u(3)*u(5)' */
+  /* Product: '<S708>/u(3)*u(5)' */
   rtb_VectorConcatenate[3] = rtb_Sum1_mj * rtb_Product2_c[1];
 
-  /* Sum: '<S701>/Sum' incorporates:
-   *  Product: '<S701>/u(1)*u(2)*u(3)'
-   *  Product: '<S701>/u(4)*u(6)'
-   *  Trigonometry: '<S690>/SinCos'
+  /* Sum: '<S711>/Sum' incorporates:
+   *  Product: '<S711>/u(1)*u(2)*u(3)'
+   *  Product: '<S711>/u(4)*u(6)'
+   *  Trigonometry: '<S700>/SinCos'
    */
   rtb_VectorConcatenate[4] = rtb_Product3_j0[0] * rtb_Product3_j0[1] *
     rtb_Sum1_mj + rtb_Product2_c[0] * rtb_RhhcosphisinlambYe;
 
-  /* Sum: '<S704>/Sum' incorporates:
-   *  Product: '<S704>/u(1)*u(6)'
-   *  Product: '<S704>/u(2)*u(3)*u(4)'
-   *  Trigonometry: '<S690>/SinCos'
+  /* Sum: '<S714>/Sum' incorporates:
+   *  Product: '<S714>/u(1)*u(6)'
+   *  Product: '<S714>/u(2)*u(3)*u(4)'
+   *  Trigonometry: '<S700>/SinCos'
    */
   rtb_VectorConcatenate[5] = rtb_Product3_j0[1] * rtb_Sum1_mj * rtb_Product2_c[0]
     - rtb_RhhcosphisinlambYe * rtb_Product3_j0[0];
 
-  /* Gain: '<S699>/Gain2' */
+  /* Gain: '<S709>/Gain2' */
   rtb_VectorConcatenate[6] = -rtb_Product3_j0[1];
 
-  /* Product: '<S702>/u(1)*u(3)' */
+  /* Product: '<S712>/u(1)*u(3)' */
   rtb_VectorConcatenate[7] = rtb_Product3_j0[0] * rtb_Product2_c[1];
 
-  /* Product: '<S705>/u(4)*u(5)' */
+  /* Product: '<S715>/u(4)*u(5)' */
   rtb_VectorConcatenate[8] = rtb_Product2_c[0] * rtb_Product2_c[1];
 
   /* Math: '<S17>/Math Function' */
@@ -1070,7 +1068,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   SLUGS2_B.y_k[4] = SLUGS2_B.GyroErr[1];
   SLUGS2_B.y_k[5] = SLUGS2_B.GyroErr[2];
 
-  /* Trigonometry: '<S691>/SinCos' */
+  /* Trigonometry: '<S701>/SinCos' */
   rtb_Product2_c[0] = (real32_T)sin(SLUGS2_B.y_k[0]);
   rtb_Product3_j0[0] = (real32_T)cos(SLUGS2_B.y_k[0]);
   rtb_Product2_c[1] = (real32_T)sin(SLUGS2_B.y_k[1]);
@@ -1078,47 +1076,47 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   rtb_Product2_c[2] = (real32_T)sin(SLUGS2_B.y_k[2]);
   rtb_Product3_j0[2] = (real32_T)cos(SLUGS2_B.y_k[2]);
 
-  /* Product: '<S707>/u(5)*u(6)' */
+  /* Product: '<S717>/u(5)*u(6)' */
   rtb_VectorConcatenate_m[0] = rtb_Product3_j0[1] * rtb_Product3_j0[2];
 
-  /* Sum: '<S710>/Sum' incorporates:
-   *  Product: '<S710>/u(3)*u(4)'
-   *  Product: '<S710>/u(6)*u(1)*u(2)'
+  /* Sum: '<S720>/Sum' incorporates:
+   *  Product: '<S720>/u(3)*u(4)'
+   *  Product: '<S720>/u(6)*u(1)*u(2)'
    */
   rtb_VectorConcatenate_m[1] = rtb_Product3_j0[2] * rtb_Product2_c[0] *
     rtb_Product2_c[1] - rtb_Product2_c[2] * rtb_Product3_j0[0];
 
-  /* Sum: '<S713>/Sum' incorporates:
-   *  Product: '<S713>/u(1)*u(3)'
-   *  Product: '<S713>/u(2)*u(4)*u(6)'
+  /* Sum: '<S723>/Sum' incorporates:
+   *  Product: '<S723>/u(1)*u(3)'
+   *  Product: '<S723>/u(2)*u(4)*u(6)'
    */
   rtb_VectorConcatenate_m[2] = rtb_Product2_c[1] * rtb_Product3_j0[0] *
     rtb_Product3_j0[2] + rtb_Product2_c[0] * rtb_Product2_c[2];
 
-  /* Product: '<S708>/u(3)*u(5)' */
+  /* Product: '<S718>/u(3)*u(5)' */
   rtb_VectorConcatenate_m[3] = rtb_Product2_c[2] * rtb_Product3_j0[1];
 
-  /* Sum: '<S711>/Sum' incorporates:
-   *  Product: '<S711>/u(1)*u(2)*u(3)'
-   *  Product: '<S711>/u(4)*u(6)'
+  /* Sum: '<S721>/Sum' incorporates:
+   *  Product: '<S721>/u(1)*u(2)*u(3)'
+   *  Product: '<S721>/u(4)*u(6)'
    */
   rtb_VectorConcatenate_m[4] = rtb_Product2_c[0] * rtb_Product2_c[1] *
     rtb_Product2_c[2] + rtb_Product3_j0[0] * rtb_Product3_j0[2];
 
-  /* Sum: '<S714>/Sum' incorporates:
-   *  Product: '<S714>/u(1)*u(6)'
-   *  Product: '<S714>/u(2)*u(3)*u(4)'
+  /* Sum: '<S724>/Sum' incorporates:
+   *  Product: '<S724>/u(1)*u(6)'
+   *  Product: '<S724>/u(2)*u(3)*u(4)'
    */
   rtb_VectorConcatenate_m[5] = rtb_Product2_c[1] * rtb_Product2_c[2] *
     rtb_Product3_j0[0] - rtb_Product3_j0[2] * rtb_Product2_c[0];
 
-  /* Gain: '<S709>/Gain2' */
+  /* Gain: '<S719>/Gain2' */
   rtb_VectorConcatenate_m[6] = -rtb_Product2_c[1];
 
-  /* Product: '<S712>/u(1)*u(3)' */
+  /* Product: '<S722>/u(1)*u(3)' */
   rtb_VectorConcatenate_m[7] = rtb_Product2_c[0] * rtb_Product3_j0[1];
 
-  /* Product: '<S715>/u(4)*u(5)' */
+  /* Product: '<S725>/u(4)*u(5)' */
   rtb_VectorConcatenate_m[8] = rtb_Product3_j0[0] * rtb_Product3_j0[1];
 
   /* Product: '<S17>/Product' */
@@ -1136,59 +1134,59 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
 
   /* End of Product: '<S17>/Product' */
 
-  /* Gain: '<S696>/Gain1' incorporates:
-   *  Selector: '<S696>/Selector1'
+  /* Gain: '<S706>/Gain1' incorporates:
+   *  Selector: '<S706>/Selector1'
    */
   rtb_VectorConcatenate_h[0] = rtb_VectorConcatenate[3];
   rtb_VectorConcatenate_h[1] = rtb_VectorConcatenate[0];
   rtb_VectorConcatenate_h[2] = -rtb_VectorConcatenate[6];
 
-  /* Gain: '<S696>/Gain2' incorporates:
-   *  Selector: '<S696>/Selector2'
+  /* Gain: '<S706>/Gain2' incorporates:
+   *  Selector: '<S706>/Selector2'
    */
   rtb_VectorConcatenate_h[3] = rtb_VectorConcatenate[7];
   rtb_VectorConcatenate_h[4] = rtb_VectorConcatenate[8];
 
-  /* Gain: '<S696>/Gain3' incorporates:
-   *  Selector: '<S696>/Selector3'
+  /* Gain: '<S706>/Gain3' incorporates:
+   *  Selector: '<S706>/Selector3'
    */
   rtb_VectorConcatenate_h[5] = -rtb_VectorConcatenate[1];
   rtb_VectorConcatenate_h[6] = rtb_VectorConcatenate[4];
 
-  /* If: '<S688>/If' incorporates:
-   *  Gain: '<S696>/Gain1'
-   *  Selector: '<S696>/Selector1'
+  /* If: '<S698>/If' incorporates:
+   *  Gain: '<S706>/Gain1'
+   *  Selector: '<S706>/Selector1'
    */
   if ((-rtb_VectorConcatenate[6] >= 1.0F) || (-rtb_VectorConcatenate[6] <= -1.0F))
   {
-    /* Outputs for IfAction SubSystem: '<S688>/AxisRotZeroR3' incorporates:
-     *  ActionPort: '<S695>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S698>/AxisRotZeroR3' incorporates:
+     *  ActionPort: '<S705>/Action Port'
      */
     SLUGS2_AxisRotZeroR3(rtb_VectorConcatenate_h, &rtb_Merge_m[0], &rtb_Merge_m
                          [1], &rtb_Merge_m[2]);
 
-    /* End of Outputs for SubSystem: '<S688>/AxisRotZeroR3' */
+    /* End of Outputs for SubSystem: '<S698>/AxisRotZeroR3' */
   } else {
-    /* Outputs for IfAction SubSystem: '<S688>/AxisRotDefault' incorporates:
-     *  ActionPort: '<S694>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S698>/AxisRotDefault' incorporates:
+     *  ActionPort: '<S704>/Action Port'
      */
     SLUGS2_AxisRotDefault(rtb_VectorConcatenate_h, &rtb_Merge_m[0],
                           &rtb_Merge_m[1], &rtb_Merge_m[2]);
 
-    /* End of Outputs for SubSystem: '<S688>/AxisRotDefault' */
+    /* End of Outputs for SubSystem: '<S698>/AxisRotDefault' */
   }
 
-  /* End of If: '<S688>/If' */
+  /* End of If: '<S698>/If' */
 
   /* MATLAB Function: '<S17>/Embedded MATLAB Function1' */
   S_EmbeddedMATLABFunction_l(rtb_Merge_m[0],
     &SLUGS2_B.sf_EmbeddedMATLABFunction1);
 
   /* MATLAB Function: '<S17>/myMux Fun1' */
-  /* MATLAB Function 'get Nav Vars [updated 4.28.16]/myMux Fun1': '<S692>:1' */
+  /* MATLAB Function 'get Nav Vars [updated 4.28.16]/myMux Fun1': '<S702>:1' */
   /*  This block supports an embeddable subset of the MATLAB language. */
   /*  See the help menu for details.  */
-  /* '<S692>:1:5' */
+  /* '<S702>:1:5' */
   rtb_y_jl_idx_0 = rtb_Merge_m[2];
   rtb_y_jl_idx_1 = rtb_Merge_m[1];
 
@@ -1330,7 +1328,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S664>/Add'
      */
     SLUGS2_B.DataTypeConversion = (real32_T)((real_T)rtb_u2deg *
-      0.00013460761879122363 + -1.2634271099744254);
+      0.00013460761879122366 + -1.2634271099744259);
 
     /* S-Function (MCHP_C_function_Call): '<S647>/2' */
     SLUGS2_B.u = meanFilter5(
@@ -1366,7 +1364,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S665>/Add'
      */
     SLUGS2_B.DataTypeConversion_h = (real32_T)((real_T)rtb_u2deg *
-      -7.1481057518468276E-5 + 0.94019034954041281);
+      -7.14810575184683E-5 + 0.940190349540413);
 
     /* S-Function (MCHP_C_function_Call): '<S647>/3' */
     SLUGS2_B.u_h = meanFilter5(
@@ -1402,7 +1400,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S666>/Add'
      */
     SLUGS2_B.DataTypeConversion_g = (real32_T)((real_T)rtb_u2deg *
-      -9.5308076691291043E-5 + 1.2535871327205506);
+      -9.530807669129107E-5 + 1.2535871327205506);
 
     /* S-Function (MCHP_C_function_Call): '<S647>/4' */
     SLUGS2_B.u_m = meanFilter5(
@@ -1438,7 +1436,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
      *  Sum: '<S667>/Add'
      */
     SLUGS2_B.DataTypeConversion_f = (real32_T)((real_T)rtb_u2deg *
-      4.7654038345645522E-5 + -0.62679356636027528);
+      4.7654038345645535E-5 + -0.62679356636027528);
   }
 
   /* End of Outputs for SubSystem: '<S15>/Grab I.C.' */
@@ -1597,8 +1595,8 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   /* InitialCondition: '<S182>/IC4' */
   if (SLUGS2_DWork.IC4_FirstOutputTime) {
     SLUGS2_DWork.IC4_FirstOutputTime = false;
-	rtb_IC4_idx_0 = -122.055305F; //36.9885063F;
-	rtb_IC4_idx_1 = 36.9885063F; //-122.055305F;
+    rtb_IC4_idx_0 = -122.050926F;
+    rtb_IC4_idx_1 = 36.9885025F;
   } else {
     rtb_IC4_idx_0 = SLUGS2_B.DataTypeConversion_c[0];
     rtb_IC4_idx_1 = SLUGS2_B.DataTypeConversion_c[1];
@@ -2556,7 +2554,11 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
     rtb_Merge_m[1] = SLUGS2_B.sf_SelectNTerms.N[1] / rtb_RhhcosphisinlambYe;
     rtb_Merge_m[2] = SLUGS2_B.sf_SelectNTerms.N[2] / rtb_RhhcosphisinlambYe;
 
-    /* Delay: '<S296>/Integer Delay1' */
+    /* Delay: '<S296>/Integer Delay1'
+     *
+     * Block description for '<S296>/Integer Delay1':
+     *  TODO: issue with the generated code
+     */
     SLUGS2_B.Merge1 = SLUGS2_DWork.IntegerDelay1_DSTATE_gn;
 
     /* MATLAB Function: '<S296>/Zero out Z1' */
@@ -2574,8 +2576,12 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
     SLUGS2_B.Product1 = mlParamInterface.param[20] *
       SLUGS2_B.mySqrtapUtilscupdated5116;
 
-    /* Update for Delay: '<S296>/Integer Delay1' */
-	SLUGS2_DWork.IntegerDelay1_DSTATE_gn = rtb_Product2_c[2];// WIN  rtb_Product2_c[2];
+    /* Update for Delay: '<S296>/Integer Delay1'
+     *
+     * Block description for '<S296>/Integer Delay1':
+     *  TODO: issue with the generated code
+     */
+    SLUGS2_DWork.IntegerDelay1_DSTATE_gn = rtb_Product2_c[2];
 
     /* End of Outputs for SubSystem: '<S180>/Get Frenet' */
 
@@ -2841,7 +2847,11 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
            tmp_0[0]);
       }
 
-      /* Delay: '<S191>/Integer Delay1' */
+      /* Delay: '<S191>/Integer Delay1'
+       *
+       * Block description for '<S191>/Integer Delay1':
+       *  TODO: check that it pull the right entry
+       */
       SLUGS2_B.Merge1 = SLUGS2_DWork.IntegerDelay1_DSTATE_a;
 
       /* MATLAB Function: '<S191>/Zero out Z2' */
@@ -3148,6 +3158,9 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
 
       /* Update for Delay: '<S191>/Integer Delay1' incorporates:
        *  Constant: '<S174>/RTB1'
+       *
+       * Block description for '<S191>/Integer Delay1':
+       *  TODO: check that it pull the right entry
        */
       SLUGS2_DWork.IntegerDelay1_DSTATE_a = rtb_Product3_j0[2];
 
@@ -3314,7 +3327,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   /* InitialCondition: '<S182>/IC3' */
   if (SLUGS2_DWork.IC3_FirstOutputTime) {
     SLUGS2_DWork.IC3_FirstOutputTime = false;
-    SLUGS2_B.IC3 = 0.0F;
+    SLUGS2_B.IC3 = 166.3F;
   } else {
     SLUGS2_B.IC3 = SLUGS2_B.NumericalUnity[0];
   }
@@ -3360,10 +3373,10 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   /* MATLAB Function: '<S17>/myMux Fun2' incorporates:
    *  MATLAB Function: '<S17>/myMux Fun1'
    */
-  /* MATLAB Function 'get Nav Vars [updated 4.28.16]/myMux Fun2': '<S693>:1' */
+  /* MATLAB Function 'get Nav Vars [updated 4.28.16]/myMux Fun2': '<S703>:1' */
   /*  This block supports an embeddable subset of the MATLAB language. */
   /*  See the help menu for details.  */
-  /* '<S693>:1:5' */
+  /* '<S703>:1:5' */
   SLUGS2_B.y_j[0] = rtb_y_jl_idx_0;
   SLUGS2_B.y_j[1] = rtb_y_jl_idx_1;
   SLUGS2_B.y_j[2] = SLUGS2_B.sf_EmbeddedMATLABFunction1.y;
@@ -3448,9 +3461,9 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
    *  RelationalOperator: '<S162>/Compare'
    */
   if ((SLUGS2_DWork.IntegerDelay3_DSTATE_g <= 5.0F) > 0) {
-    rtb_Product3_bo = SLUGS2_DWork.IntegerDelay3_DSTATE_g;
+    rtb_Ze_b = SLUGS2_DWork.IntegerDelay3_DSTATE_g;
   } else {
-    rtb_Product3_bo = SLUGS2_B.sf_EmbeddedMATLABFunction_n.y;
+    rtb_Ze_b = SLUGS2_B.sf_EmbeddedMATLABFunction_n.y;
   }
 
   /* End of Switch: '<S138>/Schedule LPF' */
@@ -3469,7 +3482,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
    *  UnitDelay: '<S171>/FixPt Unit Delay2'
    */
   if (SLUGS2_DWork.FixPtUnitDelay2_DSTATE != 0) {
-	  rtb_Deg2R1 = 143.543F;//WIN 100.0F;
+    rtb_Deg2R1 = 166.3F;
   } else {
     rtb_Deg2R1 = SLUGS2_DWork.FixPtUnitDelay1_DSTATE;
   }
@@ -3647,7 +3660,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   /* End of Switch: '<S150>/Switch2' */
 
   /* DataStoreWrite: '<S64>/mlNavigation' */
-  mlNavigation.u_m = rtb_Product3_bo;
+  mlNavigation.u_m = rtb_Ze_b;
   mlNavigation.theta_c = rtb_Deg2R1;
 
   /* DataTypeConversion: '<S133>/Data Type Conversion' */
@@ -3689,7 +3702,12 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   /* Sum: '<S133>/Add' incorporates:
    *  DataStoreRead: '<Root>/Get mlMidLevelCommands'
    */
-  rtb_RhhcosphisinlambYe = mlMidLevelCommands.uCommand - rtb_Product3_bo;
+  rtb_RhhcosphisinlambYe = mlMidLevelCommands.uCommand - rtb_Ze_b;
+
+  /* Sum: '<S135>/Add3' incorporates:
+   *  Constant: '<S135>/SaturationLimit'
+   */
+  rtb_Deg2R_h_idx_0 = 0.95F - SLUGS2_B.DataTypeConversion;
 
   /* Switch: '<S139>/Switch3' incorporates:
    *  RelationalOperator: '<S139>/Relational Operator2'
@@ -3709,9 +3727,10 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
    *  Product: '<S135>/Product3'
    *  Sum: '<S135>/Sum'
    */
-  rtb_RhhcosphisinlambYe = (SLUGS2_DWork.IntegerDelay3_DSTATE_j -
-    SLUGS2_DWork.NDelays_DSTATE[0]) / 0.05F * mlParamInterface.param[2] +
-    SLUGS2_DWork.IntegerDelay3_DSTATE_j * mlParamInterface.param[0];
+  rtb_Sum1_mj = (SLUGS2_DWork.IntegerDelay3_DSTATE_j -
+                 SLUGS2_DWork.NDelays_DSTATE[0]) / 0.05F *
+    mlParamInterface.param[2] + SLUGS2_DWork.IntegerDelay3_DSTATE_j *
+    mlParamInterface.param[0];
 
   /* Sum: '<S135>/Sum2' incorporates:
    *  DataStoreRead: '<S8>/PAR_PID_AIRSPEED_P PAR_PID_AIRSPEED_I PAR_PID_AIRSPEED_D'
@@ -3719,10 +3738,9 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
    *  Memory: '<S135>/Memory1'
    *  Product: '<S135>/Product4'
    */
-  rtb_IC4_idx_0 = (0.01F * SLUGS2_DWork.IntegerDelay3_DSTATE_j *
+  rtb_IC4_idx_1 = (0.01F * SLUGS2_DWork.IntegerDelay3_DSTATE_j *
                    mlParamInterface.param[1] +
-                   SLUGS2_DWork.Memory1_PreviousInput_p) +
-    rtb_RhhcosphisinlambYe;
+                   SLUGS2_DWork.Memory1_PreviousInput_p) + rtb_Sum1_mj;
 
   /* Switch: '<S135>/AntiWindup' incorporates:
    *  Constant: '<S135>/Constant5'
@@ -3734,11 +3752,11 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
    *  Sum: '<S135>/Add3'
    *  Sum: '<S135>/Add4'
    */
-  if ((rtb_IC4_idx_0 > 0.0F - SLUGS2_B.DataTypeConversion) && (rtb_IC4_idx_0 <
+  if ((rtb_IC4_idx_1 > 0.0F - SLUGS2_B.DataTypeConversion) && (rtb_IC4_idx_1 <
        0.95F - SLUGS2_B.DataTypeConversion)) {
-    rtb_IC4_idx_0 = SLUGS2_DWork.IntegerDelay3_DSTATE_j;
+    rtb_IC4_idx_1 = SLUGS2_DWork.IntegerDelay3_DSTATE_j;
   } else {
-    rtb_IC4_idx_0 = 0.0F;
+    rtb_IC4_idx_1 = 0.0F;
   }
 
   /* End of Switch: '<S135>/AntiWindup' */
@@ -3746,8 +3764,8 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   /* Switch: '<S148>/Switch3' incorporates:
    *  RelationalOperator: '<S148>/Relational Operator2'
    */
-  if ((rtb_IC4_idx_0 == rtb_IC4_idx_0) > 0) {
-    SLUGS2_DWork.IntegerDelay3_DSTATE_cl = rtb_IC4_idx_0;
+  if ((rtb_IC4_idx_1 == rtb_IC4_idx_1) > 0) {
+    SLUGS2_DWork.IntegerDelay3_DSTATE_cl = rtb_IC4_idx_1;
   }
 
   /* End of Switch: '<S148>/Switch3' */
@@ -3769,9 +3787,9 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
    *  Sum: '<S147>/Subtract1'
    */
   if (SLUGS2_B.ManualorAutonavSupportcupdated4 > 0) {
-    rtb_IC4_idx_0 = 0.0F;
+    rtb_IC4_idx_1 = 0.0F;
   } else {
-    rtb_IC4_idx_0 = ((SLUGS2_DWork.IntegerDelay3_DSTATE_cl * 0.333333343F +
+    rtb_IC4_idx_1 = ((SLUGS2_DWork.IntegerDelay3_DSTATE_cl * 0.333333343F +
                       SLUGS2_DWork.IntegerDelay_DSTATE_l * 1.33333337F) +
                      SLUGS2_DWork.IntegerDelay1_DSTATE_hy[0] * 0.333333343F) *
       0.005F + SLUGS2_DWork.IntegerDelay2_DSTATE_f;
@@ -3782,11 +3800,57 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   /* Switch: '<S149>/Switch3' incorporates:
    *  RelationalOperator: '<S149>/Relational Operator2'
    */
-  if ((rtb_IC4_idx_0 == rtb_IC4_idx_0) > 0) {
-    SLUGS2_DWork.IntegerDelay3_DSTATE_m = rtb_IC4_idx_0;
+  if ((rtb_IC4_idx_1 == rtb_IC4_idx_1) > 0) {
+    SLUGS2_DWork.IntegerDelay3_DSTATE_m = rtb_IC4_idx_1;
   }
 
   /* End of Switch: '<S149>/Switch3' */
+
+  /* Switch: '<S135>/On//Off' incorporates:
+   *  Constant: '<S135>/Constant1'
+   *  DataStoreRead: '<S8>/PAR_PID_AIRSPEED_P PAR_PID_AIRSPEED_I PAR_PID_AIRSPEED_D'
+   *  Product: '<S135>/Product'
+   *  Sum: '<S135>/Add2'
+   */
+  if (SLUGS2_B.ManualorAutonavSupportcupdated4 > 0) {
+    SLUGS2_DWork.Memory1_PreviousInput_p = 0.0F;
+  } else {
+    SLUGS2_DWork.Memory1_PreviousInput_p = SLUGS2_DWork.IntegerDelay3_DSTATE_m *
+      mlParamInterface.param[1] + rtb_Sum1_mj;
+  }
+
+  /* End of Switch: '<S135>/On//Off' */
+
+  /* Switch: '<S146>/Switch2' incorporates:
+   *  Constant: '<S135>/SaturationLimit'
+   *  RelationalOperator: '<S146>/LowerRelop1'
+   *  Sum: '<S135>/Add3'
+   */
+  if (!(SLUGS2_DWork.Memory1_PreviousInput_p > 0.95F -
+        SLUGS2_B.DataTypeConversion)) {
+    /* Switch: '<S146>/Switch' incorporates:
+     *  Constant: '<S135>/SaturationLimit1'
+     *  RelationalOperator: '<S146>/UpperRelop'
+     *  Sum: '<S135>/Add4'
+     */
+    if (SLUGS2_DWork.Memory1_PreviousInput_p < 0.0F -
+        SLUGS2_B.DataTypeConversion) {
+      rtb_Deg2R_h_idx_0 = 0.0F - SLUGS2_B.DataTypeConversion;
+    } else {
+      rtb_Deg2R_h_idx_0 = SLUGS2_DWork.Memory1_PreviousInput_p;
+    }
+
+    /* End of Switch: '<S146>/Switch' */
+  }
+
+  /* End of Switch: '<S146>/Switch2' */
+
+  /* Sum: '<S133>/Add1' incorporates:
+   *  DataStoreRead: '<S8>/PAR_PID_PITC_DT_FF'
+   *  Product: '<S133>/Product2'
+   */
+  rtb_Deg2R_h_idx_0 = (rtb_Deg2R_h_idx_0 + SLUGS2_B.DataTypeConversion) +
+    mlParamInterface.param[15] * SLUGS2_B.y_j[1];
 
   /* Sum: '<S133>/Add3' */
   rtb_Deg2R1 -= SLUGS2_B.y_j[1];
@@ -3794,7 +3858,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   /* Sum: '<S137>/Add3' incorporates:
    *  Constant: '<S137>/SaturationLimit'
    */
-  rtb_IC4_idx_0 = 0.401425719F - SLUGS2_B.DataTypeConversion_f;
+  rtb_IC4_idx_1 = 0.401425719F - SLUGS2_B.DataTypeConversion_f;
 
   /* Switch: '<S141>/Switch3' incorporates:
    *  RelationalOperator: '<S141>/Relational Operator2'
@@ -3922,9 +3986,9 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      */
     if (SLUGS2_DWork.Memory1_PreviousInput_o < -0.401425719F -
         SLUGS2_B.DataTypeConversion_f) {
-      rtb_IC4_idx_0 = -0.401425719F - SLUGS2_B.DataTypeConversion_f;
+      rtb_IC4_idx_1 = -0.401425719F - SLUGS2_B.DataTypeConversion_f;
     } else {
-      rtb_IC4_idx_0 = SLUGS2_DWork.Memory1_PreviousInput_o;
+      rtb_IC4_idx_1 = SLUGS2_DWork.Memory1_PreviousInput_o;
     }
 
     /* End of Switch: '<S154>/Switch' */
@@ -3956,8 +4020,8 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
    *  Product: '<S133>/Product1'
    *  Sum: '<S133>/Add5'
    */
-  rtb_IC4_idx_0 = (1.0F / SLUGS2_B.myCosapUtilscupdated5116 - 1.0F) *
-    mlParamInterface.param[11] + (rtb_IC4_idx_0 + SLUGS2_B.DataTypeConversion_f);
+  rtb_IC4_idx_1 = (1.0F / SLUGS2_B.myCosapUtilscupdated5116 - 1.0F) *
+    mlParamInterface.param[11] + (rtb_IC4_idx_1 + SLUGS2_B.DataTypeConversion_f);
 
   /* Update for UnitDelay: '<S171>/FixPt Unit Delay2' incorporates:
    *  Constant: '<S171>/FixPt Constant'
@@ -3983,24 +4047,6 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
 
   /* Update for Delay: '<S147>/Integer Delay2' */
   SLUGS2_DWork.IntegerDelay2_DSTATE_f = SLUGS2_DWork.IntegerDelay3_DSTATE_m;
-
-  /* Switch: '<S135>/On//Off' */
-  if (SLUGS2_B.ManualorAutonavSupportcupdated4 > 0) {
-    /* Update for Memory: '<S135>/Memory1' incorporates:
-     *  Constant: '<S135>/Constant1'
-     */
-    SLUGS2_DWork.Memory1_PreviousInput_p = 0.0F;
-  } else {
-    /* Update for Memory: '<S135>/Memory1' incorporates:
-     *  DataStoreRead: '<S8>/PAR_PID_AIRSPEED_P PAR_PID_AIRSPEED_I PAR_PID_AIRSPEED_D'
-     *  Product: '<S135>/Product'
-     *  Sum: '<S135>/Add2'
-     */
-    SLUGS2_DWork.Memory1_PreviousInput_p = SLUGS2_DWork.IntegerDelay3_DSTATE_m *
-      mlParamInterface.param[1] + rtb_RhhcosphisinlambYe;
-  }
-
-  /* End of Switch: '<S135>/On//Off' */
 
   /* Update for Delay: '<S147>/Integer Delay' */
   SLUGS2_DWork.IntegerDelay_DSTATE_l = SLUGS2_DWork.IntegerDelay3_DSTATE_cl;
@@ -4045,14 +4091,14 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   /* Sum: '<S61>/Subtract' incorporates:
    *  Product: '<S61>/Product1'
    */
-  rtb_Deg2R_h_idx_0 = SLUGS2_B.y_j[4] * SLUGS2_B.CFunctionCall1 + rtb_Sum1_mj;
+  rtb_Product = SLUGS2_B.y_j[4] * SLUGS2_B.CFunctionCall1 + rtb_Sum1_mj;
 
   /* Switch: '<S67>/Switch3' incorporates:
    *  Delay: '<S67>/Integer Delay3'
    *  RelationalOperator: '<S67>/Relational Operator2'
    */
-  if (!((rtb_Deg2R_h_idx_0 == rtb_Deg2R_h_idx_0) > 0)) {
-    rtb_Deg2R_h_idx_0 = SLUGS2_DWork.IntegerDelay3_DSTATE_k;
+  if (!((rtb_Product == rtb_Product) > 0)) {
+    rtb_Product = SLUGS2_DWork.IntegerDelay3_DSTATE_k;
   }
 
   /* End of Switch: '<S67>/Switch3' */
@@ -4061,8 +4107,8 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
    *  Inport: '<S85>/In1'
    *  Logic: '<S73>/Logical Operator'
    */
-  rtb_IC4_idx_1 = mlParamInterface.param[22];
-  rtb_Product = mlParamInterface.param[23];
+  rtb_IC4_idx_0 = mlParamInterface.param[22];
+  rtb_y_jl_idx_0 = mlParamInterface.param[23];
 
   /* Outputs for Enabled SubSystem: '<S4>/L1 Output Feedback Controller With  Projection Operator' incorporates:
    *  EnablePort: '<S62>/Enable'
@@ -4200,8 +4246,8 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      *  Delay: '<S74>/Integer Delay3'
      *  RelationalOperator: '<S74>/Relational Operator2'
      */
-    if ((rtb_Deg2R_h_idx_0 == rtb_Deg2R_h_idx_0) > 0) {
-      rtb_Switch3_gd = rtb_Deg2R_h_idx_0;
+    if ((rtb_Product == rtb_Product) > 0) {
+      rtb_Switch3_gd = rtb_Product;
     } else {
       rtb_Switch3_gd = SLUGS2_DWork.IntegerDelay3_DSTATE_fs;
     }
@@ -4497,8 +4543,8 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   /* Switch: '<S130>/Switch3' incorporates:
    *  RelationalOperator: '<S130>/Relational Operator2'
    */
-  if ((rtb_Product3_bo == rtb_Product3_bo) > 0) {
-    SLUGS2_DWork.IntegerDelay3_DSTATE_bs = rtb_Product3_bo;
+  if ((rtb_Ze_b == rtb_Ze_b) > 0) {
+    SLUGS2_DWork.IntegerDelay3_DSTATE_bs = rtb_Ze_b;
   }
 
   /* End of Switch: '<S130>/Switch3' */
@@ -4511,7 +4557,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
    *  Saturate: '<S128>/[0 40]'
    */
   if (rtb_IC1_a) {
-    rtb_Ze_b = mlMidLevelCommands.rCommand;
+    rtb_Product3_bo = mlMidLevelCommands.rCommand;
   } else {
     if (SLUGS2_DWork.IntegerDelay3_DSTATE_bs > 40.0F) {
       /* Saturate: '<S128>/[0 40]' */
@@ -4524,7 +4570,8 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
       rtb_Sum1_mj = SLUGS2_DWork.IntegerDelay3_DSTATE_bs;
     }
 
-    rtb_Ze_b = 1.0F / rtb_Sum1_mj * 9.80665F * SLUGS2_B.myTanapUtilscupdated5116;
+    rtb_Product3_bo = 1.0F / rtb_Sum1_mj * 9.80665F *
+      SLUGS2_B.myTanapUtilscupdated5116;
   }
 
   /* End of Switch: '<S96>/Switch1' */
@@ -4535,7 +4582,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   if (mlParamInterface.param[25] > 0.3F) {
     rtb_RhhcosphisinlambYe = SLUGS2_B.PsiDotLimit;
   } else {
-    rtb_RhhcosphisinlambYe = rtb_Ze_b;
+    rtb_RhhcosphisinlambYe = rtb_Product3_bo;
   }
 
   /* End of Switch: '<S96>/Switch' */
@@ -4577,7 +4624,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
     }
 
     /* MATLAB Function: '<S110>/negprotect' */
-    SLUGS2_negprotect(rtb_Product3_bo, &SLUGS2_B.sf_negprotect);
+    SLUGS2_negprotect(rtb_Ze_b, &SLUGS2_B.sf_negprotect);
 
     /* Saturate: '<S110>/bank Limit' */
     if (SLUGS2_B.y_j[0] > 0.436332315F) {
@@ -4664,7 +4711,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      */
     SLUGS2_B.Divide_h = (1.0F / SLUGS2_B.sf_negprotect.zpVal * 9.80665F *
                          SLUGS2_B.myTanapUtilscupdated5116_o - SLUGS2_B.y_j[5]) *
-      rtb_Product3_bo / 9.80665F;
+      rtb_Ze_b / 9.80665F;
 
     /* S-Function (MCHP_C_function_Call): '<S120>/myTan() apUtils.c [updated 5.1.16]' */
     SLUGS2_B.myTanapUtilscupdated5116_i = myTan(
@@ -4708,7 +4755,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   /* Product: '<S104>/Divide' incorporates:
    *  Constant: '<S104>/Constant1'
    */
-  SLUGS2_B.Divide = rtb_RhhcosphisinlambYe * rtb_Product3_bo / 9.80665F;
+  SLUGS2_B.Divide = rtb_RhhcosphisinlambYe * rtb_Ze_b / 9.80665F;
 
   /* S-Function (MCHP_C_function_Call): '<S126>/myAtan() apUtils.c [updated 5.1.16]' */
   SLUGS2_B.myAtanapUtilscupdated5116_a = myAtan(
@@ -5113,11 +5160,29 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
     SLUGS2_DWork.IntegerDelay1_DSTATE_l3[1];
   SLUGS2_DWork.IntegerDelay1_DSTATE_l3[1] = SLUGS2_DWork.IntegerDelay3_DSTATE_l;
 
-  /* Saturate: '<S95>/Rudder Limit' */
+  /* End of Outputs for SubSystem: '<S4>/Lateral Channel Encaps [updated 4.28.16]' */
+
+  /* Outputs for Atomic SubSystem: '<S4>/Longitudinal Channel Encaps [updated 4.28.16]' */
+  /* Saturate: '<S133>/Throttle  Limit' */
   /* MATLAB Function 'myMux Fun1': '<S18>:1' */
   /*  This block supports an embeddable subset of the MATLAB language. */
   /*  See the help menu for details.  */
   /* '<S18>:1:5' */
+  if (rtb_Deg2R_h_idx_0 > 0.95F) {
+    /* MATLAB Function: '<Root>/myMux Fun1' */
+    rtb_Deg2R_h_idx_0 = 0.95F;
+  } else {
+    if (rtb_Deg2R_h_idx_0 < 0.0F) {
+      /* MATLAB Function: '<Root>/myMux Fun1' */
+      rtb_Deg2R_h_idx_0 = 0.0F;
+    }
+  }
+
+  /* End of Saturate: '<S133>/Throttle  Limit' */
+  /* End of Outputs for SubSystem: '<S4>/Longitudinal Channel Encaps [updated 4.28.16]' */
+
+  /* Outputs for Atomic SubSystem: '<S4>/Lateral Channel Encaps [updated 4.28.16]' */
+  /* Saturate: '<S95>/Rudder Limit' */
   if (rtb_cosphi > 0.17453292F) {
     /* MATLAB Function: '<Root>/myMux Fun1' */
     rtb_cosphi = 0.17453292F;
@@ -5133,13 +5198,13 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
 
   /* Outputs for Atomic SubSystem: '<S4>/Longitudinal Channel Encaps [updated 4.28.16]' */
   /* Saturate: '<S133>/Elevator  Limit' */
-  if (rtb_IC4_idx_0 > 0.401425719F) {
+  if (rtb_IC4_idx_1 > 0.401425719F) {
     /* MATLAB Function: '<Root>/myMux Fun1' */
-    rtb_IC4_idx_0 = 0.401425719F;
+    rtb_IC4_idx_1 = 0.401425719F;
   } else {
-    if (rtb_IC4_idx_0 < -0.401425719F) {
+    if (rtb_IC4_idx_1 < -0.401425719F) {
       /* MATLAB Function: '<Root>/myMux Fun1' */
-      rtb_IC4_idx_0 = -0.401425719F;
+      rtb_IC4_idx_1 = -0.401425719F;
     }
   }
 
@@ -5154,80 +5219,149 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
     /* Gain: '<S673>/Gain4' incorporates:
      *  MATLAB Function: '<S644>/myMux Fun5'
      */
-    SLUGS2_B.Merge_oc[0] = SLUGS2_B.InputCapture_o3 >> 1;
-    SLUGS2_B.Merge_oc[1] = SLUGS2_B.InputCapture_o1 >> 1;
-    SLUGS2_B.Merge_oc[2] = SLUGS2_B.InputCapture_o4 >> 1;
-    SLUGS2_B.Merge_oc[3] = SLUGS2_B.InputCapture_o2 >> 1;
+    SLUGS2_B.Merge[0] = 0.5F * (real32_T)SLUGS2_B.InputCapture_o3;
+    SLUGS2_B.Merge[1] = 0.5F * (real32_T)SLUGS2_B.InputCapture_o1;
+    SLUGS2_B.Merge[2] = 0.5F * (real32_T)SLUGS2_B.InputCapture_o4;
+    SLUGS2_B.Merge[3] = 0.5F * (real32_T)SLUGS2_B.InputCapture_o2;
 
     /* End of Outputs for SubSystem: '<S670>/If  Control Type Is Manual' */
   } else if ((rtb_DataTypeConversion1_hq == 3) || (rtb_DataTypeConversion1_hq ==
               4) || (rtb_DataTypeConversion1_hq == 9) ||
              (rtb_DataTypeConversion1_hq == 10)) {
-    /* Outputs for IfAction SubSystem: '<S670>/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds' incorporates:
-     *  ActionPort: '<S676>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S670>/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1' incorporates:
+     *  ActionPort: '<S677>/Action Port'
      */
-    /* DataTypeConversion: '<S684>/Data Type Conversion' incorporates:
-     *  Constant: '<S684>/Constant1'
-     *  Constant: '<S684>/Constant2'
+    /* DataTypeConversion: '<S692>/Data Type Conversion' incorporates:
+     *  Constant: '<S692>/Constant1'
+     *  Constant: '<S692>/Constant2'
+     *  Product: '<S692>/Divide'
+     *  Sum: '<S692>/Add'
+     */
+    tmp_4 = floor(rtb_IC4_idx_1 * 10492.289623333201 + 6576.5000000000018);
+    if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
+      rtb_u2deg = 0U;
+    } else {
+      rtb_u2deg = (uint16_T)fmod(tmp_4, 65536.0);
+    }
+
+    /* End of DataTypeConversion: '<S692>/Data Type Conversion' */
+
+    /* DataTypeConversion: '<S695>/Data Type Conversion' incorporates:
+     *  Constant: '<S695>/Constant1'
+     *  Constant: '<S695>/Constant2'
+     *  Product: '<S695>/Divide'
+     *  Sum: '<S695>/Add'
+     */
+    tmp_4 = floor(rtb_cosphi * -5246.1448116666006 + 6576.5000000000018);
+    if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
+      rtb_DataTypeConversion_lk = 0U;
+    } else {
+      rtb_DataTypeConversion_lk = (uint16_T)fmod(tmp_4, 65536.0);
+    }
+
+    /* End of DataTypeConversion: '<S695>/Data Type Conversion' */
+
+    /* DataTypeConversion: '<S694>/Data Type Conversion' incorporates:
+     *  Constant: '<S694>/Constant1'
+     *  Constant: '<S694>/Constant2'
      *  MATLAB Function: '<Root>/myMux Fun1'
-     *  Product: '<S684>/Divide'
-     *  Sum: '<S684>/Add'
+     *  Product: '<S694>/Divide'
+     *  Sum: '<S694>/Add'
      */
     tmp_4 = floor(rtb_Sum1_mj * -6994.8597488887972 + 6576.5000000000009);
-
-    /* DataTypeConversion: '<S685>/Data Type Conversion' incorporates:
-     *  Constant: '<S685>/Constant1'
-     *  Constant: '<S685>/Constant2'
-     *  Product: '<S685>/Divide'
-     *  Sum: '<S685>/Add'
-     */
-    tmp_5 = floor(rtb_cosphi * -5246.1448116666006 + 6576.5);
-
-    /* DataTypeConversion: '<S682>/Data Type Conversion' incorporates:
-     *  Constant: '<S682>/Constant1'
-     *  Constant: '<S682>/Constant2'
-     *  Product: '<S682>/Divide'
-     *  Sum: '<S682>/Add'
-     */
-    tmp_6 = floor(rtb_IC4_idx_0 * 10492.289623333201 + 6576.5);
-
-    /* DataTypeConversion: '<S684>/Data Type Conversion' */
     if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
-      tmp_4 = 0.0;
+      rtb_DataTypeConversion_ee = 0U;
     } else {
-      tmp_4 = fmod(tmp_4, 65536.0);
+      rtb_DataTypeConversion_ee = (uint16_T)fmod(tmp_4, 65536.0);
     }
 
-    /* DataTypeConversion: '<S685>/Data Type Conversion' */
-    if (rtIsNaN(tmp_5) || rtIsInf(tmp_5)) {
-      tmp_5 = 0.0;
-    } else {
-      tmp_5 = fmod(tmp_5, 65536.0);
-    }
+    /* End of DataTypeConversion: '<S694>/Data Type Conversion' */
 
-    /* DataTypeConversion: '<S682>/Data Type Conversion' */
-    if (rtIsNaN(tmp_6) || rtIsInf(tmp_6)) {
-      tmp_6 = 0.0;
-    } else {
-      tmp_6 = fmod(tmp_6, 65536.0);
-    }
-
-    /* MATLAB Function: '<S676>/myMux Fun1' incorporates:
-     *  Constant: '<S683>/Constant1'
-     *  Constant: '<S683>/Constant2'
-     *  DataTypeConversion: '<S682>/Data Type Conversion'
-     *  DataTypeConversion: '<S683>/Data Type Conversion'
-     *  DataTypeConversion: '<S684>/Data Type Conversion'
-     *  DataTypeConversion: '<S685>/Data Type Conversion'
-     *  MATLAB Function: '<S644>/myMux Fun5'
-     *  Product: '<S683>/Divide'
-     *  Sum: '<S683>/Add'
+    /* DataTypeConversion: '<S693>/Data Type Conversion' incorporates:
+     *  Constant: '<S693>/Constant1'
+     *  Constant: '<S693>/Constant2'
+     *  Product: '<S693>/Divide'
+     *  Sum: '<S693>/Add'
      */
-    SLUGS2_myMuxFun1_d((uint16_T)(int32_T)fmod((int32_T)floor((real_T)
-      SLUGS2_B.InputCapture_o3 * 3714.5 + 4693.0), 65536.0), (uint16_T)tmp_4,
-                       (uint16_T)tmp_5, (uint16_T)tmp_6, SLUGS2_B.Merge_oc);
+    tmp_4 = floor(rtb_Deg2R_h_idx_0 * 3714.5 + 4693.0);
+    if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
+      rtb_DataTypeConversion_g0 = 0U;
+    } else {
+      rtb_DataTypeConversion_g0 = (uint16_T)fmod(tmp_4, 65536.0);
+    }
 
-    /* End of Outputs for SubSystem: '<S670>/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds' */
+    /* End of DataTypeConversion: '<S693>/Data Type Conversion' */
+
+    /* S-Function (MCHP_C_function_Call): '<S677>/Initialize Control MCU' */
+    getPassValues(
+                  &SLUGS2_B.InitializeControlMCU_a[0]
+                  );
+
+    /* Switch: '<S677>/Switch' incorporates:
+     *  Gain: '<S677>/Gain'
+     *  Gain: '<S691>/Gain4'
+     *  MATLAB Function: '<S644>/myMux Fun5'
+     *  Sum: '<S691>/Add'
+     */
+    if (SLUGS2_B.InitializeControlMCU_a[3] >= 1) {
+      rtb_RhhcosphicoslambXe = (0.5F * (real32_T)SLUGS2_B.InputCapture_o3 +
+        (real32_T)rtb_DataTypeConversion_g0) * 0.5F;
+    } else {
+      rtb_RhhcosphicoslambXe = rtb_DataTypeConversion_g0;
+    }
+
+    /* End of Switch: '<S677>/Switch' */
+
+    /* Switch: '<S677>/Switch1' incorporates:
+     *  Gain: '<S677>/Gain1'
+     *  Gain: '<S690>/Gain4'
+     *  MATLAB Function: '<S644>/myMux Fun5'
+     *  Sum: '<S690>/Add'
+     */
+    if (SLUGS2_B.InitializeControlMCU_a[2] >= 1) {
+      rtb_Sum1_mj = (0.5F * (real32_T)SLUGS2_B.InputCapture_o1 + (real32_T)
+                     rtb_DataTypeConversion_ee) * 0.5F;
+    } else {
+      rtb_Sum1_mj = rtb_DataTypeConversion_ee;
+    }
+
+    /* End of Switch: '<S677>/Switch1' */
+
+    /* Switch: '<S677>/Switch2' incorporates:
+     *  Gain: '<S677>/Gain2'
+     *  Gain: '<S689>/Gain4'
+     *  MATLAB Function: '<S644>/myMux Fun5'
+     *  Sum: '<S689>/Add'
+     */
+    if (SLUGS2_B.InitializeControlMCU_a[1] >= 1) {
+      rtb_RhhcosphisinlambYe = (0.5F * (real32_T)SLUGS2_B.InputCapture_o4 +
+        (real32_T)rtb_DataTypeConversion_lk) * 0.5F;
+    } else {
+      rtb_RhhcosphisinlambYe = rtb_DataTypeConversion_lk;
+    }
+
+    /* End of Switch: '<S677>/Switch2' */
+
+    /* Switch: '<S677>/Switch3' incorporates:
+     *  Gain: '<S677>/Gain3'
+     *  Gain: '<S688>/Gain4'
+     *  MATLAB Function: '<S644>/myMux Fun5'
+     *  Sum: '<S688>/Add'
+     */
+    if (SLUGS2_B.InitializeControlMCU_a[0] >= 1) {
+      rtb_Deg2R1 = (0.5F * (real32_T)SLUGS2_B.InputCapture_o2 + (real32_T)
+                    rtb_u2deg) * 0.5F;
+    } else {
+      rtb_Deg2R1 = rtb_u2deg;
+    }
+
+    /* End of Switch: '<S677>/Switch3' */
+
+    /* MATLAB Function: '<S677>/myMux Fun1' */
+    SLUGS2_myMuxFun1_h(rtb_RhhcosphicoslambXe, rtb_Sum1_mj,
+                       rtb_RhhcosphisinlambYe, rtb_Deg2R1, SLUGS2_B.Merge);
+
+    /* End of Outputs for SubSystem: '<S670>/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1' */
   } else if (rtb_DataTypeConversion1_hq == 2) {
     /* Outputs for IfAction SubSystem: '<S670>/If  Control Type Is Passthrough' incorporates:
      *  ActionPort: '<S674>/Action Port'
@@ -5235,10 +5369,10 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
     /* Gain: '<S674>/Gain4' incorporates:
      *  MATLAB Function: '<S644>/myMux Fun5'
      */
-    SLUGS2_B.Merge_oc[0] = SLUGS2_B.InputCapture_o3 >> 1;
-    SLUGS2_B.Merge_oc[1] = SLUGS2_B.InputCapture_o1 >> 1;
-    SLUGS2_B.Merge_oc[2] = SLUGS2_B.InputCapture_o4 >> 1;
-    SLUGS2_B.Merge_oc[3] = SLUGS2_B.InputCapture_o2 >> 1;
+    SLUGS2_B.Merge[0] = 0.5F * (real32_T)SLUGS2_B.InputCapture_o3;
+    SLUGS2_B.Merge[1] = 0.5F * (real32_T)SLUGS2_B.InputCapture_o1;
+    SLUGS2_B.Merge[2] = 0.5F * (real32_T)SLUGS2_B.InputCapture_o4;
+    SLUGS2_B.Merge[3] = 0.5F * (real32_T)SLUGS2_B.InputCapture_o2;
 
     /* End of Outputs for SubSystem: '<S670>/If  Control Type Is Passthrough' */
   } else {
@@ -5253,19 +5387,26 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
                     );
 
       /* Switch: '<S675>/Switch' incorporates:
-       *  Constant: '<S678>/Constant1'
-       *  Constant: '<S678>/Constant2'
-       *  DataTypeConversion: '<S678>/Data Type Conversion'
        *  Gain: '<S675>/Gain'
        *  MATLAB Function: '<S644>/myMux Fun5'
-       *  Product: '<S678>/Divide'
-       *  Sum: '<S678>/Add'
        */
       if (SLUGS2_B.InitializeControlMCU[3] >= 1) {
-        rtb_u2deg = SLUGS2_B.InputCapture_o3 >> 1;
+        rtb_RhhcosphicoslambXe = 0.5F * (real32_T)SLUGS2_B.InputCapture_o3;
       } else {
-        rtb_u2deg = (uint16_T)(int32_T)fmod((int32_T)floor((real_T)
-          SLUGS2_B.InputCapture_o3 * 3714.5 + 4693.0), 65536.0);
+        /* DataTypeConversion: '<S679>/Data Type Conversion' incorporates:
+         *  Constant: '<S679>/Constant1'
+         *  Constant: '<S679>/Constant2'
+         *  Product: '<S679>/Divide'
+         *  Sum: '<S679>/Add'
+         */
+        tmp_4 = floor(rtb_Deg2R_h_idx_0 * 3714.5 + 4693.0);
+        if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
+          rtb_RhhcosphicoslambXe = 0.0F;
+        } else {
+          rtb_RhhcosphicoslambXe = (uint16_T)fmod(tmp_4, 65536.0);
+        }
+
+        /* End of DataTypeConversion: '<S679>/Data Type Conversion' */
       }
 
       /* End of Switch: '<S675>/Switch' */
@@ -5275,23 +5416,23 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
        *  MATLAB Function: '<S644>/myMux Fun5'
        */
       if (SLUGS2_B.InitializeControlMCU[2] >= 1) {
-        rtb_Switch1_m = SLUGS2_B.InputCapture_o1 >> 1;
+        rtb_Deg2R1 = 0.5F * (real32_T)SLUGS2_B.InputCapture_o1;
       } else {
-        /* DataTypeConversion: '<S679>/Data Type Conversion' incorporates:
-         *  Constant: '<S679>/Constant1'
-         *  Constant: '<S679>/Constant2'
+        /* DataTypeConversion: '<S680>/Data Type Conversion' incorporates:
+         *  Constant: '<S680>/Constant1'
+         *  Constant: '<S680>/Constant2'
          *  MATLAB Function: '<Root>/myMux Fun1'
-         *  Product: '<S679>/Divide'
-         *  Sum: '<S679>/Add'
+         *  Product: '<S680>/Divide'
+         *  Sum: '<S680>/Add'
          */
         tmp_4 = floor(rtb_Sum1_mj * -6994.8597488887972 + 6576.5000000000009);
         if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
-          rtb_Switch1_m = 0U;
+          rtb_Deg2R1 = 0.0F;
         } else {
-          rtb_Switch1_m = (uint16_T)fmod(tmp_4, 65536.0);
+          rtb_Deg2R1 = (uint16_T)fmod(tmp_4, 65536.0);
         }
 
-        /* End of DataTypeConversion: '<S679>/Data Type Conversion' */
+        /* End of DataTypeConversion: '<S680>/Data Type Conversion' */
       }
 
       /* End of Switch: '<S675>/Switch1' */
@@ -5301,22 +5442,22 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
        *  MATLAB Function: '<S644>/myMux Fun5'
        */
       if (SLUGS2_B.InitializeControlMCU[1] >= 1) {
-        rtb_Switch2 = SLUGS2_B.InputCapture_o4 >> 1;
+        rtb_RhhcosphisinlambYe = 0.5F * (real32_T)SLUGS2_B.InputCapture_o4;
       } else {
-        /* DataTypeConversion: '<S680>/Data Type Conversion' incorporates:
-         *  Constant: '<S680>/Constant1'
-         *  Constant: '<S680>/Constant2'
-         *  Product: '<S680>/Divide'
-         *  Sum: '<S680>/Add'
+        /* DataTypeConversion: '<S681>/Data Type Conversion' incorporates:
+         *  Constant: '<S681>/Constant1'
+         *  Constant: '<S681>/Constant2'
+         *  Product: '<S681>/Divide'
+         *  Sum: '<S681>/Add'
          */
-        tmp_4 = floor(rtb_cosphi * -5246.1448116666006 + 6576.5);
+        tmp_4 = floor(rtb_cosphi * -5246.1448116666006 + 6576.5000000000018);
         if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
-          rtb_Switch2 = 0U;
+          rtb_RhhcosphisinlambYe = 0.0F;
         } else {
-          rtb_Switch2 = (uint16_T)fmod(tmp_4, 65536.0);
+          rtb_RhhcosphisinlambYe = (uint16_T)fmod(tmp_4, 65536.0);
         }
 
-        /* End of DataTypeConversion: '<S680>/Data Type Conversion' */
+        /* End of DataTypeConversion: '<S681>/Data Type Conversion' */
       }
 
       /* End of Switch: '<S675>/Switch2' */
@@ -5326,29 +5467,29 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
        *  MATLAB Function: '<S644>/myMux Fun5'
        */
       if (SLUGS2_B.InitializeControlMCU[0] >= 1) {
-        rtb_Switch3_fq = SLUGS2_B.InputCapture_o2 >> 1;
+        rtb_Sum1_mj = 0.5F * (real32_T)SLUGS2_B.InputCapture_o2;
       } else {
-        /* DataTypeConversion: '<S677>/Data Type Conversion' incorporates:
-         *  Constant: '<S677>/Constant1'
-         *  Constant: '<S677>/Constant2'
-         *  Product: '<S677>/Divide'
-         *  Sum: '<S677>/Add'
+        /* DataTypeConversion: '<S678>/Data Type Conversion' incorporates:
+         *  Constant: '<S678>/Constant1'
+         *  Constant: '<S678>/Constant2'
+         *  Product: '<S678>/Divide'
+         *  Sum: '<S678>/Add'
          */
-        tmp_4 = floor(rtb_IC4_idx_0 * 10492.289623333201 + 6576.5);
+        tmp_4 = floor(rtb_IC4_idx_1 * 10492.289623333201 + 6576.5000000000018);
         if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
-          rtb_Switch3_fq = 0U;
+          rtb_Sum1_mj = 0.0F;
         } else {
-          rtb_Switch3_fq = (uint16_T)fmod(tmp_4, 65536.0);
+          rtb_Sum1_mj = (uint16_T)fmod(tmp_4, 65536.0);
         }
 
-        /* End of DataTypeConversion: '<S677>/Data Type Conversion' */
+        /* End of DataTypeConversion: '<S678>/Data Type Conversion' */
       }
 
       /* End of Switch: '<S675>/Switch3' */
 
       /* MATLAB Function: '<S675>/myMux Fun1' */
-      SLUGS2_myMuxFun1_d(rtb_u2deg, rtb_Switch1_m, rtb_Switch2, rtb_Switch3_fq,
-                         SLUGS2_B.Merge_oc);
+      SLUGS2_myMuxFun1_h(rtb_RhhcosphicoslambXe, rtb_Deg2R1,
+                         rtb_RhhcosphisinlambYe, rtb_Sum1_mj, SLUGS2_B.Merge);
 
       /* End of Outputs for SubSystem: '<S670>/If  Control Type Is Selective Passthrough' */
     }
@@ -5356,19 +5497,61 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
 
   /* End of If: '<S670>/If' */
 
+  /* DataTypeConversion: '<S670>/Data Type Conversion' */
+  rtb_RhhcosphicoslambXe = (real32_T)floor(SLUGS2_B.Merge[0]);
+  if (rtIsNaNF(rtb_RhhcosphicoslambXe) || rtIsInfF(rtb_RhhcosphicoslambXe)) {
+    rtb_RhhcosphicoslambXe = 0.0F;
+  } else {
+    rtb_RhhcosphicoslambXe = (real32_T)fmod(rtb_RhhcosphicoslambXe, 65536.0F);
+  }
+
+  rtb_u2deg = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)(uint16_T)
+    -rtb_RhhcosphicoslambXe : (uint16_T)rtb_RhhcosphicoslambXe;
+  rtb_RhhcosphicoslambXe = (real32_T)floor(SLUGS2_B.Merge[1]);
+  if (rtIsNaNF(rtb_RhhcosphicoslambXe) || rtIsInfF(rtb_RhhcosphicoslambXe)) {
+    rtb_RhhcosphicoslambXe = 0.0F;
+  } else {
+    rtb_RhhcosphicoslambXe = (real32_T)fmod(rtb_RhhcosphicoslambXe, 65536.0F);
+  }
+
+  rtb_DataTypeConversion_lk = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)
+    -(int16_T)(uint16_T)-rtb_RhhcosphicoslambXe : (uint16_T)
+    rtb_RhhcosphicoslambXe;
+  rtb_RhhcosphicoslambXe = (real32_T)floor(SLUGS2_B.Merge[2]);
+  if (rtIsNaNF(rtb_RhhcosphicoslambXe) || rtIsInfF(rtb_RhhcosphicoslambXe)) {
+    rtb_RhhcosphicoslambXe = 0.0F;
+  } else {
+    rtb_RhhcosphicoslambXe = (real32_T)fmod(rtb_RhhcosphicoslambXe, 65536.0F);
+  }
+
+  rtb_DataTypeConversion_ee = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)
+    -(int16_T)(uint16_T)-rtb_RhhcosphicoslambXe : (uint16_T)
+    rtb_RhhcosphicoslambXe;
+  rtb_RhhcosphicoslambXe = (real32_T)floor(SLUGS2_B.Merge[3]);
+  if (rtIsNaNF(rtb_RhhcosphicoslambXe) || rtIsInfF(rtb_RhhcosphicoslambXe)) {
+    rtb_RhhcosphicoslambXe = 0.0F;
+  } else {
+    rtb_RhhcosphicoslambXe = (real32_T)fmod(rtb_RhhcosphicoslambXe, 65536.0F);
+  }
+
+  rtb_DataTypeConversion_g0 = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)
+    -(int16_T)(uint16_T)-rtb_RhhcosphicoslambXe : (uint16_T)
+    rtb_RhhcosphicoslambXe;
+
+  /* End of DataTypeConversion: '<S670>/Data Type Conversion' */
+
   /* DataStoreWrite: '<S16>/mlPwmCommands' incorporates:
    *  DataStoreRead: '<S16>/Get time3'
    *  DataTypeConversion: '<S669>/Data Type Conversion'
    *  Gain: '<S669>/Convert to  Microseconds'
    */
-  mlPwmCommands.servo1_raw = (uint16_T)(((uint32_T)SLUGS2_B.Merge_oc[0] << 15) >>
-    14);
-  mlPwmCommands.servo2_raw = (uint16_T)(((uint32_T)SLUGS2_B.Merge_oc[1] << 15) >>
-    14);
-  mlPwmCommands.servo3_raw = (uint16_T)(((uint32_T)SLUGS2_B.Merge_oc[2] << 15) >>
-    14);
-  mlPwmCommands.servo4_raw = (uint16_T)(((uint32_T)SLUGS2_B.Merge_oc[3] << 15) >>
-    14);
+  mlPwmCommands.servo1_raw = (uint16_T)(((uint32_T)rtb_u2deg << 15) >> 14);
+  mlPwmCommands.servo2_raw = (uint16_T)(((uint32_T)rtb_DataTypeConversion_lk <<
+    15) >> 14);
+  mlPwmCommands.servo3_raw = (uint16_T)(((uint32_T)rtb_DataTypeConversion_ee <<
+    15) >> 14);
+  mlPwmCommands.servo4_raw = (uint16_T)(((uint32_T)rtb_DataTypeConversion_g0 <<
+    15) >> 14);
   mlPwmCommands.time_usec = SLUGS2_DWork.time_since_boot_usec;
 
   /* DataStoreWrite: '<S16>/mlAttitudePQR' */
@@ -5424,10 +5607,10 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
 
   /* RateTransition: '<S16>/Rate Transition' */
   if (SLUGS2_M->Timing.RateInteraction.TID0_1 == 1) {
-    SLUGS2_B.RateTransition[0] = SLUGS2_B.Merge_oc[1];
-    SLUGS2_B.RateTransition[1] = SLUGS2_B.Merge_oc[3];
-    SLUGS2_B.RateTransition[2] = SLUGS2_B.Merge_oc[0];
-    SLUGS2_B.RateTransition[3] = SLUGS2_B.Merge_oc[2];
+    SLUGS2_B.RateTransition[0] = rtb_DataTypeConversion_lk;
+    SLUGS2_B.RateTransition[1] = rtb_DataTypeConversion_g0;
+    SLUGS2_B.RateTransition[2] = rtb_u2deg;
+    SLUGS2_B.RateTransition[3] = rtb_DataTypeConversion_ee;
   }
 
   /* End of RateTransition: '<S16>/Rate Transition' */
@@ -5506,16 +5689,16 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   /* Gain: '<Root>/Gain' incorporates:
    *  UnitDelay: '<S2>/Output'
    */
-  tmp_9 = 3276800000UL;
-  uMultiWordMul(&tmp_9, 1, &SLUGS2_DWork.Output_DSTATE, 1, &tmp_8.chunks[0U], 2);
+  tmp_7 = 3276800000UL;
+  uMultiWordMul(&tmp_7, 1, &SLUGS2_DWork.Output_DSTATE, 1, &tmp_6.chunks[0U], 2);
 
   /* DataTypeConversion: '<Root>/Data Type Conversion6' */
-  uMultiWordShr(&tmp_8.chunks[0U], 2, 15U, &tmp_7.chunks[0U], 2);
+  uMultiWordShr(&tmp_6.chunks[0U], 2, 15U, &tmp_5.chunks[0U], 2);
 
   /* DataStoreWrite: '<Root>/Update time' incorporates:
    *  DataTypeConversion: '<Root>/Data Type Conversion6'
    */
-  SLUGS2_DWork.time_since_boot_usec = MultiWord2uLong(&tmp_7.chunks[0U]);
+  SLUGS2_DWork.time_since_boot_usec = MultiWord2uLong(&tmp_5.chunks[0U]);
 
   /* S-Function "MCHP_MCU_LOAD" Block: <Root>/MCU Load */
   SLUGS2_B.U3CH4 = MCHP_MCULoadResult[0];
@@ -5606,7 +5789,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   SLUGS2_DWork.IntegerDelay3_DSTATE = rtb_Switch3;
 
   /* Update for Delay: '<S67>/Integer Delay3' */
-  SLUGS2_DWork.IntegerDelay3_DSTATE_k = rtb_Deg2R_h_idx_0;
+  SLUGS2_DWork.IntegerDelay3_DSTATE_k = rtb_Product;
 
   /* Update for Enabled SubSystem: '<S4>/L1 Output Feedback Controller With  Projection Operator' incorporates:
    *  Update for EnablePort: '<S62>/Enable'
@@ -5618,7 +5801,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      *
      *  Store in Global RAM
      */
-    SLUGS2_DWork.UD_DSTATE_ff = rtb_IC4_idx_1;
+    SLUGS2_DWork.UD_DSTATE_ff = rtb_IC4_idx_0;
 
     /* Update for Delay: '<S72>/Integer Delay' */
     SLUGS2_DWork.IntegerDelay_DSTATE_an = rtb_Switch1_a;
@@ -5635,7 +5818,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      *
      *  Store in Global RAM
      */
-    SLUGS2_DWork.UD_DSTATE_j = rtb_Product;
+    SLUGS2_DWork.UD_DSTATE_j = rtb_y_jl_idx_0;
 
     /* Update for Delay: '<S76>/Integer Delay' */
     SLUGS2_DWork.IntegerDelay_DSTATE_k = rtb_Switch3_kh;
@@ -5644,7 +5827,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
     SLUGS2_DWork.IntegerDelay1_DSTATE_b = rtb_Subtract_a;
 
     /* Update for Delay: '<S62>/Integer Delay' */
-    SLUGS2_DWork.IntegerDelay_DSTATE_i = rtb_Ze_b;
+    SLUGS2_DWork.IntegerDelay_DSTATE_i = rtb_Product3_bo;
 
     /* Update for Delay: '<S62>/Integer Delay1' */
     SLUGS2_DWork.IntegerDelay1_DSTATE_e = rtb_Switch1_a;
@@ -6105,12 +6288,6 @@ void SLUGS2_initialize(void)
   SLUGS2_B.IC = 0U;
   SLUGS2_DWork.IC_FirstOutputTime_m = true;
 
-  /* InitializeConditions for Enabled SubSystem: '<S180>/Get Frenet' */
-  /* InitializeConditions for Delay: '<S296>/Integer Delay1' */
-  //WIN
-  SLUGS2_DWork.IntegerDelay1_DSTATE_gn = 143.543F;// 1.0F;
-
-  /* End of InitializeConditions for SubSystem: '<S180>/Get Frenet' */
   /* InitializeConditions for IfAction SubSystem: '<S173>/Normal WP  Navigation' */
   /* InitializeConditions for Delay: '<S180>/Integer Delay' */
   SLUGS2_DWork.IntegerDelay_DSTATE_im = 1U;

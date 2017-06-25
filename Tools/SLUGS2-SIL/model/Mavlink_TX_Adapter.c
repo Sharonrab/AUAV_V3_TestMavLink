@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'SLUGS2'.
  *
- * Model version                  : 1.271
+ * Model version                  : 1.291
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Tue Apr 11 15:47:53 2017
+ * C/C++ source code generated on : Sat Jun 24 14:00:22 2017
  */
 
 #include "Mavlink_TX_Adapter.h"
@@ -63,7 +63,7 @@ void SLUGS2_Mavlink_TX_AdapterTID0(void)
    *  Sum: '<S6>/Sum1'
    */
   tmp = (int16_T)fmod((int16_T)floor(((real_T)mlPwmCommands.servo1_raw - 9386.0)
-	  * 0.00013460761879122358 * 100), 65536.0);
+    * 0.013460761879122358), 65536.0);
 
   /* DataStoreWrite: '<S6>/Set VfrHud' incorporates:
    *  DataTypeConversion: '<S6>/Data Type Conversion5'

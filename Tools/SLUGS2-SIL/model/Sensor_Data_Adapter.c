@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'SLUGS2'.
  *
- * Model version                  : 1.271
+ * Model version                  : 1.291
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Tue Apr 11 15:47:53 2017
+ * C/C++ source code generated on : Sat Jun 24 14:00:22 2017
  */
 
 #include "Sensor_Data_Adapter.h"
@@ -198,7 +198,7 @@ void S_Sensor_Data_Adapter_Init(void)
 void Sensor_Data_Adapter_Start(void)
 {
 #ifndef WIN
-  /* Start for S-Function (MCHP_MCU_LOAD): '<S590>/Calculus Time Step1' */
+  /* Start for S-Function (MCHP_MCU_LOAD): '<S582>/Calculus Time Step1' */
   TMR3 = 0;                            /* Initialize Timer 3 Value to 0.  Timer 3 is enabled only when the mcu is not idle */
 #endif
   /* Start for Enabled SubSystem: '<S614>/Enabled Subsystem' */
@@ -506,7 +506,7 @@ void SLUGS2_Sensor_Data_Adapter(void)
      *  Product: '<S634>/Divide1'
      *  Sum: '<S634>/Sum1'
      */
-    SLUGS2_B.Merge = (real32_T)rtb_Switch_d[10] - (rtb_Sum_o - 293.053F) *
+    SLUGS2_B.Merge_m = (real32_T)rtb_Switch_d[10] - (rtb_Sum_o - 293.053F) *
       -0.0950433F;
   }
 
@@ -525,8 +525,8 @@ void SLUGS2_Sensor_Data_Adapter(void)
      *  Sum: '<S635>/Sum1'
      *  Sum: '<S635>/Sum2'
      */
-    SLUGS2_B.Merge = ((real32_T)rtb_Switch_d[10] - (rtb_Sum_o - -202.93F) *
-                      -0.0552923F) + -41.0F;
+    SLUGS2_B.Merge_m = ((real32_T)rtb_Switch_d[10] - (rtb_Sum_o - -202.93F) *
+                        -0.0552923F) + -41.0F;
   }
 
   /* End of Outputs for SubSystem: '<S618>/Lo Temp Compensation' */
@@ -536,7 +536,7 @@ void SLUGS2_Sensor_Data_Adapter(void)
    *  Constant: '<S623>/Constant1'
    *  DataTypeConversion: '<S585>/Data Type Conversion3'
    */
-  S_EmbeddedMATLABFunction_f((real_T)SLUGS2_B.Merge, 0.01, 4.0,
+  S_EmbeddedMATLABFunction_f((real_T)SLUGS2_B.Merge_m, 0.01, 4.0,
     &SLUGS2_B.sf_EmbeddedMATLABFunction_lw,
     &SLUGS2_DWork.sf_EmbeddedMATLABFunction_lw);
 

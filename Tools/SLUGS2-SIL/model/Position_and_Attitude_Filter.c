@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'SLUGS2'.
  *
- * Model version                  : 1.271
+ * Model version                  : 1.291
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Tue Apr 11 15:47:53 2017
+ * C/C++ source code generated on : Sat Jun 24 14:00:22 2017
  */
 
 #include "Position_and_Attitude_Filter.h"
@@ -515,9 +515,7 @@ void Position_and_Attitude_Filt(void)
   /* Outputs for Enabled SubSystem: '<S12>/Enabled Subsystem' incorporates:
    *  EnablePort: '<S474>/Enable'
    */
-#ifndef WIN
   if (SLUGS2_B.ChecksifFixTypeis3updateSenso_p > 0) {
-#endif
     /* SignalConversion: '<S540>/TmpSignal ConversionAtProduct1Inport1' incorporates:
      *  Fcn: '<S543>/11'
      *  Fcn: '<S543>/12'
@@ -570,9 +568,7 @@ void Position_and_Attitude_Filt(void)
 
     /* Inport: '<S474>/In3' */
     SLUGS2_B.In3 = SLUGS2_B.Switch1[4];
-#ifndef WIN
   }
-#endif
 
   /* End of Outputs for SubSystem: '<S12>/Enabled Subsystem' */
 

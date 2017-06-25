@@ -73,7 +73,7 @@ unsigned char isApManual(uint16_t failsafe) {
         mlHeartbeatLocal.base_mode |= MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
     }
 	else if (failsafe < (uint16_t)3000U) {
-		mlHeartbeatLocal.custom_mode = SLUGS_MODE_SELECTIVE_PASSTHROUGH;// SLUGS_MODE_MID_LEVEL;// SLUGS_MODE_SELECTIVE_PASSTHROUGH;
+		mlHeartbeatLocal.custom_mode = SLUGS_MODE_MID_LEVEL;// SLUGS_MODE_MID_LEVEL;// SLUGS_MODE_SELECTIVE_PASSTHROUGH;
 		mlHeartbeatLocal.base_mode &= ~MAV_MODE_FLAG_MANUAL_INPUT_ENABLED;
 		//mlHeartbeatLocal.base_mode |= MAV_MODE_FLAG_STABILIZE_ENABLED;
 
