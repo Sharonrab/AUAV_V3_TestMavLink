@@ -79,11 +79,11 @@ void InitParameterInterface(void)
     mlParamInterface.param[PAR_PID_AIRSPEED_D] = 0.004;
 
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_P], "PID_PIT_FO_P");
-        mlParamInterface.param[PAR_PID_PITCH_FO_P] = -0.11;
+        mlParamInterface.param[PAR_PID_PITCH_FO_P] = -0.1;
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_I], "PID_PIT_FO_I");
-        //mlParamInterface.param[PAR_PID_PITCH_FO_I] = -0.00499999988824;   
+	mlParamInterface.param[PAR_PID_PITCH_FO_I] = -0.001;// -0.00499999988824;
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_D], "PID_PIT_FO_D");
-        //mlParamInterface.param[PAR_PID_PITCH_FO_D] = -0.0599999986589;
+	mlParamInterface.param[PAR_PID_PITCH_FO_D] = -0.004;// -0.0599999986589;
 
     strcpy(mlParamInterface.param_name[PAR_PID_ROLL_CON_P], "PID_ROLL_CO_P");
 	mlParamInterface.param[PAR_PID_ROLL_CON_P] = 0.1;// 0.649999976158;
@@ -94,10 +94,10 @@ void InitParameterInterface(void)
 
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_P], "PID_HE2PITC_P");
-                mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.13;//0.0450000017881;
+	mlParamInterface.param[PAR_PID_HE_TO_PI_P] = 0.09;// 0.13;//0.0450000017881;
 
     strcpy(mlParamInterface.param_name[PAR_PID_HE_TO_PI_I], "PID_HE2PITC_I");
-	mlParamInterface.param[PAR_PID_HE_TO_PI_I] = 0.5;// 0;
+	mlParamInterface.param[PAR_PID_HE_TO_PI_I] = 0.008;// 0.5;// 0;
 
     strcpy(mlParamInterface.param_name[PAR_PID_HEI_ERR_FF], "PID_HERR_FF");
                 //mlParamInterface.param[PAR_PID_HEI_ERR_FF] = -0.10000000149;
@@ -169,8 +169,8 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
 	 mlWpValues.lon[0] = -122.0505066f;
 	 mlWpValues.lon[1] = -122.0501633f;
 
-	 mlWpValues.alt[0] = 160 + 30.0;
-	 mlWpValues.alt[1] = 160 + 30.0;
+	 mlWpValues.alt[0] = 166.3 + 70.0;//GS_location baseHeight + altitude above ground
+	 mlWpValues.alt[1] = 166.3 + 70.0;//GS_location baseHeight + altitude above ground
 
 	 mlWpValues.type[0] = 16;
 	 mlWpValues.type[1] = 16;
