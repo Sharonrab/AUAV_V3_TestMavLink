@@ -151,6 +151,7 @@
     <ClCompile Include="clib\adisCube16405.c" />
     <ClCompile Include="clib\apUtils.c" />
     <ClCompile Include="clib\circBuffer.c" />
+    <ClCompile Include="clib\gpsParseUBX.c" />
     <ClCompile Include="clib\gpsPort.c" />
     <ClCompile Include="clib\gpsUblox.c" />
     <ClCompile Include="clib\hil.c" />
@@ -160,7 +161,6 @@
     <ClCompile Include="clib\navSupport.c" />
     <ClCompile Include="clib\updateControlMcuState.c" />
     <ClCompile Include="clib\updateSensorMcuState.c" />
-    <ClCompile Include="external\gpsParseUBX.c" />
     <ClCompile Include="flt2frct.c" />
     <ClCompile Include="frct2flt.c" />
     <ClCompile Include="main.c" />

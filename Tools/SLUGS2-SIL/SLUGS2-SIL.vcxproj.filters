@@ -23,9 +23,6 @@
     <ClCompile Include="clib\circBuffer.c">
       <Filter>clib</Filter>
     </ClCompile>
-    <ClCompile Include="external\gpsParseUBX.c">
-      <Filter>external</Filter>
-    </ClCompile>
     <ClCompile Include="model\Mavlink_TX_Adapter.c">
       <Filter>Model</Filter>
     </ClCompile>
@@ -106,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="model\SLUGS2_main.c">
       <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="clib\gpsParseUBX.c">
+      <Filter>clib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

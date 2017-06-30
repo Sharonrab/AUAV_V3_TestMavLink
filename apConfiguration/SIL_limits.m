@@ -10,17 +10,17 @@ drLimit = single(10*pi/180);
 
 %% Trim Limits IN IC 
 % divide by 5 to get uS
-dtTrimMin = 2000;%((0.55)-bICdt)/(mICdt);%((0.20)-bICdt)/(mICdt); AM 4 new Longi
-dtTrimMax = 2400;%((0.68)-bICdt)/(mICdt);%((0.80)-bICdt)/(mICdt); AM 4 new Longi
+dtTrimMin = ((0.55)-bICdt)/(mICdt);%((0.20)-bICdt)/(mICdt); AM 4 new Longi 9386;%
+dtTrimMax = ((0.68)-bICdt)/(mICdt);%((0.80)-bICdt)/(mICdt); AM 4 new Longi 14000;%
 
-daTrimMin = 2900;%((2*pi/180)-bICda)/(mICda);%((-2*pi/180)-bICda)/(mICda); AM reverse servo
-daTrimMax = 3100;%((-2*pi/180)-bICda)/(mICda);%((2*pi/180)-bICda)/(mICda); AM reverse servo
+daTrimMin = ((2*pi/180)-bICda)/(mICda);%((-2*pi/180)-bICda)/(mICda); AM reverse servo 11000;%
+daTrimMax = ((-2*pi/180)-bICda)/(mICda);%((2*pi/180)-bICda)/(mICda); AM reverse servo 14000;%
 
-drTrimMin = 2900;%((2*pi/180)-bICdr)/(mICdr);%((-2*pi/180)-bICdr)/(mICdr); AM reverse servo
-drTrimMax = 3100;%((-2*pi/180)-bICdr)/(mICdr);%((2*pi/180)-bICdr)/(mICdr); AM reverse servo
+drTrimMin = ((2*pi/180)-bICdr)/(mICdr);%((-2*pi/180)-bICdr)/(mICdr); AM reverse servo 11000;%
+drTrimMax = ((-2*pi/180)-bICdr)/(mICdr);%((2*pi/180)-bICdr)/(mICdr); AM reverse servo 14000;%
 
-deTrimMin = 2900;%((-2*pi/180)-bICde)/(mICde);
-deTrimMax = 3100;%((2*pi/180)-bICde)/(mICde);
+deTrimMin = ((-2*pi/180)-bICde)/(mICde);%11000;%
+deTrimMax = ((2*pi/180)-bICde)/(mICde);%14000;%
 
 
 

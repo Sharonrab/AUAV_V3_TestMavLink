@@ -50,12 +50,12 @@ accelXCutTemp = 350.0;
     imuOffset_ygyro =       65;
     imuOffset_zgyro =       5;
  %Pheonix
-    imuOffset_xacc  =       -50;
-    imuOffset_yacc  =       -350;
+    imuOffset_xacc  =       -250;
+    imuOffset_yacc  =       400;
     imuOffset_zacc  =       180;
    
-    imuOffset_xgyro =       96;
-    imuOffset_ygyro =       -15;
+    imuOffset_xgyro =       110;
+    imuOffset_ygyro =       80;
     imuOffset_zgyro =       4;
 % Baro
 % From data sheet assuming linear mapping from 5 to 3.3 

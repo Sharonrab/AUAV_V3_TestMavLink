@@ -10,7 +10,7 @@
 % +20 -> 4725
 
 rad = [20 0 -20]*pi/180;
-pwm = [1894 2633 3362];
+pwm = [9490 13154 16815];
 P =  polyfit(rad, pwm,1);
 mdr = P(1);
 bdr = P(2);
@@ -30,7 +30,7 @@ bPWMdr = P(2);
 % +20 -> 4900
 
 rad = [15 0 -15]*pi/180;
-pwm = [1898 2628 3360];
+pwm = [9490 13154 16815];
 P =  polyfit(rad,pwm,1);
 mda = P(1);
 bda = P(2);
@@ -50,7 +50,7 @@ bPWMda = P(2);
 % +15 -> 4850
 
 rad = [-10 0 10]*pi/180;
-pwm = [1902 2628 3354];
+pwm = [9490 13154 16815];
 P =  polyfit(rad,pwm,1);
 mde = P(1);
 bde = P(2);
@@ -65,7 +65,7 @@ bPWMde = P(2);
 % 1  ->  4850
 
 rad = [0 1];
-pwm = [1886 3370];
+pwm = [9386 16815];%Why the scale was ???/10
 P =  polyfit(rad, pwm, 1);
 mdt = P(1);
 bdt = P(2);
@@ -78,18 +78,18 @@ bPWMdt = P(2);
 % Conversion from IC output to Radians
 
 % Rudder
-mICdr = mPWMdr/2;
+mICdr = mPWMdr;% was with /2 before
 bICdr = bPWMdr;
 
 % Aileron
-mICda = mPWMda/2;
+mICda = mPWMda;% was with /2 before
 bICda = bPWMda;
 
 % Elevator
-mICde = mPWMde/2;
+mICde = mPWMde;% was with /2 before
 bICde = bPWMde;
 
 
 %Throttle
-mICdt = mPWMdt/2;
+mICdt = mPWMdt;% was with /2 before
 bICdt = bPWMdt;

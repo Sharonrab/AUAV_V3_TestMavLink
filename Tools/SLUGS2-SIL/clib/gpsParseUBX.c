@@ -19,23 +19,14 @@
 // along with MatrixPilot.  If not, see <http://www.gnu.org/licenses/>.
 
 
-//#include "libDCM_internal.h"
-//#include "gpsParseCommon.h"
-//#include "../libUDB/magnetometer.h"
-//#include "rmat.h"
-
-//#include "udbTypes.h"
-//#include "libUDB.h"
+#ifdef WIN ////SLUGS2 SIL
+#include <stdint.h>
+#define inline __inline
+#endif
 #include "mavlink.h"
 /* Include model header file for global data */
-#ifdef UNIT_TEST
-#include "AUAV_V3_TestSensors.h"
-#else
 #include "SLUGS2.h"
-#endif
-#ifdef WIN
-#include <stdint.h>
-#endif
+
 extern uint8_t Uart4OutBuff[MAVLINK_MAX_PACKET_LEN];
 
 // UDB Types
@@ -1313,10 +1304,10 @@ uint16_t send_HILSIM_outputs(void)
     
     int16_t udb_pwOut[MAX_OUTPUTS]; // pulse widths for servo outputs
 
-	udb_pwOut[AILERON_OUTPUT_CHANNEL] = mlPwmCommands.servo2_raw *10 ;//
-	udb_pwOut[THROTTLE_OUTPUT_CHANNEL] = mlPwmCommands.servo1_raw * 10;//
-	udb_pwOut[RUDDER_OUTPUT_CHANNEL] = mlPwmCommands.servo3_raw * 10;//
-	udb_pwOut[ELEVATOR_OUTPUT_CHANNEL] = mlPwmCommands.servo4_raw * 10 ;//
+	udb_pwOut[AILERON_OUTPUT_CHANNEL] = mlPwmCommands.servo2_raw;// *10;//
+	udb_pwOut[THROTTLE_OUTPUT_CHANNEL] = mlPwmCommands.servo1_raw;// *10;//
+	udb_pwOut[RUDDER_OUTPUT_CHANNEL] = mlPwmCommands.servo3_raw;// *10;//
+	udb_pwOut[ELEVATOR_OUTPUT_CHANNEL] = mlPwmCommands.servo4_raw;// *10;//
 	for (i = 1; i <= NUM_OUTPUTS; i++)
 	{
 		
