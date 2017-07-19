@@ -62,8 +62,8 @@ void SLUGS2_Mavlink_TX_AdapterTID0(void)
    *  Gain: '<S6>/Gain2'
    *  Sum: '<S6>/Sum1'
    */
-  tmp = (int16_T)fmod((int16_T)floor(((real_T)mlPwmCommands.servo1_raw - 9386.0)
-    * 0.013460761879122358), 65536.0);
+  tmp = (int16_T)fmod((int16_T)floor(((real_T)mlPwmCommands.servo1_raw - 9224.0)
+    * 0.013768415255404102), 65536.0);
 
   /* DataStoreWrite: '<S6>/Set VfrHud' incorporates:
    *  DataTypeConversion: '<S6>/Data Type Conversion5'

@@ -169,8 +169,8 @@ strcpy(mlParamInterface.param_name[PAR_CONFIG_ROLL_R], "CONFIG_ROLL_R");
 	 mlWpValues.lon[0] = -122.0505066f;
 	 mlWpValues.lon[1] = -122.0501633f;
 
-	 mlWpValues.alt[0] = 400;//GS_location baseHeight + altitude above ground
-	 mlWpValues.alt[1] = 400;//GS_location baseHeight + altitude above ground
+	 mlWpValues.alt[0] = 380.0;//GS_location baseHeight + altitude above ground
+	 mlWpValues.alt[1] = 380.0;//GS_location baseHeight + altitude above ground
 
 	 mlWpValues.type[0] = 16;
 	 mlWpValues.type[1] = 16;

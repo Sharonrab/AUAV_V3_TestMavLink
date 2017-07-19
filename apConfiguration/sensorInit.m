@@ -43,20 +43,32 @@ accelXCutTemp = 350.0;
 % Scale/Offset sets
 % =================
 %Bixler2_1
+if AirplanType == 'Bixler2_1' % board AUAV3-R5 #1
     imuOffset_xacc  =       -300;
     imuOffset_yacc  =       50;
     imuOffset_zacc  =       660;
     imuOffset_xgyro =       105;
     imuOffset_ygyro =       65;
     imuOffset_zgyro =       5;
+% elseif AirplanType == 'Pheonix_1' % board AUAV3-R5 #2
+%  %Pheonix
+%     imuOffset_xacc  =       -250;
+%     imuOffset_yacc  =       400;
+%     imuOffset_zacc  =       180;
+%    
+%     imuOffset_xgyro =       110;
+%     imuOffset_ygyro =       80;
+%     imuOffset_zgyro =       4;
+elseif AirplanType == 'Pheonix_1' % board AUAV3-R5 #4
  %Pheonix
-    imuOffset_xacc  =       -250;
-    imuOffset_yacc  =       400;
-    imuOffset_zacc  =       180;
+    imuOffset_xacc  =       -250-50;
+    imuOffset_yacc  =       400-200;
+    imuOffset_zacc  =       180-516;
    
-    imuOffset_xgyro =       110;
-    imuOffset_ygyro =       80;
-    imuOffset_zgyro =       4;
+    imuOffset_xgyro =       110-100-5;
+    imuOffset_ygyro =       80-230;
+    imuOffset_zgyro =       4-50;    
+end
 % Baro
 % From data sheet assuming linear mapping from 5 to 3.3 
 % into the micro ADC

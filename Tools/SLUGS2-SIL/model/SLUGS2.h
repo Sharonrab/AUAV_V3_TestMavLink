@@ -631,7 +631,7 @@ typedef struct {
    *   '<S396>/UEN 2 NEU'
    *   '<S413>/UEN 2 NEU'
    */
-  real32_T pooled64[9];
+  real32_T pooled65[9];
 } ConstParam_SLUGS2_T;
 
 /* Real-time Model Data Structure */
