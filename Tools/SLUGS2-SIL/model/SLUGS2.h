@@ -64,6 +64,9 @@
 # define rtmTaskCounter(rtm, idx)      ((rtm)->Timing.TaskCounters.TID[(idx)])
 #endif
 
+/* Exported data define */
+#define SYS_ID_DEF                     ((uint8_T) 100U)
+
 /* user code (top of header file) */
 #include "MavlinkComm.h"
 

@@ -5631,7 +5631,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
 
     /* S-Function (MCHP_C_function_Call): '<S671>/PackRawServo' */
     SLUGS2_B.PackRawServo_l = HIL_PackRawServo(
-      ((uint8_T)101U)
+      SYS_ID_DEF
       , ((uint8_T)1U)
       , SLUGS2_B.GetRawCommands
       , SLUGS2_B.Gettime5

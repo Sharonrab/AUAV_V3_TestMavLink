@@ -103,15 +103,15 @@ void SLUGS2_IMU_Mag_Driver(void)
      *  DataTypeConversion: '<S57>/Data Type Conversion3'
      *  DataTypeConversion: '<S58>/Data Type Conversion3'
      */
-    mlRawImuData.xacc = (int16_T)SLUGS2_B.U1CH8[0] - 250;
-    mlRawImuData.yacc = (int16_T)SLUGS2_B.U1CH8[1] + 400;
-    mlRawImuData.zacc = (int16_T)SLUGS2_B.U1CH8[2] + 180;
+    mlRawImuData.xacc = (int16_T)SLUGS2_B.U1CH8[0] - 300;
+    mlRawImuData.yacc = (int16_T)SLUGS2_B.U1CH8[1] + 200;
+    mlRawImuData.zacc = (int16_T)SLUGS2_B.U1CH8[2] - 336;
     mlRawImuData.xgyro = (int16_T)SLUGS2_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[0] +
-      110;
-    mlRawImuData.ygyro = (int16_T)SLUGS2_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[1] +
-      80;
-    mlRawImuData.zgyro = (int16_T)SLUGS2_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[2] +
-      4;
+      5;
+    mlRawImuData.ygyro = (int16_T)SLUGS2_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[1] -
+      150;
+    mlRawImuData.zgyro = (int16_T)SLUGS2_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[2] -
+      46;
     mlRawImuData.xmag = SLUGS2_B.BUSI2CReadHMC5883Magn100Hz1[1];
     mlRawImuData.ymag = SLUGS2_B.BUSI2CReadHMC5883Magn100Hz1[3];
     mlRawImuData.zmag = SLUGS2_B.BUSI2CReadHMC5883Magn100Hz1[5];

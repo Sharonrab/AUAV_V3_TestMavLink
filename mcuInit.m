@@ -6,9 +6,13 @@ apSampleTime = 0.01;
 derivativesConstant = 5;
 %PAR_HIL =1;
 SIL = 0;
-AirplanType = 'Pheonix_1';   SYS_ID = 100;
+AirplanType = 'Pheonix_1';   SYS_ID = 100; 
 %AirplanType = 'Bixler2_1'; SYS_ID = 101;
-
+%set the object to the new config
+SYS_ID_DEF= mpt.Parameter; 
+SYS_ID_DEF.CoderInfo.StorageClass = 'Custom'
+SYS_ID_DEF.CoderInfo.CustomStorageClass = 'Define'
+SYS_ID_DEF.Value = SYS_ID;
 %%%%%
 % the vars below are not used in the code they belong to InnereOuter sim
 % BUT you need to have them in order for the code generator to work

@@ -98,7 +98,7 @@ void SLUGS2_Mavlink_TX_AdapterTID5(void)
 {
   /* S-Function (MCHP_C_function_Call): '<S6>/ParamInterfaceResponse' */
   SLUGS2_B.ParamInterfaceResponse = ParameterInterfaceResponse(
-    ((uint8_T)101U)
+    SYS_ID_DEF
     , ((uint8_T)1U)
     );
 
@@ -113,7 +113,7 @@ void SLUGS2_Mavlink_TX_AdapterTID6(void)
 {
   /* S-Function (MCHP_C_function_Call): '<S6>/MissionInterfaceResponse' */
   SLUGS2_B.MissionInterfaceResponse = MissionInterfaceResponse(
-    ((uint8_T)101U)
+    SYS_ID_DEF
     , ((uint8_T)1U)
     );
 
@@ -128,7 +128,7 @@ void SLUGS2_Mavlink_TX_AdapterTID10(void)
 {
   /* S-Function (MCHP_C_function_Call): '<S6>/PackHeartBeat' */
   SLUGS2_B.PackHeartBeat = PackHeartBeat(
-    ((uint8_T)101U)
+    SYS_ID_DEF
     , ((uint8_T)1U)
     );
 
@@ -149,7 +149,7 @@ void SLUGS2_Mavlink_TX_AdapterTID12(void)
 
   /* S-Function (MCHP_C_function_Call): '<S6>/PackGpsRawInt' */
   SLUGS2_B.PackGpsRawInt = PackGpsRawInt(
-    ((uint8_T)101U)
+    SYS_ID_DEF
     , ((uint8_T)1U)
     , SLUGS2_B.GetRawGpsInt
     , SLUGS2_B.Gettime1
@@ -174,7 +174,7 @@ void SLUGS2_Mavlink_TX_AdapterTID13(void)
 
   /* S-Function (MCHP_C_function_Call): '<S6>/PackRawIMU' */
   SLUGS2_B.PackRawIMU = PackRawIMU(
-    ((uint8_T)101U)
+    SYS_ID_DEF
     , ((uint8_T)1U)
     , SLUGS2_B.RawIMURateTransition
     , SLUGS2_B.Gettime
@@ -197,7 +197,7 @@ void SLUGS2_Mavlink_TX_AdapterTID14(void)
 
   /* S-Function (MCHP_C_function_Call): '<S6>/PackScaledPressure' */
   SLUGS2_B.PackScaledPressure = PackScaledPressure(
-    ((uint8_T)101U)
+    SYS_ID_DEF
     , ((uint8_T)1U)
     , SLUGS2_B.GetmlAirData
     , SLUGS2_B.Gettime2
@@ -217,7 +217,7 @@ void SLUGS2_Mavlink_TX_AdapterTID15(void)
 
   /* S-Function (MCHP_C_function_Call): '<S6>/PackSysStatus' */
   SLUGS2_B.PackSysStatus = PackSysStatus(
-    ((uint8_T)101U)
+    SYS_ID_DEF
     , ((uint8_T)1U)
     , SLUGS2_B.GetmlSysStatus
     );
@@ -239,7 +239,7 @@ void SLUGS2_Mavlink_TX_AdapterTID16(void)
 
   /* S-Function (MCHP_C_function_Call): '<S6>/PackHUD' */
   SLUGS2_B.PackHUD = PackVFR_HUD(
-    ((uint8_T)101U)
+    SYS_ID_DEF
     , ((uint8_T)1U)
     , SLUGS2_B.GetVfrHud
     , SLUGS2_B.Gettime4_e
@@ -264,7 +264,7 @@ void SLUGS2_Mavlink_TX_AdapterTID17(void)
 
   /* S-Function (MCHP_C_function_Call): '<S6>/PackRawRC' */
   SLUGS2_B.PackRawRC = PackRawRC(
-    ((uint8_T)101U)
+    SYS_ID_DEF
     , ((uint8_T)1U)
     , SLUGS2_B.RCRateTransition
     , SLUGS2_B.Gettime3
@@ -287,7 +287,7 @@ void SLUGS2_Mavlink_TX_AdapterTID18(void)
 
   /* S-Function (MCHP_C_function_Call): '<S6>/PackRawServo' */
   SLUGS2_B.PackRawServo_d = PackRawServo(
-    ((uint8_T)101U)
+    SYS_ID_DEF
     , ((uint8_T)1U)
     , SLUGS2_B.GetRawCommands_p
     , SLUGS2_B.Gettime5_a
@@ -310,7 +310,7 @@ void SLUGS2_Mavlink_TX_AdapterTID19(void)
 
   /* S-Function (MCHP_C_function_Call): '<S6>/Pack Navigation' */
   SLUGS2_B.PackNavigation = PackRawNavigation(
-    ((uint8_T)101U)
+    SYS_ID_DEF
     , ((uint8_T)1U)
     , SLUGS2_B.GetAttitude1
     , SLUGS2_B.Gettime7
@@ -335,7 +335,7 @@ void SLUGS2_Mavlink_TX_AdapterTID20(void)
 
   /* S-Function (MCHP_C_function_Call): '<S6>/Pack Attitude' */
   SLUGS2_B.PackAttitude = PackRawAttitude(
-    ((uint8_T)101U)
+    SYS_ID_DEF
     , ((uint8_T)1U)
     , SLUGS2_B.AttitudeRateTransition
     , SLUGS2_B.Gettime6

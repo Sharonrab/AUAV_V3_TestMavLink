@@ -1,6 +1,8 @@
 
 #include "MavlinkComm.h"
 #include "circBuffer.h"
+///* Includes for objects with custom storage classes. */
+//#include "../clib/external_params.h"
 
 #include <stdio.h>
 #ifdef UNIT_TEST
@@ -430,7 +432,7 @@ void protDecodeMavlink(void) {
                 case MAVLINK_MSG_ID_PARAM_SET:
                     mavlink_msg_param_set_decode(&msg, &set);
 
-                    if ((uint8_t) set.target_system == (uint8_t) SYSTEMID &&
+                    if ((uint8_t) set.target_system == (uint8_t) SYS_ID_DEF &&
                         (uint8_t) set.target_component == (uint8_t) COMPID) {
 
 

@@ -22,7 +22,7 @@ void uartMavlinkBufferInit (void);
 #define SUCCESS ((char)0)
 #define FAILURE ((char)-1)
 
-#define SYSTEMID	101
+//#define SYSTEMID	101
 #define COMPID		1
 #define GS_SYSTEMID	127
 #define GS_COMPID	0
