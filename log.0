@@ -13,3 +13,8 @@ INFO:
 Jul 18, 2017 6:42:17 PM com.microchip.mplab.mdbcore.RealICETool.RIMessages OutputMessage
 INFO: 
 
+Aug 07, 2017 11:59:40 AM java.util.prefs.WindowsPreferences <init>
+WARNING: Could not open/create prefs root node Software\JavaSoft\Prefs at root 0x80000002. Windows RegCreateKeyEx(...) returned error code 5.
+Aug 07, 2017 11:59:41 AM com.microchip.mplab.mdbcore.RealICETool.RIMessages OutputMessage
+INFO: 
+
