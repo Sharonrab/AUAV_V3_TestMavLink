@@ -50,15 +50,14 @@ if AirplanType == 'Bixler2_1' % board AUAV3-R5 #1
     imuOffset_xgyro =       105;
     imuOffset_ygyro =       65;
     imuOffset_zgyro =       5;
-% elseif AirplanType == 'Pheonix_1' % board AUAV3-R5 #2
-%  %Pheonix
-%     imuOffset_xacc  =       -250;
-%     imuOffset_yacc  =       400;
-%     imuOffset_zacc  =       180;
-%    
-%     imuOffset_xgyro =       110;
-%     imuOffset_ygyro =       80;
-%     imuOffset_zgyro =       4;
+
+elseif AirplanType == 'Bixler2_2' % board AUAV3-R5 #2
+    imuOffset_xacc  =       -300;
+    imuOffset_yacc  =       50;
+    imuOffset_zacc  =       660;
+    imuOffset_xgyro =       105;
+    imuOffset_ygyro =       65;
+    imuOffset_zgyro =       5;
 elseif AirplanType == 'Pheonix_1' % board AUAV3-R5 #4
  %Pheonix
     imuOffset_xacc  =       -250-50;

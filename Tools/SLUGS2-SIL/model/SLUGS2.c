@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'SLUGS2'.
  *
- * Model version                  : 1.291
+ * Model version                  : 1.304
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Jun 24 14:00:22 2017
+ * C/C++ source code generated on : Mon Aug 28 10:37:11 2017
  */
 
 #include "SLUGS2.h"
@@ -932,7 +932,6 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   real32_T rtb_Switch1_a;
   uint16_T rtb_DataTypeConversion_lk;
   uint16_T rtb_DataTypeConversion_ee;
-  uint16_T rtb_DataTypeConversion_g0;
   real32_T rtb_Merge_m[3];
   real32_T rtb_Ze_b;
   real32_T rtb_cosphi;
@@ -951,6 +950,7 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
   real32_T tmp_1[9];
   real32_T tmp_2[9];
   real32_T tmp_3[9];
+  uint16_T rtb_DataTypeConversion_cr_idx_3;
   real32_T rtb_IC4_idx_1;
   real32_T rtb_IC4_idx_0;
   real32_T rtb_Deg2R_h_idx_0;
@@ -1774,9 +1774,9 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
        */
       for (i = 0; i < 3; i++) {
         SLUGS2_B.Reshape1[i] = 0.0F;
-        SLUGS2_B.Reshape1[i] += SLUGS2_ConstP.pooled65[i] * tmp_0[0];
-        SLUGS2_B.Reshape1[i] += SLUGS2_ConstP.pooled65[i + 3] * tmp_0[1];
-        SLUGS2_B.Reshape1[i] += SLUGS2_ConstP.pooled65[i + 6] * tmp_0[2];
+        SLUGS2_B.Reshape1[i] += SLUGS2_ConstP.pooled63[i] * tmp_0[0];
+        SLUGS2_B.Reshape1[i] += SLUGS2_ConstP.pooled63[i + 3] * tmp_0[1];
+        SLUGS2_B.Reshape1[i] += SLUGS2_ConstP.pooled63[i + 6] * tmp_0[2];
       }
 
       /* End of Reshape: '<S439>/Reshape1' */
@@ -1978,9 +1978,9 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
     /* Gain: '<S396>/UEN 2 NEU' */
     for (i = 0; i < 3; i++) {
       SLUGS2_B.WP0L2IPT1[i] = 0.0F;
-      SLUGS2_B.WP0L2IPT1[i] += SLUGS2_ConstP.pooled65[i] * tmp_0[0];
-      SLUGS2_B.WP0L2IPT1[i] += SLUGS2_ConstP.pooled65[i + 3] * tmp_0[1];
-      SLUGS2_B.WP0L2IPT1[i] += SLUGS2_ConstP.pooled65[i + 6] * tmp_0[2];
+      SLUGS2_B.WP0L2IPT1[i] += SLUGS2_ConstP.pooled63[i] * tmp_0[0];
+      SLUGS2_B.WP0L2IPT1[i] += SLUGS2_ConstP.pooled63[i + 3] * tmp_0[1];
+      SLUGS2_B.WP0L2IPT1[i] += SLUGS2_ConstP.pooled63[i + 6] * tmp_0[2];
     }
 
     /* Gain: '<S415>/Deg2R' */
@@ -2091,8 +2091,8 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
 
     /* Gain: '<S413>/UEN 2 NEU' */
     for (i = 0; i < 3; i++) {
-      rtb_P32[i] = SLUGS2_ConstP.pooled65[i + 6] * tmp_0[2] +
-        (SLUGS2_ConstP.pooled65[i + 3] * tmp_0[1] + SLUGS2_ConstP.pooled65[i] *
+      rtb_P32[i] = SLUGS2_ConstP.pooled63[i + 6] * tmp_0[2] +
+        (SLUGS2_ConstP.pooled63[i + 3] * tmp_0[1] + SLUGS2_ConstP.pooled63[i] *
          tmp_0[0]);
     }
 
@@ -2375,8 +2375,8 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
 
     /* Gain: '<S341>/UEN 2 NEU' */
     for (i = 0; i < 3; i++) {
-      rtb_Product3_j0[i] = SLUGS2_ConstP.pooled65[i + 6] * tmp_0[2] +
-        (SLUGS2_ConstP.pooled65[i + 3] * tmp_0[1] + SLUGS2_ConstP.pooled65[i] *
+      rtb_Product3_j0[i] = SLUGS2_ConstP.pooled63[i + 6] * tmp_0[2] +
+        (SLUGS2_ConstP.pooled63[i + 3] * tmp_0[1] + SLUGS2_ConstP.pooled63[i] *
          tmp_0[0]);
     }
 
@@ -2486,8 +2486,8 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
 
     /* Gain: '<S358>/UEN 2 NEU' */
     for (i = 0; i < 3; i++) {
-      rtb_Product2_c[i] = SLUGS2_ConstP.pooled65[i + 6] * tmp_0[2] +
-        (SLUGS2_ConstP.pooled65[i + 3] * tmp_0[1] + SLUGS2_ConstP.pooled65[i] *
+      rtb_Product2_c[i] = SLUGS2_ConstP.pooled63[i + 6] * tmp_0[2] +
+        (SLUGS2_ConstP.pooled63[i + 3] * tmp_0[1] + SLUGS2_ConstP.pooled63[i] *
          tmp_0[0]);
     }
 
@@ -2842,8 +2842,8 @@ void SLUGS2_step0(void)                /* Sample time: [0.01s, 0.0s] */
 
       /* Gain: '<S197>/UEN 2 NEU' */
       for (i = 0; i < 3; i++) {
-        rtb_Product3_j0[i] = SLUGS2_ConstP.pooled65[i + 6] * tmp_0[2] +
-          (SLUGS2_ConstP.pooled65[i + 3] * tmp_0[1] + SLUGS2_ConstP.pooled65[i] *
+        rtb_Product3_j0[i] = SLUGS2_ConstP.pooled63[i + 6] * tmp_0[2] +
+          (SLUGS2_ConstP.pooled63[i + 3] * tmp_0[1] + SLUGS2_ConstP.pooled63[i] *
            tmp_0[0]);
       }
 
@@ -3738,9 +3738,9 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
    *  Memory: '<S135>/Memory1'
    *  Product: '<S135>/Product4'
    */
-  rtb_IC4_idx_1 = (0.01F * SLUGS2_DWork.IntegerDelay3_DSTATE_j *
-                   mlParamInterface.param[1] +
-                   SLUGS2_DWork.Memory1_PreviousInput_p) + rtb_Sum1_mj;
+  rtb_y_jl_idx_0 = (0.01F * SLUGS2_DWork.IntegerDelay3_DSTATE_j *
+                    mlParamInterface.param[1] +
+                    SLUGS2_DWork.Memory1_PreviousInput_p) + rtb_Sum1_mj;
 
   /* Switch: '<S135>/AntiWindup' incorporates:
    *  Constant: '<S135>/Constant5'
@@ -3752,11 +3752,11 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
    *  Sum: '<S135>/Add3'
    *  Sum: '<S135>/Add4'
    */
-  if ((rtb_IC4_idx_1 > 0.0F - SLUGS2_B.DataTypeConversion) && (rtb_IC4_idx_1 <
+  if ((rtb_y_jl_idx_0 > 0.0F - SLUGS2_B.DataTypeConversion) && (rtb_y_jl_idx_0 <
        0.95F - SLUGS2_B.DataTypeConversion)) {
-    rtb_IC4_idx_1 = SLUGS2_DWork.IntegerDelay3_DSTATE_j;
+    rtb_y_jl_idx_0 = SLUGS2_DWork.IntegerDelay3_DSTATE_j;
   } else {
-    rtb_IC4_idx_1 = 0.0F;
+    rtb_y_jl_idx_0 = 0.0F;
   }
 
   /* End of Switch: '<S135>/AntiWindup' */
@@ -3764,8 +3764,8 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   /* Switch: '<S148>/Switch3' incorporates:
    *  RelationalOperator: '<S148>/Relational Operator2'
    */
-  if ((rtb_IC4_idx_1 == rtb_IC4_idx_1) > 0) {
-    SLUGS2_DWork.IntegerDelay3_DSTATE_cl = rtb_IC4_idx_1;
+  if ((rtb_y_jl_idx_0 == rtb_y_jl_idx_0) > 0) {
+    SLUGS2_DWork.IntegerDelay3_DSTATE_cl = rtb_y_jl_idx_0;
   }
 
   /* End of Switch: '<S148>/Switch3' */
@@ -3787,11 +3787,11 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
    *  Sum: '<S147>/Subtract1'
    */
   if (SLUGS2_B.ManualorAutonavSupportcupdated4 > 0) {
-    rtb_IC4_idx_1 = 0.0F;
+    rtb_y_jl_idx_0 = 0.0F;
   } else {
-    rtb_IC4_idx_1 = ((SLUGS2_DWork.IntegerDelay3_DSTATE_cl * 0.333333343F +
-                      SLUGS2_DWork.IntegerDelay_DSTATE_l * 1.33333337F) +
-                     SLUGS2_DWork.IntegerDelay1_DSTATE_hy[0] * 0.333333343F) *
+    rtb_y_jl_idx_0 = ((SLUGS2_DWork.IntegerDelay3_DSTATE_cl * 0.333333343F +
+                       SLUGS2_DWork.IntegerDelay_DSTATE_l * 1.33333337F) +
+                      SLUGS2_DWork.IntegerDelay1_DSTATE_hy[0] * 0.333333343F) *
       0.005F + SLUGS2_DWork.IntegerDelay2_DSTATE_f;
   }
 
@@ -3800,8 +3800,8 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   /* Switch: '<S149>/Switch3' incorporates:
    *  RelationalOperator: '<S149>/Relational Operator2'
    */
-  if ((rtb_IC4_idx_1 == rtb_IC4_idx_1) > 0) {
-    SLUGS2_DWork.IntegerDelay3_DSTATE_m = rtb_IC4_idx_1;
+  if ((rtb_y_jl_idx_0 == rtb_y_jl_idx_0) > 0) {
+    SLUGS2_DWork.IntegerDelay3_DSTATE_m = rtb_y_jl_idx_0;
   }
 
   /* End of Switch: '<S149>/Switch3' */
@@ -3858,7 +3858,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   /* Sum: '<S137>/Add3' incorporates:
    *  Constant: '<S137>/SaturationLimit'
    */
-  rtb_IC4_idx_1 = 0.401425719F - SLUGS2_B.DataTypeConversion_f;
+  rtb_y_jl_idx_0 = 0.401425719F - SLUGS2_B.DataTypeConversion_f;
 
   /* Switch: '<S141>/Switch3' incorporates:
    *  RelationalOperator: '<S141>/Relational Operator2'
@@ -3986,9 +3986,9 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      */
     if (SLUGS2_DWork.Memory1_PreviousInput_o < -0.401425719F -
         SLUGS2_B.DataTypeConversion_f) {
-      rtb_IC4_idx_1 = -0.401425719F - SLUGS2_B.DataTypeConversion_f;
+      rtb_y_jl_idx_0 = -0.401425719F - SLUGS2_B.DataTypeConversion_f;
     } else {
-      rtb_IC4_idx_1 = SLUGS2_DWork.Memory1_PreviousInput_o;
+      rtb_y_jl_idx_0 = SLUGS2_DWork.Memory1_PreviousInput_o;
     }
 
     /* End of Switch: '<S154>/Switch' */
@@ -4020,8 +4020,8 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
    *  Product: '<S133>/Product1'
    *  Sum: '<S133>/Add5'
    */
-  rtb_IC4_idx_1 = (1.0F / SLUGS2_B.myCosapUtilscupdated5116 - 1.0F) *
-    mlParamInterface.param[11] + (rtb_IC4_idx_1 + SLUGS2_B.DataTypeConversion_f);
+  rtb_y_jl_idx_0 = (1.0F / SLUGS2_B.myCosapUtilscupdated5116 - 1.0F) *
+    mlParamInterface.param[11] + (rtb_y_jl_idx_0 + SLUGS2_B.DataTypeConversion_f);
 
   /* Update for UnitDelay: '<S171>/FixPt Unit Delay2' incorporates:
    *  Constant: '<S171>/FixPt Constant'
@@ -4091,14 +4091,14 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   /* Sum: '<S61>/Subtract' incorporates:
    *  Product: '<S61>/Product1'
    */
-  rtb_Product = SLUGS2_B.y_j[4] * SLUGS2_B.CFunctionCall1 + rtb_Sum1_mj;
+  rtb_IC4_idx_1 = SLUGS2_B.y_j[4] * SLUGS2_B.CFunctionCall1 + rtb_Sum1_mj;
 
   /* Switch: '<S67>/Switch3' incorporates:
    *  Delay: '<S67>/Integer Delay3'
    *  RelationalOperator: '<S67>/Relational Operator2'
    */
-  if (!((rtb_Product == rtb_Product) > 0)) {
-    rtb_Product = SLUGS2_DWork.IntegerDelay3_DSTATE_k;
+  if (!((rtb_IC4_idx_1 == rtb_IC4_idx_1) > 0)) {
+    rtb_IC4_idx_1 = SLUGS2_DWork.IntegerDelay3_DSTATE_k;
   }
 
   /* End of Switch: '<S67>/Switch3' */
@@ -4107,8 +4107,8 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
    *  Inport: '<S85>/In1'
    *  Logic: '<S73>/Logical Operator'
    */
-  rtb_IC4_idx_0 = mlParamInterface.param[22];
-  rtb_y_jl_idx_0 = mlParamInterface.param[23];
+  rtb_Product = mlParamInterface.param[22];
+  rtb_IC4_idx_0 = mlParamInterface.param[23];
 
   /* Outputs for Enabled SubSystem: '<S4>/L1 Output Feedback Controller With  Projection Operator' incorporates:
    *  EnablePort: '<S62>/Enable'
@@ -4246,8 +4246,8 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      *  Delay: '<S74>/Integer Delay3'
      *  RelationalOperator: '<S74>/Relational Operator2'
      */
-    if ((rtb_Product == rtb_Product) > 0) {
-      rtb_Switch3_gd = rtb_Product;
+    if ((rtb_IC4_idx_1 == rtb_IC4_idx_1) > 0) {
+      rtb_Switch3_gd = rtb_IC4_idx_1;
     } else {
       rtb_Switch3_gd = SLUGS2_DWork.IntegerDelay3_DSTATE_fs;
     }
@@ -5160,29 +5160,11 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
     SLUGS2_DWork.IntegerDelay1_DSTATE_l3[1];
   SLUGS2_DWork.IntegerDelay1_DSTATE_l3[1] = SLUGS2_DWork.IntegerDelay3_DSTATE_l;
 
-  /* End of Outputs for SubSystem: '<S4>/Lateral Channel Encaps [updated 4.28.16]' */
-
-  /* Outputs for Atomic SubSystem: '<S4>/Longitudinal Channel Encaps [updated 4.28.16]' */
-  /* Saturate: '<S133>/Throttle  Limit' */
+  /* Saturate: '<S95>/Rudder Limit' */
   /* MATLAB Function 'myMux Fun1': '<S18>:1' */
   /*  This block supports an embeddable subset of the MATLAB language. */
   /*  See the help menu for details.  */
   /* '<S18>:1:5' */
-  if (rtb_Deg2R_h_idx_0 > 0.95F) {
-    /* MATLAB Function: '<Root>/myMux Fun1' */
-    rtb_Deg2R_h_idx_0 = 0.95F;
-  } else {
-    if (rtb_Deg2R_h_idx_0 < 0.0F) {
-      /* MATLAB Function: '<Root>/myMux Fun1' */
-      rtb_Deg2R_h_idx_0 = 0.0F;
-    }
-  }
-
-  /* End of Saturate: '<S133>/Throttle  Limit' */
-  /* End of Outputs for SubSystem: '<S4>/Longitudinal Channel Encaps [updated 4.28.16]' */
-
-  /* Outputs for Atomic SubSystem: '<S4>/Lateral Channel Encaps [updated 4.28.16]' */
-  /* Saturate: '<S95>/Rudder Limit' */
   if (rtb_cosphi > 0.17453292F) {
     /* MATLAB Function: '<Root>/myMux Fun1' */
     rtb_cosphi = 0.17453292F;
@@ -5198,13 +5180,13 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
 
   /* Outputs for Atomic SubSystem: '<S4>/Longitudinal Channel Encaps [updated 4.28.16]' */
   /* Saturate: '<S133>/Elevator  Limit' */
-  if (rtb_IC4_idx_1 > 0.401425719F) {
+  if (rtb_y_jl_idx_0 > 0.401425719F) {
     /* MATLAB Function: '<Root>/myMux Fun1' */
-    rtb_IC4_idx_1 = 0.401425719F;
+    rtb_y_jl_idx_0 = 0.401425719F;
   } else {
-    if (rtb_IC4_idx_1 < -0.401425719F) {
+    if (rtb_y_jl_idx_0 < -0.401425719F) {
       /* MATLAB Function: '<Root>/myMux Fun1' */
-      rtb_IC4_idx_1 = -0.401425719F;
+      rtb_y_jl_idx_0 = -0.401425719F;
     }
   }
 
@@ -5237,7 +5219,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      *  Product: '<S692>/Divide'
      *  Sum: '<S692>/Add'
      */
-    tmp_4 = floor(rtb_IC4_idx_1 * 10119.867056498166 + 6420.8333333333348);
+    tmp_4 = floor(rtb_y_jl_idx_0 * 10119.867056498166 + 6420.8333333333348);
     if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
       rtb_u2deg = 0U;
     } else {
@@ -5277,40 +5259,10 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
 
     /* End of DataTypeConversion: '<S694>/Data Type Conversion' */
 
-    /* DataTypeConversion: '<S693>/Data Type Conversion' incorporates:
-     *  Constant: '<S693>/Constant1'
-     *  Constant: '<S693>/Constant2'
-     *  Product: '<S693>/Divide'
-     *  Sum: '<S693>/Add'
-     */
-    tmp_4 = floor(rtb_Deg2R_h_idx_0 * 3631.5 + 4612.0);
-    if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
-      rtb_DataTypeConversion_g0 = 0U;
-    } else {
-      rtb_DataTypeConversion_g0 = (uint16_T)fmod(tmp_4, 65536.0);
-    }
-
-    /* End of DataTypeConversion: '<S693>/Data Type Conversion' */
-
     /* S-Function (MCHP_C_function_Call): '<S677>/Initialize Control MCU' */
     getPassValues(
                   &SLUGS2_B.InitializeControlMCU_a[0]
                   );
-
-    /* Switch: '<S677>/Switch' incorporates:
-     *  Gain: '<S677>/Gain'
-     *  Gain: '<S691>/Gain4'
-     *  MATLAB Function: '<S644>/myMux Fun5'
-     *  Sum: '<S691>/Add'
-     */
-    if (SLUGS2_B.InitializeControlMCU_a[3] >= 1) {
-      rtb_RhhcosphicoslambXe = (0.5F * (real32_T)SLUGS2_B.InputCapture_o3 +
-        (real32_T)rtb_DataTypeConversion_g0) * 0.5F;
-    } else {
-      rtb_RhhcosphicoslambXe = rtb_DataTypeConversion_g0;
-    }
-
-    /* End of Switch: '<S677>/Switch' */
 
     /* Switch: '<S677>/Switch1' incorporates:
      *  Gain: '<S677>/Gain1'
@@ -5319,10 +5271,10 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      *  Sum: '<S690>/Add'
      */
     if (SLUGS2_B.InitializeControlMCU_a[2] >= 1) {
-      rtb_Sum1_mj = (0.5F * (real32_T)SLUGS2_B.InputCapture_o1 + (real32_T)
-                     rtb_DataTypeConversion_ee) * 0.5F;
+      rtb_RhhcosphicoslambXe = (0.5F * (real32_T)SLUGS2_B.InputCapture_o1 +
+        (real32_T)rtb_DataTypeConversion_ee) * 0.5F;
     } else {
-      rtb_Sum1_mj = rtb_DataTypeConversion_ee;
+      rtb_RhhcosphicoslambXe = rtb_DataTypeConversion_ee;
     }
 
     /* End of Switch: '<S677>/Switch1' */
@@ -5334,10 +5286,10 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      *  Sum: '<S689>/Add'
      */
     if (SLUGS2_B.InitializeControlMCU_a[1] >= 1) {
-      rtb_RhhcosphisinlambYe = (0.5F * (real32_T)SLUGS2_B.InputCapture_o4 +
-        (real32_T)rtb_DataTypeConversion_lk) * 0.5F;
+      rtb_Sum1_mj = (0.5F * (real32_T)SLUGS2_B.InputCapture_o4 + (real32_T)
+                     rtb_DataTypeConversion_lk) * 0.5F;
     } else {
-      rtb_RhhcosphisinlambYe = rtb_DataTypeConversion_lk;
+      rtb_Sum1_mj = rtb_DataTypeConversion_lk;
     }
 
     /* End of Switch: '<S677>/Switch2' */
@@ -5349,17 +5301,21 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      *  Sum: '<S688>/Add'
      */
     if (SLUGS2_B.InitializeControlMCU_a[0] >= 1) {
-      rtb_Deg2R1 = (0.5F * (real32_T)SLUGS2_B.InputCapture_o2 + (real32_T)
-                    rtb_u2deg) * 0.5F;
+      rtb_RhhcosphisinlambYe = (0.5F * (real32_T)SLUGS2_B.InputCapture_o2 +
+        (real32_T)rtb_u2deg) * 0.5F;
     } else {
-      rtb_Deg2R1 = rtb_u2deg;
+      rtb_RhhcosphisinlambYe = rtb_u2deg;
     }
 
     /* End of Switch: '<S677>/Switch3' */
 
-    /* MATLAB Function: '<S677>/myMux Fun1' */
-    SLUGS2_myMuxFun1_h(rtb_RhhcosphicoslambXe, rtb_Sum1_mj,
-                       rtb_RhhcosphisinlambYe, rtb_Deg2R1, SLUGS2_B.Merge);
+    /* MATLAB Function: '<S677>/myMux Fun1' incorporates:
+     *  Gain: '<S677>/Gain'
+     *  MATLAB Function: '<S644>/myMux Fun5'
+     */
+    SLUGS2_myMuxFun1_h(0.5F * (real32_T)SLUGS2_B.InputCapture_o3,
+                       rtb_RhhcosphicoslambXe, rtb_Sum1_mj,
+                       rtb_RhhcosphisinlambYe, SLUGS2_B.Merge);
 
     /* End of Outputs for SubSystem: '<S670>/If  Control Type Is Wp, ISR, LP or  Mid Lvl Cmds and we want to add Selective Passthrough1' */
   } else if (rtb_DataTypeConversion1_hq == 2) {
@@ -5389,14 +5345,29 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
       /* Switch: '<S675>/Switch' incorporates:
        *  Gain: '<S675>/Gain'
        *  MATLAB Function: '<S644>/myMux Fun5'
+       *  Saturate: '<S133>/Throttle  Limit'
        */
       if (SLUGS2_B.InitializeControlMCU[3] >= 1) {
         rtb_RhhcosphicoslambXe = 0.5F * (real32_T)SLUGS2_B.InputCapture_o3;
       } else {
+        /* Outputs for Atomic SubSystem: '<S4>/Longitudinal Channel Encaps [updated 4.28.16]' */
+        if (rtb_Deg2R_h_idx_0 > 0.95F) {
+          /* Saturate: '<S133>/Throttle  Limit' */
+          rtb_Deg2R_h_idx_0 = 0.95F;
+        } else {
+          if (rtb_Deg2R_h_idx_0 < 0.0F) {
+            /* Saturate: '<S133>/Throttle  Limit' */
+            rtb_Deg2R_h_idx_0 = 0.0F;
+          }
+        }
+
+        /* End of Outputs for SubSystem: '<S4>/Longitudinal Channel Encaps [updated 4.28.16]' */
+
         /* DataTypeConversion: '<S679>/Data Type Conversion' incorporates:
          *  Constant: '<S679>/Constant1'
          *  Constant: '<S679>/Constant2'
          *  Product: '<S679>/Divide'
+         *  Saturate: '<S133>/Throttle  Limit'
          *  Sum: '<S679>/Add'
          */
         tmp_4 = floor(rtb_Deg2R_h_idx_0 * 3631.5 + 4612.0);
@@ -5475,7 +5446,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
          *  Product: '<S678>/Divide'
          *  Sum: '<S678>/Add'
          */
-        tmp_4 = floor(rtb_IC4_idx_1 * 10119.867056498166 + 6420.8333333333348);
+        tmp_4 = floor(rtb_y_jl_idx_0 * 10119.867056498166 + 6420.8333333333348);
         if (rtIsNaN(tmp_4) || rtIsInf(tmp_4)) {
           rtb_Sum1_mj = 0.0F;
         } else {
@@ -5534,7 +5505,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
     rtb_RhhcosphicoslambXe = (real32_T)fmod(rtb_RhhcosphicoslambXe, 65536.0F);
   }
 
-  rtb_DataTypeConversion_g0 = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)
+  rtb_DataTypeConversion_cr_idx_3 = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)
     -(int16_T)(uint16_T)-rtb_RhhcosphicoslambXe : (uint16_T)
     rtb_RhhcosphicoslambXe;
 
@@ -5550,8 +5521,8 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
     15) >> 14);
   mlPwmCommands.servo3_raw = (uint16_T)(((uint32_T)rtb_DataTypeConversion_ee <<
     15) >> 14);
-  mlPwmCommands.servo4_raw = (uint16_T)(((uint32_T)rtb_DataTypeConversion_g0 <<
-    15) >> 14);
+  mlPwmCommands.servo4_raw = (uint16_T)(((uint32_T)
+    rtb_DataTypeConversion_cr_idx_3 << 15) >> 14);
   mlPwmCommands.time_usec = SLUGS2_DWork.time_since_boot_usec;
 
   /* DataStoreWrite: '<S16>/mlAttitudePQR' */
@@ -5608,7 +5579,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   /* RateTransition: '<S16>/Rate Transition' */
   if (SLUGS2_M->Timing.RateInteraction.TID0_1 == 1) {
     SLUGS2_B.RateTransition[0] = rtb_DataTypeConversion_lk;
-    SLUGS2_B.RateTransition[1] = rtb_DataTypeConversion_g0;
+    SLUGS2_B.RateTransition[1] = rtb_DataTypeConversion_cr_idx_3;
     SLUGS2_B.RateTransition[2] = rtb_u2deg;
     SLUGS2_B.RateTransition[3] = rtb_DataTypeConversion_ee;
   }
@@ -5620,7 +5591,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
    */
   /* DataStoreRead: '<S16>/Data Store Read' incorporates:
    *  Constant: '<S671>/COMP_ID'
-   *  Constant: '<S671>/SYS_ID'
+   *  Constant: '<S671>/SYS_ID_BLK'
    */
   if (SLUGS2_DWork.SIX_DOF_HIL_FLAG > 0.0) {
     /* DataStoreRead: '<S671>/Get Raw Commands' */
@@ -5682,7 +5653,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   SLUGS2_DWork.SIX_DOF_HIL_FLAG = 0.0;
 
   /* DataStoreWrite: '<Root>/Data Store Write1' incorporates:
-   *  Constant: '<Root>/Constant5'
+   *  Constant: '<Root>/Constant4'
    */
   SLUGS2_DWork.X_PLANE_HIL_FLAG = 1.0;
 
@@ -5789,7 +5760,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
   SLUGS2_DWork.IntegerDelay3_DSTATE = rtb_Switch3;
 
   /* Update for Delay: '<S67>/Integer Delay3' */
-  SLUGS2_DWork.IntegerDelay3_DSTATE_k = rtb_Product;
+  SLUGS2_DWork.IntegerDelay3_DSTATE_k = rtb_IC4_idx_1;
 
   /* Update for Enabled SubSystem: '<S4>/L1 Output Feedback Controller With  Projection Operator' incorporates:
    *  Update for EnablePort: '<S62>/Enable'
@@ -5801,7 +5772,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      *
      *  Store in Global RAM
      */
-    SLUGS2_DWork.UD_DSTATE_ff = rtb_IC4_idx_0;
+    SLUGS2_DWork.UD_DSTATE_ff = rtb_Product;
 
     /* Update for Delay: '<S72>/Integer Delay' */
     SLUGS2_DWork.IntegerDelay_DSTATE_an = rtb_Switch1_a;
@@ -5818,7 +5789,7 @@ mlNavigation.h_c = rtb_RhhcosphicoslambXe < 0.0F ? (uint16_T)-(int16_T)
      *
      *  Store in Global RAM
      */
-    SLUGS2_DWork.UD_DSTATE_j = rtb_y_jl_idx_0;
+    SLUGS2_DWork.UD_DSTATE_j = rtb_IC4_idx_0;
 
     /* Update for Delay: '<S76>/Integer Delay' */
     SLUGS2_DWork.IntegerDelay_DSTATE_k = rtb_Switch3_kh;

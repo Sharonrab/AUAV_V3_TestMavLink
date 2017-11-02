@@ -81,14 +81,14 @@ void InitParameterInterface(void)
     mlParamInterface.param[PAR_PID_AIRSPEED_D] = 0.004;
 
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_P], "PID_PIT_FO_P");
-        mlParamInterface.param[PAR_PID_PITCH_FO_P] = -0.1;
+        mlParamInterface.param[PAR_PID_PITCH_FO_P] = -0.5;
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_I], "PID_PIT_FO_I");
 	mlParamInterface.param[PAR_PID_PITCH_FO_I] = -0.001;// -0.00499999988824;
     strcpy(mlParamInterface.param_name[PAR_PID_PITCH_FO_D], "PID_PIT_FO_D");
 	mlParamInterface.param[PAR_PID_PITCH_FO_D] = -0.004;// -0.0599999986589;
 
     strcpy(mlParamInterface.param_name[PAR_PID_ROLL_CON_P], "PID_ROLL_CO_P");
-	mlParamInterface.param[PAR_PID_ROLL_CON_P] = 0.1;// 0.649999976158;
+	mlParamInterface.param[PAR_PID_ROLL_CON_P] = 0.5;// 0.649999976158;
     strcpy(mlParamInterface.param_name[PAR_PID_ROLL_CON_I], "PID_ROLL_CO_I");
             mlParamInterface.param[PAR_PID_ROLL_CON_I] = 0.002;//0.00999999977648;
     strcpy(mlParamInterface.param_name[PAR_PID_ROLL_CON_D], "PID_ROLL_CO_D");

@@ -7,7 +7,8 @@ derivativesConstant = 5;
 %PAR_HIL =1;
 SIL = 0;
 %AirplanType = 'Pheonix_1';   SYS_ID = 100; 
-AirplanType = 'Bixler2_1'; SYS_ID = 101;
+%AirplanType = 'Bixler2_1'; SYS_ID = 101;
+AirplanType = 'Bixler2_2'; SYS_ID = 102;
 %set the object to the new config
 SYS_ID_DEF= mpt.Parameter; 
 SYS_ID_DEF.CoderInfo.StorageClass = 'Custom'

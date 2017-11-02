@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'SLUGS2'.
  *
- * Model version                  : 1.271
+ * Model version                  : 1.304
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Tue Apr 11 15:47:53 2017
+ * C/C++ source code generated on : Mon Aug 28 10:37:11 2017
  */
 
 #include "IMU_Mag_Driver.h"
@@ -92,6 +92,7 @@ void SLUGS2_IMU_Mag_Driver(void)
   /* Logic: '<S3>/Logical Operator1' */
   if (!(SLUGS2_B.DataStoreRead != 0.0)) {
     /* DataStoreWrite: '<S54>/Update Raw IMU DATA1' incorporates:
+     *  Bias: '<S53>/Bias10'
      *  Bias: '<S53>/Bias11'
      *  Bias: '<S53>/Bias6'
      *  Bias: '<S53>/Bias7'
@@ -104,14 +105,14 @@ void SLUGS2_IMU_Mag_Driver(void)
      *  DataTypeConversion: '<S58>/Data Type Conversion3'
      */
     mlRawImuData.xacc = (int16_T)SLUGS2_B.U1CH8[0] - 300;
-    mlRawImuData.yacc = (int16_T)SLUGS2_B.U1CH8[1] + 200;
-    mlRawImuData.zacc = (int16_T)SLUGS2_B.U1CH8[2] - 336;
+    mlRawImuData.yacc = (int16_T)SLUGS2_B.U1CH8[1] + 50;
+    mlRawImuData.zacc = (int16_T)SLUGS2_B.U1CH8[2] + 660;
     mlRawImuData.xgyro = (int16_T)SLUGS2_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[0] +
+      105;
+    mlRawImuData.ygyro = (int16_T)SLUGS2_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[1] +
+      65;
+    mlRawImuData.zgyro = (int16_T)SLUGS2_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[2] +
       5;
-    mlRawImuData.ygyro = (int16_T)SLUGS2_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[1] -
-      150;
-    mlRawImuData.zgyro = (int16_T)SLUGS2_B.BUSSPIReadMPU6050AxyzTGxyz100Hz[2] -
-      46;
     mlRawImuData.xmag = SLUGS2_B.BUSI2CReadHMC5883Magn100Hz1[1];
     mlRawImuData.ymag = SLUGS2_B.BUSI2CReadHMC5883Magn100Hz1[3];
     mlRawImuData.zmag = SLUGS2_B.BUSI2CReadHMC5883Magn100Hz1[5];

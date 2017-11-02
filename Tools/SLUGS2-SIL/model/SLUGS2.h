@@ -10,9 +10,9 @@
  *
  * Code generated for Simulink model 'SLUGS2'.
  *
- * Model version                  : 1.290
+ * Model version                  : 1.304
  * Simulink Coder version         : 8.8 (R2015a) 09-Feb-2015
- * C/C++ source code generated on : Sat Jun 24 13:21:56 2017
+ * C/C++ source code generated on : Mon Aug 28 10:37:11 2017
  */
 
 #ifndef RTW_HEADER_SLUGS2_h_
@@ -65,7 +65,7 @@
 #endif
 
 /* Exported data define */
-#define SYS_ID_DEF                     ((uint8_T) 100U)
+#define SYS_ID_DEF                     ((uint8_T) 101U)
 
 /* user code (top of header file) */
 #include "MavlinkComm.h"
@@ -634,7 +634,7 @@ typedef struct {
    *   '<S396>/UEN 2 NEU'
    *   '<S413>/UEN 2 NEU'
    */
-  real32_T pooled65[9];
+  real32_T pooled63[9];
 } ConstParam_SLUGS2_T;
 
 /* Real-time Model Data Structure */
