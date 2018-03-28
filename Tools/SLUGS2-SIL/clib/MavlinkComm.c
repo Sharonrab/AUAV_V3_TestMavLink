@@ -296,9 +296,13 @@ void protDecodeMavlink(void) {
                         mlPending.wpProtState = WP_PROT_GETTING_WP_IDLE;
 
                     }
-
-                    indx = (uint8_t) mlSingleWp.seq;
-
+					//if we are in flight use the index of the wp you are heading toward
+					if (mlHeartbeatLocal.base_mode == MAV_MODE_FLAG_AUTO_ENABLED)
+						
+						indx = SLUGS2_DWork.toWp - 1 ;
+					else
+						indx = (uint8_t)mlSingleWp.seq;
+				
                     mlWpValues.lat[indx] = mlSingleWp.x;
                     mlWpValues.lon[indx] = mlSingleWp.y;
                     mlWpValues.alt[indx] = mlSingleWp.z;
